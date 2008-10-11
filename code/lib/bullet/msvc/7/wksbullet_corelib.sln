@@ -1,0 +1,18 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+# Visual C++ Express 2005
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Release
+		ConfigName.1 = ReleaseDoublePrecision
+		ConfigName.2 = Debug
+		ConfigName.3 = DebugDoublePrecision
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

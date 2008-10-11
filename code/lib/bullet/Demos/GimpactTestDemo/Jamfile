@@ -1,0 +1,23 @@
+SubDir TOP Demos GimpactTestDemo ;
+
+  #some demos need extra functionality, Collada / ConvexDecomposition etc.
+
+  rule ExtraDemo1
+
+  {
+    Application $(<) : $(>) : noinstall console nomanifest ;
+    LinkWith $(<) :   GIMPACTUtils GIMPACT  bulletopenglsupport bulletdynamics bulletcollision  bulletmath ;
+    CFlags $(<) :
+          [ FIncludes $(TOP)/Demos/OpenGL ]
+       	  [ FIncludes $(TOP)/Extras/GIMPACT/include ]
+ 	  [ FIncludes $(TOP)/Extras/GIMPACTUtils ]
+    ;
+
+    MsvcIncDirs $(<) :
+        "../../Demos/OpenGL"
+      	"../../Extras/GIMPACT/include"
+	"../../Extras/GIMPACTUtils"	
+ 	;
+  }
+
+ExtraDemo1 GimpactTestDemo : [ Wildcard *.h *.cpp  ] ;
