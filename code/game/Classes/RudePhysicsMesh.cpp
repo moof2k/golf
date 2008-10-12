@@ -43,6 +43,11 @@ void RudePhysicsMesh::Load(RudeMesh *mesh, float mass)
 		SPODNode *node = &model->pNode[i];
 		SPODMesh *mesh = &model->pMesh[node->nIdx];
 		
+		if(!node->pszName)
+			continue;
+		if(node->pszName[0] != 'M')
+			continue;
+		
 		unsigned char *indices	= (unsigned char*) mesh->sFaces.pData;
 		btIndexedMesh btmesh;
 		btmesh.m_numTriangles = mesh->nNumFaces;
