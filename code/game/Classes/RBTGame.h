@@ -92,6 +92,7 @@ private:
 	void RenderBallFollowInfo(bool showDistToHole);
 	void RenderShotInfo(bool showShotDistance, bool showClubInfo);
 	
+	void AutoSelectClub();
 	void NextClub(int n);
 	void MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &dist);
 	void MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist);

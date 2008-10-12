@@ -26,11 +26,57 @@ float gHoleAttractDist = 1.1f;
 float gHoleAttractPower = 0.1f;
 float gHoleMaxBallSpeed = 16.0f;
 
-RUDE_TWEAK("HoleRadius", kFloat, gHoleRadius);
-RUDE_TWEAK("HoleRenderRadius", kFloat, gHoleRenderRadius);
-RUDE_TWEAK("HoleAttractDist", kFloat, gHoleAttractDist);
-RUDE_TWEAK("HoleAttractPower", kFloat, gHoleAttractPower);
-RUDE_TWEAK("HoleMaxBallSpeed", kFloat, gHoleMaxBallSpeed);
+RUDE_TWEAK(HoleRadius, kFloat, gHoleRadius);
+RUDE_TWEAK(HoleRenderRadius, kFloat, gHoleRenderRadius);
+RUDE_TWEAK(HoleAttractDist, kFloat, gHoleAttractDist);
+RUDE_TWEAK(HoleAttractPower, kFloat, gHoleAttractPower);
+RUDE_TWEAK(HoleMaxBallSpeed, kFloat, gHoleMaxBallSpeed);
+
+RBTerrainMaterialInfo gMaterialInfos[kNumMaterialTypes] = {
+	{ 2000.0f, 0.3f, 0.97f, 0.9f, 5.0f },
+	{ 1000.0f, 0.35f, 0.6f, 0.6f, 3.0f },
+	{ 100.0f, 0.4f, 0.4f, 0.4f, 1.0f },
+	{ 1000.0f, 0.05f, 0.9f, 0.7f, 10.0f },
+	{ 75.0f, 0.4f, 0.5f, 0.5f, 2.0f },
+	{ 50.0f, 0.45f, 0.1f, 0.1f, 0.25f },
+
+};
+
+RUDE_TWEAK(MatRoughFriction, kFloat, gMaterialInfos[kRough].m_friction);
+RUDE_TWEAK(MatRoughRestitution, kFloat, gMaterialInfos[kRough].m_restitution);
+RUDE_TWEAK(MatRoughLinearDamping, kFloat, gMaterialInfos[kRough].m_linearDamping);
+RUDE_TWEAK(MatRoughAngularDamping, kFloat, gMaterialInfos[kRough].m_angularDamping);
+RUDE_TWEAK(MatRoughMinVelocity, kFloat, gMaterialInfos[kRough].m_minVelocity);
+
+RUDE_TWEAK(MatFairwayFringeFriction, kFloat, gMaterialInfos[kFairwayFringe].m_friction);
+RUDE_TWEAK(MatFairwayFringeRestitution, kFloat, gMaterialInfos[kFairwayFringe].m_restitution);
+RUDE_TWEAK(MatFairwayFringeLinearDamping, kFloat, gMaterialInfos[kFairwayFringe].m_linearDamping);
+RUDE_TWEAK(MatFairwayFringeAngularDamping, kFloat, gMaterialInfos[kFairwayFringe].m_angularDamping);
+RUDE_TWEAK(MatFairwayFringeMinVelocity, kFloat, gMaterialInfos[kFairwayFringe].m_minVelocity);
+
+RUDE_TWEAK(MatFairwayFriction, kFloat, gMaterialInfos[kFairway].m_friction);
+RUDE_TWEAK(MatFairwayRestitution, kFloat, gMaterialInfos[kFairway].m_restitution);
+RUDE_TWEAK(MatFairwayLinearDamping, kFloat, gMaterialInfos[kFairway].m_linearDamping);
+RUDE_TWEAK(MatFairwayAngularDamping, kFloat, gMaterialInfos[kFairway].m_angularDamping);
+RUDE_TWEAK(MatFairwayMinVelocity, kFloat, gMaterialInfos[kFairway].m_minVelocity);
+
+RUDE_TWEAK(MatSandtrapFriction, kFloat, gMaterialInfos[kSandtrap].m_friction);
+RUDE_TWEAK(MatSandtrapRestitution, kFloat, gMaterialInfos[kSandtrap].m_restitution);
+RUDE_TWEAK(MatSandtrapLinearDamping, kFloat, gMaterialInfos[kSandtrap].m_linearDamping);
+RUDE_TWEAK(MatSandtrapAngularDamping, kFloat, gMaterialInfos[kSandtrap].m_angularDamping);
+RUDE_TWEAK(MatSandtrapMinVelocity, kFloat, gMaterialInfos[kSandtrap].m_minVelocity);
+
+RUDE_TWEAK(MatGreenFringeFriction, kFloat, gMaterialInfos[kGreenFringe].m_friction);
+RUDE_TWEAK(MatGreenFringeRestitution, kFloat, gMaterialInfos[kGreenFringe].m_restitution);
+RUDE_TWEAK(MatGreenFringeLinearDamping, kFloat, gMaterialInfos[kGreenFringe].m_linearDamping);
+RUDE_TWEAK(MatGreenFringeAngularDamping, kFloat, gMaterialInfos[kGreenFringe].m_angularDamping);
+RUDE_TWEAK(MatGreenFringeMinVelocity, kFloat, gMaterialInfos[kGreenFringe].m_minVelocity);
+
+RUDE_TWEAK(MatGreenFriction, kFloat, gMaterialInfos[kGreen].m_friction);
+RUDE_TWEAK(MatGreenRestitution, kFloat, gMaterialInfos[kGreen].m_restitution);
+RUDE_TWEAK(MatGreenLinearDamping, kFloat, gMaterialInfos[kGreen].m_linearDamping);
+RUDE_TWEAK(MatGreenAngularDamping, kFloat, gMaterialInfos[kGreen].m_angularDamping);
+RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 
 RBTerrain::RBTerrain()
 : m_teeBox(1,0,0)
@@ -39,10 +85,10 @@ RBTerrain::RBTerrain()
 {
 }
 
-void RBTerrainContactCallback(RudePhysicsObject *terrain, RudePhysicsObject *other, int terrainId, int otherId)
+void RBTerrainContactCallback(RudePhysicsObject *terrain, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {
 	RBTerrain *tobj = (RBTerrain *) terrain->GetOwner();
-	tobj->Contact(other, terrainId, otherId);
+	tobj->Contact(other, terrainId, otherId, friction, restitution);
 }
 
 
@@ -50,6 +96,8 @@ void RBTerrain::Load(const char *name)
 {
 	LoadMesh(name);
 	LoadPhysicsMesh(0.0f);
+	
+	LoadMaterials();
 	
 	RudePhysicsMesh *obj = (RudePhysicsMesh *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
@@ -62,7 +110,6 @@ void RBTerrain::Load(const char *name)
 	obj->SetNotifyOnContact(true);
 	obj->SetContactCallback(RBTerrainContactCallback);
 	
-	obj->AddMaterial(0, cRudePhysicsMeshMaterial(100.0f, 0.4f));
 
 	LoadNodes();
 	
@@ -84,6 +131,48 @@ void RBTerrain::Load(const char *name)
 	
 	RUDE_ASSERT(cb.hasHit(), "Could not position hole.. is it over terrain?");
 	m_hole = cb.m_hitPointWorld;
+}
+
+void RBTerrain::LoadMaterials()
+{
+	RudeMesh *mesh = (RudeMesh *) GetMesh();
+	CPVRTPODScene *scene = mesh->GetModel();
+	
+	for(int i = 0; i < scene->nNumNode; i++)
+	{
+		SPODNode *node = &scene->pNode[i];
+		
+		if(!node->pszName)
+			continue;
+		if(node->pszName[0] != 'M')
+			continue;
+		
+		switch(node->pszName[1])
+		{
+			case '0':
+				m_terrainParts[i] = kRough;
+				break;
+			case '1':
+				m_terrainParts[i] = kFairwayFringe;
+				break;
+			case '2':
+				m_terrainParts[i] = kFairway;
+				break;
+			case '3':
+				m_terrainParts[i] = kSandtrap;
+				break;
+			case '4':
+				m_terrainParts[i] = kGreenFringe;
+				break;
+			case '5':
+				m_terrainParts[i] = kGreen;
+				break;
+			default:
+				RUDE_ASSERT(0, "Unknown material type on %s", node->pszName);
+				break;
+				
+		}
+	}
 }
 
 void RBTerrain::LoadNodes()
@@ -123,23 +212,30 @@ void RBTerrain::LoadNodes()
 	//m_hole = m_teeBox + btVector3(0,0,-20);
 }
 
-void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId)
+void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {
+	eRBTerrainMaterial materialType = m_terrainParts[terrainId];
+	RBTerrainMaterialInfo &materialInfo = gMaterialInfos[materialType];
+	
+	
+	*friction = materialInfo.m_friction;
+	*restitution = materialInfo.m_restitution;
+	
 	// assume 'other' is always the ball
-	//printf("Contact!\n");
+	//printf("Contact! %d\n", terrainId);
 	
 	RBGolfBall *ball = (RBGolfBall *) other->GetOwner();
 	btRigidBody *rb = other->GetRigidBody();
 	
 	// damp based on impacted material (TODO)
-	ball->AddContactDamping(0.5f, 0.5f);
+	ball->AddContactDamping(materialInfo.m_linearDamping, materialInfo.m_angularDamping);
 	
 	btVector3 ballpos = ball->GetPosition();
 	btVector3 ballvel = rb->getLinearVelocity();
 	float ballvelmag = ballvel.length();
 	
 	// stop based on impacted material (TODO)
-	if(ballvelmag < 1.0f)
+	if(ballvelmag < materialInfo.m_minVelocity)
 	{
 		ball->Stop();
 		return;

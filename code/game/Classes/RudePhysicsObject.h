@@ -14,7 +14,7 @@ class btRigidBody;
 class RudeObject;
 class RudePhysicsObject;
 
-typedef void(*RudePhysicsCollisionCallback)(RudePhysicsObject *, RudePhysicsObject *, int, int);
+typedef void(*RudePhysicsCollisionCallback)(RudePhysicsObject *, RudePhysicsObject *, int, int, float *, float *);
 
 class RudePhysicsObject {
 
@@ -26,13 +26,7 @@ public:
 	
 	btRigidBody * GetRigidBody() { return m_rigidBody; }
 	
-	virtual void GetMaterialProperties(int partId, float *friction, float *restitution)
-	{
-		*friction = 1.0f;
-		*restitution = 0.0f;
-	}
-	
-	void Contact(RudePhysicsObject *other, int mypartId, int otherpartId);
+	void Contact(RudePhysicsObject *other, int mypartId, int otherpartId, float *friction, float *restitution);
 	
 	void SetContactCallback(RudePhysicsCollisionCallback cb) { m_contactCallback = cb; }
 	bool GetNotifyOnContact() { return m_notifyOnContact; }

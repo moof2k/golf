@@ -15,6 +15,31 @@
 #include <btBulletDynamicsCommon.h>
 
 #include <vector>
+#include <map>
+
+typedef enum {
+	kRough = 0,
+	kFairwayFringe,
+	kFairway,
+	kSandtrap,
+	kGreenFringe,
+	kGreen,
+	
+	kNumMaterialTypes
+} eRBTerrainMaterial;
+
+class RBTerrainMaterialInfo {
+
+public:
+	float m_friction;
+	float m_restitution;
+	
+	float m_linearDamping;
+	float m_angularDamping;
+	
+	float m_minVelocity;
+	
+};
 
 
 class RBTerrain : public RudeObject {
@@ -25,7 +50,7 @@ public:
 	
 	void Load(const char *name);
 	
-	void Contact(RudePhysicsObject *other, int terrainId, int otherId);
+	void Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution);
 	
 	btVector3 GetTeeBox() { return m_teeBox; }
 	btVector3 GetGuidePoint(btVector3 ball);
@@ -39,11 +64,14 @@ public:
 	
 private:
 	
+	void LoadMaterials();
 	void LoadNodes();
 	void RenderHole();
 	
 	btVector3 m_teeBox;
 	btVector3 m_hole;
+	
+	std::map<int, eRBTerrainMaterial> m_terrainParts;
 	
 	std::vector<btVector3> m_shortTees;
 	std::vector<btVector3> m_longTees;

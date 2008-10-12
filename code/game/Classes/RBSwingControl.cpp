@@ -20,10 +20,10 @@ float gSwingDownEarlyPunishment = 1.0f;
 float gSwingDownLatePunishment = 0.2f;
 
 
-RUDE_TWEAK("SwingDownOptimalTimeMin", kFloat, gSwingDownOptimalTimeMin);
-RUDE_TWEAK("SwingDownOptimalTimeMax", kFloat, gSwingDownOptimalTimeMax);
-RUDE_TWEAK("SwingDownEarlyPunishment", kFloat, gSwingDownEarlyPunishment);
-RUDE_TWEAK("SwingDownLatePunishment", kFloat, gSwingDownLatePunishment);
+RUDE_TWEAK(SwingDownOptimalTimeMin, kFloat, gSwingDownOptimalTimeMin);
+RUDE_TWEAK(SwingDownOptimalTimeMax, kFloat, gSwingDownOptimalTimeMax);
+RUDE_TWEAK(SwingDownEarlyPunishment, kFloat, gSwingDownEarlyPunishment);
+RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 
 
 RBSwingControl::RBSwingControl()

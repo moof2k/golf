@@ -48,20 +48,16 @@ static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisio
 	if (colObj0->getCollisionFlags() & btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK)
 	{
 		RUDE_ASSERT(obj0, "Custom callback but no object registered");
+		RUDE_ASSERT(obj0->GetNotifyOnContact(), "No custom callback registered for object");
 		
-		obj0->GetMaterialProperties(partId0, &friction0, &restitution0);
-		
-		if(obj0->GetNotifyOnContact())
-			obj0->Contact(obj1, partId0, partId1);
+		obj0->Contact(obj1, partId0, partId1, &friction0, &restitution0);
 	}
 	if (colObj1->getCollisionFlags() & btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK)
 	{
 		RUDE_ASSERT(obj1, "Custom callback but no object registered");
+		RUDE_ASSERT(obj1->GetNotifyOnContact(), "No custom callback registered for object");
 		
-		obj1->GetMaterialProperties(partId1, &friction1, &restitution1);
-		
-		if(obj1->GetNotifyOnContact())
-			obj1->Contact(obj0, partId1, partId0);
+		obj1->Contact(obj0, partId1, partId0, &friction1, &restitution1);
 	}
 	
 	cp.m_combinedFriction = calculateCombinedFriction(friction0,friction1);

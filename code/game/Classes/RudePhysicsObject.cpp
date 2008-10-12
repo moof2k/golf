@@ -45,7 +45,7 @@ void RudePhysicsObject::Render()
 	glLoadMatrixf(m);
 }
 
-void RudePhysicsObject::Contact(RudePhysicsObject *other, int mypartId, int otherpartId)
+void RudePhysicsObject::Contact(RudePhysicsObject *other, int mypartId, int otherpartId, float *friction, float *restitution)
 {
 	if(!m_notifyOnContact)
 		return;
@@ -53,6 +53,6 @@ void RudePhysicsObject::Contact(RudePhysicsObject *other, int mypartId, int othe
 	if(!m_contactCallback)
 		return;
 	
-	m_contactCallback(this, other, mypartId, otherpartId);
+	m_contactCallback(this, other, mypartId, otherpartId, friction, restitution);
 }
 

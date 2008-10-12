@@ -8,7 +8,9 @@
  */
 
 #include "RudeTweaker.h"
+#include "Rude.h"
 
+#ifndef NO_RUDETWEAKER
 
 #include "microhttpd.h"
 #include <stdlib.h>
@@ -50,7 +52,7 @@ static int HttpHandlerGbl(void * cls,
 									ptr);
 }
 
-char text[2048] = "";
+char text[10 * 1024] = "";
 
 int RudeTweaker::HttpHandler(void * cls,
 							 struct MHD_Connection * connection,
@@ -117,6 +119,9 @@ int RudeTweaker::HttpHandler(void * cls,
 	
 	strcat(text, "<br><a href=\"/\">Refresh</a>\n");
 	
+	int textlen = strlen(text);
+	RUDE_ASSERT(textlen < sizeof(text), "Tweaker exceeded text buffer bounds (%d / %d)", textlen, sizeof(text));
+	
 	//printf(text);
 	
 	response = MHD_create_response_from_data(strlen(text),
@@ -146,5 +151,8 @@ void RudeTweaker::Init()
 	//MHD_stop_daemon(d);
 	//return 0;
 }
+
+
+#endif // NO_RUDETWEAKER
 
 

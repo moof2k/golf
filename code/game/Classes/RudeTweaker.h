@@ -10,6 +10,11 @@
 #ifndef __H_RudeTweaker
 #define __H_RudeTweaker
 
+//#define NO_RUDETWEAKER
+
+
+#ifndef NO_RUDETWEAKER
+
 #include <map>
 
 
@@ -30,7 +35,9 @@ public:
 	
 };
 
-#define RUDE_TWEAK(name, type, var) RudeTweak var##_tweak(name, type, &var);
+#define RUDE_TWEAK(name, type, var) \
+	RudeTweak name##_tweak(#name , type, &(var));
+
 
 typedef std::map<const char *, RudeTweak *> tTweakerMap;
 
@@ -62,5 +69,11 @@ private:
 	
 };
 
+#else
+
+#define RUDE_TWEAK(name, type, var) \
+	;
+
+#endif
 
 #endif

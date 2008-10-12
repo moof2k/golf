@@ -125,8 +125,10 @@ bool gLandscape = false;
 	
 	
 	RudeText::Init();
-	RudeTweaker::GetInstance()->Init();
 	
+#ifndef NO_RUDETWEAKER
+	RudeTweaker::GetInstance()->Init();
+#endif
 	
 	return self;
 }

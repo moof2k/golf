@@ -22,26 +22,6 @@
 class RudeMesh;
 
 
-class cRudePhysicsMeshMaterial {
-
-public:
-	cRudePhysicsMeshMaterial()
-	: m_valid(-1)
-	, m_friction(1.0f)
-	, m_restitution(0.0f)
-	{}
-	
-	cRudePhysicsMeshMaterial(float friction, float restitution)
-	: m_valid(1)
-	, m_friction(friction)
-	, m_restitution(restitution)
-	{}
-	
-	int m_valid;
-	float m_friction;
-	float m_restitution;
-};
-
 class RudePhysicsMesh : public RudePhysicsObject {
 	
 public:
@@ -50,12 +30,6 @@ public:
 	
 	virtual void Load(RudeMesh *mesh, float mass);
 	
-	virtual void GetMaterialProperties(int partId, float *friction, float *restitution);
-	
-	void AddMaterial(int materialCode, const cRudePhysicsMeshMaterial &material)
-	{
-		m_materials[materialCode] = material;
-	}
 	
 	
 protected:
@@ -63,8 +37,6 @@ protected:
 	btTriangleIndexVertexArray * m_data;
 	btBvhTriangleMeshShape *m_shape;
 	
-	std::vector<int> m_materialCodes;
-	std::map<int, cRudePhysicsMeshMaterial> m_materials;
 };
 
 

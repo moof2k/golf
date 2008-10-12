@@ -18,7 +18,7 @@
 #include "btTransform.h"
 
 bool gDebugCamera = false;
-RUDE_TWEAK("DebugCamera", kBool, gDebugCamera);
+RUDE_TWEAK(DebugCamera, kBool, gDebugCamera);
 
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
@@ -122,6 +122,7 @@ void RBTGame::SetState(eRBTGameState state)
 					m_swingHeight = 0.0f;
 				}
 				
+				AutoSelectClub();
 				FreshGuide();
 			}
 			break;
@@ -180,6 +181,8 @@ void RBTGame::StateTeePosition(float delta)
 void RBTGame::StatePositionSwing(float delta)
 {
 	//m_state = kStateExecuteSwing;
+	
+	AutoSelectClub();
 }
 
 void RBTGame::StatePositionSwing2(float delta)
@@ -249,6 +252,11 @@ void RBTGame::StateFollowBall(float delta)
 			SetState(kStateRegardBall);
 		}
 	}
+}
+
+void RBTGame::AutoSelectClub()
+{
+	
 }
 
 void RBTGame::NextClub(int n)

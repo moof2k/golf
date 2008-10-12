@@ -59,7 +59,6 @@ void RudePhysicsMesh::Load(RudeMesh *mesh, float mass)
 		
 		m_data->addIndexedMesh(btmesh, PHY_SHORT);
 		
-		m_materialCodes.push_back(0);
 	}
 	
 	
@@ -80,17 +79,5 @@ void RudePhysicsMesh::Load(RudeMesh *mesh, float mass)
 	
 	RudePhysics::GetInstance()->AddObject(this);
 	
-}
-
-void RudePhysicsMesh::GetMaterialProperties(int partId, float *friction, float *restitution)
-{
-	RUDE_ASSERT(partId < m_materialCodes.size(), "Invalid partId");
-	
-	int materialCode = m_materialCodes[partId];
-	cRudePhysicsMeshMaterial &material = m_materials[materialCode];
-	RUDE_ASSERT(material.m_valid >= 0, "Invalid material code");
-	
-	*friction = material.m_friction;
-	*restitution = material.m_restitution;
 }
 
