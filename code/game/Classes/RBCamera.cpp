@@ -14,6 +14,7 @@ RBCamera::RBCamera()
 : m_pos(0,0,0)
 , m_lookAt(0,0,1)
 , m_up(0,1,0)
+, m_halffov((16.0f / 180.0f) * 3.1415926f)
 {
 }
 
@@ -21,9 +22,8 @@ void RBCamera::SetView(float aspect)
 {
 	float near = 2.0f;
 	float far = 2000.0f;
-	float halffov = (16.0f / 180.0f) * 3.1415926f;
 	
-	float hw = 2.0f * tan(halffov) * near;
+	float hw = 2.0f * tan(m_halffov) * near;
 	float w = hw * 2.0f;
 	
 	//printf("fov=%f w=%f aspect=%f\n", halffov, w, aspect);

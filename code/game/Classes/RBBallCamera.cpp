@@ -26,6 +26,8 @@ void RBBallCamera::Track(eTrackMode mode, btVector3 guide, float height)
 	
 	btVector3 ball = m_ball->GetPosition();
 	
+	m_halffov = (16.0f / 180.0f) * 3.1415926f;
+	
 	switch(m_mode)
 	{
 		case kRegardCamera:
@@ -115,6 +117,23 @@ void RBBallCamera::NextFrame(float delta)
 				//ballvel.setY(0.0f);
 				//btVector3 lookat = ball + ballvel * 0.5f;
 				
+				const float kSpeedThreshold = 40.0f;
+				const float kMinFOV = 8.0f;
+				const float kMaxFOV = 16.0f;
+				
+				float ballspeed = ballvel.length();
+				
+				if(ballspeed > kSpeedThreshold)
+					ballspeed = kSpeedThreshold;
+				
+				ballspeed /= kSpeedThreshold;
+				ballspeed = 1.0f - ballspeed;
+				ballspeed *= (kMaxFOV - kMinFOV);
+				
+				float halffov = kMaxFOV - ballspeed;
+				
+				m_halffov += (((halffov / 180.0f) * 3.1415926f) - m_halffov) * delta * 1.0f;
+				
 				m_lookAt += (ball - m_lookAt) * delta * 3.0f;
 				
 				m_pos = m_guide;
@@ -123,7 +142,7 @@ void RBBallCamera::NextFrame(float delta)
 		case kRegardCamera:
 			{
 				btVector3 forward = m_guide - ball;
-				float len = forward.length();
+				//float len = forward.length();
 				forward.normalize();
 				
 				

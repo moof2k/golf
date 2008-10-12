@@ -240,7 +240,7 @@ void RBTGame::StateFollowBall(float delta)
 			return;
 		}
 		
-		const float kBallStoppedObservationTime = 1.0f;
+		const float kBallStoppedObservationTime = 2.5f;
 		
 		m_stopTimer += delta;
 		

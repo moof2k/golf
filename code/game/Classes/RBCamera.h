@@ -33,6 +33,8 @@ protected:
 	btVector3 m_pos;
 	btVector3 m_lookAt;
 	btVector3 m_up;
+	
+	float m_halffov;
 };
 
 
