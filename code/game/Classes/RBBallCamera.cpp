@@ -40,6 +40,9 @@ void RBBallCamera::Track(eTrackMode mode, btVector3 guide, float height)
 				m_pos = ball - ((kBaseDist) * forward) + btVector3(0,kBaseHeight,0);
 			}
 			break;
+		case kPlacementCamera:
+			m_lookAt = ball;
+			break;
 	}
 }
 
@@ -47,6 +50,7 @@ void RBBallCamera::Track(eTrackMode mode, btVector3 guide, float height)
 void RBBallCamera::NextFrame(float delta)
 {
 	btVector3 ball = m_ball->GetPosition();
+	btVector3 ballvel = m_ball->GetLinearVelocity();
 	
 	switch(m_mode)
 	{
@@ -90,7 +94,7 @@ void RBBallCamera::NextFrame(float delta)
 			
 			}
 			break;
-		case kFixedCamera:
+		case kAfterShotCamera:
 			{
 				// slowly lean toward the ball
 				
@@ -104,6 +108,16 @@ void RBBallCamera::NextFrame(float delta)
 				m_lookAt = ball;
 				
 				m_pos = m_lookAt + btVector3(0,20,20);
+			}
+			break;
+		case kPlacementCamera:
+			{
+				//ballvel.setY(0.0f);
+				//btVector3 lookat = ball + ballvel * 0.5f;
+				
+				m_lookAt += (ball - m_lookAt) * delta * 3.0f;
+				
+				m_pos = m_guide;
 			}
 			break;
 		case kRegardCamera:

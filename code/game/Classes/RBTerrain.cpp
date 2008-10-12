@@ -112,8 +112,10 @@ void RBTerrain::LoadNodes()
 			m_longTees.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 	}
 	
+	
 	RUDE_ASSERT(m_shortTees.size() > 0, "Terrain has no short tee boxes (N0)");
 	RUDE_ASSERT(m_holes.size() > 0, "Terrain has no holes (N1)");
+	RUDE_ASSERT(m_cameraPlacements.size() > 0, "Terrain has no camera placements (N2)");
 	
 	m_teeBox = m_shortTees[0];
 	m_hole = m_holes[0];
@@ -172,31 +174,62 @@ void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId)
 	}
 }
 
+btVector3 RBTerrain::GetCameraPlacement(btVector3 ball)
+{
+	int best = -1;
+	float bestDistance = 9999.0f;
+	
+	for(int i = 0; i < m_cameraPlacements.size(); i++)
+	{
+		btVector3 &p = m_cameraPlacements[i];
+		
+		btVector3 pvec = p - ball;
+		float dist = pvec.length();
+		
+		if(dist < bestDistance)
+		{
+			bestDistance = dist;
+			best = i;
+		}
+	}
+	
+	RUDE_ASSERT(best >= 0, "Could not find a good camera");
+	
+	return m_cameraPlacements[best];
+}
+
 btVector3 RBTerrain::GetGuidePoint(btVector3 ball)
 {
 	const float kGuideThreshold = 30.0f * 3.0f;
 	
 	btVector3 holeVec = m_hole - ball;
-	float holeDist = holeVec.length();
+	float holeDistToBall = holeVec.length();
 	
 	int guide = -1;
-	float bestDistance = holeDist;
+	float bestDistanceHole = holeDistToBall;
 	
 	for(int i = 0; i < m_guidePoints.size(); i++)
 	{
 		btVector3 &p = m_guidePoints[i];
 		
-		btVector3 guideVec = p - ball;
-		float guideDist = guideVec.length();
+		btVector3 guideVecBall = p - ball;
+		float guideDistToBall = guideVecBall.length();
 		
-		if(guideDist > kGuideThreshold)
+		btVector3 guideVecHole = p - m_hole;
+		float guideDistToHole = guideVecHole.length();
+		
+		if(guideDistToHole < holeDistToBall)
 		{
-			if(guideDist < bestDistance)
+			if(guideDistToBall > kGuideThreshold)
 			{
-				guide = i;
-				bestDistance = guideDist;
+				if(guideDistToHole < bestDistanceHole)
+				{
+					guide = i;
+					bestDistanceHole = guideDistToHole;
+				}
 			}
 		}
+		
 	}
 	
 	if(guide >= 0)

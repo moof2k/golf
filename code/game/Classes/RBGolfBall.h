@@ -36,6 +36,7 @@ public:
 	
 	btVector3 GetPosition();
 	btVector3 GetAngularVelocity();
+	btVector3 GetLinearVelocity();
 	void SetPosition(const btVector3 &p);
 	void SetForce(const btVector3 &f);
 	

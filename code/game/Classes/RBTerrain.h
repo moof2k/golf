@@ -30,6 +30,7 @@ public:
 	btVector3 GetTeeBox() { return m_teeBox; }
 	btVector3 GetGuidePoint(btVector3 ball);
 	btVector3 GetHole() { return m_hole; }
+	btVector3 GetCameraPlacement(btVector3 ball);
 	
 	bool GetBallInHole() { return m_ballInHole; }
 	void SetBallInHole(bool b) { m_ballInHole = b; }

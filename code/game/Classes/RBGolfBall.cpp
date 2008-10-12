@@ -144,6 +144,11 @@ btVector3 RBGolfBall::GetAngularVelocity()
 	return GetPhysicsObject()->GetRigidBody()->getAngularVelocity();
 }
 
+btVector3 RBGolfBall::GetLinearVelocity()
+{
+	return GetPhysicsObject()->GetRigidBody()->getLinearVelocity();
+}
+
 void RBGolfBall::SetPosition(const btVector3 &p)
 {
 	btTransform trans;

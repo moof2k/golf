@@ -35,6 +35,8 @@ const unsigned int kParBotColor = 0xFF000000;
 const unsigned int kParOutlineTopColor = 0xFFFFFFFF;
 const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
+const float kFollowTimerThreshold = 2.0f;
+
 RBTGame::RBTGame()
 {	
 	
@@ -144,8 +146,9 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateFollowBall:
 			{
+				m_stopTimer = 0.0f;
 				m_followTimer = 0.0f;
-				m_ballCamera.Track(kFixedCamera, btVector3(0,0,0), 0.0f);
+				m_ballCamera.Track(kAfterShotCamera, btVector3(0,0,0), 0.0f);
 				
 			}
 			break;
@@ -158,7 +161,6 @@ void RBTGame::SetState(eRBTGameState state)
 		case kStateBallInHole:
 			{
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
-				
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetHole(), 5.0f);
 			}
 			break;
@@ -191,6 +193,62 @@ void RBTGame::StateHitBall(float delta)
 	
 	SetState(kStateFollowBall);
 	
+}
+
+void RBTGame::StateFollowBall(float delta)
+{
+	btVector3 ball = m_ball.GetPosition();
+	
+	m_followTimer += delta;
+	
+	if(m_followTimer > kFollowTimerThreshold)
+	{
+		// project ball forward based on velocity
+		const float kBallForwardTime = 2.0f;
+		btVector3 ballvel = m_ball.GetLinearVelocity();
+		ballvel.setY(0);
+		
+		btVector3 futureball = ball + ballvel * kBallForwardTime;
+		
+		btVector3 placement = m_terrain.GetCameraPlacement(futureball);
+		
+		m_ballCamera.Track(kPlacementCamera, placement, 0.0f);
+		
+		
+		m_followTimer = -100.0f;
+		
+	}
+	
+	m_ballRecorder.NextFrame(delta, true);
+	
+	
+	btVector3 dist = ball - m_dBall;
+	dist.setY(0.0f);
+	float df = dist.length();
+	m_ballShotDist = df / 3.0f;
+	
+	btVector3 ballToHole = m_terrain.GetHole() - ball;
+	ballToHole.setY(0.0f);
+	m_ballToHoleDist = ballToHole.length() / 3.0f;
+	
+	
+	if(m_ball.GetStopped())
+	{
+		if(m_terrain.GetBallInHole())
+		{
+			SetState(kStateBallInHole);
+			return;
+		}
+		
+		const float kBallStoppedObservationTime = 1.0f;
+		
+		m_stopTimer += delta;
+		
+		if(m_stopTimer > kBallStoppedObservationTime)
+		{
+			SetState(kStateRegardBall);
+		}
+	}
 }
 
 void RBTGame::NextClub(int n)
@@ -357,6 +415,8 @@ void RBTGame::HitBall()
 	
 }
 
+
+
 void RBTGame::NextFrame(float delta)
 {
 	RudePhysics::GetInstance()->NextFrame(delta);
@@ -389,30 +449,8 @@ void RBTGame::NextFrame(float delta)
 		}
 			break;
 		case kStateFollowBall:
-		{
-			m_followTimer += delta;
-			
-			m_ballRecorder.NextFrame(delta, true);
-			
-			btVector3 ball = m_ball.GetPosition();
-			btVector3 dist = ball - m_dBall;
-			dist.setY(0.0f);
-			float df = dist.length();
-			m_ballShotDist = df / 3.0f;
-			
-			btVector3 ballToHole = m_terrain.GetHole() - ball;
-			ballToHole.setY(0.0f);
-			m_ballToHoleDist = ballToHole.length() / 3.0f;
-			
-			
-			if(m_ball.GetStopped())
-			{
-				if(m_terrain.GetBallInHole())
-					SetState(kStateBallInHole);
-				else
-					SetState(kStateRegardBall);
-			}
-		}
+			StateFollowBall(delta);
+		
 			break;
 			
 		case kStateRegardBall:

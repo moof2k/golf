@@ -18,7 +18,8 @@ typedef enum {
 	kNone,
 	kHitCamera,
 	kAimCamera,
-	kFixedCamera,
+	kAfterShotCamera,
+	kPlacementCamera,
 	kFollowCamera,
 	kRegardCamera,
 } eTrackMode;

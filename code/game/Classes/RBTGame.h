@@ -87,6 +87,7 @@ private:
 	void StatePositionSwing(float delta);
 	void StatePositionSwing2(float delta);
 	void StateHitBall(float delta);
+	void StateFollowBall(float delta);
 	
 	void RenderBallFollowInfo(bool showDistToHole);
 	void RenderShotInfo(bool showShotDistance, bool showClubInfo);
@@ -132,6 +133,7 @@ private:
 	float m_swingAngle;
 	
 	float m_followTimer;
+	float m_stopTimer;
 	
 	btVector3 m_dBall;
 	btVector3 m_dGuide;
