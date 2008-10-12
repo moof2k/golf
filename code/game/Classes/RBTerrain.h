@@ -11,22 +11,12 @@
 #define __H_RBTerrain
 
 #include "RudeObject.h"
+#include "RBTerrainMaterial.h"
 
 #include <btBulletDynamicsCommon.h>
 
 #include <vector>
 #include <map>
-
-typedef enum {
-	kRough = 0,
-	kFairwayFringe,
-	kFairway,
-	kSandtrap,
-	kGreenFringe,
-	kGreen,
-	
-	kNumMaterialTypes
-} eRBTerrainMaterial;
 
 class RBTerrainMaterialInfo {
 

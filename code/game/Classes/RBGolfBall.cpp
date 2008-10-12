@@ -27,6 +27,7 @@ RBGolfBall::RBGolfBall()
 , m_stop(false)
 , m_stopped(false)
 , m_ballScale(kBallRadius)
+, m_curMaterial(kTee)
 {
 }
 

@@ -227,6 +227,8 @@ void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, fl
 	RBGolfBall *ball = (RBGolfBall *) other->GetOwner();
 	btRigidBody *rb = other->GetRigidBody();
 	
+	ball->SetCurMaterial(materialType);
+	
 	// damp based on impacted material (TODO)
 	ball->AddContactDamping(materialInfo.m_linearDamping, materialInfo.m_angularDamping);
 	

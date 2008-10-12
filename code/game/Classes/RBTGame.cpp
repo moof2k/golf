@@ -50,6 +50,7 @@ RBTGame::RBTGame()
 	
 	m_ball.Load("ball_1");
 	m_ball.SetPosition(btVector3(0,100,0));
+	m_ball.SetCurMaterial(kTee);
 	
 	m_ballRecorder.SetBall(&m_ball);
 	
@@ -120,9 +121,10 @@ void RBTGame::SetState(eRBTGameState state)
 				{
 					m_swingYaw = 0.0f;
 					m_swingHeight = 0.0f;
+					
+					AutoSelectClub();
 				}
 				
-				AutoSelectClub();
 				FreshGuide();
 			}
 			break;
@@ -172,8 +174,15 @@ void RBTGame::StateTeePosition(float delta)
 {
 	btVector3 tee = m_terrain.GetTeeBox();
 	m_ball.StickAtPosition(tee);
+	m_ball.SetCurMaterial(kTee);
 
 	m_terrain.SetBallInHole(false);
+	
+	btVector3 ballToHole = m_terrain.GetHole() - tee;
+	ballToHole.setY(0.0f);
+	float yardage = ballToHole.length() / 3.0f;
+	
+	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
 	
 	SetState(kStatePositionSwing);
 }
@@ -182,7 +191,7 @@ void RBTGame::StatePositionSwing(float delta)
 {
 	//m_state = kStateExecuteSwing;
 	
-	AutoSelectClub();
+	//AutoSelectClub();
 }
 
 void RBTGame::StatePositionSwing2(float delta)
@@ -256,15 +265,21 @@ void RBTGame::StateFollowBall(float delta)
 
 void RBTGame::AutoSelectClub()
 {
+	btVector3 ballToHole = m_terrain.GetHole() - m_ball.GetPosition();
+	ballToHole.setY(0.0f);
+	float yardage = ballToHole.length() / 3.0f;
 	
+	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
+	
+	NextClub(0);
 }
 
 void RBTGame::NextClub(int n)
 {
 	if(n > 0)
-		m_curClub = RBGolfClub::NextClub(m_curClub);
+		m_curClub = RBGolfClub::NextClub(m_curClub, m_ball.GetCurMaterial());
 	if(n < 0)
-		m_curClub = RBGolfClub::PrevClub(m_curClub);
+		m_curClub = RBGolfClub::PrevClub(m_curClub, m_ball.GetCurMaterial());
 	
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	

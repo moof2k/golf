@@ -15,18 +15,18 @@
 // http://www.golfspyder.com/golf-club-loft.html
 
 static RBGolfClub sGolfClubs[kNumGolfClubs] = {
-	{ "1 Wood", "1wood", 200, 240, 11, kSoundSwingDriver },
-	{ "3 Wood", "3wood", 180, 225, 14, kSoundSwingWood },
-	{ "5 Wood", "5wood", 160, 200, 21, kSoundSwingWood },
-	{ "3 Iron", "3iron", 140, 190, 22, kSoundSwingIronSoft },
-	{ "4 Iron", "4iron", 130, 175, 25.5, kSoundSwingIronSoft },
-	{ "5 Iron", "5iron", 120, 160, 30, kSoundSwingIronSoft },
-	{ "7 Iron", "7iron", 120, 150, 38, kSoundSwingIronSoft },
-	{ "8 Iron", "8iron", 120, 140, 42, kSoundSwingIronSoft },
-	{ "9 Iron", "9iron", 120, 120, 46.5, kSoundSwingWedge }, 
-	{ "PW", "pw", 90, 90, 50, kSoundSwingWedge },
-	{ "SW", "sw", 70, 60, 56, kSoundSwingWedgeInSand },
-	{ "Putter", "putter", 30, 30, 1, kSoundSwingPutter }
+	{ "1 Wood", "1wood", 200, 240, 11,		kSoundSwingDriver,			kNoSandTrap | kNoFairway | kNoGreen | kNoRough },
+	{ "3 Wood", "3wood", 180, 225, 14,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
+	{ "5 Wood", "5wood", 160, 200, 21,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
+	{ "3 Iron", "3iron", 140, 190, 22,		kSoundSwingIronSoft,		kNoGreen },
+	{ "4 Iron", "4iron", 130, 175, 25.5,	kSoundSwingIronSoft,		kNoGreen },
+	{ "5 Iron", "5iron", 120, 160, 30,		kSoundSwingIronSoft,		kNoGreen },
+	{ "7 Iron", "7iron", 120, 150, 38,		kSoundSwingIronSoft,		kNoGreen },
+	{ "8 Iron", "8iron", 120, 140, 42,		kSoundSwingIronSoft,		kNoGreen },
+	{ "9 Iron", "9iron", 120, 120, 46.5,	kSoundSwingWedge,			kNoGreen }, 
+	{ "PW", "pw", 90, 90, 50,				kSoundSwingWedge,			kNoGreen },
+	{ "SW", "sw", 70, 60, 56,				kSoundSwingWedgeInSand,		kNoGreen },
+	{ "Putter", "putter", 60, 30, 1,		kSoundSwingPutter,			0 }
 };
 
 
@@ -37,24 +37,132 @@ RBGolfClub * RBGolfClub::GetClub(int num)
 	return &sGolfClubs[num];
 }
 
-int RBGolfClub::NextClub(int n)
+bool RBGolfClub::ClubOK(int n, eRBTerrainMaterial curMaterial)
 {
-	n++;
+	RBGolfClub &club = sGolfClubs[n];
 	
-	if(n >= kNumGolfClubs)
-		n = 0;
+	switch(curMaterial)
+	{
+		case kRough:
+			if(club.m_materialRestriction & kNoRough)
+				return false;
+			break;
+		case kFairwayFringe:
+		case kFairway:
+			if(club.m_materialRestriction & kNoFairway)
+				return false;
+			break;
+		case kSandtrap:
+			if(club.m_materialRestriction & kNoSandTrap)
+				return false;
+			break;
+		case kGreenFringe:
+		case kGreen:
+			if(club.m_materialRestriction & kNoGreen)
+				return false;
+			break;
+	}
 	
-	return n;
+	return true;
+
 }
 
-int RBGolfClub::PrevClub(int n)
+int RBGolfClub::NextClub(int curClub, eRBTerrainMaterial curMaterial)
 {
-	n--;
+	int n = curClub;
+	int c = kNumGolfClubs;
 	
-	if(n < 0)
-		n = kNumGolfClubs - 1;
+	while(c > 0)
+	{
+		n++;
+		
+		if(n >= kNumGolfClubs)
+			n = 0;
+		
+		if(ClubOK(n, curMaterial))
+			return n;
+		
+		c--;
+	}
 	
-	return n;	
+	return curClub;
+}
+
+int RBGolfClub::PrevClub(int curClub, eRBTerrainMaterial curMaterial)
+{
+	int n = curClub;
+	int c = kNumGolfClubs;
+	
+	while(c > 0)
+	{
+		n--;
+		
+		if(n < 0)
+			n = kNumGolfClubs - 1;
+		
+		if(ClubOK(n, curMaterial))
+			return n;
+		
+		c--;
+	}
+	
+	return curClub;
+}
+
+int RBGolfClub::AutoSelectClub(float yardage, eRBTerrainMaterial curMaterial)
+{
+	// If you're in a sandtrap return the SW
+	if(curMaterial == kSandtrap)
+		return 10;
+	
+	// If you're on the green, return the putter
+	if(curMaterial == kGreen)
+		return 11;
+	if(curMaterial == kGreenFringe)
+		return 11;
+	
+	int bestOvershotClub = -1;
+	int bestUndershotClub = -1;
+	float bestClubOvershot = 99999.0f;
+	float bestClubUndershot = -99999.0f;
+	
+	// -1: never consider the putter
+	
+	for(int i = 0; i < kNumGolfClubs - 1; i++)
+	{
+		RBGolfClub &club = sGolfClubs[i];
+		
+		if(!ClubOK(i, curMaterial))
+			continue;
+		
+		float overshot = club.m_dist - yardage;
+		
+		if(overshot > 0.0f)
+		{
+			if(overshot < bestClubOvershot)
+			{
+				bestOvershotClub = i;
+				bestClubOvershot = overshot;
+			}
+		}
+		else
+		{
+			if(overshot > bestClubUndershot)
+			{
+				bestUndershotClub = i;
+				bestClubUndershot = overshot;
+			}
+		}
+	}
+	
+	int bestClub = bestOvershotClub;
+	
+	if(bestClub < 0)
+		bestClub = bestUndershotClub;
+	
+	RUDE_ASSERT(bestClub >= 0, "Could not find a suitable club w/ yardage %f on material %d", yardage, (int) curMaterial);
+	
+	return bestClub;
 }
 
 

@@ -11,6 +11,7 @@
 #define __H_RBGolfBall
 
 #include "RudeObject.h"
+#include "RBTerrainMaterial.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -47,6 +48,9 @@ public:
 	
 	float GetBallScale() { return m_ballScale; }
 	
+	void SetCurMaterial(eRBTerrainMaterial m) { m_curMaterial = m; }
+	eRBTerrainMaterial GetCurMaterial() { return m_curMaterial; }
+	
 private:
 	
 	int m_inContact;
@@ -60,6 +64,8 @@ private:
 	
 	bool m_stop;
 	bool m_stopped;
+	
+	eRBTerrainMaterial m_curMaterial;
 	
 };
 
