@@ -69,7 +69,6 @@ RBTGame::RBTGame()
 		m_curCamera = &m_ballCamera;
 	
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
-	m_swingControl.SetTexture("strokedot");
 	m_swingControl.SetGolfer(&m_golfer);
 	
 	m_swingButton.SetRect(RudeRect(480 - 60, 180, 480, 320));

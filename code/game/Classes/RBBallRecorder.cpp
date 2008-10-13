@@ -29,6 +29,7 @@ void RBBallRecorder::Reset()
 	m_wrapped = false;
 	m_curBallPosition = 0;
 	m_timer = 0.0f;
+	m_lastTime = 0.0f;
 }
 
 void RBBallRecorder::NextFrame(float delta, bool record)
@@ -48,7 +49,9 @@ void RBBallRecorder::NextFrame(float delta, bool record)
 	
 	m_ballPositions[m_curBallPosition].m_position = m_ball->GetPosition();
 	m_ballPositions[m_curBallPosition].m_angVel = m_ball->GetAngularVelocity();
+	m_ballPositions[m_curBallPosition].m_time = m_timer - m_lastTime;
 	
+	m_lastTime = m_timer;
 	
 	m_curBallPosition++;
 	
@@ -66,7 +69,32 @@ void RBBallRecorder::RenderTracers()
 {
 	float scale = m_ball->GetBallScale();
 	
+	const float kTracerTimeLen = 0.5f;
+	
+	float time = 0.0f;
+	int tracerLen = 0;
+	int k = m_curBallPosition - 1;
+	
+	while(time < kTracerTimeLen)
+	{
+		time += m_ballPositions[k].m_time;
+		
+		k--;
+		
+		if(k < 0)
+		{
+			if(m_wrapped)
+				k = kNumBallPositions - 1;
+			else
+				break;
+		}
+		
+		tracerLen++;
+	}
+	
+	
 	RudeTextureManager::GetInstance()->SetTexture(m_tracerTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
@@ -74,11 +102,9 @@ void RBBallRecorder::RenderTracers()
 	
 	RGL.LoadIdentity();
 	
-	const int kTracerLen = 10;
-	
 	int i = m_curBallPosition - 1;
-	int c = kTracerLen;
 	int p = i;
+	int c = tracerLen;
 	
 	bool first = true;
 	btVector3 b1;
@@ -93,7 +119,7 @@ void RBBallRecorder::RenderTracers()
 			btVector3 p1 = m_ballPositions[p].m_position;
 			btVector3 p2 = m_ballPositions[i].m_position;
 			
-			float aintensity = ((float) c) / ((float) kTracerLen);
+			float aintensity = ((float) c) / ((float) tracerLen);
 			
 			btVector3 dir = p2 - p1;
 			dir = dir.normalize();
@@ -111,7 +137,7 @@ void RBBallRecorder::RenderTracers()
 			{
 				b1 = p2 + right;
 				b2 = p2 - right;
-				bintensity = ((float) c-1) / ((float) kTracerLen);
+				bintensity = ((float) c-1) / ((float) tracerLen);
 				first = false;
 			}
 			

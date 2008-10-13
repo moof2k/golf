@@ -22,6 +22,7 @@ public:
 	btVector3 m_position;
 	btVector3 m_angVel;
 	
+	float m_time;
 };
 
 class RBBallRecorder {
@@ -45,6 +46,7 @@ private:
 	RBGolfBall *m_ball;
 	
 	float m_timer;
+	float m_lastTime;
 	bool m_wrapped;
 	int m_curBallPosition;
 	int m_tracerTexture;

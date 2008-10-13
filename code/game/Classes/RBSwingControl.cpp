@@ -34,18 +34,9 @@ const float kSwingDownPrecisionPenalty = 0.01f;
 
 RBSwingControl::RBSwingControl()
 : m_curSwingPoint(-1)
-, m_textureId(-1)
 {
 }
 
-void RBSwingControl::SetTexture(const char *name)
-{
-	m_textureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile(name);
-	
-	RudeTexture *tex = RudeTextureManager::GetInstance()->GetTexture(m_textureId);
-	if(tex)
-		m_textureSize = tex->GetHeight() / 2;
-}
 
 void RBSwingControl::Reset()
 {

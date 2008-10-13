@@ -55,8 +55,6 @@ class RBSwingControl : public RudeControl {
 public:
 	RBSwingControl();
 	
-	void SetTexture(const char *texname);
-	
 	void Reset();
 	
 	void NextFrame(float delta);
@@ -113,9 +111,6 @@ private:
 	RudeScreenVertex m_upStroke;
 	
 	eStrokeState m_strokeState;
-	
-	int m_textureId;
-	int m_textureSize;
 	
 	int m_ringTextureId;
 	
