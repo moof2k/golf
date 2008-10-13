@@ -796,7 +796,6 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 				if(m_swingControl.WillSwing())
 					SetState(kStateHitBall);
 				
-				m_swingControl.Reset();
 			}
 			if(m_moveButton.TouchUp(rbt))
 				SetState(kStatePositionSwing);

@@ -51,6 +51,7 @@ void RBSwingControl::Reset()
 {
 	m_ringTextureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ring");
 	
+	m_power = 0.0f;
 	m_curSwingPoint = 0;
 	m_strokeState = kNoStroke;
 	m_downOptimalPct = 0.0f;
