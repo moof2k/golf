@@ -32,6 +32,9 @@ const int kSwingTrackEnd = 400;
 const float kSwingDownPrecision = 16.0f;
 const float kSwingDownPrecisionPenalty = 0.01f;
 
+const float kSwingUpMaxDeviation = 128.0f;
+const float kAngleFromDeviation = 1.0f / kSwingUpMaxDeviation;
+
 RBSwingControl::RBSwingControl()
 : m_curSwingPoint(-1)
 {
@@ -46,6 +49,7 @@ void RBSwingControl::Reset()
 	m_curSwingPoint = 0;
 	m_strokeState = kNoStroke;
 	m_downOptimalPct = 0.0f;
+	m_upStrokeDeviation = -0.0f;
 }
 
 void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
@@ -72,6 +76,7 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 		m_power = 0.0f;
 		m_downPower = 0.0f;
 		m_downOptimalPct = 0.0f;
+		m_upStrokeDeviation = 0.0f;
 		
 		m_firstTime = mach_absolute_time();
 	}
@@ -106,11 +111,33 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 			m_strokeState = kUpStroke;
 		}
 	}
-	else
+	else if(m_strokeState == kUpStroke)
 	{
 		m_upTime = elapsedSeconds - m_downTime;
 		RudeScreenVertex d = p - m_lastPoint;
 		m_upStroke += d;
+		
+		if(m_upStrokeDeviation > 0.0f)
+		{
+			if(d.m_x > 0)
+				m_upStrokeDeviation += d.m_x;
+			else
+				m_upStrokeDeviation += ((float) d.m_x) * 0.5f;
+		}
+		else if(m_upStrokeDeviation < 0.0f)
+		{
+			if(d.m_x < 0)
+				m_upStrokeDeviation += d.m_x;
+			else
+				m_upStrokeDeviation += ((float) d.m_x) * 0.5f;
+		}
+		else
+			m_upStrokeDeviation += d.m_x;
+		
+		if(m_upStrokeDeviation > kSwingUpMaxDeviation)
+			m_upStrokeDeviation = kSwingUpMaxDeviation;
+		else if(m_upStrokeDeviation < -kSwingUpMaxDeviation)
+			m_upStrokeDeviation = -kSwingUpMaxDeviation;
 	}
 	
 	m_lastPoint = p;
@@ -186,13 +213,20 @@ void RBSwingControl::NextFrame(float delta)
 		m_golfer->SetBackSwing(m_power);
 		
 	}
+	else if(m_strokeState == kUpStroke)
+	{
+		
+		
+	}
 	
 }
 
 void RBSwingControl::RenderRing()
 {
 
-	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 240.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "%.0f %%", m_power * 100.0f);
+	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 160.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "PWR %.0f %%", GetPower() * 100.0f);
+	
+	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 178.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "ANG %.0f %%", GetAngle() * 100.0f);
 	
 	
 	float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
@@ -364,7 +398,14 @@ float RBSwingControl::GetPower()
 
 float RBSwingControl::GetAngle()
 {
-	return 0.0f;
+	float angle = m_upStrokeDeviation * kAngleFromDeviation;
+	
+	if(angle > 0.0f)
+		angle = angle * angle;
+	else
+		angle = -angle * angle;
+	
+	return angle;
 }
 
 float RBSwingControl::GetImpact()

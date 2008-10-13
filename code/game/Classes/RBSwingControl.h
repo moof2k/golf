@@ -106,6 +106,8 @@ private:
 	float m_downTime;
 	float m_upTime;
 	
+	float m_upStrokeDeviation;
+	
 	RudeScreenVertex m_lastPoint;
 	RudeScreenVertex m_downStroke;
 	RudeScreenVertex m_upStroke;
