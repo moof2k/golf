@@ -90,6 +90,8 @@ int RudeTextureManager::LoadTextureFromPVRTPointer(const char *name, const void 
 
 int RudeTextureManager::LoadTextureFromPNGFile(const char *name)
 {
+	RUDE_ASSERT(name, "Invalid texture name");
+	
 	// check to make sure its not already loaded
 	int texid = GetTextureID(name);
 	if(texid >= 0)
@@ -99,7 +101,7 @@ int RudeTextureManager::LoadTextureFromPNGFile(const char *name)
 	
 	int result = tex->LoadFromPNG(name);
 	
-	RUDE_ASSERT(result >= 0, "Unable to load texture");
+	RUDE_ASSERT(result >= 0, "Unable to load texture (%s)", name);
 	
 	if(result < 0)
 	{

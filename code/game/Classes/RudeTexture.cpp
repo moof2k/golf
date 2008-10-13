@@ -74,6 +74,8 @@ int RudeTexture::LoadFromPVRTPointer(const char *name, const void *data)
 
 int RudeTexture::LoadFromPNG(const char *name)
 {	
+	int result = -1;
+	
 	strncpy(m_name, name, kNameLen);
 	
 	char filename[64];
@@ -84,15 +86,15 @@ int RudeTexture::LoadFromPNG(const char *name)
 	CFURLRef url = CFBundleCopyResourceURL(mainBundle, cfFilename, 0, 0);
 	
 	if(url == NULL)
-		return -1;
+		goto LoadFromPNG_URLFail;
 	
 	CGDataProviderRef ref = CGDataProviderCreateWithURL(url);
 	if(ref == NULL)
-		return -1;
+		goto LoadFromPNG_URLProviderFail;
 	
 	CGImageRef image = CGImageCreateWithPNGDataProvider(ref, 0, false, kCGRenderingIntentDefault);
 	if(image == NULL)
-		return -1;
+		goto LoadFromPNG_ImageRefFail;
 	
 	CGDataProviderRelease(ref);
 	
@@ -113,7 +115,20 @@ int RudeTexture::LoadFromPNG(const char *name)
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	
-	return 0;
+	result = 0;
+	
+	CFRelease(image);
+	
+LoadFromPNG_ImageRefFail:
+	
+	
+LoadFromPNG_URLProviderFail:
+	CFRelease(url);
+	
+LoadFromPNG_URLFail:
+	CFRelease(cfFilename);
+	
+	return result;
 }
 
 void RudeTexture::SetActive()
