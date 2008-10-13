@@ -10,12 +10,13 @@
 #include "RBSwingControl.h"
 #include "RudeTextureManager.h"
 #include "RudeTweaker.h"
+#include "RudeFont.h"
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
-float gSwingDownOptimalTimeMin = 0.9f;
-float gSwingDownOptimalTimeMax = 1.1f;
+float gSwingDownOptimalTimeMin = 1.5f;
+float gSwingDownOptimalTimeMax = 1.7f;
 float gSwingDownEarlyPunishment = 1.0f;
 float gSwingDownLatePunishment = 0.2f;
 
@@ -25,6 +26,11 @@ RUDE_TWEAK(SwingDownOptimalTimeMax, kFloat, gSwingDownOptimalTimeMax);
 RUDE_TWEAK(SwingDownEarlyPunishment, kFloat, gSwingDownEarlyPunishment);
 RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 
+const int kSwingTrackStart = 100;
+const int kSwingTrackEnd = 400;
+
+const float kSwingDownPrecision = 16.0f;
+const float kSwingDownPrecisionPenalty = 0.01f;
 
 RBSwingControl::RBSwingControl()
 : m_curSwingPoint(-1)
@@ -43,7 +49,11 @@ void RBSwingControl::SetTexture(const char *name)
 
 void RBSwingControl::Reset()
 {
+	m_ringTextureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ring");
+	
 	m_curSwingPoint = 0;
+	m_strokeState = kNoStroke;
+	m_downOptimalPct = 0.0f;
 }
 
 void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
@@ -58,23 +68,38 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 	
 	if(first)
 	{
+		m_downTimer = 0.0f;
+		
 		m_curSwingPoint = 0;
 		m_lastPoint = p;
-		m_strokeState = kDownStroke;
+		m_strokeState = kBeginStroke;
 		m_downStroke = RudeScreenVertex(0,0);
 		m_upStroke = RudeScreenVertex(0,0);
 		m_downTime = 0.0f;
 		m_upTime = 0.0f;
+		m_power = 0.0f;
+		m_downPower = 0.0f;
+		m_downOptimalPct = 0.0f;
 		
 		m_firstTime = mach_absolute_time();
+	}
+	
+	//printf("Stroke %d %d\n", p.m_x, p.m_y);
+	
+	if(m_strokeState == kBeginStroke)
+	{
+		if(p.m_y > m_lastPoint.m_y)
+		{
+			m_downPower = 0.0f;
+			m_strokeState = kDownStroke;
+			m_firstTime = mach_absolute_time();
+		}
 	}
 	
 	uint64_t thistime = mach_absolute_time();
 	uint64_t deltatime = thistime - m_firstTime;
 	uint64_t elapsedNano = deltatime * sTimebaseInfo.numer / sTimebaseInfo.denom;
 	float elapsedSeconds = ((float) elapsedNano) / 1000000000.0f;
-	
-	//printf("Stroke %d %d\n", p.m_x, p.m_y);
 	
 	if(m_strokeState == kDownStroke)
 	{
@@ -131,10 +156,83 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 	if(!RudeControl::TouchUp(t))
 		return false;
 	
+	m_downOptimalPct = 0.0f;
 	
 	return true;
 }
 
+
+void RBSwingControl::NextFrame(float delta)
+{
+	if(m_strokeState == kDownStroke)
+	{
+		m_downTimer += delta;
+		
+		m_downOptimalPct = m_downTimer / gSwingDownOptimalTimeMin;
+		
+		if(m_downOptimalPct > 1.0f)
+			m_downOptimalPct = 1.0f;
+		
+		float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
+		
+		float lasty = m_lastPoint.m_y;
+		
+		float diffy = abs(lasty - pathy);
+		
+		diffy = diffy - kSwingDownPrecision;
+		if(diffy < 0.0f)
+			diffy = 0.0f;
+		
+		diffy *= kSwingDownPrecisionPenalty * delta;
+		
+		m_downPower -= diffy;
+		
+		m_power = m_downOptimalPct + m_downPower;
+		if(m_power < 0.0f)
+			m_power = 0.0f;
+		
+		m_golfer->SetBackSwing(m_power);
+		
+	}
+	
+}
+
+void RBSwingControl::RenderRing()
+{
+
+	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 240.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "%.0f %%", m_power * 100.0f);
+	
+	
+	float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
+	
+	RudeTextureManager::GetInstance()->SetTexture(m_ringTextureId);
+	
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	const float kHalfRingTexSize = 32.0f;
+	
+	GLfloat point[] = {
+		160.0f - kHalfRingTexSize, pathy - kHalfRingTexSize,
+		160.0f + kHalfRingTexSize, pathy - kHalfRingTexSize,
+		160.0f + kHalfRingTexSize, pathy + kHalfRingTexSize,
+		160.0f - kHalfRingTexSize, pathy + kHalfRingTexSize,
+	};
+	
+	GLfloat uvs[] = {
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+	};
+	
+	glVertexPointer(2, GL_FLOAT, 0, point);
+	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
+	
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	
+}
 
 
 void Blend(float t, float r1, float g1, float b1, float r2, float g2, float b2, float &r, float &g, float &b)
@@ -158,11 +256,9 @@ void PickColor(float t, float &r, float &g, float &b)
 	}
 }
 
-void RBSwingControl::Render()
+
+void RBSwingControl::RenderTracks()
 {
-	if(!CanSwing())
-		return;
-	
 	glDisable(GL_TEXTURE_2D);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -219,51 +315,17 @@ void RBSwingControl::Render()
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	}
 	
-	/*
-	RudeTextureManager::GetInstance()->SetTexture(m_textureId);
+}
+
+void RBSwingControl::Render()
+{
 	
-	GLfloat uvs[] = {
-		0.0f, 1.0f, 
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f,
-	};
+	RenderRing();
 	
+	if(!CanSwing())
+		return;
 	
-	for(int i = 0; i < m_curSwingPoint; i++)
-	{
-		RudeScreenVertex &p = m_swingPoints[i].m_p;
-		
-		const float kPointSize = m_textureSize;
-		
-		GLfloat point[] = {
-			p.m_x, p.m_y + kPointSize,
-			p.m_x, p.m_y,
-			p.m_x + kPointSize, p.m_y,
-			p.m_x + kPointSize, p.m_y + kPointSize
-		};
-		
-		float r,g,b;
-		PickColor(m_swingPoints[i].m_time, r, g, b);
-		
-		GLfloat colors[] = {
-			r, g, b, 1.0f,
-			r, g, b, 1.0f,
-			r, g, b, 1.0f,
-			r, g, b, 1.0f,
-		};
-		
-		
-		glVertexPointer(2, GL_FLOAT, 0, point);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glColorPointer(4, GL_FLOAT, 0, colors);
-		glEnableClientState(GL_COLOR_ARRAY);
-		glTexCoordPointer(2, GL_FLOAT, 0, uvs);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		
-		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-	}
-	 */
+	RenderTracks();
 }
 
 bool RBSwingControl::CanSwing()
@@ -291,6 +353,7 @@ bool RBSwingControl::WillSwing()
 
 float RBSwingControl::GetPower()
 {
+	/*
 	if(m_downTime < gSwingDownOptimalTimeMin)
 		return m_downTime * (1.0f / gSwingDownOptimalTimeMin) * gSwingDownEarlyPunishment;
 	
@@ -302,7 +365,9 @@ float RBSwingControl::GetPower()
 	}
 	
 	return 1.0f;
-	
+	*/
+
+	return m_power;
 }
 
 float RBSwingControl::GetAngle()

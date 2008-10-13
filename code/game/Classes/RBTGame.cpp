@@ -70,6 +70,7 @@ RBTGame::RBTGame()
 	
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
 	m_swingControl.SetTexture("strokedot");
+	m_swingControl.SetGolfer(&m_golfer);
 	
 	m_swingButton.SetRect(RudeRect(480 - 60, 180, 480, 320));
 	m_swingButton.SetTextures("swing", "swing");
@@ -463,6 +464,9 @@ void RBTGame::NextFrame(float delta)
 		case kStatePositionSwing2:
 			StatePositionSwing2(delta);
 			m_ballRecorder.NextFrame(delta, false);
+			break;
+		case kStateExecuteSwing:
+			m_swingControl.NextFrame(delta);
 			break;
 		case kStateHitBall:
 		{

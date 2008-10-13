@@ -30,6 +30,9 @@ public:
 		m_guide = guide;
 	}
 	
+	void SetReady();
+	void SetBackSwing(float pct);
+	
 	virtual void Render();
 	
 private:

@@ -9,6 +9,7 @@
 
 #include "RBGolferObject.h"
 #include "RudeMesh.h"
+#include "RudeSkinnedMesh.h"
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
@@ -52,14 +53,30 @@ void RBGolferObject::LoadNodes()
 	}
 }
 
+void RBGolferObject::SetReady()
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	mesh->SetFrame(1.0f);
+}
+
+void RBGolferObject::SetBackSwing(float pct)
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	const float kBackSwingStart = 1.0f;
+	const float kBackSwingEnd = 32.0f;
+	
+	float frame = (kBackSwingEnd - kBackSwingStart) * pct + kBackSwingStart;
+	
+	mesh->SetFrame(frame);
+}
+
 
 void RBGolferObject::Render()
 {
 	// position golfer relative to ball
 	
-	RudeObject::Render();
-	
-	/*
 	btVector3 node = -m_nodes[m_node];
 	
 	btVector3 guidevec = m_guide - m_ball;
@@ -77,11 +94,15 @@ void RBGolferObject::Render()
 	
 	glTranslatef(m_ball.x(), m_ball.y(), m_ball.z());
 	glRotatef(yaw, 0.0f, 1.0f, 0.0f);
-	glTranslatef(node.x(), node.y(), node.z());
 	
+	glTranslatef(0.0f, 0.0f, -4.0f);
+	
+	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+	glScalef(0.04f, 0.04f, 0.04f);
+
 	
 	RudeObject::Render();
-	 */
+	 
 }
 
 

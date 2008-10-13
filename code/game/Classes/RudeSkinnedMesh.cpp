@@ -22,6 +22,9 @@
 RudeSkinnedMesh::RudeSkinnedMesh(RudeObject *owner)
 : RudeMesh(owner)
 , m_frame(0.0f)
+, m_fps(24.0f)
+, m_toFrame(0.0f)
+, m_animateTo(false)
 {
 }
 
@@ -38,13 +41,45 @@ int RudeSkinnedMesh::Load(const char *name)
 	
 }
 
+void RudeSkinnedMesh::SetFrame(float f)
+{
+	m_animateTo = false;
+	m_frame = f;
+}
+
+void RudeSkinnedMesh::AnimateTo(float f)
+{
+	m_animateTo = true;
+	m_toFrame = f;
+}
+
 void RudeSkinnedMesh::NextFrame(float delta)
 {
 	
-	m_frame += delta * 30.0f * 0.25f;
-	
-	if(m_frame > 24.0f)
-		m_frame = 0.0f;
+	if(m_animateTo)
+	{
+		if(m_toFrame > m_frame)
+		{
+			m_frame += delta * m_fps;
+			
+			if(m_frame > m_toFrame)
+			{
+				m_frame = m_toFrame;
+				m_animateTo = false;
+			}
+		}
+		else
+		{
+			m_frame -= delta * m_fps;
+			
+			if(m_frame < m_toFrame)
+			{
+				m_frame = m_toFrame;
+				m_animateTo = false;
+			}
+		}
+		
+	}
 	
 	m_model.SetFrame(m_frame);
 	 
@@ -56,6 +91,10 @@ void RudeSkinnedMesh::Render()
 	//int numbonemats;
 	//glGetIntegerv(GL_MAX_PALETTE_MATRICES_OES, &numbonemats);
 	//printf("bonemats %d\n", numbonemats);
+	
+	glMatrixMode(GL_MODELVIEW);
+	PVRTMATRIX viewmat;
+	glGetFloatv(GL_MODELVIEW_MATRIX, viewmat.f);
 	
 	RGL.Enable(kBackfaceCull, true);
 	
@@ -130,7 +169,6 @@ void RudeSkinnedMesh::Render()
 		{
 			int batchcnt = mesh->sBoneBatches.pnBatchBoneCnt[b];
 
-			
 			glMatrixMode(GL_MATRIX_PALETTE_OES);
 			
 			for(int j = 0; j < batchcnt; ++j)
@@ -146,7 +184,7 @@ void RudeSkinnedMesh::Render()
 				m_model.GetBoneWorldMatrix(mBoneWorld, *node, m_model.pNode[i32NodeID]);
 				
 				// Multiply the bone's world matrix by the view matrix to put it in view space
-				//PVRTMatrixMultiply(mBoneWorld, mBoneWorld, m_mView);
+				PVRTMatrixMultiply(mBoneWorld, mBoneWorld, viewmat);
 				
 				// Load the bone matrix into the current palette matrix.
 				glLoadMatrixf(mBoneWorld.f);

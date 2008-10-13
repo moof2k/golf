@@ -12,6 +12,7 @@
 
 #include "RudeControl.h"
 #include "RudeVertex.h"
+#include "RBGolferObject.h"
 
 #include <unistd.h>
 #include <mach/mach.h>
@@ -20,6 +21,8 @@
 const int kMaxSwingPoints = 256;
 
 typedef enum {
+	kNoStroke,
+	kBeginStroke,
 	kDownStroke,
 	kUpStroke
 } eStrokeState;
@@ -56,6 +59,10 @@ public:
 	
 	void Reset();
 	
+	void NextFrame(float delta);
+	
+	void SetGolfer(RBGolferObject *golfer) { m_golfer = golfer; }
+	
 	virtual bool TouchDown(RudeTouch *t);
 	virtual bool TouchMove(RudeTouch *t);
 	virtual bool TouchUp(RudeTouch *t);
@@ -80,12 +87,23 @@ public:
 	
 private:
 	
+	void RenderRing();
+	void RenderTracks();
+	
 	void AddSwingPoint(const RudeScreenVertex &p, bool first);
+	
+	RBGolferObject *m_golfer;
 	
 	RBSwingPoint m_swingPoints[kMaxSwingPoints];
 	int m_curSwingPoint;
 	
 	uint64_t m_firstTime;
+	
+	float m_downTimer;
+	float m_downOptimalPct;
+	
+	float m_downPower;
+	float m_power;
 	
 	float m_downTime;
 	float m_upTime;
@@ -98,6 +116,8 @@ private:
 	
 	int m_textureId;
 	int m_textureSize;
+	
+	int m_ringTextureId;
 	
 };
 
