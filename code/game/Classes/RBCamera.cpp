@@ -20,7 +20,7 @@ RBCamera::RBCamera()
 
 void RBCamera::SetView(float aspect)
 {
-	float near = 2.0f;
+	float near = 4.0f;
 	float far = 2000.0f;
 	
 	float hw = 2.0f * tan(m_halffov) * near;
