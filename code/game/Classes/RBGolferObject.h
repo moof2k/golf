@@ -32,6 +32,8 @@ public:
 	
 	void SetReady();
 	void SetBackSwing(float pct);
+	void SetForwardSwing(float pct);
+	bool HasSwung();
 	
 	virtual void Render();
 	

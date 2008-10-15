@@ -30,7 +30,7 @@ public:
 	
 	void AddContactDamping(float linear, float angular)
 	{
-		m_inContact = 2;
+		m_inContact = 5;
 		m_linearContactDamping = linear;
 		m_angularContactDamping = angular;
 	}

@@ -64,7 +64,7 @@ void RBGolferObject::SetBackSwing(float pct)
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kBackSwingStart = 1.0f;
+	const float kBackSwingStart = 42.0f;
 	const float kBackSwingEnd = 32.0f;
 	
 	float frame = (kBackSwingEnd - kBackSwingStart) * pct + kBackSwingStart;
@@ -72,6 +72,31 @@ void RBGolferObject::SetBackSwing(float pct)
 	mesh->SetFrame(frame);
 }
 
+void RBGolferObject::SetForwardSwing(float pct)
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	const float kForwardSwingStart = 42.0f;
+	const float kForwardSwingEnd = 51.0f;
+	
+	float frame = (kForwardSwingEnd - kForwardSwingStart) * pct + kForwardSwingStart;
+	
+	mesh->AnimateTo(frame);
+}
+
+bool RBGolferObject::HasSwung()
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	const float kSwingPoint = 42.0f;
+	
+	float frame = mesh->GetFrame();
+	
+	if(frame >= kSwingPoint)
+		return true;
+	else
+		return false;
+}
 
 void RBGolferObject::Render()
 {
@@ -95,7 +120,7 @@ void RBGolferObject::Render()
 	glTranslatef(m_ball.x(), m_ball.y(), m_ball.z());
 	glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 	
-	glTranslatef(0.0f, 0.0f, -4.0f);
+	glTranslatef(0.0f, 0.0f, -3.5f);
 	
 	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 	glScalef(0.04f, 0.04f, 0.04f);

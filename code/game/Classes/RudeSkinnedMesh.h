@@ -27,8 +27,10 @@ public:
 	virtual void NextFrame(float delta);
 	virtual void Render();
 
+	virtual float GetFrame() { return m_frame; }
 	virtual void SetFrame(float f);
 	virtual void AnimateTo(float f);
+	
 private:
 
 	float m_frame;

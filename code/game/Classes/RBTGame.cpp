@@ -115,6 +115,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing:
 			{
+				m_golfer.SetReady();
+				
 				if(prevstate == kStateExecuteSwing)
 					m_swingHeight = 0.0f;
 				else if(prevstate != kStatePositionSwing2)
@@ -140,6 +142,11 @@ void RBTGame::SetState(eRBTGameState state)
 				m_swingControl.Reset();
 				m_swingHeight = 0.0f;
 				FreshGuide();
+			}
+			break;
+		case kStateWaitForSwing:
+			{
+				m_golfer.SetForwardSwing(m_swingControl.GetPower());
 			}
 			break;
 		case kStateHitBall:
@@ -393,6 +400,8 @@ void RBTGame::HitBall()
 	m_swingPower = m_swingControl.GetPower();
 	m_swingAngle = m_swingControl.GetAngle();
 	
+	const float kMaxAngleModifier = 2.5f;
+	float angleModifier = m_swingAngle * (kMaxAngleModifier / 180.0f) * 3.1415926f;
 	
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
@@ -416,7 +425,7 @@ void RBTGame::HitBall()
 	aimvec.normalize();
 	
 	btMatrix3x3 guidemat;
-	guidemat.setEulerYPR(m_swingYaw, 0.0f, 0.0f);
+	guidemat.setEulerYPR(m_swingYaw + angleModifier, 0.0f, 0.0f);
 	aimvec = guidemat * aimvec;
 	
 	aimvec.setY(tan(loft));
@@ -466,6 +475,12 @@ void RBTGame::NextFrame(float delta)
 			break;
 		case kStateExecuteSwing:
 			m_swingControl.NextFrame(delta);
+			break;
+		case kStateWaitForSwing:
+		{
+			if(m_golfer.HasSwung())
+				SetState(kStateHitBall);
+		}
 			break;
 		case kStateHitBall:
 		{
@@ -793,7 +808,7 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			if(m_swingControl.TouchUp(rbt))
 			{
 				if(m_swingControl.WillSwing())
-					SetState(kStateHitBall);
+					SetState(kStateWaitForSwing);
 				
 			}
 			if(m_moveButton.TouchUp(rbt))

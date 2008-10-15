@@ -49,6 +49,7 @@ typedef enum {
 	kStatePositionSwing,
 	kStatePositionSwing2,
 	kStateExecuteSwing,
+	kStateWaitForSwing,
 	kStateHitBall,
 	kStateFollowBall,
 	kStateRegardBall,
