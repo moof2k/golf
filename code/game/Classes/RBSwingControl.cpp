@@ -29,7 +29,7 @@ RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 const int kSwingTrackStart = 100;
 const int kSwingTrackEnd = 400;
 
-const float kSwingDownPrecision = 16.0f;
+const float kSwingDownPrecision = 8.0f;
 const float kSwingDownPrecisionPenalty = 0.01f;
 
 const float kSwingUpMaxDeviation = 128.0f;
@@ -122,14 +122,14 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 			if(d.m_x > 0)
 				m_upStrokeDeviation += d.m_x;
 			else
-				m_upStrokeDeviation += ((float) d.m_x) * 0.5f;
+				m_upStrokeDeviation += ((float) d.m_x) * 0.2f;
 		}
 		else if(m_upStrokeDeviation < 0.0f)
 		{
 			if(d.m_x < 0)
 				m_upStrokeDeviation += d.m_x;
 			else
-				m_upStrokeDeviation += ((float) d.m_x) * 0.5f;
+				m_upStrokeDeviation += ((float) d.m_x) * 0.2f;
 		}
 		else
 			m_upStrokeDeviation += d.m_x;
@@ -174,6 +174,8 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 {
 	if(!RudeControl::TouchUp(t))
 		return false;
+	
+	AddSwingPoint(t->m_location, false);
 	
 	m_downOptimalPct = 0.0f;
 	
@@ -379,31 +381,27 @@ bool RBSwingControl::WillSwing()
 
 float RBSwingControl::GetPower()
 {
-	/*
-	if(m_downTime < gSwingDownOptimalTimeMin)
-		return m_downTime * (1.0f / gSwingDownOptimalTimeMin) * gSwingDownEarlyPunishment;
+	const float kAnglePenaltyModifier = 0.25f;
 	
-	if(m_downTime > gSwingDownOptimalTimeMax)
-	{
-		//float power = 1.0f - ((m_downTime - gSwingDownOptimalTimeMax) * gSwingDownLatePunishment);
-		//return power;
-		return 0.0f;
-	}
+	float anglePenalty = GetAngle();
+	if(anglePenalty < 0.0f)
+		anglePenalty = -anglePenalty;
 	
-	return 1.0f;
-	*/
+	anglePenalty = 1.0f - anglePenalty * kAnglePenaltyModifier;
+	
+	float power = m_power * anglePenalty;
 
-	return m_power;
+	return power;
 }
 
 float RBSwingControl::GetAngle()
 {
 	float angle = m_upStrokeDeviation * kAngleFromDeviation;
 	
-	if(angle > 0.0f)
-		angle = angle * angle;
-	else
-		angle = -angle * angle;
+	//if(angle > 0.0f)
+	//	angle = angle * angle;
+	//else
+	//	angle = -angle * angle;
 	
 	return angle;
 }

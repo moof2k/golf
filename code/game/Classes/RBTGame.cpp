@@ -36,7 +36,7 @@ const unsigned int kParBotColor = 0xFF000000;
 const unsigned int kParOutlineTopColor = 0xFFFFFFFF;
 const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
-const float kFollowTimerThreshold = 10.0f;
+const float kFollowTimerThreshold = 2.0f;
 
 RBTGame::RBTGame()
 {	
@@ -400,6 +400,7 @@ void RBTGame::HitBall()
 	
 	m_swingPower = m_swingControl.GetPower();
 	m_swingAngle = m_swingControl.GetAngle();
+
 	
 	const float kMaxAngleModifier = 2.5f;
 	float angleModifier = m_swingAngle * (kMaxAngleModifier / 180.0f) * 3.1415926f;
@@ -439,7 +440,7 @@ void RBTGame::HitBall()
 	
 	btVector3 spinForce = rightvec * m_swingAngle * kMaxSliceModifier;
 	
-	printf("spinForce = %f %f %f\n", spinForce.x(), spinForce.y(), spinForce.z());
+	//printf("spinForce = %f %f %f\n", spinForce.x(), spinForce.y(), spinForce.z());
 	
 	m_ball.HitBall(linvel, spinForce);
 	
@@ -829,7 +830,10 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			break;
 		case kStateFollowBall:
 			if(m_swingButton.TouchUp(rbt))
-				SetState(kStateTeePosition);
+			{
+				if(m_followTimer > 0.0f)
+					m_followTimer = kFollowTimerThreshold;
+			}
 			break;
 		case kStateRegardBall:
 			SetState(kStatePositionSwing);

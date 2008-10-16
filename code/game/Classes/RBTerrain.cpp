@@ -20,8 +20,8 @@
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
-float gHoleRadius = 0.7f;
-float gHoleRenderRadius = 1.0f;
+float gHoleRadius = 0.6f;
+float gHoleRenderRadius = 0.8f;
 float gHoleAttractDist = 1.1f;
 float gHoleAttractPower = 0.1f;
 float gHoleMaxBallSpeed = 16.0f;
