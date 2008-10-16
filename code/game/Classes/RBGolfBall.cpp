@@ -16,6 +16,7 @@
 
 const float kBallRadius = 0.15f;
 const float kBallMass = 0.1f;
+const float kSpinForceDelay = 0.75f;
 
 RBGolfBall::RBGolfBall()
 : m_linearContactDamping(0.0f)
@@ -28,6 +29,8 @@ RBGolfBall::RBGolfBall()
 , m_stopped(false)
 , m_ballScale(kBallRadius)
 , m_curMaterial(kTee)
+, m_spinForce(0,0,0)
+, m_spinForceTimer(0.0f)
 {
 }
 
@@ -55,8 +58,28 @@ void RBGolfBall::NextFrame(float delta)
 	RudePhysicsSphere *obj = (RudePhysicsSphere *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
 	
+	if(m_applySpinForce)
+	{
+		m_spinForceTimer += delta;
+		
+		float gradient = m_spinForceTimer / kSpinForceDelay;
+		if(gradient > 1.0f)
+			gradient = 1.0f;
+		
+		btVector3 linvel = rb->getLinearVelocity();
+		linvel += m_spinForce * delta * gradient;
+		rb->setLinearVelocity(linvel);
+		
+	}
+	
 	if(m_inContact > 0)
 	{
+		if(m_applySpinForce)
+		{
+			if(m_spinForceTimer > 0.1f)
+				m_applySpinForce = false;
+		}
+		
 		m_curLinearDamping += m_linearContactDamping * delta;
 		m_curAngularDamping += m_angularContactDamping * delta;
 		
@@ -165,15 +188,19 @@ void RBGolfBall::SetPosition(const btVector3 &p)
 	GetPhysicsObject()->GetRigidBody()->activate(true);
 }
 
-void RBGolfBall::HitBall(const btVector3 &linvel, const btVector3 &angvel)
+void RBGolfBall::HitBall(const btVector3 &linvel, const btVector3 &spinForce)
 {
+	m_spinForce = spinForce;
+	m_applySpinForce = true;
+	m_spinForceTimer = 0.0f;
+	
 	m_stop = false;
 	m_stopped = false;
 	
 	GetPhysicsObject()->GetRigidBody()->setCollisionFlags(0);
 	
 	GetPhysicsObject()->GetRigidBody()->setLinearVelocity(linvel);
-	GetPhysicsObject()->GetRigidBody()->setAngularVelocity(angvel);
+	GetPhysicsObject()->GetRigidBody()->setAngularVelocity(btVector3(0,0,0));
 	GetPhysicsObject()->GetRigidBody()->clearForces();
 	//GetPhysicsObject()->GetRigidBody()->applyForce(p, btVector3(0,0,0));
 	GetPhysicsObject()->GetRigidBody()->activate(true);

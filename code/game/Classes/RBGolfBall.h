@@ -39,7 +39,7 @@ public:
 	btVector3 GetAngularVelocity();
 	btVector3 GetLinearVelocity();
 	void SetPosition(const btVector3 &p);
-	void HitBall(const btVector3 &linvel, const btVector3 &angvel);
+	void HitBall(const btVector3 &linvel, const btVector3 &spinforce);
 	
 	void StickAtPosition(const btVector3 &p);
 	
@@ -52,6 +52,9 @@ public:
 	eRBTerrainMaterial GetCurMaterial() { return m_curMaterial; }
 	
 private:
+
+	btVector3 m_spinForce;
+	float m_spinForceTimer;
 	
 	int m_inContact;
 	float m_linearContactDamping;
@@ -62,6 +65,7 @@ private:
 	
 	float m_ballScale;
 	
+	bool m_applySpinForce;
 	bool m_stop;
 	bool m_stopped;
 	

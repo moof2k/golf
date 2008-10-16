@@ -36,7 +36,7 @@ const unsigned int kParBotColor = 0xFF000000;
 const unsigned int kParOutlineTopColor = 0xFFFFFFFF;
 const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
-const float kFollowTimerThreshold = 2.0f;
+const float kFollowTimerThreshold = 10.0f;
 
 RBTGame::RBTGame()
 {	
@@ -431,18 +431,17 @@ void RBTGame::HitBall()
 	
 	btVector3 linvel = aimvec * club->m_power * m_swingPower;
 	
-	//linvel = btVector3(0.0, 10.0f, -1.0f);
 	
 	btVector3 upvec(0,1,0);
 	btVector3 rightvec = aimvec.cross(upvec);
-	//btVector3 rightvec(1,0,0);
 	
-	const float kMaxSliceModifier = 100.0f;
+	const float kMaxSliceModifier = 20.0f;
 	
-	m_swingAngle = 0.0f;
-	btVector3 angvel = rightvec * m_swingAngle * kMaxSliceModifier;
+	btVector3 spinForce = rightvec * m_swingAngle * kMaxSliceModifier;
 	
-	m_ball.HitBall(linvel, angvel);
+	printf("spinForce = %f %f %f\n", spinForce.x(), spinForce.y(), spinForce.z());
+	
+	m_ball.HitBall(linvel, spinForce);
 	
 }
 
