@@ -30,7 +30,7 @@ public:
 	
 	void AddContactDamping(float linear, float angular)
 	{
-		m_inContact = 5;
+		m_inContact = 2;
 		m_linearContactDamping = linear;
 		m_angularContactDamping = angular;
 	}
@@ -39,7 +39,7 @@ public:
 	btVector3 GetAngularVelocity();
 	btVector3 GetLinearVelocity();
 	void SetPosition(const btVector3 &p);
-	void SetForce(const btVector3 &f);
+	void HitBall(const btVector3 &linvel, const btVector3 &angvel);
 	
 	void StickAtPosition(const btVector3 &p);
 	

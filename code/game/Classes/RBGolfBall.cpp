@@ -45,8 +45,8 @@ void RBGolfBall::Load(const char *name)
 	rb->setFriction(1.0f);
 	rb->setRestitution(0.78f);
 	
-	rb->setCcdMotionThreshold(kBallRadius * 0.8f);
-	rb->setCcdSweptSphereRadius(kBallRadius * 0.8f);
+	rb->setCcdMotionThreshold(kBallRadius * 0.5f);
+	rb->setCcdSweptSphereRadius(kBallRadius * 0.5f);
 }
 
 
@@ -115,10 +115,16 @@ void RBGolfBall::Render(btVector3 pos, btVector3 rot)
 {
 	glMatrixMode(GL_MODELVIEW);
 	
-	btQuaternion q(rot.normalize(), rot.length());
-	btMatrix3x3 rotmat(q);
+	btMatrix3x3 rotmat;
 	
-	//rotmat.setEulerYPR(rot.y(), rot.x(), rot.z());
+	if(rot.length() > 0.1f)
+	{
+		btQuaternion q(rot.normalize(), rot.length());
+		rotmat.setRotation(q);
+	}
+	else
+		rotmat.setIdentity();
+	
 	
 	btTransform trans(rotmat, pos);
 	
@@ -159,15 +165,15 @@ void RBGolfBall::SetPosition(const btVector3 &p)
 	GetPhysicsObject()->GetRigidBody()->activate(true);
 }
 
-void RBGolfBall::SetForce(const btVector3 &p)
+void RBGolfBall::HitBall(const btVector3 &linvel, const btVector3 &angvel)
 {
 	m_stop = false;
 	m_stopped = false;
 	
 	GetPhysicsObject()->GetRigidBody()->setCollisionFlags(0);
 	
-	GetPhysicsObject()->GetRigidBody()->setLinearVelocity(p);
-	GetPhysicsObject()->GetRigidBody()->setAngularVelocity(btVector3(0,0,0));
+	GetPhysicsObject()->GetRigidBody()->setLinearVelocity(linvel);
+	GetPhysicsObject()->GetRigidBody()->setAngularVelocity(angvel);
 	GetPhysicsObject()->GetRigidBody()->clearForces();
 	//GetPhysicsObject()->GetRigidBody()->applyForce(p, btVector3(0,0,0));
 	GetPhysicsObject()->GetRigidBody()->activate(true);

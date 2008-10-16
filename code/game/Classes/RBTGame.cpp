@@ -19,6 +19,7 @@
 
 bool gDebugCamera = false;
 RUDE_TWEAK(DebugCamera, kBool, gDebugCamera);
+bool gDebugCameraPrev = false;
 
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
@@ -412,12 +413,6 @@ void RBTGame::HitBall()
 	float loft = club->m_loft;
 	loft = (loft / 180.0f) * 3.1415926f;
 	
-	//RudeScreenVertex downStroke, upStroke;
-	//float downTime, upTime;
-	//m_swingControl.GetStroke(downStroke, downTime, upStroke, upTime);
-	
-	
-	
 	btVector3 ball = m_ball.GetPosition();
 	btVector3 guide = m_terrain.GetGuidePoint(ball);
 	btVector3 aimvec = guide - ball;
@@ -431,19 +426,23 @@ void RBTGame::HitBall()
 	aimvec.setY(tan(loft));
 	aimvec.normalize();
 	
+	//aimvec = btVector3(0,0.9,-0.1);
+	//aimvec.normalize();
 	
+	btVector3 linvel = aimvec * club->m_power * m_swingPower;
 	
+	//linvel = btVector3(0.0, 10.0f, -1.0f);
 	
+	btVector3 upvec(0,1,0);
+	btVector3 rightvec = aimvec.cross(upvec);
+	//btVector3 rightvec(1,0,0);
 	
-	//btMatrix3x3 loftmat;
-	//loftmat.setEulerYPR(0.0f, 0.0f, 0.0f);
-	//btVector3 trajectory = loftmat * aimvec;
-	//trajectory.normalize();
+	const float kMaxSliceModifier = 100.0f;
 	
-	m_ball.SetForce(aimvec * club->m_power * m_swingPower);
-	//m_ball.SetForce(btVector3(-1000,0,-1000));
+	m_swingAngle = 0.0f;
+	btVector3 angvel = rightvec * m_swingAngle * kMaxSliceModifier;
 	
-	
+	m_ball.HitBall(linvel, angvel);
 	
 }
 
@@ -451,6 +450,20 @@ void RBTGame::HitBall()
 
 void RBTGame::NextFrame(float delta)
 {
+	if(gDebugCamera != gDebugCameraPrev)
+	{
+		gDebugCameraPrev = gDebugCamera;
+		
+		if(gDebugCamera)
+		{
+			m_debugCamera.SetPos(m_ball.GetPosition() + btVector3(0,10,0));
+			m_curCamera = &m_debugCamera;
+		}
+		else
+			m_curCamera = &m_ballCamera;
+	}
+	
+	
 	RudePhysics::GetInstance()->NextFrame(delta);
 	
 	switch(m_state)
@@ -586,11 +599,7 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 void RBTGame::Render(float aspect)
 {
 	RGL.SetViewport(0, 0, 480-1, 320-1);
-	
-	if(gDebugCamera)
-		m_curCamera = &m_debugCamera;
-	else
-		m_curCamera = &m_ballCamera;
+
 	
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
@@ -605,6 +614,11 @@ void RBTGame::Render(float aspect)
 	if(m_state == kStateFollowBall)
 	{
 		m_ballRecorder.RenderTracers();
+	}
+	
+	if(gDebugCamera)
+	{
+		m_ballRecorder.RenderRecords();
 	}
 	
 	RGL.Enable(kDepthTest, true);
@@ -690,7 +704,7 @@ void RBTGame::LaunchBall()
 	lookdir.normalize();
 	
 	m_ball.SetPosition(eye);
-	m_ball.SetForce(lookdir * 1000);
+	//m_ball.SetForce(lookdir * 1000);
 }
 
 
