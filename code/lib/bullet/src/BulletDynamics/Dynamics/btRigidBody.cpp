@@ -243,7 +243,7 @@ void btRigidBody::integrateVelocities(btScalar step)
 	m_angularVelocity += m_invInertiaTensorWorld * m_totalTorque * step;
 
 
-#define MAX_ANGVEL (SIMD_HALF_PI * 5.0f)
+#define MAX_ANGVEL SIMD_HALF_PI 
 	/// clamp angular velocity. collision calculations will fail on higher angular velocities	
 	btScalar angvel = m_angularVelocity.length();
 	if (angvel*step > MAX_ANGVEL)
