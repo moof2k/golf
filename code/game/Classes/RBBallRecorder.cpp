@@ -92,6 +92,7 @@ void RBBallRecorder::RenderTracers()
 		tracerLen++;
 	}
 	
+	RGL.Enable(kDepthTest, true);
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_tracerTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
