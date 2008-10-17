@@ -53,6 +53,7 @@ typedef enum {
 	kStateHitBall,
 	kStateFollowBall,
 	kStateRegardBall,
+	kStateBallOutOfBounds,
 	kStateBallInHole
 } eRBTGameState;
 
@@ -98,6 +99,7 @@ private:
 	void MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &dist);
 	void MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist);
 	void FreshGuide();
+	void StickBallInBounds();
 	void HitBall();
 	
 	
@@ -139,6 +141,8 @@ private:
 	
 	btVector3 m_dBall;
 	btVector3 m_dGuide;
+	
+	btVector3 m_ballLastInBoundsPosition;
 	
 	float m_ballShotDist;
 	float m_ballToHoleDist;

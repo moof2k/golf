@@ -38,6 +38,9 @@ public:
 	void RenderTracers();
 	void RenderRecords();
 	
+	int GetNumPositions() { return m_curBallPosition; }
+	RBBallRecord GetPosition(int i) { return m_ballPositions[i]; }
+	
 private:
 	
 	

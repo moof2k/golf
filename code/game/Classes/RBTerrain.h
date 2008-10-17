@@ -42,6 +42,8 @@ public:
 	
 	void Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution);
 	
+	bool IsInBounds(const btVector3 &position);
+	
 	btVector3 GetTeeBox() { return m_teeBox; }
 	btVector3 GetGuidePoint(btVector3 ball);
 	btVector3 GetHole() { return m_hole; }

@@ -12,8 +12,6 @@
 #include "RudePhysicsObject.h"
 #include "RudeDebug.h"
 
-#include <btBulletDynamicsCommon.h>
-
 inline btScalar	calculateCombinedFriction(float friction0,float friction1)
 {
 	btScalar friction = friction0 * friction1;

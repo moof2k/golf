@@ -81,7 +81,6 @@ RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 RBTerrain::RBTerrain()
 : m_teeBox(1,0,0)
 , m_hole(0,0,0)
-, m_ballInHole(false)
 {
 }
 
@@ -210,6 +209,34 @@ void RBTerrain::LoadNodes()
 	m_hole = m_holes[0];
 	
 	//m_hole = m_teeBox + btVector3(0,0,-20);
+}
+
+
+bool RBTerrain::IsInBounds(const btVector3 &position)
+{
+	RudePhysicsMesh *obj = (RudePhysicsMesh *) GetPhysicsObject();
+	btRigidBody *rb = obj->GetRigidBody();
+	
+	btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
+	
+	
+	btVector3 p0 = position;
+	p0.setY(1000);
+	btVector3 p1 = position;
+	p1.setY(-1000);
+	
+	RudeRayQueryResultCallback cb(p0, p1);
+	world->rayTest(p0, p1, cb);
+	
+	for(int i = 0; i < cb.m_numRayResults; i++)
+	{
+		btCollisionObject *obj = cb.m_rayResults[i];
+		
+		if(obj == rb)
+			return true;
+	}
+	
+	return false;
 }
 
 void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)

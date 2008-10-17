@@ -169,6 +169,15 @@ void RBTGame::SetState(eRBTGameState state)
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetGuidePoint(m_ball.GetPosition()), 5.0f);
 			}
 			break;
+		case kStateBallOutOfBounds:
+			{
+				StickBallInBounds();
+				
+				m_stroke++;
+				
+				SetState(kStateRegardBall);
+			}
+			break;
 		case kStateBallInHole:
 			{
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
@@ -216,8 +225,24 @@ void RBTGame::StateHitBall(float delta)
 }
 
 void RBTGame::StateFollowBall(float delta)
-{
+{	
+	m_ballRecorder.NextFrame(delta, true);
+	
 	btVector3 ball = m_ball.GetPosition();
+	
+	// check to make sure the ball is in bounds
+	
+	bool inbounds = m_terrain.IsInBounds(ball);
+	
+	if(inbounds)
+		m_ballLastInBoundsPosition = ball;
+	else
+	{
+		SetState(kStateBallOutOfBounds);
+		return;
+	}
+	
+	// increment the follow timer and switch to follow cam
 	
 	m_followTimer += delta;
 	
@@ -239,8 +264,8 @@ void RBTGame::StateFollowBall(float delta)
 		
 	}
 	
-	m_ballRecorder.NextFrame(delta, true);
 	
+	// update yardage calculation
 	
 	btVector3 dist = ball - m_dBall;
 	dist.setY(0.0f);
@@ -251,6 +276,8 @@ void RBTGame::StateFollowBall(float delta)
 	ballToHole.setY(0.0f);
 	m_ballToHoleDist = ballToHole.length() / 3.0f;
 	
+	
+	// determine if the ball is stopped
 	
 	if(m_ball.GetStopped())
 	{
@@ -358,6 +385,51 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 	m_ballCamera.SetHeight(m_swingHeight);
 }
 
+void RBTGame::StickBallInBounds()
+{
+	int n = m_ballRecorder.GetNumPositions();
+	
+	int lastPositionInBounds = -1;
+	for(int i = 0; i < n; i++)
+	{
+		RBBallRecord br = m_ballRecorder.GetPosition(i);
+		
+		if(m_terrain.IsInBounds(br.m_position))
+			lastPositionInBounds = i;
+			
+	}
+	
+	if(lastPositionInBounds < 0)
+	{
+		m_ball.StickAtPosition(m_ballLastInBoundsPosition);
+		return;
+	}
+	
+	// translate the last good position back in bounds 5ft
+	float dist = 5.0f;
+	btVector3 p(m_ballRecorder.GetPosition(lastPositionInBounds).m_position);
+	btVector3 stickat = m_ballLastInBoundsPosition;
+				
+	for(int i = lastPositionInBounds - 1; i >= 0; i--)
+	{
+		RBBallRecord br = m_ballRecorder.GetPosition(i);
+		
+		btVector3 vec = br.m_position - p;
+		float d = vec.length();
+		
+		dist -= d;
+		
+		if(dist < 0.0f)
+		{
+			stickat = br.m_position;
+			break;
+		}
+	}
+	
+	m_ball.StickAtPosition(stickat);
+	
+}
+
 void RBTGame::FreshGuide()
 {
 	
@@ -441,6 +513,8 @@ void RBTGame::HitBall()
 	btVector3 spinForce = rightvec * m_swingAngle * kMaxSliceModifier;
 	
 	//printf("spinForce = %f %f %f\n", spinForce.x(), spinForce.y(), spinForce.z());
+	
+	m_ballLastInBoundsPosition = ball;
 	
 	m_ball.HitBall(linvel, spinForce);
 	
