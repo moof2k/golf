@@ -387,46 +387,52 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 
 void RBTGame::StickBallInBounds()
 {
-	int n = m_ballRecorder.GetNumPositions();
+	// assumes the ball is just barely out of bounds!
 	
-	int lastPositionInBounds = -1;
-	for(int i = 0; i < n; i++)
+	const float kTestLen = 10.0f;
+	const float kTestIncrement = 0.5f;
+	
+	float scores[8];
+	float bestscore = 0.0f;
+	int bestscorer = -1;
+	btVector3 bestpos;
+	
+	for(int i = 0; i < 8; i++)
 	{
-		RBBallRecord br = m_ballRecorder.GetPosition(i);
+		scores[i] = 0.0f;
 		
-		if(m_terrain.IsInBounds(br.m_position))
-			lastPositionInBounds = i;
+		btVector3 v(1.0f, 0.0f, 0.0f);
+		
+		btMatrix3x3 rotmat;
+		rotmat.setEulerYPR(i * 0.25f * 3.1415926f, 0.0f, 0.0f);
+		
+		v = rotmat * v;
+		
+		for(float f = kTestIncrement; f < kTestLen; f += kTestIncrement)
+		{
+			btVector3 testpos = m_ballLastInBoundsPosition + v * f;
+			bool inbounds = m_terrain.IsInBounds(testpos);
+		
+			if(inbounds)
+				scores[i] += 1.0f;
 			
+			if(scores[i] > bestscore)
+			{
+				bestscore = scores[i];
+				bestscorer = i;
+				
+				bestpos = testpos;
+			}
+		}
 	}
 	
-	if(lastPositionInBounds < 0)
+	if(bestscorer < 0)
 	{
 		m_ball.StickAtPosition(m_ballLastInBoundsPosition);
 		return;
 	}
 	
-	// translate the last good position back in bounds 5ft
-	float dist = 5.0f;
-	btVector3 p(m_ballRecorder.GetPosition(lastPositionInBounds).m_position);
-	btVector3 stickat = m_ballLastInBoundsPosition;
-				
-	for(int i = lastPositionInBounds - 1; i >= 0; i--)
-	{
-		RBBallRecord br = m_ballRecorder.GetPosition(i);
-		
-		btVector3 vec = br.m_position - p;
-		float d = vec.length();
-		
-		dist -= d;
-		
-		if(dist < 0.0f)
-		{
-			stickat = br.m_position;
-			break;
-		}
-	}
-	
-	m_ball.StickAtPosition(stickat);
+	m_ball.StickAtPosition(bestpos);
 	
 }
 
