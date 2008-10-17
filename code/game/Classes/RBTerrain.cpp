@@ -212,7 +212,7 @@ void RBTerrain::LoadNodes()
 }
 
 
-bool RBTerrain::IsInBounds(const btVector3 &position)
+bool RBTerrain::IsOutOfBounds(const btVector3 &position)
 {
 	RudePhysicsMesh *obj = (RudePhysicsMesh *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
@@ -221,9 +221,8 @@ bool RBTerrain::IsInBounds(const btVector3 &position)
 	
 	
 	btVector3 p0 = position;
-	p0.setY(1000);
 	btVector3 p1 = position;
-	p1.setY(-1000);
+	p1.setY(position.y() - 1000.0f);
 	
 	RudeRayQueryResultCallback cb(p0, p1);
 	world->rayTest(p0, p1, cb);
@@ -233,11 +232,25 @@ bool RBTerrain::IsInBounds(const btVector3 &position)
 		btCollisionObject *obj = cb.m_rayResults[i];
 		
 		if(obj == rb)
+			return false;
+	}
+	
+	return true;
+}
+
+bool RBTerrain::IsOutOfBoundsAndGone(const btVector3 &position)
+{
+	bool isout = IsOutOfBounds(position);
+	
+	if(isout)
+	{
+		if(position.y() < -100.0f)
 			return true;
 	}
 	
 	return false;
 }
+
 
 void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {

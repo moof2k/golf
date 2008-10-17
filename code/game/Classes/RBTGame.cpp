@@ -232,14 +232,19 @@ void RBTGame::StateFollowBall(float delta)
 	
 	// check to make sure the ball is in bounds
 	
-	bool inbounds = m_terrain.IsInBounds(ball);
+	bool inbounds = !m_terrain.IsOutOfBounds(ball);
 	
 	if(inbounds)
+	{
 		m_ballLastInBoundsPosition = ball;
+	}
 	else
 	{
-		SetState(kStateBallOutOfBounds);
-		return;
+		if(m_terrain.IsOutOfBoundsAndGone(ball))
+		{
+			SetState(kStateBallOutOfBounds);
+			return;
+		}
 	}
 	
 	// increment the follow timer and switch to follow cam
@@ -411,7 +416,7 @@ void RBTGame::StickBallInBounds()
 		for(float f = kTestIncrement; f < kTestLen; f += kTestIncrement)
 		{
 			btVector3 testpos = m_ballLastInBoundsPosition + v * f;
-			bool inbounds = m_terrain.IsInBounds(testpos);
+			bool inbounds = !m_terrain.IsOutOfBounds(testpos);
 		
 			if(inbounds)
 				scores[i] += 1.0f;
