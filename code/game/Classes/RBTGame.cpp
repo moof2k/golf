@@ -69,6 +69,40 @@ RBTGame::RBTGame()
 	else
 		m_curCamera = &m_ballCamera;
 	
+	
+	// stroke/status controls
+	
+	m_parText.SetAlignment(kAlignLeft);
+	m_parText.SetPosition(10, 20);
+	m_parText.SetFormat(kIntValue, "PAR %d");
+	m_parText.SetStyle(kOutlineStyle);
+	m_parText.SetColors(0, kParTopColor, kParBotColor);
+	m_parText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
+	
+	m_remainingDistText.SetAlignment(kAlignLeft);
+	m_remainingDistText.SetPosition(10, 36);
+	m_remainingDistText.SetFormat(kIntValue, "%d yds");
+	m_remainingDistText.SetStyle(kOutlineStyle);
+	m_remainingDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_remainingDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+	m_strokeText.SetAlignment(kAlignRight);
+	m_strokeText.SetPosition(310, 20);
+	m_strokeText.SetFormat(kIntValue, "Stroke %d");
+	m_strokeText.SetStyle(kOutlineStyle);
+	m_strokeText.SetColors(0, kParTopColor, kParBotColor);
+	m_strokeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
+	
+	m_scoreText.SetAlignment(kAlignRight);
+	m_scoreText.SetPosition(310, 36);
+	m_scoreText.SetFormat(kSignedIntValue, "%s");
+	m_scoreText.SetStyle(kOutlineStyle);
+	m_scoreText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+						  
+	// swing controls
+	
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
 	m_swingControl.SetGolfer(&m_golfer);
 	
@@ -702,25 +736,18 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		RudeFontManager::GetFont(kDefaultFont)->Printf(10.0f, kClubDistY, 0.0f, FONT_ALIGN_LEFT, kBallDistanceTopColor, kBallDistanceBotColor, clubInfo);
 	}
 	
-	RudeFontManager::GetFont(kDefaultFontOutline)->Printf(10.0f, kParY, 0.0f, FONT_ALIGN_LEFT, kParOutlineTopColor, kParOutlineBotColor, "PAR %d", m_par);
-	RudeFontManager::GetFont(kDefaultFont)->Printf(10.0f, kParY, 0.0f, FONT_ALIGN_LEFT, kParTopColor, kParBotColor, "PAR %d", m_par);
+	m_parText.SetValue(m_par);
+	m_parText.Render();
 	
-	RudeFontManager::GetFont(kDefaultFontOutline)->Printf(10.0f, kRemainDistY, 0.0f, FONT_ALIGN_LEFT, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor, "%.0f yds", m_ballToHoleDist);
-	RudeFontManager::GetFont(kDefaultFont)->Printf(10.0f, kRemainDistY, 0.0f, FONT_ALIGN_LEFT, kBallRemainingTopColor, kBallRemainingBotColor, "%.0f yds", m_ballToHoleDist);
+	m_remainingDistText.SetValue(m_ballToHoleDist);
+	m_remainingDistText.Render();
 	
+	m_strokeText.SetValue(m_stroke);
+	m_strokeText.Render();
 	
-	char score[60];
-	if(m_score == 0)
-		sprintf(score, "±0");
-	else
-		sprintf(score, "%d", m_score);
-	
-	RudeFontManager::GetFont(kDefaultFontOutline)->Printf(310.0f, kParY, 0.0f, FONT_ALIGN_RIGHT, kParOutlineTopColor, kParOutlineBotColor, "Stroke %d", m_stroke);
-	RudeFontManager::GetFont(kDefaultFont)->Printf(310.0f, kParY, 0.0f, FONT_ALIGN_RIGHT, kParTopColor, kParBotColor, "Stroke %d", m_stroke);
-	
-	RudeFontManager::GetFont(kDefaultFontOutline)->Printf(310.0f, kRemainDistY, 0.0f, FONT_ALIGN_RIGHT, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor, score);
-	RudeFontManager::GetFont(kDefaultFont)->Printf(310.0f, kRemainDistY, 0.0f, FONT_ALIGN_RIGHT, kBallRemainingTopColor, kBallRemainingBotColor, score);
-	
+	m_scoreText.SetValue(m_score);
+	m_scoreText.Render();
+
 }
 
 void RBTGame::Render(float aspect)

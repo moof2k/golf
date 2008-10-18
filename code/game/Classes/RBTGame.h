@@ -27,6 +27,7 @@
 #include "RudeGame.h"
 #include "RudeObject.h"
 #include "RudeSkybox.h"
+#include "RudeTextControl.h"
 #include "RudeButtonControl.h"
 #include "RBKeyTracker.h"
 #include "RudeFont.h"
@@ -135,6 +136,11 @@ private:
 	RudeButtonControl m_clubButton;
 	RudeButtonControl m_cameraButton;
 	RudeButtonControl m_guideIndicatorButton;
+	
+	RudeTextControl m_parText;
+	RudeTextControl m_strokeText;
+	RudeTextControl m_remainingDistText;
+	RudeTextControl m_scoreText;
 	
 	float m_swingPower;
 	float m_swingAngle;
