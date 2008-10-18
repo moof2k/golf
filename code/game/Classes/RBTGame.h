@@ -62,7 +62,7 @@ class RBTGame : public RudeGame
 {
 // Construction
 public:
-	RBTGame(const char *terrainfile, int score);
+	RBTGame(int holeNum, const char *terrainfile, int par, int score);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -160,6 +160,7 @@ private:
 	float m_ballShotDist;
 	float m_ballToHoleDist;
 	
+	int m_holeNum;
 	int m_par;
 	int m_stroke;
 	int m_score;

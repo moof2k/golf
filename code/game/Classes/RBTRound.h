@@ -23,6 +23,16 @@ typedef enum {
 	kStateDone,
 } eRBTRoundState;
 
+class RBTHole {
+public:
+
+	int m_holeNum;
+	int m_par;
+	char m_terrainFile[32];
+	
+};
+
+
 class RBTRound : public RudeGame {
 	
 public:
@@ -43,6 +53,11 @@ private:
 	RBTGame *m_game;
 	
 	RudeTextControl m_loadingText;
+	
+	int m_score;
+	int m_strokes;
+	int m_hole;
+	
 	
 };
 

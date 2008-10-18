@@ -10,9 +10,32 @@
 #include "RBTRound.h"
 #include "RudeGL.h"
 
+static RBTHole sCourse[18] = {
+	{ 1, 5, "parfive" },
+	{ 2, 5, "parfive" },
+	{ 3, 5, "parfive" },
+	{ 4, 5, "parfive" },
+	{ 5, 5, "parfive" },
+	{ 6, 5, "parfive" },
+	{ 7, 5, "parfive" },
+	{ 8, 5, "parfive" },
+	{ 9, 5, "parfive" },
+	{ 10, 5, "parfive" },
+	{ 11, 5, "parfive" },
+	{ 12, 5, "parfive" },
+	{ 13, 5, "parfive" },
+	{ 14, 5, "parfive" },
+	{ 15, 5, "parfive" },
+	{ 16, 5, "parfive" },
+	{ 17, 5, "parfive" },
+	{ 18, 5, "parfive" }
+
+};
+
 RBTRound::RBTRound()
 : m_game(0)
 , m_state(kStateInit)
+, m_hole(0)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
@@ -33,18 +56,20 @@ void RBTRound::NextFrame(float delta)
 	{
 		RUDE_REPORT("RBTRound State %d\n", m_state);
 		
+		m_hole = 0;
+		m_score = 0;
+		m_strokes = 0;
+		
 		m_state = kStateNextRound;
 	}
 	else if(m_state == kStateNextRound)
 	{
-		RUDE_REPORT("RBTRound State %d\n", m_state);
+		RUDE_REPORT("RBTRound State %d, Hole %d\n", m_state, m_hole);
 		
 		if(m_game)
 			delete m_game;
 		
-		static int s = 0;
-		s++;
-		m_game = new RBTGame("parfive", s);
+		m_game = new RBTGame(sCourse[m_hole].m_holeNum, sCourse[m_hole].m_terrainFile, sCourse[m_hole].m_par, m_score);
 		
 		m_state = kStateInRound;
 		 
@@ -57,6 +82,11 @@ void RBTRound::NextFrame(float delta)
 			
 			if(m_game->Done())
 			{
+				m_score += m_game->GetStroke();
+				m_score -= sCourse[m_hole].m_par;
+				m_strokes += m_game->GetStroke();
+				
+				m_hole++;
 				m_state = kStateNextRound;
 			}
 		}

@@ -111,8 +111,10 @@ void RudeTextControl::SetValue(float v)
 				char foo[32];
 				if(m_value == 0.0f)
 					sprintf(foo, "±0");
+				else if(m_value > 0.0f)
+					sprintf(foo, "+%d", (int) m_value);
 				else
-					sprintf(foo, "%d", m_value);
+					sprintf(foo, "%d", (int) m_value);
 				
 				sprintf(str, m_format, foo);
 			}
