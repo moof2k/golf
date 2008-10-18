@@ -48,6 +48,8 @@ public:
 	void RotateView(float degrees, float ax, float ay, float az);
 	void TranslateView(float x, float y, float z);
 	
+	btVector3 Project(const btVector3 &point);
+	
 	void Enable(eRudeGLEnableOption option, bool enable);
 
 	btVector3 GetEye() { return m_eye; }
@@ -58,6 +60,7 @@ private:
 	
 	RudeRect m_viewport;				// screen viewport rect
 	btVector3 m_eye;
+	
 };
 
 extern RudeGL RGL;

@@ -78,6 +78,8 @@ RBTGame::RBTGame()
 	m_moveButton.SetRect(RudeRect(480 - 60, 180, 480, 320));
 	m_moveButton.SetTextures("move", "move");
 	
+	m_guideIndicatorButton.SetTextures("guide", "guide");
+	
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
@@ -475,7 +477,7 @@ void RBTGame::FreshGuide()
 	
 	
 	m_dBall = ball;
-	m_dGuide = newGuide;
+	m_guidePosition = newGuide;
 }
 
 void RBTGame::HitBall()
@@ -602,7 +604,7 @@ void RBTGame::NextFrame(float delta)
 			break;
 	}
 
-	RGLD.DebugDrawLine(m_dGuide, m_dGuide + btVector3(0,10,0));
+	//RGLD.DebugDrawLine(m_guidePosition, m_guidePosition + btVector3(0,10,0));
 	
 	m_golfer.NextFrame(delta);
 	
@@ -610,6 +612,46 @@ void RBTGame::NextFrame(float delta)
 	m_ball.NextFrame(delta);
 	m_curCamera->NextFrame(delta);
 	
+}
+
+void RBTGame::RenderCalcOrthoDrawPositions()
+{
+	switch(m_state)
+	{
+		case kStatePositionSwing:
+		case kStatePositionSwing2:
+			{
+
+				m_guidePositionScreenSpace = RGL.Project(m_guidePosition);
+				
+				//m_guidePositionScreenSpace.setX((int) m_guidePositionScreenSpace.x());
+				//m_guidePositionScreenSpace.setY((int) m_guidePositionScreenSpace.y());
+			}
+			break;
+	}
+}
+
+void RBTGame::RenderGuide(float aspect)
+{
+	
+	
+	//m_guidePositionScreenSpace.setX(m_guidePositionScreenSpace.x() * 160.0f + 160.0f);
+	//m_guidePositionScreenSpace.setY(480.0f - (m_guidePositionScreenSpace.y() * 240.0f + 240.0f));
+	//m_guidePositionScreenSpace.setY(480.0f - m_guidePositionScreenSpace.y());
+	
+	printf("Guide: %f %f %f\n", m_guidePositionScreenSpace.x(), m_guidePositionScreenSpace.y(), m_guidePositionScreenSpace.z());
+	
+	
+	const int kGuideSize = 32;
+	RudeRect r(
+			   m_guidePositionScreenSpace.y() - kGuideSize,
+			   m_guidePositionScreenSpace.x() - kGuideSize,
+			   m_guidePositionScreenSpace.y() + kGuideSize,
+			   m_guidePositionScreenSpace.x() + kGuideSize
+			   );
+	
+	m_guideIndicatorButton.SetRect(r);
+	m_guideIndicatorButton.Render();
 }
 
 void RBTGame::RenderBallFollowInfo(bool showDistToHole)
@@ -724,10 +766,11 @@ void RBTGame::Render(float aspect)
 		m_ballGuide.Render();
 	}
 	
-	
-	
-	
 	RGL.LoadIdentity();
+	
+	RenderCalcOrthoDrawPositions();
+	
+	
 	RGL.Enable(kDepthTest, false);
 	RGLD.RenderDebug();
 	
@@ -743,6 +786,8 @@ void RBTGame::Render(float aspect)
 	{
 		case kStatePositionSwing:
 		case kStatePositionSwing2:
+			RenderGuide(aspect);
+			
 			m_swingButton.Render();
 			m_nextClubButton.Render();
 			m_prevClubButton.Render();

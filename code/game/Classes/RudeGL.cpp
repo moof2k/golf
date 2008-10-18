@@ -38,8 +38,8 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 
 void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 {	
-	float ww = w / 2.0f;
-	float wh = h / 2.0f;
+	//float ww = w / 2.0f;
+	//float wh = h / 2.0f;
 	//wd = d / 2.0f;
 	
 	glMatrixMode(GL_PROJECTION);
@@ -178,6 +178,36 @@ void RudeGL::RotateView(float degrees, float ax, float ay, float az)
 	glMatrixMode(GL_PROJECTION);
 	glRotatef(degrees, ax, ay, az); 
 
+}
+
+
+btVector3 RudeGL::Project(const btVector3 &point)
+{
+	float hw = (m_viewport.m_right - m_viewport.m_left) / 2.0f;
+	float hh = (m_viewport.m_bottom - m_viewport.m_top) / 2.0f;
+	
+	float pmat[16];
+	glGetFloatv(GL_PROJECTION_MATRIX, pmat);
+	
+	float result[4];
+	
+	for(int y = 0; y < 4; y++)
+	{
+		result[y] = point.x() * pmat[0 * 4 + y]
+				  + point.y() * pmat[1 * 4 + y]
+				  + point.z() * pmat[2 * 4 + y]
+		          + 1.0f      * pmat[3 * 4 + y];
+		
+	}
+	
+	btVector3 rv;
+	rv.setX((result[0] / result[3] * hw) + hw);
+	rv.setY((2.0f * hh) - ((result[1] / result[3] * hh) + hh));
+	rv.setZ(result[2] / result[3]);
+	
+	
+	
+	return rv;
 }
 
 void RudeGL::Enable(eRudeGLEnableOption option, bool enable)

@@ -91,6 +91,8 @@ private:
 	void StateHitBall(float delta);
 	void StateFollowBall(float delta);
 	
+	void RenderCalcOrthoDrawPositions();
+	void RenderGuide(float aspect);
 	void RenderBallFollowInfo(bool showDistToHole);
 	void RenderShotInfo(bool showShotDistance, bool showClubInfo);
 	
@@ -132,6 +134,7 @@ private:
 	RudeButtonControl m_prevClubButton;
 	RudeButtonControl m_clubButton;
 	RudeButtonControl m_cameraButton;
+	RudeButtonControl m_guideIndicatorButton;
 	
 	float m_swingPower;
 	float m_swingAngle;
@@ -140,7 +143,8 @@ private:
 	float m_stopTimer;
 	
 	btVector3 m_dBall;
-	btVector3 m_dGuide;
+	btVector3 m_guidePosition;
+	btVector3 m_guidePositionScreenSpace;
 	
 	btVector3 m_ballLastInBoundsPosition;
 	

@@ -74,8 +74,8 @@ void RudeButtonControl::Render()
 	GLfloat point[] = {
 		left, top + m_texsize,
 		left, top,
-		left + m_texsize, top,
-		left + m_texsize, top + m_texsize
+		left + m_texsize - 1, top,
+		left + m_texsize - 1, top + m_texsize
 	};
 	
 	GLfloat colors[] = {
