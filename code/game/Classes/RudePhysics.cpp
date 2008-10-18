@@ -77,8 +77,6 @@ RudePhysics::RudePhysics()
 
 RudePhysics::~RudePhysics()
 {
-	if(m_dynamicsWorld)
-		delete m_dynamicsWorld;
 }
 
 
@@ -106,35 +104,53 @@ void RudePhysics::Init()
 	btVector3 worldAabbMin(-10000,-10000,-10000);
 	btVector3 worldAabbMax(10000,10000,10000);
 	
-	btAxisSweep3* broadphase = new btAxisSweep3(worldAabbMin,worldAabbMax,maxProxies);
+	m_broadphase = new btAxisSweep3(worldAabbMin,worldAabbMax,maxProxies);
 	
-	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+	m_collisionConfiguration = new btDefaultCollisionConfiguration();
 	
-	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
+	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
 	
-	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
+	m_solver = new btSequentialImpulseConstraintSolver;
 	
-	m_dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
-	//m_dynamicsWorld = new btContinuousDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
+	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
 	
 	m_dynamicsWorld->setGravity(btVector3(0,-32.2,0));
 	
-	/*
-	btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0,1,0),1);
-	
-	btDefaultMotionState* groundMotionState =
-		new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-1,0)));
-	
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
-	btRigidBody* groundRigidBody = new btRigidBody(groundRigidBodyCI);
-	groundRigidBody->setRestitution(1.0f);
-	groundRigidBody->setCollisionFlags(groundRigidBody->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
-	
-	
-	m_dynamicsWorld->addRigidBody(groundRigidBody);
-	*/
 	
 
+}
+
+void RudePhysics::Destroy()
+{
+	if(m_dynamicsWorld)
+	{
+		delete m_dynamicsWorld;
+		m_dynamicsWorld = 0;
+	}
+	
+	if(m_solver)
+	{
+		delete m_solver;
+		m_solver = 0;
+	}
+	
+	if(m_dispatcher)
+	{
+		delete m_dispatcher;
+		m_dispatcher = 0;
+	}
+	
+	if(m_collisionConfiguration)
+	{
+		delete m_collisionConfiguration;
+		m_collisionConfiguration = 0;
+	}
+	
+	if(m_broadphase)
+	{
+		delete m_broadphase;
+		m_broadphase = 0;
+	}
 }
 
 void RudePhysics::AddObject(RudePhysicsObject *obj)

@@ -42,7 +42,9 @@ void RBTRound::NextFrame(float delta)
 		if(m_game)
 			delete m_game;
 		
-		m_game = new RBTGame();
+		static int s = 0;
+		s++;
+		m_game = new RBTGame("parfive", s);
 		
 		m_state = kStateInRound;
 		 

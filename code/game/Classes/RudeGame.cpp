@@ -21,7 +21,7 @@ RudeGame::RudeGame()
 	_prevtime = 0.0f;
 #endif
 
-	_done = false;
+	m_done = false;
 
 	for(_rti = 0; _rti < REC_FRAMES; _rti++)
 		_rendertimes[_rti] = 0.0f;
@@ -113,7 +113,7 @@ void RudeGame::KeyUp(RudeKey k)
 
 void RudeGame::StylusDown(RudeScreenVertex &p)
 {
-	_done = true;
+	m_done = true;
 }
 
 void RudeGame::StylusMove(RudeScreenVertex &p)

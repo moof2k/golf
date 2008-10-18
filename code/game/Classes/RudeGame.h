@@ -35,12 +35,12 @@ public:
 	virtual void TouchUp(RudeScreenVertex &n, RudeScreenVertex &p);
 
 	virtual void Pause();
-	virtual bool Done() { return _done; }
+	virtual bool Done() { return m_done; }
 
 	static float GetTime();
 	
 protected:
-	bool _done;
+	bool m_done;
 
 private:
 	float _rendertimes[REC_FRAMES];

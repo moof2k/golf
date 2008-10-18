@@ -38,16 +38,16 @@ const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
 const float kFollowTimerThreshold = 2.0f;
 
-RBTGame::RBTGame()
+RBTGame::RBTGame(const char *terrainfile, int score)
 {	
 	
 	
 	RudePhysics::GetInstance()->Init();
 		
-	m_terrain.Load("parfive");
+	m_terrain.Load(terrainfile);
 	m_par = 5;
 	m_stroke = 1;
-	m_score = 0;
+	m_score = score;
 	
 	m_ball.Load("ball_1");
 	m_ball.SetPosition(btVector3(0,100,0));
@@ -133,7 +133,7 @@ RBTGame::RBTGame()
 
 RBTGame::~RBTGame()
 {
-
+	RudePhysics::GetInstance()->Destroy();
 }
 
 void RBTGame::SetState(eRBTGameState state)
@@ -203,6 +203,7 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				m_stroke++;
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetGuidePoint(m_ball.GetPosition()), 5.0f);
+				
 			}
 			break;
 		case kStateBallOutOfBounds:
@@ -218,6 +219,7 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetHole(), 5.0f);
+				
 			}
 			break;
 	}
@@ -996,7 +998,8 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			SetState(kStatePositionSwing);
 			break;
 		case kStateBallInHole:
-			SetState(kStateTeePosition);
+			//SetState(kStateTeePosition);
+			m_done = true;
 			break;
 	}
 }

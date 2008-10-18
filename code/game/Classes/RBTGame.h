@@ -62,7 +62,7 @@ class RBTGame : public RudeGame
 {
 // Construction
 public:
-	RBTGame();
+	RBTGame(const char *terrainfile, int score);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -81,6 +81,9 @@ public:
 	void TouchUp(RudeTouch *rbt);
 
 	void Pause();
+	
+	int GetStroke() { return m_stroke; }
+	int GetScore() { return m_score; }
 
 private:
 	

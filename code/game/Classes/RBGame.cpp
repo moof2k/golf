@@ -62,7 +62,7 @@ void RBGame::Render(float delta, float aspect)
 			_rbt->Render(aspect);
 
 			if(_rbt->Done())
-				_done = true;
+				m_done = true;
 			break;
 
 	}

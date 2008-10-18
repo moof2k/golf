@@ -24,6 +24,7 @@ public:
 	static RudePhysics * GetInstance();
 	
 	void Init();
+	void Destroy();
 
 	void NextFrame(float delta);
 	
@@ -38,6 +39,10 @@ private:
 	std::map<const btCollisionObject *, RudePhysicsObject *> m_objMap;
 	
 	btDiscreteDynamicsWorld *m_dynamicsWorld;
+	btAxisSweep3* m_broadphase;
+	btDefaultCollisionConfiguration* m_collisionConfiguration;
+	btCollisionDispatcher* m_dispatcher;
+	btSequentialImpulseConstraintSolver* m_solver;
 };
 
 const int kMaxRayResults = 16;
