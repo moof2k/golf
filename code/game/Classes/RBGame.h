@@ -28,7 +28,7 @@
 #include "RudeTouchTracker.h"
 #include "RBKeyMap.h"
 
-#include "RBTGame.h"
+#include "RBTRound.h"
 
 
 typedef enum {
@@ -74,7 +74,7 @@ private:
 
 	GameState	_state;
 
-	RBTGame		*_rbt;
+	RBTRound	*_rbt;
 
 	RBKeyMap	*_keymap;
 	

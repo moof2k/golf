@@ -16,6 +16,7 @@ RudeTextControl::RudeTextControl()
 , m_value(-123123.0f)
 , m_alignment(kAlignLeft)
 , m_style(kNoStyle)
+, m_font(kDefaultFont)
 {
 	m_text[0] = '\0';
 	m_format[0] = '\0';
@@ -40,6 +41,9 @@ void RudeTextControl::SetPosition(int x, int y)
 			break;
 		case kAlignRight:
 			SetRect(RudeRect(y - kHeight, x-1, y + kHeight, x));
+			break;
+		case kAlignCenter:
+			
 			break;
 	}
 }
@@ -66,9 +70,9 @@ void RudeTextControl::Render()
 void RudeTextControl::Display(float x, float y)
 {
 	if(m_style == kOutlineStyle)
-		RudeFontManager::GetFont(kDefaultFontOutline)->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[1][0], m_colors[1][1]);
+		RudeFontManager::GetFont((eFont) (m_font+1))->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[1][0], m_colors[1][1]);
 	
-	RudeFontManager::GetFont(kDefaultFont)->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[0][0], m_colors[0][1]);
+	RudeFontManager::GetFont(m_font)->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[0][0], m_colors[0][1]);
 
 }
 

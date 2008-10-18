@@ -11,6 +11,7 @@
 #define __H_RudeTextControl
 
 #include "RudeControl.h"
+#include "RudeFont.h"
 
 const int kMaxTextLen = 64;
 
@@ -46,6 +47,7 @@ public:
 	void SetFormat(eRudeTextControlDisplayValue value, const char *fmt);
 	void SetValue(float f);
 	void SetText(const char *text);
+	void SetFont(eFont font) { m_font = font; }
 	
 	void SetColors(int i, unsigned int top, unsigned int bot)
 	{
@@ -62,6 +64,7 @@ protected:
 	eRudeTextControlDisplayValue m_displayValue;
 	eRudeTextControlAlignment m_alignment;
 	eRudeTextControlStyle m_style;
+	eFont m_font;
 	
 	unsigned int m_colors[2][2];
 	

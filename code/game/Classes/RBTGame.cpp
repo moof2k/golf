@@ -673,7 +673,7 @@ void RBTGame::RenderGuide(float aspect)
 	//m_guidePositionScreenSpace.setY(480.0f - (m_guidePositionScreenSpace.y() * 240.0f + 240.0f));
 	//m_guidePositionScreenSpace.setY(480.0f - m_guidePositionScreenSpace.y());
 	
-	printf("Guide: %f %f %f\n", m_guidePositionScreenSpace.x(), m_guidePositionScreenSpace.y(), m_guidePositionScreenSpace.z());
+	//printf("Guide: %f %f %f\n", m_guidePositionScreenSpace.x(), m_guidePositionScreenSpace.y(), m_guidePositionScreenSpace.z());
 	
 	
 	const int kGuideSize = 32;
@@ -706,8 +706,7 @@ void RBTGame::RenderBallFollowInfo(bool showDistToHole)
 
 void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 {
-	const float kParY = 20.0f;
-	const float kRemainDistY = 36.0f;
+
 	
 	const float kClubDistY = 430.0f;
 	const float kDistY = 430.0f;
@@ -754,7 +753,6 @@ void RBTGame::Render(float aspect)
 {
 	RGL.SetViewport(0, 0, 480-1, 320-1);
 
-	
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
 	
@@ -808,6 +806,8 @@ void RBTGame::Render(float aspect)
 	
 	//RudeFontManager::GetFont(kDefaultFont)->Write(10.0f, 350.0f, 0.0f, "This is a TEST!", 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF0000FF);
 	
+	btVector3 p = RGL.Project(btVector3(0,0,-50));
+	printf("p %f %f %f\n", p.x(), p.y(), p.z());
 	
 	switch(m_state)
 	{

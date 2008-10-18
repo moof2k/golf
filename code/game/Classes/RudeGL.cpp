@@ -38,6 +38,8 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 
 void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 {	
+	glCullFace(GL_BACK);
+	
 	//float ww = w / 2.0f;
 	//float wh = h / 2.0f;
 	//wd = d / 2.0f;

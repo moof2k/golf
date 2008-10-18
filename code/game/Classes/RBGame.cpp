@@ -42,7 +42,7 @@ void RBGame::Init()
 {
 	Destroy();
 
-	_rbt = new RBTGame();
+	_rbt = new RBTRound();
 
 	_state = GameRBT; // GameTitle;
 
@@ -104,7 +104,7 @@ void RBGame::KeyDown(RudeKey k)
 	switch(_state)
 	{
 		case GameRBT:
-			_rbt->KeyDown(rbk);
+			//_rbt->KeyDown(rbk);
 			break;
 
 	}
@@ -118,7 +118,7 @@ void RBGame::KeyUp(RudeKey k)
 	{
 
 		case GameRBT:
-			_rbt->KeyUp(rbk);
+			//_rbt->KeyUp(rbk);
 			break;
 
 	}
@@ -131,7 +131,7 @@ void RBGame::StylusDown(RudeScreenVertex &p)
 
 			
 		case GameRBT:
-			_rbt->StylusDown(p);
+			//_rbt->StylusDown(p);
 			break;
 			
 	}
@@ -144,7 +144,7 @@ void RBGame::StylusUp(RudeScreenVertex &p)
 
 			
 		case GameRBT:
-			_rbt->StylusUp(p);
+			//_rbt->StylusUp(p);
 			break;
 			
 	}
@@ -157,7 +157,7 @@ void RBGame::StylusMove(RudeScreenVertex &p)
 
 			
 		case GameRBT:
-			_rbt->StylusMove(p);
+			//_rbt->StylusMove(p);
 			break;
 			
 	}
