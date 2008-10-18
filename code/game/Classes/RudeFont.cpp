@@ -50,6 +50,8 @@ void RudeFontManager::InitFonts()
 {
 	m_fonts[kDefaultFont].Init("ab18.fnt");
 	m_fonts[kDefaultFontOutline].Init("ab18o2.fnt");
+	m_fonts[kBigFont].Init("ab28.fnt");
+	m_fonts[kBigFontOutline].Init("ab28o2.fnt");
 }
 
 RudeFont * RudeFontManager::GetFont(eFont f)

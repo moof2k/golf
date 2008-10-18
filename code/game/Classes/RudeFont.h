@@ -106,6 +106,8 @@ const int FONT_ALIGN_JUSTIFY = 3;
 typedef enum {
 	kDefaultFont = 0,
 	kDefaultFontOutline,
+	kBigFont,
+	kBigFontOutline,
 	
 	kNumFonts,
 	
