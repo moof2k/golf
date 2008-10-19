@@ -55,6 +55,8 @@ public:
 		m_colors[i][1] = bot;
 	}
 	
+	void SetAlpha(float a) { m_alpha = a; }
+	
 protected:
 	
 	void Display(float x, float y);
@@ -68,6 +70,7 @@ protected:
 	
 	unsigned int m_colors[2][2];
 	
+	float m_alpha;
 	float m_value;
 };
 

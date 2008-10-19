@@ -17,6 +17,7 @@ RudeTextControl::RudeTextControl()
 , m_alignment(kAlignLeft)
 , m_style(kNoStyle)
 , m_font(kDefaultFont)
+, m_alpha(1.0f)
 {
 	m_text[0] = '\0';
 	m_format[0] = '\0';
@@ -69,10 +70,13 @@ void RudeTextControl::Render()
 
 void RudeTextControl::Display(float x, float y)
 {
-	if(m_style == kOutlineStyle)
-		RudeFontManager::GetFont((eFont) (m_font+1))->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[1][0], m_colors[1][1]);
+	unsigned int alpha = int(255.0f * m_alpha);
+	alpha = alpha << 24;
 	
-	RudeFontManager::GetFont(m_font)->Write(x, y, 0.0f, m_text, 0, m_alignment, m_colors[0][0], m_colors[0][1]);
+	if(m_style == kOutlineStyle)
+		RudeFontManager::GetFont((eFont) (m_font+1))->Write(x, y, 0.0f, m_text, 0, m_alignment, (m_colors[1][0] & 0x00FFFFFF) | alpha, (m_colors[1][1] & 0x00FFFFFF) | alpha);
+	
+	RudeFontManager::GetFont(m_font)->Write(x, y, 0.0f, m_text, 0, m_alignment, (m_colors[0][0] & 0x00FFFFFF) | alpha, (m_colors[0][1] & 0x00FFFFFF) | alpha);
 
 }
 

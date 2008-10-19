@@ -143,12 +143,14 @@ private:
 	RudeTextControl m_strokeText;
 	RudeTextControl m_remainingDistText;
 	RudeTextControl m_scoreText;
+	RudeTextControl m_shotEncouragementText;
 	
 	float m_swingPower;
 	float m_swingAngle;
 	
 	float m_followTimer;
 	float m_stopTimer;
+	float m_encouragementTimer;
 	
 	btVector3 m_dBall;
 	btVector3 m_guidePosition;

@@ -101,6 +101,12 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_scoreText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
+	m_shotEncouragementText.SetAlignment(kAlignCenter);
+	m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
+	m_shotEncouragementText.SetStyle(kOutlineStyle);
+	m_shotEncouragementText.SetFont(kBigFont);
+	m_shotEncouragementText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_shotEncouragementText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 						  
 	// swing controls
 	
@@ -161,6 +167,38 @@ void RBTGame::SetState(eRBTGameState state)
 				{
 					m_swingYaw = 0.0f;
 					m_swingHeight = 0.0f;
+					
+					if(m_ball.GetCurMaterial() == kGreen)
+					{
+						RBScoreTracker *tracker = GetScoreTracker(m_curPlayer);
+						int strokes = tracker->GetNumStrokes(m_holeNum) + 1;
+						int scoreIfShotMade = strokes - m_par;
+						
+						const float kEncouragementTimer = 3.0f;
+						
+						if(scoreIfShotMade == -2)
+						{
+							m_shotEncouragementText.SetText("For Eagle!");
+							m_encouragementTimer = kEncouragementTimer;
+						}
+						else if(scoreIfShotMade == -1)
+						{
+							m_shotEncouragementText.SetText("For Birdie!");
+							m_encouragementTimer = kEncouragementTimer;
+						}
+						else if(scoreIfShotMade == 0)
+						{
+							m_shotEncouragementText.SetText("For Par");
+							m_encouragementTimer = kEncouragementTimer;
+						}
+						else if(scoreIfShotMade == 1)
+						{
+							m_shotEncouragementText.SetText("For Bogey");
+							m_encouragementTimer = kEncouragementTimer;
+						}
+					}
+					
+					
 					
 					AutoSelectClub();
 				}
@@ -249,6 +287,13 @@ void RBTGame::StateTeePosition(float delta)
 
 void RBTGame::StatePositionSwing(float delta)
 {
+	m_encouragementTimer -= delta;
+	
+	float alpha = m_encouragementTimer;
+	if(alpha > 1.0f)
+		alpha = 1.0f;
+	m_shotEncouragementText.SetAlpha(alpha);
+	
 	//m_state = kStateExecuteSwing;
 	
 	//AutoSelectClub();
@@ -256,6 +301,8 @@ void RBTGame::StatePositionSwing(float delta)
 
 void RBTGame::StatePositionSwing2(float delta)
 {
+	m_encouragementTimer = 0.0f;
+	
 	m_ballGuide.NextFrame(delta);
 }
 
@@ -838,6 +885,11 @@ void RBTGame::Render(float aspect)
 			m_clubButton.Render();
 			m_cameraButton.Render();
 			RenderShotInfo(false, true);
+			
+			if(m_encouragementTimer > 0.0f)
+			{
+				m_shotEncouragementText.Render();
+			}
 			break;
 		case kStateExecuteSwing:
 			m_moveButton.Render();
