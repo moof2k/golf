@@ -39,6 +39,10 @@
 		9A74018E0E6FDF1F008490F7 /* box.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A74018D0E6FDF1F008490F7 /* box.POD */; };
 		9A7401900E6FDF24008490F7 /* testtexture.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A74018F0E6FDF24008490F7 /* testtexture.pvr */; };
 		9A74FFB20E6E934B008490F7 /* RudeText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74FFB10E6E934B008490F7 /* RudeText.cpp */; };
+		9A776D4C0EABD74F00196CA0 /* RBTRound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */; };
+		9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */; };
+		9A776D670EABD92200196CA0 /* RBScoreControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D660EABD92200196CA0 /* RBScoreControl.cpp */; };
+		9A776D720EABDBFF00196CA0 /* RBScoreTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */; };
 		9A7CA4CA0E764F6A00FA002C /* RBTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */; };
 		9A8C20A40E46A83300C2BECB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C20A30E46A83300C2BECB /* AudioToolbox.framework */; };
 		9A8C20FD0E46A92600C2BECB /* RudeMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20DD0E46A92600C2BECB /* RudeMath.cpp */; };
@@ -341,6 +345,14 @@
 		9A74018F0E6FDF24008490F7 /* testtexture.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = testtexture.pvr; path = Data/testtexture.pvr; sourceTree = "<group>"; };
 		9A74FFB00E6E934B008490F7 /* RudeText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeText.h; path = Classes/RudeText.h; sourceTree = "<group>"; };
 		9A74FFB10E6E934B008490F7 /* RudeText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeText.cpp; path = Classes/RudeText.cpp; sourceTree = "<group>"; };
+		9A776D4A0EABD74F00196CA0 /* RBTRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTRound.h; path = Classes/RBTRound.h; sourceTree = "<group>"; };
+		9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTRound.cpp; path = Classes/RBTRound.cpp; sourceTree = "<group>"; };
+		9A776D4E0EABD76600196CA0 /* RudeTextControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextControl.h; path = Classes/RudeTextControl.h; sourceTree = "<group>"; };
+		9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTextControl.cpp; path = Classes/RudeTextControl.cpp; sourceTree = "<group>"; };
+		9A776D650EABD92200196CA0 /* RBScoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBScoreControl.h; path = Classes/RBScoreControl.h; sourceTree = "<group>"; };
+		9A776D660EABD92200196CA0 /* RBScoreControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBScoreControl.cpp; path = Classes/RBScoreControl.cpp; sourceTree = "<group>"; };
+		9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBScoreTracker.h; path = Classes/RBScoreTracker.h; sourceTree = "<group>"; };
+		9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBScoreTracker.cpp; path = Classes/RBScoreTracker.cpp; sourceTree = "<group>"; };
 		9A7CA4C80E764F6A00FA002C /* RBTerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTerrain.h; path = Classes/RBTerrain.h; sourceTree = "<group>"; };
 		9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTerrain.cpp; path = Classes/RBTerrain.cpp; sourceTree = "<group>"; };
 		9A8C20A30E46A83300C2BECB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1030,6 +1042,8 @@
 				9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */,
 				9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */,
 				9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */,
+				9A776D4E0EABD76600196CA0 /* RudeTextControl.h */,
+				9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */,
 				9AFF31320E9D9DE80078E211 /* RudeFont.h */,
 				9AFF31330E9D9DE80078E211 /* RudeFont.cpp */,
 				9AFF315B0E9DA09F0078E211 /* RudeUnicode.h */,
@@ -1041,12 +1055,10 @@
 		9A8C21610E46AE2800C2BECB /* Golf */ = {
 			isa = PBXGroup;
 			children = (
-				9ADC5A7B0E6548BD004C82A2 /* RBKeyMap.h */,
-				9ADC5A7F0E6548BD004C82A2 /* RBKeyMap.cpp */,
-				9ADC5A820E6548BD004C82A2 /* RBKeyTracker.cpp */,
-				9ADC5A830E6548BD004C82A2 /* RBKeyTracker.h */,
 				9ADC5A7C0E6548BD004C82A2 /* RBTGame.cpp */,
 				9ADC5A7E0E6548BD004C82A2 /* RBTGame.h */,
+				9A776D4A0EABD74F00196CA0 /* RBTRound.h */,
+				9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */,
 				9ADC5A860E6548BD004C82A2 /* RBGame.cpp */,
 				9ADC5A850E6548BD004C82A2 /* RBGame.h */,
 				9A7CA4C80E764F6A00FA002C /* RBTerrain.h */,
@@ -1069,6 +1081,14 @@
 				9A93B7540E822F9F0067CDC6 /* RBGolferObject.cpp */,
 				9AAA6F110E9F4CD5008D9318 /* RBBallRecorder.h */,
 				9AAA6F120E9F4CD5008D9318 /* RBBallRecorder.cpp */,
+				9ADC5A7B0E6548BD004C82A2 /* RBKeyMap.h */,
+				9ADC5A7F0E6548BD004C82A2 /* RBKeyMap.cpp */,
+				9ADC5A820E6548BD004C82A2 /* RBKeyTracker.cpp */,
+				9ADC5A830E6548BD004C82A2 /* RBKeyTracker.h */,
+				9A776D650EABD92200196CA0 /* RBScoreControl.h */,
+				9A776D660EABD92200196CA0 /* RBScoreControl.cpp */,
+				9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */,
+				9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -1934,6 +1954,10 @@
 				9AD580850EA08C76002696A6 /* load_uni.c in Sources */,
 				9AD580860EA08C76002696A6 /* load_xm.c in Sources */,
 				9AD580BA0EA08CFF002696A6 /* drv_stdout.c in Sources */,
+				9A776D4C0EABD74F00196CA0 /* RBTRound.cpp in Sources */,
+				9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */,
+				9A776D670EABD92200196CA0 /* RBScoreControl.cpp in Sources */,
+				9A776D720EABDBFF00196CA0 /* RBScoreTracker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

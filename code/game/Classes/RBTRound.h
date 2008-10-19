@@ -33,6 +33,9 @@ public:
 };
 
 
+const int kMaxPlayers = 4;
+
+
 class RBTRound : public RudeGame {
 	
 public:
@@ -54,10 +57,9 @@ private:
 	
 	RudeTextControl m_loadingText;
 	
-	int m_score;
-	int m_strokes;
 	int m_hole;
 	
+	int m_numPlayers;
 	
 };
 

@@ -8,6 +8,7 @@
  */
 
 #include "RBTRound.h"
+#include "RBScoreControl.h"
 #include "RudeGL.h"
 
 static RBTHole sCourse[18] = {
@@ -36,6 +37,7 @@ RBTRound::RBTRound()
 : m_game(0)
 , m_state(kStateInit)
 , m_hole(0)
+, m_numPlayers(1)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
@@ -57,8 +59,16 @@ void RBTRound::NextFrame(float delta)
 		RUDE_REPORT("RBTRound State %d\n", m_state);
 		
 		m_hole = 0;
-		m_score = 0;
-		m_strokes = 0;
+		
+		for(int i = 0; i < m_numPlayers; i++)
+		{
+			RBScoreTracker *tracker = GetScoreTracker(i);
+			for(int h = 0; h < 18; h++)
+			{
+				tracker->ClearScores();
+				tracker->SetPar(h, sCourse[h].m_par);
+			}
+		}
 		
 		m_state = kStateNextRound;
 	}
@@ -69,7 +79,7 @@ void RBTRound::NextFrame(float delta)
 		if(m_game)
 			delete m_game;
 		
-		m_game = new RBTGame(sCourse[m_hole].m_holeNum, sCourse[m_hole].m_terrainFile, sCourse[m_hole].m_par, m_score);
+		m_game = new RBTGame(m_hole, sCourse[m_hole].m_terrainFile, sCourse[m_hole].m_par, m_numPlayers);
 		
 		m_state = kStateInRound;
 		 
@@ -82,9 +92,7 @@ void RBTRound::NextFrame(float delta)
 			
 			if(m_game->Done())
 			{
-				m_score += m_game->GetStroke();
-				m_score -= sCourse[m_hole].m_par;
-				m_strokes += m_game->GetStroke();
+				
 				
 				m_hole++;
 				m_state = kStateNextRound;

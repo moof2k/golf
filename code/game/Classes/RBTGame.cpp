@@ -38,7 +38,7 @@ const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
 const float kFollowTimerThreshold = 2.0f;
 
-RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int score)
+RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 {	
 	
 	
@@ -47,8 +47,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int score)
 	m_terrain.Load(terrainfile);
 	m_holeNum = holeNum;
 	m_par = par;
-	m_stroke = 1;
-	m_score = score;
+	m_numPlayers = numPlayers;
+	m_curPlayer = 0;
 	
 	m_ball.Load("ball_1");
 	m_ball.SetPosition(btVector3(0,100,0));
@@ -202,22 +202,26 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateRegardBall:
 			{
-				m_stroke++;
+				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
+				
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetGuidePoint(m_ball.GetPosition()), 5.0f);
 				
 			}
 			break;
 		case kStateBallOutOfBounds:
 			{
-				StickBallInBounds();
+				// one stroke penalty
+				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
-				m_stroke++;
+				StickBallInBounds();
 				
 				SetState(kStateRegardBall);
 			}
 			break;
 		case kStateBallInHole:
 			{
+				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
+				
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
 				m_ballCamera.Track(kRegardCamera, m_terrain.GetHole(), 5.0f);
 				
@@ -744,10 +748,20 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	m_remainingDistText.SetValue(m_ballToHoleDist);
 	m_remainingDistText.Render();
 	
-	m_strokeText.SetValue(m_stroke);
+	if(m_state == kStateBallInHole)
+	{
+		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeNum, true));
+		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum));
+	}
+	else
+	{
+		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeNum, false));
+		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum) + 1);
+	}
+	
 	m_strokeText.Render();
 	
-	m_scoreText.SetValue(m_score);
+	
 	m_scoreText.Render();
 
 }

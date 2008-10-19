@@ -43,6 +43,7 @@
 #include "RBGolferObject.h"
 #include "RBGolfClub.h"
 #include "RBBallRecorder.h"
+#include "RBScoreTracker.h"
 
 
 typedef enum {
@@ -62,7 +63,7 @@ class RBTGame : public RudeGame
 {
 // Construction
 public:
-	RBTGame(int holeNum, const char *terrainfile, int par, int score);
+	RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -82,8 +83,6 @@ public:
 
 	void Pause();
 	
-	int GetStroke() { return m_stroke; }
-	int GetScore() { return m_score; }
 
 private:
 	
@@ -162,8 +161,8 @@ private:
 	
 	int m_holeNum;
 	int m_par;
-	int m_stroke;
-	int m_score;
+	int m_curPlayer;
+	int m_numPlayers;
 };
 
 #endif 
