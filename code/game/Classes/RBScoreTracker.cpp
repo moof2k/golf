@@ -23,6 +23,13 @@ void RBScoreTracker::SetPar(int hole, int par)
 	m_scores[hole].m_par = par;
 }
 
+int RBScoreTracker::GetPar(int hole)
+{
+	RUDE_ASSERT(hole < kNumScores, "Invalid hole");
+	
+	return m_scores[hole].m_par;
+}
+
 void RBScoreTracker::ClearScores()
 {
 	for(int i = 0; i < kNumScores; i++)

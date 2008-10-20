@@ -43,6 +43,7 @@
 #include "RBGolferObject.h"
 #include "RBGolfClub.h"
 #include "RBBallRecorder.h"
+#include "RBScoreControl.h"
 #include "RBScoreTracker.h"
 
 
@@ -146,6 +147,8 @@ private:
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_shotQualityText;
+	
+	RBScoreControl m_scoreControl;
 	
 	float m_swingPower;
 	float m_swingAngle;

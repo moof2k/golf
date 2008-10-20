@@ -36,6 +36,8 @@ public:
 	RBScoreTracker();
 	
 	void SetPar(int hole, int par);
+	int GetPar(int hole);
+	
 	void ClearScores();
 	
 	int GetNumStrokes(int hole);

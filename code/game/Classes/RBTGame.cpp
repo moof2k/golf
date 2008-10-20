@@ -71,6 +71,9 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 		m_curCamera = &m_ballCamera;
 	
 	
+	// score control
+	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+	
 	// stroke/status controls
 	
 	m_parText.SetAlignment(kAlignLeft);
@@ -913,11 +916,6 @@ void RBTGame::Render(float aspect)
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);
 	
-	//RudeFontManager::GetFont(kDefaultFont)->Write(10.0f, 350.0f, 0.0f, "This is a TEST!", 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF0000FF);
-	
-	btVector3 p = RGL.Project(btVector3(0,0,-50));
-	printf("p %f %f %f\n", p.x(), p.y(), p.z());
-	
 	switch(m_state)
 	{
 		case kStatePositionSwing:
@@ -959,7 +957,7 @@ void RBTGame::Render(float aspect)
 			break;
 			
 		case kStateBallInHole:
-			
+			m_scoreControl.Render();
 			RenderShotInfo(false, false);
 			break;
 	}

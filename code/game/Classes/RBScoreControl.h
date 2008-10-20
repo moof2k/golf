@@ -13,6 +13,9 @@
 #include "Rude.h"
 #include "RudeControl.h"
 
+typedef enum {
+	kScoreColorNormal
+} eRBScoreColor;
 
 
 class RBScoreControl : public RudeControl {
@@ -25,6 +28,10 @@ public:
 	
 	
 private:
+	
+	void RenderScoreBoard(int x, int y, int start);
+	
+	void Printf(float x, float y, int align, eRBScoreColor color, const char *fmt, int value);
 	
 };
 
