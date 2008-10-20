@@ -73,6 +73,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	
 	// score control
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+	m_scoreControl.SetActiveHole(m_holeNum);
 	
 	// stroke/status controls
 	
