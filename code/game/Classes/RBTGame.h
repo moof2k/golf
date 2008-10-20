@@ -135,6 +135,7 @@ private:
 	bool m_moveHeight;
 	
 	int m_curClub;
+	RudeButtonControl m_botBarBg;
 	RudeButtonControl m_nextClubButton;
 	RudeButtonControl m_prevClubButton;
 	RudeButtonControl m_clubButton;

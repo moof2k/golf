@@ -335,17 +335,17 @@ void RudeFont::InternalWrite(float x, float y, float z, const char *text, int co
 		
 		// Map the center of the texel to the corners
 		// in order to get pixel perfect mapping
-		float u = (float(ch->srcX)-0.5f) / scaleW;
-		float v = (float(ch->srcY)-0.5f) / scaleH;
-		float u2 = u + float(ch->srcW+0.5f) / scaleW;
-		float v2 = v + float(ch->srcH+0.5f) / scaleH;
+		float u = (float(ch->srcX)) / scaleW;
+		float v = (float(ch->srcY)) / scaleH;
+		float u2 = u + float(ch->srcW) / scaleW;
+		float v2 = v + float(ch->srcH) / scaleH;
 		
 		v = 1.0f - v;
 		v2 = 1.0f - v2;
 		
 		float a = scale * float(ch->xAdv);
-		float w = scale * float(ch->srcW) + 0.5f;
-		float h = -scale * float(ch->srcH) - 0.5f;
+		float w = scale * float(ch->srcW);
+		float h = -scale * float(ch->srcH);
 		float ox = scale * float(ch->xOff);
 		float oy = scale * float(ch->yOff);
 		

@@ -120,13 +120,19 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 						  
 	// swing controls
 	
+	const int kBottomBarTop = 480 - 44;
+	const int kBottomBarBot = 480;
+	
+	m_botBarBg.SetRect(RudeRect(kBottomBarTop, 0, kBottomBarBot, 320));
+	m_botBarBg.SetTextures("botbarbg", "botbarbg");
+	
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
 	m_swingControl.SetGolfer(&m_golfer);
 	
-	m_swingButton.SetRect(RudeRect(480 - 60, 180, 480, 320));
+	m_swingButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
 	m_swingButton.SetTextures("swing", "swing");
 	
-	m_moveButton.SetRect(RudeRect(480 - 60, 180, 480, 320));
+	m_moveButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
 	m_moveButton.SetTextures("move", "move");
 	
 	m_guideIndicatorButton.SetTextures("guide", "guide");
@@ -134,12 +140,13 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
+
 	
-	m_prevClubButton.SetRect(RudeRect(420, 0, 480, 30));
+	m_prevClubButton.SetRect(RudeRect(kBottomBarTop, 5, kBottomBarBot, 5+32));
 	m_prevClubButton.SetTextures("clubprev", "clubprev");
-	m_clubButton.SetRect(RudeRect(430, 45, 480, 130));
+	m_clubButton.SetRect(RudeRect(kBottomBarTop, 46, kBottomBarBot, 46+68));
 	m_clubButton.SetTextures("1wood", "1wood");
-	m_nextClubButton.SetRect(RudeRect(420, 140, 480, 170));
+	m_nextClubButton.SetRect(RudeRect(kBottomBarTop, 121, kBottomBarBot, 121+32));
 	m_nextClubButton.SetTextures("clubnext", "clubnext");
 	
 	m_cameraButton.SetRect(RudeRect(0, 160-40, 60, 160+40));
@@ -762,6 +769,11 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 				
 				//m_guidePositionScreenSpace.setX((int) m_guidePositionScreenSpace.x());
 				//m_guidePositionScreenSpace.setY((int) m_guidePositionScreenSpace.y());
+				
+				if(m_state == kStatePositionSwing)
+				{
+					m_guidePositionScreenSpace.setX(160.0f);
+				}
 			}
 			break;
 	}
@@ -863,7 +875,7 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 
 void RBTGame::Render(float aspect)
 {
-	RGL.SetViewport(0, 0, 480-1, 320-1);
+	RGL.SetViewport(0, 0, 480, 320);
 
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
@@ -922,6 +934,7 @@ void RBTGame::Render(float aspect)
 		case kStatePositionSwing2:
 			RenderGuide(aspect);
 			
+			m_botBarBg.Render();
 			m_swingButton.Render();
 			m_nextClubButton.Render();
 			m_prevClubButton.Render();
@@ -935,6 +948,7 @@ void RBTGame::Render(float aspect)
 			}
 			break;
 		case kStateExecuteSwing:
+			m_botBarBg.Render();
 			m_moveButton.Render();
 			m_swingControl.Render();
 			m_clubButton.Render();
