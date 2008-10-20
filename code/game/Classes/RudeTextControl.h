@@ -55,7 +55,15 @@ public:
 		m_colors[i][1] = bot;
 	}
 	
-	void SetAlpha(float a) { m_alpha = a; }
+	void SetAlpha(float a)
+	{ 
+		if(a < 0.0f)
+			a = 0.0f;
+		else if(a > 1.0f)
+			a = 1.0f;
+		
+		m_alpha = a; 
+	}
 	
 protected:
 	

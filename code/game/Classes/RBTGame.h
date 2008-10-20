@@ -99,6 +99,7 @@ private:
 	void RenderBallFollowInfo(bool showDistToHole);
 	void RenderShotInfo(bool showShotDistance, bool showClubInfo);
 	
+	void FreshShotEncouragement();
 	void AutoSelectClub();
 	void NextClub(int n);
 	void MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &dist);
@@ -144,6 +145,7 @@ private:
 	RudeTextControl m_remainingDistText;
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
+	RudeTextControl m_shotQualityText;
 	
 	float m_swingPower;
 	float m_swingAngle;

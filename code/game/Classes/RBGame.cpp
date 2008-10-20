@@ -99,7 +99,7 @@ void RBGame::Render(float delta, float aspect)
 
 void RBGame::KeyDown(RudeKey k)
 {
-	RBKey rbk = _keymap->mapKey(k);
+	//RBKey rbk = _keymap->mapKey(k);
 
 	switch(_state)
 	{
@@ -112,7 +112,7 @@ void RBGame::KeyDown(RudeKey k)
 
 void RBGame::KeyUp(RudeKey k)
 {
-	RBKey rbk = _keymap->mapKey(k);
+	//RBKey rbk = _keymap->mapKey(k);
 
 	switch(_state)
 	{
