@@ -104,6 +104,13 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_scoreText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
+	m_clubDistText.SetAlignment(kAlignLeft);
+	m_clubDistText.SetPosition(6, 480 - 44 - 10);
+	m_clubDistText.SetFormat(kIntValue, "%d yds");
+	m_clubDistText.SetStyle(kOutlineStyle);
+	m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+	m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	
 	m_shotEncouragementText.SetAlignment(kAlignCenter);
 	m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
 	m_shotEncouragementText.SetStyle(kOutlineStyle);
@@ -149,7 +156,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_nextClubButton.SetRect(RudeRect(kBottomBarTop, 121, kBottomBarBot, 121+32));
 	m_nextClubButton.SetTextures("clubnext", "clubnext");
 	
-	m_cameraButton.SetRect(RudeRect(0, 160-40, 60, 160+40));
+	m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
 	m_cameraButton.SetTextures("camera", "camera");
 	
 	SetState(kStateTeePosition);
@@ -802,27 +809,11 @@ void RBTGame::RenderGuide(float aspect)
 	m_guideIndicatorButton.Render();
 }
 
-void RBTGame::RenderBallFollowInfo(bool showDistToHole)
-{
-	const float kDistY = 430.0f;
-	const float kRemainDistY = 450.0f;
-	
-	RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.2f yds", m_ballShotDist);
-	RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.2f yds", m_ballShotDist);
-	
-	if(showDistToHole)
-	{
-		RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kRemainDistY, 0.0f, FONT_ALIGN_CENTER, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor, "%.2f yds Remaining", m_ballToHoleDist);
-		RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kRemainDistY, 0.0f, FONT_ALIGN_CENTER, kBallRemainingTopColor, kBallRemainingBotColor, "%.2f yds Remaining", m_ballToHoleDist);
-		
-	}
-}
+
 
 void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 {
 
-	
-	const float kClubDistY = 430.0f;
 	const float kDistY = 430.0f;
 	const float kPowerY = 446.0f;
 	const float kAngleY = 462.0f;
@@ -843,10 +834,8 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	if(showClubInfo)
 	{
 		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
-		char clubInfo[60];
-		sprintf(clubInfo, "%.0f yds", club->m_dist);
-		RudeFontManager::GetFont(kDefaultFontOutline)->Printf(10.0f, kClubDistY, 0.0f, FONT_ALIGN_LEFT, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, clubInfo);
-		RudeFontManager::GetFont(kDefaultFont)->Printf(10.0f, kClubDistY, 0.0f, FONT_ALIGN_LEFT, kBallDistanceTopColor, kBallDistanceBotColor, clubInfo);
+		m_clubDistText.SetValue(club->m_dist);
+		m_clubDistText.Render();
 	}
 	
 	m_parText.SetValue(m_par);

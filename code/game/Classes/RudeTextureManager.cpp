@@ -49,7 +49,7 @@ int RudeTextureManager::LoadTextureFromPVRTFile(const char *name)
 	
 	int result = tex->LoadFromPVRTFile(name);
 	
-	RUDE_ASSERT(result >= 0, "Unable to load texture");
+	RUDE_ASSERT(result >= 0, "Unable to load texture %d (%s)", result, name);
 	
 	if(result < 0)
 	{

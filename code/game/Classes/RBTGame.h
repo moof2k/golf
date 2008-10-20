@@ -148,6 +148,7 @@ private:
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_shotQualityText;
+	RudeTextControl m_clubDistText;
 	
 	RBScoreControl m_scoreControl;
 	
