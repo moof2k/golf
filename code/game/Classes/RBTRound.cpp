@@ -105,7 +105,7 @@ void RBTRound::Render(float aspect)
 {
 	if(m_state == kStateNextRound || m_state == kStateInit)
 	{
-		RGL.SetViewport(0, 0, 480-1, 320-1);
+		RGL.SetViewport(0, 0, 480, 320);
 		RGL.Enable(kBackfaceCull, false);
 		RGL.Enable(kDepthTest, false);
 		RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);

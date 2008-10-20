@@ -78,8 +78,6 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 		
 		Printf(xoff, yoff + kLineSpacing, FONT_ALIGN_CENTER, color, "%d", par);
 		
-		strokes = 10 + i;
-		
 		if(strokes > 0)
 		{
 			Printf(xoff, yoff + kLineSpacing * 2.0f, FONT_ALIGN_CENTER, color, "%d", strokes);
