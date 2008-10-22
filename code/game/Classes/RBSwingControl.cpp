@@ -15,8 +15,8 @@
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
-float gSwingDownOptimalTimeMin = 1.5f;
-float gSwingDownOptimalTimeMax = 1.7f;
+float gSwingDownOptimalTimeMin = 1.0f;
+float gSwingDownOptimalTimeMax = 2.0f;
 float gSwingDownEarlyPunishment = 1.0f;
 float gSwingDownLatePunishment = 0.2f;
 
@@ -29,7 +29,7 @@ RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 const int kSwingTrackStart = 100;
 const int kSwingTrackEnd = 400;
 
-const float kSwingDownPrecision = 8.0f;
+const float kSwingDownPrecision = 16.0f;
 const float kSwingDownPrecisionPenalty = 0.01f;
 
 const float kSwingUpMaxDeviation = 128.0f;
@@ -231,14 +231,82 @@ void RBSwingControl::RenderRing()
 	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 178.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "ANG %.0f %%", GetAngle() * 100.0f);
 	
 	
-	float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
+	//float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_ringTextureId);
 	
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
+	float ringsize = (1.0f - m_downOptimalPct) * (kSwingTrackEnd - kSwingTrackStart) + 32.0f;
+	float pathy = kSwingTrackEnd;
+	
+	GLfloat point[] = {
+		160.0f - ringsize, pathy - ringsize,
+		160.0f + ringsize, pathy - ringsize,
+		160.0f + ringsize, pathy + ringsize,
+		160.0f - ringsize, pathy + ringsize,
+	};
+	
+	GLfloat uvs[] = {
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+	};
+	
+	float alpha = m_downOptimalPct;
+	
+	GLfloat colors[] = {
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+	};
+	
+	glVertexPointer(2, GL_FLOAT, 0, point);
+	glColorPointer(4, GL_FLOAT, 0, colors);
+	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
+	
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	
+	
+	{
+		float ringsize = 32.0f;
+		float pathy = kSwingTrackStart;
+		
+		GLfloat point[] = {
+			160.0f - ringsize, pathy - ringsize,
+			160.0f + ringsize, pathy - ringsize,
+			160.0f + ringsize, pathy + ringsize,
+			160.0f - ringsize, pathy + ringsize,
+		};
+		
+		GLfloat uvs[] = {
+			0.0f, 0.0f,
+			1.0f, 0.0f,
+			1.0f, 1.0f,
+			0.0f, 1.0f,
+		};
+		
+		float alpha = 1.0f;
+		
+		GLfloat colors[] = {
+			1.0f, 1.0f, 1.0f, alpha,
+			1.0f, 1.0f, 1.0f, alpha,
+			1.0f, 1.0f, 1.0f, alpha,
+			1.0f, 1.0f, 1.0f, alpha,
+		};
+		
+		glVertexPointer(2, GL_FLOAT, 0, point);
+		glColorPointer(4, GL_FLOAT, 0, colors);
+		glTexCoordPointer(2, GL_FLOAT, 0, uvs);
+		
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	}
+	
+	/*
 	const float kHalfRingTexSize = 32.0f;
 	
 	GLfloat point[] = {
@@ -259,6 +327,8 @@ void RBSwingControl::RenderRing()
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 	
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	*/
+	
 	
 }
 
