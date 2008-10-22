@@ -35,6 +35,9 @@ const float kSwingDownPrecisionPenalty = 0.01f;
 const float kSwingUpMaxDeviation = 128.0f;
 const float kAngleFromDeviation = 1.0f / kSwingUpMaxDeviation;
 
+
+
+
 RBSwingControl::RBSwingControl()
 : m_curSwingPoint(-1)
 {
@@ -51,6 +54,16 @@ void RBSwingControl::Reset()
 	m_backStrokeAnimDone = true;
 	m_downOptimalPct = 0.0f;
 	m_upStrokeDeviation = -0.0f;
+	
+	
+	m_swingPowerText.SetAlignment(kAlignCenter);
+	m_swingPowerText.SetRect(RudeRect(60, 0, 70, 320));
+	m_swingPowerText.SetFormat(kIntValue, "  %d %%");
+	m_swingPowerText.SetStyle(kOutlineStyle);
+	m_swingPowerText.SetFont(kBigFont);
+	m_swingPowerText.SetColors(0, 0xFF666666, 0xFF000000);
+	m_swingPowerText.SetColors(1, 0xFFCCCCCC, 0xFFFFFFFF);
+	
 }
 
 void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
@@ -276,10 +289,11 @@ void RBSwingControl::NextFrame(float delta)
 
 void RBSwingControl::RenderRing()
 {
-
-	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 160.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "PWR %.0f %%", GetPower() * 100.0f);
 	
-	RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 178.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "ANG %.0f %%", GetAngle() * 100.0f);
+
+
+	//RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 160.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "PWR %.0f %%", GetPower() * 100.0f);
+	//RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 178.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "ANG %.0f %%", GetAngle() * 100.0f);
 	
 	
 	//float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
@@ -289,6 +303,7 @@ void RBSwingControl::RenderRing()
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
 	
 	float ringsize = (1.0f - m_downOptimalPct) * (kSwingTrackEnd - kSwingTrackStart) + 32.0f;
 	float pathy = kSwingTrackEnd;
@@ -321,6 +336,7 @@ void RBSwingControl::RenderRing()
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 	
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	 
 	
 	
 	{
@@ -356,31 +372,7 @@ void RBSwingControl::RenderRing()
 		
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	}
-	
-	/*
-	const float kHalfRingTexSize = 32.0f;
-	
-	GLfloat point[] = {
-		160.0f - kHalfRingTexSize, pathy - kHalfRingTexSize,
-		160.0f + kHalfRingTexSize, pathy - kHalfRingTexSize,
-		160.0f + kHalfRingTexSize, pathy + kHalfRingTexSize,
-		160.0f - kHalfRingTexSize, pathy + kHalfRingTexSize,
-	};
-	
-	GLfloat uvs[] = {
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-	};
-	
-	glVertexPointer(2, GL_FLOAT, 0, point);
-	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
-	
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-	*/
-	
-	
+
 }
 
 
@@ -402,6 +394,71 @@ void PickColor(float t, float &r, float &g, float &b)
 		r = 0.0f;
 		b = 0.0f;
 		g = 1.0f;
+	}
+}
+
+void RBSwingControl::RenderPower()
+{
+	float power = GetPower();
+	
+	
+	
+	
+	glDisable(GL_TEXTURE_2D);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	/*
+	const float kX = 10;
+	const float kY = 160;
+	const float kHeight = -100;
+	const float kWidth = 16;
+	
+	float h = power * kHeight;
+	
+	GLfloat point[] = {
+		kX, kY,
+		kX + kWidth, kY,
+		kX + kWidth, kY + h,
+		kX, kY + h,
+	};
+	 */
+	
+	const float alpha = 0.8f * power;
+	
+	GLfloat colors[] = {
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+		1.0f, 1.0f, 1.0f, alpha,
+	};
+	
+	const float kY = 46;
+	const float kY2 = 68;
+	const float kX = 160;
+	const float kLen = 140;
+	
+	float w = power * kLen;
+	
+	GLfloat point[] = {
+		kX - w, kY,
+		kX + w, kY,
+		kX + w, kY2,
+		kX - w, kY2,
+	};
+	
+	glVertexPointer(2, GL_FLOAT, 0, point);
+	glColorPointer(4, GL_FLOAT, 0, colors);
+	
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	
+	
+	if(power > 0.0f)
+	{
+		m_swingPowerText.SetValue(power * 100.0f);
+		m_swingPowerText.Render();
+		
 	}
 }
 
@@ -468,7 +525,7 @@ void RBSwingControl::RenderTracks()
 
 void RBSwingControl::Render()
 {
-	
+	RenderPower();
 	RenderRing();
 	
 	if(!CanSwing())
@@ -498,6 +555,9 @@ bool RBSwingControl::WillSwing()
 
 float RBSwingControl::GetPower()
 {
+	if(m_strokeState == kNoStroke)
+		return 0.0f;
+	
 	const float kAnglePenaltyModifier = 0.25f;
 	
 	float anglePenalty = GetAngle();

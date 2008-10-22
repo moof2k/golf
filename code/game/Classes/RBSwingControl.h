@@ -12,6 +12,7 @@
 
 #include "RudeControl.h"
 #include "RudeVertex.h"
+#include "RudeTextControl.h"
 #include "RBGolferObject.h"
 
 #include <unistd.h>
@@ -86,6 +87,7 @@ public:
 	
 private:
 	
+	void RenderPower();
 	void RenderRing();
 	void RenderTracks();
 	
@@ -94,6 +96,8 @@ private:
 	RBGolferObject *m_golfer;
 	
 	RBSwingPoint m_swingPoints[kMaxSwingPoints];
+	RudeTextControl m_swingPowerText;
+	
 	int m_curSwingPoint;
 	
 	uint64_t m_firstTime;
