@@ -64,8 +64,8 @@ void RBGolferObject::SetBackSwing(float pct)
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kBackSwingStart = 42.0f;
-	const float kBackSwingEnd = 32.0f;
+	const float kBackSwingStart = 2.0f;
+	const float kBackSwingEnd = 30.0f;
 	
 	float frame = (kBackSwingEnd - kBackSwingStart) * pct + kBackSwingStart;
 	
@@ -76,10 +76,11 @@ void RBGolferObject::SetForwardSwing(float pct)
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kForwardSwingStart = 42.0f;
-	const float kForwardSwingEnd = 51.0f;
+	const float kForwardSwingStart = 30.0f;
+	const float kForwardContact = 41.0f;
+	const float kForwardSwingEnd = 67.0f;
 	
-	float frame = (kForwardSwingEnd - kForwardSwingStart) * pct + kForwardSwingStart;
+	float frame = (kForwardSwingEnd - kForwardContact) * pct + kForwardSwingStart;
 	
 	mesh->AnimateTo(frame);
 }
@@ -88,7 +89,7 @@ bool RBGolferObject::HasSwung()
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kSwingPoint = 42.0f;
+	const float kSwingPoint = 41.0f;
 	
 	float frame = mesh->GetFrame();
 	

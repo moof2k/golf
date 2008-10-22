@@ -24,7 +24,8 @@ typedef enum {
 	kNoStroke,
 	kBeginStroke,
 	kDownStroke,
-	kUpStroke
+	kUpStroke,
+	kStrokeComplete
 } eStrokeState;
 
 class RBSwingPoint {
@@ -115,6 +116,9 @@ private:
 	eStrokeState m_strokeState;
 	
 	int m_ringTextureId;
+	
+	bool m_backStrokeAnimDone;
+	bool m_fwdStrokeAnimSent;
 	
 };
 

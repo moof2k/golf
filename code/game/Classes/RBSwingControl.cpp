@@ -48,6 +48,7 @@ void RBSwingControl::Reset()
 	m_power = 0.0f;
 	m_curSwingPoint = 0;
 	m_strokeState = kNoStroke;
+	m_backStrokeAnimDone = true;
 	m_downOptimalPct = 0.0f;
 	m_upStrokeDeviation = -0.0f;
 }
@@ -89,6 +90,8 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 		{
 			m_downPower = 0.0f;
 			m_strokeState = kDownStroke;
+			m_backStrokeAnimDone = false;
+			m_fwdStrokeAnimSent = false;
 			m_firstTime = mach_absolute_time();
 		}
 	}
@@ -177,6 +180,19 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 	
 	AddSwingPoint(t->m_location, false);
 	
+	if(m_strokeState == kUpStroke)
+	{
+		if(m_upStroke.m_y < -5)
+		{
+			//printf("Stroke complete\n");
+			m_strokeState = kStrokeComplete;
+		}
+		else
+			m_strokeState = kNoStroke;
+	}
+	else
+		m_strokeState = kNoStroke;
+	
 	m_downOptimalPct = 0.0f;
 	
 	return true;
@@ -185,14 +201,46 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 
 void RBSwingControl::NextFrame(float delta)
 {
+
+	if(m_strokeState == kDownStroke || m_strokeState == kUpStroke || m_strokeState == kStrokeComplete)
+	{
+		if(!m_backStrokeAnimDone)
+		{
+			m_downTimer += delta;
+			m_downOptimalPct = m_downTimer / gSwingDownOptimalTimeMin;
+			
+			if(m_downOptimalPct > 1.0f)
+			{
+				m_backStrokeAnimDone = true;
+				m_fwdStrokeAnimSent = false;
+				m_downOptimalPct = 1.0f;
+			}
+			else
+			{
+				//printf("SetBackSwing %f\n", m_downOptimalPct);
+				m_golfer->SetBackSwing(m_downOptimalPct);
+			}
+		}
+		else
+		{
+			if(m_strokeState == kStrokeComplete)
+			{
+				if(!m_fwdStrokeAnimSent)
+				{
+					//printf("SetForwardSwing %f\n", GetPower());
+					m_golfer->SetForwardSwing(1.0f);
+					m_fwdStrokeAnimSent = true;
+				}
+			}
+		}
+		
+	}
+	
 	if(m_strokeState == kDownStroke)
 	{
-		m_downTimer += delta;
 		
-		m_downOptimalPct = m_downTimer / gSwingDownOptimalTimeMin;
 		
-		if(m_downOptimalPct > 1.0f)
-			m_downOptimalPct = 1.0f;
+		
 		
 		float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
 		
@@ -212,12 +260,15 @@ void RBSwingControl::NextFrame(float delta)
 		if(m_power < 0.0f)
 			m_power = 0.0f;
 		
-		m_golfer->SetBackSwing(m_power);
+		
 		
 	}
 	else if(m_strokeState == kUpStroke)
 	{
 		
+	}
+	else if(m_strokeState == kStrokeComplete)
+	{
 		
 	}
 	
@@ -428,25 +479,21 @@ void RBSwingControl::Render()
 
 bool RBSwingControl::CanSwing()
 {
-	if(m_downTime > gSwingDownOptimalTimeMax)
+	if(m_strokeState == kNoStroke)
 		return false;
-	
-	if(m_downStroke.m_y < 10)
-		return false;
-	
 	
 	return true;
 }
 
 bool RBSwingControl::WillSwing()
 {
-	if(!CanSwing())
-		return false;
 	
-	if(m_upStroke.m_y > -5)
-		return false;
+	if((m_strokeState == kStrokeComplete) && (m_fwdStrokeAnimSent == true))
+	{
+		return true;
+	}
 	
-	return true;
+	return false;
 }
 
 float RBSwingControl::GetPower()

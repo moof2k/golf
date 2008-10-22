@@ -51,6 +51,7 @@ typedef enum {
 	kStateTeePosition,
 	kStatePositionSwing,
 	kStatePositionSwing2,
+	kStatePositionSwing3,
 	kStateExecuteSwing,
 	kStateWaitForSwing,
 	kStateHitBall,
@@ -128,6 +129,7 @@ private:
 	RudeButtonControl m_swingButton;
 	RudeButtonControl m_moveButton;
 	RudeControl m_swingCamAdjust;
+	RudeControl m_guideAdjust;
 	float m_swingYaw;
 	float m_swingHeight;
 	float m_swingCamYaw;

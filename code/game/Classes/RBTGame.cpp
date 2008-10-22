@@ -148,6 +148,9 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
+	
+	const int kGuideAdjustSize = 20;
+	m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
 
 	
 	m_prevClubButton.SetRect(RudeRect(kBottomBarTop, 5, kBottomBarBot, 5+32));
@@ -217,7 +220,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateWaitForSwing:
 			{
-				m_golfer.SetForwardSwing(m_swingControl.GetPower());
+				
 			}
 			break;
 		case kStateHitBall:
@@ -726,9 +729,15 @@ void RBTGame::NextFrame(float delta)
 			break;
 		case kStateExecuteSwing:
 			m_swingControl.NextFrame(delta);
+			
+			if(m_swingControl.WillSwing())
+				SetState(kStateWaitForSwing);
+			
 			break;
 		case kStateWaitForSwing:
 		{
+			m_swingControl.NextFrame(delta);
+			
 			if(m_golfer.HasSwung())
 				SetState(kStateHitBall);
 		}
@@ -922,6 +931,7 @@ void RBTGame::Render(float aspect)
 	{
 		case kStatePositionSwing:
 		case kStatePositionSwing2:
+		case kStatePositionSwing3:
 			RenderGuide(aspect);
 			
 			m_botBarBg.Render();
@@ -1020,6 +1030,16 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 	{
 		case kStatePositionSwing:
 		case kStatePositionSwing2:
+			
+			if(m_state == kStatePositionSwing2)
+			{
+				if(m_guideAdjust.TouchDown(rbt))
+				{
+					SetState(kStatePositionSwing3);
+					return;
+				}
+			}
+			
 			m_moveGuide = false;
 			m_moveHeight = false;
 			m_swingButton.TouchDown(rbt);
@@ -1065,6 +1085,12 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 			if(m_swingCamAdjust.TouchMove(rbt))
 				MoveAimCamera(m_swingCamAdjust.GetMoveDelta(), m_swingCamAdjust.GetDistanceTraveled());
 			break;
+		case kStatePositionSwing3:
+			if(m_guideAdjust.TouchMove(rbt))
+			{
+				
+			}
+			break;
 		case kStateExecuteSwing:
 			m_swingControl.TouchMove(rbt);
 			break;
@@ -1093,11 +1119,14 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			m_nextClubButton.TouchUp(rbt);
 			m_prevClubButton.TouchUp(rbt);
 			break;
+		case kStatePositionSwing3:
+			m_guideAdjust.TouchUp(rbt);
+			SetState(kStatePositionSwing2);
+			break;
 		case kStateExecuteSwing:
 			if(m_swingControl.TouchUp(rbt))
 			{
-				if(m_swingControl.WillSwing())
-					SetState(kStateWaitForSwing);
+				
 				
 			}
 			if(m_moveButton.TouchUp(rbt))
