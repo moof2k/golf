@@ -48,7 +48,6 @@ void RBSwingControl::Reset()
 {
 	m_ringTextureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ring");
 	
-	m_power = 0.0f;
 	m_curSwingPoint = 0;
 	m_strokeState = kNoStroke;
 	m_backStrokeAnimDone = true;
@@ -87,8 +86,8 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 		m_upStroke = RudeScreenVertex(0,0);
 		m_downTime = 0.0f;
 		m_upTime = 0.0f;
-		m_power = 0.0f;
-		m_downPower = 0.0f;
+		m_downBasePower = 0.0f;
+		m_downBonusPower = 0.0f;
 		m_downOptimalPct = 0.0f;
 		m_upStrokeDeviation = 0.0f;
 		
@@ -101,7 +100,8 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 	{
 		if(p.m_y > m_lastPoint.m_y)
 		{
-			m_downPower = 0.0f;
+			m_downBasePower = 0.0f;
+			m_downBonusPower = 0.0f;
 			m_strokeState = kDownStroke;
 			m_backStrokeAnimDone = false;
 			m_fwdStrokeAnimSent = false;
@@ -267,13 +267,18 @@ void RBSwingControl::NextFrame(float delta)
 		
 		diffy *= kSwingDownPrecisionPenalty * delta;
 		
-		m_downPower -= diffy;
+		m_downBonusPower -= diffy;
 		
-		m_power = m_downOptimalPct + m_downPower;
-		if(m_power < 0.0f)
-			m_power = 0.0f;
+		//m_power = m_downOptimalPct;
 		
+		m_downBasePower = ((float) m_downStroke.m_y) / ((float) kSwingTrackEnd - kSwingTrackStart);
 		
+		if(m_downBasePower < 0.0f)
+			m_downBasePower = 0.0f;
+		if(m_downBasePower > 0.9f)
+			m_downBasePower = 0.9f;
+		
+		//printf("base = %f  bonus = %f\n", m_downBasePower, m_downBonusPower);
 		
 	}
 	else if(m_strokeState == kUpStroke)
@@ -291,13 +296,6 @@ void RBSwingControl::RenderRing()
 {
 	
 
-
-	//RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 160.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "PWR %.0f %%", GetPower() * 100.0f);
-	//RudeFontManager::GetFont(kDefaultFont)->Printf(20.0f, 178.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFF, "ANG %.0f %%", GetAngle() * 100.0f);
-	
-	
-	//float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
-	
 	RudeTextureManager::GetInstance()->SetTexture(m_ringTextureId);
 	
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -566,7 +564,18 @@ float RBSwingControl::GetPower()
 	
 	anglePenalty = 1.0f - anglePenalty * kAnglePenaltyModifier;
 	
-	float power = m_power * anglePenalty;
+	
+	float timingBonus = m_downBonusPower + 0.2f;
+	timingBonus *= 0.5f;
+	
+	if(timingBonus > 0.1f)
+		timingBonus = 0.1f;
+	if(timingBonus < 0.0f)
+		timingBonus = 0.0f;
+	
+	float power = m_downBasePower + timingBonus;
+	
+	power = power * anglePenalty;
 
 	return power;
 }

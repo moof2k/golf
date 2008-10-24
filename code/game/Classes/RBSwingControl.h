@@ -105,8 +105,9 @@ private:
 	float m_downTimer;
 	float m_downOptimalPct;
 	
-	float m_downPower;
-	float m_power;
+	float m_downBonusPower;
+	float m_downBasePower;
+	
 	
 	float m_downTime;
 	float m_upTime;
