@@ -40,7 +40,7 @@ public:
 	
 	void Load(const char *name);
 	
-	void Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution);
+	void Contact(const btVector3 &contactNormal, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution);
 	
 	bool IsOutOfBounds(const btVector3 &position);
 	bool IsOutOfBoundsAndGone(const btVector3 &position);

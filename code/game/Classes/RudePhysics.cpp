@@ -33,6 +33,8 @@ inline btScalar	calculateCombinedRestitution(float restitution0,float restitutio
 
 static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisionObject* colObj0,int partId0,int index0,const btCollisionObject* colObj1,int partId1,int index1)
 {
+	btVector3 normal = cp.m_normalWorldOnB;
+	//printf("normal: %f %f %f\n", normal.x(), normal.y(), normal.z());
 	
 	float friction0 = colObj0->getFriction();
 	float friction1 = colObj1->getFriction();
@@ -48,14 +50,14 @@ static bool CustomMaterialCombinerCallback(btManifoldPoint& cp,	const btCollisio
 		RUDE_ASSERT(obj0, "Custom callback but no object registered");
 		RUDE_ASSERT(obj0->GetNotifyOnContact(), "No custom callback registered for object");
 		
-		obj0->Contact(obj1, partId0, partId1, &friction0, &restitution0);
+		obj0->Contact(normal, obj1, partId0, partId1, &friction0, &restitution0);
 	}
 	if (colObj1->getCollisionFlags() & btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK)
 	{
 		RUDE_ASSERT(obj1, "Custom callback but no object registered");
 		RUDE_ASSERT(obj1->GetNotifyOnContact(), "No custom callback registered for object");
 		
-		obj1->Contact(obj0, partId1, partId0, &friction1, &restitution1);
+		obj1->Contact(normal, obj0, partId1, partId0, &friction1, &restitution1);
 	}
 	
 	cp.m_combinedFriction = calculateCombinedFriction(friction0,friction1);

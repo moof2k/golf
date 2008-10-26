@@ -1088,7 +1088,7 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 		case kStatePositionSwing3:
 			if(m_guideAdjust.TouchMove(rbt))
 			{
-				
+				//AdjustGuide(m_guideAdjust.GetHitMove());
 			}
 			break;
 		case kStateExecuteSwing:

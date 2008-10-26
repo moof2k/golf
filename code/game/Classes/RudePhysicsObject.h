@@ -9,12 +9,13 @@
 
 #pragma once
 
-class btDefaultMotionState;
-class btRigidBody;
+#include <btBulletDynamicsCommon.h>
+
+
 class RudeObject;
 class RudePhysicsObject;
 
-typedef void(*RudePhysicsCollisionCallback)(RudePhysicsObject *, RudePhysicsObject *, int, int, float *, float *);
+typedef void(*RudePhysicsCollisionCallback)(const btVector3 &contactNormal, RudePhysicsObject *, RudePhysicsObject *, int, int, float *, float *);
 
 class RudePhysicsObject {
 
@@ -26,7 +27,7 @@ public:
 	
 	btRigidBody * GetRigidBody() { return m_rigidBody; }
 	
-	void Contact(RudePhysicsObject *other, int mypartId, int otherpartId, float *friction, float *restitution);
+	void Contact(const btVector3 &contactNormal, RudePhysicsObject *other, int mypartId, int otherpartId, float *friction, float *restitution);
 	
 	void SetContactCallback(RudePhysicsCollisionCallback cb) { m_contactCallback = cb; }
 	bool GetNotifyOnContact() { return m_notifyOnContact; }

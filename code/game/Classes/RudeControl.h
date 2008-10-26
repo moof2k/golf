@@ -31,6 +31,7 @@ public:
 	
 	RudeScreenVertex GetDistanceTraveled() { return m_hitDistanceTraveled; }
 	RudeScreenVertex GetMoveDelta() { return m_hitMoveDelta; }
+	RudeScreenVertex GetHitMove() { return m_hitMove; }
 	
 protected:
 	

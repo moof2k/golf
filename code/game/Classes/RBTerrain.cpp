@@ -84,10 +84,10 @@ RBTerrain::RBTerrain()
 {
 }
 
-void RBTerrainContactCallback(RudePhysicsObject *terrain, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
+void RBTerrainContactCallback(const btVector3 &contactNormal, RudePhysicsObject *terrain, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {
 	RBTerrain *tobj = (RBTerrain *) terrain->GetOwner();
-	tobj->Contact(other, terrainId, otherId, friction, restitution);
+	tobj->Contact(contactNormal, other, terrainId, otherId, friction, restitution);
 }
 
 
@@ -252,8 +252,16 @@ bool RBTerrain::IsOutOfBoundsAndGone(const btVector3 &position)
 }
 
 
-void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
+void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {
+	
+	
+	btVector3 up(0,1,0);
+	float dampScale = up.dot(normal);
+	
+	//printf("normal %f %f %f - %f\n", normal.x(), normal.y(), normal.z(), dampScale);
+	
+	
 	eRBTerrainMaterial materialType = m_terrainParts[terrainId];
 	RBTerrainMaterialInfo &materialInfo = gMaterialInfos[materialType];
 	
@@ -270,7 +278,7 @@ void RBTerrain::Contact(RudePhysicsObject *other, int terrainId, int otherId, fl
 	ball->SetCurMaterial(materialType);
 	
 	// damp based on impacted material (TODO)
-	ball->AddContactDamping(materialInfo.m_linearDamping, materialInfo.m_angularDamping);
+	ball->AddContactDamping(materialInfo.m_linearDamping * dampScale, materialInfo.m_angularDamping * dampScale);
 	
 	btVector3 ballpos = ball->GetPosition();
 	btVector3 ballvel = rb->getLinearVelocity();
