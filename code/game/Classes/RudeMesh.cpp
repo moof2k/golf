@@ -70,7 +70,7 @@ int RudeMesh::Load(const char *name)
 	{
 		SPODMesh *mesh = &m_model.pMesh[i];
 		
-
+		RUDE_ASSERT(mesh->pInterleaved, "Mesh data is assumed to be interleaved");
 			
 		if((mesh->sVtxColours.n > 0) && (mesh->sVtxColours.eType == EPODDataRGBA))
 		{
