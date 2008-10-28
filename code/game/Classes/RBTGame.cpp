@@ -126,6 +126,27 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_shotQualityText.SetFont(kBigFont);
 	m_shotQualityText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotQualityText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+	m_shotDistText.SetFormat(kIntValue, "%d yds");
+	m_shotDistText.SetAlignment(kAlignCenter);
+	m_shotDistText.SetRect(RudeRect(430, 0, 446, 320));
+	m_shotDistText.SetStyle(kOutlineStyle);
+	m_shotDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_shotDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+	m_shotPowerText.SetFormat(kIntValue, "%d %% Power");
+	m_shotPowerText.SetAlignment(kAlignCenter);
+	m_shotPowerText.SetRect(RudeRect(446, 0, 462, 320));
+	m_shotPowerText.SetStyle(kOutlineStyle);
+	m_shotPowerText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_shotPowerText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+	m_shotAngleText.SetFormat(kIntValue, "%d %% Angle");
+	m_shotAngleText.SetAlignment(kAlignCenter);
+	m_shotAngleText.SetRect(RudeRect(462, 0, 478, 320));
+	m_shotAngleText.SetStyle(kOutlineStyle);
+	m_shotAngleText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
+	m_shotAngleText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 						  
 	// swing controls
 	
@@ -881,15 +902,22 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	
 	if(showShotDistance)
 	{
-		RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.2f yds", m_ballShotDist);
-		RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.2f yds", m_ballShotDist);
+		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.2f yds", m_ballShotDist);
+		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.2f yds", m_ballShotDist);
 		
-		RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Power", m_swingPower * 100.0f);
-		RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Power", m_swingPower * 100.0f);
+		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Power", m_swingPower * 100.0f);
+		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Power", m_swingPower * 100.0f);
 		
-		RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
-		RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
+		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
+		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
 		
+		m_shotDistText.SetValue(m_ballShotDist);
+		m_shotPowerText.SetValue(m_swingPower * 100.0f);
+		m_shotAngleText.SetValue(m_swingAngle * 100.0f);
+		
+		m_shotDistText.Render();
+		m_shotPowerText.Render();
+		m_shotAngleText.Render();
 	}
 	
 	if(showClubInfo)

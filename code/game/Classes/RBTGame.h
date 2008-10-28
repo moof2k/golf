@@ -153,6 +153,10 @@ private:
 	RudeTextControl m_shotQualityText;
 	RudeTextControl m_clubDistText;
 	
+	RudeTextControl m_shotDistText;
+	RudeTextControl m_shotPowerText;
+	RudeTextControl m_shotAngleText;
+	
 	RBScoreControl m_scoreControl;
 	
 	bool m_guideScreenCalc;
