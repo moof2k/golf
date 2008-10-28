@@ -49,6 +49,7 @@ public:
 	void TranslateView(float x, float y, float z);
 	
 	btVector3 Project(const btVector3 &point);
+	btVector3 InverseProject(const btVector3 &point);
 	
 	void Enable(eRudeGLEnableOption option, bool enable);
 
@@ -60,6 +61,10 @@ private:
 	
 	RudeRect m_viewport;				// screen viewport rect
 	btVector3 m_eye;
+	btVector3 m_lookAt;
+	float m_hw;
+	float m_hh;
+	float m_near;
 	
 };
 

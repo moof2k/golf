@@ -70,6 +70,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	else
 		m_curCamera = &m_ballCamera;
 	
+	m_guideScreenCalc = false;
 	
 	// score control
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
@@ -181,6 +182,7 @@ void RBTGame::SetState(eRBTGameState state)
 	{
 		case kStateTeePosition:
 			{
+				m_ballCamera.SetHeight(-50.0f);
 				m_curClub = 0;
 				NextClub(0);
 			}
@@ -189,12 +191,15 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				m_golfer.SetReady();
 				
-				if(prevstate == kStateExecuteSwing)
-					m_swingHeight = 0.0f;
-				else if(prevstate != kStatePositionSwing2)
+				m_swingHeight = 0.0f;
+				
+				if(prevstate == kStatePositionSwing2)
+				{
+					m_ballCamera.SetHeight(10.0f);
+				}
+				else
 				{
 					m_swingYaw = 0.0f;
-					m_swingHeight = 0.0f;
 					
 					FreshShotEncouragement();
 					
@@ -207,6 +212,7 @@ void RBTGame::SetState(eRBTGameState state)
 		case kStatePositionSwing2:
 			{
 				m_swingCamYaw = 0.0f;
+				m_swingHeight = 50.0f;
 				FreshGuide();
 				MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
 			}
@@ -688,6 +694,50 @@ void RBTGame::HitBall()
 }
 
 
+void RBTGame::AdjustGuide()
+{
+	if(!m_guideScreenCalc)
+		return;
+	
+	btVector3 ball = m_ball.GetPosition();
+	btVector3 guide = m_terrain.GetGuidePoint(ball);
+	btVector3 aimvec = guide - ball;
+	
+	
+	btVector3 screenp(m_guideScreenPoint.m_x, m_guideScreenPoint.m_y, 0.0f);
+	
+	btVector3 worldp = RGL.InverseProject(screenp);
+	
+	btVector3 eyep = RGL.GetEye();
+	
+	btVector3 result;
+	bool found = m_terrain.CastToTerrain(eyep, worldp, result);
+	
+	if(found)
+	{
+		btVector3 newaimvec = result - ball;
+		newaimvec.setY(0.0f);
+		newaimvec.normalize();
+		
+		aimvec.setY(0.0f);
+		aimvec.normalize();
+		
+		float angle = aimvec.dot(newaimvec);
+		
+		m_swingYaw = acos(angle);
+		
+		printf("angle %f yaw %f\n", angle, m_swingYaw);
+		
+		//FreshGuide();
+		
+		m_ballGuide.SetGuide(result, true);
+	}
+	
+	//printf("guide %f %f %f\n", m_guidePosition.x(), m_guidePosition.y(), m_guidePosition.z());
+	
+	
+	m_guideScreenCalc = false;
+}
 
 void RBTGame::NextFrame(float delta)
 {
@@ -780,6 +830,7 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 	{
 		case kStatePositionSwing:
 		case kStatePositionSwing2:
+		case kStatePositionSwing3:
 			{
 
 				m_guidePositionScreenSpace = RGL.Project(m_guidePosition);
@@ -879,7 +930,7 @@ void RBTGame::Render(float aspect)
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
 	
-	
+	AdjustGuide();
 	
 	m_skybox.Render();
 	
@@ -908,7 +959,7 @@ void RBTGame::Render(float aspect)
 	
 	
 	
-	if(m_state == kStatePositionSwing2)
+	if(m_state == kStatePositionSwing2 || m_state == kStatePositionSwing3)
 	{
 		RGL.LoadIdentity();
 		m_ballGuide.Render();
@@ -1088,6 +1139,8 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 		case kStatePositionSwing3:
 			if(m_guideAdjust.TouchMove(rbt))
 			{
+				m_guideScreenPoint = m_guideAdjust.GetHitMove();
+				m_guideScreenCalc = true;
 				//AdjustGuide(m_guideAdjust.GetHitMove());
 			}
 			break;

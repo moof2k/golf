@@ -57,14 +57,15 @@ void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 
 void RudeGL::Frustum(float ox, float oy, float w, float h, float near, float far)
 {
-	float ww = w / 2.0f;
-	float wh = h / 2.0f;
+	m_hw = w / 2.0f;
+	m_hh = h / 2.0f;
+	m_near = near;
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
 
-	glFrustumf(ox - ww, ox + ww, oy - wh, oy + wh, near, far);
+	glFrustumf(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near, far);
 }
 
 void CrossProd(float x1, float y1, float z1, float x2, float y2, float z2, float res[3]) 
@@ -124,7 +125,7 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	glTranslatef (-eyeX, -eyeY, -eyeZ);
 	
 	m_eye = btVector3(eyeX, eyeY, eyeZ);
-
+	m_lookAt = btVector3(lookAtX, lookAtY, lookAtZ);
 }
 
 void RudeGL::LoadIdentity()
@@ -210,6 +211,138 @@ btVector3 RudeGL::Project(const btVector3 &point)
 	
 	
 	return rv;
+}
+
+static void __gluMakeIdentityf(GLfloat m[16])
+{
+    m[0+4*0] = 1; m[0+4*1] = 0; m[0+4*2] = 0; m[0+4*3] = 0;
+    m[1+4*0] = 0; m[1+4*1] = 1; m[1+4*2] = 0; m[1+4*3] = 0;
+    m[2+4*0] = 0; m[2+4*1] = 0; m[2+4*2] = 1; m[2+4*3] = 0;
+    m[3+4*0] = 0; m[3+4*1] = 0; m[3+4*2] = 0; m[3+4*3] = 1;
+}
+
+/*
+ ** inverse = invert(src)
+ */
+static int __gluInvertMatrixd(const GLfloat src[16], GLfloat inverse[16])
+{
+    int i, j, k, swap;
+    double t;
+    GLfloat temp[4][4];
+	
+    for (i=0; i<4; i++) {
+		for (j=0; j<4; j++) {
+			temp[i][j] = src[i*4+j];
+		}
+    }
+    __gluMakeIdentityf(inverse);
+	
+    for (i = 0; i < 4; i++) {
+		/*
+		 ** Look for largest element in column
+		 */
+		swap = i;
+		for (j = i + 1; j < 4; j++) {
+			if (fabs(temp[j][i]) > fabs(temp[i][i])) {
+				swap = j;
+			}
+		}
+		
+		if (swap != i) {
+			/*
+			 ** Swap rows.
+			 */
+			for (k = 0; k < 4; k++) {
+				t = temp[i][k];
+				temp[i][k] = temp[swap][k];
+				temp[swap][k] = t;
+				
+				t = inverse[i*4+k];
+				inverse[i*4+k] = inverse[swap*4+k];
+				inverse[swap*4+k] = t;
+			}
+		}
+		
+		if (temp[i][i] == 0) {
+			/*
+			 ** No non-zero pivot.  The matrix is singular, which shouldn't
+			 ** happen.  This means the user gave us a bad matrix.
+			 */
+			return GL_FALSE;
+		}
+		
+		t = temp[i][i];
+		for (k = 0; k < 4; k++) {
+			temp[i][k] /= t;
+			inverse[i*4+k] /= t;
+		}
+		for (j = 0; j < 4; j++) {
+			if (j != i) {
+				t = temp[j][i];
+				for (k = 0; k < 4; k++) {
+					temp[j][k] -= temp[i][k]*t;
+					inverse[j*4+k] -= inverse[i*4+k]*t;
+				}
+			}
+		}
+    }
+    return GL_TRUE;
+}
+
+static void __gluMultMatrixVecd(const GLfloat matrix[16], const GLfloat in[4],
+								GLfloat out[4])
+{
+    int i;
+	
+    for (i=0; i<4; i++) {
+		out[i] = 
+	    in[0] * matrix[0*4+i] +
+	    in[1] * matrix[1*4+i] +
+	    in[2] * matrix[2*4+i] +
+	    in[3] * matrix[3*4+i];
+    }
+}
+
+btVector3 RudeGL::InverseProject(const btVector3 &point)
+{
+	btVector3 p = point;
+
+	float finalMatrix[16];
+	float projMatrix[16];
+    float in[4];
+    float out[4];
+	
+	glGetFloatv(GL_PROJECTION_MATRIX, projMatrix);
+	__gluInvertMatrixd(projMatrix, finalMatrix);
+	
+    in[0]=point.x();
+    in[1]=point.y();
+    in[2]=0.0f;
+    in[3]=1.0f;
+	
+	
+    /* Map x and y from window coordinates */
+    in[0] = (in[0] - 0.0f) / 320.0f;
+    in[1] = (in[1] - 0.0f) / 480.0f;
+	
+    /* Map to range -1 to 1 */
+    in[0] = in[0] * 2 - 1;
+    in[1] = -(in[1] * 2 - 1);
+    in[2] = in[2] * 2 - 1;
+	
+    __gluMultMatrixVecd(finalMatrix, in, out);
+	out[0] /= out[3];
+    out[1] /= out[3];
+    out[2] /= out[3];
+	
+	btVector3 rv(out[0], out[1], out[2]);
+	
+	//printf("eye: %f %f %f\n", m_eye.x(), m_eye.y(), m_eye.z());
+	//printf("in: %f %f out: %f %f %f\n", p.x(), p.y(), rv.x(), rv.y(), rv.z());
+	
+   
+	return rv;
+	
 }
 
 void RudeGL::Enable(eRudeGLEnableOption option, bool enable)

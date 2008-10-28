@@ -120,15 +120,15 @@ void RBTerrain::Load(const char *name)
 	
 	
 	btVector3 p0 = m_hole;
-	p0.setY(-1000);
+	p0.setY(m_hole.y() - 1000);
 	btVector3 p1 = m_hole;
-	p1.setY(1000);
+	p1.setY(m_hole.y() + 1000);
 	
 	btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
 	
 	world->rayTest(p0, p1, cb);
 	
-	RUDE_ASSERT(cb.hasHit(), "Could not position hole.. is it over terrain?");
+	RUDE_ASSERT(cb.hasHit(), "Could not position hole.. is it over terrain? (%f %f %f)", m_hole.x(), m_hole.y(), m_hole.z());
 	m_hole = cb.m_hitPointWorld;
 }
 
@@ -444,4 +444,26 @@ void RBTerrain::RenderHole()
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 }
+
+bool RBTerrain::CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result)
+{
+	btVector3 vec = end - start;
+	vec *= 1000.0f;
+	
+	//btVector3 to = p + btVector3(0,-1000,0);
+	btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
+	btCollisionWorld::ClosestRayResultCallback cb(start, vec);
+	
+	world->rayTest(start, vec, cb);
+	
+	if(!cb.hasHit())
+		return false;
+
+	result = cb.m_hitPointWorld;
+	
+	//printf("hit %f %f %f\n", r.x(), r.y(), r.z());
+	
+	return true;
+}
+
 

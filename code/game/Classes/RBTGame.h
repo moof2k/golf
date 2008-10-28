@@ -109,6 +109,7 @@ private:
 	void FreshGuide();
 	void StickBallInBounds();
 	void HitBall();
+	void AdjustGuide();
 	
 	
 	eRBTGameState m_state;
@@ -153,6 +154,9 @@ private:
 	RudeTextControl m_clubDistText;
 	
 	RBScoreControl m_scoreControl;
+	
+	bool m_guideScreenCalc;
+	RudeScreenVertex m_guideScreenPoint;
 	
 	float m_swingPower;
 	float m_swingAngle;

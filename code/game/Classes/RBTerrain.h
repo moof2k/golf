@@ -53,6 +53,8 @@ public:
 	bool GetBallInHole() { return m_ballInHole; }
 	void SetBallInHole(bool b) { m_ballInHole = b; }
 	
+	bool CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result);
+	
 	virtual void Render();
 	
 private:
