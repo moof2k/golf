@@ -31,9 +31,9 @@ RudePhysicsMesh::~RudePhysicsMesh()
 		delete m_data;
 }
 
-void RudePhysicsMesh::Load(RudeMesh *mesh, float mass)
+void RudePhysicsMesh::Load(RudeMesh *modelmesh, float mass)
 {
-	CPVRTPODScene *model = mesh->GetModel();
+	CPVRTPODScene *model = modelmesh->GetModel();
 	
 	
 	m_data = new btTriangleIndexVertexArray();
@@ -56,6 +56,17 @@ void RudePhysicsMesh::Load(RudeMesh *mesh, float mass)
 		btmesh.m_numVertices = mesh->nNumVertex;
 		btmesh.m_vertexBase = mesh->pInterleaved + (long)mesh->sVertex.pData;
 		btmesh.m_vertexStride = mesh->sVertex.nStride;
+		
+		/*
+		for(int k = 0; k < btmesh.m_numVertices; k++)
+		{
+			float *base =  (float *) (btmesh.m_vertexBase + btmesh.m_vertexStride * k);
+			printf("vert: %f %f %f\n", base[0], base[1], base[2]);
+			
+		}
+		*/
+		
+		RUDE_REPORT("Loading %s (%d tris, %d verts)\n", node->pszName, btmesh.m_numTriangles, btmesh.m_numVertices);
 		
 		m_data->addIndexedMesh(btmesh, PHY_SHORT);
 		
