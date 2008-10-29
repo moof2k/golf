@@ -141,10 +141,11 @@ void RBBallCamera::NextFrame(float delta)
 			break;
 		case kAimCamera:
 			{
+				float height = 75.0f * m_desiredHeight;
 				
 				m_lookAt += (m_guide - m_lookAt) * delta * 3.0f;
 				
-				btVector3 offset(0,m_height + 5.0f,18 + m_height);
+				btVector3 offset(0,height + 5.0f,18 + height);
 				
 				btMatrix3x3 rot;
 				rot.setEulerYPR(m_yaw, 0.0f, 0.0f);

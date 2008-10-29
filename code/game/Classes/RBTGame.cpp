@@ -550,7 +550,7 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 		m_swingHeight = kMaxHeight;
 	
 	m_ballCamera.SetYaw(m_swingCamYaw);
-	m_ballCamera.SetHeight(m_swingHeight);
+	m_ballCamera.SetDesiredHeight(m_swingHeight);
 }
 
 void RBTGame::StickBallInBounds()
