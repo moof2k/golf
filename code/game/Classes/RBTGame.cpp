@@ -203,7 +203,6 @@ void RBTGame::SetState(eRBTGameState state)
 	{
 		case kStateTeePosition:
 			{
-				m_ballCamera.SetHeight(-50.0f);
 				m_curClub = 0;
 				NextClub(0);
 			}
@@ -259,7 +258,7 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				m_stopTimer = 0.0f;
 				m_followTimer = 0.0f;
-				m_ballCamera.Track(kAfterShotCamera, btVector3(0,0,0), 0.0f);
+				m_ballCamera.SetTrackMode(kAfterShotCamera);
 				
 			}
 			break;
@@ -267,7 +266,9 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
-				m_ballCamera.Track(kRegardCamera, m_terrain.GetGuidePoint(m_ball.GetPosition()), 5.0f);
+				m_ballCamera.SetDesiredHeight(5.0f);
+				m_ballCamera.SetGuide(m_terrain.GetGuidePoint(m_ball.GetPosition()));
+				m_ballCamera.SetTrackMode(kRegardCamera);
 				
 			}
 			break;
@@ -286,7 +287,10 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
-				m_ballCamera.Track(kRegardCamera, m_terrain.GetHole(), 5.0f);
+				
+				m_ballCamera.SetDesiredHeight(5.0f);
+				m_ballCamera.SetGuide(m_terrain.GetHole());
+				m_ballCamera.SetTrackMode(kRegardCamera);
 				
 			}
 			break;
@@ -377,7 +381,8 @@ void RBTGame::StateFollowBall(float delta)
 		
 		btVector3 placement = m_terrain.GetCameraPlacement(futureball);
 		
-		m_ballCamera.Track(kPlacementCamera, placement, 0.0f);
+		m_ballCamera.SetGuide(placement);
+		m_ballCamera.SetTrackMode(kPlacementCamera);
 		
 		
 		m_followTimer = -100.0f;
@@ -510,8 +515,8 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 	
 	if(m_moveHeight)
 	{
-		const float kHeightDamping = 0.3f;
-		const float kMaxHeight = 75.0f;
+		const float kHeightDamping = 0.004f;
+		const float kMaxHeight = 1.0f;
 		float dy = p.m_y;
 		m_swingHeight -= (dy * kHeightDamping);
 		if(m_swingHeight < 0.0f)
@@ -535,8 +540,8 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 		m_swingCamYaw += (dx * kYawDamping);
 	}
 	
-	const float kHeightDamping = 0.3f;
-	const float kMaxHeight = 75.0f;
+	const float kHeightDamping = 0.004f;
+	const float kMaxHeight = 1.0f;
 	float dy = p.m_y;
 	m_swingHeight -= (dy * kHeightDamping);
 	if(m_swingHeight < 0.0f)
@@ -615,12 +620,10 @@ void RBTGame::FreshGuide()
 	newGuide += ball;
 	//btVector3 newGuide = btVector3(0,0,-100) + ball;
 	
-	eTrackMode cammode = kHitCamera;
 	bool fullrez = false;
 	if(m_state == kStatePositionSwing2)
 	{
 		fullrez = true;
-		cammode = kAimCamera;
 	}
 	
 	
@@ -629,7 +632,24 @@ void RBTGame::FreshGuide()
 	m_ballGuide.SetGuide(newGuide, fullrez);
 	newGuide = m_ballGuide.GetLastGuidePoint();
 	
-	m_ballCamera.Track(cammode, newGuide, m_swingHeight);
+	
+	m_ballCamera.SetGuide(newGuide);
+	m_ballCamera.SetDesiredHeight(m_swingHeight);
+	
+	if(m_state == kStatePositionSwing2)
+	{
+		m_ballCamera.SetTrackMode(kAimCamera);
+	}
+	else
+	{
+		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+		
+		if(club->m_type == kClubPutter)
+			m_ballCamera.SetTrackMode(kPuttCamera);
+		else
+			m_ballCamera.SetTrackMode(kHitCamera);
+	}
+	
 	
 	
 	m_dBall = ball;
@@ -895,21 +915,9 @@ void RBTGame::RenderGuide(float aspect)
 
 void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 {
-
-	const float kDistY = 430.0f;
-	const float kPowerY = 446.0f;
-	const float kAngleY = 462.0f;
 	
 	if(showShotDistance)
 	{
-		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.2f yds", m_ballShotDist);
-		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kDistY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.2f yds", m_ballShotDist);
-		
-		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Power", m_swingPower * 100.0f);
-		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kPowerY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Power", m_swingPower * 100.0f);
-		
-		//RudeFontManager::GetFont(kDefaultFontOutline)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
-		//RudeFontManager::GetFont(kDefaultFont)->Printf(160.0f, kAngleY, 0.0f, FONT_ALIGN_CENTER, kBallDistanceTopColor, kBallDistanceBotColor, "%.0f%% Angle", m_swingAngle * 100.0f);
 		
 		m_shotDistText.SetValue(m_ballShotDist);
 		m_shotPowerText.SetValue(m_swingPower * 100.0f);

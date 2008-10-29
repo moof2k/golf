@@ -15,14 +15,14 @@ RBBallCamera::RBBallCamera()
 , m_height(0.0f)
 , m_desiredHeight(0.0f)
 , m_yaw(0.0f)
+, m_smooth(false)
 {
 }
 
-void RBBallCamera::Track(eTrackMode mode, btVector3 guide, float height)
+void RBBallCamera::SetTrackMode(eTrackMode mode)
 {
+	eTrackMode prevmode = m_mode;
 	m_mode = mode;
-	m_guide = guide;
-	m_desiredHeight = height;
 	
 	btVector3 ball = m_ball->GetPosition();
 	
@@ -30,6 +30,22 @@ void RBBallCamera::Track(eTrackMode mode, btVector3 guide, float height)
 	
 	switch(m_mode)
 	{
+		case kHitCamera:
+			{
+				if(prevmode == kPuttCamera)
+					m_smooth = true;
+				else
+					m_smooth = false;
+			}
+			break;
+		case kPuttCamera:
+			{
+				if(prevmode == kHitCamera)
+					m_smooth = true;
+				else
+					m_smooth = false;
+			}
+			break;
 		case kRegardCamera:
 			{
 				btVector3 forward = m_guide - ball;
@@ -65,7 +81,9 @@ void RBBallCamera::NextFrame(float delta)
 			break;
 		case kHitCamera:
 			{
-				m_height += (m_desiredHeight - m_height) * delta * 3.0f;
+				float desiredHeight = m_desiredHeight * 75.0f;
+				
+				m_height += (desiredHeight - m_height) * delta * 3.0f;
 				
 				
 				btVector3 forward = m_guide - ball;
@@ -75,8 +93,50 @@ void RBBallCamera::NextFrame(float delta)
 				const float kBaseHeight = 12.0f;
 				const float kBaseDist = 18.0f;
 				
-				m_pos = ball - ((m_height + kBaseDist) * forward) + btVector3(0,kBaseHeight + m_height,0);
-				m_lookAt = ball + ((m_height + kBaseDist * 2.0f) * forward);
+				btVector3 pos = ball - ((m_height + kBaseDist) * forward) + btVector3(0,kBaseHeight + m_height,0);
+				btVector3 lookAt = ball + ((m_height + kBaseDist * 2.0f) * forward);
+				
+				if(m_smooth)
+				{
+					m_pos += (pos - m_pos) * delta * 3.0f;
+					m_lookAt += (lookAt - m_lookAt) * delta * 3.0f;
+				}
+				else
+				{
+					m_pos = pos;
+					m_lookAt = lookAt;
+				}
+			}
+			break;
+		case kPuttCamera:
+			{
+				float desiredHeight = m_desiredHeight * 10.0f;
+				
+				m_height += (desiredHeight - m_height) * delta * 3.0f;
+				
+				btVector3 forward = m_guide - ball;
+				forward.setY(0);
+				forward.normalize();
+				
+				const float kBaseHeight = 12.0f;
+				const float kBaseDist = 18.0f;
+				
+				//btVector3 pos = ball + ((m_height * 1.0f - kBaseDist) * forward) + btVector3(0,kBaseHeight + 4.0f * m_height,0);
+				//btVector3 lookAt = ball + ((m_height * -6.0f + kBaseDist * 2.0f) * forward);
+				
+				btVector3 pos = ball - ((m_height + kBaseDist) * forward) + btVector3(0,kBaseHeight + m_height,0);
+				btVector3 lookAt = ball + ((m_height * -3.0f + kBaseDist * 2.0f) * forward);
+				
+				if(m_smooth)
+				{
+					m_pos += (pos - m_pos) * delta * 3.0f;
+					m_lookAt += (lookAt - m_lookAt) * delta * 3.0f;
+				}
+				else
+				{
+					m_pos = pos;
+					m_lookAt = lookAt;
+				}
 			}
 			break;
 		case kAimCamera:

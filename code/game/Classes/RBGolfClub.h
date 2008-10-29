@@ -23,11 +23,18 @@ typedef enum {
 	
 } eRBGolfClubMaterialRestriction;
 
+typedef enum {
+	kClubWood,
+	kClubIron,
+	kClubWedge,
+	kClubPutter
+} eRBGolfClubType;
+
 class RBGolfClub {
 	
 public:
 
-	
+	eRBGolfClubType m_type;
 	const char * m_name;
 	const char * m_textureName;
 	float m_power;

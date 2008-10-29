@@ -17,6 +17,7 @@
 typedef enum {
 	kNone,
 	kHitCamera,
+	kPuttCamera,
 	kAimCamera,
 	kAfterShotCamera,
 	kPlacementCamera,
@@ -34,9 +35,19 @@ public:
 	void SetYaw(float f) { m_yaw = f; }
 	void SetHeight(float f) { m_height = f; }
 	
+	void SetDesiredHeight(float f)
+	{ 
+		m_desiredHeight = f;
+		if(m_desiredHeight < 0.0f)
+			m_desiredHeight = 0.0f;
+		if(m_desiredHeight > 1.0f)
+			m_desiredHeight = 1.0f;
+	}
+	
 	void NextFrame(float delta);
 	
-	void Track(eTrackMode mode, btVector3 guide, float height);
+	void SetTrackMode(eTrackMode mode);
+	void SetGuide(const btVector3 &guide) { m_guide = guide; }
 	
 private:
 	
@@ -48,6 +59,7 @@ private:
 	float m_height;
 	float m_desiredHeight;
 	float m_yaw;
+	bool m_smooth;
 };
 
 
