@@ -121,9 +121,10 @@ void RBGolferObject::Render()
 	glTranslatef(m_ball.x(), m_ball.y(), m_ball.z());
 	glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 	
-	glTranslatef(0.0f, 0.0f, -3.5f);
+	//glTranslatef(0.0f, 0.0f, -3.5f);
 	
 	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+	glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
 	glScalef(0.04f, 0.04f, 0.04f);
 
 	
