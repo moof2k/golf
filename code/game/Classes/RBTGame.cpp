@@ -147,6 +147,13 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_shotAngleText.SetStyle(kOutlineStyle);
 	m_shotAngleText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotAngleText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	
+	m_guidePowerText.SetFormat(kIntValue, "%d %%");
+	m_guidePowerText.SetAlignment(kAlignCenter);
+	m_guidePowerText.SetRect(RudeRect(446, 0, 462, 320));
+	m_guidePowerText.SetStyle(kOutlineStyle);
+	m_guidePowerText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+	m_guidePowerText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 						  
 	// swing controls
 	
@@ -166,6 +173,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
 	m_moveButton.SetTextures("move", "move");
 	
 	m_guideIndicatorButton.SetTextures("guide", "guide");
+	m_placementGuideIndicatorButton.SetTextures("guide", "guide");
 	
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
@@ -231,10 +239,21 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing2:
 			{
-				m_swingCamYaw = 0.0f;
-				m_swingHeight = 50.0f;
+				
+				if(prevstate != kStatePositionSwing3)
+				{
+					m_swingCamYaw = 0.0f;
+					m_swingHeight = 50.0f;
+				}
+				
 				FreshGuide();
 				MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
+			}
+			break;
+		case kStatePositionSwing3:
+			{
+				m_placementGuidePower = 100;
+				m_placementGuidePosition = m_guidePosition;
 			}
 			break;
 		case kStateExecuteSwing:
@@ -744,6 +763,7 @@ void RBTGame::AdjustGuide()
 	btVector3 guide = m_terrain.GetGuidePoint(ball);
 	btVector3 aimvec = guide - ball;
 	
+	//printf("screen point: %d %d\n", m_guideScreenPoint.m_x, m_guideScreenPoint.m_y);
 	
 	btVector3 screenp(m_guideScreenPoint.m_x, m_guideScreenPoint.m_y, 0.0f);
 	
@@ -758,20 +778,40 @@ void RBTGame::AdjustGuide()
 	{
 		btVector3 newaimvec = result - ball;
 		newaimvec.setY(0.0f);
+		float distance = newaimvec.length() / 3.0f;
 		newaimvec.normalize();
 		
 		aimvec.setY(0.0f);
 		aimvec.normalize();
 		
+		btVector3 yup(0,1,0);
+		btVector3 xdir = aimvec.cross(yup);
+		
+		float inx = xdir.dot(newaimvec);
+		
 		float angle = aimvec.dot(newaimvec);
 		
 		m_swingYaw = acos(angle);
 		
-		printf("angle %f yaw %f\n", angle, m_swingYaw);
+		if(inx < 0.0f)
+			m_swingYaw *= -1.0f;
+		
+		//printf("angle %f yaw %f\n", angle, m_swingYaw);
 		
 		//FreshGuide();
 		
-		m_ballGuide.SetGuide(result, true);
+		//m_ballGuide.SetGuide(result, true);
+		
+		m_placementGuidePosition = result;
+		
+		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	
+		float power = 100.0f * distance / club->m_dist;
+		m_placementGuidePower = power;
+	}
+	else
+	{
+		m_placementGuidePower = 0;
 	}
 	
 	//printf("guide %f %f %f\n", m_guidePosition.x(), m_guidePosition.y(), m_guidePosition.z());
@@ -876,12 +916,15 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 
 				m_guidePositionScreenSpace = RGL.Project(m_guidePosition);
 				
-				//m_guidePositionScreenSpace.setX((int) m_guidePositionScreenSpace.x());
-				//m_guidePositionScreenSpace.setY((int) m_guidePositionScreenSpace.y());
-				
 				if(m_state == kStatePositionSwing)
 				{
 					m_guidePositionScreenSpace.setX(160.0f);
+				}
+				
+				if(m_state == kStatePositionSwing3)
+				{
+					m_placementGuidePositionScreenSpace = RGL.Project(m_placementGuidePosition);
+					
 				}
 			}
 			break;
@@ -891,24 +934,66 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 void RBTGame::RenderGuide(float aspect)
 {
 	
+	{
+		const int kGuideSize = 32;
+		RudeRect r(
+				   m_guidePositionScreenSpace.y() - kGuideSize,
+				   m_guidePositionScreenSpace.x() - kGuideSize,
+				   m_guidePositionScreenSpace.y() + kGuideSize,
+				   m_guidePositionScreenSpace.x() + kGuideSize
+				   );
+		
+		m_guideIndicatorButton.SetRect(r);
+		m_guideIndicatorButton.Render();
+	}
 	
-	//m_guidePositionScreenSpace.setX(m_guidePositionScreenSpace.x() * 160.0f + 160.0f);
-	//m_guidePositionScreenSpace.setY(480.0f - (m_guidePositionScreenSpace.y() * 240.0f + 240.0f));
-	//m_guidePositionScreenSpace.setY(480.0f - m_guidePositionScreenSpace.y());
+	if(m_state == kStatePositionSwing3)
+	{
+		{
+			const int kGuideSize = 32;
+			RudeRect r(
+					   m_placementGuidePositionScreenSpace.y() - kGuideSize,
+					   m_placementGuidePositionScreenSpace.x() - kGuideSize,
+					   m_placementGuidePositionScreenSpace.y() + kGuideSize,
+					   m_placementGuidePositionScreenSpace.x() + kGuideSize
+					   );
+			
+			m_placementGuideIndicatorButton.SetRect(r);
+			m_placementGuideIndicatorButton.Render();
+			
+		}
+		
+		{
+			const int kTextSize = 16;
+			const int kTextOffset = -58;
+			RudeRect r(
+					   m_placementGuidePositionScreenSpace.y() - kTextSize + kTextOffset,
+					   m_placementGuidePositionScreenSpace.x() - kTextSize,
+					   m_placementGuidePositionScreenSpace.y() + kTextSize + kTextOffset,
+					   m_placementGuidePositionScreenSpace.x() + kTextSize
+					   );
+			
+			m_guidePowerText.SetRect(r);
+			m_guidePowerText.SetValue(m_placementGuidePower);
+			m_guidePowerText.Render();
+		}
+	}
+	else if(m_state == kStatePositionSwing2)
+	{
+		const int kTextSize = 16;
+		const int kTextOffset = -38;
+		RudeRect r(
+			m_guidePositionScreenSpace.y() - kTextSize + kTextOffset,
+			m_guidePositionScreenSpace.x() - kTextSize,
+			m_guidePositionScreenSpace.y() + kTextSize + kTextOffset,
+			m_guidePositionScreenSpace.x() + kTextSize
+			);
+		
+		m_guidePowerText.SetRect(r);
+		m_guidePowerText.SetValue(100);
+		m_guidePowerText.Render();
+	}
 	
-	//printf("Guide: %f %f %f\n", m_guidePositionScreenSpace.x(), m_guidePositionScreenSpace.y(), m_guidePositionScreenSpace.z());
-	
-	
-	const int kGuideSize = 32;
-	RudeRect r(
-			   m_guidePositionScreenSpace.y() - kGuideSize,
-			   m_guidePositionScreenSpace.x() - kGuideSize,
-			   m_guidePositionScreenSpace.y() + kGuideSize,
-			   m_guidePositionScreenSpace.x() + kGuideSize
-			   );
-	
-	m_guideIndicatorButton.SetRect(r);
-	m_guideIndicatorButton.Render();
 }
 
 

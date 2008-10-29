@@ -144,6 +144,7 @@ private:
 	RudeButtonControl m_clubButton;
 	RudeButtonControl m_cameraButton;
 	RudeButtonControl m_guideIndicatorButton;
+	RudeButtonControl m_placementGuideIndicatorButton;
 	
 	RudeTextControl m_parText;
 	RudeTextControl m_strokeText;
@@ -157,6 +158,8 @@ private:
 	RudeTextControl m_shotPowerText;
 	RudeTextControl m_shotAngleText;
 	
+	RudeTextControl m_guidePowerText;
+	
 	RBScoreControl m_scoreControl;
 	
 	bool m_guideScreenCalc;
@@ -169,9 +172,13 @@ private:
 	float m_stopTimer;
 	float m_encouragementTimer;
 	
+	int m_placementGuidePower;
+	
 	btVector3 m_dBall;
 	btVector3 m_guidePosition;
+	btVector3 m_placementGuidePosition;
 	btVector3 m_guidePositionScreenSpace;
+	btVector3 m_placementGuidePositionScreenSpace;
 	
 	btVector3 m_ballLastInBoundsPosition;
 	

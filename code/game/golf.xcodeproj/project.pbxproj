@@ -94,10 +94,10 @@
 		9A9A9C070E62299800D00516 /* RudeTextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9C060E62299800D00516 /* RudeTextureManager.cpp */; };
 		9A9A9C0D0E622B1300D00516 /* RudeTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */; };
 		9A9AA1660E6282FD00D00516 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */; };
+		9A9D633A0EB8607B003985A4 /* golfer_female_A_256.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */; };
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
-		9AA93F030E84D3DF00F6FBD8 /* golfer_female_A_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F010E84D3DF00F6FBD8 /* golfer_female_A_01.pvr */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
 		9AAA6E0B0E9F12A4008D9318 /* ab18_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E070E9F12A4008D9318 /* ab18_00.pvr */; };
 		9AAA6E0C0E9F12A4008D9318 /* ab18o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E080E9F12A4008D9318 /* ab18o2_00.pvr */; };
@@ -436,10 +436,10 @@
 		9A9A9C0B0E622B1300D00516 /* RudeTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTexture.h; path = Classes/RudeTexture.h; sourceTree = "<group>"; };
 		9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTexture.cpp; path = Classes/RudeTexture.cpp; sourceTree = "<group>"; };
 		9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer_female_A_256.pvr; path = Data/golfer_female_A_256.pvr; sourceTree = "<group>"; };
 		9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
-		9AA93F010E84D3DF00F6FBD8 /* golfer_female_A_01.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer_female_A_01.pvr; path = Data/golfer_female_A_01.pvr; sourceTree = "<group>"; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
 		9AAA6E070E9F12A4008D9318 /* ab18_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab18_00.pvr; path = Data/ab18_00.pvr; sourceTree = "<group>"; };
 		9AAA6E080E9F12A4008D9318 /* ab18o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab18o2_00.pvr; path = Data/ab18o2_00.pvr; sourceTree = "<group>"; };
@@ -1603,7 +1603,7 @@
 				9ACBA70A0E70F67200D3167F /* grass_green_A.pvr */,
 				9A74018F0E6FDF24008490F7 /* testtexture.pvr */,
 				9AEE3D6C0EA0212C00928D0C /* tracer.pvr */,
-				9AA93F010E84D3DF00F6FBD8 /* golfer_female_A_01.pvr */,
+				9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */,
 			);
 			name = pvr;
 			sourceTree = "<group>";
@@ -1733,7 +1733,6 @@
 				9A934A490E82473200E3C105 /* camera.png in Resources */,
 				9AA93E440E838FB900F6FBD8 /* hole.png in Resources */,
 				9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */,
-				9AA93F030E84D3DF00F6FBD8 /* golfer_female_A_01.pvr in Resources */,
 				9A4F1ABA0E84EC98001D1F0B /* mallet.POD in Resources */,
 				9A4F1B5E0E861985001D1F0B /* strokedot.png in Resources */,
 				9A4F1DA40E878FA7001D1F0B /* swing_wood.wav in Resources */,
@@ -1761,6 +1760,7 @@
 				9AE631030EB700AD000B2EAD /* par3_C.POD in Resources */,
 				9AE631070EB70173000B2EAD /* par3_D.POD in Resources */,
 				9AE6310B0EB70202000B2EAD /* par3_E.POD in Resources */,
+				9A9D633A0EB8607B003985A4 /* golfer_female_A_256.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

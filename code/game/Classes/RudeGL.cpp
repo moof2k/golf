@@ -317,7 +317,7 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	
     in[0]=point.x();
     in[1]=point.y();
-    in[2]=0.0f;
+    in[2]=1.0f;
     in[3]=1.0f;
 	
 	
@@ -331,6 +331,7 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
     in[2] = in[2] * 2 - 1;
 	
     __gluMultMatrixVecd(finalMatrix, in, out);
+	//printf("in: %f %f out: %f %f %f\n", p.x(), p.y(), out[0], out[1], out[2]);
 	out[0] /= out[3];
     out[1] /= out[3];
     out[2] /= out[3];
@@ -338,7 +339,7 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	btVector3 rv(out[0], out[1], out[2]);
 	
 	//printf("eye: %f %f %f\n", m_eye.x(), m_eye.y(), m_eye.z());
-	//printf("in: %f %f out: %f %f %f\n", p.x(), p.y(), rv.x(), rv.y(), rv.z());
+	
 	
    
 	return rv;
