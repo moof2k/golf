@@ -12,7 +12,7 @@
 #include "RudeGL.h"
 
 static RBTHole sCourse[18] = {
-	{ 1, 3, "par3_C"},
+	{ 1, 3, "par3_A"},
 	{ 2, 3, "par3_B" },
 	{ 3, 3, "par3_C" },
 	{ 4, 3, "par3_D" },
