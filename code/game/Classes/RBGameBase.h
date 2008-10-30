@@ -33,6 +33,9 @@ public:
 	virtual void TouchMove(RudeTouch *rbt) = 0;
 	virtual void TouchUp(RudeTouch *rbt) = 0;
 	
+	
+	virtual void Reset() { m_done = false; }
+	
 	bool Done() { return m_done; }
 	
 protected:

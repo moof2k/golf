@@ -128,13 +128,20 @@ RBUITitle::RBUITitle()
 	
 	m_cameraTimer = 0.0f;
 	
-	m_state = kTitleNone;
 	m_course = 0;
-	SetState(kTitleSplash);
+	
+	Reset();
 }
 
 RBUITitle::~RBUITitle()
 {
+}
+
+void RBUITitle::Reset()
+{
+	m_done = false;
+	m_state = kTitleNone;
+	SetState(kTitleSplash);
 }
 
 void RBUITitle::SetState(eTitleState state)
@@ -142,6 +149,10 @@ void RBUITitle::SetState(eTitleState state)
 	switch(m_state)
 	{
 		case kTitleNone:
+			
+			m_logo.SetTranslation(btVector3(0,0,0));
+			m_startText.SetTranslation(btVector3(0,0,0));
+			m_continueText.SetTranslation(btVector3(0,0,0));
 			
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
@@ -245,7 +256,7 @@ void RBUITitle::NextFrame(float delta)
 	{
 		m_readyTimer += delta;
 		
-		if(m_readyTimer > 3.0f)
+		if(m_readyTimer > 1.5f)
 			m_done = true;
 	}
 	

@@ -50,6 +50,22 @@ RBTRound::RBTRound()
 
 RBTRound::~RBTRound()
 {
+	if(m_game)
+	{
+		delete m_game;
+		m_game = 0;
+	}
+}
+
+void RBTRound::Reset()
+{
+	if(m_game)
+	{
+		delete m_game;
+		m_game = 0;
+	}
+	
+	m_state = kStateInit;
 }
 
 void RBTRound::NextFrame(float delta)
@@ -59,6 +75,7 @@ void RBTRound::NextFrame(float delta)
 		RUDE_REPORT("RBTRound State %d\n", m_state);
 		
 		m_hole = 0;
+		m_done = false;
 		
 		for(int i = 0; i < m_numPlayers; i++)
 		{
@@ -77,7 +94,10 @@ void RBTRound::NextFrame(float delta)
 		RUDE_REPORT("RBTRound State %d, Hole %d\n", m_state, m_hole);
 		
 		if(m_game)
+		{
 			delete m_game;
+			m_game = 0;
+		}
 		
 		m_game = new RBTGame(m_hole, sCourse[m_hole].m_terrainFile, sCourse[m_hole].m_par, m_numPlayers);
 		
@@ -92,12 +112,27 @@ void RBTRound::NextFrame(float delta)
 			
 			if(m_game->Done())
 			{
-				
-				
-				m_hole++;
-				m_state = kStateNextRound;
+				if(m_game->GetResult() == kResultComplete)
+				{
+					m_hole++;
+					m_state = kStateNextRound;
+				}
+				else if(m_game->GetResult() == kResultQuit)
+				{
+					m_state = kStateDone;
+				}
 			}
 		}
+	}
+	else if(m_state == kStateDone)
+	{
+		if(m_game)
+		{
+			delete m_game;
+			m_game = 0;
+		}
+		
+		m_done = true;
 	}
 }
 

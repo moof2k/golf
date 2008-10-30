@@ -49,6 +49,7 @@ public:
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
 	
+	void Reset();
 	
 private:
 	

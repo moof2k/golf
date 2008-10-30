@@ -45,6 +45,7 @@
 #include "RBBallRecorder.h"
 #include "RBScoreControl.h"
 #include "RBScoreTracker.h"
+#include "RBUIMenu.h"
 
 
 typedef enum {
@@ -52,6 +53,7 @@ typedef enum {
 	kStatePositionSwing,
 	kStatePositionSwing2,
 	kStatePositionSwing3,
+	kStateMenu,
 	kStateExecuteSwing,
 	kStateWaitForSwing,
 	kStateHitBall,
@@ -60,6 +62,12 @@ typedef enum {
 	kStateBallOutOfBounds,
 	kStateBallInHole
 } eRBTGameState;
+
+typedef enum {
+	kResultNone,
+	kResultComplete,
+	kResultQuit
+} eGameResult;
 
 class RBTGame : public RBGameBase
 {
@@ -84,6 +92,8 @@ public:
 	void TouchUp(RudeTouch *rbt);
 
 	void Pause();
+	
+	eGameResult GetResult() { return m_result; }
 	
 
 private:
@@ -112,7 +122,10 @@ private:
 	void AdjustGuide();
 	
 	
+	RBUIMenu m_menu;
+	
 	eRBTGameState m_state;
+	eGameResult m_result;
 	
 	RBTerrain m_terrain;
 	RBGolfBall m_ball;
@@ -129,6 +142,7 @@ private:
 	RBSwingControl m_swingControl;
 	RudeButtonControl m_swingButton;
 	RudeButtonControl m_moveButton;
+	RudeButtonControl m_menuButton;
 	RudeControl m_swingCamAdjust;
 	RudeControl m_guideAdjust;
 	float m_swingYaw;

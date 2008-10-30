@@ -56,9 +56,11 @@ void RBGame::SetState(eGameState state)
 	switch(m_state)
 	{
 		case kGameTitle:
+			m_uiTitle->Reset();
 			m_game = m_uiTitle;
 			break;
 		case kGameRBT:
+			m_rbt->Reset();
 			m_game = m_rbt;
 			break;
 	}
@@ -85,6 +87,7 @@ void RBGame::Render(float delta, float aspect)
 			
 			if(m_uiTitle->Done())
 				SetState(kGameRBT);
+			break;
 		case kGameRBT:
 
 			if(m_rbt->Done())
