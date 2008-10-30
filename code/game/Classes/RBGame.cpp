@@ -15,11 +15,12 @@ RBGame::RBGame()
 {
 	RudeMath::EnableFPE();
 
-	_state = GameRBT;
+	m_state = kGameRBT;
+	m_game = 0;
 
-	_rbt = NULL;
+	m_rbt = NULL;
 
-	_keymap = RBKeyMap::getInstance();
+	m_keymap = RBKeyMap::getInstance();
 
 
 	Init();
@@ -32,20 +33,31 @@ RBGame::~RBGame()
 
 void RBGame::Destroy()
 {
-	if(_rbt)
-		delete _rbt;
+	if(m_rbt)
+		delete m_rbt;
 
-
+	m_game = 0;
 }
 
 void RBGame::Init()
 {
 	Destroy();
 
-	_rbt = new RBTRound();
+	m_rbt = new RBTRound();
 
-	_state = GameRBT; // GameTitle;
+	SetState(kGameRBT);
+}
 
+void RBGame::SetState(eGameState state)
+{
+	m_state = state;
+	
+	switch(m_state)
+	{
+		case kGameRBT:
+			m_game = m_rbt;
+			break;
+	}
 }
 
 
@@ -53,15 +65,16 @@ void RBGame::Render(float delta, float aspect)
 {
 	uint64_t starttime = mach_absolute_time();
 	
-	switch(_state)
+	RUDE_ASSERT(m_game, "No state set");
+	
+	m_game->NextFrame(delta);
+	m_game->Render(aspect);
+	
+	switch(m_state)
 	{
+		case kGameRBT:
 
-
-		case GameRBT:
-			_rbt->NextFrame(delta);
-			_rbt->Render(aspect);
-
-			if(_rbt->Done())
+			if(m_rbt->Done())
 				m_done = true;
 			break;
 
@@ -101,108 +114,54 @@ void RBGame::KeyDown(RudeKey k)
 {
 	//RBKey rbk = _keymap->mapKey(k);
 
-	switch(_state)
-	{
-		case GameRBT:
-			//_rbt->KeyDown(rbk);
-			break;
-
-	}
 }
 
 void RBGame::KeyUp(RudeKey k)
 {
 	//RBKey rbk = _keymap->mapKey(k);
 
-	switch(_state)
-	{
-
-		case GameRBT:
-			//_rbt->KeyUp(rbk);
-			break;
-
-	}
 }
 
 void RBGame::StylusDown(RudeScreenVertex &p)
 {
-	switch(_state)
-	{
 
-			
-		case GameRBT:
-			//_rbt->StylusDown(p);
-			break;
-			
-	}
 }
 
 void RBGame::StylusUp(RudeScreenVertex &p)
 {
-	switch(_state)
-	{
 
-			
-		case GameRBT:
-			//_rbt->StylusUp(p);
-			break;
-			
-	}
 }
 
 void RBGame::StylusMove(RudeScreenVertex &p)
 {
-	switch(_state)
-	{
 
-			
-		case GameRBT:
-			//_rbt->StylusMove(p);
-			break;
-			
-	}
 }
 
 void RBGame::TouchDown(RudeScreenVertex &n)
 {
-	RudeTouch *touch = _touchtracker.NewTouch(n);
+	RudeTouch *touch = m_touchtracker.NewTouch(n);
 	RUDE_ASSERT(touch, "Could not create touch");
 	
-	switch(_state)
-	{
-		case GameRBT:
-			_rbt->TouchDown(touch);
-			break;
-	}
+	m_game->TouchDown(touch);
 }
 
 void RBGame::TouchMove(RudeScreenVertex &n, RudeScreenVertex &p)
 {
-	RudeTouch *touch = _touchtracker.GetTouch(p);
+	RudeTouch *touch = m_touchtracker.GetTouch(p);
 	touch->m_location = n;
 	
-	switch(_state)
-	{
-		case GameRBT:
-			_rbt->TouchMove(touch);
-			break;
-	}
+	m_game->TouchMove(touch);
 }
 
 void RBGame::TouchUp(RudeScreenVertex &n, RudeScreenVertex &p)
 {
 	// p is the previous position from movement (so it might not have changed..)
-	RudeTouch *touch = _touchtracker.GetTouch(n);
+	RudeTouch *touch = m_touchtracker.GetTouch(n);
 	touch->m_location = n;
 	
-	switch(_state)
-	{
-		case GameRBT:
-			_rbt->TouchUp(touch);
-			break;
-	}
+	m_game->TouchUp(touch);
 	
-	_touchtracker.ReleaseTouch(touch);
+	m_touchtracker.ReleaseTouch(touch);
 }
 
 void RBGame::Pause()

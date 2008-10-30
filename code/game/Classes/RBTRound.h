@@ -36,7 +36,7 @@ public:
 const int kMaxPlayers = 4;
 
 
-class RBTRound : public RudeGame {
+class RBTRound : public RBGameBase {
 	
 public:
 	RBTRound();

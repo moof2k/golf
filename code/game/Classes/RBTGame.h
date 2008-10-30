@@ -24,7 +24,7 @@
 #define _H_RBTGame
 
 
-#include "RudeGame.h"
+#include "RBGameBase.h"
 #include "RudeObject.h"
 #include "RudeSkybox.h"
 #include "RudeTextControl.h"
@@ -61,7 +61,7 @@ typedef enum {
 	kStateBallInHole
 } eRBTGameState;
 
-class RBTGame : public RudeGame
+class RBTGame : public RBGameBase
 {
 // Construction
 public:

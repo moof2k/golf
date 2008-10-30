@@ -32,11 +32,11 @@
 
 
 typedef enum {
-	GameIntroLogo = 1,
-	GameTitle,
-	GameRBT,
+	kGameIntroLogo = 1,
+	kGameTitle,
+	kGameRBT,
 	
-} GameState;
+} eGameState;
 
 
 
@@ -71,14 +71,17 @@ public:
 	void Pause();
 
 private:
-
-	GameState	_state;
-
-	RBTRound	*_rbt;
-
-	RBKeyMap	*_keymap;
 	
-	RudeTouchTracker _touchtracker;
+	void SetState(eGameState state);
+
+	eGameState	m_state;
+	RBGameBase	*m_game;
+
+	RBTRound	*m_rbt;
+
+	RBKeyMap	*m_keymap;
+	
+	RudeTouchTracker m_touchtracker;
 
 };
 
