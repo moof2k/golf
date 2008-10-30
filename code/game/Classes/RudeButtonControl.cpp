@@ -61,6 +61,8 @@ bool RudeButtonControl::TouchUp(RudeTouch *t)
 
 void RudeButtonControl::Render()
 {
+	RudeControl::Render();
+	
 	RudeTextureManager::GetInstance()->SetTexture(m_stateofftex);
 	
 	//glDisable(GL_TEXTURE_2D);

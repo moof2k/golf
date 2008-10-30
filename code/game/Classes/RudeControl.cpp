@@ -8,10 +8,14 @@
  */
 
 #include "RudeControl.h"
+#include "RudeGL.h"
 
 RudeControl::RudeControl()
 : m_rect(0,0,0,0)
 , m_hitId(-1)
+, m_translation(0,0,0)
+, m_animSpeed(3.0f)
+, m_animType(kAnimNone)
 {
 }
 
@@ -62,6 +66,29 @@ bool RudeControl::TouchUp(RudeTouch *t)
 	m_hitDelta = t->m_location - m_hitStart;
 	
 	return true;
+}
+
+void RudeControl::NextFrame(float delta)
+{
+	switch(m_animType)
+	{
+		case kAnimNone:
+			break;
+		case kAnimPopSlide:
+		{
+			m_translation += (m_desiredTranslation - m_translation) * delta * m_animSpeed;
+		}
+			break;
+			
+	}
+}
+
+void RudeControl::Render()
+{
+	RGL.LoadIdentity();
+	
+	if(m_animType != kAnimNone)
+		RGL.Translate(m_translation.x(), m_translation.y(), m_translation.z());
 }
 
 

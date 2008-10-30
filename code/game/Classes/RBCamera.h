@@ -18,11 +18,14 @@ public:
 	
 	RBCamera();
 	
-	virtual void NextFrame(float delta) = 0;
+	virtual void NextFrame(float delta)
+	{
+	}
 	
 	virtual void SetView(float aspect);
 	
 	void SetPos(const btVector3 &p) { m_pos = p; }
+	void SetLookAt(const btVector3 &l) { m_lookAt = l; }
 	
 	virtual btVector3 & GetPos() { return m_pos; }
 	virtual btVector3 & GetLookAt() { return m_lookAt; }

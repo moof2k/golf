@@ -14,6 +14,14 @@
 #include "RudeVertex.h"
 #include "RudeTouchTracker.h"
 
+#include <btBulletDynamicsCommon.h>
+
+typedef enum {
+	kAnimNone,
+	kAnimConstant,
+	kAnimPopSlide
+} eAnimType;
+
 class RudeControl 
 {
 public:
@@ -27,11 +35,18 @@ public:
 	virtual bool TouchMove(RudeTouch *t);
 	virtual bool TouchUp(RudeTouch *t);
 	
-	virtual void Render() {}
+	virtual void NextFrame(float delta);
+	virtual void Render();
 	
 	RudeScreenVertex GetDistanceTraveled() { return m_hitDistanceTraveled; }
 	RudeScreenVertex GetMoveDelta() { return m_hitMoveDelta; }
 	RudeScreenVertex GetHitMove() { return m_hitMove; }
+	
+	void SetTranslation(const btVector3 &t) { m_translation = t; }
+	void SetDesiredTranslation(const btVector3 &desired) { m_desiredTranslation = desired; }
+	
+	void SetAnimSpeed(float f) { m_animSpeed = f; }
+	void SetAnimType(eAnimType at) { m_animType = at; }
 	
 protected:
 	
@@ -42,6 +57,11 @@ protected:
 	RudeScreenVertex m_hitDelta;
 	RudeScreenVertex m_hitDistanceTraveled;
 	int m_hitId;
+	
+	btVector3 m_translation;
+	btVector3 m_desiredTranslation;
+	float m_animSpeed;
+	eAnimType m_animType;
 };
 
 #endif

@@ -51,6 +51,8 @@ void RudeTextControl::SetPosition(int x, int y)
 
 void RudeTextControl::Render()
 {
+	RudeControl::Render();
+	
 	float y = (m_rect.m_bottom - m_rect.m_top) / 2 + m_rect.m_top;
 	
 	switch(m_alignment)

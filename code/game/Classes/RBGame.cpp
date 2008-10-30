@@ -43,9 +43,10 @@ void RBGame::Init()
 {
 	Destroy();
 
+	m_uiTitle = new RBUITitle();
 	m_rbt = new RBTRound();
 
-	SetState(kGameRBT);
+	SetState(kGameTitle);
 }
 
 void RBGame::SetState(eGameState state)
@@ -54,6 +55,9 @@ void RBGame::SetState(eGameState state)
 	
 	switch(m_state)
 	{
+		case kGameTitle:
+			m_game = m_uiTitle;
+			break;
 		case kGameRBT:
 			m_game = m_rbt;
 			break;
@@ -67,15 +71,24 @@ void RBGame::Render(float delta, float aspect)
 	
 	RUDE_ASSERT(m_game, "No state set");
 	
+	const float kMaxDelta = 0.5f;
+	
+	if(delta > kMaxDelta)
+		delta = kMaxDelta;
+	
 	m_game->NextFrame(delta);
 	m_game->Render(aspect);
 	
 	switch(m_state)
 	{
+		case kGameTitle:
+			
+			if(m_uiTitle->Done())
+				SetState(kGameRBT);
 		case kGameRBT:
 
 			if(m_rbt->Done())
-				m_done = true;
+				SetState(kGameTitle);
 			break;
 
 	}

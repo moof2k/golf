@@ -29,6 +29,7 @@
 #include "RBKeyMap.h"
 
 #include "RBTRound.h"
+#include "RBUITitle.h"
 
 
 typedef enum {
@@ -78,6 +79,7 @@ private:
 	RBGameBase	*m_game;
 
 	RBTRound	*m_rbt;
+	RBUITitle	*m_uiTitle;
 
 	RBKeyMap	*m_keymap;
 	

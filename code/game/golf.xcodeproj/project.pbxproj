@@ -95,6 +95,10 @@
 		9A9A9C0D0E622B1300D00516 /* RudeTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */; };
 		9A9AA1660E6282FD00D00516 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */; };
 		9A9D633A0EB8607B003985A4 /* golfer_female_A_256.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */; };
+		9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */; };
+		9A9D64300EB9837E003985A4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9D642F0EB9837E003985A4 /* logo.png */; };
+		9A9D64D10EB98E9F003985A4 /* coursebg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9D64D00EB98E9F003985A4 /* coursebg.png */; };
+		9A9D64F60EB991D9003985A4 /* RBUICourseControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */; };
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
@@ -437,6 +441,13 @@
 		9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTexture.cpp; path = Classes/RudeTexture.cpp; sourceTree = "<group>"; };
 		9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer_female_A_256.pvr; path = Data/golfer_female_A_256.pvr; sourceTree = "<group>"; };
+		9A9D63A10EB97BAA003985A4 /* RBGameBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGameBase.h; path = Classes/RBGameBase.h; sourceTree = "<group>"; };
+		9A9D63AE0EB97D80003985A4 /* RBUITitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITitle.h; path = Classes/RBUITitle.h; sourceTree = "<group>"; };
+		9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITitle.cpp; path = Classes/RBUITitle.cpp; sourceTree = "<group>"; };
+		9A9D642F0EB9837E003985A4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Data/logo.png; sourceTree = "<group>"; };
+		9A9D64D00EB98E9F003985A4 /* coursebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coursebg.png; path = Data/coursebg.png; sourceTree = "<group>"; };
+		9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUICourseControl.h; path = Classes/RBUICourseControl.h; sourceTree = "<group>"; };
+		9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUICourseControl.cpp; path = Classes/RBUICourseControl.cpp; sourceTree = "<group>"; };
 		9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
@@ -1077,6 +1088,7 @@
 				9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */,
 				9ADC5A860E6548BD004C82A2 /* RBGame.cpp */,
 				9ADC5A850E6548BD004C82A2 /* RBGame.h */,
+				9A9D63A10EB97BAA003985A4 /* RBGameBase.h */,
 				9A7CA4C80E764F6A00FA002C /* RBTerrain.h */,
 				9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */,
 				9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */,
@@ -1105,6 +1117,10 @@
 				9A776D660EABD92200196CA0 /* RBScoreControl.cpp */,
 				9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */,
 				9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */,
+				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
+				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
+				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
+				9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -1560,6 +1576,7 @@
 		9AD580C80EA08E5A002696A6 /* png */ = {
 			isa = PBXGroup;
 			children = (
+				9A9D642F0EB9837E003985A4 /* logo.png */,
 				9AFD58780EA880380044A7B0 /* guide.png */,
 				9A776E9A0EAC49D000196CA0 /* botbarbg.png */,
 				9A4F1B5D0E861985001D1F0B /* strokedot.png */,
@@ -1582,6 +1599,7 @@
 				9A8F3FE00E7F9E5C00C28D68 /* swing.png */,
 				9A8F40E30E7FA7ED00C28D68 /* move.png */,
 				9A776EF50EAC5F3700196CA0 /* ring.png */,
+				9A9D64D00EB98E9F003985A4 /* coursebg.png */,
 			);
 			name = png;
 			sourceTree = "<group>";
@@ -1761,6 +1779,8 @@
 				9AE631070EB70173000B2EAD /* par3_D.POD in Resources */,
 				9AE6310B0EB70202000B2EAD /* par3_E.POD in Resources */,
 				9A9D633A0EB8607B003985A4 /* golfer_female_A_256.pvr in Resources */,
+				9A9D64300EB9837E003985A4 /* logo.png in Resources */,
+				9A9D64D10EB98E9F003985A4 /* coursebg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1990,6 +2010,8 @@
 				9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */,
 				9A776D670EABD92200196CA0 /* RBScoreControl.cpp in Sources */,
 				9A776D720EABDBFF00196CA0 /* RBScoreTracker.cpp in Sources */,
+				9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */,
+				9A9D64F60EB991D9003985A4 /* RBUICourseControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
