@@ -32,6 +32,9 @@ public:
 	
 	void Render();
 	
+	const char * GetNameStr() { return m_name; }
+	const char * GetHoleStr();
+	const char * GetTeeStr();
 	
 	const char *m_name;
 	eCourseHoles m_holes;

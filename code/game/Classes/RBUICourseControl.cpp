@@ -23,30 +23,40 @@ void RBUICourseControl::Render()
 	
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
 
-	const char *holestr = "";
+	const char *holestr = GetHoleStr();
 	
-	if(m_holes == kCourseFront9)
-		holestr = "Front 9";
-	else if(m_holes == kCourseBack9)
-		holestr = "Back 9";
-	else if(m_holes	== kCourseAll18)
-		holestr = "18 Holes";
+	
 	
 	const float holesX = 100;
 	const float holesY = 44;
 	
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, holestr, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
 
-	const char *teestr = "";
-	
-	if(m_tee == kCourseShortTee)
-		teestr = "Short Tee";
-	else
-		teestr = "Long Tee";
+	const char *teestr = GetTeeStr();
 
 	const float teeX = 200;
 	const float teeY = 44;
 	
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
 
+}
+
+
+const char * RBUICourseControl::GetHoleStr()
+{
+	if(m_holes == kCourseFront9)
+		return "Front 9";
+	else if(m_holes == kCourseBack9)
+		return "Back 9";
+	else
+		return "18 Holes";
+}
+
+const char * RBUICourseControl::GetTeeStr()
+{
+	if(m_tee == kCourseShortTee)
+		return "Short Tee";
+	else
+		return "Long Tee";
+	
 }

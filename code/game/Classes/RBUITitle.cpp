@@ -73,6 +73,15 @@ RBUITitle::RBUITitle()
 	m_continueText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_continueText.SetColors(1, 0xFF000000, 0xFF000000);
 	
+	m_goText.SetAnimType(kAnimPopSlide);
+	m_goText.SetText("Let's Go!");
+	m_goText.SetAlignment(kAlignCenter);
+	m_goText.SetRect(RudeRect(400, 0, 420, 320));
+	m_goText.SetStyle(kOutlineStyle);
+	m_goText.SetFont(kBigFont);
+	m_goText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_goText.SetColors(1, 0xFF000000, 0xFF000000);	
+	
 	m_backText.SetAnimType(kAnimPopSlide);
 	m_backText.SetText("Back");
 	m_backText.SetAlignment(kAlignCenter);
@@ -90,9 +99,37 @@ RBUITitle::RBUITitle()
 	m_copyrightText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_copyrightText.SetColors(1, 0xFF000000, 0xFF000000);
 	
+	m_courseNameText.SetAnimType(kAnimPopSlide);
+	m_courseNameText.SetText("Golf Course");
+	m_courseNameText.SetAlignment(kAlignLeft);
+	m_courseNameText.SetPosition(30, 36);
+	m_courseNameText.SetStyle(kOutlineStyle);
+	m_courseNameText.SetFont(kBigFont);
+	m_courseNameText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseNameText.SetColors(1, 0xFF000000, 0xFF000000);
+	
+	m_courseHolesText.SetAnimType(kAnimPopSlide);
+	m_courseHolesText.SetText("Front 9");
+	m_courseHolesText.SetAlignment(kAlignLeft);
+	m_courseHolesText.SetPosition(30, 60);
+	m_courseHolesText.SetStyle(kOutlineStyle);
+	m_courseHolesText.SetFont(kDefaultFont);
+	m_courseHolesText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseHolesText.SetColors(1, 0xFF000000, 0xFF000000);
+	
+	m_courseTeeText.SetAnimType(kAnimPopSlide);
+	m_courseTeeText.SetText("Short Tee");
+	m_courseTeeText.SetAlignment(kAlignRight);
+	m_courseTeeText.SetPosition(320 - 30, 60);
+	m_courseTeeText.SetStyle(kOutlineStyle);
+	m_courseTeeText.SetFont(kDefaultFont);
+	m_courseTeeText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseTeeText.SetColors(1, 0xFF000000, 0xFF000000);
+	
 	m_cameraTimer = 0.0f;
 	
 	m_state = kTitleNone;
+	m_course = 0;
 	SetState(kTitleSplash);
 }
 
@@ -114,6 +151,16 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseButtons[i].SetDesiredTranslation(btVector3(400,0,0));
 			}
 			
+			m_courseNameText.SetTranslation(btVector3(400,0,0));
+			m_courseHolesText.SetTranslation(btVector3(400,0,0));
+			m_courseTeeText.SetTranslation(btVector3(400,0,0));
+			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseHolesText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseTeeText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_goText.SetTranslation(btVector3(400,0,0));
+			m_goText.SetDesiredTranslation(btVector3(400,0,0));
+			
 			break;
 		case kTitleSplash:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
@@ -123,11 +170,31 @@ void RBUITitle::SetState(eTitleState state)
 			
 			break;
 		case kTitleCourseSelect:
-			m_backText.SetDesiredTranslation(btVector3(400,0,0));
+		{
+			float dir = 1.0f;
+			if(state == kTitleGameOptions)
+			{
+				dir = -1.0f;
+			}
+			else
+				m_backText.SetDesiredTranslation(btVector3(dir * 400,0,0));
+			
 			for(int i = 0; i < kNumCourses; i++)
 			{
-				m_courseButtons[i].SetDesiredTranslation(btVector3(400,0,0));
+				m_courseButtons[i].SetDesiredTranslation(btVector3(dir * 400,0,0));
 			}
+		}
+			break;
+		case kTitleGameOptions:
+			if(state != kTitleReadyToPlay)
+			{
+				m_goText.SetDesiredTranslation(btVector3(400,0,0));
+				
+				m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+				m_courseHolesText.SetDesiredTranslation(btVector3(400,0,0));
+				m_courseTeeText.SetDesiredTranslation(btVector3(400,0,0));
+			}
+			
 			break;
 	}
 	
@@ -149,6 +216,23 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseButtons[i].SetDesiredTranslation(btVector3(0,0,0));
 			}
 			break;
+		case kTitleGameOptions:
+			m_goText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseHolesText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseTeeText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
+			m_courseHolesText.SetText(m_courseButtons[m_course].GetHoleStr());
+			m_courseTeeText.SetText(m_courseButtons[m_course].GetTeeStr());
+			
+			break;
+		case kTitleReadyToPlay:
+			m_readyTimer = 0.0f;
+			m_goText.SetDesiredTranslation(btVector3(0,100,0));
+			m_backText.SetDesiredTranslation(btVector3(0,100,0));
+			break;
 		
 	}
 }
@@ -156,6 +240,14 @@ void RBUITitle::SetState(eTitleState state)
 void RBUITitle::NextFrame(float delta)
 {
 	m_cameraTimer += delta;
+	
+	if(m_state == kTitleReadyToPlay)
+	{
+		m_readyTimer += delta;
+		
+		if(m_readyTimer > 3.0f)
+			m_done = true;
+	}
 	
 	btVector3 camoff(50,0,0);
 	btMatrix3x3 mat;
@@ -172,6 +264,11 @@ void RBUITitle::NextFrame(float delta)
 	m_continueText.NextFrame(delta);
 	m_copyrightText.NextFrame(delta);
 	m_backText.NextFrame(delta);
+	m_goText.NextFrame(delta);
+	
+	m_courseNameText.NextFrame(delta);
+	m_courseHolesText.NextFrame(delta);
+	m_courseTeeText.NextFrame(delta);
 	
 	for(int i = 0; i < kNumCourses; i++)
 	{
@@ -199,6 +296,11 @@ void RBUITitle::Render(float aspect)
 	m_startText.Render();
 	m_continueText.Render();
 	m_backText.Render();
+	m_goText.Render();
+	
+	m_courseNameText.Render();
+	m_courseHolesText.Render();
+	m_courseTeeText.Render();
 	
 	for(int i = 0; i < kNumCourses; i++)
 	{
@@ -216,6 +318,14 @@ void RBUITitle::TouchDown(RudeTouch *rbt)
 			m_startText.TouchDown(rbt);
 			break;
 		case kTitleCourseSelect:
+			for(int i = 0; i < kNumCourses; i++)
+			{
+				m_courseButtons[i].TouchDown(rbt);
+			}
+			m_backText.TouchDown(rbt);
+			break;
+		case kTitleGameOptions:
+			m_goText.TouchDown(rbt);
 			m_backText.TouchDown(rbt);
 			break;
 	}
@@ -234,8 +344,24 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 				SetState(kTitleCourseSelect);
 			break;
 		case kTitleCourseSelect:
+			for(int i = 0; i < kNumCourses; i++)
+			{
+				if(m_courseButtons[i].TouchUp(rbt))
+				{
+					m_course = i;
+					SetState(kTitleGameOptions);
+					return;
+				}
+			}
+			
 			if(m_backText.TouchUp(rbt))
 				SetState(kTitleSplash);
+			break;
+		case kTitleGameOptions:
+			if(m_goText.TouchUp(rbt))
+				SetState(kTitleReadyToPlay);
+			if(m_backText.TouchUp(rbt))
+				SetState(kTitleCourseSelect);
 			break;
 	}
 }

@@ -23,7 +23,8 @@ typedef enum {
 	kTitleSplash,
 	kTitleCourseSelect,
 	kTitleHighScores,
-	kTitleGameOptions
+	kTitleGameOptions,
+	kTitleReadyToPlay
 } eTitleState;
 
 const int kNumCourses = 6;
@@ -59,9 +60,17 @@ private:
 	RudeTextControl m_copyrightText;
 	RudeTextControl m_backText;
 	
+	RudeTextControl m_courseNameText;
+	RudeTextControl m_courseHolesText;
+	RudeTextControl m_courseTeeText;
+	
+	RudeTextControl m_goText;
+	
 	eTitleState m_state;
 	
 	float m_cameraTimer;
+	float m_readyTimer;
+	int m_course;
 };
 
 
