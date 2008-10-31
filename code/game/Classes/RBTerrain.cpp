@@ -79,8 +79,7 @@ RUDE_TWEAK(MatGreenAngularDamping, kFloat, gMaterialInfos[kGreen].m_angularDampi
 RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 
 RBTerrain::RBTerrain()
-: m_teeBox(1,0,0)
-, m_hole(0,0,0)
+: m_hole(0,0,0)
 {
 }
 
@@ -93,6 +92,8 @@ void RBTerrainContactCallback(const btVector3 &contactNormal, RudePhysicsObject 
 
 void RBTerrain::Load(const char *name)
 {
+	RUDE_REPORT("Loading terrain %s\n", name);
+	
 	LoadMesh(name);
 	LoadPhysicsMesh(0.0f);
 	
@@ -189,26 +190,58 @@ void RBTerrain::LoadNodes()
 			continue;
 		
 		if(node->pszName[1] == '0')
-			m_shortTees.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
+			m_teeBoxes.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 		else if(node->pszName[1] == '1')
 			m_holes.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 		else if(node->pszName[1] == '2')
 			m_cameraPlacements.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 		else if(node->pszName[1] == '3')
 			m_guidePoints.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
-		else if(node->pszName[1] == '4')
-			m_longTees.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
+
 	}
 	
 	
-	RUDE_ASSERT(m_shortTees.size() > 0, "Terrain has no short tee boxes (N0)");
+	RUDE_ASSERT(m_teeBoxes.size() > 0, "Terrain has no tee boxes (N0)");
 	RUDE_ASSERT(m_holes.size() > 0, "Terrain has no holes (N1)");
 	RUDE_ASSERT(m_cameraPlacements.size() > 0, "Terrain has no camera placements (N2)");
 	
-	m_teeBox = m_shortTees[0];
 	m_hole = m_holes[0];
 	
 	//m_hole = m_teeBox + btVector3(0,0,-20);
+}
+
+btVector3 RBTerrain::GetTeeBox()
+{
+	float bestdist = 999999999.0f;
+	int best = 0;
+	
+	if(m_tee == kCourseLongTee)
+		bestdist = -1.0f;
+	
+	for(int i = 0; i < m_teeBoxes.size(); i++)
+	{
+		btVector3 teevec = m_teeBoxes[i] - m_hole;
+		float dist = teevec.length();
+		
+		if(m_tee == kCourseShortTee)
+		{
+			if(dist < bestdist)
+			{
+				bestdist = dist;
+				best = i;
+			}
+		}
+		else if(m_tee == kCourseLongTee)
+		{
+			if(dist > bestdist)
+			{
+				bestdist = dist;
+				best = i;
+			}
+		}
+	}
+	
+	return m_teeBoxes[best];
 }
 
 

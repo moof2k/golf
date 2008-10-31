@@ -94,7 +94,7 @@ void RBTRound::NextFrame(float delta)
 		
 		if(hole)
 		{
-			m_game = new RBTGame(m_hole, hole->m_terrainFile, hole->m_par, m_numPlayers);
+			m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, hole->m_par, m_numPlayers);
 			m_state = kStateInRound;
 		}
 		else

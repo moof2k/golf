@@ -12,6 +12,7 @@
 
 #include "RudeObject.h"
 #include "RBTerrainMaterial.h"
+#include "RBCourseData.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -45,13 +46,15 @@ public:
 	bool IsOutOfBounds(const btVector3 &position);
 	bool IsOutOfBoundsAndGone(const btVector3 &position);
 	
-	btVector3 GetTeeBox() { return m_teeBox; }
+	btVector3 GetTeeBox();
 	btVector3 GetGuidePoint(btVector3 ball);
 	btVector3 GetHole() { return m_hole; }
 	btVector3 GetCameraPlacement(btVector3 ball);
 	
 	bool GetBallInHole() { return m_ballInHole; }
 	void SetBallInHole(bool b) { m_ballInHole = b; }
+	
+	void SetTee(eCourseTee tee) { m_tee = tee; }
 	
 	bool CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result);
 	
@@ -63,18 +66,17 @@ private:
 	void LoadNodes();
 	void RenderHole();
 	
-	btVector3 m_teeBox;
 	btVector3 m_hole;
 	
 	std::map<int, eRBTerrainMaterial> m_terrainParts;
 	
-	std::vector<btVector3> m_shortTees;
-	std::vector<btVector3> m_longTees;
+	std::vector<btVector3> m_teeBoxes;
 	std::vector<btVector3> m_holes;
 	std::vector<btVector3> m_guidePoints;
 	std::vector<btVector3> m_cameraPlacements;
 	
 	int m_holeTexture;
+	eCourseTee m_tee;
 	
 	bool m_ballInHole;
 };

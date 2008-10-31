@@ -38,17 +38,22 @@ const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
 const float kFollowTimerThreshold = 2.0f;
 
-RBTGame::RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers)
+RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, int par, int numPlayers)
 {	
 	m_result = kResultNone;
 	
 	RudePhysics::GetInstance()->Init();
 		
 	m_terrain.Load(terrainfile);
+	m_terrain.SetTee(tee);
+	
 	m_holeNum = holeNum;
 	m_par = par;
 	m_numPlayers = numPlayers;
+	m_tee = tee;
+	m_holeSet = holeset;
 	m_curPlayer = 0;
+	
 	
 	m_ball.Load("ball_1");
 	m_ball.SetPosition(btVector3(0,100,0));

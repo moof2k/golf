@@ -45,6 +45,7 @@
 #include "RBBallRecorder.h"
 #include "RBScoreControl.h"
 #include "RBScoreTracker.h"
+#include "RBCourseData.h"
 #include "RBUIMenu.h"
 
 
@@ -73,7 +74,7 @@ class RBTGame : public RBGameBase
 {
 // Construction
 public:
-	RBTGame(int holeNum, const char *terrainfile, int par, int numPlayers);
+	RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, int par, int numPlayers);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -203,6 +204,9 @@ private:
 	int m_par;
 	int m_curPlayer;
 	int m_numPlayers;
+	
+	eCourseHoles m_holeSet;
+	eCourseTee m_tee;
 };
 
 #endif 
