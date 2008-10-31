@@ -60,7 +60,9 @@ void RBGame::SetState(eGameState state)
 			m_game = m_uiTitle;
 			break;
 		case kGameRBT:
+			int course = m_uiTitle->GetCourseSelection();
 			m_rbt->Reset();
+			m_rbt->SetCourse(course);
 			m_game = m_rbt;
 			break;
 	}

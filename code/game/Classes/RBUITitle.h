@@ -17,6 +17,7 @@
 #include "RudeTextControl.h"
 #include "RBUICourseControl.h"
 #include "RBCamera.h"
+#include "RBCourseData.h"
 
 typedef enum {
 	kTitleNone,
@@ -27,7 +28,6 @@ typedef enum {
 	kTitleReadyToPlay
 } eTitleState;
 
-const int kNumCourses = 6;
 
 class RBUITitle : public RBGameBase {
 	
@@ -43,6 +43,8 @@ public:
 	void TouchUp(RudeTouch *rbt);
 	
 	void Reset();
+	
+	int GetCourseSelection() { return m_course; }
 	
 private:
 	

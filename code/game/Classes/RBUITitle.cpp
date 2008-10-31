@@ -9,23 +9,9 @@
 
 #include "RBUITitle.h"
 #include "RudeGL.h"
+#include "RBCourseData.h"
 
-class RBCourseEntry {
-public:
-	const char *m_name;
-	eCourseHoles m_holes;
-	eCourseTee m_tee;
-	
-};
 
-static RBCourseEntry sCourseData[kNumCourses] = {
-	{ "Creekside Country Club", kCourseFront9, kCourseShortTee },
-	{ "Creekside Country Club", kCourseBack9, kCourseShortTee },
-	{ "Creekside Country Club", kCourseFront9, kCourseLongTee },
-	{ "Creekside Country Club", kCourseBack9, kCourseLongTee },
-	{ "Creekside Country Club", kCourseAll18, kCourseShortTee },
-	{ "Creekside Country Club", kCourseAll18, kCourseLongTee }
-};
 
 
 RBUITitle::RBUITitle()

@@ -10,34 +10,16 @@
 #include "RBTRound.h"
 #include "RBScoreControl.h"
 #include "RudeGL.h"
+#include "RBCourseData.h"
 
-static RBTHole sCourse[18] = {
-	{ 1, 3, "par3_A"},
-	{ 2, 3, "par3_B" },
-	{ 3, 3, "par3_C" },
-	{ 4, 3, "par3_D" },
-	{ 5, 3, "par3_E" },
-	{ 6, 5, "parfive" },
-	{ 7, 5, "parfive" },
-	{ 8, 5, "parfive" },
-	{ 9, 5, "parfive" },
-	{ 10, 5, "parfive" },
-	{ 11, 5, "parfive" },
-	{ 12, 5, "parfive" },
-	{ 13, 5, "parfive" },
-	{ 14, 5, "parfive" },
-	{ 15, 5, "parfive" },
-	{ 16, 5, "parfive" },
-	{ 17, 5, "parfive" },
-	{ 18, 5, "parfive" }
-
-};
 
 RBTRound::RBTRound()
 : m_game(0)
 , m_state(kStateInit)
 , m_hole(0)
+, m_holeSet(kCourseFront9)
 , m_numPlayers(1)
+, m_tee(kCourseShortTee)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
@@ -68,6 +50,14 @@ void RBTRound::Reset()
 	m_state = kStateInit;
 }
 
+void RBTRound::SetCourse(int c)
+{
+	RBCourseEntry *cd = GetCourseData(c);
+	
+	m_holeSet = cd->m_holes;
+	m_tee = cd->m_tee;
+}
+
 void RBTRound::NextFrame(float delta)
 {
 	if(m_state == kStateInit)
@@ -82,8 +72,9 @@ void RBTRound::NextFrame(float delta)
 			RBScoreTracker *tracker = GetScoreTracker(i);
 			for(int h = 0; h < 18; h++)
 			{
+				RBCourseHole *hole = GetCourseHole(0, kCourseAll18, h);
 				tracker->ClearScores();
-				tracker->SetPar(h, sCourse[h].m_par);
+				tracker->SetPar(h, hole->m_par);
 			}
 		}
 		
@@ -99,9 +90,17 @@ void RBTRound::NextFrame(float delta)
 			m_game = 0;
 		}
 		
-		m_game = new RBTGame(m_hole, sCourse[m_hole].m_terrainFile, sCourse[m_hole].m_par, m_numPlayers);
+		RBCourseHole *hole = GetCourseHole(0, m_holeSet, m_hole);
 		
-		m_state = kStateInRound;
+		if(hole)
+		{
+			m_game = new RBTGame(m_hole, hole->m_terrainFile, hole->m_par, m_numPlayers);
+			m_state = kStateInRound;
+		}
+		else
+		{
+			m_state = kStateDone;
+		}
 		 
 	}
 	else if(m_state == kStateInRound)

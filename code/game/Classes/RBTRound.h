@@ -15,6 +15,7 @@
 #include "RudeTouchTracker.h"
 #include "RBTGame.h"
 #include "RudeTextControl.h"
+#include "RBCourseData.h"
 
 typedef enum {
 	kStateInit,
@@ -23,14 +24,6 @@ typedef enum {
 	kStateDone,
 } eRBTRoundState;
 
-class RBTHole {
-public:
-
-	int m_holeNum;
-	int m_par;
-	char m_terrainFile[32];
-	
-};
 
 
 const int kMaxPlayers = 4;
@@ -51,6 +44,8 @@ public:
 	
 	void Reset();
 	
+	void SetCourse(int course);
+	
 private:
 	
 	eRBTRoundState m_state;
@@ -58,6 +53,8 @@ private:
 	
 	RudeTextControl m_loadingText;
 	
+	eCourseHoles m_holeSet;
+	eCourseTee m_tee;
 	int m_hole;
 	
 	int m_numPlayers;

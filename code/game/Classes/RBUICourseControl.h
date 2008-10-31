@@ -12,17 +12,7 @@
 
 #include "Rude.h"
 #include "RudeButtonControl.h"
-
-typedef enum {
-	kCourseFront9,
-	kCourseBack9,
-	kCourseAll18
-} eCourseHoles;
-
-typedef enum {
-	kCourseShortTee,
-	kCourseLongTee
-} eCourseTee;
+#include "RBCourseData.h"
 
 const int kMaxCourseNameLen = 64;
 
