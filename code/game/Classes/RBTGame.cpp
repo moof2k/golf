@@ -79,7 +79,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	// score control
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
-	m_scoreControl.SetActiveHole(m_holeNum);
+	m_scoreControl.SetActiveHole(m_holeNum, holeset);
 	
 	// stroke/status controls
 	
@@ -266,7 +266,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateMenu:
 		{
-			m_menu.Reset();
+			m_menu.Reset(m_holeNum, m_holeSet);
 		}
 			break;
 		case kStateExecuteSwing:

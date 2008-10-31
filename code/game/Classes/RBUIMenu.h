@@ -12,6 +12,8 @@
 
 #include "RBGameBase.h"
 #include "RudeTextControl.h"
+#include "RBScoreControl.h"
+#include "RBCourseData.h"
 
 typedef enum {
 	kMenuQuit,
@@ -24,7 +26,7 @@ public:
 	RBUIMenu();
 	~RBUIMenu();
 	
-	void Reset();
+	void Reset(int holeNum, eCourseHoles holeSet);
 	
 	void NextFrame(float delta);
 	void Render(float aspect);
@@ -37,6 +39,7 @@ public:
 	
 private:
 	
+	RBScoreControl m_scoreControl;
 	
 	RudeTextControl m_resumeText;
 	RudeTextControl m_quitText;

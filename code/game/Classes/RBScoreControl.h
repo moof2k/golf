@@ -12,6 +12,7 @@
 
 #include "Rude.h"
 #include "RudeControl.h"
+#include "RBCourseData.h"
 
 typedef enum {
 	kScoreColorNormal,
@@ -27,7 +28,7 @@ public:
 	
 	void Render();
 	
-	void SetActiveHole(int hole) { m_activeHole = hole; }
+	void SetActiveHole(int hole, eCourseHoles holeSet) { m_activeHole = hole; m_holeSet = holeSet; }
 	
 private:
 	
@@ -36,6 +37,7 @@ private:
 	void Printf(float x, float y, int align, eRBScoreColor color, const char *fmt, int value);
 	
 	int m_activeHole;
+	eCourseHoles m_holeSet;
 };
 
 #endif

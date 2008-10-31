@@ -132,9 +132,19 @@ void RBScoreControl::Render()
 {
 	int centery = (m_rect.m_bottom - m_rect.m_top) / 2;
 	
-	
-	RenderScoreBoard(13, centery - 80, 0);
-	RenderScoreBoard(13, centery + 20, 9);
+	switch(m_holeSet)
+	{
+		case kCourseAll18:
+			RenderScoreBoard(13, centery - 80, 0);
+			RenderScoreBoard(13, centery + 20, 9);
+			break;
+		case kCourseFront9:
+			RenderScoreBoard(13, centery, 0);
+			break;
+		case kCourseBack9:
+			RenderScoreBoard(13, centery, 9);
+			break;
+	}
 }
 
 
