@@ -92,7 +92,7 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 			else if(score > 0)
 				Printf(xoff, yoff + kLineSpacing * 3.0f, FONT_ALIGN_CENTER, color, "+%d", score);
 			else
-				Printf(xoff, yoff + kLineSpacing * 3.0f, FONT_ALIGN_CENTER, color, "-0", score);
+				Printf(xoff, yoff + kLineSpacing * 3.0f, FONT_ALIGN_CENTER, color, "%d", score);
 		}
 		else
 		{

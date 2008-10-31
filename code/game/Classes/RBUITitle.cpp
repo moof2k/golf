@@ -250,7 +250,8 @@ void RBUITitle::SetState(eTitleState state)
 
 void RBUITitle::NextFrame(float delta)
 {
-	m_cameraTimer += delta;
+	if(m_state == kTitleSplash)
+		m_cameraTimer += delta;
 	
 	if(m_state == kTitleReadyToPlay)
 	{
