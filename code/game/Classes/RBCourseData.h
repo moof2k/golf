@@ -27,6 +27,12 @@ typedef enum {
 	kCourseLongTee
 } eCourseTee;
 
+typedef enum {
+	kCourseNoWind,
+	kCourseLowWind,
+	kCourseHighWind
+} eCourseWind;
+
 class RBCourseEntry {
 public:
 	const char *m_name;

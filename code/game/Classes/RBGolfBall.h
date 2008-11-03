@@ -51,8 +51,13 @@ public:
 	void SetCurMaterial(eRBTerrainMaterial m) { m_curMaterial = m; }
 	eRBTerrainMaterial GetCurMaterial() { return m_curMaterial; }
 	
+	void SetWindSpeed(const btVector3 &wind) { m_windSpeed = wind; }
+	
 private:
 
+	btVector3 m_windSpeed;
+	float m_windSpeedTimer;
+	
 	btVector3 m_spinForce;
 	float m_spinForceTimer;
 	

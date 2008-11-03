@@ -21,6 +21,9 @@ bool gDebugCamera = false;
 RUDE_TWEAK(DebugCamera, kBool, gDebugCamera);
 bool gDebugCameraPrev = false;
 
+bool gDebugFinishHole = false;
+RUDE_TWEAK(DebugFinishHole, kBool, gDebugFinishHole);
+
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
 const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
@@ -38,7 +41,7 @@ const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
 const float kFollowTimerThreshold = 2.0f;
 
-RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, int par, int numPlayers)
+RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers)
 {	
 	m_result = kResultNone;
 	
@@ -52,6 +55,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_numPlayers = numPlayers;
 	m_tee = tee;
 	m_holeSet = holeset;
+	m_wind = wind;
 	m_curPlayer = 0;
 	
 	
@@ -83,15 +87,28 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	// stroke/status controls
 	
+	m_holeText.SetAlignment(kAlignLeft);
+	m_holeText.SetPosition(10, 30);
+	m_holeText.SetFormat(kIntValue, "%d");
+	m_holeText.SetValue(m_holeNum + 1);
+	m_holeText.SetStyle(kOutlineStyle);
+	m_holeText.SetFont(kBigFont);
+	m_holeText.SetColors(0, kParTopColor, kParBotColor);
+	m_holeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
+	
+	int paroffx = 0;
+	if(m_holeNum + 1 >= 10)
+		paroffx += 16;
+	
 	m_parText.SetAlignment(kAlignLeft);
-	m_parText.SetPosition(10, 20);
+	m_parText.SetPosition(30 + paroffx, 20);
 	m_parText.SetFormat(kIntValue, "PAR %d");
 	m_parText.SetStyle(kOutlineStyle);
 	m_parText.SetColors(0, kParTopColor, kParBotColor);
 	m_parText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
 	
 	m_remainingDistText.SetAlignment(kAlignLeft);
-	m_remainingDistText.SetPosition(10, 36);
+	m_remainingDistText.SetPosition(30 + paroffx, 36);
 	m_remainingDistText.SetFormat(kIntValue, "%d yds");
 	m_remainingDistText.SetStyle(kOutlineStyle);
 	m_remainingDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
@@ -117,6 +134,13 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_clubDistText.SetStyle(kOutlineStyle);
 	m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	
+	m_windText.SetAlignment(kAlignRight);
+	m_windText.SetPosition(320 - 6, 480 - 44 - 10);
+	m_windText.SetFormat(kIntValue, "%d mph");
+	m_windText.SetStyle(kOutlineStyle);
+	m_windText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+	m_windText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
 	m_shotEncouragementText.SetAlignment(kAlignCenter);
 	m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
@@ -182,6 +206,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_guideIndicatorButton.SetTextures("guide", "guide");
 	m_placementGuideIndicatorButton.SetTextures("guide", "guide");
+	
+	m_windControl.SetRect(RudeRect(0,0,480,320));
 	
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
@@ -342,6 +368,42 @@ void RBTGame::StateTeePosition(float delta)
 	float yardage = ballToHole.length() / 3.0f;
 	
 	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
+	
+	int windspeed = 0;
+	
+	switch(m_wind)
+	{
+		case kCourseNoWind:
+			windspeed = 0;
+			break;
+		case kCourseLowWind:
+		{
+			windspeed = rand() % 4 + 1;
+		}
+			break;
+		case kCourseHighWind:
+		{
+			windspeed = rand() % 10 + 4;
+		}
+			break;
+	}
+	
+	m_windText.SetValue(windspeed);
+	
+	float ws = windspeed;
+	
+	btVector3 winddir(1,0,0);
+	
+	m_windDir = rand() % 360;
+	m_windDir = (m_windDir / 180.0f) * 3.1415926f;
+	
+	btMatrix3x3 rmat;
+	rmat.setEulerYPR(m_windDir, 0.0f, 0.0f);
+	
+	m_windVec = rmat * winddir;
+	m_windVec *= ws;
+	
+	
 	
 	SetState(kStatePositionSwing);
 }
@@ -848,6 +910,13 @@ void RBTGame::NextFrame(float delta)
 			m_curCamera = &m_ballCamera;
 	}
 	
+	if(gDebugFinishHole)
+	{
+		m_terrain.SetBallInHole(true);
+		SetState(kStateBallInHole);
+		gDebugFinishHole = false;
+	}
+	
 	
 	RudePhysics::GetInstance()->NextFrame(delta);
 	
@@ -1049,6 +1118,8 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		m_clubDistText.Render();
 	}
 	
+	m_holeText.Render();
+	
 	m_parText.SetValue(m_par);
 	m_parText.Render();
 	
@@ -1057,12 +1128,12 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	
 	if(m_state == kStateBallInHole)
 	{
-		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeNum, true));
+		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, true));
 		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum));
 	}
 	else
 	{
-		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeNum, false));
+		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, false));
 		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum) + 1);
 	}
 	
@@ -1070,7 +1141,16 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	
 	
 	m_scoreText.Render();
+	
+	
 
+}
+
+void RBTGame::RenderWind()
+{
+	
+	m_windControl.Render();
+	m_windText.Render();
 }
 
 void RBTGame::Render(float aspect)
@@ -1143,6 +1223,7 @@ void RBTGame::Render(float aspect)
 			m_clubButton.Render();
 			m_cameraButton.Render();
 			RenderShotInfo(false, true);
+			RenderWind();
 			
 			if(m_encouragementTimer > 0.0f)
 			{

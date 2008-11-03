@@ -39,6 +39,7 @@
 #include "RBTerrain.h"
 #include "RBGolfBall.h"
 #include "RBSwingControl.h"
+#include "RBWindControl.h"
 #include "RBBallGuide.h"
 #include "RBGolferObject.h"
 #include "RBGolfClub.h"
@@ -74,7 +75,7 @@ class RBTGame : public RBGameBase
 {
 // Construction
 public:
-	RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, int par, int numPlayers);
+	RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -107,6 +108,7 @@ private:
 	void StateHitBall(float delta);
 	void StateFollowBall(float delta);
 	
+	void RenderWind();
 	void RenderCalcOrthoDrawPositions();
 	void RenderGuide(float aspect);
 	void RenderBallFollowInfo(bool showDistToHole);
@@ -141,6 +143,7 @@ private:
 	
 	RBBallGuide m_ballGuide;
 	RBSwingControl m_swingControl;
+	RBWindControl m_windControl;
 	RudeButtonControl m_swingButton;
 	RudeButtonControl m_moveButton;
 	RudeButtonControl m_menuButton;
@@ -161,6 +164,7 @@ private:
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	
+	RudeTextControl m_holeText;
 	RudeTextControl m_parText;
 	RudeTextControl m_strokeText;
 	RudeTextControl m_remainingDistText;
@@ -168,6 +172,7 @@ private:
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_shotQualityText;
 	RudeTextControl m_clubDistText;
+	RudeTextControl m_windText;
 	
 	RudeTextControl m_shotDistText;
 	RudeTextControl m_shotPowerText;
@@ -186,6 +191,9 @@ private:
 	float m_followTimer;
 	float m_stopTimer;
 	float m_encouragementTimer;
+	
+	float m_windDir;
+	btVector3 m_windVec;
 	
 	int m_placementGuidePower;
 	
@@ -207,6 +215,7 @@ private:
 	
 	eCourseHoles m_holeSet;
 	eCourseTee m_tee;
+	eCourseWind m_wind;
 };
 
 #endif 

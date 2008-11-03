@@ -17,6 +17,7 @@
 const float kBallRadius = 0.15f;
 const float kBallMass = 0.1f;
 const float kSpinForceDelay = 0.75f;
+const float kWindSpeedDelay = 1.0f;
 
 RBGolfBall::RBGolfBall()
 : m_linearContactDamping(0.0f)
@@ -31,6 +32,8 @@ RBGolfBall::RBGolfBall()
 , m_curMaterial(kTee)
 , m_spinForce(0,0,0)
 , m_spinForceTimer(0.0f)
+, m_windSpeed(0,0,10)
+, m_windSpeedTimer(0.0f)
 {
 }
 
@@ -58,6 +61,7 @@ void RBGolfBall::NextFrame(float delta)
 	RudePhysicsSphere *obj = (RudePhysicsSphere *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
 	
+	// apply force from spin
 	if(m_applySpinForce)
 	{
 		m_spinForceTimer += delta;
@@ -71,6 +75,23 @@ void RBGolfBall::NextFrame(float delta)
 		rb->setLinearVelocity(linvel);
 		
 	}
+	
+	// apply wind
+	if(m_inContact == 0)
+	{
+		m_windSpeedTimer += delta;
+		
+		float gradient = m_windSpeedTimer / kWindSpeedDelay;
+		
+		if(gradient > 1.0f)
+			gradient = 1.0f;
+		
+		btVector3 linvel = rb->getLinearVelocity();
+		linvel += m_windSpeed * delta * gradient;
+		rb->setLinearVelocity(linvel);
+	}
+	else
+		m_windSpeedTimer = 0.0f;
 	
 	if(m_inContact > 0)
 	{
@@ -193,6 +214,8 @@ void RBGolfBall::HitBall(const btVector3 &linvel, const btVector3 &spinForce)
 	m_spinForce = spinForce;
 	m_applySpinForce = true;
 	m_spinForceTimer = 0.0f;
+	
+	m_windSpeedTimer = 0.0f;
 	
 	m_stop = false;
 	m_stopped = false;

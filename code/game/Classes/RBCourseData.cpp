@@ -61,7 +61,7 @@ RBCourseHole * GetCourseHole(int course, eCourseHoles holeset, int hole)
 	{
 		case kCourseFront9:
 		{
-			if(hole > 9)
+			if(hole >= 9)
 				return 0;
 			
 			actualhole = hole;
@@ -69,15 +69,15 @@ RBCourseHole * GetCourseHole(int course, eCourseHoles holeset, int hole)
 			break;
 		case kCourseBack9:
 		{
-			if(hole > 9)
+			if(hole >= 18)
 				return 0;
 			
-			actualhole = hole + 9;
+			actualhole = hole;
 		}
 			break;
 		case kCourseAll18:
 		{
-			if(hole > 18)
+			if(hole >= 18)
 				return 0;
 			
 			actualhole = hole;

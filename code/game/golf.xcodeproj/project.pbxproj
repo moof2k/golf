@@ -113,6 +113,8 @@
 		9AB429D40E7E3D3C001429D6 /* RBBallCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB429D30E7E3D3C001429D6 /* RBBallCamera.cpp */; };
 		9ACA17750EB9AA270014C128 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ACA17740EB9AA270014C128 /* menu.png */; };
 		9ACA17B80EB9ABAE0014C128 /* RBUIMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */; };
+		9ACA188D0EBAAE160014C128 /* RBCourseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA188C0EBAAE160014C128 /* RBCourseData.cpp */; };
+		9ACA19DA0EBADDC40014C128 /* RBWindControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */; };
 		9ACBA70B0E70F67200D3167F /* grass_fringe_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7050E70F67200D3167F /* grass_fringe_A.pvr */; };
 		9ACBA70C0E70F67200D3167F /* sand_bunker_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7060E70F67200D3167F /* sand_bunker_A.pvr */; };
 		9ACBA70D0E70F67200D3167F /* grass_fairway_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7070E70F67200D3167F /* grass_fairway_A.pvr */; };
@@ -470,6 +472,10 @@
 		9ACA17740EB9AA270014C128 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Data/menu.png; sourceTree = "<group>"; };
 		9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUIMenu.h; path = Classes/RBUIMenu.h; sourceTree = "<group>"; };
 		9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUIMenu.cpp; path = Classes/RBUIMenu.cpp; sourceTree = "<group>"; };
+		9ACA188B0EBAAE160014C128 /* RBCourseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBCourseData.h; path = Classes/RBCourseData.h; sourceTree = "<group>"; };
+		9ACA188C0EBAAE160014C128 /* RBCourseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBCourseData.cpp; path = Classes/RBCourseData.cpp; sourceTree = "<group>"; };
+		9ACA19D80EBADDC40014C128 /* RBWindControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBWindControl.h; path = Classes/RBWindControl.h; sourceTree = "<group>"; };
+		9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBWindControl.cpp; path = Classes/RBWindControl.cpp; sourceTree = "<group>"; };
 		9ACBA7050E70F67200D3167F /* grass_fringe_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_fringe_A.pvr; path = Data/grass_fringe_A.pvr; sourceTree = "<group>"; };
 		9ACBA7060E70F67200D3167F /* sand_bunker_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = sand_bunker_A.pvr; path = Data/sand_bunker_A.pvr; sourceTree = "<group>"; };
 		9ACBA7070E70F67200D3167F /* grass_fairway_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_fairway_A.pvr; path = Data/grass_fairway_A.pvr; sourceTree = "<group>"; };
@@ -1122,12 +1128,16 @@
 				9A776D660EABD92200196CA0 /* RBScoreControl.cpp */,
 				9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */,
 				9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */,
+				9ACA188B0EBAAE160014C128 /* RBCourseData.h */,
+				9ACA188C0EBAAE160014C128 /* RBCourseData.cpp */,
 				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
 				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
 				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
 				9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */,
 				9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */,
 				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
+				9ACA19D80EBADDC40014C128 /* RBWindControl.h */,
+				9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -2022,6 +2032,8 @@
 				9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */,
 				9A9D64F60EB991D9003985A4 /* RBUICourseControl.cpp in Sources */,
 				9ACA17B80EB9ABAE0014C128 /* RBUIMenu.cpp in Sources */,
+				9ACA188D0EBAAE160014C128 /* RBCourseData.cpp in Sources */,
+				9ACA19DA0EBADDC40014C128 /* RBWindControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

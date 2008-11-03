@@ -21,6 +21,7 @@
 
 typedef enum {
 	kTitleNone,
+	kTitleScoreSummary,
 	kTitleSplash,
 	kTitleCourseSelect,
 	kTitleHighScores,

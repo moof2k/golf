@@ -10,6 +10,8 @@
 #ifndef __H_RBScoreTracker
 #define __H_RBScoreTracker
 
+#include "RBCourseData.h"
+
 const int kNumScores = 18;
 
 class RBScoreEntry {
@@ -43,7 +45,7 @@ public:
 	int GetNumStrokes(int hole);
 	void AddStrokes(int hole, int num);
 	
-	int GetScore(int hole, bool includeThisHole);
+	int GetScore(eCourseHoles holeSet, int hole, bool includeThisHole);
 	
 private:
 

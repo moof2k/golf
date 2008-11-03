@@ -20,6 +20,7 @@ RBTRound::RBTRound()
 , m_holeSet(kCourseFront9)
 , m_numPlayers(1)
 , m_tee(kCourseShortTee)
+, m_wind(kCourseHighWind)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
@@ -64,7 +65,10 @@ void RBTRound::NextFrame(float delta)
 	{
 		RUDE_REPORT("RBTRound State %d\n", m_state);
 		
-		m_hole = 0;
+		if(m_holeSet == kCourseBack9)
+			m_hole = 9;
+		else
+			m_hole = 0;
 		m_done = false;
 		
 		for(int i = 0; i < m_numPlayers; i++)
@@ -94,7 +98,7 @@ void RBTRound::NextFrame(float delta)
 		
 		if(hole)
 		{
-			m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, hole->m_par, m_numPlayers);
+			m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers);
 			m_state = kStateInRound;
 		}
 		else

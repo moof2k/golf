@@ -55,6 +55,7 @@ private:
 	
 	eCourseHoles m_holeSet;
 	eCourseTee m_tee;
+	eCourseWind m_wind;
 	int m_hole;
 	
 	int m_numPlayers;

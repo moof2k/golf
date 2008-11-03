@@ -52,7 +52,7 @@ void RBScoreTracker::AddStrokes(int hole, int num)
 	m_scores[hole].m_strokes += num;
 }
 
-int RBScoreTracker::GetScore(int hole, bool includeThisHole)
+int RBScoreTracker::GetScore(eCourseHoles holeSet, int hole, bool includeThisHole)
 {
 	int lasthole = hole - 1;
 	if(includeThisHole)
@@ -63,7 +63,12 @@ int RBScoreTracker::GetScore(int hole, bool includeThisHole)
 	
 	int score = 0;
 	
-	for(int i = 0; i <= lasthole; i++)
+	int starthole = 0;
+	
+	if(holeSet == kCourseBack9)
+		starthole = 9;
+	
+	for(int i = starthole; i <= lasthole; i++)
 	{
 		int par = m_scores[i].m_par;
 		int strokes = m_scores[i].m_strokes;
