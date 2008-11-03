@@ -11,21 +11,28 @@
 #define __H_RBWindControl
 
 #include "RudeControl.h"
+#include "RudeObject.h"
 
 class RBWindControl : public RudeControl {
 public:
 	RBWindControl();
 	
-	void SetWind(const btVector3 &windVec, float windSpeed)
-	{
-		m_windVec = windVec;
-		m_windSpeed = windSpeed;
-	}
+	void NextFrame(float delta);
+	void Render();
+	
+	void SetWind(float windDir, float windSpeed);
 	
 private:
 	
+	RudeObject m_windObject;
+	
 	btVector3 m_windVec;
 	float m_windSpeed;
+	
+	float m_animTimer;
+	float m_indicatorYaw;
+	float m_indicatorYawTwitch;
+	bool m_twitchUp;
 };
 
 #endif

@@ -142,6 +142,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_windText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_windText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
+	m_windControl.SetRect(RudeRect(480 - 64 - 64, 320 - 64, 480 - 64, 320));
+	
 	m_shotEncouragementText.SetAlignment(kAlignCenter);
 	m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
 	m_shotEncouragementText.SetStyle(kOutlineStyle);
@@ -206,8 +208,6 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_guideIndicatorButton.SetTextures("guide", "guide");
 	m_placementGuideIndicatorButton.SetTextures("guide", "guide");
-	
-	m_windControl.SetRect(RudeRect(0,0,480,320));
 	
 	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
@@ -394,6 +394,7 @@ void RBTGame::StateTeePosition(float delta)
 	
 	btVector3 winddir(1,0,0);
 	
+	//m_windDir = 0;
 	m_windDir = rand() % 360;
 	m_windDir = (m_windDir / 180.0f) * 3.1415926f;
 	
@@ -403,7 +404,7 @@ void RBTGame::StateTeePosition(float delta)
 	m_windVec = rmat * winddir;
 	m_windVec *= ws;
 	
-	
+	m_windControl.SetWind(m_windDir, windspeed);
 	
 	SetState(kStatePositionSwing);
 }
@@ -996,7 +997,7 @@ void RBTGame::NextFrame(float delta)
 	//RGLD.DebugDrawLine(m_guidePosition, m_guidePosition + btVector3(0,10,0));
 	
 	m_golfer.NextFrame(delta);
-	
+	m_windControl.NextFrame(delta);
 	
 	m_ball.NextFrame(delta);
 	m_curCamera->NextFrame(delta);
@@ -1149,7 +1150,7 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 void RBTGame::RenderWind()
 {
 	
-	m_windControl.Render();
+
 	m_windText.Render();
 }
 
@@ -1200,9 +1201,19 @@ void RBTGame::Render(float aspect)
 	RenderCalcOrthoDrawPositions();
 	
 	
+	
 	RGL.Enable(kDepthTest, false);
 	RGLD.RenderDebug();
 	
+	if(m_state == kStatePositionSwing
+	   || m_state == kStatePositionSwing2
+	   || m_state == kStatePositionSwing3
+	   || m_state == kStateExecuteSwing)
+	{
+		m_windControl.Render();
+	}
+	
+	RGL.SetViewport(0, 0, 480, 320);
 	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
 	RGL.LoadIdentity();
 	RGL.Enable(kBackfaceCull, false);

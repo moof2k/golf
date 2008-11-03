@@ -54,6 +54,7 @@ public:
 	void Enable(eRudeGLEnableOption option, bool enable);
 
 	btVector3 GetEye() { return m_eye; }
+	btVector3 GetLookAt() { return m_lookAt; }
 
 private:
 

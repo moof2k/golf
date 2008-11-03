@@ -47,9 +47,9 @@ public:
 	
 	int GetCourseSelection() { return m_course; }
 	
-private:
-	
 	void SetState(eTitleState state);
+	
+private:
 	
 	RudeObject m_terrain;
 	RudeSkybox m_skybox;
@@ -67,6 +67,7 @@ private:
 	RudeTextControl m_courseNameText;
 	RudeTextControl m_courseHolesText;
 	RudeTextControl m_courseTeeText;
+	
 	
 	RudeTextControl m_goText;
 	

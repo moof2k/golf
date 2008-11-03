@@ -130,6 +130,8 @@ void RBScoreControl::Printf(float x, float y, int align, eRBScoreColor color, co
 
 void RBScoreControl::Render()
 {
+	RudeControl::Render();
+	
 	int centery = (m_rect.m_bottom - m_rect.m_top) / 2;
 	
 	switch(m_holeSet)

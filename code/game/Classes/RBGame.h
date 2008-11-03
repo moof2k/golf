@@ -33,6 +33,7 @@
 
 
 typedef enum {
+	kGameNone,
 	kGameIntroLogo = 1,
 	kGameTitle,
 	kGameRBT,

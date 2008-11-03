@@ -112,6 +112,7 @@ RBUITitle::RBUITitle()
 	m_courseTeeText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_courseTeeText.SetColors(1, 0xFF000000, 0xFF000000);
 	
+	
 	m_cameraTimer = 0.0f;
 	
 	m_course = 0;
@@ -158,6 +159,16 @@ void RBUITitle::SetState(eTitleState state)
 			m_goText.SetTranslation(btVector3(400,0,0));
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
 			
+			break;
+		case kTitleScoreSummary:
+			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
+			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_continueText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_logo.SetTranslation(btVector3(-400,0,0));
+			m_startText.SetTranslation(btVector3(-400,0,0));
+			m_continueText.SetTranslation(btVector3(-400,0,0));
+			
+						
 			break;
 		case kTitleSplash:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
@@ -295,6 +306,7 @@ void RBUITitle::Render(float aspect)
 	m_continueText.Render();
 	m_backText.Render();
 	m_goText.Render();
+	
 	
 	m_courseNameText.Render();
 	m_courseHolesText.Render();

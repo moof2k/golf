@@ -14,8 +14,10 @@
 RBGame::RBGame()
 {
 	RudeMath::EnableFPE();
+	
+	srand(time(NULL));
 
-	m_state = kGameRBT;
+	m_state = kGameNone;
 	m_game = 0;
 
 	m_rbt = NULL;
@@ -51,12 +53,18 @@ void RBGame::Init()
 
 void RBGame::SetState(eGameState state)
 {
+	eGameState prevstate = m_state;
+	
 	m_state = state;
 	
 	switch(m_state)
 	{
 		case kGameTitle:
 			m_uiTitle->Reset();
+			if(prevstate == kGameRBT)
+			{
+				m_uiTitle->SetState(kTitleScoreSummary);
+			}
 			m_game = m_uiTitle;
 			break;
 		case kGameRBT:
