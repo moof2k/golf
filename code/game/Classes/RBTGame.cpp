@@ -405,6 +405,7 @@ void RBTGame::StateTeePosition(float delta)
 	m_windVec *= ws;
 	
 	m_windControl.SetWind(m_windDir, windspeed);
+	m_ball.SetWindSpeed(m_windVec);
 	
 	SetState(kStatePositionSwing);
 }
@@ -1147,13 +1148,6 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 
 }
 
-void RBTGame::RenderWind()
-{
-	
-
-	m_windText.Render();
-}
-
 void RBTGame::Render(float aspect)
 {
 	RGL.SetViewport(0, 0, 480, 320);
@@ -1234,7 +1228,7 @@ void RBTGame::Render(float aspect)
 			m_clubButton.Render();
 			m_cameraButton.Render();
 			RenderShotInfo(false, true);
-			RenderWind();
+			m_windText.Render();
 			
 			if(m_encouragementTimer > 0.0f)
 			{
@@ -1250,6 +1244,7 @@ void RBTGame::Render(float aspect)
 			m_swingControl.Render();
 			m_clubButton.Render();
 			RenderShotInfo(false, true);
+			m_windText.Render();
 			break;
 			
 		case kStateFollowBall:

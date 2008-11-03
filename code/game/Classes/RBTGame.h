@@ -108,7 +108,6 @@ private:
 	void StateHitBall(float delta);
 	void StateFollowBall(float delta);
 	
-	void RenderWind();
 	void RenderCalcOrthoDrawPositions();
 	void RenderGuide(float aspect);
 	void RenderBallFollowInfo(bool showDistToHole);

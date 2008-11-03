@@ -32,7 +32,7 @@ RBGolfBall::RBGolfBall()
 , m_curMaterial(kTee)
 , m_spinForce(0,0,0)
 , m_spinForceTimer(0.0f)
-, m_windSpeed(0,0,10)
+, m_windSpeed(0,0,0)
 , m_windSpeedTimer(0.0f)
 {
 }
