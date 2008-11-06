@@ -6,6 +6,7 @@
 #include "RudeMath.h"
 #include "RudeText.h"
 #include "RudeTimeCounter.h"
+#include "RudeRegistry.h"
 
 #include <mach/mach.h>
 #include <mach/mach_time.h>
@@ -19,6 +20,7 @@ RBGame::RBGame()
 
 	m_state = kGameNone;
 	m_game = 0;
+	m_course = 0;
 
 	m_rbt = NULL;
 
@@ -48,7 +50,48 @@ void RBGame::Init()
 	m_uiTitle = new RBUITitle();
 	m_rbt = new RBTRound();
 
-	SetState(kGameTitle);
+	
+	if(LoadState() != 0)
+		SetState(kGameTitle);
+}
+
+void RBGame::SaveState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	tRBGameSaveState save;
+	save.state = m_state;
+	save.course = m_course;
+	
+	reg->SetByte("GOLF", "GS_GAME_STATE", &save, sizeof(save));
+}
+
+int RBGame::LoadState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	tRBGameSaveState load;
+	int loadsize = sizeof(load);
+	if(reg->QueryByte("GOLF", "GS_GAME_STATE", &load, &loadsize) == 0)
+	{
+		m_course = load.course;
+		SetState(load.state);
+		
+		if(load.state == kGameRBT)
+		{
+			m_rbt->SetCourse(m_course);
+			
+			if(m_rbt->LoadState() != 0)
+			{
+				SetState(kGameTitle);
+				return -1;
+			}
+		}
+	}
+	else
+		return -1;
+	
+	return 0;
 }
 
 void RBGame::SetState(eGameState state)
@@ -74,6 +117,8 @@ void RBGame::SetState(eGameState state)
 			m_game = m_rbt;
 			break;
 	}
+	
+	SaveState();
 }
 
 

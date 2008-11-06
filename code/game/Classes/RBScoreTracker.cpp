@@ -8,6 +8,7 @@
  */
 
 #include "RBScoreTracker.h"
+#include "RudeRegistry.h"
 #include "Rude.h"
 
 RBScoreTracker::RBScoreTracker()
@@ -15,6 +16,29 @@ RBScoreTracker::RBScoreTracker()
 	
 }
 
+void RBScoreTracker::SaveState(int n)
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	char scorestr[256];
+	snprintf(scorestr, 256, "GS_SCORE_%d", n);
+	
+	reg->SetByte("GOLF", scorestr, m_scores, sizeof(m_scores));
+}
+
+int RBScoreTracker::LoadState(int n)
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	int size = sizeof(m_scores);
+	
+	char scorestr[256];
+	snprintf(scorestr, 256, "GS_SCORE_%d", n);
+	
+	int result = reg->QueryByte("GOLF", scorestr, m_scores, &size);
+	
+	return result;
+}
 
 void RBScoreTracker::SetPar(int hole, int par)
 {

@@ -22,22 +22,14 @@ RudeRegistry::~RudeRegistry(void)
 {
 }
 
-RudeRegistry * RudeRegistry::CreateRegistry()
+RudeRegistry * RudeRegistry::GetSingleton()
 {
-#ifdef RUDE_WIN
-	RudeRegistryWin *reg = new RudeRegistryWin();
-
-	return (RudeRegistry *) reg;
-#endif
-
-#ifdef RUDE_SYMBIAN
-	RudeRegistryText *reg = new RudeRegistryText();
-	
-	return (RudeRegistry *) reg;
-#endif
 	
 #ifdef RUDE_IPHONE
-	RudeRegistryCF *reg = new RudeRegistryCF();
+	static RudeRegistryCF *reg = 0;
+	
+	if(reg == 0)
+		reg = new RudeRegistryCF();
 	
 	return (RudeRegistry *) reg;
 #endif

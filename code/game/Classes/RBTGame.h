@@ -71,11 +71,26 @@ typedef enum {
 	kResultQuit
 } eGameResult;
 
+typedef struct {
+	eRBTGameState state;
+	
+	int curclub;
+	
+	float windDir;
+	btVector3 windVec;
+	float windSpeed;
+	
+	float swingpower;
+	float swingangle;
+	
+	btVector3 ball;
+} tRBTGameStateSave;
+
 class RBTGame : public RBGameBase
 {
 // Construction
 public:
-	RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers);
+	RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers, bool restorestate);
 	~RBTGame();
 
 	void NextFrame(float delta);
@@ -97,8 +112,12 @@ public:
 	
 	eGameResult GetResult() { return m_result; }
 	
+	void SaveState();
+	int LoadState();
 
 private:
+	
+	void RestoreState();
 	
 	void SetState(eRBTGameState state);
 	
@@ -192,6 +211,7 @@ private:
 	float m_encouragementTimer;
 	
 	float m_windDir;
+	float m_windSpeed;
 	btVector3 m_windVec;
 	
 	int m_placementGuidePower;

@@ -10,6 +10,7 @@
 #include "RudeFile.h"
 #include "RudeDebug.h"
 #include "RudePhysics.h"
+#include "RudeRegistry.h"
 #include "RudeTweaker.h"
 #include "RudeSound.h"
 #include <OpenGLES/ES1/gl.h>
@@ -41,7 +42,7 @@ const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
 const float kFollowTimerThreshold = 2.0f;
 
-RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers)
+RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers, bool restorestate)
 {	
 	m_result = kResultNone;
 	
@@ -227,12 +228,105 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
 	m_cameraButton.SetTextures("camera", "camera");
 	
-	SetState(kStateTeePosition);
+	if(restorestate)
+		LoadState();
+	else
+		SetState(kStateTeePosition);
 }
 
 RBTGame::~RBTGame()
 {
 	RudePhysics::GetInstance()->Destroy();
+}
+
+void RBTGame::SaveState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	tRBTGameStateSave save;
+	
+	save.state = m_state;
+	save.curclub = m_curClub;
+	save.windDir = m_windDir;
+	save.windVec = m_windVec;
+	save.windSpeed = m_windSpeed;
+	save.swingpower = m_swingPower;
+	save.swingangle = m_swingAngle;
+	save.ball = m_ball.GetPosition();
+	
+	reg->SetByte("GOLF", "GS_INGAME_STATE", &save, sizeof(save));
+	
+	for(int i = 0; i < m_numPlayers; i++)
+	{
+		RBScoreTracker *tracker = GetScoreTracker(i);
+		tracker->SaveState(i);
+	}
+}
+
+int RBTGame::LoadState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	tRBTGameStateSave load;
+	int loadsize = sizeof(load);
+	
+	if(reg->QueryByte("GOLF", "GS_INGAME_STATE", &load, &loadsize) == 0)
+	{
+		m_state = load.state;
+		m_curClub = load.curclub;
+		m_windDir = load.windDir;
+		m_windVec = load.windVec;
+		m_windSpeed = load.windSpeed;
+		m_swingPower = load.swingpower;
+		m_swingAngle = load.swingangle;
+		
+		m_ball.StickAtPosition(load.ball);
+	
+		RestoreState();
+		
+		
+		return 0;
+	}
+	
+	return -1;
+}
+
+void RBTGame::RestoreState()
+{
+	if(m_state == kStatePositionSwing2
+	   || m_state == kStatePositionSwing3
+	   || m_state == kStateWaitForSwing
+	   || m_state == kStateMenu
+	   || m_state == kStateExecuteSwing
+	   || m_state == kStateRegardBall)
+		m_state = kStatePositionSwing;
+	
+	if(m_state == kStateHitBall
+	   || m_state == kStateFollowBall)
+		m_state = kStateHitBall;
+	
+	m_windText.SetValue(m_windSpeed);
+	m_windControl.SetWind(m_windDir, m_windSpeed);
+	m_ball.SetWindSpeed(m_windVec);
+	
+	switch(m_state)
+	{
+		case kStateTeePosition:
+		{
+			NextClub(0);
+		}
+			break;
+		case kStatePositionSwing:
+		{
+			SetState(m_state);
+		}
+			break;
+		case kStateHitBall:
+		{
+			MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
+		}
+			break;
+	}
 }
 
 void RBTGame::SetState(eRBTGameState state)
@@ -309,6 +403,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateHitBall:
 			{ 
+				m_swingPower = m_swingControl.GetPower();
+				m_swingAngle = m_swingControl.GetAngle();
 				m_ballRecorder.Reset();
 			}
 			break;
@@ -353,6 +449,9 @@ void RBTGame::SetState(eRBTGameState state)
 			}
 			break;
 	}
+	
+	
+	SaveState();
 }
 
 void RBTGame::StateTeePosition(float delta)
@@ -390,7 +489,7 @@ void RBTGame::StateTeePosition(float delta)
 	
 	m_windText.SetValue(windspeed);
 	
-	float ws = windspeed;
+	m_windSpeed = windspeed;
 	
 	btVector3 winddir(1,0,0);
 	
@@ -402,7 +501,7 @@ void RBTGame::StateTeePosition(float delta)
 	rmat.setEulerYPR(m_windDir, 0.0f, 0.0f);
 	
 	m_windVec = rmat * winddir;
-	m_windVec *= ws;
+	m_windVec *= m_windSpeed;
 	
 	m_windControl.SetWind(m_windDir, windspeed);
 	m_ball.SetWindSpeed(m_windVec);
@@ -754,9 +853,6 @@ void RBTGame::FreshGuide()
 
 void RBTGame::HitBall()
 {
-	
-	m_swingPower = m_swingControl.GetPower();
-	m_swingAngle = m_swingControl.GetAngle();
 
 	
 	const float kMaxAngleModifier = 2.5f;

@@ -10,6 +10,7 @@
 #include "RBTRound.h"
 #include "RBScoreControl.h"
 #include "RudeGL.h"
+#include "RudeRegistry.h"
 #include "RBCourseData.h"
 
 
@@ -59,6 +60,81 @@ void RBTRound::SetCourse(int c)
 	m_tee = cd->m_tee;
 }
 
+void RBTRound::SaveState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	tRBTRoundSaveState save;
+	save.state = m_state;
+	save.hole = m_hole;
+	save.holeset = m_holeSet;
+	save.wind = m_wind;
+	save.tee = m_tee;
+	
+	reg->SetByte("GOLF", "GS_ROUND_STATE", &save, sizeof(save));
+	
+	for(int i = 0; i < kMaxPlayers; i++)
+	{
+		RBScoreTracker *tracker = GetScoreTracker(i);
+		tracker->SaveState(i);
+	}
+	
+}
+
+int RBTRound::LoadState()
+{
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	for(int i = 0; i < kMaxPlayers; i++)
+	{
+		RBScoreTracker *tracker = GetScoreTracker(i);
+		tracker->LoadState(i);
+	}
+	
+	tRBTRoundSaveState load;
+	int loadsize = sizeof(load);
+	
+	if(reg->QueryByte("GOLF", "GS_ROUND_STATE", &load, &loadsize) == 0)
+	{
+		
+		m_state = load.state;
+		m_hole = load.hole;
+		m_holeSet = load.holeset;
+		m_wind = load.wind;
+		m_tee = load.tee;
+		
+		RestoreState();
+		
+		return 0;
+	}
+	
+	return -1;
+}
+
+void RBTRound::RestoreState()
+{
+	switch(m_state)
+	{
+		case kStateInit:
+			
+			break;
+		case kStateInRound:
+			{
+				RBCourseHole *hole = GetCourseHole(0, m_holeSet, m_hole);
+				m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers, true);
+				
+			}
+			break;
+	}
+}
+
+void RBTRound::SetState(eRBTRoundState state)
+{
+	m_state = state;
+	
+	SaveState();
+}
+
 void RBTRound::NextFrame(float delta)
 {
 	if(m_state == kStateInit)
@@ -82,7 +158,7 @@ void RBTRound::NextFrame(float delta)
 			}
 		}
 		
-		m_state = kStateNextRound;
+		SetState(kStateNextRound);
 	}
 	else if(m_state == kStateNextRound)
 	{
@@ -98,12 +174,12 @@ void RBTRound::NextFrame(float delta)
 		
 		if(hole)
 		{
-			m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers);
-			m_state = kStateInRound;
+			m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers, false);
+			SetState(kStateInRound);
 		}
 		else
 		{
-			m_state = kStateDone;
+			SetState(kStateDone);
 		}
 		 
 	}
@@ -118,11 +194,11 @@ void RBTRound::NextFrame(float delta)
 				if(m_game->GetResult() == kResultComplete)
 				{
 					m_hole++;
-					m_state = kStateNextRound;
+					SetState(kStateNextRound);
 				}
 				else if(m_game->GetResult() == kResultQuit)
 				{
-					m_state = kStateDone;
+					SetState(kStateDone);
 				}
 			}
 		}

@@ -77,12 +77,12 @@ RBKeyMap * RBKeyMap::getInstance()
 
 void RBKeyMap::loadKeyMap()
 {
-	long buffer;
-	long buffersize;
-	long result;
+	int buffer;
+	int buffersize;
+	int result;
 
 
-	RudeRegistry *reg = RudeRegistry::CreateRegistry();
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
 	if(reg == NULL)
 		return;
 
@@ -229,7 +229,7 @@ void RBKeyMap::saveKeyMap()
 	long buffersize = sizeof(buffer);
 	long result;
 
-	RudeRegistry *reg = RudeRegistry::CreateRegistry();
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
 	if(reg == NULL)
 		return;
 

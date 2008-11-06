@@ -9,10 +9,10 @@ public:
 	RudeRegistry(void);
 	virtual ~RudeRegistry(void);
 
-	static RudeRegistry * CreateRegistry();
+	static RudeRegistry * GetSingleton();
 
-	virtual long QueryByte(TCHAR *app, TCHAR *name, void *buffer, long *buffersize) = 0;
-	virtual long SetByte(TCHAR *app, TCHAR *name, void *buffer, long buffersize) = 0;
+	virtual int QueryByte(TCHAR *app, TCHAR *name, void *buffer, int *buffersize) = 0;
+	virtual int SetByte(TCHAR *app, TCHAR *name, void *buffer, int buffersize) = 0;
 
 };
 

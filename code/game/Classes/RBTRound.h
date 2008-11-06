@@ -24,7 +24,13 @@ typedef enum {
 	kStateDone,
 } eRBTRoundState;
 
-
+typedef struct {
+	eRBTRoundState state;
+	int hole;
+	eCourseHoles holeset;
+	eCourseTee tee;
+	eCourseWind wind;
+} tRBTRoundSaveState;
 
 const int kMaxPlayers = 4;
 
@@ -46,7 +52,13 @@ public:
 	
 	void SetCourse(int course);
 	
+	void SaveState();
+	int LoadState();
+	
 private:
+	
+	void RestoreState();
+	void SetState(eRBTRoundState state);
 	
 	eRBTRoundState m_state;
 	RBTGame *m_game;

@@ -47,6 +47,9 @@ public:
 	
 	int GetScore(eCourseHoles holeSet, int hole, bool includeThisHole);
 	
+	void SaveState(int n);
+	int LoadState(int n);
+	
 private:
 
 	RBScoreEntry m_scores[kNumScores];

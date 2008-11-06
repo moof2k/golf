@@ -46,6 +46,12 @@ typedef enum {
 #define kRBTHeight 23
 #define kRBTWidth 10
 
+typedef struct {
+	eGameState state;
+	int course;
+	
+} tRBGameSaveState;
+
 
 class RBGame : public RudeGame
 {
@@ -74,10 +80,14 @@ public:
 
 private:
 	
+	void SaveState();
+	int LoadState();
+	
 	void SetState(eGameState state);
 
 	eGameState	m_state;
 	RBGameBase	*m_game;
+	int			m_course;
 
 	RBTRound	*m_rbt;
 	RBUITitle	*m_uiTitle;
