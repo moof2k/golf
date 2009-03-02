@@ -72,7 +72,10 @@ void RudeSound::BgmVolFade(float amount)
 void RudeSound::BgmVol(float vol)
 {
 	m_bgmVol = vol;
-	SoundEngine_SetBackgroundMusicVolume(m_bgmVol);
+	m_bgmVolFade = 0.0f;
+	
+	if(m_curBGM != kBGMNone)
+		SoundEngine_SetBackgroundMusicVolume(m_bgmVol);
 }
 
 void RudeSound::PlaySong(eSoundBGM num)

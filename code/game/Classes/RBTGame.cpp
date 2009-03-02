@@ -669,6 +669,20 @@ void RBTGame::AutoSelectClub()
 	
 	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
 	
+	// if the auto-selected club is the putter, change to the putting music
+	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	
+	if(club->m_type == kClubPutter)
+	{
+		RUDE_REPORT("RBTGame::AutoSelectClub starting putting music\n");
+		RudeSound::GetInstance()->PlaySong(kBGMPutting);
+		RudeSound::GetInstance()->BgmVol(1.0f);
+	}
+	else
+	{
+		RudeSound::GetInstance()->BgmVolFade(-0.2f);
+	}
+	
 	NextClub(0);
 }
 
