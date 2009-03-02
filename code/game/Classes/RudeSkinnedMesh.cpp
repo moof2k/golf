@@ -128,7 +128,7 @@ void RudeSkinnedMesh::Render()
 		SPODMaterial *material = &m_model.pMaterial[node->nIdxMaterial];
 		SPODMesh *mesh = &m_model.pMesh[node->nIdx];
 		
-		RUDE_ASSERT(mesh->sBoneIdx.eType == EPODDataUnsignedByte, "Bone indices must be unsigned byte");
+		RUDE_ASSERT(mesh->sBoneIdx.eType == EPODDataUnsignedByte, "Bone indices must be unsigned byte (mesh '%s')", node->pszName);
 		RUDE_ASSERT(mesh->sBoneWeight.eType == EPODDataFloat, "Bone weight must be float");
 		
 		

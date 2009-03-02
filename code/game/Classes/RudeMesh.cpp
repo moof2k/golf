@@ -30,6 +30,10 @@ RudeMesh::~RudeMesh()
 
 int RudeMesh::Load(const char *name)
 {
+	RUDE_ASSERT(name, "Loading mesh with no name");
+	
+	RUDE_REPORT("RudeMesh::Load %s\n", name);
+	
 	char filename[64];
 	sprintf(filename, "%s.POD", name);
 	
