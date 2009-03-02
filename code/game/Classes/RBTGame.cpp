@@ -331,7 +331,7 @@ void RBTGame::RestoreState()
 
 void RBTGame::SetState(eRBTGameState state)
 {
-	RUDE_REPORT("SetState %d => %d\n", m_state, state);
+	RUDE_REPORT("RBTGame::SetState %d => %d\n", m_state, state);
 	eRBTGameState prevstate = m_state;
 	m_state = state;
 	

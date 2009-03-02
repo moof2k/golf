@@ -12,6 +12,7 @@
 #define __H_RBGolfClub
 
 #include "RBTerrainMaterial.h"
+#include "RudeSound.h"
 
 const int kNumGolfClubs = 12;
 
@@ -40,7 +41,7 @@ public:
 	float m_power;
 	float m_dist;
 	float m_loft;
-	int m_swingsound;
+	eSoundEffect m_swingsound;
 	int m_materialRestriction;
 	
 	static RBGolfClub * GetClub(int num);

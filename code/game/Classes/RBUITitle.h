@@ -76,6 +76,8 @@ private:
 	float m_cameraTimer;
 	float m_readyTimer;
 	int m_course;
+	
+	bool m_startedMusic;
 };
 
 

@@ -2,26 +2,15 @@
 #ifndef _H_RudeSound
 #define _H_RudeSound
 
+#include "Rude.h"
 #include "RudeGlobals.h"
 #include "RudeDebug.h"
 
-#ifdef RUDE_IPHONE
-#define RUDE_SOUND_IPHONE
 #include "MikSound.h"
-#include <AudioToolbox/AudioToolbox.h>
-#endif
 
+#include "SoundEngine.h"
 
-#ifdef RUDE_SYMBIAN
-#include <coemain.h>
-#include "SoundStream.h"
-#include "SoundProvider.h"
-#define RUDE_SOUND_SYMBIAN
-
-#define kRudeSoundNumSounds 45
-#endif
-
-enum {
+typedef enum {
 	kSoundSwingWood = 0,
 	kSoundSwingWedge,
 	kSoundSwingWedgeInSand,
@@ -29,65 +18,61 @@ enum {
 	kSoundSwingIronSoft,
 	kSoundSwingPutter,
 	kSoundBallInHole,
-};
+	
+	kNumSounds,
+} eSoundEffect;
 
-#ifdef RUDE_SYMBIAN
-static const TUid kRudeSoundUid = { KUidVectorBlaster+1 };
-class RudeSound : public CCoeStatic
-#else
+typedef enum {
+	kBGMNone = -1,
+	kBGMSilence,
+	kBGMTitle,
+	kBGMPutting,
+	
+	kNumBGMs,
+} eSoundBGM;
+
 class RudeSound
-#endif
 {
 public:
-#ifdef RUDE_SYMBIAN
-	RudeSound(TUid uid);
-#else
 	RudeSound();
-#endif
 	~RudeSound();
 
 public:
 
 	static RudeSound * GetInstance();
 
-	void PlaySong(char *song);
+	void PlaySong(eSoundBGM song);
+	void StopSong();
 
-	void PlayWave(int num);
+	void PlayWave(eSoundEffect num);
 
-	void Tick();
+	void Tick(float delta);
+	
+	void BgmVolFade(float amount);
+	void BgmVol(float vol);
 
 	void Pause();
 	void Unpause();
 
 	void ToggleSound();
 
-	void SoundOn(bool soundon) { _soundon = soundon; }
-	bool SoundOn() { return _soundon; }
+	void SoundOn(bool soundon) { m_soundon = soundon; }
+	bool SoundOn() { return m_soundon; }
 
 	void Shutdown();
 
 private:
-#ifdef RUDE_SOUND_SYMBIAN
-	TPtr8* LoadFile(const TDesC& filename);
-#endif
-	void LoadWave(char *sound, int num);
 
-	bool _soundon;
+	void LoadWave(const char *sound, eSoundEffect num);
 
-	//RudeKeyMap *_keymap;
-
-#ifdef RUDE_SOUND_SYMBIAN
-	RSoundStreamClient* iSoundStream;
-
-	CModule* iModule;
-	CSoundPlayer* iSoundPlayer;
-	CSample **_samples;
-#endif
+	bool m_soundon;
 	
-#ifdef RUDE_SOUND_IPHONE
+	UInt32 m_soundids[kNumSounds];
+	eSoundBGM m_curBGM;
 	
-	SystemSoundID _soundids[20];
-#endif
+	float m_bgmVol;
+	float m_bgmVolFade;
+	bool m_bgmVolFadeEnabled;
 
 };
 

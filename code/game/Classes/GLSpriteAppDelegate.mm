@@ -50,15 +50,19 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "EAGLView.h"
 
 #include "MikSound.h"
+#include "Rude.h"
+#include "RudeDebug.h"
+#include "RBGame.h"
 
 @implementation GLSpriteAppDelegate
 
 @synthesize window;
 
 
-
 // Sets up the frame rate and starts animating the sprite.
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+	RUDE_REPORT("applicationDidFinishLaunching:\n");
+	
 	//application = application;
 	// Look in the Info.plist file and you'll see the status bar is hidden
 	// Set the style to black so it matches the background of the application
@@ -68,7 +72,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	glView.animationInterval = 1.0 / 60.0;
 	[glView startAnimation];
 
-	MikSound_Init();
+	//MikSound_Init();
+	
 }
 
 

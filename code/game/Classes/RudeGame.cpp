@@ -41,65 +41,6 @@ void RudeGame::NextFrame(float delta)
 
 void RudeGame::Render(float aspect)
 {
-	/*_rotate += delta * 5.0f;
-	
-	Rude3DSurface *surface3d = new Rude3DSurface(screen);
-	
-	surface3d->GrlSetViewport(0, 0, screen.GetHeight(), screen.GetWidth());
-	surface3d->GrlOrtho(0.0f, 0.0f, 0.0f, 2.0f, 2.0f, 2.0f);
-	surface3d->GrlLookAt(0.0f, 5.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	surface3d->GrlPerspective(5.0f, 50.0f);
-	surface3d->GrlLoadIdentity();
-	
-	surface3d->GrlRotateView(_rotate, 0.0f, 1.0f, 0.0f);
-	//surface3d.GrlDrawAxis();
-	
-	RudeVertex n[2];
-	RudeColor white(255,255,255);
-	
-	if(n == NULL)
-		return;
-	
-	float wox = 0.0f;
-	float woy = 0.0f;
-	float woz = 0.0f;
-	float ww = 1.0f;
-	float wh = 1.0f;
-	float wd = 1.0f;
-
-	n[0].x = wox - (ww);
-	n[0].y = woy;
-	n[0].z = woz;
-
-	n[1].x = wox + (ww);
-	n[1].y = woy;
-	n[1].z = woz;
-
-
-	surface3d->GrlDraw3DLine(&n[0], &n[1], &white, true);
-
-	n[0].x = wox;
-	n[0].y = woy - (wh);
-	n[0].z = woz;
-
-	n[1].x = wox;
-	n[1].y = woy + (wh);
-	n[1].z = woz;
-
-	surface3d->GrlDraw3DLine(&n[0], &n[1], screen.GetWhite(), true);
-
-
-	n[0].x = wox;
-	n[0].y = woy;
-	n[0].z = woz - (wd);
-
-	n[1].x = wox;
-	n[1].y = woy;
-	n[1].z = woz + (wd);
-
-	surface3d->GrlDraw3DLine(&n[0], &n[1], &white, true);
-	
-	delete surface3d;*/
 }
 
 

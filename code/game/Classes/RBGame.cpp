@@ -7,6 +7,7 @@
 #include "RudeText.h"
 #include "RudeTimeCounter.h"
 #include "RudeRegistry.h"
+#include "RudeSound.h"
 
 #include <mach/mach.h>
 #include <mach/mach_time.h>
@@ -125,6 +126,8 @@ void RBGame::SetState(eGameState state)
 void RBGame::Render(float delta, float aspect)
 {
 	uint64_t starttime = mach_absolute_time();
+	
+	RudeSound::GetInstance()->Tick(delta);
 	
 	RUDE_ASSERT(m_game, "No state set");
 	

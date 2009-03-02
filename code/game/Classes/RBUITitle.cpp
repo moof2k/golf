@@ -11,11 +11,13 @@
 #include "RudeGL.h"
 #include "RBCourseData.h"
 
-
+#include "RudeSound.h"
 
 
 RBUITitle::RBUITitle()
 {
+	m_startedMusic = false;
+	
 	m_terrain.LoadMesh("parfive");
 	m_skybox.Load("skybox");
 	
@@ -44,7 +46,7 @@ RBUITitle::RBUITitle()
 	m_startText.SetAnimType(kAnimPopSlide);
 	m_startText.SetText("Start");
 	m_startText.SetAlignment(kAlignCenter);
-	m_startText.SetRect(RudeRect(320, 0, 340, 320));
+	m_startText.SetRect(RudeRect(320, 0, 350, 320));
 	m_startText.SetStyle(kOutlineStyle);
 	m_startText.SetFont(kBigFont);
 	m_startText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
@@ -53,7 +55,7 @@ RBUITitle::RBUITitle()
 	m_continueText.SetAnimType(kAnimPopSlide);
 	m_continueText.SetText("Continue");
 	m_continueText.SetAlignment(kAlignCenter);
-	m_continueText.SetRect(RudeRect(350, 0, 370, 320));
+	m_continueText.SetRect(RudeRect(360, 0, 390, 320));
 	m_continueText.SetStyle(kOutlineStyle);
 	m_continueText.SetFont(kBigFont);
 	m_continueText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
@@ -126,6 +128,7 @@ RBUITitle::~RBUITitle()
 
 void RBUITitle::Reset()
 {
+	m_startedMusic = false;
 	m_done = false;
 	m_state = kTitleNone;
 	SetState(kTitleSplash);
@@ -133,6 +136,8 @@ void RBUITitle::Reset()
 
 void RBUITitle::SetState(eTitleState state)
 {
+	RUDE_REPORT("RBUITitle::SetState %d => %d\n", m_state, state);
+	
 	switch(m_state)
 	{
 		case kTitleNone:
@@ -237,6 +242,8 @@ void RBUITitle::SetState(eTitleState state)
 			
 			break;
 		case kTitleReadyToPlay:
+			RudeSound::GetInstance()->BgmVolFade(-0.5f);
+			
 			m_readyTimer = 0.0f;
 			m_goText.SetDesiredTranslation(btVector3(0,100,0));
 			m_backText.SetDesiredTranslation(btVector3(0,100,0));
@@ -247,6 +254,13 @@ void RBUITitle::SetState(eTitleState state)
 
 void RBUITitle::NextFrame(float delta)
 {
+	if(!m_startedMusic)
+	{
+		RudeSound::GetInstance()->BgmVol(1.0f);
+		RudeSound::GetInstance()->PlaySong(kBGMTitle);
+		m_startedMusic = true;
+	}
+	
 	if(m_state == kTitleSplash)
 		m_cameraTimer += delta;
 	
@@ -255,7 +269,10 @@ void RBUITitle::NextFrame(float delta)
 		m_readyTimer += delta;
 		
 		if(m_readyTimer > 1.5f)
+		{
+			m_startedMusic = false;
 			m_done = true;
+		}
 	}
 	
 	btVector3 camoff(50,0,0);
