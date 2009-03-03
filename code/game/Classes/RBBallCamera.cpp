@@ -13,6 +13,8 @@ RBBallCamera::RBBallCamera()
 : m_ball(0)
 , m_terrain(0)
 , m_height(0.0f)
+, m_guide(0.0f, 0.0f, 0.0f)
+, m_desiredGuide(0.0f, 0.0f, 0.0f)
 , m_desiredHeight(0.0f)
 , m_yaw(0.0f)
 , m_smooth(false)
@@ -48,7 +50,7 @@ void RBBallCamera::SetTrackMode(eTrackMode mode)
 			break;
 		case kRegardCamera:
 			{
-				btVector3 forward = m_guide - ball;
+				btVector3 forward = m_desiredGuide - ball;
 				forward.setY(0);
 				forward.normalize();
 				
@@ -84,7 +86,7 @@ void RBBallCamera::NextFrame(float delta)
 				float desiredHeight = m_desiredHeight * 75.0f;
 				
 				m_height += (desiredHeight - m_height) * delta * 3.0f;
-				
+				m_guide += (m_desiredGuide - m_guide) * delta * 6.0f;
 				
 				btVector3 forward = m_guide - ball;
 				forward.setY(0);
@@ -93,7 +95,7 @@ void RBBallCamera::NextFrame(float delta)
 				const float kBaseHeight = 12.0f;
 				const float kBaseDist = 18.0f;
 				
-				btVector3 pos = ball - ((m_height + kBaseDist) * forward) + btVector3(0,kBaseHeight + m_height,0);
+				btVector3 pos = ball - ((m_height + kBaseDist) * forward) + btVector3(0, kBaseHeight + m_height,0);
 				btVector3 lookAt = ball + ((m_height + kBaseDist * 2.0f) * forward);
 				
 				if(m_smooth)
@@ -114,7 +116,7 @@ void RBBallCamera::NextFrame(float delta)
 				
 				m_height += (desiredHeight - m_height) * delta * 3.0f;
 				
-				btVector3 forward = m_guide - ball;
+				btVector3 forward = m_desiredGuide - ball;
 				forward.setY(0);
 				forward.normalize();
 				
@@ -143,7 +145,7 @@ void RBBallCamera::NextFrame(float delta)
 			{
 				float height = 75.0f * m_desiredHeight;
 				
-				m_lookAt += (m_guide - m_lookAt) * delta * 3.0f;
+				m_lookAt += (m_desiredGuide - m_lookAt) * delta * 3.0f;
 				
 				btVector3 offset(0,height + 5.0f,18 + height);
 				
@@ -151,7 +153,7 @@ void RBBallCamera::NextFrame(float delta)
 				rot.setEulerYPR(m_yaw, 0.0f, 0.0f);
 				offset = rot * offset;
 				
-				btVector3 newpos = m_guide + offset;
+				btVector3 newpos = m_desiredGuide + offset;
 				
 				m_pos += (newpos - m_pos) * delta * 3.0f;
 			
@@ -197,12 +199,12 @@ void RBBallCamera::NextFrame(float delta)
 				
 				m_lookAt += (ball - m_lookAt) * delta * 3.0f;
 				
-				m_pos = m_guide;
+				m_pos = m_desiredGuide;
 			}
 			break;
 		case kRegardCamera:
 			{
-				btVector3 forward = m_guide - ball;
+				btVector3 forward = m_desiredGuide - ball;
 				//float len = forward.length();
 				forward.normalize();
 				

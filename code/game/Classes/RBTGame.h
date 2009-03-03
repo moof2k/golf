@@ -137,7 +137,7 @@ private:
 	void NextClub(int n);
 	void MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &dist);
 	void MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist);
-	void FreshGuide();
+	void FreshGuide(bool firstTime = false);
 	void StickBallInBounds();
 	void HitBall();
 	void AdjustGuide();

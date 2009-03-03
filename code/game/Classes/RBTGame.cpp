@@ -364,7 +364,7 @@ void RBTGame::SetState(eRBTGameState state)
 					AutoSelectClub();
 				}
 				
-				FreshGuide();
+				FreshGuide(true);
 			}
 			break;
 		case kStatePositionSwing2:
@@ -423,7 +423,7 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				m_ballCamera.SetDesiredHeight(5.0f);
-				m_ballCamera.SetGuide(m_terrain.GetGuidePoint(m_ball.GetPosition()));
+				m_ballCamera.ResetGuide(m_terrain.GetGuidePoint(m_ball.GetPosition()));
 				m_ballCamera.SetTrackMode(kRegardCamera);
 				
 			}
@@ -578,7 +578,7 @@ void RBTGame::StateFollowBall(float delta)
 		
 		btVector3 placement = m_terrain.GetCameraPlacement(futureball);
 		
-		m_ballCamera.SetGuide(placement);
+		m_ballCamera.ResetGuide(placement);
 		m_ballCamera.SetTrackMode(kPlacementCamera);
 		
 		
@@ -815,9 +815,8 @@ void RBTGame::StickBallInBounds()
 	
 }
 
-void RBTGame::FreshGuide()
+void RBTGame::FreshGuide(bool firstTime)
 {
-	RudeTimer timer;
 	
 	btVector3 ball = m_ball.GetPosition();
 	btVector3 guide = m_terrain.GetGuidePoint(ball);
@@ -844,6 +843,8 @@ void RBTGame::FreshGuide()
 	m_ballGuide.SetGuide(newGuide, fullrez);
 	newGuide = m_ballGuide.GetLastGuidePoint();
 	
+	if(firstTime)
+		m_ballCamera.ResetGuide(newGuide);
 	
 	m_ballCamera.SetGuide(newGuide);
 	m_ballCamera.SetDesiredHeight(m_swingHeight);
@@ -861,9 +862,6 @@ void RBTGame::FreshGuide()
 		else
 			m_ballCamera.SetTrackMode(kHitCamera);
 	}
-	
-	float t = timer.ElapsedSeconds();
-	printf("Guide time = %f\n", t);
 	
 	m_dBall = ball;
 	m_guidePosition = newGuide;

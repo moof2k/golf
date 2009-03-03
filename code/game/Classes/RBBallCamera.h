@@ -47,7 +47,9 @@ public:
 	void NextFrame(float delta);
 	
 	void SetTrackMode(eTrackMode mode);
-	void SetGuide(const btVector3 &guide) { m_guide = guide; }
+	
+	void ResetGuide(const btVector3 &guide) { m_desiredGuide = guide; m_guide = guide; }
+	void SetGuide(const btVector3 &guide) { m_desiredGuide = guide; }
 	
 private:
 	
@@ -56,6 +58,7 @@ private:
 	
 	eTrackMode m_mode;
 	btVector3 m_guide;
+	btVector3 m_desiredGuide;
 	float m_height;
 	float m_desiredHeight;
 	float m_yaw;
