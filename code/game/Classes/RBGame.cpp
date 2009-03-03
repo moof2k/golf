@@ -6,6 +6,7 @@
 #include "RudeMath.h"
 #include "RudeText.h"
 #include "RudeTimeCounter.h"
+#include "RudePerf.h"
 #include "RudeRegistry.h"
 #include "RudeSound.h"
 #include "RudeTimer.h"
@@ -122,7 +123,10 @@ void RBGame::SetState(eGameState state)
 
 void RBGame::Render(float delta, float aspect)
 {
+	RudePerf::NextFrame(delta);
+
 	RudeTimer timer;
+	
 	
 	RudeSound::GetInstance()->Tick(delta);
 	
@@ -150,7 +154,6 @@ void RBGame::Render(float delta, float aspect)
 			break;
 
 	}
-	
 
 	float actualElapsedSeconds = timer.ElapsedSeconds();
 	
@@ -167,8 +170,12 @@ void RBGame::Render(float delta, float aspect)
 	float d_ms = d_s * 1000.0f;
 	float d_fps = 1.0f / d_s;
 	
+	RudePerf::PrintAll();
+	
 	RudeText::Print(0.0f, 0.0f, 0.5f, 0xFF00FF00, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
 	RudeText::Flush();
+	
+	
 
 }
 

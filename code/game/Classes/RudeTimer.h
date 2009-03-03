@@ -43,6 +43,11 @@ public:
 		return ElapsedRaw() * sTimebaseInfo.numer / sTimebaseInfo.denom;
 	}
 	
+	float ElapsedMilliseconds()
+	{
+		return ((float) ElapsedNanoseconds()) / 1000000.0f;
+	}
+	
 	float ElapsedSeconds()
 	{
 		return ((float) ElapsedNanoseconds()) / 1000000000.0f;

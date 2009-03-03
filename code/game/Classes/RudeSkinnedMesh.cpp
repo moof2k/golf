@@ -9,10 +9,13 @@
 
 #include "RudeSkinnedMesh.h"
 
-#include "RudeGL.h"
-#include "RudeTextureManager.h"
-#include "RudeFile.h"
 #include "RudeDebug.h"
+#include "RudeGL.h"
+#include "RudeFile.h"
+#include "RudePerf.h"
+#include "RudeTextureManager.h"
+
+
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
@@ -88,6 +91,8 @@ void RudeSkinnedMesh::NextFrame(float delta)
 
 void RudeSkinnedMesh::Render()
 {
+	RUDE_PERF_START(kPerfRudeSkinMeshRender);
+	
 	//int numbonemats;
 	//glGetIntegerv(GL_MAX_PALETTE_MATRICES_OES, &numbonemats);
 	//printf("bonemats %d\n", numbonemats);
@@ -202,7 +207,9 @@ void RudeSkinnedMesh::Render()
 			
 			int numidx = (end - offset);
 			
+			
 			glDrawElements(GL_TRIANGLES, numidx, GL_UNSIGNED_SHORT, &indices[offset]);
+			
 			
 		}
 		
@@ -216,5 +223,6 @@ void RudeSkinnedMesh::Render()
 	glDisableClientState(GL_MATRIX_INDEX_ARRAY_OES);
 	glDisableClientState(GL_WEIGHT_ARRAY_OES);
 	
+	RUDE_PERF_STOP(kPerfRudeSkinMeshRender);
 }
 

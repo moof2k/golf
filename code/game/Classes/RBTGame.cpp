@@ -9,8 +9,10 @@
 #include "RudeText.h"
 #include "RudeFile.h"
 #include "RudeDebug.h"
+#include "RudePerf.h"
 #include "RudePhysics.h"
 #include "RudeRegistry.h"
+#include "RudeTimer.h"
 #include "RudeTweaker.h"
 #include "RudeSound.h"
 #include <OpenGLES/ES1/gl.h>
@@ -815,6 +817,7 @@ void RBTGame::StickBallInBounds()
 
 void RBTGame::FreshGuide()
 {
+	RudeTimer timer;
 	
 	btVector3 ball = m_ball.GetPosition();
 	btVector3 guide = m_terrain.GetGuidePoint(ball);
@@ -859,7 +862,8 @@ void RBTGame::FreshGuide()
 			m_ballCamera.SetTrackMode(kHitCamera);
 	}
 	
-	
+	float t = timer.ElapsedSeconds();
+	printf("Guide time = %f\n", t);
 	
 	m_dBall = ball;
 	m_guidePosition = newGuide;
@@ -1009,6 +1013,8 @@ void RBTGame::AdjustGuide()
 
 void RBTGame::NextFrame(float delta)
 {
+	RUDE_PERF_START(kPerfRBTGameNextFrame);
+	
 	if(gDebugCamera != gDebugCameraPrev)
 	{
 		gDebugCameraPrev = gDebugCamera;
@@ -1113,6 +1119,8 @@ void RBTGame::NextFrame(float delta)
 	m_ball.NextFrame(delta);
 	m_curCamera->NextFrame(delta);
 	
+	
+	RUDE_PERF_STOP(kPerfRBTGameNextFrame);
 }
 
 void RBTGame::RenderCalcOrthoDrawPositions()
@@ -1260,6 +1268,8 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 
 void RBTGame::Render(float aspect)
 {
+	RUDE_PERF_START(kPerfRBTGameRender);
+	
 	RGL.SetViewport(0, 0, 480, 320);
 
 	m_curCamera->SetView(aspect);
@@ -1281,6 +1291,9 @@ void RBTGame::Render(float aspect)
 	{
 		m_ballRecorder.RenderRecords();
 	}
+	
+	RUDE_PERF_STOP(kPerfRBTGameRender);
+	
 	
 	RGL.Enable(kDepthTest, true);
 	m_golfer.Render();
@@ -1377,6 +1390,7 @@ void RBTGame::Render(float aspect)
 			RenderShotInfo(false, false);
 			break;
 	}
+	
 	
 	
 	
