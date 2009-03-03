@@ -8,10 +8,7 @@
 #include "RudeTimeCounter.h"
 #include "RudeRegistry.h"
 #include "RudeSound.h"
-
-#include <mach/mach.h>
-#include <mach/mach_time.h>
-#include <unistd.h>
+#include "RudeTimer.h"
 
 RBGame::RBGame()
 {
@@ -125,7 +122,7 @@ void RBGame::SetState(eGameState state)
 
 void RBGame::Render(float delta, float aspect)
 {
-	uint64_t starttime = mach_absolute_time();
+	RudeTimer timer;
 	
 	RudeSound::GetInstance()->Tick(delta);
 	
@@ -154,16 +151,8 @@ void RBGame::Render(float delta, float aspect)
 
 	}
 	
-	uint64_t endtime = mach_absolute_time();
-	uint64_t actualtime = endtime - starttime;
-	
-	static mach_timebase_info_data_t    sTimebaseInfo = { 0,0 };
-	if ( sTimebaseInfo.denom == 0 ) {
-        (void) mach_timebase_info(&sTimebaseInfo);
-    }
-	
-	uint64_t elapsedNano = actualtime * sTimebaseInfo.numer / sTimebaseInfo.denom;
-	float actualElapsedSeconds = ((float) elapsedNano) / 1000000000.0f;
+
+	float actualElapsedSeconds = timer.ElapsedSeconds();
 	
 	static RudeTimeCounter sActualTimes;
 	sActualTimes.AddTime(actualElapsedSeconds);
