@@ -61,6 +61,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_wind = wind;
 	m_curPlayer = 0;
 	
+	m_playedBallDissapointmentSound = false;
 	
 	m_ball.Load("ball_1");
 	m_ball.SetPosition(btVector3(0,100,0));
@@ -247,14 +248,17 @@ void RBTGame::SaveState()
 	
 	tRBTGameStateSave save;
 	
+	save.size = sizeof(save);
 	save.state = m_state;
-	save.curclub = m_curClub;
+	save.curClub = m_curClub;
 	save.windDir = m_windDir;
 	save.windVec = m_windVec;
 	save.windSpeed = m_windSpeed;
-	save.swingpower = m_swingPower;
-	save.swingangle = m_swingAngle;
+	save.swingPower = m_swingPower;
+	save.swingAngle = m_swingAngle;
+	save.ballToHoleDist = m_ballToHoleDist;
 	save.ball = m_ball.GetPosition();
+	save.ballMaterial = m_ball.GetCurMaterial();
 	
 	reg->SetByte("GOLF", "GS_INGAME_STATE", &save, sizeof(save));
 	
@@ -274,15 +278,22 @@ int RBTGame::LoadState()
 	
 	if(reg->QueryByte("GOLF", "GS_INGAME_STATE", &load, &loadsize) == 0)
 	{
+		if(load.size != sizeof(load))
+		{
+			RUDE_REPORT("Failed to load game state, size mismatch!\n");
+			return -1;
+		}
+		
 		m_state = load.state;
-		m_curClub = load.curclub;
+		m_curClub = load.curClub;
 		m_windDir = load.windDir;
 		m_windVec = load.windVec;
 		m_windSpeed = load.windSpeed;
-		m_swingPower = load.swingpower;
-		m_swingAngle = load.swingangle;
-		
+		m_swingPower = load.swingPower;
+		m_swingAngle = load.swingAngle;
+		m_ballToHoleDist = load.ballToHoleDist;
 		m_ball.StickAtPosition(load.ball);
+		m_ball.SetCurMaterial(load.ballMaterial);
 	
 		RestoreState();
 		
@@ -443,6 +454,7 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
+				RudeSound::GetInstance()->BgmVolFade(-1.0f);
 				
 				m_ballCamera.SetDesiredHeight(5.0f);
 				m_ballCamera.SetGuide(m_terrain.GetHole());
@@ -617,7 +629,16 @@ void RBTGame::StateFollowBall(float delta)
 			return;
 		}
 		
-		const float kBallStoppedObservationTime = 2.5f;
+		if(!m_playedBallDissapointmentSound)
+		{
+			if(m_ballToHoleDist < 2.0f)
+			{
+				RudeSound::GetInstance()->PlayWave(kSoundMissedPutt);
+				m_playedBallDissapointmentSound = true;
+			}
+		}
+		
+		const float kBallStoppedObservationTime = 2.0f;
 		
 		m_stopTimer += delta;
 		

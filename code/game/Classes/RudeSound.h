@@ -18,6 +18,7 @@ typedef enum {
 	kSoundSwingIronSoft,
 	kSoundSwingPutter,
 	kSoundBallInHole,
+	kSoundMissedPutt,
 	
 	kNumSounds,
 } eSoundEffect;

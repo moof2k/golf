@@ -72,18 +72,24 @@ typedef enum {
 } eGameResult;
 
 typedef struct {
+	int size;
+	
 	eRBTGameState state;
 	
-	int curclub;
+	int curClub;
 	
 	float windDir;
 	btVector3 windVec;
 	float windSpeed;
 	
-	float swingpower;
-	float swingangle;
+	float swingPower;
+	float swingAngle;
+	
+	float ballToHoleDist;
 	
 	btVector3 ball;
+	eRBTerrainMaterial ballMaterial;
+	
 } tRBTGameStateSave;
 
 class RBTGame : public RBGameBase
@@ -226,6 +232,8 @@ private:
 	
 	float m_ballShotDist;
 	float m_ballToHoleDist;
+	
+	bool m_playedBallDissapointmentSound;
 	
 	int m_holeNum;
 	int m_par;

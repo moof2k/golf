@@ -13,7 +13,8 @@ const char * kSoundFilenames[kNumSounds] = {
 	"swing_driver.wav",
 	"swing_iron_soft.wav",
 	"swing_putter.wav",
-	"ball_in_hole.wav"
+	"ball_in_hole.wav",
+	"crowd_missedputt.wav"
 };
 
 const char * kSoundBGMs[kNumBGMs] = {
