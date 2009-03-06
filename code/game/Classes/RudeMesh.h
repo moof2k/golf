@@ -37,6 +37,7 @@ public:
 	
 	void SetScale(const btVector3 &s) { m_scale = s; }
 	
+	void EnableModel(int n, bool enable);
 	
 protected:
 	

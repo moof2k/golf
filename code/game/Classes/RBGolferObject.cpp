@@ -76,6 +76,13 @@ void RBGolferObject::SetSwingType(eRBGolfClubType type)
 	m_swingType = type;
 	
 	SetReady();
+	
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	mesh->EnableModel(1, m_swingType == kClubWood);
+	mesh->EnableModel(2, m_swingType == kClubIron);
+	mesh->EnableModel(3, m_swingType == kClubWedge);
+	mesh->EnableModel(4, m_swingType == kClubPutter);
 }
 
 void RBGolferObject::SetBackSwing(float pct)

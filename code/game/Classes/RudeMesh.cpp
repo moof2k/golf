@@ -116,6 +116,33 @@ int RudeMesh::Load(const char *name)
 	
 }
 
+void RudeMesh::EnableModel(int n, bool enable)
+{
+	bool found = false;
+	for(int i = 0; i < m_model.nNumNode; i++)
+	{
+		SPODNode *node = &m_model.pNode[i];
+		
+		if(!node->pszName)
+			continue;
+		
+		if(node->pszName[0] == 'M' || node->pszName[0] == 'm')
+		{
+			if(node->pszName[1] == ('0' + n))
+			{
+				found = true;
+				
+				if(enable)
+					node->pszName[0] = 'M';
+				else
+					node->pszName[0] = 'm';
+			}
+		}
+	}
+	
+	RUDE_ASSERT(found, "Could not find model number %d", n);
+	
+}
 
 void RudeMesh::Render()
 {
