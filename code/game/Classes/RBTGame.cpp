@@ -720,6 +720,8 @@ void RBTGame::NextClub(int n)
 	
 	m_clubButton.SetTextures(club->m_textureName, club->m_textureName);
 	
+	m_golfer.SetSwingType(club->m_type);
+	
 	FreshGuide();
 }
 

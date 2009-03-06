@@ -28,7 +28,9 @@ typedef enum {
 	kClubWood,
 	kClubIron,
 	kClubWedge,
-	kClubPutter
+	kClubPutter,
+	
+	kNumClubTypes
 } eRBGolfClubType;
 
 class RBGolfClub {

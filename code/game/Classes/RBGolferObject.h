@@ -11,11 +11,20 @@
 #define __H_RBGolferObject
 
 #include "RudeObject.h"
+#include "RBGolfClub.h"
 
 const int kNumNodes = 3;
 
-class RBGolferObject : public RudeObject {
-	
+typedef struct {
+	float m_backSwingStart;
+	float m_backSwingEnd;
+	float m_fwdSwingStart;
+	float m_fwdSwingContact;
+	float m_fwdSwingEnd;
+} tRBGolferSwingAnimationPoints;
+
+class RBGolferObject : public RudeObject
+{
 	
 public:
 	RBGolferObject();
@@ -33,6 +42,7 @@ public:
 	void SetReady();
 	void SetBackSwing(float pct);
 	void SetForwardSwing(float pct);
+	void SetSwingType(eRBGolfClubType t);
 	bool HasSwung();
 	
 	virtual void Render();
@@ -46,6 +56,8 @@ private:
 	
 	btVector3 m_nodes[kNumNodes];
 	int m_node;
+	
+	eRBGolfClubType m_swingType;
 };
 
 #endif

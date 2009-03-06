@@ -14,10 +14,18 @@
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
+const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
+	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
+	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
+	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
+	{ 39.0f, 46.0f, 46.0f, 51.2f, 76.5f },
+};
+
 RBGolferObject::RBGolferObject()
 : m_node(0)
 , m_ball(0,0,0)
 , m_guide(0,0,1)
+, m_swingType(kClubWood)
 {
 	for(int i = 0; i < kNumNodes; i++)
 		m_nodes[i] = btVector3(0,0,0);
@@ -57,15 +65,25 @@ void RBGolferObject::SetReady()
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	mesh->SetFrame(1.0f);
+	mesh->SetFrame(kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart);
+}
+
+void RBGolferObject::SetSwingType(eRBGolfClubType type)
+{
+	if(m_swingType == type)
+		return;
+	
+	m_swingType = type;
+	
+	SetReady();
 }
 
 void RBGolferObject::SetBackSwing(float pct)
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kBackSwingStart = 2.0f;
-	const float kBackSwingEnd = 30.0f;
+	const float kBackSwingStart = kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart;
+	const float kBackSwingEnd = kRBGolferSwingAnimationPoints[m_swingType].m_backSwingEnd;
 	
 	float frame = (kBackSwingEnd - kBackSwingStart) * pct + kBackSwingStart;
 	
@@ -76,9 +94,9 @@ void RBGolferObject::SetForwardSwing(float pct)
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kForwardSwingStart = 30.0f;
-	const float kForwardContact = 41.0f;
-	const float kForwardSwingEnd = 67.0f;
+	const float kForwardSwingStart = kRBGolferSwingAnimationPoints[m_swingType].m_fwdSwingStart;
+	const float kForwardContact = kRBGolferSwingAnimationPoints[m_swingType].m_fwdSwingContact;
+	const float kForwardSwingEnd = kRBGolferSwingAnimationPoints[m_swingType].m_fwdSwingEnd;
 	
 	float frame = (kForwardSwingEnd - kForwardContact) * pct + kForwardSwingStart;
 	
@@ -89,7 +107,7 @@ bool RBGolferObject::HasSwung()
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
-	const float kSwingPoint = 41.0f;
+	const float kSwingPoint = kRBGolferSwingAnimationPoints[m_swingType].m_fwdSwingContact;;
 	
 	float frame = mesh->GetFrame();
 	
@@ -124,7 +142,7 @@ void RBGolferObject::Render()
 	//glTranslatef(0.0f, 0.0f, -3.5f);
 	
 	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
-	glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
+	//glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
 	glScalef(0.04f, 0.04f, 0.04f);
 
 	
