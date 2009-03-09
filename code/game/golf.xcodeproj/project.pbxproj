@@ -38,6 +38,9 @@
 		9A56CED70F5BB4C00013B650 /* bgm_title.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CED60F5BB4C00013B650 /* bgm_title.m4a */; };
 		9A56CED90F5BB4C40013B650 /* bgm_putting.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CED80F5BB4C40013B650 /* bgm_putting.m4a */; };
 		9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CF730F5BC5470013B650 /* bgm_silence.m4a */; };
+		9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */; };
+		9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */; };
+		9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */; };
 		9A7400300E6E9AC5008490F7 /* RudeTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */; };
 		9A7400990E6FC7D7008490F7 /* RudeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400980E6FC7D7008490F7 /* RudeFile.cpp */; };
 		9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */; };
@@ -317,6 +320,11 @@
 		9A56CED60F5BB4C00013B650 /* bgm_title.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_title.m4a; path = Data/bgm_title.m4a; sourceTree = "<group>"; };
 		9A56CED80F5BB4C40013B650 /* bgm_putting.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_putting.m4a; path = Data/bgm_putting.m4a; sourceTree = "<group>"; };
 		9A56CF730F5BC5470013B650 /* bgm_silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_silence.m4a; path = Data/bgm_silence.m4a; sourceTree = "<group>"; };
+		9A56CF990F5D0A2E0013B650 /* RudeTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimer.h; path = Classes/RudeTimer.h; sourceTree = "<group>"; };
+		9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimer.cpp; path = Classes/RudeTimer.cpp; sourceTree = "<group>"; };
+		9A56CFAB0F5D0E360013B650 /* RudePerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePerf.h; path = Classes/RudePerf.h; sourceTree = "<group>"; };
+		9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = Classes/RudePerf.cpp; sourceTree = "<group>"; };
+		9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crowd_missedputt.wav; path = Data/crowd_missedputt.wav; sourceTree = "<group>"; };
 		9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimeCounter.h; path = Classes/RudeTimeCounter.h; sourceTree = "<group>"; };
 		9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimeCounter.cpp; path = Classes/RudeTimeCounter.cpp; sourceTree = "<group>"; };
 		9A7400970E6FC7D7008490F7 /* RudeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFile.h; path = Classes/RudeFile.h; sourceTree = "<group>"; };
@@ -893,6 +901,7 @@
 				9A4F1DBA0E8793B0001D1F0B /* swing_iron_soft.wav */,
 				9A4F1DBB0E8793B0001D1F0B /* swing_putter.wav */,
 				9A4F1DC10E8793B6001D1F0B /* ball_in_hole.wav */,
+				9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -976,6 +985,8 @@
 				9A74FFB10E6E934B008490F7 /* RudeText.cpp */,
 				9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */,
 				9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */,
+				9A56CF990F5D0A2E0013B650 /* RudeTimer.h */,
+				9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */,
 				9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */,
 				9AB4286A0E7DC9D1001429D6 /* RudeTweaker.h */,
 				9A7400970E6FC7D7008490F7 /* RudeFile.h */,
@@ -988,6 +999,8 @@
 				9A9199A80E71205C00BE65AF /* RudeSkybox.cpp */,
 				9A3CA5270E750A6E00BDBA8B /* RudeObject.h */,
 				9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */,
+				9A56CFAB0F5D0E360013B650 /* RudePerf.h */,
+				9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */,
 				9A3CA5AF0E75122700BDBA8B /* RudePhysics.h */,
 				9A3CA5B00E75122700BDBA8B /* RudePhysics.cpp */,
 				9A3CA56D0E750DC200BDBA8B /* RudePhysicsMesh.h */,
@@ -1638,6 +1651,7 @@
 				9A56CED70F5BB4C00013B650 /* bgm_title.m4a in Resources */,
 				9A56CED90F5BB4C40013B650 /* bgm_putting.m4a in Resources */,
 				9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */,
+				9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1827,6 +1841,8 @@
 				9ACA188D0EBAAE160014C128 /* RBCourseData.cpp in Sources */,
 				9ACA19DA0EBADDC40014C128 /* RBWindControl.cpp in Sources */,
 				9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */,
+				9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */,
+				9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
