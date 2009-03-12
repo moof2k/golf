@@ -8,17 +8,24 @@
  */
 
 #include "RBTerrain.h"
+#include "RBGolfBall.h"
+
+#include "RudeCollision.h"
+#include "RudeDebug.h"
+#include "RudeGL.h"
+#include "RudeGLD.h"
 #include "RudeMesh.h"
 #include "RudePhysicsMesh.h"
 #include "RudePhysics.h"
-#include "RBGolfBall.h"
-#include "RudeDebug.h"
 #include "RudeTextureManager.h"
-#include "RudeGL.h"
 #include "RudeTweaker.h"
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
+
+bool gDebugRenderGuides = false;
+
+RUDE_TWEAK(DebugRenderGuides, kBool, gDebugRenderGuides);
 
 float gHoleRadius = 0.6f;
 float gHoleRenderRadius = 0.8f;
@@ -80,6 +87,7 @@ RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 
 RBTerrain::RBTerrain()
 : m_hole(0,0,0)
+, m_guidePoint(0,0,0)
 {
 }
 
@@ -204,10 +212,12 @@ void RBTerrain::LoadNodes()
 	RUDE_ASSERT(m_teeBoxes.size() > 0, "Terrain has no tee boxes (N0)");
 	RUDE_ASSERT(m_holes.size() > 0, "Terrain has no holes (N1)");
 	RUDE_ASSERT(m_cameraPlacements.size() > 0, "Terrain has no camera placements (N2)");
+	RUDE_ASSERT(m_guidePoints.size() > 0, "Terrain has no guide points (N3)");
 	
 	m_hole = m_holes[0];
 	
-	//m_hole = m_teeBox + btVector3(0,0,-20);
+	// last guide point is the hole
+	m_guidePoints.push_back(m_hole);
 }
 
 btVector3 RBTerrain::GetTeeBox()
@@ -377,44 +387,111 @@ btVector3 RBTerrain::GetCameraPlacement(btVector3 ball)
 	return m_cameraPlacements[best];
 }
 
-btVector3 RBTerrain::GetGuidePoint(btVector3 ball)
+void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 {
-	const float kGuideThreshold = 30.0f * 3.0f;
+	// center of circle, flatten to y=0
+	btVector3 sc(ball);
+	sc.setY(0.0f);
 	
-	btVector3 holeVec = m_hole - ball;
-	float holeDistToBall = holeVec.length();
+	// position of hole, flatten to y=0
+	btVector3 hole(m_hole);
+	hole.setY(0.0f);
 	
-	int guide = -1;
-	float bestDistanceHole = holeDistToBall;
+	
+	bool bestFound = false;
+	
+	btVector3 bestIntersectionPoint(0,0,0);
+	float bestIntersectionDist = 30000.0f;
+	
+	// #1 search for guide point within range closest to the hole
 	
 	for(int i = 0; i < m_guidePoints.size(); i++)
 	{
-		btVector3 &p = m_guidePoints[i];
+		// guide point, flatten to y=0
+		btVector3 point(m_guidePoints[i]);
+		point.setY(0.0f);
 		
-		btVector3 guideVecBall = p - ball;
-		float guideDistToBall = guideVecBall.length();
+		float distToBall = (point - sc).length();
 		
-		btVector3 guideVecHole = p - m_hole;
-		float guideDistToHole = guideVecHole.length();
-		
-		if(guideDistToHole < holeDistToBall)
+		if(distToBall < clubDistance)
 		{
-			if(guideDistToBall > kGuideThreshold)
+			// this point is within range, check how far it is from the hole
+			
+			float distToHole = (point - hole).length();
+			
+			if(distToHole < bestIntersectionDist)
 			{
-				if(guideDistToHole < bestDistanceHole)
+				bestIntersectionDist = distToHole;
+				bestIntersectionPoint = point;
+				bestFound = true;
+			}
+		}
+	}
+	
+	// #2 search for the sphere/line segment intersection closest to the hole
+	
+	btVector3 lastpoint;
+	
+	for(int i = 0; i < m_guidePoints.size(); i++)
+	{
+		// guide point, flatten to y=0
+		btVector3 point(m_guidePoints[i]);
+		point.setY(0.0f);
+		
+		if(i != 0)
+		{
+			btVector3 p0, p1;
+			float p0dist = 30000.0f;
+			float p1dist = 30000.0f;
+			
+			int intersections = RudeCollision::LineSegmentAndSphere(lastpoint, point, sc, clubDistance, p0, p1);
+			
+			if(intersections)
+			{
+				p0dist = (p0 - hole).length();
+				
+				if(intersections > 1)
+					p1dist = (p1 - hole).length();
+				
+				if(p0dist < bestIntersectionDist)
 				{
-					guide = i;
-					bestDistanceHole = guideDistToHole;
+					bestIntersectionDist = p0dist;
+					bestIntersectionPoint = p0;
+					bestFound = true;
+				}
+				if(p1dist < bestIntersectionDist)
+				{
+					bestIntersectionDist = p1dist;
+					bestIntersectionPoint = p1;
+					bestFound = true;
 				}
 			}
 		}
 		
+		lastpoint = point;
 	}
 	
-	if(guide >= 0)
-		return m_guidePoints[guide];
-	else
-		return m_hole;
+	
+	// #3 if we still didn't find a point then just pick the closest point to the ball
+	
+	if(bestFound == false)
+	{
+		for(int i = 0; i < m_guidePoints.size(); i++)
+		{
+			btVector3 point(m_guidePoints[i]);
+			point.setY(0.0f);
+			
+			float distToBall = (point - sc).length();
+			
+			if(distToBall < bestIntersectionDist)
+			{
+				bestIntersectionDist = distToBall;
+				bestIntersectionPoint = point;
+			}
+		}
+	}
+	
+	m_guidePoint = bestIntersectionPoint;
 }
 
 void RBTerrain::Render()
@@ -422,6 +499,9 @@ void RBTerrain::Render()
 	RudeObject::Render();
 	
 	RenderHole();
+	
+	if(gDebugRenderGuides)
+		RenderGuides();
 }
 
 void RBTerrain::RenderHole()
@@ -476,6 +556,29 @@ void RBTerrain::RenderHole()
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
+}
+
+void RBTerrain::RenderGuides()
+{
+	btVector3 lastpoint;
+	
+	for(int i = 0; i < m_guidePoints.size(); i++)
+	{
+		if(i != 0)
+		{
+			RGLD.DebugDrawLine(lastpoint, m_guidePoints[i]);
+		}
+		
+		lastpoint = m_guidePoints[i];
+	}
+	
+	btVector3 guide_p1 = m_guidePoint;
+	btVector3 guide_p2 = m_guidePoint;
+	
+	guide_p1.setY(guide_p1.y() - 25);
+	guide_p2.setY(guide_p2.y() + 25);
+	
+	RGLD.DebugDrawLine(guide_p1, guide_p2);
 }
 
 bool RBTerrain::CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result)

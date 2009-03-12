@@ -46,8 +46,10 @@ public:
 	bool IsOutOfBounds(const btVector3 &position);
 	bool IsOutOfBoundsAndGone(const btVector3 &position);
 	
+	void UpdateGuidePoint(const btVector3 &ball, float clubDistance);
+	
 	btVector3 GetTeeBox();
-	btVector3 GetGuidePoint(btVector3 ball);
+	btVector3 GetGuidePoint() { return m_guidePoint; }
 	btVector3 GetHole() { return m_hole; }
 	btVector3 GetCameraPlacement(btVector3 ball);
 	
@@ -65,6 +67,7 @@ private:
 	void LoadMaterials();
 	void LoadNodes();
 	void RenderHole();
+	void RenderGuides();
 	
 	btVector3 m_hole;
 	
@@ -74,6 +77,8 @@ private:
 	std::vector<btVector3> m_holes;
 	std::vector<btVector3> m_guidePoints;
 	std::vector<btVector3> m_cameraPlacements;
+	
+	btVector3 m_guidePoint;
 	
 	int m_holeTexture;
 	eCourseTee m_tee;

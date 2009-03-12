@@ -61,6 +61,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include "RudeText.h"
 #include "RudeFont.h"
 #include "RudeTweaker.h"
+#include "RudeUnitTest.h"
 
 RBGame *gVBGame = 0;
 bool gLandscape = false;
@@ -93,6 +94,7 @@ bool gLandscape = false;
 - (id)initWithCoder:(NSCoder*)coder
 {
 	RudeDebug::Init();
+	RudeUnitTest::UnitTest();
 	
 	if((self = [super initWithCoder:coder])) {
 		// Get the layer

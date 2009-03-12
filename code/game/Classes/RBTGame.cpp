@@ -437,7 +437,7 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				m_ballCamera.SetDesiredHeight(5.0f);
-				m_ballCamera.ResetGuide(m_terrain.GetGuidePoint(m_ball.GetPosition()));
+				m_ballCamera.ResetGuide(m_terrain.GetGuidePoint());
 				m_ballCamera.SetTrackMode(kRegardCamera);
 				
 			}
@@ -695,8 +695,13 @@ void RBTGame::AutoSelectClub()
 	
 	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
 	
-	// if the auto-selected club is the putter, change to the putting music
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	
+	// tell terrain to update guide point
+	m_terrain.UpdateGuidePoint(m_ball.GetPosition(), club->m_dist * 3.0f);
+	
+	// if the auto-selected club is the putter, change to the putting music
+	
 	
 	if(club->m_type == kClubPutter)
 	{
@@ -845,7 +850,7 @@ void RBTGame::FreshGuide(bool firstTime)
 {
 	
 	btVector3 ball = m_ball.GetPosition();
-	btVector3 guide = m_terrain.GetGuidePoint(ball);
+	btVector3 guide = m_terrain.GetGuidePoint();
 	btVector3 aimvec = guide - ball;
 	
 	btMatrix3x3 mat;
@@ -910,7 +915,7 @@ void RBTGame::HitBall()
 	loft = (loft / 180.0f) * 3.1415926f;
 	
 	btVector3 ball = m_ball.GetPosition();
-	btVector3 guide = m_terrain.GetGuidePoint(ball);
+	btVector3 guide = m_terrain.GetGuidePoint();
 	btVector3 aimvec = guide - ball;
 	aimvec.setY(0);
 	aimvec.normalize();
@@ -975,7 +980,7 @@ void RBTGame::AdjustGuide()
 		return;
 	
 	btVector3 ball = m_ball.GetPosition();
-	btVector3 guide = m_terrain.GetGuidePoint(ball);
+	btVector3 guide = m_terrain.GetGuidePoint();
 	btVector3 aimvec = guide - ball;
 	
 	//printf("screen point: %d %d\n", m_guideScreenPoint.m_x, m_guideScreenPoint.m_y);
