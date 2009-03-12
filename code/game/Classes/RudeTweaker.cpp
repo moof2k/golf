@@ -87,8 +87,9 @@ int RudeTweaker::HttpHandler(void * cls,
 	tTweakerMap::iterator it;
 	for(it = m_tweaks.begin(); it != m_tweaks.end(); ++it)
 	{
-		char item[512];
-		char value[512];
+		const int kItemLen = 512;
+		char item[kItemLen];
+		char value[kItemLen];
 		
 		const char *invalue = MHD_lookup_connection_value (connection, MHD_GET_ARGUMENT_KIND, it->first);
 		if(invalue)
@@ -98,19 +99,24 @@ int RudeTweaker::HttpHandler(void * cls,
 		{
 			case kBool:
 				if(invalue)
-					sscanf(invalue, "%d", ((bool *) it->second->m_data));
+				{
+					int parsedvalue = 0;
+					int results = sscanf(invalue, "%d", &parsedvalue);
+					if(results == 1)
+						*((bool *) it->second->m_data) = parsedvalue;
+				}
 				
-				sprintf(value, "%d", *((bool *) it->second->m_data));
+				snprintf(value, kItemLen, "%d", *((bool *) it->second->m_data));
 				break;
 			case kFloat:
 				if(invalue)
 					sscanf(invalue, "%f", ((float *) it->second->m_data));
 				
-				sprintf(value, "%f", *((float *) it->second->m_data));
+				snprintf(value, kItemLen, "%f", *((float *) it->second->m_data));
 				break;
 		}
 		
-		sprintf(item, "<form method=\"get\">%s: <input type=\"text\" name=\"%s\" value=\"%s\"></form><br>\n", it->first, it->first, value);
+		snprintf(item, kItemLen, "<form method=\"get\">%s: <input type=\"text\" name=\"%s\" value=\"%s\"></form><br>\n", it->first, it->first, value);
 		
 		
 		
