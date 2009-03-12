@@ -366,6 +366,9 @@ void RBTGame::SetState(eRBTGameState state)
 				{
 					m_ballCamera.SetHeight(10.0f);
 				}
+				else if(prevstate == kStateExecuteSwing)
+				{
+				}
 				else
 				{
 					m_swingYaw = 0.0f;
