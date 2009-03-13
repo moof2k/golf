@@ -336,7 +336,10 @@ void RBTGame::RestoreState()
 			break;
 		case kStateHitBall:
 		{
+			// animate the golfer to the end of the swing
 			m_golfer.SetForwardSwing(1.0f);
+			
+			// tweak some crap w/ the camera to trick it into positioning properly
 			MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
 			FreshGuide(true);
 			m_ballCamera.SetTrackMode(kHitCamera);
@@ -1379,7 +1382,9 @@ void RBTGame::Render(float aspect)
 		case kStateMenu:
 			m_menu.Render(aspect);
 			break;
+			
 		case kStateExecuteSwing:
+		case kStateWaitForSwing:
 			m_botBarBg.Render();
 			m_moveButton.Render();
 			m_swingControl.Render();
@@ -1388,15 +1393,7 @@ void RBTGame::Render(float aspect)
 			m_windText.Render();
 			break;
 			
-		case kStateWaitForSwing:
-			m_botBarBg.Render();
-			m_moveButton.Render();
-			m_swingControl.Render();
-			m_clubButton.Render();
-			RenderShotInfo(false, true);
-			
-			break;
-			
+		case kStateHitBall:
 		case kStateFollowBall:
 			//RenderBallFollowInfo(false);
 			RenderShotInfo(true, false);
