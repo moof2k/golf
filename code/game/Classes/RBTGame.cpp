@@ -155,13 +155,6 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_shotEncouragementText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotEncouragementText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
-	m_shotQualityText.SetAlignment(kAlignCenter);
-	m_shotQualityText.SetRect(RudeRect(60, 0, 80, 320));
-	m_shotQualityText.SetStyle(kOutlineStyle);
-	m_shotQualityText.SetFont(kBigFont);
-	m_shotQualityText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_shotQualityText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
-	
 	m_shotDistText.SetFormat(kIntValue, "%d yds");
 	m_shotDistText.SetAlignment(kAlignCenter);
 	m_shotDistText.SetRect(RudeRect(430, 0, 446, 320));
@@ -326,6 +319,9 @@ void RBTGame::RestoreState()
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	m_golfer.SetSwingType(club->m_type);
 	
+	// tell terrain to update guide point
+	m_terrain.UpdateGuidePoint(m_ball.GetPosition(), club->m_dist * 3.0f);
+	
 	switch(m_state)
 	{
 		case kStateTeePosition:
@@ -340,7 +336,11 @@ void RBTGame::RestoreState()
 			break;
 		case kStateHitBall:
 		{
+			m_golfer.SetForwardSwing(1.0f);
 			MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
+			FreshGuide(true);
+			m_ballCamera.SetTrackMode(kHitCamera);
+			m_ballCamera.NextFrame(1.0f);
 		}
 			break;
 	}
@@ -602,15 +602,9 @@ void RBTGame::StateFollowBall(float delta)
 		
 		
 		m_followTimer = -100.0f;
-		
-		m_shotQualityText.SetAlpha(0.0f);
 	}
 	else
 	{
-		float alpha = m_followTimer * 3.0f;
-		if(alpha > 1.0f)
-			alpha = 1.0f;
-		m_shotQualityText.SetAlpha(alpha);
 	}
 	
 	
@@ -711,11 +705,13 @@ void RBTGame::AutoSelectClub()
 	
 	if(club->m_type == kClubPutter)
 	{
+		m_swingControl.SetNoSwingCommentary(true);
 		RudeSound::GetInstance()->PlaySong(kBGMPutting);
 		RudeSound::GetInstance()->BgmVol(1.0f);
 	}
 	else
 	{
+		m_swingControl.SetNoSwingCommentary(false);
 		RudeSound::GetInstance()->BgmVolFade(-0.2f);
 	}
 	
@@ -951,31 +947,6 @@ void RBTGame::HitBall()
 	
 	m_ball.HitBall(linvel, spinForce);
 	
-	if(m_ball.GetCurMaterial() != kGreen)
-	{
-		if(m_swingPower > 0.95f)
-		{
-			m_shotQualityText.SetText("Excellent Shot!");
-		}
-		else if(m_swingPower > 0.9f)
-		{
-			m_shotQualityText.SetText("Great Shot!");
-		}
-		else if(m_swingPower > 0.80f)
-		{
-			m_shotQualityText.SetText("Good Shot!");
-		}
-		else
-		{
-			m_shotQualityText.SetText("");
-		}
-	}
-	else
-	{
-		m_shotQualityText.SetText("");
-	}
-	
-	
 }
 
 
@@ -1125,13 +1096,20 @@ void RBTGame::NextFrame(float delta)
 			break;
 		case kStateHitBall:
 		{
+			m_swingControl.NextFrame(delta);
+			
 			StateHitBall(delta);
+			
 			//btVector3 ball = m_ball.GetPosition();
 			//printf("ball: %f %f %f\n", ball.x(), ball.y(), ball.z());
 		}
 			break;
 		case kStateFollowBall:
+		{
+			m_swingControl.NextFrame(delta);
+			
 			StateFollowBall(delta);
+		}
 		
 			break;
 			
@@ -1410,11 +1388,21 @@ void RBTGame::Render(float aspect)
 			m_windText.Render();
 			break;
 			
+		case kStateWaitForSwing:
+			m_botBarBg.Render();
+			m_moveButton.Render();
+			m_swingControl.Render();
+			m_clubButton.Render();
+			RenderShotInfo(false, true);
+			
+			break;
+			
 		case kStateFollowBall:
 			//RenderBallFollowInfo(false);
 			RenderShotInfo(true, false);
 			
-			m_shotQualityText.Render();
+			m_swingControl.Render();
+			
 			break;
 			
 		case kStateRegardBall:

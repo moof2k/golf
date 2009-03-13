@@ -84,6 +84,8 @@ public:
 	bool CanSwing();
 	bool WillSwing();
 	
+	void SetNoSwingCommentary(bool b) { m_noSwingCommentary = b; }
+	
 	
 private:
 	
@@ -114,6 +116,10 @@ private:
 	
 	float m_upStrokeDeviation;
 	
+	float m_fadeOutTimer;
+	float m_fadeOutTime;
+	float m_renderAlpha;
+	
 	RudeScreenVertex m_lastPoint;
 	RudeScreenVertex m_downStroke;
 	RudeScreenVertex m_upStroke;
@@ -124,6 +130,8 @@ private:
 	
 	bool m_backStrokeAnimDone;
 	bool m_fwdStrokeAnimSent;
+	
+	bool m_noSwingCommentary;
 	
 };
 

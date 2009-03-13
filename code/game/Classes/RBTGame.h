@@ -194,7 +194,6 @@ private:
 	RudeTextControl m_remainingDistText;
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
-	RudeTextControl m_shotQualityText;
 	RudeTextControl m_clubDistText;
 	RudeTextControl m_windText;
 	

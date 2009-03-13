@@ -35,11 +35,15 @@ const float kSwingDownPrecisionPenalty = 0.01f;
 const float kSwingUpMaxDeviation = 128.0f;
 const float kAngleFromDeviation = 1.0f / kSwingUpMaxDeviation;
 
-
-
+const float kNoSwingFadeOutTime = 0.5f;
+const float kSwingFadeOutTime = 1.5f;
 
 RBSwingControl::RBSwingControl()
 : m_curSwingPoint(-1)
+, m_renderAlpha(1.0f)
+, m_fadeOutTimer(0.0f)
+, m_fadeOutTime(kNoSwingFadeOutTime)
+, m_noSwingCommentary(false)
 {
 }
 
@@ -206,8 +210,23 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 	else
 		m_strokeState = kNoStroke;
 	
+	// relax golfer if we didn't take a stroke
 	if(m_strokeState == kNoStroke)
+	{
 		m_golfer->SetRelax();
+	}
+	
+	// fade out if we're done with a stroke
+	if(m_strokeState == kNoStroke)
+	{
+		m_fadeOutTime = kNoSwingFadeOutTime;
+		m_fadeOutTimer = m_fadeOutTime;
+	}
+	if(m_strokeState == kStrokeComplete)
+	{
+		m_fadeOutTime = kSwingFadeOutTime;
+		m_fadeOutTimer = m_fadeOutTime;
+	}
 	
 	m_downOptimalPct = 0.0f;
 	
@@ -290,6 +309,15 @@ void RBSwingControl::NextFrame(float delta)
 		
 	}
 	
+	if(m_strokeState == kStrokeComplete || m_strokeState == kNoStroke)
+	{
+		if(m_fadeOutTimer > 0.0f)
+		{
+			m_fadeOutTimer -= delta;
+		}
+	}
+	else
+		m_fadeOutTimer = m_fadeOutTime;
 }
 
 void RBSwingControl::RenderRing()
@@ -398,32 +426,15 @@ void PickColor(float t, float &r, float &g, float &b)
 void RBSwingControl::RenderPower()
 {
 	float power = GetPower();
-	
-	
-	
+
+	float totalAlpha = m_fadeOutTimer / m_fadeOutTime;
 	
 	glDisable(GL_TEXTURE_2D);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	
-	/*
-	const float kX = 10;
-	const float kY = 160;
-	const float kHeight = -100;
-	const float kWidth = 16;
-	
-	float h = power * kHeight;
-	
-	GLfloat point[] = {
-		kX, kY,
-		kX + kWidth, kY,
-		kX + kWidth, kY + h,
-		kX, kY + h,
-	};
-	 */
-	
-	const float alpha = 0.8f * power;
+	const float alpha = totalAlpha * 0.8f * power;
 	
 	GLfloat colors[] = {
 		1.0f, 1.0f, 1.0f, alpha,
@@ -454,9 +465,34 @@ void RBSwingControl::RenderPower()
 	
 	if(power > 0.0f)
 	{
-		m_swingPowerText.SetValue(power * 100.0f);
-		m_swingPowerText.Render();
+		m_swingPowerText.SetAlpha(2.0f * totalAlpha);
 		
+		if(m_noSwingCommentary || m_strokeState != kStrokeComplete)
+		{
+			m_swingPowerText.SetValue(power * 100.0f);
+		}
+		else
+		{
+			if(power > 0.95f)
+			{
+				m_swingPowerText.SetText("Excellent Shot!");
+			}
+			else if(power > 0.9f)
+			{
+				m_swingPowerText.SetText("Great Shot!");
+			}
+			else if(power > 0.80f)
+			{
+				m_swingPowerText.SetText("Good Shot!");
+			}
+			else
+			{
+				m_swingPowerText.SetText("");
+				m_swingPowerText.SetValue(power * 100.0f);
+			}
+		}
+		
+		m_swingPowerText.Render();
 	}
 }
 
@@ -553,8 +589,6 @@ bool RBSwingControl::WillSwing()
 
 float RBSwingControl::GetPower()
 {
-	if(m_strokeState == kNoStroke)
-		return 0.0f;
 	
 	const float kAnglePenaltyModifier = 0.25f;
 	
