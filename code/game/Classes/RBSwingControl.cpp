@@ -524,12 +524,12 @@ void RBSwingControl::RenderTracks()
 void RBSwingControl::Render()
 {
 	RenderPower();
-	RenderRing();
+	//RenderRing();
 	
 	if(!CanSwing())
 		return;
 	
-	RenderTracks();
+	//RenderTracks();
 }
 
 bool RBSwingControl::CanSwing()
