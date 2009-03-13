@@ -71,6 +71,15 @@ void RBGolferObject::SetReady()
 	mesh->SetFrame(kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart);
 }
 
+void RBGolferObject::SetRelax()
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	
+	const float kBackSwingStart = kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart;
+
+	mesh->AnimateTo(kBackSwingStart);
+}
+
 void RBGolferObject::SetSwingType(eRBGolfClubType type)
 {
 	if(m_swingType == type)

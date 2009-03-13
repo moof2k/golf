@@ -206,6 +206,9 @@ bool RBSwingControl::TouchUp(RudeTouch *t)
 	else
 		m_strokeState = kNoStroke;
 	
+	if(m_strokeState == kNoStroke)
+		m_golfer->SetRelax();
+	
 	m_downOptimalPct = 0.0f;
 	
 	return true;
@@ -251,9 +254,6 @@ void RBSwingControl::NextFrame(float delta)
 	
 	if(m_strokeState == kDownStroke)
 	{
-		
-		
-		
 		
 		float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
 		
