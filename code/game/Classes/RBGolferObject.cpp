@@ -25,7 +25,7 @@ RBGolferObject::RBGolferObject()
 : m_node(0)
 , m_ball(0,0,0)
 , m_guide(0,0,1)
-, m_swingType(kClubWood)
+, m_swingType(kClubPutter)
 {
 	for(int i = 0; i < kNumNodes; i++)
 		m_nodes[i] = btVector3(0,0,0);
@@ -36,6 +36,9 @@ void RBGolferObject::Load(const char *mesh)
 	LoadSkinnedMesh(mesh);
 	
 	LoadNodes();
+	
+	// force new swing type so we hide the right meshes
+	SetSwingType(kClubWood);
 }
 
 void RBGolferObject::LoadNodes()

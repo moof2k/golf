@@ -322,6 +322,10 @@ void RBTGame::RestoreState()
 	m_windControl.SetWind(m_windDir, m_windSpeed);
 	m_ball.SetWindSpeed(m_windVec);
 	
+	// update golfer renderable
+	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	m_golfer.SetSwingType(club->m_type);
+	
 	switch(m_state)
 	{
 		case kStateTeePosition:
@@ -697,15 +701,16 @@ void RBTGame::AutoSelectClub()
 	
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
+	// update golfer renderable
+	m_golfer.SetSwingType(club->m_type);
+	
 	// tell terrain to update guide point
 	m_terrain.UpdateGuidePoint(m_ball.GetPosition(), club->m_dist * 3.0f);
 	
 	// if the auto-selected club is the putter, change to the putting music
 	
-	
 	if(club->m_type == kClubPutter)
 	{
-		RUDE_REPORT("RBTGame::AutoSelectClub starting putting music\n");
 		RudeSound::GetInstance()->PlaySong(kBGMPutting);
 		RudeSound::GetInstance()->BgmVol(1.0f);
 	}
