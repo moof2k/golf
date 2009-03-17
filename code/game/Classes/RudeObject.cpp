@@ -3,7 +3,7 @@
  *  golf
  *
  *  Created by Robert Rose on 9/8/08.
- *  Copyright 2008 __MyCompanyName__. All rights reserved.
+ *  Copyright 2008 Bork 3D LLC. All rights reserved.
  *
  */
 

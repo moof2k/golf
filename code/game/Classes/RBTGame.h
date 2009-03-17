@@ -1,23 +1,10 @@
-/*	RBTGame.h
- *	
- *	Copyright (c) 2003-2005 Robert W. Rose
- *	
- *	ALL RIGHTS RESERVED
- *	Reproduction, adaptation, or translation without prior
- *	written permission is prohibited, except as allowed
- *	under copyright law.
- *	
- *	RESTRICTED RIGHTS LEGEND
- *	Use, duplication or disclosure by the Goverment is
- *	subject to restrictions as set for in subdivision
- *	(b)(3)(ii) of the Right in Technical Data and Computer
- *	Software clause at 52.227-7013.
- *	
- *	Robert W. Rose
- *	421 SW 10th St
- *	Corvallis, OR 97333
- *	
- *	robertwrose.com
+/*
+ *  RBTGame.h
+ *  golf
+ *
+ *  Created by Robert Rose on 10/10/08.
+ *  Copyright 2008 Bork 3D LLC. All rights reserved.
+ *
  */
 
 #ifndef _H_RBTGame

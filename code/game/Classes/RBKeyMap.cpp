@@ -1,4 +1,12 @@
 #include "RBKeyMap.h"
+/*
+ *  RBKeyMap.cpp
+ *  golf
+ *
+ *  Created by Robert Rose on 10/10/08.
+ *  Copyright 2008 Bork 3D LLC. All rights reserved.
+ *
+ */
 
 #include "RudeGlobals.h"
 #include "RudeRegistry.h"
