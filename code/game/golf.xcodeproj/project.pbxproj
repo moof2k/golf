@@ -16,6 +16,8 @@
 		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
+		9A1B90E00F68E14200E4F29B /* RudeCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */; };
+		9A1B90FD0F68EB1600E4F29B /* RudeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */; };
 		9A3CA24B0E73B90600BDBA8B /* parfive.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3CA24A0E73B90600BDBA8B /* parfive.POD */; };
 		9A3CA2F20E73C0F600BDBA8B /* RBDebugCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */; };
 		9A3CA5290E750A6E00BDBA8B /* RudeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */; };
@@ -41,6 +43,7 @@
 		9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */; };
 		9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */; };
 		9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */; };
+		9A7274FF0F6F7F2C0029D849 /* drivingrange.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A7274FE0F6F7F2C0029D849 /* drivingrange.POD */; };
 		9A7400300E6E9AC5008490F7 /* RudeTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */; };
 		9A7400990E6FC7D7008490F7 /* RudeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400980E6FC7D7008490F7 /* RudeFile.cpp */; };
 		9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */; };
@@ -291,6 +294,10 @@
 		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		9A1B90DE0F68E14200E4F29B /* RudeCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeCollision.h; path = Classes/RudeCollision.h; sourceTree = "<group>"; };
+		9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeCollision.cpp; path = Classes/RudeCollision.cpp; sourceTree = "<group>"; };
+		9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnitTest.h; path = Classes/RudeUnitTest.h; sourceTree = "<group>"; };
+		9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnitTest.cpp; path = Classes/RudeUnitTest.cpp; sourceTree = "<group>"; };
 		9A3CA24A0E73B90600BDBA8B /* parfive.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = parfive.POD; path = Data/parfive.POD; sourceTree = "<group>"; };
 		9A3CA2F00E73C0F600BDBA8B /* RBDebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBDebugCamera.h; path = Classes/RBDebugCamera.h; sourceTree = "<group>"; };
 		9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBDebugCamera.cpp; path = Classes/RBDebugCamera.cpp; sourceTree = "<group>"; };
@@ -325,6 +332,7 @@
 		9A56CFAB0F5D0E360013B650 /* RudePerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePerf.h; path = Classes/RudePerf.h; sourceTree = "<group>"; };
 		9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = Classes/RudePerf.cpp; sourceTree = "<group>"; };
 		9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crowd_missedputt.wav; path = Data/crowd_missedputt.wav; sourceTree = "<group>"; };
+		9A7274FE0F6F7F2C0029D849 /* drivingrange.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = drivingrange.POD; path = Data/drivingrange.POD; sourceTree = "<group>"; };
 		9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimeCounter.h; path = Classes/RudeTimeCounter.h; sourceTree = "<group>"; };
 		9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimeCounter.cpp; path = Classes/RudeTimeCounter.cpp; sourceTree = "<group>"; };
 		9A7400970E6FC7D7008490F7 /* RudeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFile.h; path = Classes/RudeFile.h; sourceTree = "<group>"; };
@@ -962,6 +970,8 @@
 				9A8C20E00E46A92600C2BECB /* RudeKey.h */,
 				9A8C20E40E46A92600C2BECB /* RudeGame.cpp */,
 				9A8C20E50E46A92600C2BECB /* RudeGlobals.h */,
+				9A1B90DE0F68E14200E4F29B /* RudeCollision.h */,
+				9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */,
 				9A8C20EB0E46A92600C2BECB /* RudeDebug.cpp */,
 				9A8C20E60E46A92600C2BECB /* RudeDebug.h */,
 				9A8C20E80E46A92600C2BECB /* RudeKey.cpp */,
@@ -1019,6 +1029,8 @@
 				9AFF31330E9D9DE80078E211 /* RudeFont.cpp */,
 				9AFF315B0E9DA09F0078E211 /* RudeUnicode.h */,
 				9AFF315C0E9DA09F0078E211 /* RudeUnicode.cpp */,
+				9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */,
+				9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */,
 			);
 			name = RudeEngine;
 			sourceTree = "<group>";
@@ -1501,6 +1513,7 @@
 				9A3CA24A0E73B90600BDBA8B /* parfive.POD */,
 				9A9199750E711D0F00BE65AF /* parthree0.POD */,
 				9A74018D0E6FDF1F008490F7 /* box.POD */,
+				9A7274FE0F6F7F2C0029D849 /* drivingrange.POD */,
 				9AE630780EB6E2AC000B2EAD /* par3_A.POD */,
 				9AE630FE0EB6FFD7000B2EAD /* par3_B.POD */,
 				9AE631020EB700AD000B2EAD /* par3_C.POD */,
@@ -1652,6 +1665,7 @@
 				9A56CED90F5BB4C40013B650 /* bgm_putting.m4a in Resources */,
 				9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */,
 				9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */,
+				9A7274FF0F6F7F2C0029D849 /* drivingrange.POD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1843,6 +1857,8 @@
 				9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */,
 				9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */,
 				9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */,
+				9A1B90E00F68E14200E4F29B /* RudeCollision.cpp in Sources */,
+				9A1B90FD0F68EB1600E4F29B /* RudeUnitTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
