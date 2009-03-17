@@ -27,6 +27,7 @@ typedef enum {
 typedef struct {
 	eRBTRoundState state;
 	int hole;
+	int course;
 	eCourseHoles holeset;
 	eCourseTee tee;
 	eCourseWind wind;
@@ -65,6 +66,7 @@ private:
 	
 	RudeTextControl m_loadingText;
 	
+	int m_course;
 	eCourseHoles m_holeSet;
 	eCourseTee m_tee;
 	eCourseWind m_wind;

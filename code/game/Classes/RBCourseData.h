@@ -13,13 +13,14 @@
 #include "Rude.h"
 
 
-const int kNumCourses = 6;
-const int kNumPhysicalCourses = 1;
+const int kNumCourses = 7;
+const int kNumPhysicalCourses = 2;
 
 typedef enum {
 	kCourseFront9,
 	kCourseBack9,
-	kCourseAll18
+	kCourseAll18,
+	kCourseDrivingRange
 } eCourseHoles;
 
 typedef enum {

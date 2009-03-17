@@ -15,7 +15,8 @@ RBCourseEntry sCourseData[kNumCourses] = {
 { "Creekside Country Club", 0, kCourseFront9, kCourseLongTee },
 { "Creekside Country Club", 0, kCourseBack9, kCourseLongTee },
 { "Creekside Country Club", 0, kCourseAll18, kCourseShortTee },
-{ "Creekside Country Club", 0, kCourseAll18, kCourseLongTee }
+{ "Creekside Country Club", 0, kCourseAll18, kCourseLongTee },
+{ "Creekside Driving Range", 1, kCourseDrivingRange, kCourseShortTee },
 };
 
 
@@ -39,6 +40,27 @@ RBCourseHole sCourseHoleData[kNumPhysicalCourses][18] = {
 	{ 16, 5, "parfive" },
 	{ 17, 5, "parfive" },
 	{ 18, 5, "parfive" }
+},
+
+{
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
+	{ 1, 1, "drivingrange" },
 }
 
 };
@@ -81,6 +103,11 @@ RBCourseHole * GetCourseHole(int course, eCourseHoles holeset, int hole)
 				return 0;
 			
 			actualhole = hole;
+		}
+			break;
+		case kCourseDrivingRange:
+		{
+			actualhole = 0;
 		}
 			break;
 	}

@@ -360,6 +360,15 @@ void RBTGame::RestoreState()
 
 void RBTGame::SetState(eRBTGameState state)
 {
+	// If we're at the driving range reset the ball once it stops
+	if(m_holeSet == kCourseDrivingRange)
+	{
+		if(state == kStateRegardBall)
+		{
+			state = kStateTeePosition;
+		}
+	}
+	
 	RUDE_REPORT("RBTGame::SetState %d => %d\n", m_state, state);
 	eRBTGameState prevstate = m_state;
 	m_state = state;
@@ -417,9 +426,9 @@ void RBTGame::SetState(eRBTGameState state)
 			}
 			break;
 		case kStateMenu:
-		{
-			m_menu.Reset(m_holeNum, m_holeSet);
-		}
+			{
+				m_menu.Reset(m_holeNum, m_holeSet);
+			}
 			break;
 		case kStateExecuteSwing:
 			{
@@ -1268,13 +1277,8 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		m_clubDistText.Render();
 	}
 	
-	m_holeText.Render();
-	
 	m_parText.SetValue(m_par);
-	m_parText.Render();
-	
 	m_remainingDistText.SetValue(m_ballToHoleDist);
-	m_remainingDistText.Render();
 	
 	if(m_state == kStateBallInHole)
 	{
@@ -1287,11 +1291,14 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum) + 1);
 	}
 	
-	m_strokeText.Render();
-	
-	
-	m_scoreText.Render();
-	
+	if(m_holeSet != kCourseDrivingRange)
+	{
+		m_holeText.Render();
+		m_strokeText.Render();
+		m_scoreText.Render();
+		m_parText.Render();
+		m_remainingDistText.Render();
+	}
 	
 
 }

@@ -26,9 +26,12 @@ typedef enum {
 	kTitleCourseSelect,
 	kTitleHighScores,
 	kTitleGameOptions,
-	kTitleReadyToPlay
+	kTitlePracticeOptions,
+	kTitleReadyToPlay,
+	kTitleReadyToPractice,
 } eTitleState;
 
+const int kNumCoursesPerScreen = 6;
 
 class RBUITitle : public RBGameBase {
 	
@@ -60,7 +63,7 @@ private:
 	RBUICourseControl m_courseButtons[kNumCourses];
 	
 	RudeTextControl m_startText;
-	RudeTextControl m_continueText;
+	RudeTextControl m_practiceText;
 	RudeTextControl m_copyrightText;
 	RudeTextControl m_backText;
 	

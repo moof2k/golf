@@ -16,6 +16,7 @@
 
 RBTRound::RBTRound()
 : m_game(0)
+, m_course(0)
 , m_state(kStateInit)
 , m_hole(0)
 , m_holeSet(kCourseFront9)
@@ -56,6 +57,7 @@ void RBTRound::SetCourse(int c)
 {
 	RBCourseEntry *cd = GetCourseData(c);
 	
+	m_course = c;
 	m_holeSet = cd->m_holes;
 	m_tee = cd->m_tee;
 }
@@ -70,6 +72,7 @@ void RBTRound::SaveState()
 	save.holeset = m_holeSet;
 	save.wind = m_wind;
 	save.tee = m_tee;
+	save.course = m_course;
 	
 	reg->SetByte("GOLF", "GS_ROUND_STATE", &save, sizeof(save));
 	
@@ -102,6 +105,7 @@ int RBTRound::LoadState()
 		m_holeSet = load.holeset;
 		m_wind = load.wind;
 		m_tee = load.tee;
+		m_course = load.course;
 		
 		RestoreState();
 		
@@ -120,7 +124,7 @@ void RBTRound::RestoreState()
 			break;
 		case kStateInRound:
 			{
-				RBCourseHole *hole = GetCourseHole(0, m_holeSet, m_hole);
+				RBCourseHole *hole = GetCourseHole(m_course, m_holeSet, m_hole);
 				m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers, true);
 				
 			}
@@ -152,7 +156,7 @@ void RBTRound::NextFrame(float delta)
 			RBScoreTracker *tracker = GetScoreTracker(i);
 			for(int h = 0; h < 18; h++)
 			{
-				RBCourseHole *hole = GetCourseHole(0, kCourseAll18, h);
+				RBCourseHole *hole = GetCourseHole(m_course, kCourseAll18, h);
 				tracker->ClearScores();
 				tracker->SetPar(h, hole->m_par);
 			}
@@ -170,7 +174,7 @@ void RBTRound::NextFrame(float delta)
 			m_game = 0;
 		}
 		
-		RBCourseHole *hole = GetCourseHole(0, m_holeSet, m_hole);
+		RBCourseHole *hole = GetCourseHole(m_course, m_holeSet, m_hole);
 		
 		if(hole)
 		{

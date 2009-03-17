@@ -44,7 +44,7 @@ RBUITitle::RBUITitle()
 	}
 	
 	m_startText.SetAnimType(kAnimPopSlide);
-	m_startText.SetText("Start");
+	m_startText.SetText("Play");
 	m_startText.SetAlignment(kAlignCenter);
 	m_startText.SetRect(RudeRect(320, 0, 350, 320));
 	m_startText.SetStyle(kOutlineStyle);
@@ -52,14 +52,14 @@ RBUITitle::RBUITitle()
 	m_startText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_startText.SetColors(1, 0xFF000000, 0xFF000000);
 	
-	m_continueText.SetAnimType(kAnimPopSlide);
-	m_continueText.SetText("Continue");
-	m_continueText.SetAlignment(kAlignCenter);
-	m_continueText.SetRect(RudeRect(360, 0, 390, 320));
-	m_continueText.SetStyle(kOutlineStyle);
-	m_continueText.SetFont(kBigFont);
-	m_continueText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
-	m_continueText.SetColors(1, 0xFF000000, 0xFF000000);
+	m_practiceText.SetAnimType(kAnimPopSlide);
+	m_practiceText.SetText("Practice");
+	m_practiceText.SetAlignment(kAlignCenter);
+	m_practiceText.SetRect(RudeRect(360, 0, 390, 320));
+	m_practiceText.SetStyle(kOutlineStyle);
+	m_practiceText.SetFont(kBigFont);
+	m_practiceText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_practiceText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_goText.SetAnimType(kAnimPopSlide);
 	m_goText.SetText("Let's Go!");
@@ -144,7 +144,7 @@ void RBUITitle::SetState(eTitleState state)
 			
 			m_logo.SetTranslation(btVector3(0,0,0));
 			m_startText.SetTranslation(btVector3(0,0,0));
-			m_continueText.SetTranslation(btVector3(0,0,0));
+			m_practiceText.SetTranslation(btVector3(0,0,0));
 			
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
@@ -168,17 +168,17 @@ void RBUITitle::SetState(eTitleState state)
 		case kTitleScoreSummary:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
-			m_continueText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_practiceText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_logo.SetTranslation(btVector3(-400,0,0));
 			m_startText.SetTranslation(btVector3(-400,0,0));
-			m_continueText.SetTranslation(btVector3(-400,0,0));
+			m_practiceText.SetTranslation(btVector3(-400,0,0));
 			
 						
 			break;
 		case kTitleSplash:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
-			m_continueText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_practiceText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_copyrightText.SetDesiredTranslation(btVector3(0,100,0));
 			
 			break;
@@ -209,6 +209,13 @@ void RBUITitle::SetState(eTitleState state)
 			}
 			
 			break;
+			
+		case kTitlePracticeOptions:
+			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_goText.SetDesiredTranslation(btVector3(400,0,0));
+			m_backText.SetDesiredTranslation(btVector3(400,0,0));
+			break;
 	}
 	
 	m_state = state;
@@ -219,9 +226,10 @@ void RBUITitle::SetState(eTitleState state)
 			
 			m_logo.SetDesiredTranslation(btVector3(0,0,0));
 			m_startText.SetDesiredTranslation(btVector3(0,0,0));
-			m_continueText.SetDesiredTranslation(btVector3(0,0,0));
+			m_practiceText.SetDesiredTranslation(btVector3(0,0,0));
 			m_copyrightText.SetDesiredTranslation(btVector3(0,0,0));
 			break;
+			
 		case kTitleCourseSelect:
 			m_backText.SetDesiredTranslation(btVector3(0,0,0));
 			for(int i = 0; i < kNumCourses; i++)
@@ -229,6 +237,7 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseButtons[i].SetDesiredTranslation(btVector3(0,0,0));
 			}
 			break;
+			
 		case kTitleGameOptions:
 			m_goText.SetDesiredTranslation(btVector3(0,0,0));
 			
@@ -241,7 +250,26 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseTeeText.SetText(m_courseButtons[m_course].GetTeeStr());
 			
 			break;
+			
+		case kTitlePracticeOptions:
+			m_goText.SetDesiredTranslation(btVector3(0,0,0));
+			m_backText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			m_courseNameText.SetText(sCourseData[kNumCourses - 1].m_name);
+			
+			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			break;
+			
 		case kTitleReadyToPlay:
+			RudeSound::GetInstance()->BgmVolFade(-0.5f);
+			
+			m_readyTimer = 0.0f;
+			m_goText.SetDesiredTranslation(btVector3(0,100,0));
+			m_backText.SetDesiredTranslation(btVector3(0,100,0));
+			break;
+			
+		case kTitleReadyToPractice:
 			RudeSound::GetInstance()->BgmVolFade(-0.5f);
 			
 			m_readyTimer = 0.0f;
@@ -264,7 +292,7 @@ void RBUITitle::NextFrame(float delta)
 	if(m_state == kTitleSplash)
 		m_cameraTimer += delta;
 	
-	if(m_state == kTitleReadyToPlay)
+	if(m_state == kTitleReadyToPlay || m_state == kTitleReadyToPractice)
 	{
 		m_readyTimer += delta;
 		
@@ -287,7 +315,7 @@ void RBUITitle::NextFrame(float delta)
 	
 	m_logo.NextFrame(delta);
 	m_startText.NextFrame(delta);
-	m_continueText.NextFrame(delta);
+	m_practiceText.NextFrame(delta);
 	m_copyrightText.NextFrame(delta);
 	m_backText.NextFrame(delta);
 	m_goText.NextFrame(delta);
@@ -296,7 +324,7 @@ void RBUITitle::NextFrame(float delta)
 	m_courseHolesText.NextFrame(delta);
 	m_courseTeeText.NextFrame(delta);
 	
-	for(int i = 0; i < kNumCourses; i++)
+	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
 		m_courseButtons[i].NextFrame(delta);
 	}
@@ -320,7 +348,7 @@ void RBUITitle::Render(float aspect)
 	
 	m_logo.Render();
 	m_startText.Render();
-	m_continueText.Render();
+	m_practiceText.Render();
 	m_backText.Render();
 	m_goText.Render();
 	
@@ -329,7 +357,7 @@ void RBUITitle::Render(float aspect)
 	m_courseHolesText.Render();
 	m_courseTeeText.Render();
 	
-	for(int i = 0; i < kNumCourses; i++)
+	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
 		m_courseButtons[i].Render();
 	}
@@ -343,15 +371,20 @@ void RBUITitle::TouchDown(RudeTouch *rbt)
 	{
 		case kTitleSplash:
 			m_startText.TouchDown(rbt);
+			m_practiceText.TouchDown(rbt);
 			break;
 		case kTitleCourseSelect:
-			for(int i = 0; i < kNumCourses; i++)
+			for(int i = 0; i < kNumCoursesPerScreen; i++)
 			{
 				m_courseButtons[i].TouchDown(rbt);
 			}
 			m_backText.TouchDown(rbt);
 			break;
 		case kTitleGameOptions:
+			m_goText.TouchDown(rbt);
+			m_backText.TouchDown(rbt);
+			break;
+		case kTitlePracticeOptions:
 			m_goText.TouchDown(rbt);
 			m_backText.TouchDown(rbt);
 			break;
@@ -369,9 +402,15 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 		case kTitleSplash:
 			if(m_startText.TouchUp(rbt))
 				SetState(kTitleCourseSelect);
+			if(m_practiceText.TouchUp(rbt))
+			{
+				// special identifier for practice course
+				m_course = kNumCourses - 1;
+				SetState(kTitlePracticeOptions);
+			}
 			break;
 		case kTitleCourseSelect:
-			for(int i = 0; i < kNumCourses; i++)
+			for(int i = 0; i < kNumCoursesPerScreen; i++)
 			{
 				if(m_courseButtons[i].TouchUp(rbt))
 				{
@@ -389,6 +428,12 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 				SetState(kTitleReadyToPlay);
 			if(m_backText.TouchUp(rbt))
 				SetState(kTitleCourseSelect);
+			break;
+		case kTitlePracticeOptions:
+			if(m_goText.TouchUp(rbt))
+				SetState(kTitleReadyToPractice);
+			if(m_backText.TouchUp(rbt))
+				SetState(kTitleSplash);
 			break;
 	}
 }
