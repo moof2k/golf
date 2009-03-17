@@ -15,17 +15,17 @@
 // http://www.golfspyder.com/golf-club-loft.html
 
 static RBGolfClub sGolfClubs[kNumGolfClubs] = {
-	{ kClubWood,	"1 Wood", "1wood", 200, 240, 11,		kSoundSwingDriver,			kNoSandTrap | kNoFairway | kNoGreen | kNoRough },
-	{ kClubWood,	"3 Wood", "3wood", 180, 225, 14,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
-	{ kClubWood,	"5 Wood", "5wood", 160, 200, 21,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
-	{ kClubIron,	"3 Iron", "3iron", 140, 190, 22,		kSoundSwingIronSoft,		kNoGreen },
-	{ kClubIron,	"4 Iron", "4iron", 130, 175, 25.5,		kSoundSwingIronSoft,		kNoGreen },
-	{ kClubIron,	"5 Iron", "5iron", 120, 160, 30,		kSoundSwingIronSoft,		kNoGreen },
-	{ kClubIron,	"7 Iron", "7iron", 120, 150, 38,		kSoundSwingIronSoft,		kNoGreen },
-	{ kClubIron,	"8 Iron", "8iron", 120, 140, 42,		kSoundSwingIronSoft,		kNoGreen },
-	{ kClubIron,	"9 Iron", "9iron", 120, 120, 46.5,		kSoundSwingWedge,			kNoGreen }, 
-	{ kClubWedge,	"PW", "pw", 90, 90, 50,					kSoundSwingWedge,			kNoGreen },
-	{ kClubWedge,	"SW", "sw", 70, 60, 56,					kSoundSwingWedgeInSand,		kNoGreen },
+	{ kClubWood,	"1 Wood", "1wood", 223, 240, 11,		kSoundSwingDriver,			kNoSandTrap | kNoFairway | kNoGreen | kNoRough },
+	{ kClubWood,	"3 Wood", "3wood", 193, 225, 14,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
+	{ kClubWood,	"5 Wood", "5wood", 152, 200, 21,		kSoundSwingWood,			kNoSandTrap | kNoGreen | kNoRough },
+	{ kClubIron,	"3 Iron", "3iron", 145, 190, 22,		kSoundSwingIronSoft,		kNoGreen },
+	{ kClubIron,	"4 Iron", "4iron", 132, 175, 25.5,		kSoundSwingIronSoft,		kNoGreen },
+	{ kClubIron,	"5 Iron", "5iron", 118, 160, 30,		kSoundSwingIronSoft,		kNoGreen },
+	{ kClubIron,	"7 Iron", "7iron", 109, 150, 38,		kSoundSwingIronSoft,		kNoGreen },
+	{ kClubIron,	"8 Iron", "8iron", 104, 140, 42,		kSoundSwingIronSoft,		kNoGreen },
+	{ kClubIron,	"9 Iron", "9iron", 96, 120, 46.5,		kSoundSwingWedge,			kNoGreen }, 
+	{ kClubWedge,	"PW", "pw", 83, 90, 50,					kSoundSwingWedge,			kNoGreen },
+	{ kClubWedge,	"SW", "sw", 68, 60, 56,					kSoundSwingWedgeInSand,		kNoGreen },
 	{ kClubPutter,	"Putter", "putter", 60, 30, 1,			kSoundSwingPutter,			0 }
 };
 
