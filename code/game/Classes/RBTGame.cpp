@@ -36,9 +36,6 @@ bool gDebugCameraPrev = false;
 bool gDebugFinishHole = false;
 RUDE_TWEAK(DebugFinishHole, kBool, gDebugFinishHole);
 
-bool gDebugHitPerfect = false;
-RUDE_TWEAK(DebugHitPerfect, kBool, gDebugHitPerfect);
-
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
 const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
@@ -531,6 +528,9 @@ void RBTGame::StateTeePosition(float delta)
 		}
 			break;
 	}
+	
+	// temporarily force no wind
+	windspeed = 0;
 	
 	m_windText.SetValue(windspeed);
 	
@@ -1104,16 +1104,6 @@ void RBTGame::NextFrame(float delta)
 			
 			break;
 		case kStateExecuteSwing:
-			
-			if(gDebugHitPerfect)
-			{
-				SetState(kStateHitBall);
-				
-				m_swingPower = 1.0f;
-				m_swingAngle = 0.0f;
-				
-				gDebugHitPerfect = false;
-			}
 			
 			m_swingControl.NextFrame(delta);
 			

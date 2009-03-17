@@ -15,11 +15,13 @@
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
+bool gDebugHitPerfect = false;
+RUDE_TWEAK(DebugHitPerfect, kBool, gDebugHitPerfect);
+
 float gSwingDownOptimalTimeMin = 1.0f;
 float gSwingDownOptimalTimeMax = 2.0f;
 float gSwingDownEarlyPunishment = 1.0f;
 float gSwingDownLatePunishment = 0.2f;
-
 
 RUDE_TWEAK(SwingDownOptimalTimeMin, kFloat, gSwingDownOptimalTimeMin);
 RUDE_TWEAK(SwingDownOptimalTimeMax, kFloat, gSwingDownOptimalTimeMax);
@@ -589,6 +591,8 @@ bool RBSwingControl::WillSwing()
 
 float RBSwingControl::GetPower()
 {
+	if(gDebugHitPerfect)
+		return 1.0f;
 	
 	const float kAnglePenaltyModifier = 0.25f;
 	
@@ -616,6 +620,9 @@ float RBSwingControl::GetPower()
 
 float RBSwingControl::GetAngle()
 {
+	if(gDebugHitPerfect)
+		return 0.0f;
+	
 	float angle = m_upStrokeDeviation * kAngleFromDeviation;
 	
 	//if(angle > 0.0f)
