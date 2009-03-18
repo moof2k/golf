@@ -397,16 +397,22 @@ void RBUITitle::TouchMove(RudeTouch *rbt)
 
 void RBUITitle::TouchUp(RudeTouch *rbt)
 {
+	eSoundEffect sfx = kSoundNone;
+	
 	switch(m_state)
 	{
 		case kTitleSplash:
 			if(m_startText.TouchUp(rbt))
+			{
 				SetState(kTitleCourseSelect);
+				sfx = kSoundUISelect;
+			}
 			if(m_practiceText.TouchUp(rbt))
 			{
 				// special identifier for practice course
 				m_course = kNumCourses - 1;
 				SetState(kTitlePracticeOptions);
+				sfx = kSoundUISelect;
 			}
 			break;
 		case kTitleCourseSelect:
@@ -416,25 +422,43 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 				{
 					m_course = i;
 					SetState(kTitleGameOptions);
-					return;
+					sfx = kSoundUISelect;
+					break;
 				}
 			}
 			
 			if(m_backText.TouchUp(rbt))
+			{
 				SetState(kTitleSplash);
+				sfx = kSoundUIBack;
+			}
 			break;
 		case kTitleGameOptions:
 			if(m_goText.TouchUp(rbt))
+			{
 				SetState(kTitleReadyToPlay);
+				sfx = kSoundUIStart;
+			}
 			if(m_backText.TouchUp(rbt))
+			{
 				SetState(kTitleCourseSelect);
+				sfx = kSoundUIBack;
+			}
 			break;
 		case kTitlePracticeOptions:
 			if(m_goText.TouchUp(rbt))
+			{
 				SetState(kTitleReadyToPractice);
+				sfx = kSoundUIStart;
+			}
 			if(m_backText.TouchUp(rbt))
+			{
 				SetState(kTitleSplash);
+				sfx = kSoundUIBack;
+			}
 			break;
 	}
+	
+	RudeSound::GetInstance()->PlayWave(sfx);
 }
 

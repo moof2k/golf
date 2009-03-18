@@ -11,6 +11,7 @@
 #include "SoundEngine.h"
 
 typedef enum {
+	kSoundNone = -1,
 	kSoundSwingWood = 0,
 	kSoundSwingWedge,
 	kSoundSwingWedgeInSand,
@@ -19,7 +20,9 @@ typedef enum {
 	kSoundSwingPutter,
 	kSoundBallInHole,
 	kSoundMissedPutt,
-	
+	kSoundUIStart,
+	kSoundUIBack,
+	kSoundUISelect,
 	kNumSounds,
 } eSoundEffect;
 

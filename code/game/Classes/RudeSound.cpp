@@ -14,7 +14,10 @@ const char * kSoundFilenames[kNumSounds] = {
 	"swing_iron_soft.wav",
 	"swing_putter.wav",
 	"ball_in_hole.wav",
-	"crowd_missedputt.wav"
+	"crowd_missedputt.wav",
+	"sfx_start.wav",
+	"sfx_back.wav",
+	"sfx_select.wav"
 };
 
 const char * kSoundBGMs[kNumBGMs] = {
@@ -117,6 +120,9 @@ void RudeSound::StopSong()
 
 void RudeSound::PlayWave(eSoundEffect num)
 {
+	if(num == kSoundNone)
+		return;
+	
 	SoundEngine_StartEffect(m_soundids[num]);
 }
 
