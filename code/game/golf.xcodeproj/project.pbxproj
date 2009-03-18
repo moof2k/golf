@@ -44,6 +44,11 @@
 		9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */; };
 		9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */; };
 		9A7274FF0F6F7F2C0029D849 /* drivingrange.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A7274FE0F6F7F2C0029D849 /* drivingrange.POD */; };
+		9A72757A0F70ABD80029D849 /* sfx_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275790F70ABD80029D849 /* sfx_start.wav */; };
+		9A7275850F70B71B0029D849 /* sfx_back.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275840F70B71B0029D849 /* sfx_back.wav */; };
+		9A7275890F70B82E0029D849 /* sfx_select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275880F70B82E0029D849 /* sfx_select.wav */; };
+		9A7275910F70BBC60029D849 /* sfx_clickhi.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275900F70BBC60029D849 /* sfx_clickhi.wav */; };
+		9A7275930F70BBCC0029D849 /* sfx_clicklow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275920F70BBCC0029D849 /* sfx_clicklow.wav */; };
 		9A7400300E6E9AC5008490F7 /* RudeTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */; };
 		9A7400990E6FC7D7008490F7 /* RudeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400980E6FC7D7008490F7 /* RudeFile.cpp */; };
 		9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */; };
@@ -333,6 +338,11 @@
 		9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = Classes/RudePerf.cpp; sourceTree = "<group>"; };
 		9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crowd_missedputt.wav; path = Data/crowd_missedputt.wav; sourceTree = "<group>"; };
 		9A7274FE0F6F7F2C0029D849 /* drivingrange.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = drivingrange.POD; path = Data/drivingrange.POD; sourceTree = "<group>"; };
+		9A7275790F70ABD80029D849 /* sfx_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_start.wav; path = Data/sfx_start.wav; sourceTree = "<group>"; };
+		9A7275840F70B71B0029D849 /* sfx_back.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_back.wav; path = Data/sfx_back.wav; sourceTree = "<group>"; };
+		9A7275880F70B82E0029D849 /* sfx_select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_select.wav; path = Data/sfx_select.wav; sourceTree = "<group>"; };
+		9A7275900F70BBC60029D849 /* sfx_clickhi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_clickhi.wav; path = Data/sfx_clickhi.wav; sourceTree = "<group>"; };
+		9A7275920F70BBCC0029D849 /* sfx_clicklow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_clicklow.wav; path = Data/sfx_clicklow.wav; sourceTree = "<group>"; };
 		9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimeCounter.h; path = Classes/RudeTimeCounter.h; sourceTree = "<group>"; };
 		9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimeCounter.cpp; path = Classes/RudeTimeCounter.cpp; sourceTree = "<group>"; };
 		9A7400970E6FC7D7008490F7 /* RudeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFile.h; path = Classes/RudeFile.h; sourceTree = "<group>"; };
@@ -910,6 +920,11 @@
 				9A4F1DBB0E8793B0001D1F0B /* swing_putter.wav */,
 				9A4F1DC10E8793B6001D1F0B /* ball_in_hole.wav */,
 				9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */,
+				9A7275840F70B71B0029D849 /* sfx_back.wav */,
+				9A7275900F70BBC60029D849 /* sfx_clickhi.wav */,
+				9A7275920F70BBCC0029D849 /* sfx_clicklow.wav */,
+				9A7275880F70B82E0029D849 /* sfx_select.wav */,
+				9A7275790F70ABD80029D849 /* sfx_start.wav */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -1666,6 +1681,11 @@
 				9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */,
 				9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */,
 				9A7274FF0F6F7F2C0029D849 /* drivingrange.POD in Resources */,
+				9A72757A0F70ABD80029D849 /* sfx_start.wav in Resources */,
+				9A7275850F70B71B0029D849 /* sfx_back.wav in Resources */,
+				9A7275890F70B82E0029D849 /* sfx_select.wav in Resources */,
+				9A7275910F70BBC60029D849 /* sfx_clickhi.wav in Resources */,
+				9A7275930F70BBCC0029D849 /* sfx_clicklow.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
