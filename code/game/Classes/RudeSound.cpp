@@ -18,8 +18,8 @@ const char * kSoundFilenames[kNumSounds] = {
 	"sfx_start.wav",
 	"sfx_back.wav",
 	"sfx_select.wav",
+	"sfx_clicklow.wav",
 	"sfx_clickhi.wav",
-	"sfx_clicklow.wav"
 };
 
 const char * kSoundBGMs[kNumBGMs] = {
@@ -125,7 +125,9 @@ void RudeSound::PlayWave(eSoundEffect num)
 	if(num == kSoundNone)
 		return;
 	
-	SoundEngine_StartEffect(m_soundids[num]);
+	int result = SoundEngine_StartEffect(m_soundids[num]);
+	
+	RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
 }
 
 
@@ -138,8 +140,9 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 	char buffer[512];
 	RudeFileGetFile(sound, buffer, 512);
 
-	SoundEngine_LoadEffect(buffer, &m_soundids[num]);
-	//RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
+	int result = SoundEngine_LoadEffect(buffer, &m_soundids[num]);
+	
+	RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
 }
 
 void RudeSound::Tick(float delta)

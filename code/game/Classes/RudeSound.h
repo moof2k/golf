@@ -23,8 +23,8 @@ typedef enum {
 	kSoundUIStart,
 	kSoundUIBack,
 	kSoundUISelect,
-	kSoundUIClickHi,
 	kSoundUIClickLow,
+	kSoundUIClickHi,
 	kNumSounds,
 } eSoundEffect;
 

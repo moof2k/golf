@@ -1487,6 +1487,8 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 		return;
 	}
 	
+	eSoundEffect sfx = kSoundNone;
+	
 	switch(m_state)
 	{
 		case kStatePositionSwing:
@@ -1497,7 +1499,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				if(m_guideAdjust.TouchDown(rbt))
 				{
 					SetState(kStatePositionSwing3);
-					return;
+					break;
 				}
 			}
 			
@@ -1507,15 +1509,27 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_swingCamAdjust.TouchDown(rbt);
 			m_menuButton.TouchDown(rbt);
 			if(m_prevClubButton.TouchDown(rbt))
+			{
 				NextClub(-1);
+				sfx = kSoundUIClickLow;
+			}
 			if(m_nextClubButton.TouchDown(rbt))
+			{
 				NextClub(1);
+				sfx = kSoundUIClickHi;
+			}
 			if(m_cameraButton.TouchDown(rbt))
 			{
 				if(m_state == kStatePositionSwing)
+				{
 					SetState(kStatePositionSwing2);
+					sfx = kSoundUIClickHi;
+				}
 				else
+				{
 					SetState(kStatePositionSwing);
+					sfx = kSoundUIClickLow;
+				}
 			}
 			break;
 		case kStateMenu:
@@ -1529,7 +1543,8 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_swingButton.TouchDown(rbt);
 			break;
 	}
-		
+	
+	RudeSound::GetInstance()->PlayWave(sfx);
 }
 
 void RBTGame::TouchMove(RudeTouch *rbt)
@@ -1579,18 +1594,26 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 		return;
 	}
 	
+	eSoundEffect sfx = kSoundNone;
+	
 	switch(m_state)
 	{
 		case kStatePositionSwing:
 		case kStatePositionSwing2:
 			if(m_swingButton.TouchUp(rbt))
+			{
 				SetState(kStateExecuteSwing);
+				sfx = kSoundUIClickHi;
+			}
 			m_swingCamAdjust.TouchUp(rbt);
 			m_nextClubButton.TouchUp(rbt);
 			m_prevClubButton.TouchUp(rbt);
 			
 			if(m_menuButton.TouchUp(rbt))
+			{
 				SetState(kStateMenu);
+				sfx = kSoundUIClickHi;
+			}
 			break;
 		case kStatePositionSwing3:
 			m_guideAdjust.TouchUp(rbt);
@@ -1606,7 +1629,10 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 				
 			}
 			if(m_moveButton.TouchUp(rbt))
+			{
 				SetState(kStatePositionSwing);
+				sfx = kSoundUIClickHi;
+			}
 			break;
 		case kStateFollowBall:
 			if(m_swingButton.TouchUp(rbt))
@@ -1624,6 +1650,9 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			m_done = true;
 			break;
 	}
+	
+	RudeSound::GetInstance()->PlayWave(sfx);
+
 }
 
 void RBTGame::Pause()
