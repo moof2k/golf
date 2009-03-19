@@ -163,16 +163,6 @@ void RBUITitle::SetState(eTitleState state)
 			
 			m_goText.SetTranslation(btVector3(400,0,0));
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
-			
-			break;
-		case kTitleScoreSummary:
-			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
-			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
-			m_practiceText.SetDesiredTranslation(btVector3(-400,0,0));
-			m_logo.SetTranslation(btVector3(-400,0,0));
-			m_startText.SetTranslation(btVector3(-400,0,0));
-			m_practiceText.SetTranslation(btVector3(-400,0,0));
-			
 						
 			break;
 		case kTitleSplash:
@@ -222,6 +212,15 @@ void RBUITitle::SetState(eTitleState state)
 	
 	switch(m_state)
 	{
+		case kTitleScoreSummary:
+			m_logo.SetTranslation(btVector3(400,0,0));
+			m_startText.SetTranslation(btVector3(400,0,0));
+			m_practiceText.SetTranslation(btVector3(400,0,0));
+			m_logo.SetDesiredTranslation(btVector3(400,0,0));
+			m_startText.SetDesiredTranslation(btVector3(400,0,0));
+			m_practiceText.SetDesiredTranslation(btVector3(400,0,0));
+			break;
+			
 		case kTitleSplash:
 			
 			m_logo.SetDesiredTranslation(btVector3(0,0,0));
@@ -401,6 +400,10 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 	
 	switch(m_state)
 	{
+		case kTitleScoreSummary:
+			sfx = kSoundUISelect;
+			SetState(kTitleSplash);
+			break;
 		case kTitleSplash:
 			if(m_startText.TouchUp(rbt))
 			{
