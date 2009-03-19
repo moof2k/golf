@@ -128,7 +128,7 @@ void RudeSound::PlayWave(eSoundEffect num)
 	
 	int result = SoundEngine_StartEffect(m_soundids[num]);
 	
-	RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
+	//RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
 }
 
 
@@ -143,7 +143,7 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 
 	int result = SoundEngine_LoadEffect(buffer, &m_soundids[num]);
 	
-	RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
+	//RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
 }
 
 void RudeSound::Tick(float delta)
