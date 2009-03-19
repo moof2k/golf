@@ -17,6 +17,7 @@ const char * kSoundFilenames[kNumSounds] = {
 	"crowd_missedputt.wav",
 	"sfx_start.wav",
 	"sfx_back.wav",
+	"sfx_exit.wav",
 	"sfx_select.wav",
 	"sfx_clicklow.wav",
 	"sfx_clickhi.wav",

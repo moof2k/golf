@@ -9,6 +9,7 @@
 
 #include "RBUIMenu.h"
 #include "RudeGL.h"
+#include "RudeSound.h"
 
 RBUIMenu::RBUIMenu()
 {
@@ -127,15 +128,23 @@ void RBUIMenu::TouchMove(RudeTouch *rbt)
 
 void RBUIMenu::TouchUp(RudeTouch *rbt)
 {
+	eSoundEffect sfx = kSoundNone;
+
 	if(m_quitText.TouchUp(rbt))
 	{
 		m_result = kMenuQuit;
 		m_done = true;
+		
+		sfx = kSoundUIExit;
 	}
 	else if(m_resumeText.TouchUp(rbt))
 	{
 		m_result = kMenuResume;
 		m_done = true;
+		
+		sfx = kSoundUIBack;
 	}
+	
+	RudeSound::GetInstance()->PlayWave(sfx);
 }
 

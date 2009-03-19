@@ -22,6 +22,7 @@ typedef enum {
 	kSoundMissedPutt,
 	kSoundUIStart,
 	kSoundUIBack,
+	kSoundUIExit,
 	kSoundUISelect,
 	kSoundUIClickLow,
 	kSoundUIClickHi,

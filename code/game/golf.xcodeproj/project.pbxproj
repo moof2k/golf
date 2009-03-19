@@ -18,6 +18,7 @@
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
 		9A1B90E00F68E14200E4F29B /* RudeCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */; };
 		9A1B90FD0F68EB1600E4F29B /* RudeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */; };
+		9A2443EC0F722960009D54A0 /* sfx_exit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A2443EB0F722960009D54A0 /* sfx_exit.wav */; };
 		9A3CA24B0E73B90600BDBA8B /* parfive.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3CA24A0E73B90600BDBA8B /* parfive.POD */; };
 		9A3CA2F20E73C0F600BDBA8B /* RBDebugCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */; };
 		9A3CA5290E750A6E00BDBA8B /* RudeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */; };
@@ -303,6 +304,7 @@
 		9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeCollision.cpp; path = Classes/RudeCollision.cpp; sourceTree = "<group>"; };
 		9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnitTest.h; path = Classes/RudeUnitTest.h; sourceTree = "<group>"; };
 		9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnitTest.cpp; path = Classes/RudeUnitTest.cpp; sourceTree = "<group>"; };
+		9A2443EB0F722960009D54A0 /* sfx_exit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_exit.wav; path = Data/sfx_exit.wav; sourceTree = "<group>"; };
 		9A3CA24A0E73B90600BDBA8B /* parfive.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = parfive.POD; path = Data/parfive.POD; sourceTree = "<group>"; };
 		9A3CA2F00E73C0F600BDBA8B /* RBDebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBDebugCamera.h; path = Classes/RBDebugCamera.h; sourceTree = "<group>"; };
 		9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBDebugCamera.cpp; path = Classes/RBDebugCamera.cpp; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 				9A7275840F70B71B0029D849 /* sfx_back.wav */,
 				9A7275900F70BBC60029D849 /* sfx_clickhi.wav */,
 				9A7275920F70BBCC0029D849 /* sfx_clicklow.wav */,
+				9A2443EB0F722960009D54A0 /* sfx_exit.wav */,
 				9A7275880F70B82E0029D849 /* sfx_select.wav */,
 				9A7275790F70ABD80029D849 /* sfx_start.wav */,
 			);
@@ -1686,6 +1689,7 @@
 				9A7275890F70B82E0029D849 /* sfx_select.wav in Resources */,
 				9A7275910F70BBC60029D849 /* sfx_clickhi.wav in Resources */,
 				9A7275930F70BBCC0029D849 /* sfx_clicklow.wav in Resources */,
+				9A2443EC0F722960009D54A0 /* sfx_exit.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
