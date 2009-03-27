@@ -22,24 +22,24 @@ RBCourseEntry sCourseData[kNumCourses] = {
 
 RBCourseHole sCourseHoleData[kNumPhysicalCourses][18] = {
 {
-	{ 1, 3, "parfive"},
-	{ 2, 3, "par3_B" },
-	{ 3, 3, "par3_C" },
-	{ 4, 3, "par3_D" },
-	{ 5, 3, "par3_E" },
-	{ 6, 5, "parfive" },
-	{ 7, 5, "parfive" },
+	{ 1, 4, "par4_A"},
+	{ 2, 5, "parfive" },
+	{ 3, 3, "par3_A" },
+	{ 4, 4, "par4_E" },
+	{ 5, 5, "parfive" },
+	{ 6, 4, "par4_G" },
+	{ 7, 3, "par3_B" },
 	{ 8, 5, "parfive" },
-	{ 9, 5, "parfive" },
-	{ 10, 5, "parfive" },
-	{ 11, 5, "parfive" },
+	{ 9, 4, "par4_B" },
+	{ 10, 4, "par4_H" },
+	{ 11, 3, "par3_C" },
 	{ 12, 5, "parfive" },
-	{ 13, 5, "parfive" },
-	{ 14, 5, "parfive" },
-	{ 15, 5, "parfive" },
-	{ 16, 5, "parfive" },
+	{ 13, 4, "par4_C" },
+	{ 14, 3, "par3_D" },
+	{ 15, 4, "par4_D" },
+	{ 16, 3, "par3_E" },
 	{ 17, 5, "parfive" },
-	{ 18, 5, "parfive" }
+	{ 18, 4, "par4_F" }
 },
 
 {
