@@ -47,8 +47,6 @@ int RudeMesh::Load(const char *name)
 	if(result == 0)
 		return -1;
 	
-	RUDE_REPORT("RudeMesh::Load 1\n");
-	
 	RUDE_ASSERT(m_model.nNumTexture < kMaxTextures, "Too many textures in model");
 	for(int i = 0; i < m_model.nNumTexture; i++)
 	{
@@ -67,33 +65,6 @@ int RudeMesh::Load(const char *name)
 		
 	}
 	
-	RUDE_REPORT("RudeMesh::Load 2\n");
-	
-	// flip endianess of colors stored in meshes
-	for(int i = 0; i < m_model.nNumMesh; i++)
-	{
-		SPODMesh *mesh = &m_model.pMesh[i];
-		
-		RUDE_ASSERT(mesh->pInterleaved, "Mesh data is assumed to be interleaved");
-			
-		if((mesh->sVtxColours.n > 0) && (mesh->sVtxColours.eType == EPODDataRGBA))
-		{
-			unsigned char *c = (mesh->pInterleaved + (long)mesh->sVtxColours.pData);
-			
-			for(int j = 0; j < mesh->nNumVertex; j++)
-			{
-				unsigned int *cc = (unsigned int *) c;
-				int b = *cc & 0x000000FF;
-				int g = (*cc & 0x0000FF00) >> 8;
-				int r = (*cc & 0x00FF0000) >> 16;
-				
-				*cc = 0xFF000000 | (b << 16) | (g << 8) | r;
-				
-				c += mesh->sVtxColours.nStride;
-			}
-		}
-	}
-	
 	// make sure we have at least one renderable node
 	bool foundRenderable = false;
 	for(int i = 0; i < m_model.nNumNode; i++)
@@ -106,11 +77,43 @@ int RudeMesh::Load(const char *name)
 			continue;
 		
 		foundRenderable = true;
+		
+		RUDE_REPORT("  Node %s: mesh %d\n", node->pszName, node->nIdx);
 	}
 	
 	RUDE_ASSERT(foundRenderable, "Didn't find any renderable meshes in %s", name);
 	
-	RUDE_REPORT("RudeMesh::Load 3\n");
+	// flip endianess of colors stored in meshes
+	for(int i = 0; i < m_model.nNumMesh; i++)
+	{
+		SPODMesh *mesh = &m_model.pMesh[i];
+		
+		RUDE_ASSERT(mesh->pInterleaved, "Mesh data must be interleaved");
+			
+		if((mesh->sVtxColours.n > 0))
+		{
+			//RUDE_ASSERT(mesh->sVtxColours.eType == EPODDataRGBA, "Vertex colors must be in RGBA format");
+			
+			if(mesh->sVtxColours.eType == EPODDataRGBA)
+			{
+				unsigned char *c = (mesh->pInterleaved + (long)mesh->sVtxColours.pData);
+				
+				for(int j = 0; j < mesh->nNumVertex; j++)
+				{
+					unsigned int *cc = (unsigned int *) c;
+					unsigned int b = *cc & 0x000000FF;
+					unsigned int g = (*cc & 0x0000FF00) >> 8;
+					unsigned int r = (*cc & 0x00FF0000) >> 16;
+					//unsigned int a = (*cc & 0xFF000000) >> 24;
+					b = g = r;
+					
+					*cc = 0xFF000000 | (b << 16) | (g << 8) | r;
+					
+					c += mesh->sVtxColours.nStride;
+				}
+			}
+		}
+	}
 	
 	return 0;
 	
@@ -195,11 +198,19 @@ void RudeMesh::Render()
 		
 		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
 		
-		if((mesh->sVtxColours.n > 0) && (mesh->sVtxColours.eType == EPODDataRGBA))
-		{
-			glEnableClientState(GL_COLOR_ARRAY);
-			glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
-		}
+		if(mesh->sVtxColours.n > 0)
+	    {
+			if(mesh->sVtxColours.eType == EPODDataRGBA)
+			{
+				glEnableClientState(GL_COLOR_ARRAY);
+				glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
+			}
+			else if(mesh->sVtxColours.eType == EPODDataFloat)
+			{
+				glEnableClientState(GL_COLOR_ARRAY);
+				glColorPointer(4, GL_FLOAT, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
+			}
+	    }
 		else
 			glDisableClientState(GL_COLOR_ARRAY);
 		
