@@ -15,6 +15,7 @@ RBBallRecorder::RBBallRecorder()
 : m_wrapped(false)
 , m_curBallPosition(0)
 {
+	m_tracerTexture = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile("tracer");
 }
 
 
@@ -24,8 +25,6 @@ RBBallRecorder::~RBBallRecorder()
 
 void RBBallRecorder::Reset()
 {
-	m_tracerTexture = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile("tracer");
-	
 	m_wrapped = false;
 	m_curBallPosition = 0;
 	m_timer = 0.0f;
