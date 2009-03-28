@@ -92,7 +92,7 @@ int RudeMesh::Load(const char *name)
 			
 		if((mesh->sVtxColours.n > 0))
 		{
-			//RUDE_ASSERT(mesh->sVtxColours.eType == EPODDataRGBA, "Vertex colors must be in RGBA format");
+			RUDE_ASSERT(mesh->sVtxColours.eType == EPODDataRGBA, "Vertex colors must be in RGBA format");
 			
 			if(mesh->sVtxColours.eType == EPODDataRGBA)
 			{
@@ -200,16 +200,8 @@ void RudeMesh::Render()
 		
 		if(mesh->sVtxColours.n > 0)
 	    {
-			if(mesh->sVtxColours.eType == EPODDataRGBA)
-			{
-				glEnableClientState(GL_COLOR_ARRAY);
-				glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
-			}
-			else if(mesh->sVtxColours.eType == EPODDataFloat)
-			{
-				glEnableClientState(GL_COLOR_ARRAY);
-				glColorPointer(4, GL_FLOAT, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
-			}
+			glEnableClientState(GL_COLOR_ARRAY);
+			glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
 	    }
 		else
 			glDisableClientState(GL_COLOR_ARRAY);
