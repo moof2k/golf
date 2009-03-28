@@ -15,7 +15,7 @@
 
 #ifndef NO_RUDETWEAKER
 
-#include <map>
+#include <list>
 
 
 typedef enum {
@@ -30,6 +30,7 @@ public:
 	
 	RudeTweak(const char *name, eRudeTweakType type, void *data);
 
+	const char *m_name;
 	eRudeTweakType m_type;
 	void *m_data;
 	
@@ -39,7 +40,7 @@ public:
 	RudeTweak name##_tweak(#name , type, &(var));
 
 
-typedef std::map<const char *, RudeTweak *> tTweakerMap;
+typedef std::list<RudeTweak *> tTweakerList;
 
 class RudeTweaker {
 	
@@ -49,10 +50,7 @@ public:
 	
 	void Init();
 	
-	void AddTweak(const char *name, RudeTweak *tweak)
-	{
-		m_tweaks[name] = tweak;
-	}
+	void AddTweak(RudeTweak *tweak);
 	
 	int RudeTweaker::HttpHandler(void * cls,
 										struct MHD_Connection * connection,
@@ -65,7 +63,7 @@ public:
 	
 private:
 	
-	tTweakerMap m_tweaks;
+	tTweakerList m_tweaks;
 	
 };
 

@@ -19,10 +19,11 @@
 
 
 RudeTweak::RudeTweak(const char *name, eRudeTweakType type, void *data)
-: m_type(type)
+: m_name(name)
+, m_type(type)
 , m_data(data)
 {
-	RudeTweaker::GetInstance()->AddTweak(name, this);
+	RudeTweaker::GetInstance()->AddTweak(this);
 }
 
 RudeTweaker * RudeTweaker::GetInstance()
@@ -31,6 +32,30 @@ RudeTweaker * RudeTweaker::GetInstance()
 	if(s_instance == 0)
 		s_instance = new RudeTweaker();
 	return s_instance;
+}
+
+void RudeTweaker::AddTweak(RudeTweak *tweak)
+{
+	bool inserted = false;
+	
+	tTweakerList::iterator end = m_tweaks.end();
+	
+	for(tTweakerList::iterator i = m_tweaks.begin(); i != end; ++i)
+	{
+		RudeTweak *it = *i;
+		int result = strcmp(it->m_name, tweak->m_name);
+		
+		if(result > 0)
+		{
+			m_tweaks.insert(i, tweak);
+			return;
+		}
+	}
+	
+	if(!inserted)
+	{
+		m_tweaks.push_back(tweak);
+	}
 }
 
 static int HttpHandlerGbl(void * cls,
@@ -84,18 +109,20 @@ int RudeTweaker::HttpHandler(void * cls,
 	strcpy(text, "<html><head><title>Rude Tweaker</title></head>\r\n");
 	strcat(text, "\n");
 	strcat(text, "\n");
-	tTweakerMap::iterator it;
-	for(it = m_tweaks.begin(); it != m_tweaks.end(); ++it)
+	
+	for(tTweakerList::iterator i = m_tweaks.begin(); i != m_tweaks.end(); ++i)
 	{
+		RudeTweak *it = *i;
+		
 		const int kItemLen = 512;
 		char item[kItemLen];
 		char value[kItemLen];
 		
-		const char *invalue = MHD_lookup_connection_value (connection, MHD_GET_ARGUMENT_KIND, it->first);
+		const char *invalue = MHD_lookup_connection_value (connection, MHD_GET_ARGUMENT_KIND, it->m_name);
 		if(invalue)
 			printf("Value: %s\n", invalue);
 		
-		switch(it->second->m_type)
+		switch(it->m_type)
 		{
 			case kBool:
 				if(invalue)
@@ -103,20 +130,20 @@ int RudeTweaker::HttpHandler(void * cls,
 					int parsedvalue = 0;
 					int results = sscanf(invalue, "%d", &parsedvalue);
 					if(results == 1)
-						*((bool *) it->second->m_data) = parsedvalue;
+						*((bool *) it->m_data) = parsedvalue;
 				}
 				
-				snprintf(value, kItemLen, "%d", *((bool *) it->second->m_data));
+				snprintf(value, kItemLen, "%d", *((bool *) it->m_data));
 				break;
 			case kFloat:
 				if(invalue)
-					sscanf(invalue, "%f", ((float *) it->second->m_data));
+					sscanf(invalue, "%f", ((float *) it->m_data));
 				
-				snprintf(value, kItemLen, "%f", *((float *) it->second->m_data));
+				snprintf(value, kItemLen, "%f", *((float *) it->m_data));
 				break;
 		}
 		
-		snprintf(item, kItemLen, "<form method=\"get\">%s: <input type=\"text\" name=\"%s\" value=\"%s\"></form><br>\n", it->first, it->first, value);
+		snprintf(item, kItemLen, "<form method=\"get\">%s: <input type=\"text\" name=\"%s\" value=\"%s\"></form><br>\n", it->m_name, it->m_name, value);
 		
 		
 		
