@@ -37,8 +37,29 @@ RudeSkinnedMesh::~RudeSkinnedMesh()
 
 int RudeSkinnedMesh::Load(const char *name)
 {
+	RUDE_REPORT("RudeSkinnedMesh::Load %s\n", name);
+	
 	if(RudeMesh::Load(name))
 		return -1;
+	
+	for(int i = 0; i < m_model.nNumMesh; i++)
+	{
+		SPODMesh *mesh = &m_model.pMesh[i];
+		
+		for(int b = 0; b < mesh->sBoneBatches.nBatchCnt; b++)
+		{
+			int offset = mesh->sBoneBatches.pnBatchOffset[b];
+			int end = mesh->sBoneBatches.pnBatchOffset[b+1];
+			
+			if(b == (mesh->sBoneBatches.nBatchCnt - 1))
+				end = mesh->nNumFaces;
+			
+			int numfaces = (end - offset);
+			
+			RUDE_REPORT("  Mesh %d-%d: %d tris\n", i, b, numfaces);
+		}
+		
+	}
 	
 	return 0;
 	
@@ -206,7 +227,6 @@ void RudeSkinnedMesh::Render()
 				end = mesh->nNumFaces*3;
 			
 			int numidx = (end - offset);
-			
 			
 			glDrawElements(GL_TRIANGLES, numidx, GL_UNSIGNED_SHORT, &indices[offset]);
 			
