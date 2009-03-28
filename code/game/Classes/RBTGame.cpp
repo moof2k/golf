@@ -36,6 +36,9 @@ bool gDebugCameraPrev = false;
 bool gDebugFinishHole = false;
 RUDE_TWEAK(DebugFinishHole, kBool, gDebugFinishHole);
 
+bool gDebugResetHole = false;
+RUDE_TWEAK(DebugResetHole, kBool, gDebugResetHole);
+
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
 const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
@@ -50,6 +53,9 @@ const unsigned int kParTopColor = 0xFFF69729;
 const unsigned int kParBotColor = 0xFF000000;
 const unsigned int kParOutlineTopColor = 0xFFFFFFFF;
 const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
+
+float gWindForceMultiplier = 1.2f;
+RUDE_TWEAK(WindForceMultiplier, kFloat, gWindForceMultiplier);
 
 const float kFollowTimerThreshold = 2.0f;
 
@@ -322,7 +328,7 @@ void RBTGame::RestoreState()
 	
 	m_windText.SetValue(m_windSpeed);
 	m_windControl.SetWind(m_windDir, m_windSpeed);
-	m_ball.SetWindSpeed(m_windVec);
+	m_ball.SetWind(m_windVec);
 	
 	// update golfer renderable
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
@@ -529,27 +535,25 @@ void RBTGame::StateTeePosition(float delta)
 			break;
 	}
 	
-	// temporarily force no wind
-	windspeed = 0;
-	
 	m_windText.SetValue(windspeed);
 	
 	m_windSpeed = windspeed;
 	
-	btVector3 winddir(1,0,0);
+	btVector3 windx(gWindForceMultiplier,0,0);
 	
-	//m_windDir = 0;
-	m_windDir = rand() % 360;
-	m_windDir = (m_windDir / 180.0f) * 3.1415926f;
+	float winddir = rand() % 360;
+	m_windDir = (winddir / 180.0f) * 3.1415926f;
 	
 	btMatrix3x3 rmat;
 	rmat.setEulerYPR(m_windDir, 0.0f, 0.0f);
 	
-	m_windVec = rmat * winddir;
+	m_windVec = rmat * windx;
 	m_windVec *= m_windSpeed;
 	
 	m_windControl.SetWind(m_windDir, windspeed);
-	m_ball.SetWindSpeed(m_windVec);
+	m_ball.SetWind(m_windVec);
+	
+	RUDE_REPORT("Wind: dir=%f speed=%f vec=(%f %f %f)\n", winddir, m_windSpeed, m_windVec.x(), m_windVec.y(), m_windVec.z());
 	
 	SetState(kStatePositionSwing);
 }
@@ -1062,6 +1066,12 @@ void RBTGame::NextFrame(float delta)
 		m_terrain.SetBallInHole(true);
 		SetState(kStateBallInHole);
 		gDebugFinishHole = false;
+	}
+	
+	if(gDebugResetHole)
+	{
+		SetState(kStateTeePosition);
+		gDebugResetHole = false;
 	}
 	
 	

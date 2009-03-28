@@ -24,6 +24,7 @@ RBWindControl::RBWindControl()
 void RBWindControl::SetWind(float windDir, float windSpeed)
 {
 	m_indicatorYaw = -windDir * 180.0f / 3.1415926f;
+	m_indicatorYaw += 90.0f;
 	m_windSpeed = windSpeed;
 }
 
