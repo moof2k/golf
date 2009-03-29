@@ -54,7 +54,7 @@ const unsigned int kParBotColor = 0xFF000000;
 const unsigned int kParOutlineTopColor = 0xFFFFFFFF;
 const unsigned int kParOutlineBotColor = 0xFFFFFFFF;
 
-float gWindForceMultiplier = 1.2f;
+float gWindForceMultiplier = 0.6f;
 RUDE_TWEAK(WindForceMultiplier, kFloat, gWindForceMultiplier);
 
 const float kFollowTimerThreshold = 2.0f;
