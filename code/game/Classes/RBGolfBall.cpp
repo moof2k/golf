@@ -18,6 +18,7 @@
 const float kBallRadius = 0.15f;
 const float kBallMass = 0.1f;
 const float kSpinForceDelay = 0.75f;
+const float kSpinForceStopTime = 1.75f;
 const float kWindDelay = 1.0f;
 
 RBGolfBall::RBGolfBall()
@@ -70,13 +71,16 @@ void RBGolfBall::NextFrame(float delta)
 	{
 		m_spinForceTimer += delta;
 		
-		float gradient = m_spinForceTimer / kSpinForceDelay;
-		if(gradient > 1.0f)
-			gradient = 1.0f;
-		
-		btVector3 linvel = rb->getLinearVelocity();
-		linvel += m_spinForce * delta * gradient;
-		rb->setLinearVelocity(linvel);
+		if(m_spinForceTimer < kSpinForceStopTime)
+		{
+			float gradient = m_spinForceTimer / kSpinForceDelay;
+			if(gradient > 1.0f)
+				gradient = 1.0f;
+			
+			btVector3 linvel = rb->getLinearVelocity();
+			linvel += m_spinForce * delta * gradient;
+			rb->setLinearVelocity(linvel);
+		}
 		
 	}
 	
