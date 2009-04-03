@@ -15,10 +15,10 @@
 #include <OpenGLES/ES1/glext.h>
 
 const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
-	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
-	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
-	{ 0.0f, 13.0f, 13.0f, 19.9f, 32.0f },
-	{ 39.0f, 46.0f, 46.0f, 51.2f, 76.5f },
+	{ 1.0f, 18.0f, 18.0f, 25.9f, 41.0f },
+	{ 110.0f, 127.0f, 127.0f, 135.9f, 155.0f },
+	{ 1.0f, 18.0f, 18.0f, 25.9f, 41.0f },
+	{ 46.0f, 60.0f, 60.0f, 65.2f, 96.0f },
 };
 
 RBGolferObject::RBGolferObject()
@@ -68,6 +68,7 @@ void RBGolferObject::SetReady()
 {
 	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
 	
+	mesh->SetAnimate(true);
 	mesh->SetFrame(kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart);
 }
 
@@ -77,7 +78,14 @@ void RBGolferObject::SetRelax()
 	
 	const float kBackSwingStart = kRBGolferSwingAnimationPoints[m_swingType].m_backSwingStart;
 
+	mesh->SetAnimate(true);
 	mesh->AnimateTo(kBackSwingStart);
+}
+
+void RBGolferObject::SetCasual()
+{
+	RudeSkinnedMesh *mesh = (RudeSkinnedMesh *) GetMesh();
+	mesh->SetAnimate(false);
 }
 
 void RBGolferObject::SetSwingType(eRBGolfClubType type)
@@ -93,7 +101,7 @@ void RBGolferObject::SetSwingType(eRBGolfClubType type)
 	
 	mesh->EnableModel(1, m_swingType == kClubWood);
 	mesh->EnableModel(2, m_swingType == kClubIron);
-	mesh->EnableModel(3, m_swingType == kClubWedge);
+	//mesh->EnableModel(3, m_swingType == kClubWedge);
 	mesh->EnableModel(4, m_swingType == kClubPutter);
 }
 

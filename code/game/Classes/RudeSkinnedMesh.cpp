@@ -136,9 +136,12 @@ void RudeSkinnedMesh::Render()
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
 	
-	glEnable(GL_MATRIX_PALETTE_OES);
-	glEnableClientState(GL_MATRIX_INDEX_ARRAY_OES);
-	glEnableClientState(GL_WEIGHT_ARRAY_OES);
+	if(m_animate)
+	{
+		glEnable(GL_MATRIX_PALETTE_OES);
+		glEnableClientState(GL_MATRIX_INDEX_ARRAY_OES);
+		glEnableClientState(GL_WEIGHT_ARRAY_OES);
+	}
 	
 	//glScalef(m_scale.x(), m_scale.y(), m_scale.z());
 	
@@ -157,9 +160,11 @@ void RudeSkinnedMesh::Render()
 		RUDE_ASSERT(mesh->sBoneIdx.eType == EPODDataUnsignedByte, "Bone indices must be unsigned byte (mesh '%s')", node->pszName);
 		RUDE_ASSERT(mesh->sBoneWeight.eType == EPODDataFloat, "Bone weight must be float");
 		
-		
-		glMatrixIndexPointerOES(mesh->sBoneIdx.n, GL_UNSIGNED_BYTE, mesh->sBoneIdx.nStride, mesh->pInterleaved + (long) mesh->sBoneIdx.pData);
-		glWeightPointerOES(mesh->sBoneWeight.n, GL_FLOAT, mesh->sBoneWeight.nStride, mesh->pInterleaved + (long) mesh->sBoneWeight.pData);
+		if(m_animate)
+		{
+			glMatrixIndexPointerOES(mesh->sBoneIdx.n, GL_UNSIGNED_BYTE, mesh->sBoneIdx.nStride, mesh->pInterleaved + (long) mesh->sBoneIdx.pData);
+			glWeightPointerOES(mesh->sBoneWeight.n, GL_FLOAT, mesh->sBoneWeight.nStride, mesh->pInterleaved + (long) mesh->sBoneWeight.pData);
+		}
 		
 		int textureid = material->nIdxTexDiffuse;
 		if(textureid >= 0)
@@ -168,7 +173,9 @@ void RudeSkinnedMesh::Render()
 		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
 		
 		if(mesh->sVertex.eType == EPODDataFixed16_16)
+		{
 			glVertexPointer(3, GL_FIXED, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		}
 		else if(mesh->sVertex.eType == EPODDataShortNorm)
 		{
 			float s = 1.0f / 1000.0f;
@@ -176,8 +183,14 @@ void RudeSkinnedMesh::Render()
 			glScalef(s, s, s);
 			glVertexPointer(3, GL_UNSIGNED_SHORT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
 		}
+		else if(mesh->sVertex.eType == EPODDataShort)
+		{
+			glVertexPointer(3, GL_SHORT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		}
 		else
+		{
 			glVertexPointer(3, GL_FLOAT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		}
 		
 		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
 		
@@ -195,27 +208,25 @@ void RudeSkinnedMesh::Render()
 		{
 			int batchcnt = mesh->sBoneBatches.pnBatchBoneCnt[b];
 
-			glMatrixMode(GL_MATRIX_PALETTE_OES);
-			
-			for(int j = 0; j < batchcnt; ++j)
+			if(m_animate)
 			{
-				
-				//GL_MATRIX0_ARB
-				
-				glCurrentPaletteMatrixOES(j);
-				
-				// Generates the world matrix for the given bone in this batch.
-				PVRTMATRIX	mBoneWorld;
-				int i32NodeID = mesh->sBoneBatches.pnBatches[j + totalbatchcnt];
-				m_model.GetBoneWorldMatrix(mBoneWorld, *node, m_model.pNode[i32NodeID]);
-				
-				// Multiply the bone's world matrix by the view matrix to put it in view space
-				PVRTMatrixMultiply(mBoneWorld, mBoneWorld, viewmat);
-				
-				// Load the bone matrix into the current palette matrix.
-				glLoadMatrixf(mBoneWorld.f);
-				
-				
+				glMatrixMode(GL_MATRIX_PALETTE_OES);
+			
+				for(int j = 0; j < batchcnt; ++j)
+				{
+					glCurrentPaletteMatrixOES(j);
+					
+					// Generates the world matrix for the given bone in this batch.
+					PVRTMATRIX	mBoneWorld;
+					int i32NodeID = mesh->sBoneBatches.pnBatches[j + totalbatchcnt];
+					m_model.GetBoneWorldMatrix(mBoneWorld, *node, m_model.pNode[i32NodeID]);
+					
+					// Multiply the bone's world matrix by the view matrix to put it in view space
+					PVRTMatrixMultiply(mBoneWorld, mBoneWorld, viewmat);
+					
+					// Load the bone matrix into the current palette matrix.
+					glLoadMatrixf(mBoneWorld.f);
+				}
 			}
 			
 			totalbatchcnt += batchcnt;
@@ -229,13 +240,7 @@ void RudeSkinnedMesh::Render()
 			int numidx = (end - offset);
 			
 			glDrawElements(GL_TRIANGLES, numidx, GL_UNSIGNED_SHORT, &indices[offset]);
-			
-			
 		}
-		
-		
-		
-		
 	
 	}
 	

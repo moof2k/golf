@@ -13,6 +13,10 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		28FD14FE0DC6FC130079059D /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.mm */; };
+		9A03E1310F85D57100AC5D7C /* driver_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1300F85D57100AC5D7C /* driver_128.pvr */; };
+		9A03E1330F85D57800AC5D7C /* putter_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1320F85D57800AC5D7C /* putter_128.pvr */; };
+		9A03E1350F85D57F00AC5D7C /* wedge_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1340F85D57F00AC5D7C /* wedge_128.pvr */; };
+		9A03E1370F85D58500AC5D7C /* iron_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1360F85D58500AC5D7C /* iron_128.pvr */; };
 		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
@@ -47,6 +51,15 @@
 		9A4B1F970F7A05A300E9DF39 /* ui_7iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F840F7A05A300E9DF39 /* ui_7iron.png */; };
 		9A4B1F980F7A05A300E9DF39 /* ui_botbarbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F850F7A05A300E9DF39 /* ui_botbarbg.png */; };
 		9A4B1F990F7A05A300E9DF39 /* ui_sw.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F860F7A05A300E9DF39 /* ui_sw.png */; };
+		9A4B20060F7D236600E9DF39 /* par4_D.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1FFE0F7D236600E9DF39 /* par4_D.POD */; };
+		9A4B20070F7D236600E9DF39 /* par4_A.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1FFF0F7D236600E9DF39 /* par4_A.POD */; };
+		9A4B20080F7D236600E9DF39 /* par4_H.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20000F7D236600E9DF39 /* par4_H.POD */; };
+		9A4B20090F7D236600E9DF39 /* par4_C.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20010F7D236600E9DF39 /* par4_C.POD */; };
+		9A4B200A0F7D236600E9DF39 /* par4_E.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20020F7D236600E9DF39 /* par4_E.POD */; };
+		9A4B200B0F7D236600E9DF39 /* par4_B.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20030F7D236600E9DF39 /* par4_B.POD */; };
+		9A4B200C0F7D236600E9DF39 /* par4_F.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20040F7D236600E9DF39 /* par4_F.POD */; };
+		9A4B200D0F7D236600E9DF39 /* par4_G.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20050F7D236600E9DF39 /* par4_G.POD */; };
+		9A4B21860F7DF9E700E9DF39 /* pin.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B21850F7DF9E700E9DF39 /* pin.POD */; };
 		9A4F1A050E84E401001D1F0B /* RudeSkinnedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */; };
 		9A4F1ABA0E84EC98001D1F0B /* mallet.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1AB90E84EC98001D1F0B /* mallet.POD */; };
 		9A4F1B5E0E861985001D1F0B /* strokedot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1B5D0E861985001D1F0B /* strokedot.png */; };
@@ -296,6 +309,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GLSprite_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSprite_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A03E1300F85D57100AC5D7C /* driver_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driver_128.pvr; path = Data/driver_128.pvr; sourceTree = "<group>"; };
+		9A03E1320F85D57800AC5D7C /* putter_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = putter_128.pvr; path = Data/putter_128.pvr; sourceTree = "<group>"; };
+		9A03E1340F85D57F00AC5D7C /* wedge_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = wedge_128.pvr; path = Data/wedge_128.pvr; sourceTree = "<group>"; };
+		9A03E1360F85D58500AC5D7C /* iron_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = iron_128.pvr; path = Data/iron_128.pvr; sourceTree = "<group>"; };
 		9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEngine.cpp; sourceTree = "<group>"; };
 		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -339,6 +356,15 @@
 		9A4B1F840F7A05A300E9DF39 /* ui_7iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_7iron.png; path = Data/ui_7iron.png; sourceTree = "<group>"; };
 		9A4B1F850F7A05A300E9DF39 /* ui_botbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_botbarbg.png; path = Data/ui_botbarbg.png; sourceTree = "<group>"; };
 		9A4B1F860F7A05A300E9DF39 /* ui_sw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_sw.png; path = Data/ui_sw.png; sourceTree = "<group>"; };
+		9A4B1FFE0F7D236600E9DF39 /* par4_D.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_D.POD; path = Data/par4_D.POD; sourceTree = "<group>"; };
+		9A4B1FFF0F7D236600E9DF39 /* par4_A.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_A.POD; path = Data/par4_A.POD; sourceTree = "<group>"; };
+		9A4B20000F7D236600E9DF39 /* par4_H.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_H.POD; path = Data/par4_H.POD; sourceTree = "<group>"; };
+		9A4B20010F7D236600E9DF39 /* par4_C.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_C.POD; path = Data/par4_C.POD; sourceTree = "<group>"; };
+		9A4B20020F7D236600E9DF39 /* par4_E.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_E.POD; path = Data/par4_E.POD; sourceTree = "<group>"; };
+		9A4B20030F7D236600E9DF39 /* par4_B.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_B.POD; path = Data/par4_B.POD; sourceTree = "<group>"; };
+		9A4B20040F7D236600E9DF39 /* par4_F.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_F.POD; path = Data/par4_F.POD; sourceTree = "<group>"; };
+		9A4B20050F7D236600E9DF39 /* par4_G.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_G.POD; path = Data/par4_G.POD; sourceTree = "<group>"; };
+		9A4B21850F7DF9E700E9DF39 /* pin.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = pin.POD; path = Data/pin.POD; sourceTree = "<group>"; };
 		9A4F1A030E84E401001D1F0B /* RudeSkinnedMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkinnedMesh.h; path = Classes/RudeSkinnedMesh.h; sourceTree = "<group>"; };
 		9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkinnedMesh.cpp; path = Classes/RudeSkinnedMesh.cpp; sourceTree = "<group>"; };
 		9A4F1AB90E84EC98001D1F0B /* mallet.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = mallet.POD; path = Data/mallet.POD; sourceTree = "<group>"; };
@@ -1501,6 +1527,10 @@
 			isa = PBXGroup;
 			children = (
 				9AE630720EB6E08B000B2EAD /* ball128.pvr */,
+				9A03E1300F85D57100AC5D7C /* driver_128.pvr */,
+				9A03E1360F85D58500AC5D7C /* iron_128.pvr */,
+				9A03E1320F85D57800AC5D7C /* putter_128.pvr */,
+				9A03E1340F85D57F00AC5D7C /* wedge_128.pvr */,
 				9A9199B10E71225700BE65AF /* skybox4.pvr */,
 				9A9199B20E71225700BE65AF /* skybox2.pvr */,
 				9A9199B30E71225700BE65AF /* skybox5.pvr */,
@@ -1524,6 +1554,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA93F000E84D3DF00F6FBD8 /* golfer.POD */,
+				9A4B21850F7DF9E700E9DF39 /* pin.POD */,
 				9A4F1AB90E84EC98001D1F0B /* mallet.POD */,
 				9A93B7510E822F890067CDC6 /* playerbox.POD */,
 				9A3CA7800E75265000BDBA8B /* ball_1.POD */,
@@ -1537,6 +1568,14 @@
 				9AE631020EB700AD000B2EAD /* par3_C.POD */,
 				9AE631060EB70173000B2EAD /* par3_D.POD */,
 				9AE6310A0EB70202000B2EAD /* par3_E.POD */,
+				9A4B1FFE0F7D236600E9DF39 /* par4_D.POD */,
+				9A4B1FFF0F7D236600E9DF39 /* par4_A.POD */,
+				9A4B20000F7D236600E9DF39 /* par4_H.POD */,
+				9A4B20010F7D236600E9DF39 /* par4_C.POD */,
+				9A4B20020F7D236600E9DF39 /* par4_E.POD */,
+				9A4B20030F7D236600E9DF39 /* par4_B.POD */,
+				9A4B20040F7D236600E9DF39 /* par4_F.POD */,
+				9A4B20050F7D236600E9DF39 /* par4_G.POD */,
 				9ACA1A8A0EBEDE660014C128 /* wind_indicator.POD */,
 			);
 			name = POD;
@@ -1690,6 +1729,19 @@
 				9A4B1F970F7A05A300E9DF39 /* ui_7iron.png in Resources */,
 				9A4B1F980F7A05A300E9DF39 /* ui_botbarbg.png in Resources */,
 				9A4B1F990F7A05A300E9DF39 /* ui_sw.png in Resources */,
+				9A4B20060F7D236600E9DF39 /* par4_D.POD in Resources */,
+				9A4B20070F7D236600E9DF39 /* par4_A.POD in Resources */,
+				9A4B20080F7D236600E9DF39 /* par4_H.POD in Resources */,
+				9A4B20090F7D236600E9DF39 /* par4_C.POD in Resources */,
+				9A4B200A0F7D236600E9DF39 /* par4_E.POD in Resources */,
+				9A4B200B0F7D236600E9DF39 /* par4_B.POD in Resources */,
+				9A4B200C0F7D236600E9DF39 /* par4_F.POD in Resources */,
+				9A4B200D0F7D236600E9DF39 /* par4_G.POD in Resources */,
+				9A4B21860F7DF9E700E9DF39 /* pin.POD in Resources */,
+				9A03E1310F85D57100AC5D7C /* driver_128.pvr in Resources */,
+				9A03E1330F85D57800AC5D7C /* putter_128.pvr in Resources */,
+				9A03E1350F85D57F00AC5D7C /* wedge_128.pvr in Resources */,
+				9A03E1370F85D58500AC5D7C /* iron_128.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

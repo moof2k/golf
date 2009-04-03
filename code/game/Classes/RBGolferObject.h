@@ -41,6 +41,7 @@ public:
 	
 	void SetReady();
 	void SetRelax();
+	void SetCasual();
 	void SetBackSwing(float pct);
 	void SetForwardSwing(float pct);
 	void SetSwingType(eRBGolfClubType t);

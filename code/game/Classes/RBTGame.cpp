@@ -628,6 +628,7 @@ void RBTGame::StateFollowBall(float delta)
 		m_ballCamera.ResetGuide(placement);
 		m_ballCamera.SetTrackMode(kPlacementCamera);
 		
+		m_golfer.SetCasual();
 		
 		m_followTimer = -100.0f;
 	}
@@ -1354,7 +1355,8 @@ void RBTGame::Render(float aspect)
 	
 	
 	//RGL.Enable(kDepthTest, false);
-	m_ball.Render();
+	if(m_state != kStateBallInHole)
+		m_ball.Render();
 	
 	
 	

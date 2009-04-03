@@ -31,6 +31,8 @@ public:
 	virtual void SetFrame(float f);
 	virtual void AnimateTo(float f);
 	
+	void SetAnimate(bool a) { m_animate = a; }
+	
 private:
 
 	float m_frame;
@@ -38,6 +40,8 @@ private:
 	float m_fps;
 	
 	bool m_animateTo;
+	
+	bool m_animate;
 	
 };
 
