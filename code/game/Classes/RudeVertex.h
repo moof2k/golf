@@ -1,18 +1,6 @@
 #ifndef _H_RudeVertex
 #define _H_RudeVertex
 
-#include "RudeColor.h"
-
-typedef struct RudeVertex {
-	float x, y, z;
-	RudeColor c;
-} RudeVertex;
-
-typedef struct RudeVertexT {
-	float x, y, z;
-	float s, t;
-} RudeVertexT;
-
 class RudeScreenVertex {
 	
 public:

@@ -3,31 +3,42 @@
 
 #include "Rude.h"
 
-#ifdef RUDE_GAPI
-#include "GapiDraw.h"
-#endif
-
-class RudeColor {
+class RudeColorFloat {
 
 public:
-	RudeColor();
-	RudeColor(int r, int g, int b);
-	RudeColor(const RudeColor &c);
-	~RudeColor();
+	RudeColorFloat();
+	RudeColorFloat(float r, float g, float b);
 	
-	int r;
-	int g;
-	int b;
+	void Set(float r, float g, float b)
+	{
+		m_r = r;
+		m_g = g;
+		m_b = b;
+	}
 
-	void SetColor(int r, int g, int b) { this->r = r; this->g = g; this->b = b; }
-	void SetColor(RudeColor *c) { this->r = c->r; this->g = c->g; this->b = c->b; }
-
-#ifdef RUDE_GAPI
-	COLORREF GetColor() { return RGB(r, g, b); }
-	void SetColor(COLORREF c) { r = GetRValue(c); g = GetGValue(c); b = GetBValue(c); }
-#endif
-
-
+	void Blend(const RudeColorFloat &other, float scale)
+	{
+		float invscale = 1.0f - scale;
+		m_r = invscale * m_r + scale * other.m_r;
+		m_g = invscale * m_g + scale * other.m_g;
+		m_b = invscale * m_b + scale * other.m_b;
+	}
+	
+	RudeColorFloat & operator*=(float scale)
+	{
+		RUDE_ASSERT(scale >= -1.0f, "Invalid scale");
+		RUDE_ASSERT(scale <= 1.0f, "Invalid scale");
+		
+		m_r *= scale;
+		m_g *= scale;
+		m_b *= scale;
+		
+		return *this;
+	}
+	
+	float m_r;
+	float m_g;
+	float m_b;
 	
 private:
 

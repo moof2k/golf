@@ -11,7 +11,6 @@
 #define __H_RudeControl
 
 #include "RudeRect.h"
-#include "RudeVertex.h"
 #include "RudeTouchTracker.h"
 
 #include <btBulletDynamicsCommon.h>
