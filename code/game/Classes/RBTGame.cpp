@@ -1402,7 +1402,11 @@ void RBTGame::Render(float aspect)
 			m_nextClubButton.Render();
 			m_prevClubButton.Render();
 			m_clubButton.Render();
-			m_cameraButton.Render();
+			
+			RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+			if(club->m_type != kClubPutter)
+				m_cameraButton.Render();
+			
 			RenderShotInfo(false, true);
 			m_windText.Render();
 			
@@ -1532,15 +1536,19 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			}
 			if(m_cameraButton.TouchDown(rbt))
 			{
-				if(m_state == kStatePositionSwing)
+				RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+				if(club->m_type != kClubPutter)
 				{
-					SetState(kStatePositionSwing2);
-					sfx = kSoundUIClickHi;
-				}
-				else
-				{
-					SetState(kStatePositionSwing);
-					sfx = kSoundUIClickLow;
+					if(m_state == kStatePositionSwing)
+					{
+						SetState(kStatePositionSwing2);
+						sfx = kSoundUIClickHi;
+					}
+					else
+					{
+						SetState(kStatePositionSwing);
+						sfx = kSoundUIClickLow;
+					}
 				}
 			}
 			break;
