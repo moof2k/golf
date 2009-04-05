@@ -59,7 +59,6 @@
 		9A4B200B0F7D236600E9DF39 /* par4_B.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20030F7D236600E9DF39 /* par4_B.POD */; };
 		9A4B200C0F7D236600E9DF39 /* par4_F.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20040F7D236600E9DF39 /* par4_F.POD */; };
 		9A4B200D0F7D236600E9DF39 /* par4_G.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B20050F7D236600E9DF39 /* par4_G.POD */; };
-		9A4B21860F7DF9E700E9DF39 /* pin.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B21850F7DF9E700E9DF39 /* pin.POD */; };
 		9A4F1A050E84E401001D1F0B /* RudeSkinnedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */; };
 		9A4F1ABA0E84EC98001D1F0B /* mallet.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1AB90E84EC98001D1F0B /* mallet.POD */; };
 		9A4F1B5E0E861985001D1F0B /* strokedot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1B5D0E861985001D1F0B /* strokedot.png */; };
@@ -364,7 +363,6 @@
 		9A4B20030F7D236600E9DF39 /* par4_B.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_B.POD; path = Data/par4_B.POD; sourceTree = "<group>"; };
 		9A4B20040F7D236600E9DF39 /* par4_F.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_F.POD; path = Data/par4_F.POD; sourceTree = "<group>"; };
 		9A4B20050F7D236600E9DF39 /* par4_G.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par4_G.POD; path = Data/par4_G.POD; sourceTree = "<group>"; };
-		9A4B21850F7DF9E700E9DF39 /* pin.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = pin.POD; path = Data/pin.POD; sourceTree = "<group>"; };
 		9A4F1A030E84E401001D1F0B /* RudeSkinnedMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkinnedMesh.h; path = Classes/RudeSkinnedMesh.h; sourceTree = "<group>"; };
 		9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkinnedMesh.cpp; path = Classes/RudeSkinnedMesh.cpp; sourceTree = "<group>"; };
 		9A4F1AB90E84EC98001D1F0B /* mallet.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = mallet.POD; path = Data/mallet.POD; sourceTree = "<group>"; };
@@ -1554,7 +1552,6 @@
 			isa = PBXGroup;
 			children = (
 				9AA93F000E84D3DF00F6FBD8 /* golfer.POD */,
-				9A4B21850F7DF9E700E9DF39 /* pin.POD */,
 				9A4F1AB90E84EC98001D1F0B /* mallet.POD */,
 				9A93B7510E822F890067CDC6 /* playerbox.POD */,
 				9A3CA7800E75265000BDBA8B /* ball_1.POD */,
@@ -1737,7 +1734,6 @@
 				9A4B200B0F7D236600E9DF39 /* par4_B.POD in Resources */,
 				9A4B200C0F7D236600E9DF39 /* par4_F.POD in Resources */,
 				9A4B200D0F7D236600E9DF39 /* par4_G.POD in Resources */,
-				9A4B21860F7DF9E700E9DF39 /* pin.POD in Resources */,
 				9A03E1310F85D57100AC5D7C /* driver_128.pvr in Resources */,
 				9A03E1330F85D57800AC5D7C /* putter_128.pvr in Resources */,
 				9A03E1350F85D57F00AC5D7C /* wedge_128.pvr in Resources */,
