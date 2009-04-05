@@ -14,13 +14,17 @@
 #include "RudeFile.h"
 #include "RudePerf.h"
 #include "RudeTextureManager.h"
-
+#include "RudeTweaker.h"
 
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
+bool gDebugAnim = false;
+RUDE_TWEAK(DebugAnim, kBool, gDebugAnim);
 
+float gDebugAnimFrame = 0;
+RUDE_TWEAK(DebugAnimFrame, kFloat, gDebugAnimFrame);
 
 RudeSkinnedMesh::RudeSkinnedMesh(RudeObject *owner)
 : RudeMesh(owner)
@@ -106,7 +110,9 @@ void RudeSkinnedMesh::NextFrame(float delta)
 	}
 	
 	m_model.SetFrame(m_frame);
-	 
+	
+	if(gDebugAnim)
+		m_model.SetFrame(gDebugAnimFrame);
 }
 
 
