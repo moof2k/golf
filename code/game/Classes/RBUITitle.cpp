@@ -18,7 +18,7 @@ RBUITitle::RBUITitle()
 {
 	m_startedMusic = false;
 	
-	m_terrain.LoadMesh("parfive");
+	m_terrain.LoadMesh("par5_A");
 	m_skybox.Load("skybox");
 	
 	m_logo.SetAnimType(kAnimPopSlide);
@@ -288,8 +288,7 @@ void RBUITitle::NextFrame(float delta)
 		m_startedMusic = true;
 	}
 	
-	if(m_state == kTitleSplash)
-		m_cameraTimer += delta;
+	m_cameraTimer += delta;
 	
 	if(m_state == kTitleReadyToPlay || m_state == kTitleReadyToPractice)
 	{
