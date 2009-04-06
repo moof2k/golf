@@ -43,7 +43,7 @@ RBCourseHole sCourseHoleData[kNumPhysicalCourses][18] = {
 },
 
 {
-	{ 1, 1, "drivingrange" },
+	{ 1, 1, "driving_range" },
 	{ 1, 1, "drivingrange" },
 	{ 1, 1, "drivingrange" },
 	{ 1, 1, "drivingrange" },
