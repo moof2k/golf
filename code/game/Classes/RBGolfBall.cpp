@@ -244,11 +244,12 @@ void RBGolfBall::StickAtPosition(const btVector3 &p)
 {
 	m_stopped = true;
 	
-	btVector3 to = p + btVector3(0,-1000,0);
+	btVector3 p0 = p + btVector3(0,1000,0);
+	btVector3 p1 = p + btVector3(0,-1000,0);
 	btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
-	btCollisionWorld::ClosestRayResultCallback cb(p, to);
+	btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
 	
-	world->rayTest(p, to, cb);
+	world->rayTest(p0, p1, cb);
 	
 	RUDE_ASSERT(cb.hasHit(), "Could not stick ball at position");
 	
