@@ -15,10 +15,10 @@
 #include <OpenGLES/ES1/glext.h>
 
 const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
-	{ 1.0f, 18.0f, 18.0f, 25.9f, 41.0f },
-	{ 110.0f, 127.0f, 127.0f, 135.9f, 155.0f },
-	{ 1.0f, 18.0f, 18.0f, 25.9f, 41.0f },
-	{ 46.0f, 60.0f, 60.0f, 65.2f, 96.0f },
+	{ 1.0f, 21.0f, 21.0f, 25.3f, 35.0f },
+	{ 36.0f, 55.0f, 55.0f, 60.3f, 80.0f },
+	{ 86.0f, 105.0f, 105.f, 113.0f, 125.0f },
+	{ 133.0f, 146.0f, 146.0f, 153.0f, 186.0f },
 };
 
 RBGolferObject::RBGolferObject()
@@ -101,7 +101,7 @@ void RBGolferObject::SetSwingType(eRBGolfClubType type)
 	
 	mesh->EnableModel(1, m_swingType == kClubWood);
 	mesh->EnableModel(2, m_swingType == kClubIron);
-	//mesh->EnableModel(3, m_swingType == kClubWedge);
+	mesh->EnableModel(3, m_swingType == kClubWedge);
 	mesh->EnableModel(4, m_swingType == kClubPutter);
 }
 
