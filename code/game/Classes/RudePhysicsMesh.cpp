@@ -70,6 +70,8 @@ void RudePhysicsMesh::Load(RudeMesh *modelmesh, float mass)
 		
 		m_data->addIndexedMesh(btmesh, PHY_SHORT);
 		
+		int subpart = m_data->getNumSubParts() - 1;
+		m_subPartMappings[subpart] = i;
 	}
 	
 	

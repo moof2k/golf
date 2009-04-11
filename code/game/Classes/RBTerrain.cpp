@@ -91,9 +91,13 @@ RBTerrain::RBTerrain()
 {
 }
 
-void RBTerrainContactCallback(const btVector3 &contactNormal, RudePhysicsObject *terrain, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
+void RBTerrainContactCallback(const btVector3 &contactNormal, RudePhysicsObject *terrain, RudePhysicsObject *other, int partId, int otherId, float *friction, float *restitution)
 {
+	RudePhysicsMesh *physicsmesh = (RudePhysicsMesh *) terrain;
+	int terrainId = physicsmesh->GetSubPartMapping(partId);
+	
 	RBTerrain *tobj = (RBTerrain *) terrain->GetOwner();
+	
 	tobj->Contact(contactNormal, other, terrainId, otherId, friction, restitution);
 }
 
@@ -180,6 +184,8 @@ void RBTerrain::LoadMaterials()
 				break;
 				
 		}
+		
+		RUDE_REPORT("LoadMaterials: %s m_terrainParts[%i] = materialType %d\n", node->pszName, i, m_terrainParts[i]);
 	}
 }
 
@@ -313,7 +319,7 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 	*restitution = materialInfo.m_restitution;
 	
 	// assume 'other' is always the ball
-	//printf("Contact! %d\n", terrainId);
+	//RUDE_REPORT("Contact! terrainId = %d, materialType = %d\n", terrainId, materialType);
 	
 	RBGolfBall *ball = (RBGolfBall *) other->GetOwner();
 	btRigidBody *rb = other->GetRigidBody();

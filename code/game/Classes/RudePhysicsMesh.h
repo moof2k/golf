@@ -30,9 +30,11 @@ public:
 	
 	virtual void Load(RudeMesh *mesh, float mass);
 	
-	
+	int GetSubPartMapping(int part) { return m_subPartMappings[part]; }
 	
 protected:
+	
+	std::map<int, int> m_subPartMappings;
 	
 	btTriangleIndexVertexArray * m_data;
 	btBvhTriangleMeshShape *m_shape;
