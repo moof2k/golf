@@ -389,6 +389,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing:
 			{
+				m_cameraButton.SetTextures("ui_camera_flag", "ui_camera_flag");
+				
 				m_golfer.SetReady();
 				
 				m_swingHeight = 0.0f;
@@ -414,6 +416,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing2:
 			{
+				m_cameraButton.SetTextures("ui_camera", "ui_camera");
 				
 				if(prevstate != kStatePositionSwing3)
 				{
