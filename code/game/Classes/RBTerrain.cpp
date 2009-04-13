@@ -88,6 +88,9 @@ RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 RBTerrain::RBTerrain()
 : m_hole(0,0,0)
 , m_guidePoint(0,0,0)
+, m_ballInHole(false)
+, m_isPutting(false)
+, m_enablePuttingGreen(false)
 {
 }
 
@@ -148,6 +151,9 @@ void RBTerrain::Load(const char *name)
 void RBTerrain::LoadMaterials()
 {
 	RudeMesh *mesh = (RudeMesh *) GetMesh();
+	
+	mesh->AddTextureOverride("grass_green_A", "grass_green_B");
+	
 	CPVRTPODScene *scene = mesh->GetModel();
 	
 	for(int i = 0; i < scene->nNumNode; i++)
@@ -224,6 +230,28 @@ void RBTerrain::LoadNodes()
 	
 	// last guide point is the hole
 	m_guidePoints.push_back(m_hole);
+}
+
+void RBTerrain::SetPutting(bool isPutting)
+{
+	m_isPutting = isPutting;
+	UpdatePutting();
+}
+
+void RBTerrain::SetEnablePuttingGreen(bool enablePuttingGreen)
+{
+	m_enablePuttingGreen = enablePuttingGreen;
+	UpdatePutting();
+}
+
+void RBTerrain::UpdatePutting()
+{
+	RudeMesh *mesh = GetMesh();
+	
+	if(m_isPutting && m_enablePuttingGreen)
+		mesh->SetTextureOverride(true);
+	else
+		mesh->SetTextureOverride(false);
 }
 
 btVector3 RBTerrain::GetTeeBox()

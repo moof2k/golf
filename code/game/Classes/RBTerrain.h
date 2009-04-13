@@ -58,11 +58,16 @@ public:
 	
 	void SetTee(eCourseTee tee) { m_tee = tee; }
 	
+	void SetPutting(bool isPutting);
+	void SetEnablePuttingGreen(bool enablePuttingGreen);
+	
 	bool CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result);
 	
 	virtual void Render();
 	
 private:
+	
+	void UpdatePutting();
 	
 	void LoadMaterials();
 	void LoadNodes();
@@ -84,6 +89,8 @@ private:
 	eCourseTee m_tee;
 	
 	bool m_ballInHole;
+	bool m_isPutting;
+	bool m_enablePuttingGreen;
 };
 
 #endif

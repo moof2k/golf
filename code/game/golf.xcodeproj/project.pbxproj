@@ -104,6 +104,7 @@
 		9A8E13970F92EE7300F5B3A3 /* par5_C.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13920F92EE7300F5B3A3 /* par5_C.POD */; };
 		9A8E13980F92EE7300F5B3A3 /* par5_B.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13930F92EE7300F5B3A3 /* par5_B.POD */; };
 		9A8E13990F92EE7300F5B3A3 /* par5_A.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13940F92EE7300F5B3A3 /* par5_A.POD */; };
+		9A8E14000F9304AC00F5B3A3 /* grass_green_B.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13FF0F9304AC00F5B3A3 /* grass_green_B.pvr */; };
 		9A8F3E820E7F7A4900C28D68 /* RudeControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */; };
 		9A8F3FE50E7F9E6E00C28D68 /* RudeButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */; };
 		9A8F40F10E7FA8C700C28D68 /* RBBallGuide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F40F00E7FA8C700C28D68 /* RBBallGuide.cpp */; };
@@ -433,6 +434,7 @@
 		9A8E13920F92EE7300F5B3A3 /* par5_C.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_C.POD; path = Data/par5_C.POD; sourceTree = "<group>"; };
 		9A8E13930F92EE7300F5B3A3 /* par5_B.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_B.POD; path = Data/par5_B.POD; sourceTree = "<group>"; };
 		9A8E13940F92EE7300F5B3A3 /* par5_A.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_A.POD; path = Data/par5_A.POD; sourceTree = "<group>"; };
+		9A8E13FF0F9304AC00F5B3A3 /* grass_green_B.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_green_B.pvr; path = Data/grass_green_B.pvr; sourceTree = "<group>"; };
 		9A8F3E800E7F7A4900C28D68 /* RudeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeControl.h; path = Classes/RudeControl.h; sourceTree = "<group>"; };
 		9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeControl.cpp; path = Classes/RudeControl.cpp; sourceTree = "<group>"; };
 		9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonControl.h; path = Classes/RudeButtonControl.h; sourceTree = "<group>"; };
@@ -1544,6 +1546,7 @@
 				9ACBA7060E70F67200D3167F /* sand_bunker_A.pvr */,
 				9ACBA7070E70F67200D3167F /* grass_fairway_A.pvr */,
 				9ACBA7080E70F67200D3167F /* grass_rough_A.pvr */,
+				9A8E13FF0F9304AC00F5B3A3 /* grass_green_B.pvr */,
 				9ACBA70A0E70F67200D3167F /* grass_green_A.pvr */,
 				9A74018F0E6FDF24008490F7 /* testtexture.pvr */,
 				9AEE3D6C0EA0212C00928D0C /* tracer.pvr */,
@@ -1746,6 +1749,7 @@
 				9A8E13970F92EE7300F5B3A3 /* par5_C.POD in Resources */,
 				9A8E13980F92EE7300F5B3A3 /* par5_B.POD in Resources */,
 				9A8E13990F92EE7300F5B3A3 /* par5_A.POD in Resources */,
+				9A8E14000F9304AC00F5B3A3 /* grass_green_B.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

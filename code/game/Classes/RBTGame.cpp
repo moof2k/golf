@@ -413,6 +413,8 @@ void RBTGame::SetState(eRBTGameState state)
 					AutoSelectClub();
 				}
 				
+				m_terrain.SetEnablePuttingGreen(true);
+				
 				FreshGuide(true);
 			}
 			break;
@@ -425,6 +427,8 @@ void RBTGame::SetState(eRBTGameState state)
 					m_swingCamYaw = 0.0f;
 					m_swingHeight = 50.0f;
 				}
+				
+				m_terrain.SetEnablePuttingGreen(true);
 				
 				FreshGuide();
 				MoveAimCamera(RudeScreenVertex(0,0), RudeScreenVertex(0,0));
@@ -442,6 +446,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateExecuteSwing:
 			{
+				m_terrain.SetEnablePuttingGreen(false);
 				m_swingControl.Reset();
 				m_swingHeight = 0.0f;
 				FreshGuide();
@@ -464,7 +469,6 @@ void RBTGame::SetState(eRBTGameState state)
 				m_stopTimer = 0.0f;
 				m_followTimer = 0.0f;
 				m_ballCamera.SetTrackMode(kAfterShotCamera);
-				
 			}
 			break;
 		case kStateRegardBall:
@@ -743,12 +747,14 @@ void RBTGame::AutoSelectClub()
 	
 	if(club->m_type == kClubPutter)
 	{
+		m_terrain.SetPutting(true);
 		m_swingControl.SetNoSwingCommentary(true);
 		RudeSound::GetInstance()->PlaySong(kBGMPutting);
 		RudeSound::GetInstance()->BgmVol(1.0f);
 	}
 	else
 	{
+		m_terrain.SetPutting(false);
 		m_swingControl.SetNoSwingCommentary(false);
 		RudeSound::GetInstance()->BgmVolFade(-0.2f);
 	}
@@ -770,6 +776,8 @@ void RBTGame::NextClub(int n)
 	m_golfer.SetSwingType(club->m_type);
 	
 	m_placementGuidePower = 100.0f;
+	
+	m_terrain.SetPutting(club->m_type == kClubPutter);
 	
 	FreshGuide();
 }

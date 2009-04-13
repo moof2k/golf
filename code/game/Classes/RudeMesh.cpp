@@ -21,7 +21,10 @@
 RudeMesh::RudeMesh(RudeObject *owner)
 : m_owner(owner)
 , m_scale(1.0f, 1.0f, 1.0f)
+, m_textureOverride(false)
 {
+	for(int i = 0; i < kMaxTextures; i++)
+		m_textureOverrides[i] = -1;
 }
 
 RudeMesh::~RudeMesh()
@@ -119,6 +122,33 @@ int RudeMesh::Load(const char *name)
 	
 }
 
+void RudeMesh::AddTextureOverride(const char *oldTexture, const char *newTexture)
+{
+	bool found = false;
+	
+	for(int i = 0; i < m_model.nNumTexture; i++)
+	{
+		SPODTexture *texture = &m_model.pTexture[i];
+		RUDE_ASSERT(texture, "Invalid texture in model");
+		
+		char texturename[64];
+		sprintf(texturename, "%s", texture->pszName);
+		int texturenamelen = strlen(texturename);
+		
+		// cut off the last 4 chars
+		texturename[texturenamelen-4] = '\0';
+		
+		if(strcmp(oldTexture, texturename) == 0)
+		{
+			m_textureOverrides[i] = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile(newTexture);
+			RUDE_ASSERT(m_textureOverrides[i] >= 0, "Could not load texture %s", newTexture);
+			found = true;
+		}
+	}
+
+	RUDE_ASSERT(found, "Texture %s not found", oldTexture);
+}
+
 void RudeMesh::EnableModel(int n, bool enable)
 {
 	bool found = false;
@@ -180,7 +210,12 @@ void RudeMesh::Render()
 		
 		int textureid = material->nIdxTexDiffuse;
 		if(textureid >= 0)
-			RudeTextureManager::GetInstance()->SetTexture(m_textures[textureid]);
+		{
+			if(m_textureOverride && m_textureOverrides[textureid] >= 0)
+				RudeTextureManager::GetInstance()->SetTexture(m_textureOverrides[textureid]);
+			else
+				RudeTextureManager::GetInstance()->SetTexture(m_textures[textureid]);
+		}
 		
 		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
 		

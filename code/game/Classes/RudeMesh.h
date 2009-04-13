@@ -35,7 +35,10 @@ public:
 	virtual void NextFrame(float delta) {}
 	virtual void Render();
 	
+	void AddTextureOverride(const char *originalTexture, const char *newTexture);
+	
 	void SetScale(const btVector3 &s) { m_scale = s; }
+	void SetTextureOverride(bool to) { m_textureOverride = to; }
 	
 	void EnableModel(int n, bool enable);
 	
@@ -46,6 +49,9 @@ protected:
 	btVector3 m_scale;
 	CPVRTPODScene m_model;
 	int m_textures[kMaxTextures];
+	int m_textureOverrides[kMaxTextures];
+	
+	bool m_textureOverride;
 	
 };
 
