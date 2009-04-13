@@ -69,6 +69,10 @@ void RBBallCamera::SetTrackMode(eTrackMode mode)
 
 void RBBallCamera::NextFrame(float delta)
 {
+	const float kMaxFrameTime = 1.0f / 10.0f;
+	if(delta > kMaxFrameTime)
+		delta = kMaxFrameTime;
+	
 	btVector3 ball = m_ball->GetPosition();
 	btVector3 ballvel = m_ball->GetLinearVelocity();
 	
