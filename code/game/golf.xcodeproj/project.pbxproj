@@ -99,6 +99,11 @@
 		9A8C21080E46A92600C2BECB /* RudeColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F00E46A92600C2BECB /* RudeColor.cpp */; };
 		9A8C21090E46A92600C2BECB /* RudeSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F30E46A92600C2BECB /* RudeSound.cpp */; };
 		9A8C210A0E46A92600C2BECB /* RudeRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */; };
+		9A8E13950F92EE7300F5B3A3 /* par5_E.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13900F92EE7300F5B3A3 /* par5_E.POD */; };
+		9A8E13960F92EE7300F5B3A3 /* par5_D.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13910F92EE7300F5B3A3 /* par5_D.POD */; };
+		9A8E13970F92EE7300F5B3A3 /* par5_C.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13920F92EE7300F5B3A3 /* par5_C.POD */; };
+		9A8E13980F92EE7300F5B3A3 /* par5_B.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13930F92EE7300F5B3A3 /* par5_B.POD */; };
+		9A8E13990F92EE7300F5B3A3 /* par5_A.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E13940F92EE7300F5B3A3 /* par5_A.POD */; };
 		9A8F3E820E7F7A4900C28D68 /* RudeControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */; };
 		9A8F3FE50E7F9E6E00C28D68 /* RudeButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */; };
 		9A8F40F10E7FA8C700C28D68 /* RBBallGuide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F40F00E7FA8C700C28D68 /* RBBallGuide.cpp */; };
@@ -423,6 +428,11 @@
 		9A8C20F50E46A92600C2BECB /* RudeRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRect.h; path = Classes/RudeRect.h; sourceTree = "<group>"; };
 		9A8C20F60E46A92600C2BECB /* RudeMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeMath.h; path = Classes/RudeMath.h; sourceTree = "<group>"; };
 		9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistry.cpp; path = Classes/RudeRegistry.cpp; sourceTree = "<group>"; };
+		9A8E13900F92EE7300F5B3A3 /* par5_E.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_E.POD; path = Data/par5_E.POD; sourceTree = "<group>"; };
+		9A8E13910F92EE7300F5B3A3 /* par5_D.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_D.POD; path = Data/par5_D.POD; sourceTree = "<group>"; };
+		9A8E13920F92EE7300F5B3A3 /* par5_C.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_C.POD; path = Data/par5_C.POD; sourceTree = "<group>"; };
+		9A8E13930F92EE7300F5B3A3 /* par5_B.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_B.POD; path = Data/par5_B.POD; sourceTree = "<group>"; };
+		9A8E13940F92EE7300F5B3A3 /* par5_A.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = par5_A.POD; path = Data/par5_A.POD; sourceTree = "<group>"; };
 		9A8F3E800E7F7A4900C28D68 /* RudeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeControl.h; path = Classes/RudeControl.h; sourceTree = "<group>"; };
 		9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeControl.cpp; path = Classes/RudeControl.cpp; sourceTree = "<group>"; };
 		9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonControl.h; path = Classes/RudeButtonControl.h; sourceTree = "<group>"; };
@@ -1564,6 +1574,11 @@
 				9A4B20030F7D236600E9DF39 /* par4_B.POD */,
 				9A4B20040F7D236600E9DF39 /* par4_F.POD */,
 				9A4B20050F7D236600E9DF39 /* par4_G.POD */,
+				9A8E13900F92EE7300F5B3A3 /* par5_E.POD */,
+				9A8E13910F92EE7300F5B3A3 /* par5_D.POD */,
+				9A8E13920F92EE7300F5B3A3 /* par5_C.POD */,
+				9A8E13930F92EE7300F5B3A3 /* par5_B.POD */,
+				9A8E13940F92EE7300F5B3A3 /* par5_A.POD */,
 				9ACA1A8A0EBEDE660014C128 /* wind_indicator.POD */,
 			);
 			name = POD;
@@ -1726,6 +1741,11 @@
 				9A03E1370F85D58500AC5D7C /* iron_128.pvr in Resources */,
 				9A96093D0F8C59C00039D4F4 /* driving_range.POD in Resources */,
 				9AAFD3760F918026002FC6EE /* ui_camera_flag.png in Resources */,
+				9A8E13950F92EE7300F5B3A3 /* par5_E.POD in Resources */,
+				9A8E13960F92EE7300F5B3A3 /* par5_D.POD in Resources */,
+				9A8E13970F92EE7300F5B3A3 /* par5_C.POD in Resources */,
+				9A8E13980F92EE7300F5B3A3 /* par5_B.POD in Resources */,
+				9A8E13990F92EE7300F5B3A3 /* par5_A.POD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
