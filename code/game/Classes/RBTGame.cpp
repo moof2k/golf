@@ -1214,7 +1214,7 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 
 void RBTGame::RenderGuide(float aspect)
 {
-	
+	if(m_state != kStatePositionSwing3)
 	{
 		const int kGuideSize = 32;
 		RudeRect r(
