@@ -23,6 +23,9 @@ RudeMesh::RudeMesh(RudeObject *owner)
 , m_scale(1.0f, 1.0f, 1.0f)
 , m_textureOverride(false)
 {
+	for(int i = 0; i < kMaxNodes; i++)
+		m_colorOverrides[i] = 0;
+	
 	for(int i = 0; i < kMaxTextures; i++)
 		m_textureOverrides[i] = -1;
 }
@@ -149,6 +152,13 @@ void RudeMesh::AddTextureOverride(const char *oldTexture, const char *newTexture
 	RUDE_ASSERT(found, "Texture %s not found", oldTexture);
 }
 
+void RudeMesh::SetColorOverride(int node, const char *colordata)
+{
+	RUDE_ASSERT(node < kMaxNodes, "Invalid node");
+	
+	m_colorOverrides[node] = colordata;
+}
+
 void RudeMesh::EnableModel(int n, bool enable)
 {
 	bool found = false;
@@ -233,13 +243,21 @@ void RudeMesh::Render()
 		
 		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
 		
-		if(mesh->sVtxColours.n > 0)
-	    {
+		if(m_colorOverrides[i])
+		{
 			glEnableClientState(GL_COLOR_ARRAY);
-			glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
-	    }
+			glColorPointer(4, GL_UNSIGNED_BYTE, 4, m_colorOverrides[i]);
+		}
 		else
-			glDisableClientState(GL_COLOR_ARRAY);
+		{
+			if(mesh->sVtxColours.n > 0)
+			{
+				glEnableClientState(GL_COLOR_ARRAY);
+				glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
+			}
+			else
+				glDisableClientState(GL_COLOR_ARRAY);
+		}
 		
 		glDrawElements(GL_TRIANGLES, mesh->nNumFaces*3, GL_UNSIGNED_SHORT, indices);
 		

@@ -11,6 +11,7 @@
 #define __H_RBTerrain
 
 #include "RudeObject.h"
+#include "RudeMesh.h"
 #include "RBTerrainMaterial.h"
 #include "RBCourseData.h"
 
@@ -32,6 +33,7 @@ public:
 	
 };
 
+const int kMaxGreenVerts = 1024;
 
 class RBTerrain : public RudeObject {
 
@@ -74,7 +76,11 @@ private:
 	void RenderHole();
 	void RenderGuides();
 	
+	unsigned int m_greenVerts[kMaxGreenVerts];
+	int m_greenNode;
+	
 	btVector3 m_hole;
+	btVector3 m_ball;
 	
 	std::map<int, eRBTerrainMaterial> m_terrainParts;
 	

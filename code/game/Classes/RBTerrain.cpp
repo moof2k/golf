@@ -10,6 +10,7 @@
 #include "RBTerrain.h"
 #include "RBGolfBall.h"
 
+#include "RudeColor.h"
 #include "RudeCollision.h"
 #include "RudeDebug.h"
 #include "RudeGL.h"
@@ -87,6 +88,7 @@ RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 
 RBTerrain::RBTerrain()
 : m_hole(0,0,0)
+, m_greenNode(0)
 , m_guidePoint(0,0,0)
 , m_ballInHole(false)
 , m_isPutting(false)
@@ -184,6 +186,15 @@ void RBTerrain::LoadMaterials()
 				break;
 			case '5':
 				m_terrainParts[i] = kGreen;
+				
+				if(m_greenNode == 0)
+					m_greenNode = i;
+				else
+				{
+					if(strstr(node->pszName, "green") != 0)
+						m_greenNode = i;
+				}
+				
 				break;
 			default:
 				RUDE_ASSERT(0, "Unknown material type on %s", node->pszName);
@@ -246,12 +257,100 @@ void RBTerrain::SetEnablePuttingGreen(bool enablePuttingGreen)
 
 void RBTerrain::UpdatePutting()
 {
-	RudeMesh *mesh = GetMesh();
+	RudeMesh *rudemesh = GetMesh();
 	
 	if(m_isPutting && m_enablePuttingGreen)
-		mesh->SetTextureOverride(true);
+	{
+		rudemesh->SetTextureOverride(true);
+		
+		if(m_greenNode)
+		{
+			CPVRTPODScene *scene = rudemesh->GetModel();
+			SPODNode *node = &scene->pNode[m_greenNode];
+			SPODMesh *mesh = &scene->pMesh[node->nIdx];
+			
+			if(mesh->sVtxColours.n > 0)
+			{
+				RUDE_REPORT("Patching colors...\n");
+				
+				RUDE_ASSERT(mesh->sVertex.eType == EPODDataFloat, "Expected float vertex data");
+				RUDE_ASSERT(mesh->sVtxColours.eType == EPODDataRGBA, "Expected RGBA color data");
+				
+				for(int i = 0; i < mesh->nNumVertex; i++)
+				{
+					unsigned char *vertaddr = mesh->pInterleaved + (long)mesh->sVertex.pData + mesh->sVertex.nStride * i;
+					unsigned char *coloraddr = mesh->pInterleaved + (long)mesh->sVtxColours.pData + mesh->sVtxColours.nStride * i;
+					
+					float *vert = (float *) vertaddr;
+					unsigned int *color = (unsigned int *) coloraddr;
+					
+					int color_r = *color & 0xFF;
+					int color_g = (*color >> 8) & 0xFF;
+					int color_b = (*color >> 16) & 0xFF;
+					
+					float color_rf = color_r;
+					float color_rg = color_g;
+					float color_rb = color_b;
+					
+					color_rf /= 255.0f;
+					color_rg /= 255.0f;
+					color_rb /= 255.0f;
+					
+					float verty = vert[1];
+					
+					
+					const float kHeightHighlightScale = 10.0f;
+					
+					float ydiff = verty - m_ball.y();
+					ydiff /= kHeightHighlightScale;
+					
+					if(ydiff > 1.0f)
+						ydiff = 1.0f;
+					if(ydiff < -1.0f)
+						ydiff = -1.0f;
+					
+					RudeColorFloat origcolor;
+					origcolor.Set(color_rf, color_rg, color_rb);
+					
+					RudeColorFloat blendcolor;
+					
+					if(ydiff > 0.0f)
+					{
+						blendcolor.Set(1.0f, 0.0f, 0.0f);
+					}
+					else
+					{
+						blendcolor.Set(0.0f, 0.0f, 1.0f);
+						ydiff = -ydiff;
+					}
+					
+					origcolor.Blend(blendcolor, ydiff);
+					
+					color_r = origcolor.m_r * 255.0f;
+					color_g = origcolor.m_g * 255.0f;
+					color_b = origcolor.m_b * 255.0f;
+					
+					unsigned int newcolor = 0xFF000000 |
+						color_r |
+						color_g << 8 |
+						color_b << 16;
+					
+					m_greenVerts[i] = newcolor;
+					
+				}
+				
+				rudemesh->SetColorOverride(m_greenNode, (char *) m_greenVerts);
+			}
+			
+			
+		}
+	}
 	else
-		mesh->SetTextureOverride(false);
+	{
+		rudemesh->SetColorOverride(m_greenNode, 0);
+		
+		rudemesh->SetTextureOverride(false);
+	}
 }
 
 btVector3 RBTerrain::GetTeeBox()
@@ -423,6 +522,8 @@ btVector3 RBTerrain::GetCameraPlacement(btVector3 ball)
 
 void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 {
+	m_ball = ball;
+	
 	// center of circle, flatten to y=0
 	btVector3 sc(ball);
 	sc.setY(0.0f);

@@ -20,6 +20,7 @@
 class RudeObject;
 
 const int kMaxTextures = 16;
+const int kMaxNodes = 64;
 
 class RudeMesh {
 
@@ -36,6 +37,7 @@ public:
 	virtual void Render();
 	
 	void AddTextureOverride(const char *originalTexture, const char *newTexture);
+	void SetColorOverride(int node, const char *colordata);
 	
 	void SetScale(const btVector3 &s) { m_scale = s; }
 	void SetTextureOverride(bool to) { m_textureOverride = to; }
@@ -45,6 +47,8 @@ public:
 protected:
 	
 	RudeObject *m_owner;
+	
+	const char *m_colorOverrides[kMaxNodes];
 	
 	btVector3 m_scale;
 	CPVRTPODScene m_model;
