@@ -49,46 +49,28 @@ void RBBallGuidePoint::SetPoint(const btVector3 &point, const btVector3 &ball, f
 RBBallGuide::RBBallGuide()
 : m_numGuidePoints(0)
 , m_ball(0)
+, m_regenCounter(0)
+, m_regenAimVec(1,0,0)
+, m_regenBall(0,0,0)
+, m_regenTimer(0.0f)
 {
 }
 
-void RBBallGuide::RegenPoints(bool fullrez)
+void RBBallGuide::RegenPoints()
 {
-	m_numGuidePoints = 0;
+	m_numGuidePoints = 1;
 	
 	btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
 	
-	btVector3 ball = m_ball->GetPosition();
+	m_regenBall = m_ball->GetPosition();
 	
-	btVector3 aimvec = m_guide - ball;
-	int len = (int) aimvec.length();
-	aimvec.normalize();
+	m_regenAimVec = m_guide - m_regenBall;
+	int len = (int) m_regenAimVec.length();
+	m_regenAimVec.normalize();
 	
-	if(fullrez)
-	{
-		for(int i = 3; i < len; i += 9)
-		{
-			btVector3 p = ball + (aimvec * ((float) i));
-			
-			btVector3 p0 = p;
-			p0.setY(-1000);
-			btVector3 p1 = p;
-			p1.setY(1000);
-			
-			btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
-			
-			world->rayTest(p0, p1, cb);
-			
-			if(cb.hasHit())
-			{
-				RUDE_ASSERT(m_numGuidePoints < kMaxGuidePoints, "Out of guide points");
-				m_guidePoints[m_numGuidePoints].SetPoint(cb.m_hitPointWorld, ball, kHeightHighlightScale);
-				m_numGuidePoints++;
-			}
-		}
-	}
-	
-	
+	// reset regen counter, will update points during NextFrame()
+	m_regenCounter = len;
+
 	btVector3 p = m_guide;
 	
 	btVector3 p0 = p;
@@ -102,9 +84,8 @@ void RBBallGuide::RegenPoints(bool fullrez)
 	
 	if(cb.hasHit())
 	{
-		RUDE_ASSERT(m_numGuidePoints < kMaxGuidePoints, "Out of guide points");
-		m_guidePoints[m_numGuidePoints].SetPoint(cb.m_hitPointWorld, ball, kHeightHighlightScale);
-		m_numGuidePoints++;
+		RUDE_ASSERT(0 < kMaxGuidePoints, "Out of guide points");
+		m_guidePoints[0].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
 	}
 }
 
@@ -113,11 +94,60 @@ btVector3 RBBallGuide::GetLastGuidePoint()
 	if(m_numGuidePoints == 0)
 		return m_guide;
 	else
-		return m_guidePoints[m_numGuidePoints-1].m_point;
+		return m_guidePoints[0].m_point;
 }
 
 void RBBallGuide::NextFrame(float delta)
 {
+	if(m_regenCounter > 0)
+	{
+		m_regenTimer += delta;
+		
+		const float kNumRegensPerSecond = 30.0f;
+		const float kRegenPeriod = 1.0f / kNumRegensPerSecond;
+		
+		while(m_regenTimer > kRegenPeriod && m_regenCounter > 0)
+		{
+			btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
+			
+			btVector3 p = m_regenBall + (m_regenAimVec * ((float) m_regenCounter));
+			
+			btVector3 p0 = p;
+			p0.setY(-1000);
+			btVector3 p1 = p;
+			p1.setY(1000);
+			
+			btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
+			
+			world->rayTest(p0, p1, cb);
+			
+			if(cb.hasHit())
+			{
+				if(m_numGuidePoints < kMaxGuidePoints)
+				{
+					m_guidePoints[m_numGuidePoints].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
+					m_numGuidePoints++;
+				}
+			}
+			
+			m_regenCounter -= 9;
+			
+			if(m_regenCounter < 9)
+			{
+				if(m_numGuidePoints < kMaxGuidePoints)
+				{
+					m_guidePoints[m_numGuidePoints].SetPoint(m_regenBall, m_regenBall, kHeightHighlightScale);
+					m_numGuidePoints++;
+				}
+				m_regenCounter = 0;
+			}
+			
+			m_regenTimer -= kRegenPeriod;
+		}
+		
+		
+	}
+	
 }
 
 void RBBallGuide::Render()

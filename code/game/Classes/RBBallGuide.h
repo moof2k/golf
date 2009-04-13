@@ -37,10 +37,10 @@ public:
 		m_ball = ball;
 	}
 	
-	void SetGuide(const btVector3 &guide, bool fullrez)
+	void SetGuide(const btVector3 &guide)
 	{
 		m_guide = guide;
-		RegenPoints(fullrez);
+		RegenPoints();
 	}
 	
 	btVector3 GetLastGuidePoint();
@@ -50,13 +50,18 @@ public:
 	
 private:
 	
-	void RegenPoints(bool fullrez);
+	void RegenPoints();
 	
 	RBBallGuidePoint m_guidePoints[kMaxGuidePoints];
 	int m_numGuidePoints;
 	
 	RBGolfBall *m_ball;
 	btVector3 m_guide;
+	
+	btVector3 m_regenAimVec;
+	btVector3 m_regenBall;
+	float m_regenTimer;
+	int m_regenCounter;
 	
 };
 

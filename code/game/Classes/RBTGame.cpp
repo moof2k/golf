@@ -583,6 +583,11 @@ void RBTGame::StatePositionSwing2(float delta)
 	m_ballGuide.NextFrame(delta);
 }
 
+void RBTGame::StatePositionSwing3(float delta)
+{
+	m_ballGuide.NextFrame(delta);
+}
+
 void RBTGame::StateHitBall(float delta)
 {
 	HitBall();
@@ -900,17 +905,10 @@ void RBTGame::FreshGuide(bool firstTime)
 	newGuide *= m_placementGuidePower / 100.0f;
 	newGuide += ball;
 	//btVector3 newGuide = btVector3(0,0,-100) + ball;
-	
-	bool fullrez = false;
-	if(m_state == kStatePositionSwing2)
-	{
-		fullrez = true;
-	}
-	
-	
+
 	m_golfer.SetPosition(ball, newGuide);
 	
-	m_ballGuide.SetGuide(newGuide, fullrez);
+	m_ballGuide.SetGuide(newGuide);
 	newGuide = m_ballGuide.GetLastGuidePoint();
 	
 	if(firstTime)
@@ -1034,7 +1032,7 @@ void RBTGame::AdjustGuide()
 		
 		//FreshGuide();
 		
-		//m_ballGuide.SetGuide(result, true);
+		//m_ballGuide.SetGuide(result);
 		
 		m_placementGuidePosition = result;
 		
@@ -1045,10 +1043,12 @@ void RBTGame::AdjustGuide()
 		
 		if(m_placementGuidePower < 10.0f)
 			m_placementGuidePower = 10.0f;
+		if(m_placementGuidePower > 200.0f)
+			m_placementGuidePower = 200.0f;
 	}
 	else
 	{
-		m_placementGuidePower = 10.0f;
+		m_placementGuidePower = 100.0f;
 	}
 	
 	//printf("guide %f %f %f\n", m_guidePosition.x(), m_guidePosition.y(), m_guidePosition.z());
@@ -1109,6 +1109,9 @@ void RBTGame::NextFrame(float delta)
 		case kStatePositionSwing2:
 			StatePositionSwing2(delta);
 			m_ballRecorder.NextFrame(delta, false);
+			break;
+		case kStatePositionSwing3:
+			StatePositionSwing3(delta);
 			break;
 		case kStateMenu:
 			m_menu.NextFrame(delta);

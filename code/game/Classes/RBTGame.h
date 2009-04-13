@@ -117,6 +117,7 @@ private:
 	void StateTeePosition(float delta);
 	void StatePositionSwing(float delta);
 	void StatePositionSwing2(float delta);
+	void StatePositionSwing3(float delta);
 	void StateHitBall(float delta);
 	void StateFollowBall(float delta);
 	
