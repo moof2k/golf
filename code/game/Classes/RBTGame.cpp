@@ -227,7 +227,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
 	
-	const int kGuideAdjustSize = 20;
+	const int kGuideAdjustSize = 32;
 	m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
 
 	
@@ -764,6 +764,8 @@ void RBTGame::NextClub(int n)
 	
 	m_golfer.SetSwingType(club->m_type);
 	
+	m_placementGuidePower = 100.0f;
+	
 	FreshGuide();
 }
 
@@ -1040,10 +1042,13 @@ void RBTGame::AdjustGuide()
 	
 		float power = 100.0f * distance / club->m_dist;
 		m_placementGuidePower = power;
+		
+		if(m_placementGuidePower < 10.0f)
+			m_placementGuidePower = 10.0f;
 	}
 	else
 	{
-		m_placementGuidePower = 0;
+		m_placementGuidePower = 10.0f;
 	}
 	
 	//printf("guide %f %f %f\n", m_guidePosition.x(), m_guidePosition.y(), m_guidePosition.z());
