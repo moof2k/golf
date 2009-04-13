@@ -808,9 +808,12 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 			m_swingHeight = 0.0f;
 		if(m_swingHeight > kMaxHeight)
 			m_swingHeight = kMaxHeight;
+		
+		m_ballCamera.SetDesiredHeight(m_swingHeight);
 	}
 
-	FreshGuide();
+	if(m_moveGuide)
+		FreshGuide();
 }
 
 void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist)
@@ -1337,6 +1340,8 @@ void RBTGame::Render(float aspect)
 {
 	RUDE_PERF_START(kPerfRBTGameRender);
 	
+	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	
 	RGL.SetViewport(0, 0, 480, 320);
 
 	m_curCamera->SetView(aspect);
@@ -1418,7 +1423,6 @@ void RBTGame::Render(float aspect)
 			m_prevClubButton.Render();
 			m_clubButton.Render();
 			
-			RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 			if(club->m_type != kClubPutter)
 				m_cameraButton.Render();
 			
