@@ -76,6 +76,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_wind = wind;
 	m_curPlayer = 0;
 	
+	m_placementGuidePower = 100.0f;
+	
 	m_playedBallDissapointmentSound = false;
 	
 	m_ball.Load("ball_1");
@@ -430,7 +432,6 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing3:
 			{
-				m_placementGuidePower = 100;
 				m_placementGuidePosition = m_guidePosition;
 			}
 			break;
@@ -448,7 +449,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateWaitForSwing:
 			{
-				
+				m_placementGuidePower = 100.0f;
 			}
 			break;
 		case kStateHitBall:
@@ -772,6 +773,8 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 	
 	const float kYawDamping = 0.002f;
 	
+	m_placementGuidePower = 100.0f;
+	
 	if(!m_moveHeight && dist.m_x > 30)
 	{
 		m_moveGuide = true;
@@ -892,6 +895,7 @@ void RBTGame::FreshGuide(bool firstTime)
 	newGuide.setY(0);
 	newGuide.normalize();
 	newGuide *= RBGolfClub::GetClub(m_curClub)->m_dist * 3.0f;
+	newGuide *= m_placementGuidePower / 100.0f;
 	newGuide += ball;
 	//btVector3 newGuide = btVector3(0,0,-100) + ball;
 	
@@ -1259,7 +1263,7 @@ void RBTGame::RenderGuide(float aspect)
 			);
 		
 		m_guidePowerText.SetRect(r);
-		m_guidePowerText.SetValue(100);
+		m_guidePowerText.SetValue(m_placementGuidePower);
 		m_guidePowerText.Render();
 	}
 	
