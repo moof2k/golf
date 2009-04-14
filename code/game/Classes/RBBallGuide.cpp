@@ -70,22 +70,31 @@ void RBBallGuide::RegenPoints()
 	
 	// reset regen counter, will update points during NextFrame()
 	m_regenCounter = len;
+	
+	bool pointfound = false;
 
-	btVector3 p = m_guide;
-	
-	btVector3 p0 = p;
-	p0.setY(-1000);
-	btVector3 p1 = p;
-	p1.setY(1000);
-	
-	btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
-	
-	world->rayTest(p0, p1, cb);
-	
-	if(cb.hasHit())
+	while(!pointfound)
 	{
-		RUDE_ASSERT(0 < kMaxGuidePoints, "Out of guide points");
-		m_guidePoints[0].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
+		btVector3 p = m_regenBall + (m_regenAimVec * ((float) m_regenCounter));
+		
+		btVector3 p0 = p;
+		p0.setY(-1000);
+		btVector3 p1 = p;
+		p1.setY(1000);
+		
+		btCollisionWorld::ClosestRayResultCallback cb(p0, p1);
+		
+		world->rayTest(p0, p1, cb);
+		
+		if(cb.hasHit())
+		{
+			RUDE_ASSERT(0 < kMaxGuidePoints, "Out of guide points");
+			m_guidePoints[0].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
+			pointfound = true;
+		}
+		
+		m_regenCounter -= 3;
+		
 	}
 }
 

@@ -193,7 +193,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_shotAngleText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotAngleText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
-	m_guidePowerText.SetFormat(kIntValue, "%d %%");
+	m_guidePowerText.SetFormat(kIntValue, "%d yds");
 	m_guidePowerText.SetAlignment(kAlignCenter);
 	m_guidePowerText.SetRect(RudeRect(446, 0, 462, 320));
 	m_guidePowerText.SetStyle(kOutlineStyle);
@@ -454,7 +454,6 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateWaitForSwing:
 			{
-				m_placementGuidePower = 100.0f;
 			}
 			break;
 		case kStateHitBall:
@@ -775,7 +774,7 @@ void RBTGame::NextClub(int n)
 	
 	m_golfer.SetSwingType(club->m_type);
 	
-	m_placementGuidePower = 100.0f;
+	m_placementGuidePower = club->m_dist;
 	
 	m_terrain.SetPutting(club->m_type == kClubPutter);
 	
@@ -788,7 +787,8 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 	
 	const float kYawDamping = 0.002f;
 	
-	m_placementGuidePower = 100.0f;
+	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	m_placementGuidePower = club->m_dist;
 	
 	if(!m_moveHeight && dist.m_x > 30)
 	{
@@ -913,7 +913,7 @@ void RBTGame::FreshGuide(bool firstTime)
 	newGuide.setY(0);
 	newGuide.normalize();
 	newGuide *= RBGolfClub::GetClub(m_curClub)->m_dist * 3.0f;
-	newGuide *= m_placementGuidePower / 100.0f;
+	newGuide *= m_placementGuidePower / RBGolfClub::GetClub(m_curClub)->m_dist;
 	newGuide += ball;
 	//btVector3 newGuide = btVector3(0,0,-100) + ball;
 
@@ -1017,6 +1017,8 @@ void RBTGame::AdjustGuide()
 	btVector3 result;
 	bool found = m_terrain.CastToTerrain(eyep, worldp, result);
 	
+	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
+	
 	if(found)
 	{
 		btVector3 newaimvec = result - ball;
@@ -1049,17 +1051,16 @@ void RBTGame::AdjustGuide()
 		
 		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
-		float power = 100.0f * distance / club->m_dist;
-		m_placementGuidePower = power;
+		m_placementGuidePower = distance;
 		
 		if(m_placementGuidePower < 10.0f)
 			m_placementGuidePower = 10.0f;
-		if(m_placementGuidePower > 200.0f)
-			m_placementGuidePower = 200.0f;
+		if(m_placementGuidePower > 400.0f)
+			m_placementGuidePower = 400.0f;
 	}
 	else
 	{
-		m_placementGuidePower = 100.0f;
+		m_placementGuidePower = club->m_dist;
 	}
 	
 	//printf("guide %f %f %f\n", m_guidePosition.x(), m_guidePosition.y(), m_guidePosition.z());
