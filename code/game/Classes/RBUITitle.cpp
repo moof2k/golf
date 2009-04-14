@@ -283,7 +283,7 @@ void RBUITitle::NextFrame(float delta)
 {
 	if(!m_startedMusic)
 	{
-		RudeSound::GetInstance()->BgmVol(1.0f);
+		RudeSound::GetInstance()->BgmVol(0.6f);
 		RudeSound::GetInstance()->PlaySong(kBGMTitle);
 		m_startedMusic = true;
 	}
