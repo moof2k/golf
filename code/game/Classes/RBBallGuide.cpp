@@ -73,7 +73,7 @@ void RBBallGuide::RegenPoints()
 	
 	bool pointfound = false;
 
-	while(!pointfound)
+	while(!pointfound && m_regenCounter > 0)
 	{
 		btVector3 p = m_regenBall + (m_regenAimVec * ((float) m_regenCounter));
 		
