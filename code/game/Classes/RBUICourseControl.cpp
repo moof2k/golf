@@ -26,8 +26,6 @@ void RBUICourseControl::Render()
 
 	const char *holestr = GetHoleStr();
 	
-	
-	
 	const float holesX = 100;
 	const float holesY = 44;
 	

@@ -59,6 +59,7 @@ private:
 	RBCamera m_camera;
 	
 	RudeButtonControl m_logo;
+	RudeButtonControl m_courseMedallion;
 	
 	RBUICourseControl m_courseButtons[kNumCourses];
 	

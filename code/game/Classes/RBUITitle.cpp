@@ -25,6 +25,10 @@ RBUITitle::RBUITitle()
 	m_logo.SetRect(RudeRect(80, 0, 300, 320));
 	m_logo.SetTextures("logo", "logo");
 	
+	m_courseMedallion.SetAnimType(kAnimPopSlide);
+	m_courseMedallion.SetRect(RudeRect(100, 0, 356, 320));
+	m_courseMedallion.SetTextures("ui_ccc_medallion", "ui_ccc_medallion");
+	
 	const int kCourseButtonTop = 30;
 	const int kCourseButtonHeight = 64;
 	const float kCourseAnimSpeedBase = 3.0f;
@@ -146,6 +150,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_startText.SetTranslation(btVector3(0,0,0));
 			m_practiceText.SetTranslation(btVector3(0,0,0));
 			
+			m_courseMedallion.SetTranslation(btVector3(400,0,0));
+			m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
 			for(int i = 0; i < kNumCourses; i++)
@@ -196,6 +203,8 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
 				m_courseHolesText.SetDesiredTranslation(btVector3(400,0,0));
 				m_courseTeeText.SetDesiredTranslation(btVector3(400,0,0));
+				
+				m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
 			}
 			
 			break;
@@ -247,6 +256,8 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
 			m_courseHolesText.SetText(m_courseButtons[m_course].GetHoleStr());
 			m_courseTeeText.SetText(m_courseButtons[m_course].GetTeeStr());
+			
+			m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
 			
 			break;
 			
@@ -312,6 +323,7 @@ void RBUITitle::NextFrame(float delta)
 	
 	
 	m_logo.NextFrame(delta);
+	m_courseMedallion.NextFrame(delta);
 	m_startText.NextFrame(delta);
 	m_practiceText.NextFrame(delta);
 	m_copyrightText.NextFrame(delta);
@@ -345,6 +357,7 @@ void RBUITitle::Render(float aspect)
 	
 	
 	m_logo.Render();
+	m_courseMedallion.Render();
 	m_startText.Render();
 	m_practiceText.Render();
 	m_backText.Render();
