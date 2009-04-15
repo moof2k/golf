@@ -21,7 +21,8 @@ void RBUICourseControl::Render()
 	const float courseX = 100;
 	const float courseY = 27;
 	
-	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
+	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
+	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 	const char *holestr = GetHoleStr();
 	
@@ -30,14 +31,16 @@ void RBUICourseControl::Render()
 	const float holesX = 100;
 	const float holesY = 44;
 	
-	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, holestr, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
+	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + holesX, y + holesY, 0.0f, holestr, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
+	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, holestr, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 	const char *teestr = GetTeeStr();
 
 	const float teeX = 200;
 	const float teeY = 44;
 	
-	RudeFontManager::GetFont(kDefaultFont)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFF000000, 0xFF000000);
+	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
+	RudeFontManager::GetFont(kDefaultFont)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 }
 
