@@ -1401,6 +1401,10 @@ void RBTGame::Render(float aspect)
 	
 	
 	
+	if(gDebugCamera)
+		return;
+	
+	
 	RGL.Enable(kDepthTest, false);
 	RGLD.RenderDebug();
 	
@@ -1411,6 +1415,8 @@ void RBTGame::Render(float aspect)
 	{
 		m_windControl.Render();
 	}
+	
+	
 	
 	RGL.SetViewport(0, 0, 480, 320);
 	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
