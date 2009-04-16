@@ -183,6 +183,7 @@ private:
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_clubDistText;
+	RudeTextControl m_powerRangeText;
 	RudeTextControl m_windText;
 	
 	RudeTextControl m_shotDistText;

@@ -31,6 +31,10 @@ public:
 	
 	float m_minVelocity;
 	
+	int m_penalty_power_min;
+	int m_penalty_power_max;
+	float m_penalty_angle;
+	
 };
 
 const int kMaxGreenVerts = 1024;
@@ -49,6 +53,8 @@ public:
 	bool IsOutOfBoundsAndGone(const btVector3 &position);
 	
 	void UpdateGuidePoint(const btVector3 &ball, float clubDistance);
+	
+	RBTerrainMaterialInfo & GetMaterialInfo(eRBTerrainMaterial type);
 	
 	btVector3 GetTeeBox();
 	btVector3 GetGuidePoint() { return m_guidePoint; }

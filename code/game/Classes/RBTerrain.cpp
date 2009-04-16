@@ -41,12 +41,12 @@ RUDE_TWEAK(HoleAttractPower, kFloat, gHoleAttractPower);
 RUDE_TWEAK(HoleMaxBallSpeed, kFloat, gHoleMaxBallSpeed);
 
 RBTerrainMaterialInfo gMaterialInfos[kNumMaterialTypes] = {
-	{ 2000.0f, 0.3f,	0.8f, 0.95f, 5.0f },
-	{ 1000.0f, 0.35f,	0.4f, 0.6f, 3.0f },
-	{ 100.0f, 0.4f,		0.35f, 0.45f, 1.0f },
-	{ 1000.0f, 0.05f,	0.95f, 0.95f, 10.0f },
-	{ 75.0f, 0.4f,		0.25f, 0.5f, 2.0f },
-	{ 50.0f, 0.45f,		0.15f, 0.3f, 0.75f },
+	{ 2000.0f, 0.3f,	0.8f, 0.95f, 5.0f,		70, 90, 2.0f },
+	{ 1000.0f, 0.35f,	0.4f, 0.6f, 3.0f,		95, 100, 1.0f },
+	{ 100.0f, 0.4f,		0.35f, 0.45f, 1.0f,		100, 100, 1.0f },
+	{ 1000.0f, 0.05f,	0.95f, 0.95f, 10.0f,	50, 65, 1.5f },
+	{ 75.0f, 0.4f,		0.25f, 0.5f, 2.0f,		100, 100, 1.0f },
+	{ 50.0f, 0.45f,		0.15f, 0.3f, 0.75f,		100, 100, 1.0f },
 
 };
 
@@ -241,6 +241,11 @@ void RBTerrain::LoadNodes()
 	
 	// last guide point is the hole
 	m_guidePoints.push_back(m_hole);
+}
+
+RBTerrainMaterialInfo & RBTerrain::GetMaterialInfo(eRBTerrainMaterial info)
+{
+	return gMaterialInfos[info];
 }
 
 void RBTerrain::SetPutting(bool isPutting)

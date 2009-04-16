@@ -150,11 +150,18 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
 	m_clubDistText.SetAlignment(kAlignLeft);
-	m_clubDistText.SetPosition(6, 480 - 44 - 10);
+	m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
 	m_clubDistText.SetFormat(kIntValue, "%d yds");
 	m_clubDistText.SetStyle(kOutlineStyle);
 	m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	
+	m_powerRangeText.SetAlignment(kAlignLeft);
+	m_powerRangeText.SetPosition(6, 480 - 44 - 10);
+	m_powerRangeText.SetText("100%");
+	m_powerRangeText.SetStyle(kOutlineStyle);
+	m_powerRangeText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+	m_powerRangeText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
 	m_windText.SetAlignment(kAlignRight);
 	m_windText.SetPosition(320 - 6, 480 - 44 - 10);
@@ -458,7 +465,19 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateHitBall:
 			{ 
-				m_swingPower = m_swingControl.GetPower();
+				float powermultiplier = 1.0f;
+				
+				RBTerrainMaterialInfo &material = m_terrain.GetMaterialInfo(m_ball.GetCurMaterial());
+				int powerrange = material.m_penalty_power_max - material.m_penalty_power_min;
+				
+				if(powerrange > 0)
+				{
+					int powerpenalty = (rand() % powerrange) + material.m_penalty_power_min;
+					powermultiplier = powerpenalty;
+					powermultiplier /= 100.0f;
+				}
+				
+				m_swingPower = m_swingControl.GetPower() * powermultiplier;
 				m_swingAngle = m_swingControl.GetAngle();
 				m_ballRecorder.Reset();
 			}
@@ -778,6 +797,20 @@ void RBTGame::NextClub(int n)
 	
 	m_terrain.SetPutting(club->m_type == kClubPutter);
 	
+	RBTerrainMaterialInfo &material = m_terrain.GetMaterialInfo(m_ball.GetCurMaterial());
+	
+	if(material.m_penalty_power_min == 100)
+	{
+		m_powerRangeText.SetText("100%");
+	}
+	else
+	{
+		char str[64];
+		snprintf(str, 64, "%d - %d %%", material.m_penalty_power_min, material.m_penalty_power_max);
+		
+		m_powerRangeText.SetText(str);
+	}
+	
 	FreshGuide();
 }
 
@@ -956,8 +989,6 @@ void RBTGame::HitBall()
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
 	RudeSound::GetInstance()->PlayWave(club->m_swingsound);
-	
-	
 	
 	float loft = club->m_loft;
 	loft = (loft / 180.0f) * 3.1415926f;
@@ -1317,6 +1348,9 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 		m_clubDistText.SetValue(club->m_dist);
 		m_clubDistText.Render();
+		
+		
+		m_powerRangeText.Render();
 	}
 	
 	m_parText.SetValue(m_par);
