@@ -26,6 +26,8 @@
 	<true/>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 </dict>
