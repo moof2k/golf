@@ -264,6 +264,58 @@ void RudeMesh::Render()
 		
 	}
 	
+	for(int i = 0; i < m_model.nNumNode; i++)
+	{
+		SPODNode *node = &m_model.pNode[i];
+		
+		if(!node->pszName)
+			continue;
+		if(node->pszName[0] != 'D')
+			continue;
+		
+		
+		SPODMaterial *material = &m_model.pMaterial[node->nIdxMaterial];
+		SPODMesh *mesh = &m_model.pMesh[node->nIdx];
+		
+		int textureid = material->nIdxTexDiffuse;
+		if(textureid >= 0)
+		{
+			if(m_textureOverride && m_textureOverrides[textureid] >= 0)
+				RudeTextureManager::GetInstance()->SetTexture(m_textureOverrides[textureid]);
+			else
+				RudeTextureManager::GetInstance()->SetTexture(m_textures[textureid]);
+		}
+		
+		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
+		
+		if(mesh->sVertex.eType == EPODDataFixed16_16)
+			glVertexPointer(3, GL_FIXED, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		else if(mesh->sVertex.eType == EPODDataShortNorm)
+		{
+			float s = 1.0f / 1000.0f;
+			glMatrixMode(GL_MODELVIEW);
+			glScalef(s, s, s);
+			glVertexPointer(3, GL_UNSIGNED_SHORT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		}
+		else
+			glVertexPointer(3, GL_FLOAT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
+		
+		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
+		
+		if(mesh->sVtxColours.n > 0)
+		{
+			glEnableClientState(GL_COLOR_ARRAY);
+			glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
+		}
+		else
+			glDisableClientState(GL_COLOR_ARRAY);
+			
+		glDrawElements(GL_TRIANGLES, mesh->nNumFaces*3, GL_UNSIGNED_SHORT, indices);
+		
+		
+		
+	}
+	
 		
 }
 
