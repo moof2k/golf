@@ -478,7 +478,13 @@ void RBTGame::SetState(eRBTGameState state)
 				}
 				
 				m_swingPower = m_swingControl.GetPower() * powermultiplier;
-				m_swingAngle = m_swingControl.GetAngle();
+				m_swingAngle = m_swingControl.GetAngle() * material.m_penalty_angle;
+				
+				if(m_swingAngle < -1.0f)
+					m_swingAngle = -1.0f;
+				else if(m_swingAngle > 1.0f)
+					m_swingAngle = 1.0f;
+				
 				m_ballRecorder.Reset();
 			}
 			break;
