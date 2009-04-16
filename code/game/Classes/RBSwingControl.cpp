@@ -31,6 +31,9 @@ RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 const int kSwingTrackStart = 100;
 const int kSwingTrackEnd = 400;
 
+const float kSwingBasePower = 1.0f;
+const float kSwingTimingBonus = 0.1f;
+
 const float kSwingDownPrecision = 16.0f;
 const float kSwingDownPrecisionPenalty = 0.01f;
 
@@ -296,8 +299,8 @@ void RBSwingControl::NextFrame(float delta)
 		
 		if(m_downBasePower < 0.0f)
 			m_downBasePower = 0.0f;
-		if(m_downBasePower > 0.9f)
-			m_downBasePower = 0.9f;
+		if(m_downBasePower > kSwingBasePower)
+			m_downBasePower = kSwingBasePower;
 		
 		//printf("base = %f  bonus = %f\n", m_downBasePower, m_downBonusPower);
 		
@@ -436,7 +439,10 @@ void RBSwingControl::RenderPower()
 	glEnableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	
-	const float alpha = totalAlpha * 0.8f * power;
+	float alpha = totalAlpha * 0.8f * power;
+	
+	if(alpha > 1.0f)
+		alpha = 1.0f;
 	
 	GLfloat colors[] = {
 		1.0f, 1.0f, 1.0f, alpha,
@@ -475,21 +481,20 @@ void RBSwingControl::RenderPower()
 		}
 		else
 		{
-			if(power > 0.95f)
+			if(power > 1.9f)
 			{
 				m_swingPowerText.SetText("Excellent Shot!");
 			}
-			else if(power > 0.9f)
+			else if(power > 1.5f)
 			{
 				m_swingPowerText.SetText("Great Shot!");
 			}
-			else if(power > 0.80f)
+			else if(power > 1.0f)
 			{
 				m_swingPowerText.SetText("Good Shot!");
 			}
 			else
 			{
-				m_swingPowerText.SetText("");
 				m_swingPowerText.SetValue(power * 100.0f);
 			}
 		}
@@ -606,8 +611,8 @@ float RBSwingControl::GetPower()
 	float timingBonus = m_downBonusPower + 0.2f;
 	timingBonus *= 0.5f;
 	
-	if(timingBonus > 0.1f)
-		timingBonus = 0.1f;
+	if(timingBonus > kSwingTimingBonus)
+		timingBonus = kSwingTimingBonus;
 	if(timingBonus < 0.0f)
 		timingBonus = 0.0f;
 	
