@@ -32,7 +32,7 @@ void SetUV(float* UVs, int index, float u, float v)
 RudeSkybox::RudeSkybox()
 {
 	const float scale = 150.0f;
-	const bool adjustUV = true;
+	const bool adjustUV = false;
 	const int textureSize = 512;
 	
 	float *Vertices = m_verts;
