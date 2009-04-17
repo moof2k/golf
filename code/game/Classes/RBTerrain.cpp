@@ -47,7 +47,7 @@ RBTerrainMaterialInfo gMaterialInfos[kNumMaterialTypes] = {
 	{ 1000.0f, 0.05f,	0.95f, 0.95f, 10.0f,	50, 65, 1.5f },
 	{ 75.0f, 0.4f,		0.25f, 0.5f, 2.0f,		100, 100, 1.0f },
 	{ 50.0f, 0.45f,		0.15f, 0.3f, 0.75f,		100, 100, 1.0f },
-
+	{ 50.0f, 0.45f,		0.15f, 0.3f, 0.75f,		100, 100, 1.0f },
 };
 
 RUDE_TWEAK(MatRoughFriction, kFloat, gMaterialInfos[kRough].m_friction);

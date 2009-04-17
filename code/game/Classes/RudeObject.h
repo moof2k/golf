@@ -45,9 +45,12 @@ public:
 		m_position = p;
 	}
 	
-private:
+protected:
 	
 	btVector3 m_position;
+	
+private:
+	
 	RudeMesh *m_mesh;
 	RudePhysicsObject *m_physics;
 };

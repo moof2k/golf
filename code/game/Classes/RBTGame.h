@@ -25,6 +25,7 @@
 #include "RBBallCamera.h"
 #include "RBTerrain.h"
 #include "RBGolfBall.h"
+#include "RBGolfPin.h"
 #include "RBSwingControl.h"
 #include "RBWindControl.h"
 #include "RBBallGuide.h"
@@ -76,6 +77,8 @@ typedef struct {
 	
 	btVector3 ball;
 	eRBTerrainMaterial ballMaterial;
+	
+	btVector3 hole;
 	
 } tRBTGameStateSave;
 
@@ -144,6 +147,7 @@ private:
 	
 	RBTerrain m_terrain;
 	RBGolfBall m_ball;
+	RBGolfPin m_pin;
 	RudeSkybox m_skybox;
 	RBGolferObject m_golfer;
 	RBBallRecorder m_ballRecorder;

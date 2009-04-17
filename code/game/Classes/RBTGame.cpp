@@ -90,6 +90,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_golfer.Load("golfer");
 	
+	m_pin.LoadMesh("pin");
+	
 	m_skybox.Load("skybox");
 	
 	m_ballCamera.SetBall(&m_ball);
@@ -249,9 +251,16 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_cameraButton.SetTextures("ui_camera", "ui_camera");
 	
 	if(restorestate)
-		LoadState();
+	{
+		int result = LoadState();
+		
+		if(result < 0)
+			SetState(kStateTeePosition);
+	}
 	else
 		SetState(kStateTeePosition);
+	
+	m_pin.SetPosition(m_terrain.GetHole());
 }
 
 RBTGame::~RBTGame()
@@ -276,6 +285,7 @@ void RBTGame::SaveState()
 	save.ballToHoleDist = m_ballToHoleDist;
 	save.ball = m_ball.GetPosition();
 	save.ballMaterial = m_ball.GetCurMaterial();
+	save.hole = m_terrain.GetHole();
 	
 	reg->SetByte("GOLF", "GS_INGAME_STATE", &save, sizeof(save));
 	
@@ -311,6 +321,7 @@ int RBTGame::LoadState()
 		m_ballToHoleDist = load.ballToHoleDist;
 		m_ball.StickAtPosition(load.ball);
 		m_ball.SetCurMaterial(load.ballMaterial);
+		m_terrain.SetHole(load.hole);
 	
 		RestoreState();
 		
@@ -547,6 +558,9 @@ void RBTGame::StateTeePosition(float delta)
 	float yardage = ballToHole.length() / 3.0f;
 	
 	m_curClub = RBGolfClub::AutoSelectClub(yardage, m_ball.GetCurMaterial());
+	
+	
+	// figure out wind speed
 	
 	int windspeed = 0;
 	
@@ -1085,8 +1099,6 @@ void RBTGame::AdjustGuide()
 		//m_ballGuide.SetGuide(result);
 		
 		m_placementGuidePosition = result;
-		
-		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
 		m_placementGuidePower = distance;
 		
@@ -1389,8 +1401,6 @@ void RBTGame::Render(float aspect)
 {
 	RUDE_PERF_START(kPerfRBTGameRender);
 	
-	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
-	
 	RGL.SetViewport(0, 0, 480, 320);
 
 	m_curCamera->SetView(aspect);
@@ -1419,7 +1429,6 @@ void RBTGame::Render(float aspect)
 	RGL.Enable(kDepthTest, true);
 	m_golfer.Render();
 	
-	
 	//m_ballRecorder.RenderRecords();
 	
 	
@@ -1436,6 +1445,8 @@ void RBTGame::Render(float aspect)
 	}
 	
 	RGL.LoadIdentity();
+	
+	m_pin.Render();
 	
 	RenderCalcOrthoDrawPositions();
 	

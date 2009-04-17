@@ -59,6 +59,7 @@ public:
 	btVector3 GetTeeBox();
 	btVector3 GetGuidePoint() { return m_guidePoint; }
 	btVector3 GetHole() { return m_hole; }
+	void SetHole(const btVector3 hole) { m_hole = hole; }
 	btVector3 GetCameraPlacement(btVector3 ball);
 	
 	bool GetBallInHole() { return m_ballInHole; }
