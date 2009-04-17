@@ -264,6 +264,9 @@ void RudeMesh::Render()
 		
 	}
 	
+	glAlphaFunc ( GL_GREATER, 0.5 ) ;
+    glEnable ( GL_ALPHA_TEST ) ;
+	
 	for(int i = 0; i < m_model.nNumNode; i++)
 	{
 		SPODNode *node = &m_model.pNode[i];
@@ -272,7 +275,6 @@ void RudeMesh::Render()
 			continue;
 		if(node->pszName[0] != 'D')
 			continue;
-		
 		
 		SPODMaterial *material = &m_model.pMaterial[node->nIdxMaterial];
 		SPODMesh *mesh = &m_model.pMesh[node->nIdx];
@@ -315,6 +317,8 @@ void RudeMesh::Render()
 		
 		
 	}
+	
+    glDisable ( GL_ALPHA_TEST ) ;
 	
 		
 }
