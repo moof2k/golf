@@ -20,6 +20,7 @@ RudeButtonControl::RudeButtonControl()
 , m_stateofftex(-1)
 , m_stateontex(-1)
 , m_texsize(64)
+, m_halfTexsize(32)
 {
 }
 
@@ -30,7 +31,10 @@ void RudeButtonControl::SetTextures(const char *stateofftex, const char *stateon
 	
 	RudeTexture *tex = RudeTextureManager::GetInstance()->GetTexture(m_stateofftex);
 	if(tex)
+	{
 		m_texsize = tex->GetHeight();
+		m_halfTexsize = tex->GetHeight() / 2;
+	}
 }
 
 bool RudeButtonControl::TouchDown(RudeTouch *t)
@@ -70,8 +74,8 @@ void RudeButtonControl::Render()
 	
 	int xc = (m_rect.m_right - m_rect.m_left) / 2;
 	int yc = (m_rect.m_bottom - m_rect.m_top) / 2;
-	float left = xc - (m_texsize / 2) + m_rect.m_left;
-	float top = yc - (m_texsize / 2) + m_rect.m_top;
+	float left = xc - m_halfTexsize + m_rect.m_left;
+	float top = yc - m_halfTexsize + m_rect.m_top;
 	
 	GLfloat point[] = {
 		left, top + m_texsize,
@@ -80,14 +84,7 @@ void RudeButtonControl::Render()
 		left + m_texsize, top + m_texsize
 	};
 	
-	GLfloat colors[] = {
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-	};
-	
-	GLfloat uvs[] = {
+	const GLfloat uvs[] = {
 		0.0f, 1.0f, 
 		0.0f, 0.0f,
 		1.0f, 0.0f,
@@ -96,8 +93,7 @@ void RudeButtonControl::Render()
 	
 	glVertexPointer(2, GL_FLOAT, 0, point);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glColorPointer(4, GL_FLOAT, 0, colors);
-	glEnableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	

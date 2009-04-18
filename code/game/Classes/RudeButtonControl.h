@@ -33,6 +33,7 @@ protected:
 	int m_stateontex;
 	
 	int m_texsize;
+	int m_halfTexsize;
 	
 };
 
