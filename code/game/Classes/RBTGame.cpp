@@ -214,17 +214,18 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	const int kBottomBarTop = 480 - 44;
 	const int kBottomBarBot = 480;
 	
-	m_botBarBg.SetRect(RudeRect(kBottomBarTop, 0, kBottomBarBot, 320));
 	m_botBarBg.SetTextures("ui_botbarbg", "ui_botbarbg");
+	m_botBarBg.SetRect(RudeRect(kBottomBarTop, 0, kBottomBarBot, 320));
 	
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
 	m_swingControl.SetGolfer(&m_golfer);
 	
-	m_swingButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
-	m_swingButton.SetTextures("ui_swing", "ui_swing");
 	
-	m_moveButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
+	m_swingButton.SetTextures("ui_swing", "ui_swing");
+	m_swingButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
+	
 	m_moveButton.SetTextures("ui_move", "ui_move");
+	m_moveButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
 	
 	m_menuButton.SetRect(RudeRect(kBottomBarTop, 190, kBottomBarBot, 190+61));
 	m_menuButton.SetTextures("ui_menu", "ui_menu");
@@ -240,15 +241,20 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
 
 	
-	m_prevClubButton.SetRect(RudeRect(kBottomBarTop, 5, kBottomBarBot, 5+32));
 	m_prevClubButton.SetTextures("ui_clubprev", "ui_clubprev");
-	m_clubButton.SetRect(RudeRect(kBottomBarTop, 46, kBottomBarBot, 46+68));
-	m_clubButton.SetTextures("ui_1wood", "ui_1wood");
-	m_nextClubButton.SetRect(RudeRect(kBottomBarTop, 121, kBottomBarBot, 121+32));
-	m_nextClubButton.SetTextures("ui_clubnext", "ui_clubnext");
+	m_prevClubButton.SetRect(RudeRect(kBottomBarTop, 5, kBottomBarBot, 5+32));
 	
-	m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
+	
+	m_clubButton.SetTextures("ui_1wood", "ui_1wood");
+	m_clubButton.SetRect(RudeRect(kBottomBarTop, 46, kBottomBarBot, 46+68));
+	
+	
+	m_nextClubButton.SetTextures("ui_clubnext", "ui_clubnext");
+	m_nextClubButton.SetRect(RudeRect(kBottomBarTop, 121, kBottomBarBot, 121+32));
+	
+	
 	m_cameraButton.SetTextures("ui_camera", "ui_camera");
+	m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
 	
 	if(restorestate)
 	{

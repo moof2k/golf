@@ -62,6 +62,28 @@ bool RudeButtonControl::TouchUp(RudeTouch *t)
 	return true;
 }
 
+void RudeButtonControl::SetRect(const RudeRect &r)
+{
+	m_rect = r;
+
+	int xc = (m_rect.m_right - m_rect.m_left) / 2;
+	int yc = (m_rect.m_bottom - m_rect.m_top) / 2;
+	float left = xc - m_halfTexsize + m_rect.m_left;
+	float top = yc - m_halfTexsize + m_rect.m_top;
+	
+	m_points[0] = left;
+	m_points[1] = top + m_texsize;
+	
+	m_points[2] = left;
+	m_points[3] = top;
+	
+	m_points[4] = left + m_texsize;
+	m_points[5] = top;
+	
+	m_points[6] = left + m_texsize;
+	m_points[7] = top + m_texsize;
+
+}
 
 void RudeButtonControl::Render()
 {
@@ -72,18 +94,6 @@ void RudeButtonControl::Render()
 	//glDisable(GL_TEXTURE_2D);
 	//glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	
-	int xc = (m_rect.m_right - m_rect.m_left) / 2;
-	int yc = (m_rect.m_bottom - m_rect.m_top) / 2;
-	float left = xc - m_halfTexsize + m_rect.m_left;
-	float top = yc - m_halfTexsize + m_rect.m_top;
-	
-	GLfloat point[] = {
-		left, top + m_texsize,
-		left, top,
-		left + m_texsize, top,
-		left + m_texsize, top + m_texsize
-	};
-	
 	const GLfloat uvs[] = {
 		0.0f, 1.0f, 
 		0.0f, 0.0f,
@@ -91,7 +101,7 @@ void RudeButtonControl::Render()
 		1.0f, 1.0f,
 	};
 	
-	glVertexPointer(2, GL_FLOAT, 0, point);
+	glVertexPointer(2, GL_FLOAT, 0, m_points);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);

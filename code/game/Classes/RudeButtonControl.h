@@ -20,6 +20,8 @@ public:
 	
 	void SetTextures(const char *stateoff, const char *stateon);
 	
+	virtual void SetRect(const RudeRect &r);
+	
 	virtual bool TouchDown(RudeTouch *t);
 	virtual bool TouchMove(RudeTouch *t);
 	virtual bool TouchUp(RudeTouch *t);
@@ -27,6 +29,8 @@ public:
 	virtual void Render();
 	
 protected:
+	
+	float m_points[8];
 	
 	bool m_state;
 	int m_stateofftex;

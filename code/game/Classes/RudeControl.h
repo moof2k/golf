@@ -26,7 +26,7 @@ class RudeControl
 public:
 	RudeControl();
 	
-	void SetRect(const RudeRect &r) { m_rect = r; }
+	virtual void SetRect(const RudeRect &r) { m_rect = r; }
 	
 	bool Contains(const RudeScreenVertex &p);
 	
