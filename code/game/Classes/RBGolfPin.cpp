@@ -16,8 +16,6 @@ const float kGolfPinFlagHeight = 2.0f;
 const unsigned int kGolfPinFlagColor = 0xFF0000FF;
 const unsigned int kGolfPinColor = 0xFFFFFFFF;
 
-const float kGolfPinFadeIn = 30.0f;
-const float kGolfPinFadeSlope = 10.0f;
 
 RBGolfPin::RBGolfPin()
 {
@@ -33,46 +31,33 @@ void RBGolfPin::Render()
 	
 	RudeObject::Render();
 	
-	btVector3 eye = RGL.GetEye();
+
+	RGL.LoadIdentity();
 	
-	btVector3 eyetopin = eye - m_position;
+	RGL.Enable(kDepthTest, true);
 	
-	float dist = eyetopin.length();
+	glDisable(GL_TEXTURE_2D);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	
-	if(dist > kGolfPinFadeIn)
-	{
-		float slope = dist - kGolfPinFadeIn;
-		slope /= kGolfPinFadeSlope;
-		
-		if(slope > 1.0f)
-			slope = 1.0f;
-		
-		RGL.LoadIdentity();
-		
-		RGL.Enable(kDepthTest, true);
-		
-		glDisable(GL_TEXTURE_2D);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		
-		GLfloat point[] = {
-			m_position.x(), m_position.y() + kGolfPinHeight, m_position.z(),
-			m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
-			m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
-			m_position.x(), m_position.y(), m_position.z(),
-		};
-		
-		float colors[] = {
-			1.0f, 0.0f, 0.0f, slope,
-			1.0f, 0.0f, 0.0f, slope,
-			1.0f, 1.0f, 1.0f, slope,
-			1.0f, 1.0f, 1.0f, slope
-		};
-		
-		glVertexPointer(3, GL_FLOAT, 0, point);
-		glColorPointer(4, GL_FLOAT, 0, colors);
-		glDrawArrays(GL_LINES, 0, 4);
-	}
+	GLfloat point[] = {
+		m_position.x(), m_position.y() + kGolfPinHeight, m_position.z(),
+		m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
+		m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
+		m_position.x(), m_position.y(), m_position.z(),
+	};
+	
+	unsigned int colors[] = {
+		kGolfPinFlagColor,
+		kGolfPinFlagColor,
+		kGolfPinColor,
+		kGolfPinColor
+	};
+	
+	glVertexPointer(3, GL_FLOAT, 0, point);
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
+	glDrawArrays(GL_LINES, 0, 4);
+
 }
 
