@@ -10,7 +10,7 @@
 #include "RBGolfPin.h"
 #include "RudeGL.h"
 
-const float kGolfPinHeight = 8.0f;
+const float kGolfPinHeight = 10.0f;
 
 const unsigned int kGolfPinColor = 0xFFFFFFFF;
 

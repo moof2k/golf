@@ -143,6 +143,8 @@
 		9AAD31B70F96E7C600CCA4FC /* grass_rough_decal.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD31B60F96E7C600CCA4FC /* grass_rough_decal.pvr */; };
 		9AAD31BA0F96E7E300CCA4FC /* bush_a.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD31B90F96E7E300CCA4FC /* bush_a.pvr */; };
 		9AAD324D0F98CA4500CCA4FC /* RBGolfPin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAD324C0F98CA4500CCA4FC /* RBGolfPin.cpp */; };
+		9AAD32DA0F9987CF00CCA4FC /* pin.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32D90F9987CF00CCA4FC /* pin.POD */; };
+		9AAD32DC0F9987E000CCA4FC /* flag.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32DB0F9987E000CCA4FC /* flag.pvr */; };
 		9AAE72660E7676ED00E8CC0B /* RBGolfBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */; };
 		9AAFD3760F918026002FC6EE /* ui_camera_flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAFD3750F918026002FC6EE /* ui_camera_flag.png */; };
 		9AB427F00E7CED91001429D6 /* RBCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB427EF0E7CED91001429D6 /* RBCamera.cpp */; };
@@ -494,6 +496,8 @@
 		9AAD31B90F96E7E300CCA4FC /* bush_a.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = bush_a.pvr; path = Data/bush_a.pvr; sourceTree = "<group>"; };
 		9AAD324B0F98CA4500CCA4FC /* RBGolfPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGolfPin.h; path = Classes/RBGolfPin.h; sourceTree = "<group>"; };
 		9AAD324C0F98CA4500CCA4FC /* RBGolfPin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBGolfPin.cpp; path = Classes/RBGolfPin.cpp; sourceTree = "<group>"; };
+		9AAD32D90F9987CF00CCA4FC /* pin.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = pin.POD; path = Data/pin.POD; sourceTree = "<group>"; };
+		9AAD32DB0F9987E000CCA4FC /* flag.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = flag.pvr; path = Data/flag.pvr; sourceTree = "<group>"; };
 		9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGolfBall.h; path = Classes/RBGolfBall.h; sourceTree = "<group>"; };
 		9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBGolfBall.cpp; path = Classes/RBGolfBall.cpp; sourceTree = "<group>"; };
 		9AAFD3750F918026002FC6EE /* ui_camera_flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_camera_flag.png; path = Data/ui_camera_flag.png; sourceTree = "<group>"; };
@@ -1544,6 +1548,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE630720EB6E08B000B2EAD /* ball128.pvr */,
+				9AAD32DB0F9987E000CCA4FC /* flag.pvr */,
 				9A03E1300F85D57100AC5D7C /* driver_128.pvr */,
 				9A03E1360F85D58500AC5D7C /* iron_128.pvr */,
 				9A03E1320F85D57800AC5D7C /* putter_128.pvr */,
@@ -1596,6 +1601,7 @@
 				9A8E13920F92EE7300F5B3A3 /* par5_C.POD */,
 				9A8E13930F92EE7300F5B3A3 /* par5_B.POD */,
 				9A8E13940F92EE7300F5B3A3 /* par5_A.POD */,
+				9AAD32D90F9987CF00CCA4FC /* pin.POD */,
 				9ACA1A8A0EBEDE660014C128 /* wind_indicator.POD */,
 			);
 			name = POD;
@@ -1767,6 +1773,8 @@
 				9AAD316C0F959E4800CCA4FC /* ui_ccc_medallion.png in Resources */,
 				9AAD31B70F96E7C600CCA4FC /* grass_rough_decal.pvr in Resources */,
 				9AAD31BA0F96E7E300CCA4FC /* bush_a.pvr in Resources */,
+				9AAD32DA0F9987CF00CCA4FC /* pin.POD in Resources */,
+				9AAD32DC0F9987E000CCA4FC /* flag.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
