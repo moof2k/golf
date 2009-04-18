@@ -22,12 +22,13 @@ RBUITitle::RBUITitle()
 	m_skybox.Load("skybox");
 	
 	m_logo.SetAnimType(kAnimPopSlide);
-	m_logo.SetRect(RudeRect(80, 0, 300, 320));
 	m_logo.SetTextures("logo", "logo");
+	m_logo.SetRect(RudeRect(80, 0, 300, 320));
+	
 	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);
-	m_courseMedallion.SetRect(RudeRect(100, 0, 356, 320));
 	m_courseMedallion.SetTextures("ui_ccc_medallion", "ui_ccc_medallion");
+	m_courseMedallion.SetRect(RudeRect(100, 0, 356, 320));
 	
 	const int kCourseButtonTop = 30;
 	const int kCourseButtonHeight = 64;
@@ -39,8 +40,8 @@ RBUITitle::RBUITitle()
 		
 		m_courseButtons[i].SetAnimType(kAnimPopSlide);
 		m_courseButtons[i].SetAnimSpeed(float(i) * kCourseAnimSpeedMod + kCourseAnimSpeedBase);
-		m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
 		m_courseButtons[i].SetTextures("coursebg", "coursebg");
+		m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
 		
 		m_courseButtons[i].m_name = sCourseData[i].m_name;
 		m_courseButtons[i].m_holes = sCourseData[i].m_holes;
