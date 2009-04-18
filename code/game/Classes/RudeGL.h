@@ -25,6 +25,14 @@ typedef enum {
 	kNumRudeGLEnableOptions
 } eRudeGLEnableOption;
 
+typedef enum {
+	kVertexArray,
+	kColorArray,
+	kTextureCoordArray,
+	
+	kNumRudeGLEnableClientOptions
+} eRudeGLEnableClientOption;
+
 class RudeGL
 {
 public:
@@ -52,6 +60,7 @@ public:
 	btVector3 InverseProject(const btVector3 &point);
 	
 	void Enable(eRudeGLEnableOption option, bool enable);
+	void EnableClient(eRudeGLEnableClientOption option, bool enable);
 
 	btVector3 GetEye() { return m_eye; }
 	btVector3 GetLookAt() { return m_lookAt; }
@@ -59,6 +68,7 @@ public:
 private:
 
 	bool m_enables[kNumRudeGLEnableOptions];
+	bool m_enableClients[kNumRudeGLEnableClientOptions];
 	
 	RudeRect m_viewport;				// screen viewport rect
 	btVector3 m_eye;

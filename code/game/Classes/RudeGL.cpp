@@ -10,12 +10,26 @@ RudeGL RGL;
 #define DEBUG 0
 
 
+const unsigned int kRudeEnableMappings[kNumRudeGLEnableOptions] = {
+	GL_DEPTH_TEST,
+	GL_CULL_FACE,
+};
+
+
+const unsigned int kRudeEnableClientMappings[kNumRudeGLEnableClientOptions] = {
+	GL_VERTEX_ARRAY,
+	GL_COLOR_ARRAY,
+	GL_TEXTURE_COORD_ARRAY
+};
 
 RudeGL::RudeGL()
 : m_eye(0,0,0)
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
 		m_enables[i] = false;
+	
+	for(int i = 0; i < kNumRudeGLEnableClientOptions; i++)
+		m_enableClients[i] = false;
 }
 
 RudeGL::~RudeGL()
@@ -353,24 +367,27 @@ void RudeGL::Enable(eRudeGLEnableOption option, bool enable)
 	
 	m_enables[option] = enable;
 	
-	switch(option)
-	{
-		case kDepthTest:
-			if(enable)
-				glEnable(GL_DEPTH_TEST);
-			else
-				glDisable(GL_DEPTH_TEST);
-			break;
-		case kBackfaceCull:
-			if(enable)
-				glEnable(GL_CULL_FACE);
-			else
-				glDisable(GL_CULL_FACE);
-			break;
-			
-		default:
-			RUDE_ASSERT(0, "Unhandled option");
-			break;
-	}
+	
+	if(enable)
+		glEnable(kRudeEnableMappings[option]);
+	else
+		glDisable(kRudeEnableMappings[option]);
+
+	
+
+}
+
+void RudeGL::EnableClient(eRudeGLEnableClientOption option, bool enable)
+{
+	if(m_enableClients[option] == enable)
+		return;
+	
+	m_enableClients[option] = enable;
+	
+	if(enable)
+		glEnableClientState(kRudeEnableClientMappings[option]);
+	else
+		glDisableClientState(kRudeEnableClientMappings[option]);
+		
 }
 

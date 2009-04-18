@@ -9,6 +9,8 @@
 
 #include "RudeGLD.h"
 
+#include "RudeGL.h"
+
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
@@ -29,9 +31,9 @@ void RudeGLD::DebugDrawLine(btVector3 p0, btVector3 p1)
 void RudeGLD::RenderDebug()
 {
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	for(int i = 0; i < m_debugLines.size(); i++)
 	{

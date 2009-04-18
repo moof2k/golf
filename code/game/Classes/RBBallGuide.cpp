@@ -167,9 +167,10 @@ void RBBallGuide::Render()
 	//RGLD.DebugDrawLine(ball, m_guide);
 	
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	for(int i = 1; i < m_numGuidePoints; i++)
 	{

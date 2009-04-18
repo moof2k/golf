@@ -96,9 +96,9 @@ void RBBallRecorder::RenderTracers()
 	RudeTextureManager::GetInstance()->SetTexture(m_tracerTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kTextureCoordArray, true);
 	
 	RGL.LoadIdentity();
 	

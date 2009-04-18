@@ -28,6 +28,7 @@
 
 #include "RudeDebug.h"
 #include "RudeFont.h"
+#include "RudeGL.h"
 #include "RudeUnicode.h"
 #include "RudeFile.h"
 #include "RudeTextureManager.h"
@@ -413,9 +414,9 @@ void RudeFont::Write(float x, float y, float z, const char *text, int count, uns
 
 void RudeFont::Write(float x, float y, float z, const char *text, int count, unsigned int mode, unsigned int topcolor, unsigned int botcolor)
 {
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, true);
 	
 	unsigned int colors[] = {
 		topcolor,

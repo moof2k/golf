@@ -8,6 +8,8 @@
  */
 
 #include "RudeButtonControl.h"
+
+#include "RudeGL.h"
 #include "RudeTextureManager.h"
 
 #include <OpenGLES/ES1/gl.h>
@@ -101,11 +103,12 @@ void RudeButtonControl::Render()
 		1.0f, 1.0f,
 	};
 	
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kTextureCoordArray, true);
+	
 	glVertexPointer(2, GL_FLOAT, 0, m_points);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }

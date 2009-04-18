@@ -349,6 +349,11 @@ void RBUITitle::Render(float aspect)
 	RGL.LoadIdentity();
 	
 	m_skybox.Render();
+	
+	RGL.Enable(kBackfaceCull, true);
+	RGL.Enable(kDepthTest, true);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CW);
 	m_terrain.Render();
 	
 	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);

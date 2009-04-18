@@ -455,11 +455,8 @@ void CPVRTPrint3D::APIRenderStates(int nAction)
 		glCullFace(GL_FRONT);
 
 		/* Set client states */
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
 
 		glClientActiveTexture(GL_TEXTURE0);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		/* texture 	*/
 		glActiveTexture(GL_TEXTURE1);
@@ -485,9 +482,6 @@ void CPVRTPrint3D::APIRenderStates(int nAction)
 
 	case 1:
 		/* Restore render states */
-		/*if (!bVertexPointerEnabled)	*/	glDisableClientState(GL_VERTEX_ARRAY);
-		/*if (!bColorPointerEnabled)	*/	glDisableClientState(GL_COLOR_ARRAY);
-		/*if (!bTexCoorPointerEnabled)	*/	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		/* Restore matrix mode & matrix */
 		glMatrixMode(GL_PROJECTION);
@@ -600,24 +594,17 @@ void CPVRTPrint3D::APIDrawLogo(unsigned int uLogoToDisplay, int nPos)
 
 	/* Vertices
 	 */
-	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(3,VERTTYPEENUM,0,pVertices);
 
-	glEnableClientState(GL_COLOR_ARRAY);
 	glColorPointer(4,VERTTYPEENUM,0,pColours);
 
 	glClientActiveTexture(GL_TEXTURE0);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glTexCoordPointer(2,VERTTYPEENUM,0,pUV);
 
 	glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	glDisableClientState(GL_COLOR_ARRAY);
 
 	glClientActiveTexture(GL_TEXTURE0);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	/* Restore render states
 	 */

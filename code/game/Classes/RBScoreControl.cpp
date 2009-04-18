@@ -10,6 +10,7 @@
 #include "RBScoreControl.h"
 #include "RBScoreTracker.h"
 #include "RudeFont.h"
+#include "RudeGL.h"
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
@@ -32,9 +33,10 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 	trackers[3] = GetScoreTracker(3);
 	
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	GLfloat point[] = {
 		x - 5, y - 15,

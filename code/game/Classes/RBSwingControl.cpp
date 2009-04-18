@@ -8,6 +8,8 @@
  */
 
 #include "RBSwingControl.h"
+
+#include "RudeGL.h"
 #include "RudeTextureManager.h"
 #include "RudeTweaker.h"
 #include "RudeFont.h"
@@ -331,9 +333,9 @@ void RBSwingControl::RenderRing()
 
 	RudeTextureManager::GetInstance()->SetTexture(m_ringTextureId);
 	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, true);
 	
 	
 	float ringsize = (1.0f - m_downOptimalPct) * (kSwingTrackEnd - kSwingTrackStart) + 32.0f;
@@ -435,9 +437,9 @@ void RBSwingControl::RenderPower()
 	float totalAlpha = m_fadeOutTimer / m_fadeOutTime;
 	
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	float alpha = totalAlpha * 0.8f * power;
 	
@@ -507,9 +509,9 @@ void RBSwingControl::RenderPower()
 void RBSwingControl::RenderTracks()
 {
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	for(int i = 1; i < m_curSwingPoint; i++)
 	{

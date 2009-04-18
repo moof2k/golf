@@ -37,9 +37,9 @@ void RBGolfPin::Render()
 	RGL.Enable(kDepthTest, true);
 	
 	glDisable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, false);
 	
 	GLfloat point[] = {
 		m_position.x(), m_position.y() + kGolfPinHeight, m_position.z(),

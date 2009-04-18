@@ -657,9 +657,10 @@ void RBTerrain::RenderHole()
 	RudeTextureManager::GetInstance()->SetTexture(m_holeTexture);
 	
 	glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, true);
 	
 	
 	btVector3 &p = m_hole;

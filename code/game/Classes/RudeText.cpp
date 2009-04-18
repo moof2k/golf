@@ -9,6 +9,8 @@
 
 #include "RudeText.h"
 
+#include "RudeGL.h"
+
 #include <stdarg.h>
 
 #include "PVRTFixedPoint.h"
@@ -36,5 +38,8 @@ void RudeText::Print(float x, float y, float scale, unsigned int color, const ch
 
 void RudeText::Flush()
 {
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, true);
+	RGL.EnableClient(kTextureCoordArray, true);
 	gTextPrint.Flush();
 }

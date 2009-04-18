@@ -138,8 +138,9 @@ void RudeSkinnedMesh::Render()
 	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kTextureCoordArray, true);
+	
 	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
 	
 	if(m_animate)
@@ -202,11 +203,11 @@ void RudeSkinnedMesh::Render()
 		
 		if((mesh->sVtxColours.n > 0) && (mesh->sVtxColours.eType == EPODDataRGBA))
 		{
-			glEnableClientState(GL_COLOR_ARRAY);
+			RGL.EnableClient(kColorArray, true);
 			glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
 		}
 		else
-			glDisableClientState(GL_COLOR_ARRAY);
+			RGL.EnableClient(kColorArray, false);
 		
 		int totalbatchcnt = 0;
 		
