@@ -190,11 +190,6 @@ void RudeMesh::EnableModel(int n, bool enable)
 void RudeMesh::Render()
 {
 
-	RGL.Enable(kBackfaceCull, true);
-	
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
-
 	
 	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

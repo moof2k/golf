@@ -8,6 +8,7 @@
  */
 
 #include "RBGolferObject.h"
+#include "RudeGL.h"
 #include "RudeMesh.h"
 #include "RudeSkinnedMesh.h"
 
@@ -146,6 +147,8 @@ bool RBGolferObject::HasSwung()
 
 void RBGolferObject::Render()
 {
+	RGL.Enable(kBackfaceCull, true);
+	
 	// position golfer relative to ball
 	
 	btVector3 node = -m_nodes[m_node];

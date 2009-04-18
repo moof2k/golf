@@ -636,6 +636,10 @@ void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 
 void RBTerrain::Render()
 {
+	RGL.Enable(kBackfaceCull, true);
+	glCullFace(GL_FRONT);
+	glFrontFace(GL_CW);
+	
 	RudeObject::Render();
 	
 	RenderHole();
