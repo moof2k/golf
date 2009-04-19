@@ -43,22 +43,18 @@ void RBGolfPin::Render()
 	RGL.EnableClient(kTextureCoordArray, false);
 	
 	GLfloat point[] = {
-		m_position.x(), m_position.y() + kGolfPinHeight, m_position.z(),
-		m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
 		m_position.x(), m_position.y() + kGolfPinHeight - kGolfPinFlagHeight, m_position.z(),
 		m_position.x(), m_position.y(), m_position.z(),
 	};
 	
 	unsigned int colors[] = {
-		kGolfPinFlagColor,
-		kGolfPinFlagColor,
 		kGolfPinColor,
 		kGolfPinColor
 	};
 	
 	glVertexPointer(3, GL_FLOAT, 0, point);
 	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
-	glDrawArrays(GL_LINES, 0, 4);
+	glDrawArrays(GL_LINES, 0, 2);
 
 }
 
