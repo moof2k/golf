@@ -34,7 +34,7 @@ RBUITitle::RBUITitle()
 	
 	m_logo.SetAnimType(kAnimPopSlide);
 	m_logo.SetTextures("logo", "logo");
-	m_logo.SetRect(RudeRect(80, 0, 300, 320));
+	m_logo.SetRect(RudeRect(60, 0, 300, 320));
 	
 	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);

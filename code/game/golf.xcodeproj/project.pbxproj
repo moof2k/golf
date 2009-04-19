@@ -73,6 +73,8 @@
 		9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */; };
 		9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */; };
 		9A56D0610F5D27C50013B650 /* crowd_missedputt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */; };
+		9A5B4CAF0F9BD47300B6503A /* sexy.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B4CAE0F9BD47300B6503A /* sexy.POD */; };
+		9A5B4CB10F9BD48000B6503A /* sexy.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B4CB00F9BD48000B6503A /* sexy.pvr */; };
 		9A72757A0F70ABD80029D849 /* sfx_start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275790F70ABD80029D849 /* sfx_start.wav */; };
 		9A7275850F70B71B0029D849 /* sfx_back.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275840F70B71B0029D849 /* sfx_back.wav */; };
 		9A7275890F70B82E0029D849 /* sfx_select.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A7275880F70B82E0029D849 /* sfx_select.wav */; };
@@ -389,6 +391,8 @@
 		9A56CFAB0F5D0E360013B650 /* RudePerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePerf.h; path = Classes/RudePerf.h; sourceTree = "<group>"; };
 		9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = Classes/RudePerf.cpp; sourceTree = "<group>"; };
 		9A56D0600F5D27C50013B650 /* crowd_missedputt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crowd_missedputt.wav; path = Data/crowd_missedputt.wav; sourceTree = "<group>"; };
+		9A5B4CAE0F9BD47300B6503A /* sexy.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = sexy.POD; path = Data/sexy.POD; sourceTree = "<group>"; };
+		9A5B4CB00F9BD48000B6503A /* sexy.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = sexy.pvr; path = Data/sexy.pvr; sourceTree = "<group>"; };
 		9A7275790F70ABD80029D849 /* sfx_start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_start.wav; path = Data/sfx_start.wav; sourceTree = "<group>"; };
 		9A7275840F70B71B0029D849 /* sfx_back.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_back.wav; path = Data/sfx_back.wav; sourceTree = "<group>"; };
 		9A7275880F70B82E0029D849 /* sfx_select.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_select.wav; path = Data/sfx_select.wav; sourceTree = "<group>"; };
@@ -1567,6 +1571,7 @@
 				9A8E13FF0F9304AC00F5B3A3 /* grass_green_B.pvr */,
 				9ACBA70A0E70F67200D3167F /* grass_green_A.pvr */,
 				9AAD31B60F96E7C600CCA4FC /* grass_rough_decal.pvr */,
+				9A5B4CB00F9BD48000B6503A /* sexy.pvr */,
 				9A74018F0E6FDF24008490F7 /* testtexture.pvr */,
 				9AEE3D6C0EA0212C00928D0C /* tracer.pvr */,
 				9A9D63390EB8607B003985A4 /* golfer_female_A_256.pvr */,
@@ -1602,6 +1607,7 @@
 				9A8E13930F92EE7300F5B3A3 /* par5_B.POD */,
 				9A8E13940F92EE7300F5B3A3 /* par5_A.POD */,
 				9AAD32D90F9987CF00CCA4FC /* pin.POD */,
+				9A5B4CAE0F9BD47300B6503A /* sexy.POD */,
 				9ACA1A8A0EBEDE660014C128 /* wind_indicator.POD */,
 			);
 			name = POD;
@@ -1775,6 +1781,8 @@
 				9AAD31BA0F96E7E300CCA4FC /* bush_a.pvr in Resources */,
 				9AAD32DA0F9987CF00CCA4FC /* pin.POD in Resources */,
 				9AAD32DC0F9987E000CCA4FC /* flag.pvr in Resources */,
+				9A5B4CAF0F9BD47300B6503A /* sexy.POD in Resources */,
+				9A5B4CB10F9BD48000B6503A /* sexy.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
