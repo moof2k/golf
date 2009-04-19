@@ -832,7 +832,7 @@ void RBTGame::NextClub(int n)
 	else
 	{
 		char str[64];
-		snprintf(str, 64, "%d - %d %%", material.m_penalty_power_min, material.m_penalty_power_max);
+		snprintf(str, 64, "%d~%d %%", material.m_penalty_power_min, material.m_penalty_power_max);
 		
 		m_powerRangeText.SetText(str);
 	}
