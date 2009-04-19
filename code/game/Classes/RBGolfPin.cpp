@@ -28,13 +28,14 @@ RBGolfPin::~RBGolfPin()
 void RBGolfPin::Render()
 {
 	RGL.Enable(kBackfaceCull, true);
+	RGL.Enable(kDepthTest, true);
 	
 	RudeObject::Render();
 	
 
 	RGL.LoadIdentity();
 	
-	RGL.Enable(kDepthTest, true);
+	RGL.Enable(kDepthTest, false);
 	
 	glDisable(GL_TEXTURE_2D);
 	RGL.EnableClient(kVertexArray, true);
