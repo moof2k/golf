@@ -92,54 +92,33 @@ void CrossProd(float x1, float y1, float z1, float x2, float y2, float z2, float
 void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ)
 {
 	
-	float f[3]; 
+	m_eye = btVector3(eyeX, eyeY, eyeZ);
+	m_lookAt = btVector3(lookAtX, lookAtY, lookAtZ);
 	
-	// calculating the viewing vector 
-	f[0] = lookAtX - eyeX; 
-	f[1] = lookAtY - eyeY; 
-	f[2] = lookAtZ - eyeZ; 
+	btVector3 inup(upX, upY, upZ);
 	
-	float fMag, upMag; 
-	fMag = sqrt(f[0]*f[0] + f[1]*f[1] + f[2]*f[2]); 
-	upMag = sqrt(upX*upX + upY*upY + upZ*upZ); 
+	btVector3 fwd = m_eye - m_lookAt;
+	fwd.normalize();
 	
-	// normalizing the viewing vector 
-	if( fMag != 0) 
-	{ 
-		f[0] = f[0]/fMag; 
-		f[1] = f[1]/fMag; 
-		f[2] = f[2]/fMag; 
-	} 
+	btVector3 side = inup.cross(fwd);
+	side.normalize();
 	
-	// normalising the up vector. no need for this here if you have your 
-	// up vector already normalised, which is mostly the case. 
-	if( upMag != 0 ) 
-	{ 
-		upX = upX/upMag; 
-		upY = upY/upMag; 
-		upZ = upZ/upMag; 
-	} 
+	btVector3 up = fwd.cross(side);
 	
-	float s[3], u[3]; 
-	
-	CrossProd(f[0], f[1], f[2], upX, upY, upZ, s); 
-	CrossProd(s[0], s[1], s[2], f[0], f[1], f[2], u); 
 	
 	float M[]= 
 	{ 
-		s[0], u[0], -f[0], 0, 
-		s[1], u[1], -f[1], 0, 
-		s[2], u[2], -f[2], 0, 
+		side.x(), up.x(), fwd.x(), 0, 
+		side.y(), up.y(), fwd.y(), 0, 
+		side.z(), up.z(), fwd.z(), 0, 
 		0, 0, 0, 1 
-	}; 
+	};
 	
 	glMatrixMode(GL_PROJECTION);
-	//glLoadIdentity();
 	glMultMatrixf(M); 
 	glTranslatef (-eyeX, -eyeY, -eyeZ);
 	
-	m_eye = btVector3(eyeX, eyeY, eyeZ);
-	m_lookAt = btVector3(lookAtX, lookAtY, lookAtZ);
+	
 }
 
 void RudeGL::LoadIdentity()
