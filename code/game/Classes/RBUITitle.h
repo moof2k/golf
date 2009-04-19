@@ -56,6 +56,7 @@ private:
 	
 	RudeObject m_terrain;
 	RudeSkybox m_skybox;
+	RudeObject m_flag;
 	RBCamera m_camera;
 	
 	RudeButtonControl m_logo;
@@ -79,6 +80,7 @@ private:
 	
 	float m_cameraTimer;
 	float m_readyTimer;
+	float m_flagOffset;
 	int m_course;
 	
 	bool m_startedMusic;

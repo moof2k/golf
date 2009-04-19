@@ -13,13 +13,24 @@
 
 #include "RudeSound.h"
 
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
+
+
+
+const btVector3 kFlagPosition(-5.741,-18.27,-1572.807);
 
 RBUITitle::RBUITitle()
 {
+	m_flagOffset = 0.0f;
+	
 	m_startedMusic = false;
 	
 	m_terrain.LoadMesh("par5_A");
 	m_skybox.Load("skybox");
+	
+	m_flag.LoadMesh("sexy");
+	m_flag.SetPosition(kFlagPosition);
 	
 	m_logo.SetAnimType(kAnimPopSlide);
 	m_logo.SetTextures("logo", "logo");
@@ -85,7 +96,7 @@ RBUITitle::RBUITitle()
 	m_backText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_copyrightText.SetAnimType(kAnimPopSlide);
-	m_copyrightText.SetText("Copyright © 2008 Bork 3D LLC");
+	m_copyrightText.SetText("Copyright © 2009 Bork 3D LLC");
 	m_copyrightText.SetAlignment(kAlignCenter);
 	m_copyrightText.SetRect(RudeRect(463, 0, 480, 320));
 	m_copyrightText.SetStyle(kNoStyle);
@@ -313,13 +324,36 @@ void RBUITitle::NextFrame(float delta)
 		}
 	}
 	
-	btVector3 camoff(50,0,0);
+	float desiredFlagOffset = -12.0f;
+	
+	if(m_state == kTitleSplash)
+		desiredFlagOffset = 0.0f;
+	
+	m_flagOffset += (desiredFlagOffset - m_flagOffset) * delta * 5.0f;
+	
+	m_flag.SetPosition(kFlagPosition + btVector3(0, m_flagOffset, 0));
+	
+	
+	btVector3 lookat(kFlagPosition);
+	lookat += btVector3(0.0f, 11.0f, 0.0f);
+	
+	btVector3 camoff(10,0,0);
 	btMatrix3x3 mat;
 	mat.setEulerYPR(m_cameraTimer * 0.01f, 0.0f, 0.0f);
 	camoff = mat * camoff;
 	
-	m_camera.SetPos(camoff);
+	btVector3 camera = lookat + camoff;
 	
+	m_camera.SetPos(camera);
+	
+	btVector3 forward = lookat - camera;
+	forward.normalize();
+	btVector3 up(0,1,0);
+	
+	btVector3 side = up.cross(forward) * 2.5f;
+	
+	
+	m_camera.SetLookAt(lookat + side);
 	
 	
 	
@@ -349,12 +383,14 @@ void RBUITitle::Render(float aspect)
 	RGL.LoadIdentity();
 	
 	m_skybox.Render();
-	
+		
 	RGL.Enable(kBackfaceCull, true);
 	RGL.Enable(kDepthTest, true);
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
 	m_terrain.Render();
+	
+	m_flag.Render();
 	
 	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
 	RGL.LoadIdentity();
