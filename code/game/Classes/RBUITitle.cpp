@@ -44,6 +44,10 @@ RBUITitle::RBUITitle()
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
 	
+	m_rangeMedallion.SetAnimType(kAnimPopSlide);
+	m_rangeMedallion.SetTextures("ui_bucketoballz", "ui_bucketoballz");
+	m_rangeMedallion.SetRect(RudeRect(80, 0, 356, 320));
+	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);
 	m_courseMedallion.SetTextures("ui_ccc_medallion_128", "ui_ccc_medallion_128");
 	m_courseMedallion.SetRect(RudeRect(0, 160, 356, 320));
@@ -219,6 +223,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSplash.SetTranslation(btVector3(400,0,0));
 			m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
 			
+			m_rangeMedallion.SetTranslation(btVector3(400,0,0));
+			m_rangeMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
 			
@@ -308,6 +315,8 @@ void RBUITitle::SetState(eTitleState state)
 			
 		case kTitlePracticeOptions:
 			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_rangeMedallion.SetDesiredTranslation(btVector3(400,0,0));
 			
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
@@ -421,6 +430,8 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseNameText.SetText(sCourseData[kNumCourses - 1].m_name);
 			
 			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			m_rangeMedallion.SetDesiredTranslation(btVector3(0,0,0));
 			
 			break;
 			
@@ -596,6 +607,8 @@ void RBUITitle::NextFrame(float delta)
 	m_goText.NextFrame(delta);
 	m_tournamentText.NextFrame(delta);
 	
+	m_rangeMedallion.NextFrame(delta);
+	
 	m_scoreText.NextFrame(delta);
 	m_scoreDesc.NextFrame(delta);
 	
@@ -647,6 +660,8 @@ void RBUITitle::Render(float aspect)
 	m_courseNameText.Render();
 	m_courseSubnameText.Render();
 	m_courseDescText.Render();
+	
+	m_rangeMedallion.Render();
 	
 	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
