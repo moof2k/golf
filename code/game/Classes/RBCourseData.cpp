@@ -10,13 +10,13 @@
 #include "RBCourseData.h"
 
 RBCourseEntry sCourseData[kNumCourses] = {
-{ "Creekside Country Club", 0, kCourseFront9, kCourseShortTee },
-{ "Creekside Country Club", 0, kCourseBack9, kCourseShortTee },
-{ "Creekside Country Club", 0, kCourseFront9, kCourseLongTee },
-{ "Creekside Country Club", 0, kCourseBack9, kCourseLongTee },
-{ "Creekside Country Club", 0, kCourseAll18, kCourseShortTee },
-{ "Creekside Country Club", 0, kCourseAll18, kCourseLongTee },
-{ "Creekside Driving Range", 1, kCourseDrivingRange, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Classic", "Front 9 ~ Short Tee", 0, kCourseFront9, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", 0, kCourseBack9, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Invitational", "Front 9 ~ Long Tee", 0, kCourseFront9, kCourseLongTee },
+{ "Creekside Country Club", "Pro-am Classic", "18 Holes ~ Short Tee", 0, kCourseAll18, kCourseShortTee },
+{ "Creekside Country Club", "Masters Qualifier", "Back 9 ~ Long Tee", 0, kCourseBack9, kCourseLongTee },
+{ "Creekside Country Club", "Masters Cup", "18 Holes ~ Long Tee", 0, kCourseAll18, kCourseLongTee },
+{ "Creekside Driving Range", "Driving Range", "Driving Range", 1, kCourseDrivingRange, kCourseShortTee },
 };
 
 

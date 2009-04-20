@@ -70,7 +70,8 @@ private:
 	RudeTextControl m_backText;
 	
 	RudeTextControl m_courseNameText;
-	RudeTextControl m_courseHolesText;
+	RudeTextControl m_courseSubnameText;
+	RudeTextControl m_courseDescText;
 	RudeTextControl m_courseTeeText;
 	
 	

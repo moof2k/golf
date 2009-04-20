@@ -55,6 +55,8 @@ RBUITitle::RBUITitle()
 		m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
 		
 		m_courseButtons[i].m_name = sCourseData[i].m_name;
+		m_courseButtons[i].m_subname = sCourseData[i].m_subname;
+		m_courseButtons[i].m_desc = sCourseData[i].m_desc;
 		m_courseButtons[i].m_holes = sCourseData[i].m_holes;
 		m_courseButtons[i].m_tee = sCourseData[i].m_tee;
 	}
@@ -105,30 +107,30 @@ RBUITitle::RBUITitle()
 	
 	m_courseNameText.SetAnimType(kAnimPopSlide);
 	m_courseNameText.SetText("Golf Course");
-	m_courseNameText.SetAlignment(kAlignLeft);
-	m_courseNameText.SetPosition(30, 36);
+	m_courseNameText.SetAlignment(kAlignCenter);
+	m_courseNameText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_courseNameText.SetStyle(kOutlineStyle);
 	m_courseNameText.SetFont(kBigFont);
 	m_courseNameText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_courseNameText.SetColors(1, 0xFF000000, 0xFF000000);
 	
-	m_courseHolesText.SetAnimType(kAnimPopSlide);
-	m_courseHolesText.SetText("Front 9");
-	m_courseHolesText.SetAlignment(kAlignLeft);
-	m_courseHolesText.SetPosition(30, 60);
-	m_courseHolesText.SetStyle(kOutlineStyle);
-	m_courseHolesText.SetFont(kDefaultFont);
-	m_courseHolesText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
-	m_courseHolesText.SetColors(1, 0xFF000000, 0xFF000000);
+	m_courseSubnameText.SetAnimType(kAnimPopSlide);
+	m_courseSubnameText.SetText("Amateur Invitational");
+	m_courseSubnameText.SetAlignment(kAlignCenter);
+	m_courseSubnameText.SetRect(RudeRect(60, 0, 60 + 20, 320));
+	m_courseSubnameText.SetStyle(kOutlineStyle);
+	m_courseSubnameText.SetFont(kBigFont);
+	m_courseSubnameText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseSubnameText.SetColors(1, 0xFF000000, 0xFF000000);
 	
-	m_courseTeeText.SetAnimType(kAnimPopSlide);
-	m_courseTeeText.SetText("Short Tee");
-	m_courseTeeText.SetAlignment(kAlignRight);
-	m_courseTeeText.SetPosition(320 - 30, 60);
-	m_courseTeeText.SetStyle(kOutlineStyle);
-	m_courseTeeText.SetFont(kDefaultFont);
-	m_courseTeeText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
-	m_courseTeeText.SetColors(1, 0xFF000000, 0xFF000000);
+	m_courseDescText.SetAnimType(kAnimPopSlide);
+	m_courseDescText.SetText("Front 9 / Short Tee");
+	m_courseDescText.SetAlignment(kAlignCenter);
+	m_courseDescText.SetRect(RudeRect(80, 0, 80 + 20, 320));
+	m_courseDescText.SetStyle(kOutlineStyle);
+	m_courseDescText.SetFont(kDefaultFont);
+	m_courseDescText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseDescText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	
 	m_cameraTimer = 0.0f;
@@ -174,11 +176,11 @@ void RBUITitle::SetState(eTitleState state)
 			}
 			
 			m_courseNameText.SetTranslation(btVector3(400,0,0));
-			m_courseHolesText.SetTranslation(btVector3(400,0,0));
-			m_courseTeeText.SetTranslation(btVector3(400,0,0));
+			m_courseSubnameText.SetTranslation(btVector3(400,0,0));
+			m_courseDescText.SetTranslation(btVector3(400,0,0));
 			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
-			m_courseHolesText.SetDesiredTranslation(btVector3(400,0,0));
-			m_courseTeeText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
 			
 			m_goText.SetTranslation(btVector3(400,0,0));
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
@@ -213,8 +215,8 @@ void RBUITitle::SetState(eTitleState state)
 				m_goText.SetDesiredTranslation(btVector3(400,0,0));
 				
 				m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
-				m_courseHolesText.SetDesiredTranslation(btVector3(400,0,0));
-				m_courseTeeText.SetDesiredTranslation(btVector3(400,0,0));
+				m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
+				m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
 				
 				m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
 			}
@@ -262,12 +264,12 @@ void RBUITitle::SetState(eTitleState state)
 			m_goText.SetDesiredTranslation(btVector3(0,0,0));
 			
 			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseHolesText.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseTeeText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
 			
 			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
-			m_courseHolesText.SetText(m_courseButtons[m_course].GetHoleStr());
-			m_courseTeeText.SetText(m_courseButtons[m_course].GetTeeStr());
+			m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
+			m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
 			
 			m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
 			
@@ -366,8 +368,8 @@ void RBUITitle::NextFrame(float delta)
 	m_goText.NextFrame(delta);
 	
 	m_courseNameText.NextFrame(delta);
-	m_courseHolesText.NextFrame(delta);
-	m_courseTeeText.NextFrame(delta);
+	m_courseSubnameText.NextFrame(delta);
+	m_courseDescText.NextFrame(delta);
 	
 	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
@@ -407,8 +409,8 @@ void RBUITitle::Render(float aspect)
 	
 	
 	m_courseNameText.Render();
-	m_courseHolesText.Render();
-	m_courseTeeText.Render();
+	m_courseSubnameText.Render();
+	m_courseDescText.Render();
 	
 	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{

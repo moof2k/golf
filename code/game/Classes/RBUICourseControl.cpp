@@ -23,7 +23,14 @@ void RBUICourseControl::Render()
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
+	
+	const float holesX = 100;
+	const float holesY = 44;
+	
+	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
+	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
+	/*
 	const char *holestr = GetHoleStr();
 	
 	const float holesX = 100;
@@ -39,7 +46,7 @@ void RBUICourseControl::Render()
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + teeX, y + teeY, 0.0f, teestr, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
-
+	 */
 }
 
 

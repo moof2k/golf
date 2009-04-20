@@ -37,6 +37,8 @@ typedef enum {
 class RBCourseEntry {
 public:
 	const char *m_name;
+	const char *m_subname;
+	const char *m_desc;
 	int m_physicalCourse;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;
