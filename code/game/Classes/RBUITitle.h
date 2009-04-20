@@ -79,6 +79,8 @@ private:
 	RudeTextControl m_courseDescText;
 	RudeTextControl m_courseTeeText;
 	
+	RudeTextControl m_scoreText;
+	RudeTextControl m_scoreDesc;
 	
 	RudeTextControl m_goText;
 	

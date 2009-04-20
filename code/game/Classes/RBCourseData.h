@@ -40,6 +40,8 @@ public:
 	const char *m_subname;
 	const char *m_desc;
 	const char *m_image;
+	float m_imageOffset;
+	int m_completionScore;
 	int m_physicalCourse;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;

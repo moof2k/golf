@@ -10,13 +10,13 @@
 #include "RBCourseData.h"
 
 RBCourseEntry sCourseData[kNumCourses] = {
-{ "Creekside Country Club", "Amateur Classic", "Front 9 ~ Short Tee", "ui_challenge_splash_a", 0, kCourseFront9, kCourseShortTee },
-{ "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", "ui_challenge_splash_b", 0, kCourseBack9, kCourseShortTee },
-{ "Creekside Country Club", "Amateur Invitational", "Front 9 ~ Long Tee", "ui_challenge_splash_c", 0, kCourseFront9, kCourseLongTee },
-{ "Creekside Country Club", "Pro-am Classic", "18 Holes ~ Short Tee", "ui_challenge_splash_d", 0, kCourseAll18, kCourseShortTee },
-{ "Creekside Country Club", "Masters Qualifier", "Back 9 ~ Long Tee", "ui_challenge_splash_e", 0, kCourseBack9, kCourseLongTee },
-{ "Creekside Country Club", "Masters Cup", "18 Holes ~ Long Tee", "ui_challenge_splash_f", 0, kCourseAll18, kCourseLongTee },
-{ "Creekside Driving Range", "Driving Range", "Driving Range", "", 1, kCourseDrivingRange, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Classic", "Front 9 ~ Short Tee", "ui_wreath_bronze",		0,		6,	0, kCourseFront9, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", "ui_wreath_bronze",			0,		5,	0, kCourseBack9, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Invitational", "Front 9 ~ Long Tee", "ui_wreath_silver",	0,		4,	0, kCourseFront9, kCourseLongTee },
+{ "Creekside Country Club", "Pro-am Classic", "18 Holes ~ Short Tee", "ui_wreath_silver",		0,		4,	0, kCourseAll18, kCourseShortTee },
+{ "Creekside Country Club", "Masters Qualifier", "Back 9 ~ Long Tee", "ui_wreath_gold",			0,		2,	0, kCourseBack9, kCourseLongTee },
+{ "Creekside Country Club", "Masters Cup", "18 Holes ~ Long Tee", "ui_trophy_gold",				50,	0,	0, kCourseAll18, kCourseLongTee },
+{ "Creekside Driving Range", "Driving Range", "Driving Range", "",								0,		0,	1, kCourseDrivingRange, kCourseShortTee },
 };
 
 

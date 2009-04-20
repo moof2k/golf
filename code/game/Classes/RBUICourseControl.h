@@ -25,6 +25,7 @@ public:
 	, m_subname(0)
 	, m_desc(0)
 	, m_image(0)
+	, m_imageOffset(0)
 	, m_holes(kCourseFront9)
 	, m_tee(kCourseShortTee)
 	{
@@ -36,6 +37,7 @@ public:
 	const char * GetSubnameStr() { return m_subname; }
 	const char * GetDescStr() { return m_desc; }
 	const char * GetImageStr() { return m_image; }
+	float GetImageOffset() { return m_imageOffset; }
 	const char * GetHoleStr();
 	const char * GetTeeStr();
 	
@@ -43,6 +45,7 @@ public:
 	const char *m_subname;
 	const char *m_desc;
 	const char *m_image;
+	float m_imageOffset;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;
 	

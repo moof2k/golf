@@ -18,6 +18,7 @@
 #include "RBTRound.h"
 #include "RBUITitle.h"
 
+#include "RBTourTracker.h"
 
 typedef enum {
 	kGameNone,

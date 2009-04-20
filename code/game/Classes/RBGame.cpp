@@ -34,6 +34,7 @@ RBGame::RBGame()
 
 	m_keymap = RBKeyMap::getInstance();
 
+	RBTourTracker::Load();
 
 	Init();
 }

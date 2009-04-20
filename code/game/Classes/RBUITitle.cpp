@@ -41,12 +41,12 @@ RBUITitle::RBUITitle()
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
 	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);
-	m_courseMedallion.SetTextures("ui_ccc_medallion", "ui_ccc_medallion");
-	m_courseMedallion.SetRect(RudeRect(100, 0, 356, 320));
+	m_courseMedallion.SetTextures("ui_ccc_medallion_128", "ui_ccc_medallion_128");
+	m_courseMedallion.SetRect(RudeRect(260, 160, 356, 320));
 	
 	m_courseSplash.SetAnimType(kAnimPopSlide);
-	m_courseSplash.SetTextures("ui_challenge_splash_a", "ui_challenge_splash_a");
-	m_courseSplash.SetRect(RudeRect(100, 0, 356, 320));
+	m_courseSplash.SetTextures("ui_wreath_gold", "ui_wreath_gold");
+	m_courseSplash.SetRect(RudeRect(60, 0, 356, 240));
 	
 	const int kCourseButtonTop = 30;
 	const int kCourseButtonHeight = 64;
@@ -65,6 +65,7 @@ RBUITitle::RBUITitle()
 		m_courseButtons[i].m_subname = sCourseData[i].m_subname;
 		m_courseButtons[i].m_desc = sCourseData[i].m_desc;
 		m_courseButtons[i].m_image = sCourseData[i].m_image;
+		m_courseButtons[i].m_imageOffset = sCourseData[i].m_imageOffset;
 		m_courseButtons[i].m_holes = sCourseData[i].m_holes;
 		m_courseButtons[i].m_tee = sCourseData[i].m_tee;
 	}
@@ -141,6 +142,24 @@ RBUITitle::RBUITitle()
 	m_courseDescText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	
+	m_scoreText.SetAnimType(kAnimPopSlide);
+	m_scoreText.SetText("+1");
+	m_scoreText.SetAlignment(kAlignCenter);
+	m_scoreText.SetRect(RudeRect(400, 0, 420, 320));
+	m_scoreText.SetStyle(kOutlineStyle);
+	m_scoreText.SetFont(kBigFont);
+	m_scoreText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_scoreText.SetColors(1, 0xFF000000, 0xFF000000);	
+	
+	m_scoreDesc.SetAnimType(kAnimPopSlide);
+	m_scoreDesc.SetText("Congratulations!");
+	m_scoreDesc.SetAlignment(kAlignCenter);
+	m_scoreDesc.SetRect(RudeRect(440, 0, 460, 320));
+	m_scoreDesc.SetStyle(kOutlineStyle);
+	m_scoreDesc.SetFont(kDefaultFont);
+	m_scoreDesc.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_scoreDesc.SetColors(1, 0xFF000000, 0xFF000000);
+	
 	m_cameraTimer = 0.0f;
 	
 	m_course = 0;
@@ -198,6 +217,11 @@ void RBUITitle::SetState(eTitleState state)
 			
 			m_goText.SetTranslation(btVector3(400,0,0));
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_scoreText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreDesc.SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreText.SetTranslation(btVector3(-400,0,0));
+			m_scoreDesc.SetTranslation(btVector3(-400,0,0));
 						
 			break;
 		case kTitleScoreSummary:
@@ -206,6 +230,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseNameText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_courseSubnameText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_courseDescText.SetDesiredTranslation(btVector3(-400,0,0));
+			
+			m_scoreText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreDesc.SetDesiredTranslation(btVector3(-400,0,0));
 			
 			break;
 		case kTitleSplash:
@@ -241,7 +268,7 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
 				
 				m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
-				m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
+				m_courseSplash.SetDesiredTranslation(btVector3(400,m_courseButtons[m_course].GetImageOffset(),0));
 			}
 			
 			break;
@@ -280,6 +307,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
 			m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
 			m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
+			
+			m_scoreText.SetDesiredTranslation(btVector3(0,0,0));
+			m_scoreDesc.SetDesiredTranslation(btVector3(0,0,0));
 			
 			break;
 			
@@ -321,7 +351,7 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSplash.SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
 			
 			m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseSplash.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseSplash.SetDesiredTranslation(btVector3(0,m_courseButtons[m_course].GetImageOffset(),0));
 			
 			break;
 			
@@ -418,6 +448,9 @@ void RBUITitle::NextFrame(float delta)
 	m_backText.NextFrame(delta);
 	m_goText.NextFrame(delta);
 	
+	m_scoreText.NextFrame(delta);
+	m_scoreDesc.NextFrame(delta);
+	
 	m_courseNameText.NextFrame(delta);
 	m_courseSubnameText.NextFrame(delta);
 	m_courseDescText.NextFrame(delta);
@@ -452,7 +485,11 @@ void RBUITitle::Render(float aspect)
 	
 	
 	if(m_state == kTitleScoreSummary || m_state == kTitleSplash)
+	{
 		m_scoreControl.Render();
+		m_scoreText.Render();
+		m_scoreDesc.Render();
+	}
 	
 	m_logo.Render();
 	
