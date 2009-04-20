@@ -33,8 +33,8 @@ void RBUICourseControl::Render()
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 	
-	const float scoreX = 60;
-	const float scoreY = baseY + 8;
+	const float scoreX = 61;
+	const float scoreY = baseY + 9;
 	
 	unsigned int scorecolor = 0xFF000000;
 	

@@ -257,6 +257,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_scoreText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_scoreDesc.SetDesiredTranslation(btVector3(-400,0,0));
 			
+			m_courseMedallion.SetDesiredTranslation(btVector3(-400,0,0));
+			m_courseSplash.SetDesiredTranslation(btVector3(-400,0,0));
+			
 			break;
 		case kTitleSplash:
 			RefreshScores();
@@ -315,7 +318,26 @@ void RBUITitle::SetState(eTitleState state)
 	{
 		case kTitleScoreSummary:
 			
+			bool completed = RBTourTracker::Completed(m_course);
 			
+			if(completed)
+			{
+				m_courseSplash.SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
+				
+				m_courseMedallion.SetTranslation(btVector3(0,0,0));
+				m_courseSplash.SetTranslation(btVector3(0,0,0));
+				
+				m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
+				m_courseSplash.SetDesiredTranslation(btVector3(0,0,0));
+			}
+			else
+			{
+				m_courseMedallion.SetTranslation(btVector3(-400,0,0));
+				m_courseSplash.SetTranslation(btVector3(-400,0,0));
+				
+				m_courseMedallion.SetDesiredTranslation(btVector3(-400,0,0));
+				m_courseSplash.SetDesiredTranslation(btVector3(-400,0,0));
+			}
 			
 			m_logo.SetTranslation(btVector3(400,0,0));
 			m_startText.SetTranslation(btVector3(400,0,0));
@@ -360,6 +382,11 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
 			m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
 			
+			m_courseMedallion.SetTranslation(btVector3(400,0,0));
+			m_courseSplash.SetTranslation(btVector3(400,0,0));
+			m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
+			
 			m_tournamentText.SetDesiredTranslation(btVector3(0,0,0));
 			
 			m_backText.SetDesiredTranslation(btVector3(0,0,0));
@@ -384,7 +411,7 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSplash.SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
 			
 			m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseSplash.SetDesiredTranslation(btVector3(0,m_courseButtons[m_course].GetImageOffset(),0));
+			m_courseSplash.SetDesiredTranslation(btVector3(0,0,0));
 			
 			break;
 			
@@ -430,7 +457,7 @@ void RBUITitle::RefreshScores()
 			char str[32];
 			
 			if(score == 0)
-				sprintf(str, "±0");
+				sprintf(str, " ±0");
 			else if(score > 99)
 				sprintf(str, "", score);
 			else if(score > 9)
@@ -474,6 +501,26 @@ void RBUITitle::SetCourseScore(int score)
 		sprintf(str, "%d", score);
 	
 	m_scoreText.SetText(str);
+	
+	RBCourseEntry *course = GetCourseData(m_course);
+	
+	int scoreoffset = score - course->m_completionScore;
+	
+	if (scoreoffset > 60)
+		m_scoreDesc.SetText("FWIW, +81 is the worst you can do on a 9 Hole");
+	else if(scoreoffset > 20)
+		m_scoreDesc.SetText("Are we a little distracted?");
+	else if(scoreoffset > 5)
+		m_scoreDesc.SetText("You can do better!");
+	else if(scoreoffset > 0)
+		m_scoreDesc.SetText("Try harder next time!");
+	else if(scoreoffset > -3)
+		m_scoreDesc.SetText("Good game!");
+	else if(scoreoffset > -6)
+		m_scoreDesc.SetText("Great game!");
+	else
+		m_scoreDesc.SetText("You have the Magic Touch!");
+	
 }
 
 void RBUITitle::NextFrame(float delta)
@@ -586,12 +633,7 @@ void RBUITitle::Render(float aspect)
 	RGL.Enable(kDepthTest, false);
 	
 	
-	if(m_state == kTitleScoreSummary || m_state == kTitleSplash)
-	{
-		m_scoreControl.Render();
-		m_scoreText.Render();
-		m_scoreDesc.Render();
-	}
+	
 	
 	m_logo.Render();
 	
@@ -610,6 +652,13 @@ void RBUITitle::Render(float aspect)
 	for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
 		m_courseButtons[i].Render();
+	}
+	
+	if(m_state == kTitleScoreSummary || m_state == kTitleSplash)
+	{
+		m_scoreControl.Render();
+		m_scoreText.Render();
+		m_scoreDesc.Render();
 	}
 	
 	m_copyrightText.Render();
