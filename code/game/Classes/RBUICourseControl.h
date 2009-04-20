@@ -24,6 +24,7 @@ public:
 	: m_name(0)
 	, m_subname(0)
 	, m_desc(0)
+	, m_image(0)
 	, m_holes(kCourseFront9)
 	, m_tee(kCourseShortTee)
 	{
@@ -34,12 +35,14 @@ public:
 	const char * GetNameStr() { return m_name; }
 	const char * GetSubnameStr() { return m_subname; }
 	const char * GetDescStr() { return m_desc; }
+	const char * GetImageStr() { return m_image; }
 	const char * GetHoleStr();
 	const char * GetTeeStr();
 	
 	const char *m_name;
 	const char *m_subname;
 	const char *m_desc;
+	const char *m_image;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;
 	

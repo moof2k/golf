@@ -61,6 +61,7 @@ private:
 	
 	RudeButtonControl m_logo;
 	RudeButtonControl m_courseMedallion;
+	RudeButtonControl m_courseSplash;
 	
 	RBUICourseControl m_courseButtons[kNumCourses];
 	
