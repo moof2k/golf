@@ -19,6 +19,10 @@
 #include "RudeRegistry.h"
 #include "RudeSound.h"
 #include "RudeTimer.h"
+#include "RudeTweaker.h"
+
+bool gDebugDisplayFPS = false;
+RUDE_TWEAK(DebugDisplayFPS, kBool, gDebugDisplayFPS);
 
 RBGame::RBGame()
 {
@@ -186,27 +190,29 @@ void RBGame::Render(float delta, float aspect)
 
 	}
 
-	float actualElapsedSeconds = timer.ElapsedSeconds();
+	if(gDebugDisplayFPS)
+	{
+		float actualElapsedSeconds = timer.ElapsedSeconds();
+		
+		static RudeTimeCounter sActualTimes;
+		sActualTimes.AddTime(actualElapsedSeconds);
+		
+		static RudeTimeCounter sDeltaTimes;
+		sDeltaTimes.AddTime(delta);
+		
+		float a_s = sActualTimes.GetAverage();
+		float a_ms = a_s * 1000.0f;
+		
+		float d_s = sDeltaTimes.GetAverage();
+		float d_ms = d_s * 1000.0f;
+		float d_fps = 1.0f / d_s;
+		
+		RudePerf::PrintAll();
+		
+		RudeText::Print(0.0f, 0.0f, 0.5f, 0xFF00FF00, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
+		RudeText::Flush();
 	
-	static RudeTimeCounter sActualTimes;
-	sActualTimes.AddTime(actualElapsedSeconds);
-	
-	static RudeTimeCounter sDeltaTimes;
-	sDeltaTimes.AddTime(delta);
-	
-	float a_s = sActualTimes.GetAverage();
-	float a_ms = a_s * 1000.0f;
-	
-	float d_s = sDeltaTimes.GetAverage();
-	float d_ms = d_s * 1000.0f;
-	float d_fps = 1.0f / d_s;
-	
-	RudePerf::PrintAll();
-	
-	RudeText::Print(0.0f, 0.0f, 0.5f, 0xFF00FF00, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
-	RudeText::Flush();
-	
-	
+	}
 
 }
 
