@@ -155,6 +155,7 @@
 		9AAD32DA0F9987CF00CCA4FC /* pin.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32D90F9987CF00CCA4FC /* pin.POD */; };
 		9AAD32DC0F9987E000CCA4FC /* flag.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32DB0F9987E000CCA4FC /* flag.pvr */; };
 		9AAE72660E7676ED00E8CC0B /* RBGolfBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */; };
+		9AAFBC020F9C4F2500839888 /* ui_trophy_platinum.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAFBC010F9C4F2500839888 /* ui_trophy_platinum.png */; };
 		9AAFD3760F918026002FC6EE /* ui_camera_flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAFD3750F918026002FC6EE /* ui_camera_flag.png */; };
 		9AB427F00E7CED91001429D6 /* RBCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB427EF0E7CED91001429D6 /* RBCamera.cpp */; };
 		9AB4286B0E7DC9D1001429D6 /* RudeTweaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */; };
@@ -519,6 +520,7 @@
 		9AAD32DB0F9987E000CCA4FC /* flag.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = flag.pvr; path = Data/flag.pvr; sourceTree = "<group>"; };
 		9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGolfBall.h; path = Classes/RBGolfBall.h; sourceTree = "<group>"; };
 		9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBGolfBall.cpp; path = Classes/RBGolfBall.cpp; sourceTree = "<group>"; };
+		9AAFBC010F9C4F2500839888 /* ui_trophy_platinum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_trophy_platinum.png; path = Data/ui_trophy_platinum.png; sourceTree = "<group>"; };
 		9AAFD3750F918026002FC6EE /* ui_camera_flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_camera_flag.png; path = Data/ui_camera_flag.png; sourceTree = "<group>"; };
 		9AB427EE0E7CED91001429D6 /* RBCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBCamera.h; path = Classes/RBCamera.h; sourceTree = "<group>"; };
 		9AB427EF0E7CED91001429D6 /* RBCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBCamera.cpp; path = Classes/RBCamera.cpp; sourceTree = "<group>"; };
@@ -1567,6 +1569,7 @@
 				9A5B4E2D0F9C332200B6503A /* ui_wreath_bronze.png */,
 				9A5B4E2E0F9C332200B6503A /* ui_wreath_silver.png */,
 				9A5B4E520F9C366B00B6503A /* ui_trophy_gold.png */,
+				9AAFBC010F9C4F2500839888 /* ui_trophy_platinum.png */,
 			);
 			name = png;
 			sourceTree = "<group>";
@@ -1812,6 +1815,7 @@
 				9A5B4E430F9C34B600B6503A /* ui_ccc_medallion_128.png in Resources */,
 				9A5B4E530F9C366B00B6503A /* ui_trophy_gold.png in Resources */,
 				9A5B4EB60F9C441C00B6503A /* coursebg_locked.png in Resources */,
+				9AAFBC020F9C4F2500839888 /* ui_trophy_platinum.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

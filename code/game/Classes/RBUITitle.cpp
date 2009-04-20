@@ -11,6 +11,7 @@
 #include "RudeGL.h"
 #include "RBCourseData.h"
 #include "RBTourTracker.h"
+#include "RudeTweaker.h"
 
 #include "RudeSound.h"
 
@@ -18,6 +19,8 @@
 #include <OpenGLES/ES1/glext.h>
 
 
+bool gDebugPerfectScore = false;
+RUDE_TWEAK(DebugPerfectScore, kBool, gDebugPerfectScore);
 
 const btVector3 kFlagPosition(-5.741,-18.27,-1572.807);
 
@@ -43,11 +46,11 @@ RBUITitle::RBUITitle()
 	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);
 	m_courseMedallion.SetTextures("ui_ccc_medallion_128", "ui_ccc_medallion_128");
-	m_courseMedallion.SetRect(RudeRect(260, 160, 356, 320));
+	m_courseMedallion.SetRect(RudeRect(0, 160, 356, 320));
 	
 	m_courseSplash.SetAnimType(kAnimPopSlide);
 	m_courseSplash.SetTextures("ui_wreath_gold", "ui_wreath_gold");
-	m_courseSplash.SetRect(RudeRect(60, 0, 356, 240));
+	m_courseSplash.SetRect(RudeRect(200, 0, 300, 240));
 	
 	const int kCourseButtonTop = 66;
 	const int kCourseButtonHeight = 58;
@@ -475,6 +478,15 @@ void RBUITitle::SetCourseScore(int score)
 
 void RBUITitle::NextFrame(float delta)
 {
+	if(gDebugPerfectScore)
+	{
+		for(int i = 0; i < kNumCourses; i++)
+		{
+			RBTourTracker::SetScore(i, 0);
+		}
+		gDebugPerfectScore = false;
+	}
+	
 	if(!m_startedMusic)
 	{
 		RudeSound::GetInstance()->BgmVol(0.5f);
