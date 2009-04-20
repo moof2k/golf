@@ -97,7 +97,11 @@ int RBScoreTracker::GetScore(eCourseHoles holeSet, int hole, bool includeThisHol
 		int par = m_scores[i].m_par;
 		int strokes = m_scores[i].m_strokes;
 		
-		score += (strokes - par);
+		int holescore = strokes - par;
+		if(holescore > 9)
+			holescore = 9;
+		
+		score += holescore;
 	}
 	
 	return score;
