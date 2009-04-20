@@ -49,8 +49,8 @@ RBUITitle::RBUITitle()
 	m_courseSplash.SetTextures("ui_wreath_gold", "ui_wreath_gold");
 	m_courseSplash.SetRect(RudeRect(60, 0, 356, 240));
 	
-	const int kCourseButtonTop = 30;
-	const int kCourseButtonHeight = 64;
+	const int kCourseButtonTop = 66;
+	const int kCourseButtonHeight = 58;
 	const float kCourseAnimSpeedBase = 3.0f;
 	const float kCourseAnimSpeedMod = -0.2f;
 	for(int i = 0; i < kNumCourses; i++)
@@ -115,6 +115,16 @@ RBUITitle::RBUITitle()
 	m_copyrightText.SetStyle(kNoStyle);
 	m_copyrightText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_copyrightText.SetColors(1, 0xFF000000, 0xFF000000);
+	
+	m_tournamentText.SetAnimType(kAnimPopSlide);
+	m_tournamentText.SetText("Select Tournament");
+	m_tournamentText.SetAlignment(kAlignCenter);
+	m_tournamentText.SetRect(RudeRect(36, 0, 36 + 20, 320));
+	m_tournamentText.SetStyle(kOutlineStyle);
+	m_tournamentText.SetFont(kBigFont);
+	m_tournamentText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_tournamentText.SetColors(1, 0xFF000000, 0xFF000000);
+	
 	
 	m_courseNameText.SetAnimType(kAnimPopSlide);
 	m_courseNameText.SetText("Golf Course");
@@ -207,6 +217,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
 			
+			m_tournamentText.SetTranslation(btVector3(400,0,0));
+			m_tournamentText.SetDesiredTranslation(btVector3(400,0,0));
+			
 			for(int i = 0; i < kNumCourses; i++)
 			{
 				m_courseButtons[i].SetTranslation(btVector3(400,0,0));
@@ -253,6 +266,7 @@ void RBUITitle::SetState(eTitleState state)
 			break;
 		case kTitleCourseSelect:
 		{
+			
 			float dir = 1.0f;
 			if(state == kTitleGameOptions)
 			{
@@ -265,6 +279,8 @@ void RBUITitle::SetState(eTitleState state)
 			{
 				m_courseButtons[i].SetDesiredTranslation(btVector3(dir * 400,0,0));
 			}
+			
+			m_tournamentText.SetDesiredTranslation(btVector3(dir * 400,0,0));
 		}
 			break;
 		case kTitleGameOptions:
@@ -340,6 +356,8 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
 			m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
 			m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_tournamentText.SetDesiredTranslation(btVector3(0,0,0));
 			
 			m_backText.SetDesiredTranslation(btVector3(0,0,0));
 			for(int i = 0; i < kNumCourses; i++)
@@ -518,6 +536,7 @@ void RBUITitle::NextFrame(float delta)
 	m_copyrightText.NextFrame(delta);
 	m_backText.NextFrame(delta);
 	m_goText.NextFrame(delta);
+	m_tournamentText.NextFrame(delta);
 	
 	m_scoreText.NextFrame(delta);
 	m_scoreDesc.NextFrame(delta);
@@ -570,7 +589,7 @@ void RBUITitle::Render(float aspect)
 	m_practiceText.Render();
 	m_backText.Render();
 	m_goText.Render();
-	
+	m_tournamentText.Render();
 	
 	m_courseNameText.Render();
 	m_courseSubnameText.Render();

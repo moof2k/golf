@@ -18,21 +18,23 @@ void RBUICourseControl::Render()
 	float x = m_rect.m_left;
 	float y = m_rect.m_top;
 	
+	const float baseY = 23;
+	
 	const float courseX = 100;
-	const float courseY = 27;
+	const float courseY = baseY;
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 	
 	const float holesX = 100;
-	const float holesY = 44;
+	const float holesY = baseY + 19;
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 	
 	const float scoreX = 60;
-	const float scoreY = 36;
+	const float scoreY = baseY + 8;
 	
 	unsigned int scorecolor = 0xFF000000;
 	
