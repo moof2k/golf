@@ -203,6 +203,10 @@ void RBUITitle::SetState(eTitleState state)
 		case kTitleScoreSummary:
 			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
 			
+			m_courseNameText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_courseSubnameText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_courseDescText.SetDesiredTranslation(btVector3(-400,0,0));
+			
 			break;
 		case kTitleSplash:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
@@ -265,6 +269,18 @@ void RBUITitle::SetState(eTitleState state)
 			m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
 			m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
 			
+			m_courseNameText.SetTranslation(btVector3(-400,0,0));
+			m_courseSubnameText.SetTranslation(btVector3(-400,0,0));
+			m_courseDescText.SetTranslation(btVector3(-400,0,0));
+			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
+			m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
+			
+			RUDE_ASSERT(m_course >= 0, "Invalid course");
+			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
+			m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
+			m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
+			
 			break;
 			
 		case kTitleSplash:
@@ -276,6 +292,13 @@ void RBUITitle::SetState(eTitleState state)
 			break;
 			
 		case kTitleCourseSelect:
+			m_courseNameText.SetTranslation(btVector3(400,0,0));
+			m_courseSubnameText.SetTranslation(btVector3(400,0,0));
+			m_courseDescText.SetTranslation(btVector3(400,0,0));
+			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
+			
 			m_backText.SetDesiredTranslation(btVector3(0,0,0));
 			for(int i = 0; i < kNumCourses; i++)
 			{
@@ -290,6 +313,7 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
 			m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
 			
+			RUDE_ASSERT(m_course >= 0, "Invalid course");
 			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
 			m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
 			m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
