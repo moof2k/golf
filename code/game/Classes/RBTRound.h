@@ -52,6 +52,7 @@ public:
 	void Reset();
 	
 	void SetCourse(int course);
+	int GetCourse() { return m_course; }
 	
 	void SaveState();
 	int LoadState();

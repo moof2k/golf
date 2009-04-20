@@ -36,6 +36,9 @@ RBUITitle::RBUITitle()
 	m_logo.SetTextures("logo", "logo");
 	m_logo.SetRect(RudeRect(60, 0, 300, 320));
 	
+	m_scoreControl.SetAnimType(kAnimPopSlide);
+	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+	m_scoreControl.SetActiveHole(0, kCourseAll18);
 	
 	m_courseMedallion.SetAnimType(kAnimPopSlide);
 	m_courseMedallion.SetTextures("ui_ccc_medallion", "ui_ccc_medallion");
@@ -169,6 +172,9 @@ void RBUITitle::SetState(eTitleState state)
 			m_startText.SetTranslation(btVector3(0,0,0));
 			m_practiceText.SetTranslation(btVector3(0,0,0));
 			
+			m_scoreControl.SetTranslation(btVector3(-400,0,0));
+			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
+			
 			m_courseMedallion.SetTranslation(btVector3(400,0,0));
 			m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
 			
@@ -193,6 +199,10 @@ void RBUITitle::SetState(eTitleState state)
 			m_goText.SetTranslation(btVector3(400,0,0));
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
 						
+			break;
+		case kTitleScoreSummary:
+			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
+			
 			break;
 		case kTitleSplash:
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
@@ -251,6 +261,10 @@ void RBUITitle::SetState(eTitleState state)
 			m_logo.SetDesiredTranslation(btVector3(400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(400,0,0));
 			m_practiceText.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
+			m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
+			
 			break;
 			
 		case kTitleSplash:
@@ -369,7 +383,7 @@ void RBUITitle::NextFrame(float delta)
 	
 	m_camera.SetLookAt(lookat + side);
 	
-	
+	m_scoreControl.NextFrame(delta);
 	
 	m_logo.NextFrame(delta);
 	m_courseMedallion.NextFrame(delta);
@@ -413,7 +427,11 @@ void RBUITitle::Render(float aspect)
 	RGL.Enable(kDepthTest, false);
 	
 	
+	if(m_state == kTitleScoreSummary || m_state == kTitleSplash)
+		m_scoreControl.Render();
+	
 	m_logo.Render();
+	
 	m_courseMedallion.Render();
 	m_courseSplash.Render();
 	m_startText.Render();

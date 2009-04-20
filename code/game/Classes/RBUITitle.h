@@ -18,6 +18,7 @@
 #include "RBUICourseControl.h"
 #include "RBCamera.h"
 #include "RBCourseData.h"
+#include "RBScoreControl.h"
 
 typedef enum {
 	kTitleNone,
@@ -48,6 +49,7 @@ public:
 	
 	void Reset();
 	
+	void SetCourseSelection(int course) { m_course = course; }
 	int GetCourseSelection() { return m_course; }
 	
 	void SetState(eTitleState state);
@@ -64,6 +66,8 @@ private:
 	RudeButtonControl m_courseSplash;
 	
 	RBUICourseControl m_courseButtons[kNumCourses];
+	
+	RBScoreControl m_scoreControl;
 	
 	RudeTextControl m_startText;
 	RudeTextControl m_practiceText;

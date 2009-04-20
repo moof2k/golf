@@ -36,6 +36,9 @@ bool gDebugCameraPrev = false;
 bool gDebugFinishHole = false;
 RUDE_TWEAK(DebugFinishHole, kBool, gDebugFinishHole);
 
+bool gDebugFinishCourse = false;
+RUDE_TWEAK(DebugFinishCourse, kBool, gDebugFinishCourse);
+
 bool gDebugResetHole = false;
 RUDE_TWEAK(DebugResetHole, kBool, gDebugResetHole);
 
@@ -1141,7 +1144,7 @@ void RBTGame::NextFrame(float delta)
 			m_curCamera = &m_ballCamera;
 	}
 	
-	if(gDebugFinishHole)
+	if(gDebugFinishHole || gDebugFinishCourse)
 	{
 		m_terrain.SetBallInHole(true);
 		SetState(kStateBallInHole);

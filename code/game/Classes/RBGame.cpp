@@ -114,7 +114,10 @@ void RBGame::SetState(eGameState state)
 			m_uiTitle->Reset();
 			if(prevstate == kGameRBT)
 			{
+				int course = m_rbt->GetCourse();
+				
 				m_uiTitle->SetState(kTitleScoreSummary);
+				m_uiTitle->SetCourseSelection(course);
 			}
 			m_game = m_uiTitle;
 			break;
