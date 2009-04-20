@@ -52,9 +52,13 @@ public:
 	void SetCourseSelection(int course) { m_course = course; }
 	int GetCourseSelection() { return m_course; }
 	
+	void SetCourseScore(int score);
+	
 	void SetState(eTitleState state);
 	
 private:
+	
+	void RefreshScores();
 	
 	RudeObject m_terrain;
 	RudeSkybox m_skybox;

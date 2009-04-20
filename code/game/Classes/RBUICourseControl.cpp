@@ -30,6 +30,21 @@ void RBUICourseControl::Render()
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
+	
+	const float scoreX = 60;
+	const float scoreY = 36;
+	
+	unsigned int scorecolor = 0xFF000000;
+	
+	if(!m_completed)
+		scorecolor = 0xFF0000FF;
+	
+	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + scoreX, y + scoreY, 0.0f, m_scoreText, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
+	RudeFontManager::GetFont(kDefaultFont)->Write(x + scoreX, y + scoreY, 0.0f, m_scoreText, 0, FONT_ALIGN_LEFT, 0xFF444444, scorecolor);
+	
+	
+	
+	
 	/*
 	const char *holestr = GetHoleStr();
 	

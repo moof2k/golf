@@ -115,10 +115,28 @@ void RBGame::SetState(eGameState state)
 			m_uiTitle->Reset();
 			if(prevstate == kGameRBT)
 			{
-				int course = m_rbt->GetCourse();
+				eRBTRoundResult result = m_rbt->GetResult();
 				
-				m_uiTitle->SetState(kTitleScoreSummary);
-				m_uiTitle->SetCourseSelection(course);
+				if(result == kRoundComplete)
+				{
+					int course = m_rbt->GetCourse();
+					
+					RBCourseEntry *coursedata = GetCourseData(course);
+					RUDE_ASSERT(coursedata, "Invalid course data");
+					
+					RBScoreTracker *tracker = GetScoreTracker(0);
+					int score = tracker->GetTotalScore();
+					
+					RBTourTracker::SetScore(course, score);
+					
+					m_uiTitle->SetState(kTitleScoreSummary);
+					m_uiTitle->SetCourseSelection(course);
+					m_uiTitle->SetCourseScore(score);
+				}
+				else
+				{
+					m_uiTitle->SetState(kTitleSplash);
+				}
 			}
 			m_game = m_uiTitle;
 			break;

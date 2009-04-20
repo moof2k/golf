@@ -51,7 +51,35 @@ void RBTourTracker::SetScore(int course, int score)
 	if(score < m_data.m_scores[course])
 	{
 		m_data.m_scores[course] = score;
-		
-		Save();
 	}
+	
+	Save();
 }
+
+bool RBTourTracker::Unlocked(int c)
+{
+	bool unlocked = true;
+	
+	for(int i = 0; i < c; i++)
+	{
+		RBCourseEntry *course = GetCourseData(i);
+		
+		if(GetScore(i) > course->m_completionScore)
+			unlocked = false;
+	}
+	
+	return unlocked;
+	
+}
+
+bool RBTourTracker::Completed(int c)
+{
+	RBCourseEntry *course = GetCourseData(c);
+	
+	if(GetScore(c) > course->m_completionScore)
+		return false;
+	else
+		return true;
+	
+}
+

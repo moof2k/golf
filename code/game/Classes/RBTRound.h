@@ -24,6 +24,11 @@ typedef enum {
 	kStateDone,
 } eRBTRoundState;
 
+typedef enum {
+	kRoundExit,
+	kRoundComplete
+} eRBTRoundResult;
+
 typedef struct {
 	eRBTRoundState state;
 	int hole;
@@ -57,6 +62,8 @@ public:
 	void SaveState();
 	int LoadState();
 	
+	eRBTRoundResult GetResult() { return m_result; }
+	
 private:
 	
 	void RestoreState();
@@ -74,6 +81,8 @@ private:
 	int m_hole;
 	
 	int m_numPlayers;
+	
+	eRBTRoundResult m_result;
 	
 };
 

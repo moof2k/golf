@@ -23,6 +23,7 @@ RBTRound::RBTRound()
 , m_numPlayers(1)
 , m_tee(kCourseShortTee)
 , m_wind(kCourseHighWind)
+, m_result(kRoundExit)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
@@ -124,6 +125,7 @@ void RBTRound::RestoreState()
 			break;
 		case kStateInRound:
 			{
+				m_result = kRoundExit;
 				RBCourseHole *hole = GetCourseHole(m_course, m_holeSet, m_hole);
 				m_game = new RBTGame(m_hole, hole->m_terrainFile, m_tee, m_holeSet, m_wind, hole->m_par, m_numPlayers, true);
 				
@@ -150,6 +152,8 @@ void RBTRound::NextFrame(float delta)
 		else
 			m_hole = 0;
 		m_done = false;
+		
+		m_result = kRoundExit;
 		
 		for(int i = 0; i < m_numPlayers; i++)
 		{
@@ -183,6 +187,7 @@ void RBTRound::NextFrame(float delta)
 		}
 		else
 		{
+			m_result = kRoundComplete;
 			SetState(kStateDone);
 		}
 		 
@@ -202,6 +207,7 @@ void RBTRound::NextFrame(float delta)
 				}
 				else if(m_game->GetResult() == kResultQuit)
 				{
+					m_result = kRoundExit;
 					SetState(kStateDone);
 				}
 			}

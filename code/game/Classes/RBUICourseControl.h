@@ -14,6 +14,7 @@
 #include "RudeButtonControl.h"
 #include "RBCourseData.h"
 
+
 const int kMaxCourseNameLen = 64;
 
 class RBUICourseControl : public RudeButtonControl {
@@ -28,7 +29,9 @@ public:
 	, m_imageOffset(0)
 	, m_holes(kCourseFront9)
 	, m_tee(kCourseShortTee)
+	, m_completed(false)
 	{
+		m_scoreText[0] = '\0';
 	}
 	
 	void Render();
@@ -46,9 +49,11 @@ public:
 	const char *m_desc;
 	const char *m_image;
 	float m_imageOffset;
+	bool m_completed;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;
 	
+	char m_scoreText[64];
 };
 
 #endif

@@ -33,6 +33,9 @@ public:
 	static void SetScore(int course, int score);
 	static int GetScore(int course) { return m_data.m_scores[course]; }
 	
+	static bool Unlocked(int course);
+	static bool Completed(int course);
+	
 private:
 	
 	static tRBTourSaveData m_data;

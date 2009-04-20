@@ -103,6 +103,25 @@ int RBScoreTracker::GetScore(eCourseHoles holeSet, int hole, bool includeThisHol
 	return score;
 }
 
+int RBScoreTracker::GetTotalScore()
+{
+	int score = 0;
+	
+	for(int i = 0; i < kNumScores; i++)
+	{
+		if(m_scores[i].m_strokes > 0)
+		{
+			int holescore = m_scores[i].m_strokes - m_scores[i].m_par;
+			if(holescore > 9)
+				holescore = 9;
+			
+			score += holescore;
+		}
+	}
+	
+	return score;
+}
+
 
 RBScoreTracker gScoreTrackers[kNumScoreTrackers];
 

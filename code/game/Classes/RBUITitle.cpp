@@ -10,6 +10,7 @@
 #include "RBUITitle.h"
 #include "RudeGL.h"
 #include "RBCourseData.h"
+#include "RBTourTracker.h"
 
 #include "RudeSound.h"
 
@@ -68,6 +69,7 @@ RBUITitle::RBUITitle()
 		m_courseButtons[i].m_imageOffset = sCourseData[i].m_imageOffset;
 		m_courseButtons[i].m_holes = sCourseData[i].m_holes;
 		m_courseButtons[i].m_tee = sCourseData[i].m_tee;
+		m_courseButtons[i].m_completed = false;
 	}
 	
 	m_startText.SetAnimType(kAnimPopSlide);
@@ -187,6 +189,8 @@ void RBUITitle::SetState(eTitleState state)
 	{
 		case kTitleNone:
 			
+			RefreshScores();
+			
 			m_logo.SetTranslation(btVector3(0,0,0));
 			m_startText.SetTranslation(btVector3(0,0,0));
 			m_practiceText.SetTranslation(btVector3(0,0,0));
@@ -202,6 +206,7 @@ void RBUITitle::SetState(eTitleState state)
 			
 			m_backText.SetTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
+			
 			for(int i = 0; i < kNumCourses; i++)
 			{
 				m_courseButtons[i].SetTranslation(btVector3(400,0,0));
@@ -225,6 +230,8 @@ void RBUITitle::SetState(eTitleState state)
 						
 			break;
 		case kTitleScoreSummary:
+			RefreshScores();
+			
 			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
 			
 			m_courseNameText.SetDesiredTranslation(btVector3(-400,0,0));
@@ -236,6 +243,8 @@ void RBUITitle::SetState(eTitleState state)
 			
 			break;
 		case kTitleSplash:
+			RefreshScores();
+			
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_practiceText.SetDesiredTranslation(btVector3(-400,0,0));
@@ -286,6 +295,9 @@ void RBUITitle::SetState(eTitleState state)
 	switch(m_state)
 	{
 		case kTitleScoreSummary:
+			
+			
+			
 			m_logo.SetTranslation(btVector3(400,0,0));
 			m_startText.SetTranslation(btVector3(400,0,0));
 			m_practiceText.SetTranslation(btVector3(400,0,0));
@@ -382,6 +394,65 @@ void RBUITitle::SetState(eTitleState state)
 			break;
 		
 	}
+}
+
+void RBUITitle::RefreshScores()
+{
+	for(int i = 0; i < kNumCourses; i++)
+	{
+		bool unlocked = RBTourTracker::Unlocked(i);
+		
+		if(unlocked)
+		{
+			int score = RBTourTracker::GetScore(i);
+		
+			char str[32];
+			
+			if(score == 0)
+				sprintf(str, "±0");
+			else if(score > 99)
+				sprintf(str, "", score);
+			else if(score > 9)
+				sprintf(str, "+%d", score);
+			else if(score > 0)
+				sprintf(str, " +%d", score);
+			else
+				sprintf(str, " %d", score);
+			
+			strcpy(m_courseButtons[i].m_scoreText, str);
+			
+			m_courseButtons[i].m_name = sCourseData[i].m_name;
+			m_courseButtons[i].m_subname = sCourseData[i].m_subname;
+			m_courseButtons[i].SetTextures("coursebg", "coursebg");
+			
+			if(RBTourTracker::Completed(i))
+				m_courseButtons[i].m_completed = true;
+			else
+				m_courseButtons[i].m_completed = false;
+		}
+		else
+		{
+			m_courseButtons[i].SetTextures("coursebg_locked", "coursebg_locked");
+			
+			m_courseButtons[i].m_name = "";
+			m_courseButtons[i].m_subname = "";
+			m_courseButtons[i].m_completed = false;
+		}
+	}
+}
+
+void RBUITitle::SetCourseScore(int score)
+{
+	char str[32];
+	
+	if(score == 0)
+		sprintf(str, "±0");
+	else if(score > 0)
+		sprintf(str, "+%d", score);
+	else
+		sprintf(str, "%d", score);
+	
+	m_scoreText.SetText(str);
 }
 
 void RBUITitle::NextFrame(float delta)
@@ -572,9 +643,12 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 			{
 				if(m_courseButtons[i].TouchUp(rbt))
 				{
-					m_course = i;
-					SetState(kTitleGameOptions);
-					sfx = kSoundUISelect;
+					if(RBTourTracker::Unlocked(i))
+					{
+						m_course = i;
+						SetState(kTitleGameOptions);
+						sfx = kSoundUISelect;
+					}
 					break;
 				}
 			}

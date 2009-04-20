@@ -46,6 +46,7 @@ public:
 	void AddStrokes(int hole, int num);
 	
 	int GetScore(eCourseHoles holeSet, int hole, bool includeThisHole);
+	int GetTotalScore();
 	
 	void SaveState(int n);
 	int LoadState(int n);
