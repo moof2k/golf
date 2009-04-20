@@ -202,6 +202,8 @@ void RBUITitle::SetState(eTitleState state)
 	{
 		case kTitleNone:
 			
+			m_flagOffset = 0.0f;
+			
 			RefreshScores();
 			
 			m_logo.SetTranslation(btVector3(0,0,0));
@@ -299,7 +301,7 @@ void RBUITitle::SetState(eTitleState state)
 				m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
 				
 				m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
-				m_courseSplash.SetDesiredTranslation(btVector3(400,m_courseButtons[m_course].GetImageOffset(),0));
+				m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
 			}
 			
 			break;
@@ -375,17 +377,6 @@ void RBUITitle::SetState(eTitleState state)
 			break;
 			
 		case kTitleCourseSelect:
-			m_courseNameText.SetTranslation(btVector3(400,0,0));
-			m_courseSubnameText.SetTranslation(btVector3(400,0,0));
-			m_courseDescText.SetTranslation(btVector3(400,0,0));
-			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
-			m_courseSubnameText.SetDesiredTranslation(btVector3(400,0,0));
-			m_courseDescText.SetDesiredTranslation(btVector3(400,0,0));
-			
-			m_courseMedallion.SetTranslation(btVector3(400,0,0));
-			m_courseSplash.SetTranslation(btVector3(400,0,0));
-			m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
-			m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
 			
 			m_tournamentText.SetDesiredTranslation(btVector3(0,0,0));
 			
@@ -399,6 +390,14 @@ void RBUITitle::SetState(eTitleState state)
 		case kTitleGameOptions:
 			m_goText.SetDesiredTranslation(btVector3(0,0,0));
 			
+			m_courseMedallion.SetTranslation(btVector3(400,0,0));
+			m_courseSplash.SetTranslation(btVector3(400,0,0));
+			m_courseMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			m_courseSplash.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_courseNameText.SetTranslation(btVector3(400,0,0));
+			m_courseSubnameText.SetTranslation(btVector3(400,0,0));
+			m_courseDescText.SetTranslation(btVector3(400,0,0));
 			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
 			m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
 			m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
