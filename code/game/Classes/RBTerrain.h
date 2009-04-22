@@ -14,6 +14,7 @@
 #include "RudeMesh.h"
 #include "RBTerrainMaterial.h"
 #include "RBCourseData.h"
+#include "RBDecorators.h"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -82,6 +83,8 @@ private:
 	void LoadNodes();
 	void RenderHole();
 	void RenderGuides();
+	
+	RBDecoratorCollection m_decorator;
 	
 	unsigned int m_greenVerts[kMaxGreenVerts];
 	int m_greenNode;

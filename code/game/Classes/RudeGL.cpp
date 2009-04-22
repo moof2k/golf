@@ -24,6 +24,8 @@ const unsigned int kRudeEnableClientMappings[kNumRudeGLEnableClientOptions] = {
 
 RudeGL::RudeGL()
 : m_eye(0,0,0)
+, m_lookAt(0,0,1)
+, m_forward(0,0,1)
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
 		m_enables[i] = false;
@@ -97,20 +99,20 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	
 	btVector3 inup(upX, upY, upZ);
 	
-	btVector3 fwd = m_eye - m_lookAt;
-	fwd.normalize();
+	m_forward = m_eye - m_lookAt;
+	m_forward.normalize();
 	
-	btVector3 side = inup.cross(fwd);
+	btVector3 side = inup.cross(m_forward);
 	side.normalize();
 	
-	btVector3 up = fwd.cross(side);
+	btVector3 up = m_forward.cross(side);
 	
 	
 	float M[]= 
 	{ 
-		side.x(), up.x(), fwd.x(), 0, 
-		side.y(), up.y(), fwd.y(), 0, 
-		side.z(), up.z(), fwd.z(), 0, 
+		side.x(), up.x(), m_forward.x(), 0, 
+		side.y(), up.y(), m_forward.y(), 0, 
+		side.z(), up.z(), m_forward.z(), 0, 
 		0, 0, 0, 1 
 	};
 	

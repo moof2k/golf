@@ -11,7 +11,7 @@
 
 #include <CoreFoundation/CFBundle.h>
 
-void RudeFileGetFile(const char *filename, char *buffer, int bufsize)
+bool RudeFileGetFile(const char *filename, char *buffer, int bufsize, bool canfail)
 {
 	
 	CFStringRef cfFilename = CFStringCreateWithCString(0, filename, kCFStringEncodingASCII);
@@ -21,14 +21,16 @@ void RudeFileGetFile(const char *filename, char *buffer, int bufsize)
 	if(url == NULL)
 	{
 		buffer[0] = '\0';
-		RUDE_ASSERT(0, "Could not locate file %s", filename);
-		return;
+		RUDE_ASSERT(canfail, "Could not locate file %s", filename);
+		return false;
 	}
 	
 	CFURLGetFileSystemRepresentation(url, true, (UInt8 *) buffer, bufsize);
 	
 	CFRelease(url);
 	CFRelease(cfFilename);
+	
+	return true;
 }
 
 

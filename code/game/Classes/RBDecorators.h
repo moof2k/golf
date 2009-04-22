@@ -13,6 +13,8 @@
 #include "Rude.h"
 #include "RudeGL.h"
 
+#include <vector>
+
 class RBDecoratorVert
 {
 public:
@@ -33,26 +35,55 @@ public:
 	
 	RBDecoratorInstance();
 	
-	void Set(const btVector3 &pos, float size);
+	void Set(float x, float y, float z);
 	
-	RBDecoratorVert m_verts[6];
+	float m_pos[3];
 };
 
-const int kMaxInstances = 128;
+const int kMaxInstances = 32;
 
 
-class RBDecorators
+class RBDecorator
 {	
 public:
 	
-	RBDecorators();
+	RBDecorator();
+	
+	void SetTexture(const char *texture);
+	void SetSize(float size);
+	
+	void AddInstance(float x, float y, float z);
 	
 	void Render();
 	
 private:
 	
+	RBDecoratorVert m_verts[6];
+	
 	RBDecoratorInstance m_instances[kMaxInstances];
 	int m_numInstances;
+	
+	int m_textureid;
 };
 
+
+class RBDecoratorCollection
+{
+public:
+
+	RBDecoratorCollection();
+	
+	void Load(const char *deco);
+	
+	void Render();
+	
+private:
+	
+	std::vector<RBDecorator> m_decorators;
+	
+};
+
+
 #endif
+
+

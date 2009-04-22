@@ -60,10 +60,7 @@ void RBWindControl::Render()
 {
 	RGL.SetViewport(m_rect.m_top, m_rect.m_left, m_rect.m_bottom, m_rect.m_right);
 	
-	btVector3 eye = RGL.GetEye();
-	btVector3 lookAt = RGL.GetLookAt();
-	
-	btVector3 eyevec = lookAt - eye;
+	btVector3 eyevec = RGL.GetForward();
 	eyevec.setY(0.0f);
 	eyevec.normalize();
 	eyevec.setY(1.0f);

@@ -259,6 +259,8 @@ void RudeMesh::Render()
 		
 	}
 	
+#if 0
+	
 	glAlphaFunc ( GL_GREATER, 0.5 ) ;
     glEnable ( GL_ALPHA_TEST ) ;
 	
@@ -315,6 +317,7 @@ void RudeMesh::Render()
 	
     glDisable ( GL_ALPHA_TEST ) ;
 	
+#endif
 		
 }
 

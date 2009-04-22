@@ -13,7 +13,7 @@
 
 #include "Rude.h"
 
-void RudeFileGetFile(const char *filename, char *buffer, int bufsize);
+bool RudeFileGetFile(const char *filename, char *buffer, int bufsize, bool canfail = false);
 
 #endif 
 

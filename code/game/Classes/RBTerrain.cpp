@@ -148,6 +148,8 @@ void RBTerrain::Load(const char *name)
 	
 	RUDE_ASSERT(cb.hasHit(), "Could not position hole.. is it over terrain? (%f %f %f)", m_hole.x(), m_hole.y(), m_hole.z());
 	m_hole = cb.m_hitPointWorld;
+	
+	m_decorator.Load(name);
 }
 
 void RBTerrain::LoadMaterials()
@@ -641,6 +643,8 @@ void RBTerrain::Render()
 	glFrontFace(GL_CW);
 	
 	RudeObject::Render();
+	
+	m_decorator.Render();
 	
 	RenderHole();
 	

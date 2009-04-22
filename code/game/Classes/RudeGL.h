@@ -64,8 +64,13 @@ public:
 
 	btVector3 GetEye() { return m_eye; }
 	btVector3 GetLookAt() { return m_lookAt; }
+	btVector3 GetForward() { return m_forward; }
+	
+	float * GetViewMat() { return m_viewmat; }
 
 private:
+	
+	float m_viewmat[16];
 
 	bool m_enables[kNumRudeGLEnableOptions];
 	bool m_enableClients[kNumRudeGLEnableClientOptions];
@@ -73,6 +78,7 @@ private:
 	RudeRect m_viewport;				// screen viewport rect
 	btVector3 m_eye;
 	btVector3 m_lookAt;
+	btVector3 m_forward;
 	float m_hw;
 	float m_hh;
 	float m_near;
