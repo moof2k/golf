@@ -34,6 +34,7 @@ void RBDecoratorInstance::Set(float x, float y, float z)
 RBDecorator::RBDecorator()
 : m_textureid(0)
 , m_numInstances(0)
+, m_size(16.0f)
 {
 	SetSize(16.0f);
 	
@@ -47,7 +48,8 @@ void RBDecorator::SetTexture(const char *file)
 
 void RBDecorator::SetSize(float size)
 {
-	float hsize = 0.5f * size;
+	m_size = size;
+	float hsize = 0.5f * m_size;
 	
 	// bottom left
 	m_verts[0].m_pos[0] = -hsize;
@@ -101,6 +103,16 @@ void RBDecorator::AddInstance(float x, float y, float z)
 	m_numInstances++;
 }
 
+void RBDecorator::Print()
+{
+	RUDE_REPORT("\nDECORATOR %s %f\n\n", RudeTextureManager::GetInstance()->GetTexture(m_textureid)->GetName(), m_size);
+	
+	for(int i = 0; i < m_numInstances; i++)
+	{
+		RUDE_REPORT("%f %f %f\n", m_instances[i].m_pos[0], m_instances[i].m_pos[1], m_instances[i].m_pos[2]);
+	}
+}
+
 void RBDecorator::Render()
 {
 	
@@ -124,9 +136,9 @@ void RBDecorator::Render()
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 
-	float aspect = 0.666667f;
-	float w = 4.587926f;
-	RGL.Frustum(0.0f, 0.0f, w * aspect, w, 4.0f, 2000.0f);
+	float w = RGL.GetHalfWidth();
+	float h = RGL.GetHalfHeight();
+	RGL.Frustum(0.0f, 0.0f, w * 2.0f, h * 2.0f, 4.0f, 2000.0f);
 
 	
 	btVector3 inup(0, 1, 0);
@@ -251,6 +263,19 @@ void RBDecoratorCollection::Load(const char *deco)
 	
 }
 
+void RBDecoratorCollection::Drop(const btVector3 &pos)
+{
+	RUDE_ASSERT(m_decorators.size() > 0, "No decorators to append too!");
+	
+	RBDecorator *curdeco = &m_decorators[m_decorators.size() - 1];
+	
+	curdeco->AddInstance(pos.x(), pos.y(), pos.z());
+
+	for(unsigned int i = 0; i < m_decorators.size(); i++)
+	{
+		m_decorators[i].Print();
+	}
+}
 
 void RBDecoratorCollection::Render()
 {

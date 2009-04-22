@@ -66,6 +66,9 @@ public:
 	btVector3 GetLookAt() { return m_lookAt; }
 	btVector3 GetForward() { return m_forward; }
 	
+	float GetHalfWidth() { return m_hw; }
+	float GetHalfHeight() { return m_hh; }
+	
 	float * GetViewMat() { return m_viewmat; }
 
 private:

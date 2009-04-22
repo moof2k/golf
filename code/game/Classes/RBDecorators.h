@@ -54,6 +54,8 @@ public:
 	
 	void AddInstance(float x, float y, float z);
 	
+	void Print();
+	
 	void Render();
 	
 private:
@@ -61,6 +63,7 @@ private:
 	RBDecoratorVert m_verts[6];
 	
 	RBDecoratorInstance m_instances[kMaxInstances];
+	float m_size;
 	int m_numInstances;
 	
 	int m_textureid;
@@ -74,6 +77,8 @@ public:
 	RBDecoratorCollection();
 	
 	void Load(const char *deco);
+	
+	void Drop(const btVector3 &pos);
 	
 	void Render();
 	

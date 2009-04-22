@@ -42,6 +42,13 @@ RUDE_TWEAK(DebugFinishCourse, kBool, gDebugFinishCourse);
 bool gDebugResetHole = false;
 RUDE_TWEAK(DebugResetHole, kBool, gDebugResetHole);
 
+bool gDebugGuidePosition = false;
+RUDE_TWEAK(DebugGuidePosition, kBool, gDebugGuidePosition);
+
+bool gDecoDrop = false;
+RUDE_TWEAK(DecoDrop, kBool, gDecoDrop);
+
+
 const unsigned int kBallDistanceTopColor = 0xFF666666;
 const unsigned int kBallDistanceBotColor = 0xFF000000;
 const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
@@ -1157,6 +1164,12 @@ void RBTGame::NextFrame(float delta)
 		gDebugResetHole = false;
 	}
 	
+	if(gDecoDrop)
+	{
+		m_terrain.DropDecorator(m_placementGuidePosition);
+		gDecoDrop = false;
+	}
+	
 	
 	RudePhysics::GetInstance()->NextFrame(delta);
 	
@@ -1276,7 +1289,13 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 				{
 					m_placementGuidePositionScreenSpace = RGL.Project(m_placementGuidePosition);
 					
+					if(gDebugGuidePosition)
+					{
+						RUDE_REPORT("Placement Guide: %f %f %f\n", m_placementGuidePosition.x(), m_placementGuidePosition.y(), m_placementGuidePosition.z());
+					}
 				}
+				
+				
 			}
 			break;
 	}
