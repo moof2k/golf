@@ -114,54 +114,13 @@ void RBDecorator::Print()
 }
 
 void RBDecorator::Render()
-{
-	
-	RGL.Enable(kBackfaceCull, false);
-	
-	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, false);
-	RGL.EnableClient(kTextureCoordArray, true);
-	
-	glAlphaFunc(GL_GREATER, 0.5);
-    glEnable(GL_ALPHA_TEST);
-	
+{	
 	glVertexPointer(3, GL_FLOAT, sizeof(RBDecoratorVert), &m_verts[0].m_pos);
 	glTexCoordPointer(2, GL_SHORT, sizeof(RBDecoratorVert), &m_verts[0].m_uv);
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_textureid);
 	
-	btVector3 eye = RGL.GetEye();
-	btVector3 forward = RGL.GetForward();
-	
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-
-	float w = RGL.GetHalfWidth();
-	float h = RGL.GetHalfHeight();
-	RGL.Frustum(0.0f, 0.0f, w * 2.0f, h * 2.0f, 4.0f, 2000.0f);
-
-	
-	btVector3 inup(0, 1, 0);
-	
-	btVector3 side = inup.cross(forward);
-	side.normalize();
-	
-	btVector3 up = forward.cross(side);
-	 
-	
-	float M[] = 
-	{ 
-		side.x(), up.x(), forward.x(), 0, 
-		side.y(), up.y(), forward.y(), 0, 
-		side.z(), up.z(), forward.z(), 0, 
-		0, 0, 0, 1 
-	};
-	
-	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(M);
-	glTranslatef (-eye.x(), -eye.y(), -eye.z());
-	
+	float M[16];
 	
 	for(int i = 0; i < m_numInstances; i++)
 	{
@@ -186,13 +145,6 @@ void RBDecorator::Render()
 		
 		glPopMatrix();
 	}
-	
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	
-	glDisable(GL_ALPHA_TEST);
-	
-	RGL.LoadIdentity();
 }
 
 
@@ -279,12 +231,69 @@ void RBDecoratorCollection::Drop(const btVector3 &pos)
 
 void RBDecoratorCollection::Render()
 {
+	// set up draw state
+	
+	RGL.Enable(kBackfaceCull, false);
+	
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kTextureCoordArray, true);
+	
+	glAlphaFunc(GL_GREATER, 0.5);
+    glEnable(GL_ALPHA_TEST);
+	
+	// set up GL matrix
+	
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	
+	float w = RGL.GetHalfWidth();
+	float h = RGL.GetHalfHeight();
+	RGL.Frustum(0.0f, 0.0f, w * 2.0f, h * 2.0f, 4.0f, 2000.0f);
+	
+	
+	btVector3 eye = RGL.GetEye();
+	btVector3 forward = RGL.GetForward();
+	
+	btVector3 inup(0, 1, 0);
+	btVector3 side = inup.cross(forward);
+	side.normalize();
+	
+	btVector3 up = forward.cross(side);
+	
+	float M[] = 
+	{ 
+		side.x(), up.x(), forward.x(), 0, 
+		side.y(), up.y(), forward.y(), 0, 
+		side.z(), up.z(), forward.z(), 0, 
+		0, 0, 0, 1 
+	};
+	
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(M);
+	glTranslatef (-eye.x(), -eye.y(), -eye.z());
+	
+	
 	unsigned int numdecos = m_decorators.size();
 	
 	for(unsigned int i = 0; i < numdecos; i++)
 	{
 		m_decorators[i].Render();
 	}
+	
+	
+	// restore GL matrix
+	
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	
+	RGL.LoadIdentity();
+	
+	// restore draw state
+	glDisable(GL_ALPHA_TEST);
+	
+	
 }
 
 
