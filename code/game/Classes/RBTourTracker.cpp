@@ -58,17 +58,32 @@ void RBTourTracker::SetScore(int course, int score)
 
 bool RBTourTracker::Unlocked(int c)
 {
-	bool unlocked = true;
-	
-	for(int i = 0; i < c; i++)
+	switch(c)
 	{
-		RBCourseEntry *course = GetCourseData(i);
-		
-		if(GetScore(i) > course->m_completionScore)
-			unlocked = false;
+		case 0:
+			return true;
+			break;
+		case 1:
+			return Completed(0);
+			break;
+		case 2:
+			return Completed(0) && Completed(1);
+			break;
+		case 3:
+			return Completed(0) && Completed(1);
+			break;
+		case 4:
+			return Completed(3);
+			break;
+		case 5:
+			return Completed(2) && Completed(3) && Completed(4);
+			break;
+		default:
+			return false;
+			break;
 	}
 	
-	return unlocked;
+	return false;
 	
 }
 
