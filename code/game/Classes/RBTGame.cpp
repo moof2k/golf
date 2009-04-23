@@ -831,8 +831,6 @@ void RBTGame::NextClub(int n)
 	
 	m_placementGuidePower = club->m_dist;
 	
-	m_terrain.SetPutting(club->m_type == kClubPutter);
-	
 	RBTerrainMaterialInfo &material = m_terrain.GetMaterialInfo(m_ball.GetCurMaterial());
 	
 	if(material.m_penalty_power_min == 100)
@@ -1482,7 +1480,8 @@ void RBTGame::Render(float aspect)
 	
 	RGL.LoadIdentity();
 	
-	m_pin.Render();
+	if(!m_terrain.GetPutting())
+		m_pin.Render();
 	
 	RenderCalcOrthoDrawPositions();
 	

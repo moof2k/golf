@@ -68,6 +68,7 @@ public:
 	
 	void SetTee(eCourseTee tee) { m_tee = tee; }
 	
+	bool GetPutting() { return m_isPutting; }
 	void SetPutting(bool isPutting);
 	void SetEnablePuttingGreen(bool enablePuttingGreen);
 	
