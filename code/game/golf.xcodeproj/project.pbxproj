@@ -146,6 +146,9 @@
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
 		9AA704BD0F9EFA0800F18992 /* par4_A.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AA704BC0F9EFA0800F18992 /* par4_A.deco */; };
 		9AA705890FA0349E00F18992 /* tree_oak_a.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA705880FA0349E00F18992 /* tree_oak_a.pvr */; };
+		9AA705B00FA03EFD00F18992 /* tree_oak_b.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA705AD0FA03EFD00F18992 /* tree_oak_b.pvr */; };
+		9AA705B10FA03EFD00F18992 /* tree_oak_d.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA705AE0FA03EFD00F18992 /* tree_oak_d.pvr */; };
+		9AA705B20FA03EFD00F18992 /* tree_oak_c.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA705AF0FA03EFD00F18992 /* tree_oak_c.pvr */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
@@ -515,6 +518,9 @@
 		9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA704BC0F9EFA0800F18992 /* par4_A.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_A.deco; path = Data/par4_A.deco; sourceTree = "<group>"; };
 		9AA705880FA0349E00F18992 /* tree_oak_a.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tree_oak_a.pvr; path = Data/tree_oak_a.pvr; sourceTree = "<group>"; };
+		9AA705AD0FA03EFD00F18992 /* tree_oak_b.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tree_oak_b.pvr; path = Data/tree_oak_b.pvr; sourceTree = "<group>"; };
+		9AA705AE0FA03EFD00F18992 /* tree_oak_d.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tree_oak_d.pvr; path = Data/tree_oak_d.pvr; sourceTree = "<group>"; };
+		9AA705AF0FA03EFD00F18992 /* tree_oak_c.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tree_oak_c.pvr; path = Data/tree_oak_c.pvr; sourceTree = "<group>"; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
@@ -1605,6 +1611,9 @@
 			isa = PBXGroup;
 			children = (
 				9AA705880FA0349E00F18992 /* tree_oak_a.pvr */,
+				9AA705AD0FA03EFD00F18992 /* tree_oak_b.pvr */,
+				9AA705AE0FA03EFD00F18992 /* tree_oak_d.pvr */,
+				9AA705AF0FA03EFD00F18992 /* tree_oak_c.pvr */,
 				9AE630720EB6E08B000B2EAD /* ball128.pvr */,
 				9AAD32DB0F9987E000CCA4FC /* flag.pvr */,
 				9A03E1300F85D57100AC5D7C /* driver_128.pvr */,
@@ -1853,6 +1862,9 @@
 				9A2751140F9EF2CD009D27AB /* bb_bush_b.pvr in Resources */,
 				9AA704BD0F9EFA0800F18992 /* par4_A.deco in Resources */,
 				9AA705890FA0349E00F18992 /* tree_oak_a.pvr in Resources */,
+				9AA705B00FA03EFD00F18992 /* tree_oak_b.pvr in Resources */,
+				9AA705B10FA03EFD00F18992 /* tree_oak_d.pvr in Resources */,
+				9AA705B20FA03EFD00F18992 /* tree_oak_c.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
