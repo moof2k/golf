@@ -147,6 +147,9 @@ void RBTerrain::Load(const char *name)
 	world->rayTest(p0, p1, cb);
 	
 	RUDE_ASSERT(cb.hasHit(), "Could not position hole.. is it over terrain? (%f %f %f)", m_hole.x(), m_hole.y(), m_hole.z());
+	
+	RUDE_REPORT("  Hole %f %f %f -> %f %f %f\n", m_hole.x(), m_hole.y(), m_hole.z(), cb.m_hitPointWorld.x(), cb.m_hitPointWorld.y(), cb.m_hitPointWorld.z());
+	
 	m_hole = cb.m_hitPointWorld;
 	
 	m_decorator.Load(name);
@@ -225,7 +228,10 @@ void RBTerrain::LoadNodes()
 		if(node->pszName[1] == '0')
 			m_teeBoxes.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 		else if(node->pszName[1] == '1')
+		{
+			RUDE_REPORT("  N1: %f %f %f\n", node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]);
 			m_holes.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
+		}
 		else if(node->pszName[1] == '2')
 			m_cameraPlacements.push_back(btVector3(node->pfPosition[0], node->pfPosition[1], node->pfPosition[2]));
 		else if(node->pszName[1] == '3')
