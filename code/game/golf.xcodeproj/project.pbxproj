@@ -145,6 +145,7 @@
 		9A9D64F60EB991D9003985A4 /* RBUICourseControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */; };
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
 		9AA704BD0F9EFA0800F18992 /* par4_A.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AA704BC0F9EFA0800F18992 /* par4_A.deco */; };
+		9AA704FB0F9F00BD00F18992 /* tree1.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA704FA0F9F00BD00F18992 /* tree1.pvr */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
@@ -513,6 +514,7 @@
 		9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUICourseControl.cpp; path = Classes/RBUICourseControl.cpp; sourceTree = "<group>"; };
 		9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AA704BC0F9EFA0800F18992 /* par4_A.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_A.deco; path = Data/par4_A.deco; sourceTree = "<group>"; };
+		9AA704FA0F9F00BD00F18992 /* tree1.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tree1.pvr; path = Data/tree1.pvr; sourceTree = "<group>"; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
@@ -1602,6 +1604,7 @@
 		9AD580C90EA08E6C002696A6 /* pvr */ = {
 			isa = PBXGroup;
 			children = (
+				9AA704FA0F9F00BD00F18992 /* tree1.pvr */,
 				9AE630720EB6E08B000B2EAD /* ball128.pvr */,
 				9AAD32DB0F9987E000CCA4FC /* flag.pvr */,
 				9A03E1300F85D57100AC5D7C /* driver_128.pvr */,
@@ -1849,6 +1852,7 @@
 				9A2751130F9EF2CD009D27AB /* bb_bush_a.pvr in Resources */,
 				9A2751140F9EF2CD009D27AB /* bb_bush_b.pvr in Resources */,
 				9AA704BD0F9EFA0800F18992 /* par4_A.deco in Resources */,
+				9AA704FB0F9F00BD00F18992 /* tree1.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
