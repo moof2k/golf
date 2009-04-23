@@ -31,6 +31,7 @@ RBUITitle::RBUITitle()
 	m_startedMusic = false;
 	
 	m_terrain.LoadMesh("par5_A");
+	m_decorator.Load("par5_A");
 	m_skybox.Load("skybox");
 	
 	m_flag.LoadMesh("sexy");
@@ -636,6 +637,8 @@ void RBUITitle::Render(float aspect)
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
 	m_terrain.Render();
+	
+	m_decorator.Render();
 	
 	m_flag.Render();
 	

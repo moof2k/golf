@@ -18,6 +18,7 @@
 #include "RBUICourseControl.h"
 #include "RBCamera.h"
 #include "RBCourseData.h"
+#include "RBDecorators.h"
 #include "RBScoreControl.h"
 
 typedef enum {
@@ -61,6 +62,7 @@ private:
 	void RefreshScores();
 	
 	RudeObject m_terrain;
+	RBDecoratorCollection m_decorator;
 	RudeSkybox m_skybox;
 	RudeObject m_flag;
 	RBCamera m_camera;
