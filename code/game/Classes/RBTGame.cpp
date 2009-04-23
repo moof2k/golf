@@ -1158,6 +1158,14 @@ void RBTGame::NextFrame(float delta)
 		gDebugFinishHole = false;
 	}
 	
+	if(gDebugFinishCourse)
+	{
+		m_terrain.SetBallInHole(true);
+		SetState(kStateBallInHole);
+		m_result = kResultComplete;
+		m_done = true;
+	}
+		
 	if(gDebugResetHole)
 	{
 		SetState(kStateTeePosition);
