@@ -114,7 +114,7 @@ bool gLandscape = false;
 			return nil;
 		}
 		
-		animationInterval = 1.0 / 60.0;
+		animationInterval = 1.0 / 30.0;
 		
 		[self setupView];
 		[self drawView];
