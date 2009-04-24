@@ -13,7 +13,7 @@
 #include "Rude.h"
 #include "RudeTimer.h"
 
-#define RUDE_PERF
+//#define RUDE_PERF
 
 #ifdef RUDE_PERF
 
