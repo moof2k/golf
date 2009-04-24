@@ -159,6 +159,7 @@ void RBDecorator::Render()
 
 
 RBDecoratorCollection::RBDecoratorCollection()
+: m_dropTextureNum(0)
 {
 }
 
@@ -201,6 +202,8 @@ void RBDecoratorCollection::Load(const char *deco)
 			m_decorators.push_back(decorator);
 			
 			curdeco = &m_decorators[m_decorators.size() - 1];
+			
+			AddTexture(texturename);
 		}
 		else
 		{
@@ -223,22 +226,34 @@ void RBDecoratorCollection::Load(const char *deco)
 	
 }
 
-void RBDecoratorCollection::Drop(const btVector3 &pos)
+void RBDecoratorCollection::Drop(const btVector3 &pos, float size)
 {
-	RUDE_ASSERT(m_decorators.size() > 0, "No decorators to append too!");
+	RUDE_ASSERT(m_textureNames.size() > 0, "No decorators have been loaded so there are no textures to drop with");
 	
-	RBDecorator *curdeco = &m_decorators[m_decorators.size() - 1];
+	RBDecorator deco;
+	deco.SetTexture(m_textureNames[m_dropTextureNum].c_str());
+	deco.SetSize(size);
+	deco.AddInstance(pos.x(), pos.y(), pos.z());
 	
-	curdeco->AddInstance(pos.x(), pos.y(), pos.z());
+	m_decorators.push_back(deco);
 
 	for(unsigned int i = 0; i < m_decorators.size(); i++)
 	{
 		m_decorators[i].Print();
 	}
+	
+	m_dropTextureNum++;
+	if(m_dropTextureNum >= m_textureNames.size())
+		m_dropTextureNum = 0;
 }
 
 void RBDecoratorCollection::Render()
 {
+	unsigned int numdecos = m_decorators.size();
+	
+	if(numdecos == 0)
+		return;
+	
 	// set up draw state
 	
 	RGL.Enable(kBackfaceCull, false);
@@ -283,8 +298,6 @@ void RBDecoratorCollection::Render()
 	glTranslatef (-eye.x(), -eye.y(), -eye.z());
 	
 	
-	unsigned int numdecos = m_decorators.size();
-	
 	for(unsigned int i = 0; i < numdecos; i++)
 	{
 		m_decorators[i].Render();
@@ -303,5 +316,21 @@ void RBDecoratorCollection::Render()
 	
 	
 }
+
+void RBDecoratorCollection::AddTexture(const char *textureName)
+{
+	unsigned int size = m_textureNames.size();
+	bool found = false;
+	
+	for(int i = 0; i < size; i++)
+	{
+		if(m_textureNames[i] == std::string(textureName))
+			found = true;
+	}
+	
+	if(!found)
+		m_textureNames.push_back(std::string(textureName));
+}
+
 
 

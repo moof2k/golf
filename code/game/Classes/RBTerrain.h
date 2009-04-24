@@ -74,7 +74,7 @@ public:
 	
 	bool CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result);
 	
-	void DropDecorator(const btVector3 &pos) { m_decorator.Drop(pos); }
+	void DropDecorator(const btVector3 &pos, float size) { m_decorator.Drop(pos, size); }
 	
 	virtual void Render();
 	

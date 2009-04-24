@@ -45,8 +45,8 @@ RUDE_TWEAK(DebugResetHole, kBool, gDebugResetHole);
 bool gDebugGuidePosition = false;
 RUDE_TWEAK(DebugGuidePosition, kBool, gDebugGuidePosition);
 
-bool gDecoDrop = false;
-RUDE_TWEAK(DecoDrop, kBool, gDecoDrop);
+float gDecoDrop = 0.0f;
+RUDE_TWEAK(DecoDrop, kFloat, gDecoDrop);
 
 
 const unsigned int kBallDistanceTopColor = 0xFF666666;
@@ -1170,10 +1170,10 @@ void RBTGame::NextFrame(float delta)
 		gDebugResetHole = false;
 	}
 	
-	if(gDecoDrop)
+	if(gDecoDrop > 0.0f)
 	{
-		m_terrain.DropDecorator(m_placementGuidePosition);
-		gDecoDrop = false;
+		m_terrain.DropDecorator(m_placementGuidePosition, gDecoDrop);
+		gDecoDrop = 0.0f;
 	}
 	
 	

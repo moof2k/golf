@@ -14,6 +14,7 @@
 #include "RudeGL.h"
 
 #include <vector>
+#include <string>
 
 class RBDecoratorVert
 {
@@ -40,7 +41,7 @@ public:
 	float m_pos[3];
 };
 
-const int kMaxInstances = 32;
+const int kMaxInstances = 8;
 
 
 class RBDecorator
@@ -78,14 +79,18 @@ public:
 	
 	void Load(const char *deco);
 	
-	void Drop(const btVector3 &pos);
+	void Drop(const btVector3 &pos, float size);
 	
 	void Render();
 	
 private:
 	
+	void AddTexture(const char *textureName);
+	
 	std::vector<RBDecorator> m_decorators;
 	
+	std::vector<std::string> m_textureNames;
+	int m_dropTextureNum;
 };
 
 
