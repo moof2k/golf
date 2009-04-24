@@ -1205,6 +1205,7 @@ void RBTGame::NextFrame(float delta)
 	
 	switch(m_state)
 	{
+		case kStateTeePosition:
 		case kStateWaitForSwing:
 		case kStateHitBall:
 		case kStateFollowBall:
