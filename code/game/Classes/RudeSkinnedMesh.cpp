@@ -63,6 +63,9 @@ int RudeSkinnedMesh::Load(const char *name)
 			RUDE_REPORT("  Mesh %d-%d: %d tris\n", i, b, numfaces);
 		}
 		
+		RUDE_ASSERT(mesh->sBoneIdx.eType == EPODDataUnsignedByte, "Bone indices must be unsigned byte");
+		RUDE_ASSERT(mesh->sBoneWeight.eType == EPODDataFloat, "Bone weight must be float");
+		RUDE_ASSERT(mesh->sVertex.eType == EPODDataFloat, "Mesh verts should be float");
 	}
 	
 	return 0;
@@ -164,9 +167,6 @@ void RudeSkinnedMesh::Render()
 		SPODMaterial *material = &m_model.pMaterial[node->nIdxMaterial];
 		SPODMesh *mesh = &m_model.pMesh[node->nIdx];
 		
-		RUDE_ASSERT(mesh->sBoneIdx.eType == EPODDataUnsignedByte, "Bone indices must be unsigned byte (mesh '%s')", node->pszName);
-		RUDE_ASSERT(mesh->sBoneWeight.eType == EPODDataFloat, "Bone weight must be float");
-		
 		if(m_animate)
 		{
 			glMatrixIndexPointerOES(mesh->sBoneIdx.n, GL_UNSIGNED_BYTE, mesh->sBoneIdx.nStride, mesh->pInterleaved + (long) mesh->sBoneIdx.pData);
@@ -179,25 +179,7 @@ void RudeSkinnedMesh::Render()
 		
 		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
 		
-		if(mesh->sVertex.eType == EPODDataFixed16_16)
-		{
-			glVertexPointer(3, GL_FIXED, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		}
-		else if(mesh->sVertex.eType == EPODDataShortNorm)
-		{
-			float s = 1.0f / 1000.0f;
-			glMatrixMode(GL_MODELVIEW);
-			glScalef(s, s, s);
-			glVertexPointer(3, GL_UNSIGNED_SHORT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		}
-		else if(mesh->sVertex.eType == EPODDataShort)
-		{
-			glVertexPointer(3, GL_SHORT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		}
-		else
-		{
-			glVertexPointer(3, GL_FLOAT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		}
+		glVertexPointer(3, GL_FLOAT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
 		
 		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
 		
