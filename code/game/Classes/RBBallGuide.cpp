@@ -8,6 +8,7 @@
  */
 
 #include "RBBallGuide.h"
+#include "RudeDebug.h"
 #include "RudeGLD.h"
 #include "RudePhysics.h"
 

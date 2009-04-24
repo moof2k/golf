@@ -16,15 +16,20 @@ float RudePerf::m_perfs[kNumPerfs][kNumPerfFrames];
 
 const char * kStatNames[kNumPerfs] = {
 	"RBTGame::NextFrame",
-	"RBTGame::Render",
+	"RBTGame::Render1",
 	"SkinMesh::Render",
+	"RBTGame::Render2",
+	"RBTGame::RenderUI",
+	"TouchMove",
+	"FreshGuide",
+	"Frame Total",
 };
 
 void RudePerf::NextFrame(float delta)
 {
 	m_perfFrame += 1;
 	
-	if(m_perfFrame > kNumPerfFrames)
+	if(m_perfFrame >= kNumPerfFrames)
 		m_perfFrame = 0;
 	
 	for(int i = 0; i < kNumPerfs; i++)
@@ -37,18 +42,25 @@ float RudePerf::GetStat(eRudePerfStat stat)
 	return m_perfs[stat][m_perfFrame];
 }
 
-float RudePerf::GetStatAverage(eRudePerfStat stat)
+
+void RudePerf::GetStatMinMaxAvg(eRudePerfStat stat, float &min, float &max, float &avg)
 {
-	float c = 0.0f;
+	avg = 0.0f;
+	min = 99999.0f;
+	max = 0.0f;
 	
 	for(int i = 0; i < kNumPerfFrames; i++)
 	{
-		c += m_perfs[stat][i];
+		avg += m_perfs[stat][i];
+		
+		if(m_perfs[stat][i] > max)
+			max = m_perfs[stat][i];
+		if(m_perfs[stat][i] < min)
+			min = m_perfs[stat][i];
 	}
 	
-	c /= ((float) kNumPerfFrames);
+	avg /= ((float) kNumPerfFrames);
 	
-	return c;
 }
 
 void RudePerf::PrintAll()
@@ -62,8 +74,11 @@ void RudePerf::PrintAll()
 	{
 		//RUDE_REPORT("%20s: %2.2fms\n", kStatNames[i], m_perfs[i]);
 		
+		float min, max, avg;
+		GetStatMinMaxAvg((eRudePerfStat) i, min, max, avg);
+		
 		RudeText::Print(0.0f, y, 0.5f, 0xFF00FF00, "%s", kStatNames[i]);
-		RudeText::Print(200.0f, y, 0.5f, 0xFF00FF00, "%.2fms", GetStatAverage((eRudePerfStat) i));
+		RudeText::Print(200.0f, y, 0.5f, 0xFF00FF00, "%.2f / %.2f", avg, max);
 		
 		y += yi;
 	}

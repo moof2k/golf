@@ -189,10 +189,13 @@ void RBGame::Render(float delta, float aspect)
 			break;
 
 	}
+	
+	float actualElapsedSeconds = timer.ElapsedSeconds();
+	RudePerf::AddStat(kFrameTotal, actualElapsedSeconds * 1000.0f);
 
 	if(gDebugDisplayFPS)
 	{
-		float actualElapsedSeconds = timer.ElapsedSeconds();
+		
 		
 		static RudeTimeCounter sActualTimes;
 		sActualTimes.AddTime(actualElapsedSeconds);

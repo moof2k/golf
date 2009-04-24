@@ -12,10 +12,14 @@
 #include "RudeDebug.h"
 #include "RudeFile.h"
 #include "RudeTextureManager.h"
+#include "RudeTweaker.h"
 
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
 
+
+bool gRenderDecos = true;
+RUDE_TWEAK(RenderDecos, kBool, gRenderDecos);
 
 RBDecoratorInstance::RBDecoratorInstance()
 {
@@ -251,7 +255,7 @@ void RBDecoratorCollection::Render()
 {
 	unsigned int numdecos = m_decorators.size();
 	
-	if(numdecos == 0)
+	if(numdecos == 0 || gRenderDecos == false)
 		return;
 	
 	// set up draw state

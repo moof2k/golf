@@ -33,8 +33,13 @@
 
 typedef enum {
 	kPerfRBTGameNextFrame,
-	kPerfRBTGameRender,
+	kPerfRBTGameRender1,
 	kPerfRudeSkinMeshRender,
+	kPerfRBTGameRender2,
+	kPerfRBTGameRenderUI,
+	kPerfTouchMove,
+	kPerfFreshGuide,
+	kFrameTotal,
 	
 	kNumPerfs
 	
@@ -54,7 +59,7 @@ public:
 	}
 	
 	static float GetStat(eRudePerfStat stat);
-	static float GetStatAverage(eRudePerfStat stat);
+	static void GetStatMinMaxAvg(eRudePerfStat stat, float &min, float &max, float &avg);
 	
 	static void PrintAll();
 	

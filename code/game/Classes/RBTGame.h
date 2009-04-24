@@ -207,6 +207,7 @@ private:
 	float m_followTimer;
 	float m_stopTimer;
 	float m_encouragementTimer;
+	float m_oobTimer;
 	
 	float m_windDir;
 	float m_windSpeed;
