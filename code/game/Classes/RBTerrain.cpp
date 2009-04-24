@@ -443,6 +443,8 @@ bool RBTerrain::IsOutOfBoundsAndGone(const btVector3 &position)
 
 void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int terrainId, int otherId, float *friction, float *restitution)
 {
+	// make sure we're doing precise simulation after a contact
+	RudePhysics::GetInstance()->SetPrecise(true);
 	
 	
 	btVector3 up(0,1,0);

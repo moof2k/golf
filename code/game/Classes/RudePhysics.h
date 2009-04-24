@@ -34,6 +34,8 @@ public:
 	
 	RudePhysicsObject * GetObject(const btCollisionObject *cobj) { return m_objMap[cobj]; }
 	
+	void SetPrecise(bool p) { m_precise = p; }
+	
 private:
 	
 	std::map<const btCollisionObject *, RudePhysicsObject *> m_objMap;
@@ -43,6 +45,8 @@ private:
 	btDefaultCollisionConfiguration* m_collisionConfiguration;
 	btCollisionDispatcher* m_dispatcher;
 	btSequentialImpulseConstraintSolver* m_solver;
+	
+	bool m_precise;
 };
 
 const int kMaxRayResults = 16;

@@ -22,6 +22,7 @@ const char * kStatNames[kNumPerfs] = {
 	"RBTGame::RenderUI",
 	"TouchMove",
 	"FreshGuide",
+	"Physics",
 	"Frame Total",
 };
 

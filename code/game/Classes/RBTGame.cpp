@@ -696,6 +696,10 @@ void RBTGame::StateFollowBall(float delta)
 	
 	if(m_followTimer > kFollowTimerThreshold)
 	{
+		// enable physics precision
+		RudePhysics::GetInstance()->SetPrecise(true);
+		
+		
 		// project ball forward based on velocity
 		const float kBallForwardTime = 2.0f;
 		btVector3 ballvel = m_ball.GetLinearVelocity();
@@ -1047,6 +1051,12 @@ void RBTGame::HitBall()
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
 	RudeSound::GetInstance()->PlayWave(club->m_swingsound);
+	
+	if(club->m_type == kClubPutter)
+		RudePhysics::GetInstance()->SetPrecise(true);
+	else
+		RudePhysics::GetInstance()->SetPrecise(false);
+	
 	
 	float loft = club->m_loft;
 	loft = (loft / 180.0f) * 3.1415926f;
