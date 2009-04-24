@@ -21,7 +21,7 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 
-bool gDebugDisplayFPS = false;
+bool gDebugDisplayFPS = true;
 RUDE_TWEAK(DebugDisplayFPS, kBool, gDebugDisplayFPS);
 
 RBGame::RBGame()
@@ -207,9 +207,16 @@ void RBGame::Render(float delta, float aspect)
 		float d_ms = d_s * 1000.0f;
 		float d_fps = 1.0f / d_s;
 		
+		unsigned int color = 0xFF00FF00;
+		
+		if(d_fps < 14.0f)
+			color = 0xFF0000FF;
+		else if(d_fps < 17.0f)
+			color = 0xFF00FFFF;
+		
 		RudePerf::PrintAll();
 		
-		RudeText::Print(0.0f, 0.0f, 0.5f, 0xFF00FF00, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
+		RudeText::Print(0.0f, 0.0f, 0.5f, color, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
 		RudeText::Flush();
 	
 	}
