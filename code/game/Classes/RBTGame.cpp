@@ -1201,7 +1201,20 @@ void RBTGame::NextFrame(float delta)
 	}
 	
 	
-	RudePhysics::GetInstance()->NextFrame(delta);
+	RUDE_PERF_START(kPerfPhysics);
+	
+	switch(m_state)
+	{
+		case kStateWaitForSwing:
+		case kStateHitBall:
+		case kStateFollowBall:
+		case kStateRegardBall:
+			RudePhysics::GetInstance()->NextFrame(delta);
+			break;
+	}
+	
+	
+	RUDE_PERF_STOP(kPerfPhysics);
 	
 	switch(m_state)
 	{
