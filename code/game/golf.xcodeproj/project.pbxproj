@@ -13,6 +13,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		28FD14FE0DC6FC130079059D /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.mm */; };
+		467A3FB70FA2F6AA00061905 /* par4_H.deco in Resources */ = {isa = PBXBuildFile; fileRef = 467A3FB60FA2F6AA00061905 /* par4_H.deco */; };
+		467A3FC10FA2FDD000061905 /* driving_range.deco in Resources */ = {isa = PBXBuildFile; fileRef = 467A3FC00FA2FDD000061905 /* driving_range.deco */; };
 		9A03E1310F85D57100AC5D7C /* driver_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1300F85D57100AC5D7C /* driver_128.pvr */; };
 		9A03E1330F85D57800AC5D7C /* putter_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1320F85D57800AC5D7C /* putter_128.pvr */; };
 		9A03E1350F85D57F00AC5D7C /* wedge_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1340F85D57F00AC5D7C /* wedge_128.pvr */; };
@@ -354,6 +356,8 @@
 		28FD14FD0DC6FC130079059D /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EAGLView.mm; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GLSprite_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSprite_Prefix.pch; sourceTree = "<group>"; };
+		467A3FB60FA2F6AA00061905 /* par4_H.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_H.deco; path = Data/par4_H.deco; sourceTree = "<group>"; };
+		467A3FC00FA2FDD000061905 /* driving_range.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = driving_range.deco; path = Data/driving_range.deco; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A03E1300F85D57100AC5D7C /* driver_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driver_128.pvr; path = Data/driver_128.pvr; sourceTree = "<group>"; };
 		9A03E1320F85D57800AC5D7C /* putter_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = putter_128.pvr; path = Data/putter_128.pvr; sourceTree = "<group>"; };
@@ -1036,6 +1040,7 @@
 		9A2751180F9EF452009D27AB /* deco */ = {
 			isa = PBXGroup;
 			children = (
+				467A3FC00FA2FDD000061905 /* driving_range.deco */,
 				9AA706330FA180E200F18992 /* par3_A.deco */,
 				9AA706320FA180E200F18992 /* par3_B.deco */,
 				9AA706310FA180E200F18992 /* par3_C.deco */,
@@ -1044,6 +1049,7 @@
 				9AA704BC0F9EFA0800F18992 /* par4_A.deco */,
 				9AA7062E0FA180E200F18992 /* par4_B.deco */,
 				9AA706390FA180E200F18992 /* par4_C.deco */,
+				467A3FB60FA2F6AA00061905 /* par4_H.deco */,
 				9AA706380FA180E200F18992 /* par4_D.deco */,
 				9AA706370FA180E200F18992 /* par4_E.deco */,
 				9AA706360FA180E200F18992 /* par4_F.deco */,
@@ -1937,6 +1943,8 @@
 				9AA7064B0FA180E200F18992 /* par5_C.deco in Resources */,
 				9AA707FD0FA2EAAB00F18992 /* sfx_cheer.wav in Resources */,
 				9AA708160FA2EFA200F18992 /* sfx_claps.wav in Resources */,
+				467A3FB70FA2F6AA00061905 /* par4_H.deco in Resources */,
+				467A3FC10FA2FDD000061905 /* driving_range.deco in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
