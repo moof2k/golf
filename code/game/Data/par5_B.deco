@@ -19,22 +19,30 @@
 # It helps to use DebugGuidePosition in the tweaker to place decorators.
 
 
-#---------------------------------
-# Placeholder! delete these lines:
+DECORATOR tree_oak_a 64.000000
 
-DECORATOR tree_oak_a 50.000000
-100.000000 100.000000 100.000000
+-312.285370 51.814331 -830.730408
 
-DECORATOR tree_oak_b 50.000000
-100.000000 100.000000 100.000000
+DECORATOR tree_oak_b 47.000000
 
-DECORATOR tree_oak_c 50.000000
-100.000000 100.000000 100.000000
+-287.221313 57.565018 -881.069214
 
-DECORATOR tree_oak_d 50.000000
-100.000000 100.000000 100.000000
+DECORATOR tree_oak_c 68.000000
 
-#---------------------------------
+-359.311005 26.352047 -748.599854
 
-#---------------------------------
-# Start here:
+DECORATOR tree_oak_d 68.000000
+
+28.185375 15.017456 -1655.708252
+
+DECORATOR tree_oak_a 85.000000
+
+60.903458 26.953682 -1726.253784
+
+DECORATOR tree_oak_b 70.000000
+
+111.728462 20.815598 -1689.594604
+
+DECORATOR tree_oak_c 42.000000
+
+108.939453 17.000465 -1611.646973
