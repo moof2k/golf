@@ -34,6 +34,9 @@ float gHoleAttractDist = 1.1f;
 float gHoleAttractPower = 0.1f;
 float gHoleMaxBallSpeed = 16.0f;
 
+float gBallImpactMinReductionSpeed = 50.0f;
+float gBallImpactMaxReductionSpeed = 220.0f;
+
 RUDE_TWEAK(HoleRadius, kFloat, gHoleRadius);
 RUDE_TWEAK(HoleRenderRadius, kFloat, gHoleRenderRadius);
 RUDE_TWEAK(HoleAttractDist, kFloat, gHoleAttractDist);
@@ -43,7 +46,7 @@ RUDE_TWEAK(HoleMaxBallSpeed, kFloat, gHoleMaxBallSpeed);
 RBTerrainMaterialInfo gMaterialInfos[kNumMaterialTypes] = {
 	{ 2000.0f, 0.3f,	0.8f, 0.95f, 5.0f,		70, 90, 2.0f },
 	{ 1000.0f, 0.35f,	0.4f, 0.6f, 3.0f,		95, 100, 1.0f },
-	{ 100.0f, 0.4f,		0.35f, 0.45f, 1.0f,		100, 100, 1.0f },
+	{ 100.0f, 0.4f,		0.25f, 0.45f, 1.0f,		100, 100, 1.0f },
 	{ 1000.0f, 0.05f,	0.95f, 0.95f, 10.0f,	50, 65, 1.5f },
 	{ 75.0f, 0.4f,		0.25f, 0.5f, 2.0f,		100, 100, 1.0f },
 	{ 50.0f, 0.45f,		0.15f, 0.3f, 0.75f,		100, 100, 1.0f },
@@ -447,10 +450,26 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 	RudePhysics::GetInstance()->SetPrecise(true);
 	
 	
+	RBGolfBall *ball = (RBGolfBall *) other->GetOwner();
+	btRigidBody *rb = other->GetRigidBody();
+	btVector3 ballpos = ball->GetPosition();
+	btVector3 ballvel = rb->getLinearVelocity();
+	
+	btVector3 balldir = ballvel;
+	float ballvelmag = ballvel.length();
+	balldir /= ballvelmag;
+	
+	
+	
 	btVector3 up(0,1,0);
 	float dampScale = up.dot(normal);
 	
-	//printf("normal %f %f %f - %f\n", normal.x(), normal.y(), normal.z(), dampScale);
+	float ballSurfaceDot = -normal.dot(balldir);
+	if(ballSurfaceDot < 0.0f)
+		ballSurfaceDot = 0.0f;
+	
+	//RUDE_REPORT("balldir %f %f %f, speed %f, dot %f\n", balldir.x(), balldir.y(), balldir.z(), ballvelmag, ballSurfaceDot);
+	//RUDE_REPORT("normal %f %f %f : scale=%f speed=%f\n", normal.x(), normal.y(), normal.z(), dampScale, ballvelmag);
 	
 	
 	eRBTerrainMaterial materialType = m_terrainParts[terrainId];
@@ -463,17 +482,33 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 	// assume 'other' is always the ball
 	//RUDE_REPORT("Contact! terrainId = %d, materialType = %d\n", terrainId, materialType);
 	
-	RBGolfBall *ball = (RBGolfBall *) other->GetOwner();
-	btRigidBody *rb = other->GetRigidBody();
+	
+	float linearDamping = materialInfo.m_linearDamping;
+	
+	//RUDE_REPORT("damping = %f\n", linearDamping);
+	
 	
 	ball->SetCurMaterial(materialType);
 	
 	// damp based on impacted material (TODO)
-	ball->AddContactDamping(materialInfo.m_linearDamping * dampScale, materialInfo.m_angularDamping * dampScale);
+	ball->AddContactDamping(linearDamping, materialInfo.m_angularDamping * dampScale);
 	
-	btVector3 ballpos = ball->GetPosition();
-	btVector3 ballvel = rb->getLinearVelocity();
-	float ballvelmag = ballvel.length();
+	if(ballvelmag > gBallImpactMinReductionSpeed)
+	{
+		float dampfactor = (ballvelmag - gBallImpactMinReductionSpeed) /
+			(gBallImpactMaxReductionSpeed - gBallImpactMinReductionSpeed);
+		
+		if(dampfactor > 1.0f)
+			dampfactor = 1.0f;
+		
+		float impactDamp = ballSurfaceDot * dampfactor;
+		if(impactDamp > 0.5f)
+		   impactDamp = 0.5f;
+		   
+		//RUDE_REPORT("Impact damping (%f) %f\n", dampfactor, impactDamp);
+		ball->AddImpactDamping(impactDamp);
+	}
+	
 	
 	// stop based on impacted material (TODO)
 	if(ballvelmag < materialInfo.m_minVelocity)
@@ -504,7 +539,7 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 			//forcemag *= gHoleAttractPower;
 			float forcemag = gHoleAttractPower;
 			
-			printf("forcemag %f balldist %f ballvel %f\n", forcemag, holedist, ballvelmag);
+			//printf("forcemag %f balldist %f ballvel %f\n", forcemag, holedist, ballvelmag);
 			
 			rb->applyImpulse(holevec * forcemag, btVector3(0,0,0));
 		}

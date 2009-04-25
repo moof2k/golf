@@ -24,6 +24,7 @@ const float kWindDelay = 1.0f;
 RBGolfBall::RBGolfBall()
 : m_linearContactDamping(0.0f)
 , m_angularContactDamping(0.0f)
+, m_linearImpactDamping(0.0f)
 , m_movementThreshold(0.0f)
 , m_curLinearDamping(0.0f)
 , m_curAngularDamping(0.0f)
@@ -65,6 +66,10 @@ void RBGolfBall::NextFrame(float delta)
 	
 	RudePhysicsSphere *obj = (RudePhysicsSphere *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
+	btVector3 linvel = rb->getLinearVelocity();
+	float speed = linvel.length();
+	
+	//RUDE_REPORT(" in linvel: %f %f %f, speed: %f\n", linvel.x(), linvel.y(), linvel.z(), speed);
 	
 	// apply force from spin
 	if(m_applySpinForce)
@@ -77,9 +82,7 @@ void RBGolfBall::NextFrame(float delta)
 			if(gradient > 1.0f)
 				gradient = 1.0f;
 			
-			btVector3 linvel = rb->getLinearVelocity();
 			linvel += m_spinForce * delta * gradient;
-			rb->setLinearVelocity(linvel);
 		}
 		
 	}
@@ -94,13 +97,17 @@ void RBGolfBall::NextFrame(float delta)
 		if(gradient > 1.0f)
 			gradient = 1.0f;
 		
-		btVector3 linvel = rb->getLinearVelocity();
-		linvel += m_wind * delta * gradient;
-		rb->setLinearVelocity(linvel);
+		//linvel += m_wind * delta * gradient;
 		
 	}
 	else
 		m_windTimer = 0.0f;
+	
+	if(m_linearImpactDamping > 0.0f)
+	{
+		linvel *= (1.0f - m_linearImpactDamping);
+		m_linearImpactDamping = 0.0f;
+	}
 	
 	if(m_inContact > 0)
 	{
@@ -113,7 +120,11 @@ void RBGolfBall::NextFrame(float delta)
 		m_curLinearDamping += m_linearContactDamping * delta;
 		m_curAngularDamping += m_angularContactDamping * delta;
 		
-		rb->setDamping(m_curLinearDamping, m_curAngularDamping);
+		float linearDamping = m_curLinearDamping;
+		
+		//RUDE_REPORT("Linear Damping: %f\n", linearDamping);
+		
+		rb->setDamping(linearDamping, m_curAngularDamping);
 		
 		m_inContact--;
 	}
@@ -137,6 +148,11 @@ void RBGolfBall::NextFrame(float delta)
 	// ball has reached a stop state
 	//	printf("INACTIVE\n");
 	
+	speed = linvel.length();
+	//RUDE_REPORT("out linvel: %f %f %f, speed: %f\n", linvel.x(), linvel.y(), linvel.z(), speed);
+	
+	
+	rb->setLinearVelocity(linvel);
 
 	//printf("l = %f, a = %f\n", m_curLinearDamping, m_curAngularDamping);
 }

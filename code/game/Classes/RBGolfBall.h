@@ -35,6 +35,11 @@ public:
 		m_angularContactDamping = angular;
 	}
 	
+	void AddImpactDamping(float linear)
+	{
+		m_linearImpactDamping += linear;
+	}
+	
 	btVector3 GetPosition();
 	btVector3 GetAngularVelocity();
 	btVector3 GetLinearVelocity();
@@ -62,6 +67,7 @@ private:
 	float m_spinForceTimer;
 	
 	int m_inContact;
+	float m_linearImpactDamping;
 	float m_linearContactDamping;
 	float m_angularContactDamping;
 	float m_curLinearDamping;
