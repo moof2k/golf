@@ -20,6 +20,8 @@ typedef enum {
 	kSoundSwingPutter,
 	kSoundBallInHole,
 	kSoundMissedPutt,
+	kSoundCheer,
+	kSoundClaps,
 	kSoundUIStart,
 	kSoundUIBack,
 	kSoundUIExit,

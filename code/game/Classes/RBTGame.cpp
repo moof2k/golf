@@ -555,6 +555,14 @@ void RBTGame::SetState(eRBTGameState state)
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
 				RudeSound::GetInstance()->BgmVolFade(-1.0f);
 				
+				int strokes = GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum);
+				int par = GetScoreTracker(m_curPlayer)->GetPar(m_holeNum);
+				
+				if(strokes < par)
+					RudeSound::GetInstance()->PlayWave(kSoundCheer);
+				else if(strokes == par)
+					RudeSound::GetInstance()->PlayWave(kSoundClaps);
+				
 				m_ballCamera.SetDesiredHeight(5.0f);
 				m_ballCamera.SetGuide(m_terrain.GetHole());
 				m_ballCamera.SetTrackMode(kRegardCamera);

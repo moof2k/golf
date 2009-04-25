@@ -15,6 +15,8 @@ const char * kSoundFilenames[kNumSounds] = {
 	"swing_putter.wav",
 	"ball_in_hole.wav",
 	"crowd_missedputt.wav",
+	"sfx_cheer.wav",
+	"sfx_claps.wav",
 	"sfx_start.wav",
 	"sfx_back.wav",
 	"sfx_exit.wav",
