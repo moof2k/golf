@@ -1,0 +1,37 @@
+#
+# RBDecorator file
+#
+# You can put #'s in to make comments
+#
+# Create a decorator by writing:
+#
+# DECORATOR <texture> <size>
+#
+# Then write x y z positions following that
+#
+# For example:
+#
+# DECORATOR tree_oak_a 64.000000
+#
+# 41.907341 0.827255 -174.863617
+#
+#
+# It helps to use DebugGuidePosition in the tweaker to place decorators.
+
+
+#---------------------------------
+# Placeholder! delete these lines:
+
+DECORATOR tree_oak_a 5.000000
+666.000000 666.000000 666.000000
+DECORATOR tree_oak_b 5.000000
+666.000000 666.000000 666.000000
+DECORATOR tree_oak_c 5.000000
+666.000000 666.000000 666.000000
+DECORATOR tree_oak_d 5.000000
+666.000000 666.000000 666.000000
+
+#---------------------------------
+
+#---------------------------------
+# Start here:
