@@ -17,6 +17,7 @@
 #include "RudeTextControl.h"
 #include "RBUICourseControl.h"
 #include "RBCamera.h"
+#include "RBCreditsControl.h"
 #include "RBCourseData.h"
 #include "RBDecorators.h"
 #include "RBScoreControl.h"
@@ -25,6 +26,7 @@ typedef enum {
 	kTitleNone,
 	kTitleScoreSummary,
 	kTitleSplash,
+	kTitleSettings,
 	kTitleCourseSelect,
 	kTitleHighScores,
 	kTitleGameOptions,
@@ -77,8 +79,11 @@ private:
 	
 	RBScoreControl m_scoreControl;
 	
+	RBCreditsControl m_credits;
+	
 	RudeTextControl m_startText;
 	RudeTextControl m_practiceText;
+	RudeTextControl m_settingsText;
 	RudeTextControl m_copyrightText;
 	RudeTextControl m_backText;
 	
@@ -91,6 +96,9 @@ private:
 	
 	RudeTextControl m_scoreText;
 	RudeTextControl m_scoreDesc;
+	
+	RudeTextControl m_settingsTitleText;
+	RudeTextControl m_musicToggle;
 	
 	RudeTextControl m_goText;
 	

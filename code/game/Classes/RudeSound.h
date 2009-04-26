@@ -52,6 +52,8 @@ public:
 
 	void PlaySong(eSoundBGM song);
 	void StopSong();
+	
+	bool ToggleMusic();
 
 	void PlayWave(eSoundEffect num);
 
@@ -69,12 +71,15 @@ public:
 	bool SoundOn() { return m_soundon; }
 
 	void Shutdown();
+	
+	bool GetMusicOn() { return m_musicOn; }
 
 private:
 
 	void LoadWave(const char *sound, eSoundEffect num);
 
 	bool m_soundon;
+	bool m_musicOn;
 	
 	UInt32 m_soundids[kNumSounds];
 	eSoundBGM m_curBGM;

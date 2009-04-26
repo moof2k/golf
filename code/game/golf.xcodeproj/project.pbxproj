@@ -201,6 +201,7 @@
 		9ACBA70D0E70F67200D3167F /* grass_fairway_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7070E70F67200D3167F /* grass_fairway_A.pvr */; };
 		9ACBA70E0E70F67200D3167F /* grass_rough_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7080E70F67200D3167F /* grass_rough_A.pvr */; };
 		9ACBA7100E70F67200D3167F /* grass_green_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA70A0E70F67200D3167F /* grass_green_A.pvr */; };
+		9AD084E20FA43A9000022D3F /* RBCreditsControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */; };
 		9AD57F060EA08B24002696A6 /* btAxisSweep3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E010EA08B24002696A6 /* btAxisSweep3.cpp */; };
 		9AD57F070EA08B24002696A6 /* btBroadphaseProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E040EA08B24002696A6 /* btBroadphaseProxy.cpp */; };
 		9AD57F080EA08B24002696A6 /* btCollisionAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E060EA08B24002696A6 /* btCollisionAlgorithm.cpp */; };
@@ -604,6 +605,8 @@
 		9ACBA7070E70F67200D3167F /* grass_fairway_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_fairway_A.pvr; path = Data/grass_fairway_A.pvr; sourceTree = "<group>"; };
 		9ACBA7080E70F67200D3167F /* grass_rough_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_rough_A.pvr; path = Data/grass_rough_A.pvr; sourceTree = "<group>"; };
 		9ACBA70A0E70F67200D3167F /* grass_green_A.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = grass_green_A.pvr; path = Data/grass_green_A.pvr; sourceTree = "<group>"; };
+		9AD084E00FA43A9000022D3F /* RBCreditsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBCreditsControl.h; path = Classes/RBCreditsControl.h; sourceTree = "<group>"; };
+		9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBCreditsControl.cpp; path = Classes/RBCreditsControl.cpp; sourceTree = "<group>"; };
 		9AD57DFC0EA08B19002696A6 /* btBulletCollisionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletCollisionCommon.h; path = ../Lib/bullet/src/btBulletCollisionCommon.h; sourceTree = SOURCE_ROOT; };
 		9AD57DFD0EA08B19002696A6 /* btBulletDynamicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletDynamicsCommon.h; path = ../Lib/bullet/src/btBulletDynamicsCommon.h; sourceTree = SOURCE_ROOT; };
 		9AD57DFE0EA08B19002696A6 /* Bullet-C-Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bullet-C-Api.h"; path = "../Lib/bullet/src/Bullet-C-Api.h"; sourceTree = SOURCE_ROOT; };
@@ -1263,6 +1266,8 @@
 				9A5B4DA30F9C278100B6503A /* RBTourTracker.cpp */,
 				9AAFBCED0F9DA12D00839888 /* RBDecorators.h */,
 				9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */,
+				9AD084E00FA43A9000022D3F /* RBCreditsControl.h */,
+				9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -2145,6 +2150,7 @@
 				9AAD324D0F98CA4500CCA4FC /* RBGolfPin.cpp in Sources */,
 				9A5B4DA40F9C278100B6503A /* RBTourTracker.cpp in Sources */,
 				9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */,
+				9AD084E20FA43A9000022D3F /* RBCreditsControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,6 +3,7 @@
 #include "RudeSound.h"
 
 #include "RudeFile.h"
+#include "RudeRegistry.h"
 
 #define kListenerDistance			1.0
 
@@ -34,6 +35,7 @@ const char * kSoundBGMs[kNumBGMs] = {
 RudeSound::RudeSound()
 {
 	m_soundon = true;
+	m_musicOn = true;
 	
 	m_curBGM = kBGMNone;
 	
@@ -48,6 +50,18 @@ RudeSound::RudeSound()
 	for(int i = 0; i < kNumSounds; i++)
 	{
 		LoadWave(kSoundFilenames[i], (eSoundEffect) i);
+	}
+	
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	
+	int loadsize = sizeof(m_musicOn);
+	if(reg->QueryByte("GOLF", "RS_MUSIC", &m_musicOn, &loadsize) == 0)
+	{
+		
+	}
+	else
+	{
+		m_musicOn = true;
 	}
 	
 }
@@ -103,13 +117,16 @@ void RudeSound::PlaySong(eSoundBGM num)
 		SoundEngine_UnloadBackgroundMusicTrack();
 	}
 	
-	m_curBGM = num;
-	
-	char buffer[512];
-	RudeFileGetFile(kSoundBGMs[m_curBGM], buffer, 512);
-	
-	SoundEngine_LoadBackgroundMusicTrack(buffer, false, false);
-	SoundEngine_StartBackgroundMusic();
+	if(m_musicOn)
+	{
+		m_curBGM = num;
+		
+		char buffer[512];
+		RudeFileGetFile(kSoundBGMs[m_curBGM], buffer, 512);
+				
+		SoundEngine_LoadBackgroundMusicTrack(buffer, false, false);
+		SoundEngine_StartBackgroundMusic();
+	}
 }
 
 void RudeSound::StopSong()
@@ -121,6 +138,21 @@ void RudeSound::StopSong()
 	
 	m_curBGM = kBGMNone;
 	SoundEngine_UnloadBackgroundMusicTrack();
+}
+
+bool RudeSound::ToggleMusic()
+{
+	m_musicOn = !m_musicOn;
+	
+	if(!m_musicOn)
+	{
+		StopSong();
+	}
+	
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+	reg->SetByte("GOLF", "RS_MUSIC", &m_musicOn, sizeof(m_musicOn));
+	
+	return m_musicOn;
 }
 
 void RudeSound::PlayWave(eSoundEffect num)

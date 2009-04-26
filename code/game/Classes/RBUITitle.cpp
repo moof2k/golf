@@ -24,6 +24,9 @@ RUDE_TWEAK(DebugPerfectScore, kBool, gDebugPerfectScore);
 
 const btVector3 kFlagPosition(-5.741,-18.27,-1572.807);
 
+const char * kMusicOnText = "Music: On";
+const char * kMusicOffText = "Music: Off";
+
 RBUITitle::RBUITitle()
 {
 	m_flagOffset = 0.0f;
@@ -44,6 +47,8 @@ RBUITitle::RBUITitle()
 	m_scoreControl.SetAnimType(kAnimPopSlide);
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
+	
+	m_credits.SetAnimType(kAnimPopSlide);
 	
 	m_rangeMedallion.SetAnimType(kAnimPopSlide);
 	m_rangeMedallion.SetTextures("ui_bucketoballz", "ui_bucketoballz");
@@ -98,6 +103,15 @@ RBUITitle::RBUITitle()
 	m_practiceText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_practiceText.SetColors(1, 0xFF000000, 0xFF000000);
 	
+	m_settingsText.SetAnimType(kAnimPopSlide);
+	m_settingsText.SetText("Options");
+	m_settingsText.SetAlignment(kAlignCenter);
+	m_settingsText.SetRect(RudeRect(400, 0, 430, 320));
+	m_settingsText.SetStyle(kOutlineStyle);
+	m_settingsText.SetFont(kBigFont);
+	m_settingsText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_settingsText.SetColors(1, 0xFF000000, 0xFF000000);
+	
 	m_goText.SetAnimType(kAnimPopSlide);
 	m_goText.SetText("Let's Go!");
 	m_goText.SetAlignment(kAlignCenter);
@@ -130,7 +144,7 @@ RBUITitle::RBUITitle()
 	m_tournamentText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_tournamentText.SetStyle(kOutlineStyle);
 	m_tournamentText.SetFont(kBigFont);
-	m_tournamentText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_tournamentText.SetColors(0, 0xFFFFFFFF, 0xFFFFE9CA);
 	m_tournamentText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	
@@ -140,7 +154,7 @@ RBUITitle::RBUITitle()
 	m_courseNameText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_courseNameText.SetStyle(kOutlineStyle);
 	m_courseNameText.SetFont(kBigFont);
-	m_courseNameText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseNameText.SetColors(0, 0xFFFFFFFF, 0xFFFFE9CA);
 	m_courseNameText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_courseSubnameText.SetAnimType(kAnimPopSlide);
@@ -149,7 +163,7 @@ RBUITitle::RBUITitle()
 	m_courseSubnameText.SetRect(RudeRect(60, 0, 60 + 20, 320));
 	m_courseSubnameText.SetStyle(kOutlineStyle);
 	m_courseSubnameText.SetFont(kBigFont);
-	m_courseSubnameText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseSubnameText.SetColors(0, 0xFFFFFFFF, 0xFFFFE9CA);
 	m_courseSubnameText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_courseDescText.SetAnimType(kAnimPopSlide);
@@ -158,7 +172,7 @@ RBUITitle::RBUITitle()
 	m_courseDescText.SetRect(RudeRect(80, 0, 80 + 20, 320));
 	m_courseDescText.SetStyle(kOutlineStyle);
 	m_courseDescText.SetFont(kDefaultFont);
-	m_courseDescText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_courseDescText.SetColors(0, 0xFFFFFFFF, 0xFFFFE9CA);
 	m_courseDescText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	
@@ -179,6 +193,32 @@ RBUITitle::RBUITitle()
 	m_scoreDesc.SetFont(kDefaultFont);
 	m_scoreDesc.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_scoreDesc.SetColors(1, 0xFF000000, 0xFF000000);
+	
+	
+	m_settingsTitleText.SetAnimType(kAnimPopSlide);
+	m_settingsTitleText.SetText("Options");
+	m_settingsTitleText.SetAlignment(kAlignCenter);
+	m_settingsTitleText.SetRect(RudeRect(36, 0, 36 + 20, 320));
+	m_settingsTitleText.SetStyle(kOutlineStyle);
+	m_settingsTitleText.SetFont(kBigFont);
+	m_settingsTitleText.SetColors(0, 0xFFFFFFFF, 0xFFFFE9CA);
+	m_settingsTitleText.SetColors(1, 0xFF000000, 0xFF000000);
+	
+	m_musicToggle.SetAnimType(kAnimPopSlide);
+	m_musicToggle.SetText(kMusicOnText);
+	m_musicToggle.SetAlignment(kAlignCenter);
+	m_musicToggle.SetRect(RudeRect(90, 0, 90 + 20, 320));
+	m_musicToggle.SetStyle(kOutlineStyle);
+	m_musicToggle.SetFont(kBigFont);
+	m_musicToggle.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
+	m_musicToggle.SetColors(1, 0xFF000000, 0xFF000000);	
+	
+	
+	if(RudeSound::GetInstance()->GetMusicOn())
+		m_musicToggle.SetText(kMusicOnText);
+	else
+		m_musicToggle.SetText(kMusicOffText);
+	
 	
 	m_cameraTimer = 0.0f;
 	
@@ -214,6 +254,16 @@ void RBUITitle::SetState(eTitleState state)
 			m_logo.SetTranslation(btVector3(0,0,0));
 			m_startText.SetTranslation(btVector3(0,0,0));
 			m_practiceText.SetTranslation(btVector3(0,0,0));
+			m_settingsText.SetTranslation(btVector3(0,0,0));
+
+			m_settingsTitleText.SetTranslation(btVector3(400,0,0));
+			m_settingsTitleText.SetDesiredTranslation(btVector3(400,0,0));
+			m_musicToggle.SetTranslation(btVector3(400,0,0));
+			m_musicToggle.SetDesiredTranslation(btVector3(400,0,0));
+			
+			
+			m_credits.SetTranslation(btVector3(400,0,0));
+			m_credits.SetDesiredTranslation(btVector3(400,0,0));
 			
 			m_scoreControl.SetTranslation(btVector3(-400,0,0));
 			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
@@ -277,7 +327,17 @@ void RBUITitle::SetState(eTitleState state)
 			m_logo.SetDesiredTranslation(btVector3(-400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_practiceText.SetDesiredTranslation(btVector3(-400,0,0));
+			m_settingsText.SetDesiredTranslation(btVector3(-400,0,0));
 			m_copyrightText.SetDesiredTranslation(btVector3(0,100,0));
+			
+			break;
+		case kTitleSettings:
+			
+			m_settingsTitleText.SetDesiredTranslation(btVector3(400,0,0));
+			m_musicToggle.SetDesiredTranslation(btVector3(400,0,0));
+			
+			m_credits.SetDesiredTranslation(btVector3(400,0,0));
+			m_backText.SetDesiredTranslation(btVector3(400,0,0));
 			
 			break;
 		case kTitleCourseSelect:
@@ -387,6 +447,15 @@ void RBUITitle::SetState(eTitleState state)
 			m_startText.SetDesiredTranslation(btVector3(0,0,0));
 			m_practiceText.SetDesiredTranslation(btVector3(0,0,0));
 			m_copyrightText.SetDesiredTranslation(btVector3(0,0,0));
+			m_settingsText.SetDesiredTranslation(btVector3(0,0,0));
+			break;
+			
+		case kTitleSettings:
+			m_settingsTitleText.SetDesiredTranslation(btVector3(0,0,0));
+			m_musicToggle.SetDesiredTranslation(btVector3(0,0,0));
+			
+			m_backText.SetDesiredTranslation(btVector3(0,0,0));
+			m_credits.SetDesiredTranslation(btVector3(0,0,0));
 			break;
 			
 		case kTitleCourseSelect:
@@ -605,6 +674,7 @@ void RBUITitle::NextFrame(float delta)
 	m_courseMedallion.NextFrame(delta);
 	m_courseSplash.NextFrame(delta);
 	m_startText.NextFrame(delta);
+	m_settingsText.NextFrame(delta);
 	m_practiceText.NextFrame(delta);
 	m_copyrightText.NextFrame(delta);
 	m_backText.NextFrame(delta);
@@ -615,6 +685,10 @@ void RBUITitle::NextFrame(float delta)
 	
 	m_scoreText.NextFrame(delta);
 	m_scoreDesc.NextFrame(delta);
+	
+	m_credits.NextFrame(delta);
+	m_settingsTitleText.NextFrame(delta);
+	m_musicToggle.NextFrame(delta);
 	
 	m_courseNameText.NextFrame(delta);
 	m_courseSubnameText.NextFrame(delta);
@@ -661,6 +735,7 @@ void RBUITitle::Render(float aspect)
 	m_practiceText.Render();
 	m_backText.Render();
 	m_goText.Render();
+	m_settingsText.Render();
 	m_tournamentText.Render();
 	
 	m_courseNameText.Render();
@@ -681,6 +756,13 @@ void RBUITitle::Render(float aspect)
 		m_scoreDesc.Render();
 	}
 	
+	if(m_state == kTitleSplash || m_state == kTitleSettings)
+	{
+		m_settingsTitleText.Render();
+		m_musicToggle.Render();
+		m_credits.Render();
+	}
+	
 	m_copyrightText.Render();
 }
 
@@ -691,6 +773,11 @@ void RBUITitle::TouchDown(RudeTouch *rbt)
 		case kTitleSplash:
 			m_startText.TouchDown(rbt);
 			m_practiceText.TouchDown(rbt);
+			m_settingsText.TouchDown(rbt);
+			break;
+		case kTitleSettings:
+			m_backText.TouchDown(rbt);
+			m_musicToggle.TouchDown(rbt);
 			break;
 		case kTitleCourseSelect:
 			for(int i = 0; i < kNumCoursesPerScreen; i++)
@@ -736,6 +823,33 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 				m_course = kNumCourses - 1;
 				SetState(kTitlePracticeOptions);
 				sfx = kSoundUISelect;
+			}
+			if(m_settingsText.TouchUp(rbt))
+			{
+				SetState(kTitleSettings);
+				sfx = kSoundUISelect;
+			}
+			break;
+		case kTitleSettings:
+			if(m_backText.TouchUp(rbt))
+			{
+				SetState(kTitleSplash);
+				sfx = kSoundUIBack;
+			}
+			if(m_musicToggle.TouchUp(rbt))
+			{
+				bool musicon = RudeSound::GetInstance()->ToggleMusic();
+				
+				if(musicon)
+				{
+					m_startedMusic = false;
+					m_musicToggle.SetText(kMusicOnText);
+				}
+				else
+				{
+					m_musicToggle.SetText(kMusicOffText);
+					m_startedMusic = true;
+				}
 			}
 			break;
 		case kTitleCourseSelect:
