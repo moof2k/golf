@@ -28,7 +28,7 @@ public:
 	
 	virtual void SetRect(const RudeRect &r) { m_rect = r; }
 	
-	bool Contains(const RudeScreenVertex &p);
+	virtual bool Contains(const RudeScreenVertex &p);
 	
 	virtual bool TouchDown(RudeTouch *t);
 	virtual bool TouchMove(RudeTouch *t);

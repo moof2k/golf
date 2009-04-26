@@ -10,6 +10,12 @@
 #include "RudeTextControl.h"
 #include "RudeFont.h"
 #include "Rude.h"
+#include "RudeGL.h"
+
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
+
+
 
 RudeTextControl::RudeTextControl()
 : m_displayValue(kNoValue)
@@ -30,6 +36,15 @@ RudeTextControl::RudeTextControl()
 }
 
 // RudeFontManager::GetFont(kDefaultFont)->Printf(310.0f, kParY, 0.0f, FONT_ALIGN_RIGHT, kParTopColor, kParBotColor, "Stroke %d", m_stroke);
+
+bool RudeTextControl::Contains(const RudeScreenVertex &p)
+{
+	RudeRect r(m_rect);
+	r.m_top -= 5;
+	r.m_bottom -= 5;
+	
+	return r.Contains(p);
+}
 
 void RudeTextControl::SetPosition(int x, int y)
 {

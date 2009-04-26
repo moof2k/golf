@@ -39,6 +39,8 @@ public:
 	
 	RudeTextControl();
 	
+	bool Contains(const RudeScreenVertex &p);
+	
 	void Render();
 	
 	void SetPosition(int x, int y);
