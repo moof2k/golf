@@ -14,15 +14,16 @@
 #include "RBTerrainMaterial.h"
 #include "RudeSound.h"
 
-const int kNumGolfClubs = 12;
+const int kNumGolfClubs = 13;
 
 typedef enum {
 	kNoSandTrap			= 0x01,
 	kNoFairway			= 0x02,
 	kNoGreen			= 0x04,
 	kNoRough			= 0x08,
+	kFirePower			= 0x10,
 	
-} eRBGolfClubMaterialRestriction;
+} eRBGolfClubOption;
 
 typedef enum {
 	kClubWood,
@@ -44,7 +45,7 @@ public:
 	float m_dist;
 	float m_loft;
 	eSoundEffect m_swingsound;
-	int m_materialRestriction;
+	int m_options;
 	
 	static RBGolfClub * GetClub(int num);
 	static int NextClub(int curClub, eRBTerrainMaterial curMaterial);

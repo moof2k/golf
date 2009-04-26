@@ -26,7 +26,8 @@ static RBGolfClub sGolfClubs[kNumGolfClubs] = {
 	{ kClubIron,	"9 Iron", "ui_9iron", 96, 120, 46.5,	kSoundSwingWedge,			kNoGreen }, 
 	{ kClubWedge,	"PW", "ui_pw", 83, 90, 50,				kSoundSwingWedge,			kNoGreen },
 	{ kClubWedge,	"SW", "ui_sw", 68, 60, 56,				kSoundSwingWedgeInSand,		kNoGreen },
-	{ kClubPutter,	"Putter", "ui_putter", 60, 20, 1,		kSoundSwingPutter,			0 }
+	{ kClubPutter,	"Putter", "ui_putter", 60, 20, 1,		kSoundSwingPutter,			0 },
+	{ kClubPutter,	"Putter", "ui_putter", 75, 40, 5,		kSoundSwingPutter,			kFirePower }
 };
 
 
@@ -44,21 +45,21 @@ bool RBGolfClub::ClubOK(int n, eRBTerrainMaterial curMaterial)
 	switch(curMaterial)
 	{
 		case kRough:
-			if(club.m_materialRestriction & kNoRough)
+			if(club.m_options & kNoRough)
 				return false;
 			break;
 		case kFairwayFringe:
 		case kFairway:
-			if(club.m_materialRestriction & kNoFairway)
+			if(club.m_options & kNoFairway)
 				return false;
 			break;
 		case kSandtrap:
-			if(club.m_materialRestriction & kNoSandTrap)
+			if(club.m_options & kNoSandTrap)
 				return false;
 			break;
 		case kGreenFringe:
 		case kGreen:
-			if(club.m_materialRestriction & kNoGreen)
+			if(club.m_options & kNoGreen)
 				return false;
 			break;
 	}

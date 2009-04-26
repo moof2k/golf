@@ -57,6 +57,11 @@ const unsigned int kBallDistanceBotColor = 0xFF000000;
 const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
 const unsigned int kBallDistanceOutlineBotColor = 0xFF22FFFF;
 
+const unsigned int kBallDistanceTopFireColor = 0xFF666666;
+const unsigned int kBallDistanceBotFireColor = 0xFF000000;
+const unsigned int kBallDistanceOutlineTopFireColor = 0xFF0000FF;
+const unsigned int kBallDistanceOutlineBotFireColor = 0xFF2222FF;
+
 const unsigned int kBallRemainingTopColor = 0xFF666666;
 const unsigned int kBallRemainingBotColor = 0xFF000000;
 const unsigned int kBallRemainingOutlineTopColor = 0xFFFFFFFF;
@@ -870,6 +875,17 @@ void RBTGame::NextClub(int n)
 		m_powerRangeText.SetText(str);
 	}
 	
+	if(club->m_options & kFirePower)
+	{
+		m_clubDistText.SetColors(0, kBallDistanceTopFireColor, kBallDistanceBotFireColor);
+		m_clubDistText.SetColors(1, kBallDistanceOutlineTopFireColor, kBallDistanceOutlineBotFireColor);
+	}
+	else
+	{
+		m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+		m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	}
+	
 	FreshGuide();
 }
 
@@ -1065,6 +1081,15 @@ void RBTGame::HitBall()
 	else
 		RudePhysics::GetInstance()->SetPrecise(false);
 	
+	float swingAccuracyPenalty = 0.0f;
+	
+	if(club->m_options & kFirePower)
+	{
+		int ac = (rand() % 10) - 5;
+		swingAccuracyPenalty = ac;
+		swingAccuracyPenalty = swingAccuracyPenalty / 180.0f * 3.1415926f;
+	}
+	
 	
 	float loft = club->m_loft;
 	loft = (loft / 180.0f) * 3.1415926f;
@@ -1076,7 +1101,7 @@ void RBTGame::HitBall()
 	aimvec.normalize();
 	
 	btMatrix3x3 guidemat;
-	guidemat.setEulerYPR(m_swingYaw + angleModifier, 0.0f, 0.0f);
+	guidemat.setEulerYPR(m_swingYaw + angleModifier + swingAccuracyPenalty, 0.0f, 0.0f);
 	aimvec = guidemat * aimvec;
 	
 	aimvec.setY(tan(loft));
