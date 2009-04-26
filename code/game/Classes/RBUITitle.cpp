@@ -113,7 +113,7 @@ RBUITitle::RBUITitle()
 	m_settingsText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_goText.SetAnimType(kAnimPopSlide);
-	m_goText.SetText("Let's Go!");
+	m_goText.SetText("Start");
 	m_goText.SetAlignment(kAlignCenter);
 	m_goText.SetRect(RudeRect(400, 0, 420, 320));
 	m_goText.SetStyle(kOutlineStyle);
