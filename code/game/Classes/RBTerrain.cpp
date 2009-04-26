@@ -248,7 +248,11 @@ void RBTerrain::LoadNodes()
 	RUDE_ASSERT(m_cameraPlacements.size() > 0, "Terrain has no camera placements (N2)");
 	RUDE_ASSERT(m_guidePoints.size() > 0, "Terrain has no guide points (N3)");
 	
-	m_hole = m_holes[0];
+	int chosenhole = rand() % m_holes.size();
+	
+	RUDE_ASSERT((chosenhole >= 0) && (chosenhole < m_holes.size()), "Invalid hole chosen");
+	
+	m_hole = m_holes[chosenhole];
 	
 	// last guide point is the hole
 	m_guidePoints.push_back(m_hole);
