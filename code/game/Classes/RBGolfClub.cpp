@@ -26,7 +26,7 @@ static RBGolfClub sGolfClubs[kNumGolfClubs] = {
 	{ kClubIron,	"9 Iron", "ui_9iron", 96, 120, 46.5,	kSoundSwingWedge,			kNoGreen }, 
 	{ kClubWedge,	"PW", "ui_pw", 83, 90, 50,				kSoundSwingWedge,			kNoGreen },
 	{ kClubWedge,	"SW", "ui_sw", 68, 60, 56,				kSoundSwingWedgeInSand,		kNoGreen },
-	{ kClubPutter,	"Putter", "ui_putter", 60, 30, 1,		kSoundSwingPutter,			0 }
+	{ kClubPutter,	"Putter", "ui_putter", 60, 20, 1,		kSoundSwingPutter,			0 }
 };
 
 
