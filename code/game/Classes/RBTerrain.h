@@ -72,6 +72,8 @@ public:
 	void SetPutting(bool isPutting);
 	void SetEnablePuttingGreen(bool enablePuttingGreen);
 	
+	void FinalizeGuidePoints();
+	
 	bool CastToTerrain(const btVector3 &start, const btVector3 &end, btVector3 &result);
 	
 	void DropDecorator(const btVector3 &pos, float size) { m_decorator.Drop(pos, size); }

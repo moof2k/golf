@@ -254,6 +254,10 @@ void RBTerrain::LoadNodes()
 	
 	m_hole = m_holes[chosenhole];
 	
+}
+
+void RBTerrain::FinalizeGuidePoints()
+{
 	// last guide point is the hole
 	m_guidePoints.push_back(m_hole);
 }

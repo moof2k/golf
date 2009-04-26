@@ -281,10 +281,16 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 		int result = LoadState();
 		
 		if(result < 0)
+		{
+			m_terrain.FinalizeGuidePoints();
 			SetState(kStateTeePosition);
+		}
 	}
 	else
+	{
+		m_terrain.FinalizeGuidePoints();
 		SetState(kStateTeePosition);
+	}
 	
 	m_pin.SetPosition(m_terrain.GetHole());
 }
@@ -375,6 +381,8 @@ void RBTGame::RestoreState()
 	m_windText.SetValue(m_windSpeed);
 	m_windControl.SetWind(m_windDir, m_windSpeed);
 	m_ball.SetWind(m_windVec);
+	
+	m_terrain.FinalizeGuidePoints();
 	
 	// update golfer renderable
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
