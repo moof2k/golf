@@ -806,6 +806,8 @@ void RBTGame::FreshShotEncouragement()
 			m_shotEncouragementText.SetText("For Bogey");
 			m_encouragementTimer = kEncouragementTimer;
 		}
+		else
+			m_shotEncouragementText.SetText("");
 	}
 	
 	
