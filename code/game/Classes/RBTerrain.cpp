@@ -29,10 +29,10 @@ bool gDebugRenderGuides = false;
 RUDE_TWEAK(DebugRenderGuides, kBool, gDebugRenderGuides);
 
 float gHoleRadius = 0.6f;
-float gHoleRenderRadius = 0.8f;
-float gHoleAttractDist = 1.1f;
+float gHoleRenderRadius = 0.6f;
+float gHoleAttractDist = .8f;
 float gHoleAttractPower = 0.1f;
-float gHoleMaxBallSpeed = 16.0f;
+float gHoleMaxBallSpeed = 14.0f;
 
 float gBallImpactMinReductionSpeed = 50.0f;
 float gBallImpactMaxReductionSpeed = 220.0f;
@@ -521,11 +521,26 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 	btVector3 holevec = m_hole - ballpos;
 	float holedist = holevec.length();
 	
-	if(holedist < gHoleRadius && ballvelmag < gHoleMaxBallSpeed)
+	if(holedist < gHoleRadius)
 	{
-		m_ballInHole = true;
-		ball->Stop();
-		return;
+		if(ballvelmag < gHoleMaxBallSpeed)
+		{
+			// ball is moving slow enough to be captured by the hole
+			m_ballInHole = true;
+			ball->Stop();
+			return;
+		}
+		else
+		{
+			// ball is moving too fast to go in hole, pop it up in a random direction
+			int rx = rand() % 100;
+			int rz = rand() % 100;
+			float frx = ((float) rx) / 200.0f;
+			float frz = ((float) rz) / 200.0f;
+			
+			rb->applyImpulse(btVector3(frx,1.0f,frz), btVector3(0,0,0));
+			ball->AddImpactDamping(0.5f);
+		}
 	}
 	
 	if(holedist < gHoleAttractDist)
