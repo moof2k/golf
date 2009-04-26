@@ -315,9 +315,12 @@ void RBUITitle::SetState(eTitleState state)
 			break;
 			
 		case kTitlePracticeOptions:
-			m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
-			
-			m_rangeMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			if(state != kTitleReadyToPractice)
+			{
+				m_courseNameText.SetDesiredTranslation(btVector3(400,0,0));
+				
+				m_rangeMedallion.SetDesiredTranslation(btVector3(400,0,0));
+			}
 			
 			m_goText.SetDesiredTranslation(btVector3(400,0,0));
 			m_backText.SetDesiredTranslation(btVector3(400,0,0));
