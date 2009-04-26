@@ -16,10 +16,10 @@
 #include <OpenGLES/ES1/glext.h>
 
 const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
-	{ 1.0f, 21.0f, 21.0f, 25.3f, 35.0f },
-	{ 36.0f, 55.0f, 55.0f, 60.3f, 80.0f },
-	{ 86.0f, 105.0f, 105.f, 113.0f, 125.0f },
-	{ 133.0f, 146.0f, 146.0f, 153.0f, 186.0f },
+	{ 1.0f, 21.0f, 21.0f, 25.3f, 41.0f },
+	{ 42.0f, 62.0f, 62.0f, 67.3f, 85.0f },
+	{ 93.0f, 112.0f, 112.f, 119.0f, 132.0f },
+	{ 139.0f, 153.0f, 153.0f, 160.0f, 195.0f },
 };
 
 RBGolferObject::RBGolferObject()
