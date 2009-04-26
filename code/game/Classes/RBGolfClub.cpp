@@ -127,9 +127,9 @@ int RBGolfClub::AutoSelectClub(float yardage, eRBTerrainMaterial curMaterial)
 	float bestClubOvershot = 99999.0f;
 	float bestClubUndershot = -99999.0f;
 	
-	// -1: never consider the putter
+	// -2: never consider the putters
 	
-	for(int i = 0; i < kNumGolfClubs - 1; i++)
+	for(int i = 0; i < kNumGolfClubs - 2; i++)
 	{
 		RBGolfClub &club = sGolfClubs[i];
 		
