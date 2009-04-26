@@ -17,7 +17,7 @@
 
 const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
 	{ 1.0f, 21.0f, 21.0f, 25.3f, 41.0f },
-	{ 42.0f, 62.0f, 62.0f, 67.3f, 85.0f },
+	{ 44.0f, 62.0f, 62.0f, 67.3f, 85.0f },
 	{ 93.0f, 112.0f, 112.f, 119.0f, 132.0f },
 	{ 139.0f, 153.0f, 153.0f, 160.0f, 195.0f },
 };
