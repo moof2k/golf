@@ -97,7 +97,7 @@ void RBGolfBall::NextFrame(float delta)
 		if(gradient > 1.0f)
 			gradient = 1.0f;
 		
-		//linvel += m_wind * delta * gradient;
+		linvel += m_wind * delta * gradient;
 		
 	}
 	else

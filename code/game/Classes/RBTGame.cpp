@@ -615,13 +615,13 @@ void RBTGame::StateTeePosition(float delta)
 	
 	m_windSpeed = windspeed;
 	
-	btVector3 windx(gWindForceMultiplier,0,0);
+	btVector3 windx(0,0,-gWindForceMultiplier);
 	
 	float winddir = rand() % 360;
 	m_windDir = (winddir / 180.0f) * 3.1415926f;
 	
 	btMatrix3x3 rmat;
-	rmat.setEulerYPR(m_windDir, 0.0f, 0.0f);
+	rmat.setEulerYPR(-m_windDir, 0.0f, 0.0f);
 	
 	m_windVec = rmat * windx;
 	m_windVec *= m_windSpeed;

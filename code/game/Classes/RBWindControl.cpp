@@ -9,6 +9,7 @@
 
 #include "RBWindControl.h"
 #include "RudeGL.h"
+#include "RudeDebug.h"
 
 RBWindControl::RBWindControl()
 : m_windSpeed(0.0f)
@@ -23,8 +24,7 @@ RBWindControl::RBWindControl()
 
 void RBWindControl::SetWind(float windDir, float windSpeed)
 {
-	m_indicatorYaw = -windDir * 180.0f / 3.1415926f;
-	m_indicatorYaw += 90.0f;
+	m_indicatorYaw = windDir * 180.0f / 3.1415926f;
 	m_windSpeed = windSpeed;
 }
 
@@ -65,13 +65,14 @@ void RBWindControl::Render()
 	eyevec.normalize();
 	eyevec.setY(1.0f);
 	eyevec *= 5.0f;
-
+	
 	RGL.Frustum(0.0f, 0.0f, 0.2f, 0.2f, 1.0f, 10.0f);
 	
 	RGL.LookAt(eyevec.x(), eyevec.y(), eyevec.z(), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	
 	RGL.LoadIdentity();
 	
+	m_indicatorYawTwitch = 0;
 	RGL.Rotate(m_indicatorYaw + m_indicatorYawTwitch, 0.0f, 1.0f, 0.0f);
 	
 	
