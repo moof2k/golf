@@ -1568,7 +1568,7 @@ void RBTGame::Render(float aspect)
 	
 	RGL.LoadIdentity();
 	
-	if(!m_terrain.GetPutting())
+	if(!m_terrain.GetPutting() && m_holeSet != kCourseDrivingRange)
 		m_pin.Render();
 	
 	RenderCalcOrthoDrawPositions();
