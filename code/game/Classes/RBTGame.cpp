@@ -546,7 +546,7 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				m_ballCamera.SetDesiredHeight(5.0f);
-				m_ballCamera.ResetGuide(m_terrain.GetGuidePoint());
+				m_ballCamera.ResetGuide(m_terrain.GetHole());
 				m_ballCamera.SetTrackMode(kRegardCamera);
 				
 			}
