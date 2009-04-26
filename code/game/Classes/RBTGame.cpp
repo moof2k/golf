@@ -1444,7 +1444,11 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		else
 			m_shotAngleText.SetFormat(kIntValue, "%d %% Hook");
 		
-		m_shotAngleText.SetValue(m_swingAngle * 100.0f);
+		float displayangle = m_swingAngle;
+		if(displayangle < 0.0f)
+			displayangle = -displayangle;
+		
+		m_shotAngleText.SetValue(displayangle * 100.0f);
 		
 		m_shotDistText.Render();
 		m_shotPowerText.Render();
