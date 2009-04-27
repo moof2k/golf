@@ -186,6 +186,7 @@
 		9AAD32DA0F9987CF00CCA4FC /* pin.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32D90F9987CF00CCA4FC /* pin.POD */; };
 		9AAD32DC0F9987E000CCA4FC /* flag.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD32DB0F9987E000CCA4FC /* flag.pvr */; };
 		9AAE72660E7676ED00E8CC0B /* RBGolfBall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */; };
+		9AAEB0F00FA562E7003562EA /* RBSwingHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAEB0EF0FA562E7003562EA /* RBSwingHelper.cpp */; };
 		9AAFBC020F9C4F2500839888 /* ui_trophy_platinum.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAFBC010F9C4F2500839888 /* ui_trophy_platinum.png */; };
 		9AAFBC610F9C5D6800839888 /* ui_bucketoballz.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAFBC600F9C5D6800839888 /* ui_bucketoballz.png */; };
 		9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */; };
@@ -585,6 +586,8 @@
 		9AAD32DB0F9987E000CCA4FC /* flag.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = flag.pvr; path = Data/flag.pvr; sourceTree = "<group>"; };
 		9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGolfBall.h; path = Classes/RBGolfBall.h; sourceTree = "<group>"; };
 		9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBGolfBall.cpp; path = Classes/RBGolfBall.cpp; sourceTree = "<group>"; };
+		9AAEB0EE0FA562E7003562EA /* RBSwingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBSwingHelper.h; path = Classes/RBSwingHelper.h; sourceTree = "<group>"; };
+		9AAEB0EF0FA562E7003562EA /* RBSwingHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBSwingHelper.cpp; path = Classes/RBSwingHelper.cpp; sourceTree = "<group>"; };
 		9AAFBC010F9C4F2500839888 /* ui_trophy_platinum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_trophy_platinum.png; path = Data/ui_trophy_platinum.png; sourceTree = "<group>"; };
 		9AAFBC600F9C5D6800839888 /* ui_bucketoballz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_bucketoballz.png; path = Data/ui_bucketoballz.png; sourceTree = "<group>"; };
 		9AAFBCED0F9DA12D00839888 /* RBDecorators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBDecorators.h; path = Classes/RBDecorators.h; sourceTree = "<group>"; };
@@ -1260,6 +1263,8 @@
 				9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */,
 				9A8F410B0E80D26500C28D68 /* RBSwingControl.h */,
 				9A8F410C0E80D26500C28D68 /* RBSwingControl.cpp */,
+				9AAEB0EE0FA562E7003562EA /* RBSwingHelper.h */,
+				9AAEB0EF0FA562E7003562EA /* RBSwingHelper.cpp */,
 				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
 				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
 				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
@@ -2159,6 +2164,7 @@
 				9A5B4DA40F9C278100B6503A /* RBTourTracker.cpp in Sources */,
 				9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */,
 				9AD084E20FA43A9000022D3F /* RBCreditsControl.cpp in Sources */,
+				9AAEB0F00FA562E7003562EA /* RBSwingHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2228,7 +2234,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Golf;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5E69687C-C142-4AC7-9118-2FFA92CD1C85";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "23E77C4E-369A-4CB4-858D-93284FACBF35";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;

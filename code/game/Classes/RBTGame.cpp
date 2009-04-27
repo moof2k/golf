@@ -437,6 +437,7 @@ void RBTGame::SetState(eRBTGameState state)
 	{
 		case kStateTeePosition:
 			{
+				m_swingHelper.SetShortTimer(true);
 				m_curClub = 0;
 				NextClub(0);
 			}
@@ -498,6 +499,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateExecuteSwing:
 			{
+				m_swingHelper.SetEnabled(true);
 				m_terrain.SetEnablePuttingGreen(false);
 				m_swingControl.Reset();
 				m_swingHeight = 0.0f;
@@ -506,6 +508,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateWaitForSwing:
 			{
+				m_swingHelper.SetEnabled(false);
 			}
 			break;
 		case kStateHitBall:
@@ -1312,6 +1315,7 @@ void RBTGame::NextFrame(float delta)
 		case kStateExecuteSwing:
 			
 			m_swingControl.NextFrame(delta);
+			m_swingHelper.NextFrame(delta);
 			
 			if(m_swingControl.WillSwing())
 				SetState(kStateWaitForSwing);
@@ -1612,6 +1616,8 @@ void RBTGame::Render(float aspect)
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);
 	
+	
+	
 	if(gRenderUI)
 	{
 		
@@ -1644,12 +1650,14 @@ void RBTGame::Render(float aspect)
 				
 			case kStateExecuteSwing:
 			case kStateWaitForSwing:
+				m_swingHelper.Render();
 				m_botBarBg.Render();
 				m_moveButton.Render();
 				m_swingControl.Render();
 				m_clubButton.Render();
 				RenderShotInfo(false, true);
 				m_windText.Render();
+				
 				break;
 				
 			case kStateHitBall:
@@ -1777,6 +1785,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_menu.TouchDown(rbt);
 			break;
 		case kStateExecuteSwing:
+			m_swingHelper.SetEnabled(false);
 			m_swingControl.TouchDown(rbt);
 			m_moveButton.TouchDown(rbt);
 			break;

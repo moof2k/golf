@@ -27,6 +27,7 @@
 #include "RBGolfBall.h"
 #include "RBGolfPin.h"
 #include "RBSwingControl.h"
+#include "RBSwingHelper.h"
 #include "RBWindControl.h"
 #include "RBBallGuide.h"
 #include "RBGolferObject.h"
@@ -160,6 +161,7 @@ private:
 	RBBallGuide m_ballGuide;
 	RBSwingControl m_swingControl;
 	RBWindControl m_windControl;
+	RBSwingHelper m_swingHelper;
 	RudeButtonControl m_swingButton;
 	RudeButtonControl m_moveButton;
 	RudeButtonControl m_menuButton;
