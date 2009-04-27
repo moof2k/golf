@@ -10,7 +10,7 @@
 #ifndef __H_RudeTweaker
 #define __H_RudeTweaker
 
-//#define NO_RUDETWEAKER
+#define NO_RUDETWEAKER
 
 
 #ifndef NO_RUDETWEAKER
