@@ -15,6 +15,7 @@
 #include "RudeObject.h"
 #include "RudeSkybox.h"
 #include "RudeTextControl.h"
+#include "RudeButtonAnimControl.h"
 #include "RudeButtonControl.h"
 #include "RBKeyTracker.h"
 #include "RudeFont.h"
@@ -160,7 +161,7 @@ private:
 	RBBallGuide m_ballGuide;
 	RBSwingControl m_swingControl;
 	RBWindControl m_windControl;
-	RudeButtonControl m_swingButton;
+	RudeButtonAnimControl m_swingButton;
 	RudeButtonControl m_moveButton;
 	RudeButtonControl m_menuButton;
 	RudeControl m_swingCamAdjust;

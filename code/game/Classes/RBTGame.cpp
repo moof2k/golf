@@ -77,6 +77,18 @@ RUDE_TWEAK(WindForceMultiplier, kFloat, gWindForceMultiplier);
 
 const float kFollowTimerThreshold = 2.0f;
 
+
+tRudeButtonAnimKeyframe gSwingButtonAnimData[8] = {
+{ 5.0f, 0 },
+{ 0.1f, 1 },
+{ 0.07f, 2 },
+{ 0.05f, 3 },
+{ 0.05f, 0 },
+{ 0.1f, 1 },
+{ 0.07f, 2 },
+{ 0.05f, 3 },
+};
+
 RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers, bool restorestate)
 {	
 	m_result = kResultNone;
@@ -240,8 +252,25 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_swingControl.SetRect(RudeRect(0,0,400,320));
 	m_swingControl.SetGolfer(&m_golfer);
 	
+	// patch up swing button textures
 	
-	m_swingButton.SetTextures("ui_swing", "ui_swing");
+	int numframes = sizeof(gSwingButtonAnimData) / sizeof(tRudeButtonAnimKeyframe);
+	for(int i = 0; i < numframes; i++)
+	{
+		tRudeButtonAnimKeyframe *frame = &gSwingButtonAnimData[i];
+		
+		if(frame->m_texture == 0)
+			frame->m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ui_swing");
+		else if(frame->m_texture == 1)
+			frame->m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ui_swing_d");
+		else if(frame->m_texture == 2)
+			frame->m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ui_swing_c");
+		else if(frame->m_texture == 3)
+			frame->m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ui_swing_b");
+	}
+	
+	m_swingButton.SetTextureSize(64.0f);
+	m_swingButton.SetAnimData(gSwingButtonAnimData, numframes);
 	m_swingButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
 	
 	m_moveButton.SetTextures("ui_move", "ui_move");
@@ -443,6 +472,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing:
 			{
+				m_swingButton.ResetTimer();
+				
 				m_cameraButton.SetTextures("ui_camera_flag", "ui_camera_flag");
 				
 				m_golfer.SetReady();
@@ -1285,6 +1316,7 @@ void RBTGame::NextFrame(float delta)
 		case kStatePositionSwing:
 			StatePositionSwing(delta);
 			m_ballRecorder.NextFrame(delta, false);
+			m_swingButton.NextFrame(delta);
 			break;
 		case kStatePositionSwing2:
 			StatePositionSwing2(delta);

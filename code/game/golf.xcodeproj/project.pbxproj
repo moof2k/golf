@@ -36,6 +36,10 @@
 		9A3CA6DC0E751E9500BDBA8B /* RudePhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA6DB0E751E9500BDBA8B /* RudePhysicsObject.cpp */; };
 		9A3CA7130E751FE700BDBA8B /* RudePhysicsSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */; };
 		9A3CA7810E75265000BDBA8B /* ball_1.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3CA7800E75265000BDBA8B /* ball_1.POD */; };
+		9A4B114A0FA6C59400E53811 /* ui_swing_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11470FA6C59400E53811 /* ui_swing_b.png */; };
+		9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11480FA6C59400E53811 /* ui_swing_d.png */; };
+		9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11490FA6C59400E53811 /* ui_swing_c.png */; };
+		9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */; };
 		9A4B1F870F7A05A300E9DF39 /* ui_8iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */; };
 		9A4B1F880F7A05A300E9DF39 /* ui_clubnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */; };
 		9A4B1F890F7A05A300E9DF39 /* ui_5iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */; };
@@ -98,7 +102,6 @@
 		9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */; };
 		9A7401900E6FDF24008490F7 /* testtexture.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A74018F0E6FDF24008490F7 /* testtexture.pvr */; };
 		9A74FFB20E6E934B008490F7 /* RudeText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74FFB10E6E934B008490F7 /* RudeText.cpp */; };
-		9A755FAD0FA539C400A5551D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 9A755FAC0FA539C400A5551D /* iTunesArtwork */; };
 		9A776D4C0EABD74F00196CA0 /* RBTRound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */; };
 		9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */; };
 		9A776D670EABD92200196CA0 /* RBScoreControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D660EABD92200196CA0 /* RBScoreControl.cpp */; };
@@ -394,6 +397,11 @@
 		9A3CA7110E751FE700BDBA8B /* RudePhysicsSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsSphere.h; path = Classes/RudePhysicsSphere.h; sourceTree = "<group>"; };
 		9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsSphere.cpp; path = Classes/RudePhysicsSphere.cpp; sourceTree = "<group>"; };
 		9A3CA7800E75265000BDBA8B /* ball_1.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball_1.POD; path = Data/ball_1.POD; sourceTree = "<group>"; };
+		9A4B11470FA6C59400E53811 /* ui_swing_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_b.png; path = Data/ui_swing_b.png; sourceTree = "<group>"; };
+		9A4B11480FA6C59400E53811 /* ui_swing_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_d.png; path = Data/ui_swing_d.png; sourceTree = "<group>"; };
+		9A4B11490FA6C59400E53811 /* ui_swing_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_c.png; path = Data/ui_swing_c.png; sourceTree = "<group>"; };
+		9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonAnimControl.h; path = Classes/RudeButtonAnimControl.h; sourceTree = "<group>"; };
+		9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonAnimControl.cpp; path = Classes/RudeButtonAnimControl.cpp; sourceTree = "<group>"; };
 		9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_8iron.png; path = Data/ui_8iron.png; sourceTree = "<group>"; };
 		9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_clubnext.png; path = Data/ui_clubnext.png; sourceTree = "<group>"; };
 		9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_5iron.png; path = Data/ui_5iron.png; sourceTree = "<group>"; };
@@ -464,7 +472,6 @@
 		9A74018F0E6FDF24008490F7 /* testtexture.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = testtexture.pvr; path = Data/testtexture.pvr; sourceTree = "<group>"; };
 		9A74FFB00E6E934B008490F7 /* RudeText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeText.h; path = Classes/RudeText.h; sourceTree = "<group>"; };
 		9A74FFB10E6E934B008490F7 /* RudeText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeText.cpp; path = Classes/RudeText.cpp; sourceTree = "<group>"; };
-		9A755FAC0FA539C400A5551D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Data/iTunesArtwork; sourceTree = "<group>"; };
 		9A776D4A0EABD74F00196CA0 /* RBTRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTRound.h; path = Classes/RBTRound.h; sourceTree = "<group>"; };
 		9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTRound.cpp; path = Classes/RBTRound.cpp; sourceTree = "<group>"; };
 		9A776D4E0EABD76600196CA0 /* RudeTextControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextControl.h; path = Classes/RudeTextControl.h; sourceTree = "<group>"; };
@@ -1018,7 +1025,6 @@
 				9A4F1DB30E879398001D1F0B /* sound */,
 				1BF0DBA10DDCF72400C6466A /* en.lproj */,
 				1B76A63E0DCBB4F3003B05F2 /* Icon.png */,
-				9A755FAC0FA539C400A5551D /* iTunesArtwork */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				9AA8B5C40FA5361E00F18796 /* Entitlements.plist */,
 				9ADC5A320E63EB84004C82A2 /* Default.png */,
@@ -1209,6 +1215,8 @@
 				9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */,
 				9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */,
 				9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */,
+				9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */,
+				9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */,
 				9A776D4E0EABD76600196CA0 /* RudeTextControl.h */,
 				9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */,
 				9AFF31320E9D9DE80078E211 /* RudeFont.h */,
@@ -1670,6 +1678,9 @@
 				9A4B1F7E0F7A05A300E9DF39 /* ui_3wood.png */,
 				9A4B1F7F0F7A05A300E9DF39 /* ui_menu.png */,
 				9A4B1F800F7A05A300E9DF39 /* ui_swing.png */,
+				9A4B11470FA6C59400E53811 /* ui_swing_b.png */,
+				9A4B11480FA6C59400E53811 /* ui_swing_d.png */,
+				9A4B11490FA6C59400E53811 /* ui_swing_c.png */,
 				9A4B1F810F7A05A300E9DF39 /* ui_5wood.png */,
 				9A4B1F820F7A05A300E9DF39 /* ui_move.png */,
 				9A4B1F830F7A05A300E9DF39 /* ui_pw.png */,
@@ -1966,7 +1977,9 @@
 				467A3FC10FA2FDD000061905 /* driving_range.deco in Resources */,
 				4693801A0FA3B2010014A3CE /* driving_range_signs.pvr in Resources */,
 				9AA8B5C50FA5361E00F18796 /* Entitlements.plist in Resources */,
-				9A755FAD0FA539C400A5551D /* iTunesArtwork in Resources */,
+				9A4B114A0FA6C59400E53811 /* ui_swing_b.png in Resources */,
+				9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */,
+				9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2165,6 +2178,7 @@
 				9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */,
 				9AD084E20FA43A9000022D3F /* RBCreditsControl.cpp in Sources */,
 				9AAEB0F00FA562E7003562EA /* RBSwingHelper.cpp in Sources */,
+				9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
