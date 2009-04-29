@@ -34,6 +34,8 @@ RBGame::RBGame()
 	m_game = 0;
 	m_course = 0;
 
+	m_tutorial = NULL;
+	m_uiTitle = NULL;
 	m_rbt = NULL;
 
 	m_keymap = RBKeyMap::getInstance();
@@ -62,7 +64,7 @@ void RBGame::Init()
 
 	m_uiTitle = new RBUITitle();
 	m_rbt = new RBTRound();
-
+	m_tutorial = new RBUITutorial();
 	
 	if(LoadState() != 0)
 		SetState(kGameTitle);
@@ -88,6 +90,10 @@ int RBGame::LoadState()
 	if(reg->QueryByte("GOLF", "GS_GAME_STATE", &load, &loadsize) == 0)
 	{
 		m_course = load.course;
+		
+		if(load.state == kGameTutorial)
+			load.state = kGameTitle;
+		
 		SetState(load.state);
 		
 		if(load.state == kGameRBT)
@@ -145,10 +151,20 @@ void RBGame::SetState(eGameState state)
 			m_game = m_uiTitle;
 			break;
 		case kGameRBT:
+		{
 			int course = m_uiTitle->GetCourseSelection();
 			m_rbt->Reset();
 			m_rbt->SetCourse(course);
 			m_game = m_rbt;
+		}
+			break;
+		case kGameTutorial:
+		{
+			int course = m_uiTitle->GetCourseSelection();
+			m_tutorial->Reset();
+			m_tutorial->SetCourse(course);
+			m_game = m_tutorial;
+		}
 			break;
 	}
 	
@@ -180,12 +196,18 @@ void RBGame::Render(float delta, float aspect)
 		case kGameTitle:
 			
 			if(m_uiTitle->Done())
-				SetState(kGameRBT);
+				SetState(kGameTutorial);
 			break;
 		case kGameRBT:
 
 			if(m_rbt->Done())
 				SetState(kGameTitle);
+			break;
+			
+		case kGameTutorial:
+			
+			if(m_tutorial->Done())
+				SetState(kGameRBT);
 			break;
 
 	}

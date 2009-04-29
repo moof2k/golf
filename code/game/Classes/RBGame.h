@@ -17,6 +17,7 @@
 
 #include "RBTRound.h"
 #include "RBUITitle.h"
+#include "RBUITutorial.h"
 
 #include "RBTourTracker.h"
 
@@ -25,6 +26,7 @@ typedef enum {
 	kGameIntroLogo = 1,
 	kGameTitle,
 	kGameRBT,
+	kGameTutorial,
 	
 } eGameState;
 
@@ -79,6 +81,7 @@ private:
 
 	RBTRound	*m_rbt;
 	RBUITitle	*m_uiTitle;
+	RBUITutorial *m_tutorial;
 
 	RBKeyMap	*m_keymap;
 	

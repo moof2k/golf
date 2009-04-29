@@ -27,6 +27,7 @@ RudeTexture::RudeTexture()
 
 RudeTexture::~RudeTexture()
 {
+	glDeleteTextures(1, &m_texture);
 }
 
 int RudeTexture::LoadFromPVRTFile(const char *name)

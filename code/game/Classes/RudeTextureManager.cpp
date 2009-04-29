@@ -114,4 +114,22 @@ int RudeTextureManager::LoadTextureFromPNGFile(const char *name)
 	return m_textures.size() - 1;
 }
 
+void RudeTextureManager::ReleaseTexture(int id)
+{
+	RUDE_ASSERT(id >= 0, "Invalid texture");
+	RUDE_ASSERT(id < m_textures.size(), "Invalid texture");
+	
+	RudeTexture *tex = m_textures[id];
+	
+	RUDE_ASSERT(tex, "Invalid texture");
+	
+	delete tex;
+	m_textures[id] = 0;
+	
+	m_textures.erase(m_textures.begin() + id);
+	
+}
+
+
+
 

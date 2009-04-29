@@ -19,6 +19,8 @@ public:
 	int LoadTextureFromPVRTPointer(const char *name, const void *data);
 	int LoadTextureFromPNGFile(const char *name);
 	
+	void ReleaseTexture(int id);
+	
 	RudeTexture * GetTexture(int id)
 	{
 		RUDE_ASSERT(id >= 0, "Invalid id");

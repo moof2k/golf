@@ -40,6 +40,13 @@
 		9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11480FA6C59400E53811 /* ui_swing_d.png */; };
 		9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11490FA6C59400E53811 /* ui_swing_c.png */; };
 		9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */; };
+		9A4B11DC0FA8231300E53811 /* tutorial_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11D70FA8231300E53811 /* tutorial_a.png */; };
+		9A4B11DD0FA8231300E53811 /* tutorial_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11D80FA8231300E53811 /* tutorial_c.png */; };
+		9A4B11DE0FA8231300E53811 /* tutorial_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11D90FA8231300E53811 /* tutorial_b.png */; };
+		9A4B11DF0FA8231300E53811 /* tutorial_e.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11DA0FA8231300E53811 /* tutorial_e.png */; };
+		9A4B11E00FA8231300E53811 /* tutorial_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11DB0FA8231300E53811 /* tutorial_d.png */; };
+		9A4B11E40FA8248E00E53811 /* RBUITutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */; };
+		9A4B120E0FA8391200E53811 /* tutorial_f.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B120D0FA8391200E53811 /* tutorial_f.png */; };
 		9A4B1F870F7A05A300E9DF39 /* ui_8iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */; };
 		9A4B1F880F7A05A300E9DF39 /* ui_clubnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */; };
 		9A4B1F890F7A05A300E9DF39 /* ui_5iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */; };
@@ -402,6 +409,14 @@
 		9A4B11490FA6C59400E53811 /* ui_swing_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_c.png; path = Data/ui_swing_c.png; sourceTree = "<group>"; };
 		9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonAnimControl.h; path = Classes/RudeButtonAnimControl.h; sourceTree = "<group>"; };
 		9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonAnimControl.cpp; path = Classes/RudeButtonAnimControl.cpp; sourceTree = "<group>"; };
+		9A4B11D70FA8231300E53811 /* tutorial_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_a.png; path = Data/tutorial_a.png; sourceTree = "<group>"; };
+		9A4B11D80FA8231300E53811 /* tutorial_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_c.png; path = Data/tutorial_c.png; sourceTree = "<group>"; };
+		9A4B11D90FA8231300E53811 /* tutorial_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_b.png; path = Data/tutorial_b.png; sourceTree = "<group>"; };
+		9A4B11DA0FA8231300E53811 /* tutorial_e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_e.png; path = Data/tutorial_e.png; sourceTree = "<group>"; };
+		9A4B11DB0FA8231300E53811 /* tutorial_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_d.png; path = Data/tutorial_d.png; sourceTree = "<group>"; };
+		9A4B11E20FA8248E00E53811 /* RBUITutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITutorial.h; path = Classes/RBUITutorial.h; sourceTree = "<group>"; };
+		9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITutorial.cpp; path = Classes/RBUITutorial.cpp; sourceTree = "<group>"; };
+		9A4B120D0FA8391200E53811 /* tutorial_f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_f.png; path = Data/tutorial_f.png; sourceTree = "<group>"; };
 		9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_8iron.png; path = Data/ui_8iron.png; sourceTree = "<group>"; };
 		9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_clubnext.png; path = Data/ui_clubnext.png; sourceTree = "<group>"; };
 		9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_5iron.png; path = Data/ui_5iron.png; sourceTree = "<group>"; };
@@ -1273,12 +1288,6 @@
 				9A8F410C0E80D26500C28D68 /* RBSwingControl.cpp */,
 				9AAEB0EE0FA562E7003562EA /* RBSwingHelper.h */,
 				9AAEB0EF0FA562E7003562EA /* RBSwingHelper.cpp */,
-				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
-				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
-				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
-				9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */,
-				9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */,
-				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
 				9ACA19D80EBADDC40014C128 /* RBWindControl.h */,
 				9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */,
 				9A5B4DA20F9C278100B6503A /* RBTourTracker.h */,
@@ -1287,6 +1296,14 @@
 				9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */,
 				9AD084E00FA43A9000022D3F /* RBCreditsControl.h */,
 				9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */,
+				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
+				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
+				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
+				9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */,
+				9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */,
+				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
+				9A4B11E20FA8248E00E53811 /* RBUITutorial.h */,
+				9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -1660,6 +1677,12 @@
 				9AA93E430E838FB900F6FBD8 /* hole.png */,
 				9A776EF50EAC5F3700196CA0 /* ring.png */,
 				9A9D64D00EB98E9F003985A4 /* coursebg.png */,
+				9A4B11D70FA8231300E53811 /* tutorial_a.png */,
+				9A4B11D80FA8231300E53811 /* tutorial_c.png */,
+				9A4B11D90FA8231300E53811 /* tutorial_b.png */,
+				9A4B11DA0FA8231300E53811 /* tutorial_e.png */,
+				9A4B11DB0FA8231300E53811 /* tutorial_d.png */,
+				9A4B120D0FA8391200E53811 /* tutorial_f.png */,
 				9A5B4EB50F9C441C00B6503A /* coursebg_locked.png */,
 				9AAD316B0F959E4800CCA4FC /* ui_ccc_medallion.png */,
 				9A5B4E420F9C34B600B6503A /* ui_ccc_medallion_128.png */,
@@ -1980,6 +2003,12 @@
 				9A4B114A0FA6C59400E53811 /* ui_swing_b.png in Resources */,
 				9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */,
 				9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */,
+				9A4B11DC0FA8231300E53811 /* tutorial_a.png in Resources */,
+				9A4B11DD0FA8231300E53811 /* tutorial_c.png in Resources */,
+				9A4B11DE0FA8231300E53811 /* tutorial_b.png in Resources */,
+				9A4B11DF0FA8231300E53811 /* tutorial_e.png in Resources */,
+				9A4B11E00FA8231300E53811 /* tutorial_d.png in Resources */,
+				9A4B120E0FA8391200E53811 /* tutorial_f.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2179,6 +2208,7 @@
 				9AD084E20FA43A9000022D3F /* RBCreditsControl.cpp in Sources */,
 				9AAEB0F00FA562E7003562EA /* RBSwingHelper.cpp in Sources */,
 				9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */,
+				9A4B11E40FA8248E00E53811 /* RBUITutorial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
