@@ -36,9 +36,6 @@ public:
 	void Render(float aspect);
 	
 	bool TouchDown();
-	
-	void Enable(bool enable) { m_enabled = enable; }
-	bool Enabled() { return m_enabled; }
 
 private:
 	
@@ -53,7 +50,6 @@ private:
 	int m_helpNumber;
 	
 	bool m_done;
-	bool m_enabled;
 	
 };
 
