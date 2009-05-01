@@ -10,18 +10,39 @@
 #include "RBUIHelp.h"
 
 #include "RudeGL.h"
+#include "RudeFont.h"
 #include "RudeSound.h"
 #include "RudeTextureManager.h"
 
 typedef struct {
-	int m_numTextures;
-	const char *m_textureNames[3];
-} tHelpTexInfo;
+	const char *m_text;
+	int m_align;
+	float m_x, m_y;
+} tHelpText;
 
-tHelpTexInfo kHelpTexInfos[kNumHelpModes] = {
-	{ 1, { "help_a" } },
-	{ 1, { "help_b" } },
-	{ 2, { "help_c", "help_d" } },
+typedef struct {
+	const char *m_textureName;
+	int m_numTexts;
+	tHelpText m_texts[3];
+	
+} tHelpPage;
+
+typedef struct {
+	int m_numPages;
+	tHelpPage m_pages[2];
+} tHelpPageInfo;
+
+tHelpPageInfo kHelpPageInfos[kNumHelpModes] = {
+{ 1, { "help_a", 3, {
+	{ "Aim", FONT_ALIGN_CENTER, 160, 270 }, 
+	{ "Press", FONT_ALIGN_RIGHT, 310, 375 }, 
+	{ "to Swing", FONT_ALIGN_RIGHT, 310, 400 }
+	} } },
+{ 1, { "help_b", 2, {
+	{ "Rotate", FONT_ALIGN_CENTER, 160, 350 }, 
+	{ "Zoom", FONT_ALIGN_RIGHT, 280, 180 }, 
+	} } },
+{ 2, {{ "help_c", 0, 0 }, { "help_d", 0, 0 }} },
 };
 
 RBUIHelp::RBUIHelp()
@@ -47,9 +68,9 @@ void RBUIHelp::SetHelpMode(eHelpMode mode)
 	
 	m_mode = mode;
 	m_helpNumber = 0;
-	RUDE_ASSERT(kHelpTexInfos[mode].m_numTextures > 0, "Invalid number of textures for help");
+	RUDE_ASSERT(kHelpPageInfos[mode].m_numPages > 0, "Invalid number of pages for help");
 	
-	LoadTexture(kHelpTexInfos[mode].m_textureNames[0]);
+	LoadTexture(kHelpPageInfos[mode].m_pages[0].m_textureName);
 	
 	m_bgTimer = 0.0f;
 }
@@ -68,7 +89,7 @@ void RBUIHelp::NextHelp()
 {
 	m_helpNumber++;
 	
-	if(m_helpNumber >= kHelpTexInfos[m_mode].m_numTextures)
+	if(m_helpNumber >= kHelpPageInfos[m_mode].m_numPages)
 	{
 		if(m_helpTexture >= 0)
 		{
@@ -79,7 +100,7 @@ void RBUIHelp::NextHelp()
 		m_done = true;
 	}
 	else
-		LoadTexture(kHelpTexInfos[m_mode].m_textureNames[m_helpNumber]);
+		LoadTexture(kHelpPageInfos[m_mode].m_pages[m_helpNumber].m_textureName);
 }
 
 void RBUIHelp::NextFrame(float delta)
@@ -150,6 +171,18 @@ void RBUIHelp::Render(float aspect)
 		glColorPointer(4, GL_FLOAT, 0, colors);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
+	}
+	
+	for(int i = 0; i < kHelpPageInfos[m_mode].m_pages[m_helpNumber].m_numTexts; i++)
+	{
+		tHelpText *helpText = &kHelpPageInfos[m_mode].m_pages[m_helpNumber].m_texts[i];
+		
+		if(helpText)
+		{
+			RudeFontManager::GetFont(kBigFontOutline)->Write(helpText->m_x, helpText->m_y, 0.0f, helpText->m_text, 0, helpText->m_align, 0xFF000000, 0xFF000000);
+			RudeFontManager::GetFont(kBigFont)->Write(helpText->m_x, helpText->m_y, 0.0f, helpText->m_text, 0, helpText->m_align, 0xFFFFFFFF, 0xFFFFE9CA);
+			
+		}
 	}
 }
 
