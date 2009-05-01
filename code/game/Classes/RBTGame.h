@@ -212,6 +212,7 @@ private:
 	float m_stopTimer;
 	float m_encouragementTimer;
 	float m_oobTimer;
+	float m_helpTimer;
 	
 	float m_windDir;
 	float m_windSpeed;

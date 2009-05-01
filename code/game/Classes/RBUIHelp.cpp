@@ -28,6 +28,7 @@ RBUIHelp::RBUIHelp()
 : m_helpTexture(-1)
 , m_bgTimer(0.0f)
 , m_done(true)
+, m_enabled(false)
 {
 	m_done = true;
 }
@@ -94,6 +95,8 @@ void RBUIHelp::Render(float aspect)
 {
 	if(m_done)
 		return;
+	
+	RGL.LoadIdentity();
 	
 	{
 		float alpha = 8.0f * m_bgTimer * 0.5f;
@@ -162,5 +165,3 @@ bool RBUIHelp::TouchDown()
 	
 	return false;
 }
-
-
