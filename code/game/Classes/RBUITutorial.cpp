@@ -76,12 +76,12 @@ void RBUITutorial::NextFrame(float delta)
 		{
 			if(m_texture >= 0)
 			{
-				RUDE_REPORT("Tutorial releasing %d\n", m_texture);
-				RudeTextureManager::GetInstance()->ReleaseTexture(m_texture);
-				m_texture = -1;
+				m_texture = RudeTextureManager::GetInstance()->ReplaceTextureFromPNGFile(m_texture, kTutorialImages[m_curImage]);
 			}
-			
-			m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile(kTutorialImages[m_curImage]);
+			else
+			{
+				m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile(kTutorialImages[m_curImage]);
+			}
 		}
 	}
 	

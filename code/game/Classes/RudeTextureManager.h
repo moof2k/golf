@@ -19,12 +19,15 @@ public:
 	int LoadTextureFromPVRTPointer(const char *name, const void *data);
 	int LoadTextureFromPNGFile(const char *name);
 	
-	void ReleaseTexture(int id);
+	void ReleaseTexture(int texid);
+	
+	int ReplaceTextureFromPNGFile(int texid, const char *name);
 	
 	RudeTexture * GetTexture(int id)
 	{
 		RUDE_ASSERT(id >= 0, "Invalid id");
 		RUDE_ASSERT(id < m_textures.size(), "Invalid id");
+		RUDE_ASSERT(m_textures[id], "Invalid texture");
 		
 		return m_textures[id];
 	}
@@ -38,6 +41,8 @@ public:
 	}
 	
 private:
+	
+	int InsertTexture(RudeTexture *texture);
 	
 	std::vector<RudeTexture *> m_textures;
 	

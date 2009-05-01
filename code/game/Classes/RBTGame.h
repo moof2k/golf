@@ -36,6 +36,7 @@
 #include "RBScoreControl.h"
 #include "RBScoreTracker.h"
 #include "RBCourseData.h"
+#include "RBUIHelp.h"
 #include "RBUIMenu.h"
 
 
@@ -142,6 +143,7 @@ private:
 	
 	
 	RBUIMenu m_menu;
+	RBUIHelp m_help;
 	
 	eRBTGameState m_state;
 	eGameResult m_result;
@@ -178,6 +180,7 @@ private:
 	RudeButtonControl m_prevClubButton;
 	RudeButtonControl m_clubButton;
 	RudeButtonControl m_cameraButton;
+	RudeButtonControl m_helpButton;
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	

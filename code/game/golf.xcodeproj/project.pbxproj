@@ -47,6 +47,12 @@
 		9A4B11E00FA8231300E53811 /* tutorial_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11DB0FA8231300E53811 /* tutorial_d.png */; };
 		9A4B11E40FA8248E00E53811 /* RBUITutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */; };
 		9A4B120E0FA8391200E53811 /* tutorial_f.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B120D0FA8391200E53811 /* tutorial_f.png */; };
+		9A4B12780FAAC44A00E53811 /* RBUIHelp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B12770FAAC44A00E53811 /* RBUIHelp.cpp */; };
+		9A4B12840FAAC94800E53811 /* help_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B12800FAAC94800E53811 /* help_d.png */; };
+		9A4B12850FAAC94800E53811 /* help_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B12810FAAC94800E53811 /* help_a.png */; };
+		9A4B12860FAAC94800E53811 /* help_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B12820FAAC94800E53811 /* help_c.png */; };
+		9A4B12870FAAC94800E53811 /* help_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B12830FAAC94800E53811 /* help_b.png */; };
+		9A4B12890FAAC95800E53811 /* ui_help_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B12880FAAC95800E53811 /* ui_help_button.png */; };
 		9A4B1F870F7A05A300E9DF39 /* ui_8iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */; };
 		9A4B1F880F7A05A300E9DF39 /* ui_clubnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */; };
 		9A4B1F890F7A05A300E9DF39 /* ui_5iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */; };
@@ -417,6 +423,13 @@
 		9A4B11E20FA8248E00E53811 /* RBUITutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITutorial.h; path = Classes/RBUITutorial.h; sourceTree = "<group>"; };
 		9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITutorial.cpp; path = Classes/RBUITutorial.cpp; sourceTree = "<group>"; };
 		9A4B120D0FA8391200E53811 /* tutorial_f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tutorial_f.png; path = Data/tutorial_f.png; sourceTree = "<group>"; };
+		9A4B12760FAAC44A00E53811 /* RBUIHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUIHelp.h; path = Classes/RBUIHelp.h; sourceTree = "<group>"; };
+		9A4B12770FAAC44A00E53811 /* RBUIHelp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUIHelp.cpp; path = Classes/RBUIHelp.cpp; sourceTree = "<group>"; };
+		9A4B12800FAAC94800E53811 /* help_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_d.png; path = Data/help_d.png; sourceTree = "<group>"; };
+		9A4B12810FAAC94800E53811 /* help_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_a.png; path = Data/help_a.png; sourceTree = "<group>"; };
+		9A4B12820FAAC94800E53811 /* help_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_c.png; path = Data/help_c.png; sourceTree = "<group>"; };
+		9A4B12830FAAC94800E53811 /* help_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_b.png; path = Data/help_b.png; sourceTree = "<group>"; };
+		9A4B12880FAAC95800E53811 /* ui_help_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_help_button.png; path = Data/ui_help_button.png; sourceTree = "<group>"; };
 		9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_8iron.png; path = Data/ui_8iron.png; sourceTree = "<group>"; };
 		9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_clubnext.png; path = Data/ui_clubnext.png; sourceTree = "<group>"; };
 		9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_5iron.png; path = Data/ui_5iron.png; sourceTree = "<group>"; };
@@ -1304,6 +1317,8 @@
 				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
 				9A4B11E20FA8248E00E53811 /* RBUITutorial.h */,
 				9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */,
+				9A4B12760FAAC44A00E53811 /* RBUIHelp.h */,
+				9A4B12770FAAC44A00E53811 /* RBUIHelp.cpp */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -1683,12 +1698,17 @@
 				9A4B11DA0FA8231300E53811 /* tutorial_e.png */,
 				9A4B11DB0FA8231300E53811 /* tutorial_d.png */,
 				9A4B120D0FA8391200E53811 /* tutorial_f.png */,
+				9A4B12800FAAC94800E53811 /* help_d.png */,
+				9A4B12810FAAC94800E53811 /* help_a.png */,
+				9A4B12820FAAC94800E53811 /* help_c.png */,
+				9A4B12830FAAC94800E53811 /* help_b.png */,
 				9A5B4EB50F9C441C00B6503A /* coursebg_locked.png */,
 				9AAD316B0F959E4800CCA4FC /* ui_ccc_medallion.png */,
 				9A5B4E420F9C34B600B6503A /* ui_ccc_medallion_128.png */,
 				9AAFBC600F9C5D6800839888 /* ui_bucketoballz.png */,
 				9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */,
 				9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */,
+				9A4B12880FAAC95800E53811 /* ui_help_button.png */,
 				9A4B1F760F7A05A300E9DF39 /* ui_5iron.png */,
 				9A4B1F770F7A05A300E9DF39 /* ui_9iron.png */,
 				9A4B1F780F7A05A300E9DF39 /* ui_3iron.png */,
@@ -2009,6 +2029,11 @@
 				9A4B11DF0FA8231300E53811 /* tutorial_e.png in Resources */,
 				9A4B11E00FA8231300E53811 /* tutorial_d.png in Resources */,
 				9A4B120E0FA8391200E53811 /* tutorial_f.png in Resources */,
+				9A4B12840FAAC94800E53811 /* help_d.png in Resources */,
+				9A4B12850FAAC94800E53811 /* help_a.png in Resources */,
+				9A4B12860FAAC94800E53811 /* help_c.png in Resources */,
+				9A4B12870FAAC94800E53811 /* help_b.png in Resources */,
+				9A4B12890FAAC95800E53811 /* ui_help_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2209,6 +2234,7 @@
 				9AAEB0F00FA562E7003562EA /* RBSwingHelper.cpp in Sources */,
 				9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */,
 				9A4B11E40FA8248E00E53811 /* RBUITutorial.cpp in Sources */,
+				9A4B12780FAAC44A00E53811 /* RBUIHelp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

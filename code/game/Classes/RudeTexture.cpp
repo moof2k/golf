@@ -20,14 +20,18 @@
 RudeTexture::RudeTexture()
 : m_height(0)
 , m_width(0)
-, m_texture(0)
+, m_texture(-1)
 {
 	m_name[0] = '\0';
 }
 
 RudeTexture::~RudeTexture()
 {
-	glDeleteTextures(1, &m_texture);
+	if(m_texture >= 0)
+	{
+		glDeleteTextures(1, &m_texture);
+		m_texture = -1;
+	}
 }
 
 int RudeTexture::LoadFromPVRTFile(const char *name)
@@ -75,6 +79,9 @@ int RudeTexture::LoadFromPVRTPointer(const char *name, const void *data)
 
 int RudeTexture::LoadFromPNG(const char *name)
 {	
+	// flush glGetError
+	glGetError();
+	
 	int result = -1;
 	
 	strncpy(m_name, name, kNameLen);
@@ -103,6 +110,7 @@ int RudeTexture::LoadFromPNG(const char *name)
 	m_height = CGImageGetHeight(image);
 	
 	GLubyte *imageData = (GLubyte *) malloc(m_width * m_height * 4);
+	RUDE_ASSERT(imageData, "Failed to allocate space for texture storage");
 	
 	CGContextRef imageContext = CGBitmapContextCreate(imageData, m_width, m_height, 8, m_width * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
 	CGContextDrawImage(imageContext, CGRectMake(0.0, 0.0, (CGFloat) m_width, (CGFloat) m_height), image);
@@ -110,7 +118,12 @@ int RudeTexture::LoadFromPNG(const char *name)
 	
 	
 	glGenTextures(1, &m_texture);
+	RUDE_ASSERT(m_texture >= 0, "Failed to gen texture");
+	
 	glBindTexture(GL_TEXTURE_2D, m_texture);
+	
+	int error = glGetError();
+	RUDE_ASSERT(error == 0, "glBindTexture failed on texture id %d (%s), error=%x", m_texture, name, error);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 	free(imageData);
 	

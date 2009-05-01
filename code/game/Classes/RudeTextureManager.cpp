@@ -24,14 +24,17 @@ RudeTextureManager::~RudeTextureManager()
 
 int RudeTextureManager::GetTextureID(const char *name)
 {
-	int s = m_textures.size();
+	unsigned int s = m_textures.size();
 	
-	for(int i = 0; i < s; i++)
+	for(unsigned int i = 0; i < s; i++)
 	{
-		const char *texname = m_textures[i]->GetName();
-		
-		if(strcmp(name, texname) == 0)
-			return i;
+		if(m_textures[i])
+		{
+			const char *texname = m_textures[i]->GetName();
+			
+			if(strcmp(name, texname) == 0)
+				return i;
+		}
 	}
 	
 	return -1;
@@ -57,9 +60,7 @@ int RudeTextureManager::LoadTextureFromPVRTFile(const char *name)
 		return result;
 	}
 	
-	m_textures.push_back(tex);
-	
-	return m_textures.size() - 1;
+	return InsertTexture(tex);
 }
 
 
@@ -82,9 +83,7 @@ int RudeTextureManager::LoadTextureFromPVRTPointer(const char *name, const void 
 		return result;
 	}
 	
-	m_textures.push_back(tex);
-	
-	return m_textures.size() - 1;
+	return InsertTexture(tex);
 }
 
 
@@ -109,27 +108,49 @@ int RudeTextureManager::LoadTextureFromPNGFile(const char *name)
 		return result;
 	}
 	
-	m_textures.push_back(tex);
+	return InsertTexture(tex);
+}
+
+int RudeTextureManager::ReplaceTextureFromPNGFile(int texid, const char *name)
+{
+	RUDE_ASSERT(name, "Invalid texture name");
+	RUDE_ASSERT(texid >= 0, "Invalid id");
+	RUDE_ASSERT(texid < m_textures.size(), "Invalid id");
+	RUDE_ASSERT(m_textures[texid], "Invalid texture");
 	
+	m_textures[texid]->LoadFromPNG(name);
+	
+	return texid;
+	
+}
+
+void RudeTextureManager::ReleaseTexture(int texid)
+{
+	RUDE_ASSERT(texid >= 0, "Invalid id");
+	RUDE_ASSERT(texid < m_textures.size(), "Invalid id");
+	
+	if(m_textures[texid])
+	{
+		delete m_textures[texid];
+		m_textures[texid] = 0;
+	}
+}
+
+int RudeTextureManager::InsertTexture(RudeTexture *texture)
+{
+	unsigned int size = m_textures.size();
+	for(unsigned int i = 0; i < size; i++)
+	{
+		if(m_textures[i] == 0)
+		{
+			m_textures[i] = texture;
+			return i;
+		}
+	}
+	
+	m_textures.push_back(texture);	
 	return m_textures.size() - 1;
 }
-
-void RudeTextureManager::ReleaseTexture(int id)
-{
-	RUDE_ASSERT(id >= 0, "Invalid texture");
-	RUDE_ASSERT(id < m_textures.size(), "Invalid texture");
-	
-	RudeTexture *tex = m_textures[id];
-	
-	RUDE_ASSERT(tex, "Invalid texture");
-	
-	delete tex;
-	m_textures[id] = 0;
-	
-	m_textures.erase(m_textures.begin() + id);
-	
-}
-
 
 
 
