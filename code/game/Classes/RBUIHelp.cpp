@@ -33,16 +33,16 @@ typedef struct {
 } tHelpPageInfo;
 
 tHelpPageInfo kHelpPageInfos[kNumHelpModes] = {
-{ 1, { "help_a", 3, {
-	{ "Aim", FONT_ALIGN_CENTER, 160, 270 }, 
+{ 1, { "help_a_256", 3, {
+	{ "Aim", FONT_ALIGN_CENTER, 160, 192 }, 
 	{ "Press", FONT_ALIGN_RIGHT, 310, 375 }, 
 	{ "to Swing", FONT_ALIGN_RIGHT, 310, 400 }
 	} } },
-{ 1, { "help_b", 2, {
+{ 1, { "help_b_256", 2, {
 	{ "Rotate", FONT_ALIGN_CENTER, 160, 350 }, 
-	{ "Zoom", FONT_ALIGN_RIGHT, 280, 180 }, 
+	{ "Zoom", FONT_ALIGN_RIGHT, 280, 240 }, 
 	} } },
-{ 2, {{ "help_c", 0, 0 }, { "help_d", 0, 0 }} },
+{ 2, {{ "help_c_256", 0, 0 }, { "help_d_256", 0, 0 }} },
 };
 
 RBUIHelp::RBUIHelp()
@@ -129,7 +129,7 @@ void RBUIHelp::Render(float aspect)
 			1, 1, 1, alpha,
 		};
 		
-		const float size = 512.0f;
+		const float size = 256.0f;
 		const float halfsize = size / 2.0f;
 		
 		int xc = 160;
