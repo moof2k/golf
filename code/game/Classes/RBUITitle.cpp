@@ -417,9 +417,12 @@ void RBUITitle::SetState(eTitleState state)
 			m_logo.SetTranslation(btVector3(400,0,0));
 			m_startText.SetTranslation(btVector3(400,0,0));
 			m_practiceText.SetTranslation(btVector3(400,0,0));
+			m_settingsText.SetTranslation(btVector3(400,0,0));
+			
 			m_logo.SetDesiredTranslation(btVector3(400,0,0));
 			m_startText.SetDesiredTranslation(btVector3(400,0,0));
 			m_practiceText.SetDesiredTranslation(btVector3(400,0,0));
+			m_settingsText.SetDesiredTranslation(btVector3(400,0,0));
 			
 			m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
 			m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
