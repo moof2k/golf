@@ -91,7 +91,7 @@ RUDE_TWEAK(MatGreenMinVelocity, kFloat, gMaterialInfos[kGreen].m_minVelocity);
 
 RBTerrain::RBTerrain()
 : m_hole(0,0,0)
-, m_greenNode(0)
+, m_greenNode(-1)
 , m_guidePoint(0,0,0)
 , m_ballInHole(false)
 , m_isPutting(false)
@@ -166,6 +166,8 @@ void RBTerrain::LoadMaterials()
 	
 	CPVRTPODScene *scene = mesh->GetModel();
 	
+	bool foundgreen = false;
+	
 	for(int i = 0; i < scene->nNumNode; i++)
 	{
 		SPODNode *node = &scene->pNode[i];
@@ -195,8 +197,11 @@ void RBTerrain::LoadMaterials()
 			case '5':
 				m_terrainParts[i] = kGreen;
 				
-				if(m_greenNode == 0)
+				if(foundgreen == false)
+				{
+					foundgreen = true;
 					m_greenNode = i;
+				}
 				else
 				{
 					if(strstr(node->pszName, "green") != 0)
@@ -287,7 +292,7 @@ void RBTerrain::UpdatePutting()
 	{
 		rudemesh->SetTextureOverride(true);
 		
-		if(m_greenNode)
+		if(m_greenNode >= 0)
 		{
 			CPVRTPODScene *scene = rudemesh->GetModel();
 			SPODNode *node = &scene->pNode[m_greenNode];
