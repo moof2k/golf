@@ -40,27 +40,14 @@ void RBUITutorial::NextFrame(float delta)
 	
 	if(m_runcheck)
 	{
-		bool forcetutorial = false;
 		RBCourseEntry *course = GetCourseData(m_course);
 		
-		if(course && course->m_holes == kCourseDrivingRange)
-			forcetutorial = true;
-		
-		RudeRegistry *reg = RudeRegistry::GetSingleton();
-		
-		bool runtutorial = false;
-		
-		if(!forcetutorial)
+		if(course && course->m_holes != kCourseDrivingRange)
 		{
-			int loadsize = sizeof(runtutorial);
-			if(reg->QueryByte("GOLF", "TUTORIAL", &runtutorial, &loadsize) == 0)
-			{
-				m_done = true;
-				return;
-			}
+			m_done = true;
+			return;
 		}
 		
-		reg->SetByte("GOLF", "TUTORIAL", &runtutorial, sizeof(runtutorial));
 		
 		m_runcheck = false;
 		m_texture = -1;
