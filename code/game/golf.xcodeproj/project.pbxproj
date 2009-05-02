@@ -19,6 +19,7 @@
 		467A43A50FAC03FD004A318F /* help_c_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A43A10FAC03FD004A318F /* help_c_256.png */; };
 		467A43A60FAC03FD004A318F /* help_b_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A43A20FAC03FD004A318F /* help_b_256.png */; };
 		467A43A70FAC03FD004A318F /* help_a_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A43A30FAC03FD004A318F /* help_a_256.png */; };
+		467A43E60FAC20BE004A318F /* ball_64.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 467A43E50FAC20BE004A318F /* ball_64.pvr */; };
 		4693801A0FA3B2010014A3CE /* driving_range_signs.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 469380190FA3B2010014A3CE /* driving_range_signs.pvr */; };
 		9A03E1310F85D57100AC5D7C /* driver_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1300F85D57100AC5D7C /* driver_128.pvr */; };
 		9A03E1330F85D57800AC5D7C /* putter_128.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A03E1320F85D57800AC5D7C /* putter_128.pvr */; };
@@ -383,6 +384,7 @@
 		467A43A10FAC03FD004A318F /* help_c_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_c_256.png; path = Data/help_c_256.png; sourceTree = "<group>"; };
 		467A43A20FAC03FD004A318F /* help_b_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_b_256.png; path = Data/help_b_256.png; sourceTree = "<group>"; };
 		467A43A30FAC03FD004A318F /* help_a_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_a_256.png; path = Data/help_a_256.png; sourceTree = "<group>"; };
+		467A43E50FAC20BE004A318F /* ball_64.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball_64.pvr; path = Data/ball_64.pvr; sourceTree = "<group>"; };
 		469380190FA3B2010014A3CE /* driving_range_signs.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driving_range_signs.pvr; path = Data/driving_range_signs.pvr; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A03E1300F85D57100AC5D7C /* driver_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driver_128.pvr; path = Data/driver_128.pvr; sourceTree = "<group>"; };
@@ -1742,6 +1744,7 @@
 		9AD580C90EA08E6C002696A6 /* pvr */ = {
 			isa = PBXGroup;
 			children = (
+				467A43E50FAC20BE004A318F /* ball_64.pvr */,
 				469380190FA3B2010014A3CE /* driving_range_signs.pvr */,
 				9AA705880FA0349E00F18992 /* tree_oak_a.pvr */,
 				9AA705AD0FA03EFD00F18992 /* tree_oak_b.pvr */,
@@ -2034,6 +2037,7 @@
 				467A43A50FAC03FD004A318F /* help_c_256.png in Resources */,
 				467A43A60FAC03FD004A318F /* help_b_256.png in Resources */,
 				467A43A70FAC03FD004A318F /* help_a_256.png in Resources */,
+				467A43E60FAC20BE004A318F /* ball_64.pvr in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
