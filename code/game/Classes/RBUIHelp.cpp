@@ -116,6 +116,40 @@ void RBUIHelp::Render(float aspect)
 	if(m_done)
 		return;
 	
+	
+	
+	{
+		float alpha = 4.0f * m_bgTimer * 0.5f;
+		
+		if(alpha > 0.5f)
+			alpha = 0.5f;
+		
+		GLfloat colors[] = {
+			0, 0, 0, alpha,
+			0, 0, 0, alpha,
+			0, 0, 0, alpha,
+			0, 0, 0, alpha,
+		};
+		
+		const float points[] = {
+			0, 0,
+			320, 0,
+			320, 480,
+			0, 480
+		};
+		
+		glDisable(GL_TEXTURE_2D);
+		
+		RGL.EnableClient(kVertexArray, true);
+		RGL.EnableClient(kColorArray, true);
+		RGL.EnableClient(kTextureCoordArray, false);
+		
+		glVertexPointer(2, GL_FLOAT, 0, points);
+		glColorPointer(4, GL_FLOAT, 0, colors);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+		
+	}
+	
 	{
 		float alpha = 8.0f * m_bgTimer * 0.5f;
 		
