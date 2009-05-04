@@ -1818,16 +1818,35 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				}
 			
 			}
-			m_helpButton.TouchDown(rbt);
+			
+			if(m_helpButton.TouchDown(rbt))
+			{
+				if(m_state == kStatePositionSwing)
+					m_help.SetHelpMode(kHelpAim);
+				else
+					m_help.SetHelpMode(kHelpPlacementCamera);
+				
+				sfx = kSoundUIClickHi;
+			}
 			
 			break;
 		case kStateMenu:
 			m_menu.TouchDown(rbt);
 			break;
 		case kStateExecuteSwing:
-			m_swingControl.TouchDown(rbt);
-			m_moveButton.TouchDown(rbt);
-			m_helpButton.TouchDown(rbt);
+			if(m_helpButton.TouchDown(rbt))
+			{
+				m_help.SetHelpMode(kHelpSwing);
+				sfx = kSoundUIClickHi;
+			}
+			else
+			{
+				m_swingControl.TouchDown(rbt);
+				m_moveButton.TouchDown(rbt);
+				
+			}
+			
+			
 			break;
 		case kStateFollowBall:
 			m_swingButton.TouchDown(rbt);
@@ -1909,16 +1928,6 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 				SetState(kStateMenu);
 				sfx = kSoundUIClickHi;
 			}
-			
-			if(m_helpButton.TouchUp(rbt))
-			{
-				if(m_state == kStatePositionSwing)
-					m_help.SetHelpMode(kHelpAim);
-				else
-					m_help.SetHelpMode(kHelpPlacementCamera);
-				
-				sfx = kSoundUIClickHi;
-			}
 			break;
 		case kStatePositionSwing3:
 			m_guideAdjust.TouchUp(rbt);
@@ -1932,11 +1941,6 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			{
 				
 				
-			}
-			if(m_helpButton.TouchUp(rbt))
-			{
-				m_help.SetHelpMode(kHelpSwing);
-				sfx = kSoundUIClickHi;
 			}
 			if(m_moveButton.TouchUp(rbt))
 			{
