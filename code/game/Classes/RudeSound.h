@@ -6,9 +6,9 @@
 #include "RudeGlobals.h"
 #include "RudeDebug.h"
 
-#include "MikSound.h"
-
 #include "SoundEngine.h"
+
+#include <AudioToolbox/AudioToolbox.h>
 
 typedef enum {
 	kSoundNone = -1,
@@ -81,7 +81,12 @@ private:
 	bool m_soundon;
 	bool m_musicOn;
 	
+#if 0
 	UInt32 m_soundids[kNumSounds];
+#endif
+	
+	SystemSoundID m_soundids[kNumSounds];
+	
 	eSoundBGM m_curBGM;
 	
 	float m_bgmVol;

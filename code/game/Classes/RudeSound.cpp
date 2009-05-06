@@ -49,6 +49,7 @@ RudeSound::RudeSound()
 	
 	for(int i = 0; i < kNumSounds; i++)
 	{
+		m_soundids[i] = -1;
 		LoadWave(kSoundFilenames[i], (eSoundEffect) i);
 	}
 	
@@ -160,9 +161,13 @@ void RudeSound::PlayWave(eSoundEffect num)
 	if(num == kSoundNone)
 		return;
 	
+#if 0
 	int result = SoundEngine_StartEffect(m_soundids[num]);
-	
 	//RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
+#endif
+	
+	AudioServicesPlaySystemSound(m_soundids[num]);
+	
 }
 
 
@@ -172,12 +177,21 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 	RUDE_ASSERT(sound, "No sound name");
 	RUDE_REPORT("RudeSound::LoadWave %s\n", sound);
 	
+#if 0
 	char buffer[512];
 	RudeFileGetFile(sound, buffer, 512);
 
 	int result = SoundEngine_LoadEffect(buffer, &m_soundids[num]);
-	
 	//RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
+#endif
+	
+	CFBundleRef bundle = CFBundleGetMainBundle();
+	CFStringRef file = CFStringCreateWithCString(0, sound, kCFStringEncodingASCII);
+	CFURLRef myURLRef = CFBundleCopyResourceURL(bundle, file, 0, 0);
+	
+	OSStatus error = AudioServicesCreateSystemSoundID(myURLRef, &m_soundids[num]);
+	RUDE_ASSERT(error == kAudioSessionNoError, "Could not load sound %s", sound);
+	
 }
 
 void RudeSound::Tick(float delta)
