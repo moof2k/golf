@@ -1128,7 +1128,7 @@ void RBTGame::HitBall()
 	
 	if(club->m_options & kFirePower)
 	{
-		int ac = (rand() % 10) - 5;
+		int ac = (rand() % 6) - 3;
 		swingAccuracyPenalty = ac;
 		swingAccuracyPenalty = swingAccuracyPenalty / 180.0f * 3.1415926f;
 	}
