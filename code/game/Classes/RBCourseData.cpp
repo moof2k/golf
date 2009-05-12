@@ -10,13 +10,13 @@
 #include "RBCourseData.h"
 
 RBCourseEntry sCourseData[kNumCourses] = {
-{ "Creekside Country Club", "Amateur Classic", "Front 9 ~ Short Tee", "ui_wreath_bronze",		0,		6,	0, kCourseFront9, kCourseShortTee },
-{ "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", "ui_wreath_silver",			0,		5,	0, kCourseBack9, kCourseShortTee },
-{ "Creekside Country Club", "Amateur Invitational", "18 Holes ~ Short Tee", "ui_trophy_gold",			0,		4,	0, kCourseAll18, kCourseShortTee },
-{ "Creekside Country Club", "Pro-am Classic", "Front 9 ~ Long Tee", "ui_wreath_gold",		0,		4,	0, kCourseFront9, kCourseLongTee },
-{ "Creekside Country Club", "Masters Qualifier", "Back 9 ~ Long Tee", "ui_wreath_gold",			0,		2,	0, kCourseBack9, kCourseLongTee },
-{ "Creekside Country Club", "Masters Cup", "18 Holes ~ Long Tee", "ui_trophy_platinum",			0,	0,	0, kCourseAll18, kCourseLongTee },
-{ "Creekside Driving Range", "Driving Range", "Driving Range", "",								0,		0,	1, kCourseDrivingRange, kCourseShortTee },
+{ "Creekside Country Club", "Amateur Classic", "Front 9 ~ Short Tee", "ui_wreath_bronze",		0,		6,	0, kCourseFront9, kCourseShortTee, kCourseLowWind },
+{ "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", "ui_wreath_silver",			0,		5,	0, kCourseBack9, kCourseShortTee, kCourseLowWind },
+{ "Creekside Country Club", "Amateur Invitational", "18 Holes ~ Short Tee", "ui_trophy_gold",			0,		4,	0, kCourseAll18, kCourseShortTee, kCourseLowWind },
+{ "Creekside Country Club", "Pro-am Classic", "Front 9 ~ Long Tee", "ui_wreath_gold",		0,		4,	0, kCourseFront9, kCourseLongTee, kCourseHighWind },
+{ "Creekside Country Club", "Masters Qualifier", "Back 9 ~ Long Tee", "ui_wreath_gold",			0,		2,	0, kCourseBack9, kCourseLongTee, kCourseHighWind },
+{ "Creekside Country Club", "Masters Cup", "18 Holes ~ Long Tee", "ui_trophy_platinum",			0,	0,	0, kCourseAll18, kCourseLongTee, kCourseHighWind },
+{ "Creekside Driving Range", "Driving Range", "Driving Range", "",								0,		0,	1, kCourseDrivingRange, kCourseShortTee, kCourseHighWind },
 };
 
 

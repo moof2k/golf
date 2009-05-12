@@ -22,7 +22,7 @@ RBTRound::RBTRound()
 , m_holeSet(kCourseFront9)
 , m_numPlayers(1)
 , m_tee(kCourseShortTee)
-, m_wind(kCourseHighWind)
+, m_wind(kCourseLowWind)
 , m_result(kRoundExit)
 {
 	m_loadingText.SetAlignment(kAlignCenter);
@@ -61,6 +61,7 @@ void RBTRound::SetCourse(int c)
 	m_course = c;
 	m_holeSet = cd->m_holes;
 	m_tee = cd->m_tee;
+	m_wind = cd->m_wind;
 }
 
 void RBTRound::SaveState()
