@@ -72,7 +72,6 @@ void RBWindControl::Render()
 	
 	RGL.LoadIdentity();
 	
-	m_indicatorYawTwitch = 0;
 	RGL.Rotate(m_indicatorYaw + m_indicatorYawTwitch, 0.0f, 1.0f, 0.0f);
 	
 	
