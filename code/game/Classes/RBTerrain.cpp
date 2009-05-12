@@ -30,7 +30,7 @@ RUDE_TWEAK(DebugRenderGuides, kBool, gDebugRenderGuides);
 
 float gHoleRadius = 0.6f;
 float gHoleRenderRadius = 0.6f;
-float gHoleAttractDist = .8f;
+float gHoleAttractDist = .85f;
 float gHoleAttractPower = 0.1f;
 float gHoleMaxBallSpeed = 14.0f;
 
