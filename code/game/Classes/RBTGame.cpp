@@ -1634,7 +1634,8 @@ void RBTGame::Render(float aspect)
 	   || m_state == kStatePositionSwing3
 	   || m_state == kStateExecuteSwing)
 	{
-		m_windControl.Render();
+		if(!m_terrain.GetPutting())
+			m_windControl.Render();
 	}
 	
 	RUDE_PERF_STOP(kPerfRBTGameRender2);
@@ -1671,7 +1672,9 @@ void RBTGame::Render(float aspect)
 				m_helpButton.Render();
 				
 				RenderShotInfo(false, true);
-				m_windText.Render();
+				
+				if(!m_terrain.GetPutting())
+					m_windText.Render();
 				
 				if(m_encouragementTimer > 0.0f)
 				{
@@ -1688,9 +1691,13 @@ void RBTGame::Render(float aspect)
 				m_moveButton.Render();
 				m_swingControl.Render();
 				m_clubButton.Render();
-				RenderShotInfo(false, true);
-				m_windText.Render();
 				m_helpButton.Render();
+				RenderShotInfo(false, true);
+				
+				if(!m_terrain.GetPutting())
+					m_windText.Render();
+				
+				
 				
 				break;
 				
