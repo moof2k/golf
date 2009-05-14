@@ -125,6 +125,7 @@ private:
 	void StatePositionSwing3(float delta);
 	void StateHitBall(float delta);
 	void StateFollowBall(float delta);
+	void StateRegardBall(float delta);
 	
 	void RenderCalcOrthoDrawPositions();
 	void RenderGuide(float aspect);

@@ -506,6 +506,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing2:
 			{
+				m_encouragementTimer = 0.0f;
+				
 				m_cameraButton.SetTextures("ui_camera", "ui_camera");
 				
 				if(prevstate != kStatePositionSwing3)
@@ -532,6 +534,8 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStateExecuteSwing:
 			{
+				m_encouragementTimer = 0.0f;
+				
 				m_terrain.SetEnablePuttingGreen(false);
 				m_swingControl.Reset();
 				m_swingHeight = 0.0f;
@@ -582,6 +586,31 @@ void RBTGame::SetState(eRBTGameState state)
 				m_ballCamera.SetDesiredHeight(5.0f);
 				m_ballCamera.ResetGuide(m_terrain.GetHole());
 				m_ballCamera.SetTrackMode(kRegardCamera);
+				
+				eRBTerrainMaterial material = m_ball.GetCurMaterial();
+				
+				switch(material)
+				{
+					case kRough:
+						m_shotEncouragementText.SetText("Rough");
+						break;
+					case kFairwayFringe:
+					case kFairway:
+						m_shotEncouragementText.SetText("Fairway");
+						break;
+					case kGreen:
+					case kGreenFringe:
+						m_shotEncouragementText.SetText("Green");
+						break;
+					case kSandtrap:
+						m_shotEncouragementText.SetText("Sandtrap");
+						break;
+					default:
+						m_shotEncouragementText.SetText("");
+						break;
+				}
+				
+				m_encouragementTimer = 3.0f;
 				
 			}
 			break;
@@ -815,6 +844,16 @@ void RBTGame::StateFollowBall(float delta)
 			SetState(kStateRegardBall);
 		}
 	}
+}
+
+void RBTGame::StateRegardBall(float delta)
+{
+	m_encouragementTimer -= delta;
+	
+	float alpha = m_encouragementTimer;
+	if(alpha > 1.0f)
+		alpha = 1.0f;
+	m_shotEncouragementText.SetAlpha(alpha);
 }
 
 void RBTGame::FreshShotEncouragement()
@@ -1382,9 +1421,10 @@ void RBTGame::NextFrame(float delta)
 			break;
 			
 		case kStateRegardBall:
-			
+		{
+			StateRegardBall(delta);
 			m_ballRecorder.NextFrame(delta, false);
-			
+		}
 			break;
 			
 		default:
@@ -1714,7 +1754,10 @@ void RBTGame::Render(float aspect)
 				//RenderBallFollowInfo(true);
 				RenderShotInfo(true, false);
 				
-				//RudeFontManager::GetFont(kDefaultFont)->Printf(0.0f, 440.0f, 0.0f, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFFFFFFF, "POWER: %.0f%%", m_swingPower * 100.0f);
+				if(m_encouragementTimer > 0.0f)
+				{
+					m_shotEncouragementText.Render();
+				}
 				
 				break;
 				
