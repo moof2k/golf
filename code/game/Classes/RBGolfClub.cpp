@@ -45,6 +45,7 @@ bool RBGolfClub::ClubOK(int n, eRBTerrainMaterial curMaterial)
 	switch(curMaterial)
 	{
 		case kRough:
+		case kGreenFringe:
 			if(club.m_options & kNoRough)
 				return false;
 			break;
@@ -57,7 +58,6 @@ bool RBGolfClub::ClubOK(int n, eRBTerrainMaterial curMaterial)
 			if(club.m_options & kNoSandTrap)
 				return false;
 			break;
-		case kGreenFringe:
 		case kGreen:
 			if(club.m_options & kNoGreen)
 				return false;
