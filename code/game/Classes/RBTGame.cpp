@@ -599,11 +599,13 @@ void RBTGame::SetState(eRBTGameState state)
 						m_shotEncouragementText.SetText("Fairway");
 						break;
 					case kGreen:
-					case kGreenFringe:
 						m_shotEncouragementText.SetText("Green");
 						break;
+					case kGreenFringe:
+						m_shotEncouragementText.SetText("Fringe");
+						break;
 					case kSandtrap:
-						m_shotEncouragementText.SetText("Sandtrap");
+						m_shotEncouragementText.SetText("Bunker");
 						break;
 					default:
 						m_shotEncouragementText.SetText("");
