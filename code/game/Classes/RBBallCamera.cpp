@@ -87,7 +87,7 @@ void RBBallCamera::NextFrame(float delta)
 			break;
 		case kHitCamera:
 			{
-				float desiredHeight = m_desiredHeight * 75.0f;
+				float desiredHeight = m_desiredHeight * 50.0f;
 				
 				m_height += (desiredHeight - m_height) * delta * 3.0f;
 				m_guide += (m_desiredGuide - m_guide) * delta * 6.0f;
