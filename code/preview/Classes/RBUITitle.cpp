@@ -110,7 +110,7 @@ RBUITitle::RBUITitle()
 	m_settingsText.SetRect(RudeRect(400, 0, 430, 320));
 	m_settingsText.SetStyle(kOutlineStyle);
 	m_settingsText.SetFont(kBigFont);
-	m_settingsText.SetColors(0, 0xFF7777FF, 0xFFCCCCCC);
+	m_settingsText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
 	m_settingsText.SetColors(1, 0xFF000000, 0xFF000000);
 	
 	m_goText.SetAnimType(kAnimPopSlide);
@@ -748,9 +748,9 @@ void RBUITitle::Render(float aspect)
 	
 	m_rangeMedallion.Render();
 	
-	for(int i = 0; i < kNumCoursesPerScreen; i++)
+	//for(int i = 0; i < kNumCoursesPerScreen; i++)
 	{
-		m_courseButtons[i].Render();
+		m_courseButtons[0].Render();
 	}
 	
 	if(m_state == kTitleScoreSummary || m_state == kTitleSplash)

@@ -110,7 +110,7 @@ void RBUIMenu::Render(float aspect)
 	glColorPointer(4, GL_FLOAT, 0, colors);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
-	m_scoreControl.Render();
+	//m_scoreControl.Render();
 	
 	m_quitText.Render();
 	m_resumeText.Render();

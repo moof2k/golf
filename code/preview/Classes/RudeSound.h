@@ -35,7 +35,6 @@ typedef enum {
 	kBGMNone = -1,
 	kBGMSilence,
 	kBGMTitle,
-	kBGMPutting,
 	
 	kNumBGMs,
 } eSoundBGM;

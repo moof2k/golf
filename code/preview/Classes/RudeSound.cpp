@@ -28,8 +28,7 @@ const char * kSoundFilenames[kNumSounds] = {
 
 const char * kSoundBGMs[kNumBGMs] = {
 	"bgm_silence.m4a",
-	"bgm_title.m4a",
-	"bgm_putting.m4a"
+	"bgm_title.m4a"
 };
 
 RudeSound::RudeSound()

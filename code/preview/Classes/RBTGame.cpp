@@ -917,14 +917,14 @@ void RBTGame::AutoSelectClub()
 	{
 		m_terrain.SetPutting(true);
 		m_swingControl.SetNoSwingCommentary(true);
-		RudeSound::GetInstance()->PlaySong(kBGMPutting);
-		RudeSound::GetInstance()->BgmVol(1.0f);
+		//RudeSound::GetInstance()->PlaySong(kBGMPutting);
+		//RudeSound::GetInstance()->BgmVol(1.0f);
 	}
 	else
 	{
 		m_terrain.SetPutting(false);
 		m_swingControl.SetNoSwingCommentary(false);
-		RudeSound::GetInstance()->BgmVolFade(-0.2f);
+		//RudeSound::GetInstance()->BgmVolFade(-0.2f);
 	}
 	
 	NextClub(0);

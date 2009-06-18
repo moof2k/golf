@@ -10,7 +10,7 @@
 #include "RBCourseData.h"
 
 RBCourseEntry sCourseData[kNumCourses] = {
-{ "Creekside Country Club", "Guest Preview Day", "Single Hole ~ Short Tee", "ui_wreath_gold",		0,		6,	0, kCourseFront9, kCourseShortTee, kCourseLowWind },
+{ "Creekside Country Club", "Guest Pass", "Single Hole ~ Short Tee", "ui_wreath_gold",		0,		6,	0, kCourseFront9, kCourseShortTee, kCourseLowWind },
 { "Creekside Country Club", "Amateur Cup", "Back 9 ~ Short Tee", "ui_wreath_silver",			0,		5,	0, kCourseBack9, kCourseShortTee, kCourseLowWind },
 { "Creekside Country Club", "Amateur Invitational", "18 Holes ~ Short Tee", "ui_trophy_gold",			0,		4,	0, kCourseAll18, kCourseShortTee, kCourseLowWind },
 { "Creekside Country Club", "Pro-am Classic", "Front 9 ~ Long Tee", "ui_wreath_gold",		0,		4,	0, kCourseFront9, kCourseLongTee, kCourseHighWind },
