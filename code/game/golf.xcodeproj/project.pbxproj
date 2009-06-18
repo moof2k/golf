@@ -188,7 +188,6 @@
 		9AA7064B0FA180E200F18992 /* par5_C.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7063C0FA180E200F18992 /* par5_C.deco */; };
 		9AA707FD0FA2EAAB00F18992 /* sfx_cheer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AA707FC0FA2EAAB00F18992 /* sfx_cheer.wav */; };
 		9AA708160FA2EFA200F18992 /* sfx_claps.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AA708150FA2EFA200F18992 /* sfx_claps.wav */; };
-		9AA8B5C50FA5361E00F18796 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8B5C40FA5361E00F18796 /* Entitlements.plist */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
@@ -605,7 +604,6 @@
 		9AA7063C0FA180E200F18992 /* par5_C.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_C.deco; path = Data/par5_C.deco; sourceTree = "<group>"; };
 		9AA707FC0FA2EAAB00F18992 /* sfx_cheer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_cheer.wav; path = Data/sfx_cheer.wav; sourceTree = "<group>"; };
 		9AA708150FA2EFA200F18992 /* sfx_claps.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_claps.wav; path = Data/sfx_claps.wav; sourceTree = "<group>"; };
-		9AA8B5C40FA5361E00F18796 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
@@ -1056,7 +1054,6 @@
 				1BF0DBA10DDCF72400C6466A /* en.lproj */,
 				1B76A63E0DCBB4F3003B05F2 /* Icon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				9AA8B5C40FA5361E00F18796 /* Entitlements.plist */,
 				9ADC5A320E63EB84004C82A2 /* Default.png */,
 			);
 			name = Resources;
@@ -2022,7 +2019,6 @@
 				467A3FB70FA2F6AA00061905 /* par4_H.deco in Resources */,
 				467A3FC10FA2FDD000061905 /* driving_range.deco in Resources */,
 				4693801A0FA3B2010014A3CE /* driving_range_signs.pvr in Resources */,
-				9AA8B5C50FA5361E00F18796 /* Entitlements.plist in Resources */,
 				9A4B114A0FA6C59400E53811 /* ui_swing_b.png in Resources */,
 				9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */,
 				9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */,
@@ -2280,7 +2276,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Golf;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2237DEE5-6E1E-41E5-A30F-835D5B3B6E69";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "23E77C4E-369A-4CB4-858D-93284FACBF35";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -2331,7 +2327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bork 3D LLC";
 				COPY_PHASE_STRIP = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
@@ -2351,7 +2347,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Golf;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3BF3D23C-7F62-4497-9969-149ACF929D3F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F47BC40F-52DD-4D53-A8E1-A34BF9115BA6";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;

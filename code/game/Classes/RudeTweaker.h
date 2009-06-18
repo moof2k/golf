@@ -10,7 +10,7 @@
 #ifndef __H_RudeTweaker
 #define __H_RudeTweaker
 
-#define NO_RUDETWEAKER
+//#define NO_RUDETWEAKER
 
 
 #ifndef NO_RUDETWEAKER
@@ -52,7 +52,7 @@ public:
 	
 	void AddTweak(RudeTweak *tweak);
 	
-	int RudeTweaker::HttpHandler(void * cls,
+	int HttpHandler(void * cls,
 										struct MHD_Connection * connection,
 										const char * url,
 										const char * method,

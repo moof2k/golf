@@ -387,6 +387,7 @@ const GLshort spriteTexcoords[] = {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
 	for (UITouch *touch in touches) {
+		
 		CGPoint touchPoint = [touch locationInView:self];
 		
 		RudeScreenVertex touchDown;
@@ -402,7 +403,7 @@ const GLshort spriteTexcoords[] = {
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
 	for (UITouch *touch in touches) {
-	
+		
 		CGPoint touchPoint = [touch locationInView:self];
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		
@@ -422,7 +423,7 @@ const GLshort spriteTexcoords[] = {
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
 	for (UITouch *touch in touches) {
-	
+		
 		CGPoint touchPoint = [touch locationInView:self];
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		

@@ -21,7 +21,7 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 
-bool gDebugDisplayFPS = false;
+bool gDebugDisplayFPS = true;
 RUDE_TWEAK(DebugDisplayFPS, kBool, gDebugDisplayFPS);
 
 RBGame::RBGame()
@@ -293,9 +293,16 @@ void RBGame::TouchMove(RudeScreenVertex &n, RudeScreenVertex &p)
 }
 
 void RBGame::TouchUp(RudeScreenVertex &n, RudeScreenVertex &p)
-{
+{	
 	// p is the previous position from movement (so it might not have changed..)
 	RudeTouch *touch = m_touchtracker.GetTouch(n);
+	
+	if(touch == 0)
+		touch = m_touchtracker.GetTouch(p);
+	
+	if(touch == 0)
+		return;
+	
 	touch->m_location = n;
 	
 	m_game->TouchUp(touch);

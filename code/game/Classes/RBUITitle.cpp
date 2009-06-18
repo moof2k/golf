@@ -392,56 +392,56 @@ void RBUITitle::SetState(eTitleState state)
 	switch(m_state)
 	{
 		case kTitleScoreSummary:
-			
-			bool completed = RBTourTracker::Completed(m_course);
-			
-			if(completed)
 			{
-				m_courseSplash.SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
+				bool completed = RBTourTracker::Completed(m_course);
 				
-				m_courseMedallion.SetTranslation(btVector3(0,0,0));
-				m_courseSplash.SetTranslation(btVector3(0,0,0));
+				if(completed)
+				{
+					m_courseSplash.SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
+					
+					m_courseMedallion.SetTranslation(btVector3(0,0,0));
+					m_courseSplash.SetTranslation(btVector3(0,0,0));
+					
+					m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
+					m_courseSplash.SetDesiredTranslation(btVector3(0,0,0));
+				}
+				else
+				{
+					m_courseMedallion.SetTranslation(btVector3(-400,0,0));
+					m_courseSplash.SetTranslation(btVector3(-400,0,0));
+					
+					m_courseMedallion.SetDesiredTranslation(btVector3(-400,0,0));
+					m_courseSplash.SetDesiredTranslation(btVector3(-400,0,0));
+				}
 				
-				m_courseMedallion.SetDesiredTranslation(btVector3(0,0,0));
-				m_courseSplash.SetDesiredTranslation(btVector3(0,0,0));
+				m_logo.SetTranslation(btVector3(400,0,0));
+				m_startText.SetTranslation(btVector3(400,0,0));
+				m_practiceText.SetTranslation(btVector3(400,0,0));
+				m_settingsText.SetTranslation(btVector3(400,0,0));
+				
+				m_logo.SetDesiredTranslation(btVector3(400,0,0));
+				m_startText.SetDesiredTranslation(btVector3(400,0,0));
+				m_practiceText.SetDesiredTranslation(btVector3(400,0,0));
+				m_settingsText.SetDesiredTranslation(btVector3(400,0,0));
+				
+				m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
+				m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
+				
+				m_courseNameText.SetTranslation(btVector3(-400,0,0));
+				m_courseSubnameText.SetTranslation(btVector3(-400,0,0));
+				m_courseDescText.SetTranslation(btVector3(-400,0,0));
+				m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
+				m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
+				m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
+				
+				RUDE_ASSERT(m_course >= 0, "Invalid course");
+				m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
+				m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
+				m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
+				
+				m_scoreText.SetDesiredTranslation(btVector3(0,0,0));
+				m_scoreDesc.SetDesiredTranslation(btVector3(0,0,0));
 			}
-			else
-			{
-				m_courseMedallion.SetTranslation(btVector3(-400,0,0));
-				m_courseSplash.SetTranslation(btVector3(-400,0,0));
-				
-				m_courseMedallion.SetDesiredTranslation(btVector3(-400,0,0));
-				m_courseSplash.SetDesiredTranslation(btVector3(-400,0,0));
-			}
-			
-			m_logo.SetTranslation(btVector3(400,0,0));
-			m_startText.SetTranslation(btVector3(400,0,0));
-			m_practiceText.SetTranslation(btVector3(400,0,0));
-			m_settingsText.SetTranslation(btVector3(400,0,0));
-			
-			m_logo.SetDesiredTranslation(btVector3(400,0,0));
-			m_startText.SetDesiredTranslation(btVector3(400,0,0));
-			m_practiceText.SetDesiredTranslation(btVector3(400,0,0));
-			m_settingsText.SetDesiredTranslation(btVector3(400,0,0));
-			
-			m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
-			m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
-			
-			m_courseNameText.SetTranslation(btVector3(-400,0,0));
-			m_courseSubnameText.SetTranslation(btVector3(-400,0,0));
-			m_courseDescText.SetTranslation(btVector3(-400,0,0));
-			m_courseNameText.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseSubnameText.SetDesiredTranslation(btVector3(0,0,0));
-			m_courseDescText.SetDesiredTranslation(btVector3(0,0,0));
-			
-			RUDE_ASSERT(m_course >= 0, "Invalid course");
-			m_courseNameText.SetText(m_courseButtons[m_course].GetNameStr());
-			m_courseSubnameText.SetText(m_courseButtons[m_course].GetSubnameStr());
-			m_courseDescText.SetText(m_courseButtons[m_course].GetDescStr());
-			
-			m_scoreText.SetDesiredTranslation(btVector3(0,0,0));
-			m_scoreDesc.SetDesiredTranslation(btVector3(0,0,0));
-			
 			break;
 			
 		case kTitleSplash:

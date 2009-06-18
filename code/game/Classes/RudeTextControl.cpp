@@ -76,8 +76,10 @@ void RudeTextControl::Render()
 			Display(m_rect.m_left, y);
 			break;
 		case kAlignCenter:
-			float x = (m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left;
-			Display(x, y);
+			{
+				float x = (m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left;
+				Display(x, y);
+			}
 			break;
 		case kAlignRight:
 			Display(m_rect.m_right, y);

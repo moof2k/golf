@@ -93,14 +93,20 @@ int RudeTexture::LoadFromPNG(const char *name)
 	CFBundleRef mainBundle = CFBundleGetMainBundle();
 	CFURLRef url = CFBundleCopyResourceURL(mainBundle, cfFilename, 0, 0);
 	
+	CGDataProviderRef ref;
+	CGImageRef image;
+	int error = 0;
+	GLubyte *imageData = 0;
+	CGContextRef imageContext;
+	
 	if(url == NULL)
 		goto LoadFromPNG_URLFail;
 	
-	CGDataProviderRef ref = CGDataProviderCreateWithURL(url);
+	ref = CGDataProviderCreateWithURL(url);
 	if(ref == NULL)
 		goto LoadFromPNG_URLProviderFail;
 	
-	CGImageRef image = CGImageCreateWithPNGDataProvider(ref, 0, false, kCGRenderingIntentDefault);
+	image = CGImageCreateWithPNGDataProvider(ref, 0, false, kCGRenderingIntentDefault);
 	if(image == NULL)
 		goto LoadFromPNG_ImageRefFail;
 	
@@ -109,10 +115,10 @@ int RudeTexture::LoadFromPNG(const char *name)
 	m_width = CGImageGetWidth(image);
 	m_height = CGImageGetHeight(image);
 	
-	GLubyte *imageData = (GLubyte *) malloc(m_width * m_height * 4);
+	imageData = (GLubyte *) malloc(m_width * m_height * 4);
 	RUDE_ASSERT(imageData, "Failed to allocate space for texture storage");
 	
-	CGContextRef imageContext = CGBitmapContextCreate(imageData, m_width, m_height, 8, m_width * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+	imageContext = CGBitmapContextCreate(imageData, m_width, m_height, 8, m_width * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
 	CGContextDrawImage(imageContext, CGRectMake(0.0, 0.0, (CGFloat) m_width, (CGFloat) m_height), image);
 	CGContextRelease(imageContext);
 	
@@ -122,7 +128,7 @@ int RudeTexture::LoadFromPNG(const char *name)
 	
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 	
-	int error = glGetError();
+	error = glGetError();
 	RUDE_ASSERT(error == 0, "glBindTexture failed on texture id %d (%s), error=%x", m_texture, name, error);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 	free(imageData);

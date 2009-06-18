@@ -9,8 +9,8 @@ public:
 	RudeRegistryCF(void);
 	~RudeRegistryCF(void);
 
-	int QueryByte(TCHAR *app, TCHAR *name, void *buffer, int *buffersize);
-	int SetByte(TCHAR *app, TCHAR *name, void *buffer, int buffersize);
+	int QueryByte(const TCHAR *app, const TCHAR *name, void *buffer, int *buffersize);
+	int SetByte(const TCHAR *app, const TCHAR *name, void *buffer, int buffersize);
 
 private:
 

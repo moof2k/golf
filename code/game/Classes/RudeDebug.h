@@ -11,7 +11,7 @@ class RudeDebug
 public:
 	static void Init();
 	
-	static void Write(const char *file, int line, char *format, ...);
+	static void Write(const char *file, int line, const char *format, ...);
 
 	static void PurgeLog();
 

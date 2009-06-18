@@ -24,7 +24,7 @@ void RudeDebug::Init()
 
 
 
-void RudeDebug::Write(const char *filename, int line, char *format, ...)
+void RudeDebug::Write(const char *filename, int line, const char *format, ...)
 {
 	//FILE *file = fopen(sLogfile, "a");
 	//if(file == NULL)

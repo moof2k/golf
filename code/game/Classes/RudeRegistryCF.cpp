@@ -11,7 +11,7 @@ RudeRegistryCF::~RudeRegistryCF(void)
 }
 
 
-int RudeRegistryCF::QueryByte(TCHAR *app, TCHAR *name, void *buffer, int *buffersize)
+int RudeRegistryCF::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer, int *buffersize)
 {
 	CFStringRef key = CFStringCreateWithCString(NULL, name, kCFStringEncodingASCII);
 	CFPropertyListRef value = CFPreferencesCopyAppValue(key, kCFPreferencesCurrentApplication);
@@ -28,7 +28,7 @@ int RudeRegistryCF::QueryByte(TCHAR *app, TCHAR *name, void *buffer, int *buffer
 	return 0;
 }
 
-int RudeRegistryCF::SetByte(TCHAR *app, TCHAR *name, void *buffer, int buffersize)
+int RudeRegistryCF::SetByte(const TCHAR *app, const TCHAR *name, void *buffer, int buffersize)
 {
 	CFPropertyListRef value = CFDataCreate(NULL, (UInt8 *) buffer, buffersize);
 	CFStringRef key = CFStringCreateWithCString(NULL, name, kCFStringEncodingASCII);

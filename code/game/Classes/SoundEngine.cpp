@@ -665,6 +665,7 @@ class BackgroundTrackMgr
 		
 		OSStatus SetupQueue(BG_FileInfo *inFileInfo)
 		{
+			OSStatus err = 0;
 			UInt32 size = 0;
 			OSStatus result = AudioQueueNewOutput(&inFileInfo->mFileFormat, QueueCallback, this, CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
 					AssertNoError("Error creating queue", end);
@@ -683,7 +684,7 @@ class BackgroundTrackMgr
 			}
 
 			// channel layout
-			OSStatus err = AudioFileGetPropertyInfo(inFileInfo->mAFID, kAudioFilePropertyChannelLayout, &size, NULL);
+			err = AudioFileGetPropertyInfo(inFileInfo->mAFID, kAudioFilePropertyChannelLayout, &size, NULL);
 			if (err == noErr && size > 0) {
 				AudioChannelLayout *acl = (AudioChannelLayout *)malloc(size);
 				result = AudioFileGetProperty(inFileInfo->mAFID, kAudioFilePropertyChannelLayout, &size, acl);
@@ -709,6 +710,7 @@ class BackgroundTrackMgr
 
 		OSStatus SetupBuffers(BG_FileInfo *inFileInfo)
 		{
+			bool isFormatVBR;
 			int numBuffersToQueue = kNumberBuffers;
 			UInt32 maxPacketSize;
 			UInt32 size = sizeof(maxPacketSize);
@@ -719,7 +721,7 @@ class BackgroundTrackMgr
 			// than our allocation default size, that needs to become larger
 			OSStatus result = AudioFileGetProperty(inFileInfo->mAFID, kAudioFilePropertyPacketSizeUpperBound, &size, &maxPacketSize);
 				AssertNoError("Error getting packet upper bound size", end);
-			bool isFormatVBR = (inFileInfo->mFileFormat.mBytesPerPacket == 0 || inFileInfo->mFileFormat.mFramesPerPacket == 0);
+			isFormatVBR = (inFileInfo->mFileFormat.mBytesPerPacket == 0 || inFileInfo->mFileFormat.mFramesPerPacket == 0);
 
 			CalculateBytesForTime(inFileInfo->mFileFormat, maxPacketSize, 0.5/*seconds*/, &mBufferByteSize, &mNumPacketsToRead);
 			
