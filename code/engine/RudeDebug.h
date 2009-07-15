@@ -1,5 +1,13 @@
-#ifndef _H_RudeDebug
-#define _H_RudeDebug
+/*
+ *  RudeDebug.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+#ifndef __H_RudeDebug
+#define __H_RudeDebug
 
 #include "Rude.h"
 

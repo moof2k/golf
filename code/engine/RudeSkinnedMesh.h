@@ -1,9 +1,8 @@
 /*
  *  RudeSkinnedMesh.h
- *  golf
  *
- *  Created by Robert Rose on 9/20/08.
- *  Copyright 2008 Bork 3D LLC. All rights reserved.
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
  *
  */
 

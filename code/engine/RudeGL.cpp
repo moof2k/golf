@@ -1,9 +1,13 @@
+/*
+ *  RudeGL.cpp
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
 
 #include "RudeMath.h"
 #include "RudeGL.h"
-
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 RudeGL RGL;
 

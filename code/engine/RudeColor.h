@@ -1,5 +1,13 @@
-#ifndef _H_RudeColor
-#define _H_RudeColor
+/*
+ *  RudeColor.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+#ifndef __H_RudeColor
+#define __H_RudeColor
 
 #include "Rude.h"
 

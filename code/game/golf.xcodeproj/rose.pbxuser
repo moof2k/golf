@@ -176,9 +176,8 @@
 			9A1694430FFEFF8000DA5F3E /* PBXTextBookmark */ = 9A1694430FFEFF8000DA5F3E /* PBXTextBookmark */;
 			9A1694470FFEFF8000DA5F3E /* PBXTextBookmark */ = 9A1694470FFEFF8000DA5F3E /* PBXTextBookmark */;
 			9A1694480FFEFF8000DA5F3E /* PBXTextBookmark */ = 9A1694480FFEFF8000DA5F3E /* PBXTextBookmark */;
+			9A42E993100DBD330081BD75 /* PBXTextBookmark */ = 9A42E993100DBD330081BD75 /* PBXTextBookmark */;
 			9A5D5E4A100DB0AF00276675 /* PBXTextBookmark */ = 9A5D5E4A100DB0AF00276675 /* PBXTextBookmark */;
-			9A5D5E4C100DB0AF00276675 /* PBXTextBookmark */ = 9A5D5E4C100DB0AF00276675 /* PBXTextBookmark */;
-			9A5D5E53100DB17B00276675 /* PBXTextBookmark */ = 9A5D5E53100DB17B00276675 /* PBXTextBookmark */;
 			9A5D5E54100DB17B00276675 /* PBXTextBookmark */ = 9A5D5E54100DB17B00276675 /* PBXTextBookmark */;
 			9A6431E5100DA484001A570C /* PBXTextBookmark */ = 9A6431E5100DA484001A570C /* PBXTextBookmark */;
 			9A6431E9100DA484001A570C /* PBXTextBookmark */ = 9A6431E9100DA484001A570C /* PBXTextBookmark */;
@@ -359,6 +358,16 @@
 			sepNavVisRange = "{234, 966}";
 		};
 	};
+	9A42E993100DBD330081BD75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9A5D5E18100DB08800276675 /* RudeGL.cpp */;
+		name = "RudeGL.cpp: 16";
+		rLen = 0;
+		rLoc = 182;
+		rType = 0;
+		vrLen = 784;
+		vrLoc = 0;
+	};
 	9A4B11E20FA8248E00E53811 /* RBUITutorial.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
@@ -438,9 +447,9 @@
 	};
 	9A5D5E18100DB08800276675 /* RudeGL.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 5376}}";
-			sepNavSelRange = "{433, 0}";
-			sepNavVisRange = "{0, 856}";
+			sepNavIntBoundsRect = "{{0, 0}, {1002, 5460}}";
+			sepNavSelRange = "{182, 0}";
+			sepNavVisRange = "{0, 784}";
 		};
 	};
 	9A5D5E4A100DB0AF00276675 /* PBXTextBookmark */ = {
@@ -452,26 +461,6 @@
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 7042;
-	};
-	9A5D5E4C100DB0AF00276675 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 28FD14FD0DC6FC130079059D /* EAGLView.mm */;
-		name = "EAGLView.mm: 262";
-		rLen = 0;
-		rLoc = 7435;
-		rType = 0;
-		vrLen = 1175;
-		vrLoc = 7042;
-	};
-	9A5D5E53100DB17B00276675 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 9A5D5E18100DB08800276675 /* RudeGL.cpp */;
-		name = "RudeGL.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 856;
-		vrLoc = 0;
 	};
 	9A5D5E54100DB17B00276675 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;

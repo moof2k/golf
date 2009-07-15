@@ -1,4 +1,12 @@
 /*
+ *  RudeFont.cpp
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+/*
  AngelCode Tool Box Library
  Copyright (c) 2007-2008 Andreas Jonsson
  

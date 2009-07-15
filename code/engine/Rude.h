@@ -1,5 +1,13 @@
-#ifndef _H_Rude
-#define _H_Rude
+/*
+ *  Rude.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+#ifndef __H_Rude
+#define __H_Rude
 
 
 #define RUDE_DEBUG
@@ -33,16 +41,17 @@
 #endif
 #endif
 
+// Symbian
 #ifdef __SYMBIAN32__
 #define RUDE_SYMBIAN
 #define RUDE_GAPI
 #endif
 
+// iPhone
 #if defined(__GNUC__) && ( defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__) )
 #include <TargetConditionals.h>
 #if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
 #define RUDE_IPHONE
-
 #endif
 #endif
 
@@ -54,7 +63,7 @@
 #define RUDE_NOSTYLUS
 #endif
 
-#endif
+#endif // RUDE_GAPI
 
 #ifdef RUDE_PALM
 #include <StdIOPalm.h>
@@ -80,7 +89,7 @@
 #define _snprintf(s, l, f, a) sprintf(s, f, a)
 #define _tcscat strcat
 
-#endif
+#endif // RUDE_PALM
 
 #ifdef RUDE_SYMBIAN
 
@@ -105,7 +114,7 @@
 
 #define KUidVectorBlaster 0x1020153F
 
-#endif
+#endif // RUDE_GAPI
 
 
 

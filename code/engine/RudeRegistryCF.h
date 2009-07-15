@@ -1,3 +1,11 @@
+/*
+ *  RudeRegistryCF.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
 #ifndef _H_RudeRegistryCF
 #define _H_RudeRegistryCF
 

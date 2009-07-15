@@ -1,5 +1,14 @@
-#ifndef _H_Rude3DSurface_OGL
-#define _H_Rude3DSurface_OGL
+/*
+ *  RudeGL.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+
+#ifndef __H_Rude3DSurface_OGLES
+#define __H_Rude3DSurface_OGLES
 
 #include "RudeRect.h"
 

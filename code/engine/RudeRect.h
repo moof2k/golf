@@ -1,5 +1,13 @@
-#ifndef _H_RudeRect
-#define _H_RudeRect
+/*
+ *  RudeRect.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+#ifndef __H_RudeRect
+#define __H_RudeRect
 
 #include "RudeVertex.h"
 

@@ -1,5 +1,13 @@
-#ifndef _H_RudeGame
-#define _H_RudeGame
+/*
+ *  RudeGame.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
+#ifndef __H_RudeGame
+#define __H_RudeGame
 
 #include "RudeGlobals.h"
 #include "RudeDebug.h"

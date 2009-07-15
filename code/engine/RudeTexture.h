@@ -1,3 +1,10 @@
+/*
+ *  RudeTexture.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
 
 #ifndef __H_RudeTexture
 #define __H_RudeTexture

@@ -1,3 +1,11 @@
+/*
+ *  RudeVertex.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
+
 #ifndef _H_RudeVertex
 #define _H_RudeVertex
 

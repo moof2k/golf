@@ -1,3 +1,10 @@
+/*
+ *  RudeSound.h
+ *
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *
+ */
 
 #ifndef _H_RudeSound
 #define _H_RudeSound
