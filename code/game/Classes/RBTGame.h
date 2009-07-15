@@ -10,7 +10,6 @@
 #ifndef _H_RBTGame
 #define _H_RBTGame
 
-
 #include "RBGameBase.h"
 #include "RudeObject.h"
 #include "RudeSkybox.h"
@@ -241,6 +240,11 @@ private:
 	eCourseHoles m_holeSet;
 	eCourseTee m_tee;
 	eCourseWind m_wind;
+	
+#ifndef NO_DECO_EDITOR
+	RudeTextControl m_dropDecoText;
+	RudeTextControl m_dumpDecoText;
+#endif
 };
 
 #endif 

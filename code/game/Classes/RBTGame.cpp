@@ -136,6 +136,16 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_guideScreenCalc = false;
 	
+#ifndef NO_DECO_EDITOR
+	m_dropDecoText.SetText("DecoDrop");
+	m_dropDecoText.SetAlignment(kAlignLeft);
+	m_dropDecoText.SetRect(RudeRect(60,0,90,180));
+	
+	m_dumpDecoText.SetText("DecoDump");
+	m_dumpDecoText.SetAlignment(kAlignLeft);
+	m_dumpDecoText.SetRect(RudeRect(90,0,120,180));
+#endif
+	
 	// score control
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
 	m_scoreControl.SetActiveHole(m_holeNum, holeset);
@@ -506,6 +516,7 @@ void RBTGame::SetState(eRBTGameState state)
 			break;
 		case kStatePositionSwing2:
 			{
+				m_placementGuidePosition = m_guidePosition;
 				m_encouragementTimer = 0.0f;
 				
 				m_cameraButton.SetTextures("ui_camera", "ui_camera");
@@ -1145,8 +1156,11 @@ void RBTGame::FreshGuide(bool firstTime)
 	
 	m_dBall = ball;
 	m_guidePosition = newGuide;
+	m_placementGuidePosition = m_guidePosition;
 	
-	
+#ifndef NO_DECO_EDITOR
+	RUDE_REPORT("Pointer is at %f %f %f\n", m_placementGuidePosition.x(), m_placementGuidePosition.y(), m_placementGuidePosition.z());
+#endif
 }
 
 void RBTGame::HitBall()
@@ -1321,11 +1335,13 @@ void RBTGame::NextFrame(float delta)
 		gDebugResetHole = false;
 	}
 	
+#ifndef NO_DECO_EDITOR
 	if(gDecoDrop > 0.0f)
 	{
 		m_terrain.DropDecorator(m_placementGuidePosition, gDecoDrop);
 		gDecoDrop = 0.0f;
 	}
+#endif
 	
 	
 	RUDE_PERF_START(kPerfPhysics);
@@ -1432,6 +1448,7 @@ void RBTGame::NextFrame(float delta)
 		default:
 			break;
 	}
+
 
 	//RGLD.DebugDrawLine(m_guidePosition, m_guidePosition + btVector3(0,10,0));
 	
@@ -1770,6 +1787,11 @@ void RBTGame::Render(float aspect)
 		}
 	}
 	
+#ifndef NO_DECO_EDITOR
+	m_dropDecoText.Render();
+	m_dumpDecoText.Render();
+#endif
+	
 	m_help.Render(aspect);
 	
 	RUDE_PERF_STOP(kPerfRBTGameRenderUI);
@@ -1881,6 +1903,11 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				sfx = kSoundUIClickHi;
 			}
 			
+			#ifndef NO_DECO_EDITOR
+				m_dropDecoText.TouchDown(rbt);
+				m_dumpDecoText.TouchDown(rbt);
+			#endif
+			
 			break;
 		case kStateMenu:
 			m_menu.TouchDown(rbt);
@@ -1906,6 +1933,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 	}
 	
 	RudeSound::GetInstance()->PlayWave(sfx);
+
 	
 }
 
@@ -1980,6 +2008,18 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 				SetState(kStateMenu);
 				sfx = kSoundUIClickHi;
 			}
+			
+			#ifndef NO_DECO_EDITOR
+				if(m_dropDecoText.TouchUp(rbt))
+				{
+					gDecoDrop = ((rand() % 8) * 3) + 50;
+				}
+				if(m_dumpDecoText.TouchUp(rbt))
+				{
+					m_terrain.DumpDecorator();
+				}
+			#endif
+			
 			break;
 		case kStatePositionSwing3:
 			m_guideAdjust.TouchUp(rbt);
@@ -2019,11 +2059,13 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 	
 	RudeSound::GetInstance()->PlayWave(sfx);
 
+
 }
 
 void RBTGame::Pause()
 {
 
 }
+
 
 

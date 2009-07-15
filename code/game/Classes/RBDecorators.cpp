@@ -39,6 +39,7 @@ RBDecorator::RBDecorator()
 : m_textureid(0)
 , m_numInstances(0)
 , m_size(16.0f)
+, m_texturesize(128.0f)
 {
 	SetSize(16.0f);
 	
@@ -48,12 +49,15 @@ RBDecorator::RBDecorator()
 void RBDecorator::SetTexture(const char *file)
 {
 	m_textureid = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile(file);
+	m_texturesize = RudeTextureManager::GetInstance()->GetTexture(m_textureid)->GetHeight();
 }
 
 void RBDecorator::SetSize(float size)
 {
 	m_size = size;
 	float hsize = 0.5f * m_size;
+	
+	float uvoffset = 1.0f / m_texturesize;
 	
 	// bottom left
 	m_verts[0].m_pos[0] = -hsize;
@@ -66,7 +70,7 @@ void RBDecorator::SetSize(float size)
 	m_verts[1].m_pos[0] = hsize;
 	m_verts[1].m_pos[1] = 0;
 	m_verts[1].m_pos[2] = 0;
-	m_verts[1].m_uv[0] = 1;
+	m_verts[1].m_uv[0] = 1 - uvoffset;
 	m_verts[1].m_uv[1] = 0;
 	
 	// top left
@@ -74,37 +78,42 @@ void RBDecorator::SetSize(float size)
 	m_verts[2].m_pos[1] = size;
 	m_verts[2].m_pos[2] = 0;
 	m_verts[2].m_uv[0] = 0;
-	m_verts[2].m_uv[1] = 1;
+	m_verts[2].m_uv[1] = 1 - uvoffset;
 	
 	// top left
 	m_verts[3].m_pos[0] = -hsize;
 	m_verts[3].m_pos[1] = size;
 	m_verts[3].m_pos[2] = 0;
 	m_verts[3].m_uv[0] = 0;
-	m_verts[3].m_uv[1] = 1;
+	m_verts[3].m_uv[1] = 1 - uvoffset;
 	
 	// bottom right
 	m_verts[4].m_pos[0] = hsize;
 	m_verts[4].m_pos[1] = 0;
 	m_verts[4].m_pos[2] = 0;
-	m_verts[4].m_uv[0] = 1;
+	m_verts[4].m_uv[0] = 1 - uvoffset;
 	m_verts[4].m_uv[1] = 0;
 	
 	// top right
 	m_verts[5].m_pos[0] = hsize;
 	m_verts[5].m_pos[1] = size;
 	m_verts[5].m_pos[2] = 0;
-	m_verts[5].m_uv[0] = 1;
-	m_verts[5].m_uv[1] = 1;
+	m_verts[5].m_uv[0] = 1 - uvoffset;
+	m_verts[5].m_uv[1] = 1 - uvoffset;
 }
 
-void RBDecorator::AddInstance(float x, float y, float z)
+bool RBDecorator::AddInstance(float x, float y, float z)
 {
-	RUDE_ASSERT(m_numInstances < kMaxInstances, "Out of decorator instances!");
-	
-	m_instances[m_numInstances].Set(x, y, z);
-	
-	m_numInstances++;
+	if(m_numInstances < kMaxInstances)
+	{
+		m_instances[m_numInstances].Set(x, y, z);
+		
+		m_numInstances++;
+		
+		return true;
+	}
+	else
+		return false;
 }
 
 void RBDecorator::Print()
@@ -120,7 +129,7 @@ void RBDecorator::Print()
 void RBDecorator::Render()
 {	
 	glVertexPointer(3, GL_FLOAT, sizeof(RBDecoratorVert), &m_verts[0].m_pos);
-	glTexCoordPointer(2, GL_SHORT, sizeof(RBDecoratorVert), &m_verts[0].m_uv);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(RBDecoratorVert), &m_verts[0].m_uv);
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_textureid);
 	
@@ -219,7 +228,13 @@ void RBDecoratorCollection::Load(const char *deco)
 				RUDE_ASSERT(curdeco, "Failed to parse decorators, DECORATOR not defined");
 				
 				RUDE_REPORT("    %f %f %f\n", pos[0], pos[1], pos[2]);
-				curdeco->AddInstance(pos[0], pos[1], pos[2]);
+				bool added = curdeco->AddInstance(pos[0], pos[1], pos[2]);
+				
+				RUDE_ASSERT(added, "Failed to add decorator instance");
+				
+#ifndef NO_DECO_EDITOR
+				m_droppedDecorators.push_back(btVector3(pos[0], pos[1], pos[2]));
+#endif
 			}
 		}
 		
@@ -230,9 +245,46 @@ void RBDecoratorCollection::Load(const char *deco)
 	
 }
 
+#ifndef NO_DECO_EDITOR
 void RBDecoratorCollection::Drop(const btVector3 &pos, float size)
 {
 	RUDE_ASSERT(m_textureNames.size() > 0, "No decorators have been loaded so there are no textures to drop with");
+	
+	m_dropTextureNum++;
+	if(m_dropTextureNum >= m_textureNames.size())
+		m_dropTextureNum = 0;
+	
+
+	// Check to make sure there's no already a decorator at this position
+	for(unsigned int i = 0; i < m_droppedDecorators.size(); i++)
+	{
+		if(m_droppedDecorators[i] == pos)
+			return;
+	}
+	
+	m_droppedDecorators.push_back(pos);
+	
+	// Check to see if we already have a decorator of the same size and texture
+	int curTextureID = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile(m_textureNames[m_dropTextureNum].c_str());
+	for(unsigned int i = 0; i < m_decorators.size(); i++)
+	{
+		RBDecorator &deco = m_decorators[i];
+		
+		if(deco.GetTextureID() == curTextureID)
+		{
+			if(deco.GetSize() == size)
+			{
+				bool added = deco.AddInstance(pos.x(), pos.y(), pos.z());
+				
+				if(added == false)
+				{
+					Print();
+					RUDE_ASSERT(added, "Failed to add decorator instance");
+				}
+				return;
+			}
+		}
+	}
 	
 	RBDecorator deco;
 	deco.SetTexture(m_textureNames[m_dropTextureNum].c_str());
@@ -241,14 +293,17 @@ void RBDecoratorCollection::Drop(const btVector3 &pos, float size)
 	
 	m_decorators.push_back(deco);
 
+}
+#endif
+
+void RBDecoratorCollection::Print()
+{
+	RUDE_REPORT("\n\n# Decorator Collection\n#\n#\n#\n");
+	
 	for(unsigned int i = 0; i < m_decorators.size(); i++)
 	{
 		m_decorators[i].Print();
 	}
-	
-	m_dropTextureNum++;
-	if(m_dropTextureNum >= m_textureNames.size())
-		m_dropTextureNum = 0;
 }
 
 void RBDecoratorCollection::Render()

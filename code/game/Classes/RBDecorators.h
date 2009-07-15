@@ -10,6 +10,8 @@
 #ifndef __H_RBDecorators
 #define __H_RBDecorators
 
+//#define NO_DECO_EDITOR
+
 #include "Rude.h"
 #include "RudeGL.h"
 
@@ -27,7 +29,7 @@ public:
 	}
 	
 	float m_pos[3];
-	short m_uv[2];
+	float m_uv[2];
 };
 
 class RBDecoratorInstance
@@ -51,9 +53,12 @@ public:
 	RBDecorator();
 	
 	void SetTexture(const char *texture);
-	void SetSize(float size);
+	int GetTextureID() { return m_textureid; }
 	
-	void AddInstance(float x, float y, float z);
+	void SetSize(float size);
+	float GetSize() { return m_size; }
+	
+	bool AddInstance(float x, float y, float z);
 	
 	void Print();
 	
@@ -68,6 +73,7 @@ private:
 	int m_numInstances;
 	
 	int m_textureid;
+	int m_texturesize;
 };
 
 
@@ -79,7 +85,10 @@ public:
 	
 	void Load(const char *deco);
 	
+#ifndef NO_DECO_EDITOR	
 	void Drop(const btVector3 &pos, float size);
+	void Print();
+#endif
 	
 	void Render();
 	
@@ -90,7 +99,11 @@ private:
 	std::vector<RBDecorator> m_decorators;
 	
 	std::vector<std::string> m_textureNames;
+	
+#ifndef NO_DECO_EDITOR
 	int m_dropTextureNum;
+	std::vector<btVector3> m_droppedDecorators;
+#endif
 };
 
 
