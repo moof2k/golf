@@ -25,7 +25,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 1204}}";
 			sepNavSelRange = "{2888, 11}";
-			sepNavVisRange = "{1652, 1782}";
+			sepNavVisRange = "{1652, 1665}";
 			sepNavWindowFrame = "{{38, 471}, {788, 681}}";
 		};
 	};
@@ -163,8 +163,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 269331855;
-			PBXWorkspaceStateSaveDate = 269331855;
+			PBXPerProjectTemplateStateSaveDate = 269332864;
+			PBXWorkspaceStateSaveDate = 269332864;
 		};
 		perUserProjectItems = {
 			9A1184370FAEB4ED00DBCC8C = 9A1184370FAEB4ED00DBCC8C /* PBXTextBookmark */;
@@ -259,28 +259,13 @@
 		vrLen = 306;
 		vrLoc = 0;
 	};
-	9A1B90DE0F68E14200E4F29B /* RudeCollision.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1014, 813}}";
-			sepNavSelRange = "{295, 0}";
-			sepNavVisRange = "{0, 488}";
-		};
-	};
-	9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1239, 2296}}";
-			sepNavSelRange = "{718, 0}";
-			sepNavVisRange = "{189, 1076}";
-		};
-	};
-	9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 254}";
-		};
-	};
 	9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = RudeUnitTest.cpp;
+		path = /depot/Golf/code/engine_example/Classes/RudeUnitTest.cpp;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
 			sepNavSelRange = "{0, 0}";
@@ -322,41 +307,25 @@
 		state = 1;
 	};
 	9A3CA5270E750A6E00BDBA8B /* RudeObject.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = RudeObject.h;
+		path = /depot/Golf/code/engine_example/Classes/RudeObject.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 854}}";
 			sepNavSelRange = "{682, 16}";
 			sepNavVisRange = "{20, 888}";
 		};
 	};
-	9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1239, 1204}}";
-			sepNavSelRange = "{1193, 0}";
-			sepNavVisRange = "{775, 533}";
-		};
-	};
-	9A3CA56D0E750DC200BDBA8B /* RudePhysicsMesh.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 648}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 644}";
-		};
-	};
-	9A3CA56E0E750DC200BDBA8B /* RudePhysicsMesh.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 1414}}";
-			sepNavSelRange = "{854, 0}";
-			sepNavVisRange = "{597, 1087}";
-		};
-	};
-	9A3CA5AF0E75122700BDBA8B /* RudePhysics.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1470}}";
-			sepNavSelRange = "{991, 0}";
-			sepNavVisRange = "{21, 1338}";
-		};
-	};
 	9A3CA5B00E75122700BDBA8B /* RudePhysics.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = RudePhysics.cpp;
+		path = /depot/Golf/code/engine_example/Classes/RudePhysics.cpp;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1239, 2744}}";
 			sepNavSelRange = "{3873, 0}";
@@ -365,45 +334,29 @@
 		};
 	};
 	9A3CA6DA0E751E9500BDBA8B /* RudePhysicsObject.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = RudePhysicsObject.h;
+		path = /depot/Golf/code/engine_example/Classes/RudePhysicsObject.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 1148}";
 		};
 	};
-	9A3CA6DB0E751E9500BDBA8B /* RudePhysicsObject.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {954, 826}}";
-			sepNavSelRange = "{658, 17}";
-			sepNavVisRange = "{0, 1110}";
-		};
-	};
 	9A3CA7110E751FE700BDBA8B /* RudePhysicsSphere.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = RudePhysicsSphere.h;
+		path = /depot/Golf/code/engine_example/Classes/RudePhysicsSphere.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 424}";
-		};
-	};
-	9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {905, 836}}";
-			sepNavSelRange = "{500, 0}";
-			sepNavVisRange = "{0, 932}";
-		};
-	};
-	9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{694, 0}";
-			sepNavVisRange = "{0, 934}";
-		};
-	};
-	9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 2016}}";
-			sepNavSelRange = "{2396, 337}";
-			sepNavVisRange = "{1412, 1325}";
 		};
 	};
 	9A4B126B0FAAC0FB00E53811 /* PVRTTextureAPI.cpp:239 */ = {
@@ -439,49 +392,6 @@
 		location = Golf;
 		modificationTime = 267091456.039647;
 		state = 2;
-	};
-	9A4F1A030E84E401001D1F0B /* RudeSkinnedMesh.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 648}}";
-			sepNavSelRange = "{336, 0}";
-			sepNavVisRange = "{0, 667}";
-			sepNavWindowFrame = "{{15, 445}, {777, 728}}";
-		};
-	};
-	9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 3514}}";
-			sepNavSelRange = "{3261, 0}";
-			sepNavVisRange = "{2734, 1914}";
-		};
-	};
-	9A56CF990F5D0A2E0013B650 /* RudeTimer.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1020, 896}}";
-			sepNavSelRange = "{318, 0}";
-			sepNavVisRange = "{194, 743}";
-		};
-	};
-	9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 648}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 162}";
-		};
-	};
-	9A56CFAB0F5D0E360013B650 /* RudePerf.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1036}}";
-			sepNavSelRange = "{216, 0}";
-			sepNavVisRange = "{0, 1096}";
-		};
-	};
-	9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1274}}";
-			sepNavSelRange = "{460, 0}";
-			sepNavVisRange = "{0, 1095}";
-		};
 	};
 	9A643207100DA773001A570C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -523,75 +433,18 @@
 		vrLen = 1061;
 		vrLoc = 0;
 	};
-	9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 625}}";
-			sepNavSelRange = "{539, 0}";
-			sepNavVisRange = "{0, 610}";
-		};
-	};
-	9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 625}}";
-			sepNavSelRange = "{143, 0}";
-			sepNavVisRange = "{0, 290}";
-		};
-	};
-	9A7400970E6FC7D7008490F7 /* RudeFile.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{282, 0}";
-			sepNavVisRange = "{0, 295}";
-		};
-	};
-	9A7400980E6FC7D7008490F7 /* RudeFile.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{274, 0}";
-			sepNavVisRange = "{0, 753}";
-		};
-	};
-	9A7400CC0E6FCED0008490F7 /* RudeMesh.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 896}}";
-			sepNavSelRange = "{698, 0}";
-			sepNavVisRange = "{3, 1152}";
-		};
-	};
 	9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = RudeMesh.cpp;
+		path = /depot/Golf/code/engine_example/Classes/RudeMesh.cpp;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 4578}}";
 			sepNavSelRange = "{6490, 0}";
 			sepNavVisRange = "{1118, 1661}";
 			sepNavWindowFrame = "{{15, 445}, {777, 728}}";
-		};
-	};
-	9A74FFB00E6E934B008490F7 /* RudeText.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 648}}";
-			sepNavSelRange = "{276, 0}";
-			sepNavVisRange = "{0, 368}";
-		};
-	};
-	9A74FFB10E6E934B008490F7 /* RudeText.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {954, 560}}";
-			sepNavSelRange = "{621, 0}";
-			sepNavVisRange = "{154, 488}";
-		};
-	};
-	9A776D4E0EABD76600196CA0 /* RudeTextControl.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1232}}";
-			sepNavSelRange = "{1469, 13}";
-			sepNavVisRange = "{389, 1171}";
-		};
-	};
-	9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1056, 2282}}";
-			sepNavSelRange = "{1436, 93}";
-			sepNavVisRange = "{1198, 727}";
 		};
 	};
 	9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */ = {
@@ -1035,179 +888,18 @@
 		vrLen = 1782;
 		vrLoc = 1652;
 	};
-	9A8C20D80E46A92600C2BECB /* RudeVertex.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 757}}";
-			sepNavSelRange = "{80, 20}";
-			sepNavVisRange = "{0, 627}";
-			sepNavWindowFrame = "{{106, 427}, {781, 663}}";
-		};
-	};
-	9A8C20D90E46A92600C2BECB /* RudeRegistry.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1008, 494}}";
-			sepNavSelRange = "{194, 0}";
-			sepNavVisRange = "{0, 396}";
-		};
-	};
-	9A8C20DD0E46A92600C2BECB /* RudeMath.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
-			sepNavSelRange = "{87, 0}";
-			sepNavVisRange = "{0, 728}";
-		};
-	};
-	9A8C20DE0E46A92600C2BECB /* RudeSound.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 1372}}";
-			sepNavSelRange = "{1298, 10}";
-			sepNavVisRange = "{534, 540}";
-		};
-	};
 	9A8C20DF0E46A92600C2BECB /* Rude.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = Rude.h;
+		path = /depot/Golf/code/engine_example/Classes/Rude.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 2254}}";
 			sepNavSelRange = "{2085, 0}";
 			sepNavVisRange = "{1839, 790}";
 			sepNavWindowFrame = "{{222, 303}, {788, 681}}";
-		};
-	};
-	9A8C20E00E46A92600C2BECB /* RudeKey.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {897, 602}}";
-			sepNavSelRange = "{162, 9}";
-			sepNavVisRange = "{0, 356}";
-		};
-	};
-	9A8C20E40E46A92600C2BECB /* RudeGame.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1020, 2198}}";
-			sepNavSelRange = "{1620, 0}";
-			sepNavVisRange = "{673, 798}";
-			sepNavWindowFrame = "{{588, 106}, {781, 663}}";
-		};
-	};
-	9A8C20E50E46A92600C2BECB /* RudeGlobals.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {897, 812}}";
-			sepNavSelRange = "{736, 0}";
-			sepNavVisRange = "{244, 971}";
-		};
-	};
-	9A8C20E60E46A92600C2BECB /* RudeDebug.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
-			sepNavSelRange = "{223, 0}";
-			sepNavVisRange = "{0, 399}";
-		};
-	};
-	9A8C20E80E46A92600C2BECB /* RudeKey.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 799}}";
-			sepNavSelRange = "{24, 0}";
-			sepNavVisRange = "{0, 24}";
-		};
-	};
-	9A8C20E90E46A92600C2BECB /* RudeRect.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 536}}";
-			sepNavSelRange = "{29, 0}";
-			sepNavVisRange = "{0, 29}";
-		};
-	};
-	9A8C20EB0E46A92600C2BECB /* RudeDebug.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 812}}";
-			sepNavSelRange = "{394, 0}";
-			sepNavVisRange = "{24, 805}";
-		};
-	};
-	9A8C20EC0E46A92600C2BECB /* RudeGlobals.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 745}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 657}";
-		};
-	};
-	9A8C20F00E46A92600C2BECB /* RudeColor.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {750, 434}}";
-			sepNavSelRange = "{203, 0}";
-			sepNavVisRange = "{62, 306}";
-			sepNavWindowFrame = "{{107, 126}, {781, 663}}";
-		};
-	};
-	9A8C20F20E46A92600C2BECB /* RudeColor.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {942, 744}}";
-			sepNavSelRange = "{118, 19}";
-			sepNavVisRange = "{0, 634}";
-			sepNavWindowFrame = "{{109, 430}, {781, 663}}";
-		};
-	};
-	9A8C20F30E46A92600C2BECB /* RudeSound.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1008, 3346}}";
-			sepNavSelRange = "{3482, 80}";
-			sepNavVisRange = "{3131, 857}";
-			sepNavWindowFrame = "{{153, 384}, {781, 663}}";
-		};
-	};
-	9A8C20F40E46A92600C2BECB /* RudeGame.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 924}}";
-			sepNavSelRange = "{608, 0}";
-			sepNavVisRange = "{198, 846}";
-		};
-	};
-	9A8C20F50E46A92600C2BECB /* RudeRect.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {836, 784}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 545}";
-		};
-	};
-	9A8C20F60E46A92600C2BECB /* RudeMath.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {897, 1974}}";
-			sepNavSelRange = "{1231, 0}";
-			sepNavVisRange = "{736, 669}";
-			sepNavWindowFrame = "{{84, 147}, {781, 663}}";
-		};
-	};
-	9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 546}}";
-			sepNavSelRange = "{329, 0}";
-			sepNavVisRange = "{0, 535}";
-		};
-	};
-	9A8F3E800E7F7A4900C28D68 /* RudeControl.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1000, 910}}";
-			sepNavSelRange = "{927, 0}";
-			sepNavVisRange = "{272, 601}";
-		};
-	};
-	9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1330}}";
-			sepNavSelRange = "{369, 26}";
-			sepNavVisRange = "{516, 1154}";
-		};
-	};
-	9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{138, 560}";
-			sepNavVisRange = "{0, 698}";
-		};
-	};
-	9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1624}}";
-			sepNavSelRange = "{2216, 15}";
-			sepNavVisRange = "{1176, 1067}";
 		};
 	};
 	9A8F40F00E7FA8C700C28D68 /* RBBallGuide.cpp */ = {
@@ -1217,92 +909,6 @@
 		name = RBBallGuide.cpp;
 		path = /Users/rose/src/bork3d/bork3d_engine/Classes/RBBallGuide.cpp;
 		sourceTree = "<absolute>";
-	};
-	9A9199A70E71205C00BE65AF /* RudeSkybox.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 799}}";
-			sepNavSelRange = "{257, 0}";
-			sepNavVisRange = "{0, 344}";
-		};
-	};
-	9A9199A80E71205C00BE65AF /* RudeSkybox.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {964, 2296}}";
-			sepNavSelRange = "{2889, 65}";
-			sepNavVisRange = "{2633, 698}";
-		};
-	};
-	9A93B5BF0E80F3600067CDC6 /* RudeGLD.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 882}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 412}";
-		};
-	};
-	9A93B5C00E80F3600067CDC6 /* RudeGLD.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 882}}";
-			sepNavSelRange = "{836, 0}";
-			sepNavVisRange = "{569, 455}";
-		};
-	};
-	9A9992B50E668A9800DC6621 /* RudeTouchTracker.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 668}";
-		};
-	};
-	9A9992B60E668A9800DC6621 /* RudeTouchTracker.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 826}}";
-			sepNavSelRange = "{286, 0}";
-			sepNavVisRange = "{0, 943}";
-		};
-	};
-	9A9A9B6E0E61639000D00516 /* RudeRegistryCF.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 536}}";
-			sepNavSelRange = "{314, 0}";
-			sepNavVisRange = "{0, 387}";
-		};
-	};
-	9A9A9B6F0E61639000D00516 /* RudeRegistryCF.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 546}}";
-			sepNavSelRange = "{710, 0}";
-			sepNavVisRange = "{29, 972}";
-		};
-	};
-	9A9A9C050E62299800D00516 /* RudeTextureManager.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 780}}";
-			sepNavSelRange = "{457, 0}";
-			sepNavVisRange = "{0, 980}";
-			sepNavWindowFrame = "{{15, 274}, {1213, 899}}";
-		};
-	};
-	9A9A9C060E62299800D00516 /* RudeTextureManager.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 2198}}";
-			sepNavSelRange = "{2346, 37}";
-			sepNavVisRange = "{1803, 1015}";
-		};
-	};
-	9A9A9C0B0E622B1300D00516 /* RudeTexture.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 745}}";
-			sepNavSelRange = "{180, 0}";
-			sepNavVisRange = "{0, 526}";
-		};
-	};
-	9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 2268}}";
-			sepNavSelRange = "{2421, 0}";
-			sepNavVisRange = "{363, 992}";
-			sepNavWindowFrame = "{{242, 91}, {788, 681}}";
-		};
 	};
 	9A9D63AE0EB97D80003985A4 /* RBUITitle.h */ = {
 		uiCtxt = {
@@ -1431,20 +1037,6 @@
 		location = Golf;
 		modificationTime = 267091456.039478;
 		state = 2;
-	};
-	9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {924, 2688}}";
-			sepNavSelRange = "{2034, 9}";
-			sepNavVisRange = "{2631, 1367}";
-		};
-	};
-	9AB4286A0E7DC9D1001429D6 /* RudeTweaker.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1002, 1092}}";
-			sepNavSelRange = "{969, 24}";
-			sepNavVisRange = "{265, 835}";
-		};
 	};
 	9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */ = {
 		isa = PBXFileReference;
@@ -1708,49 +1300,18 @@
 			sepNavWindowFrame = "{{15, 76}, {824, 797}}";
 		};
 	};
-	9AEF09AE0E5D1658006C50C3 /* RudeGL.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 5250}}";
-			sepNavSelRange = "{44, 61}";
-			sepNavVisRange = "{0, 970}";
-			sepNavWindowFrame = "{{615, 111}, {781, 663}}";
-		};
-	};
 	9AEF09AF0E5D1658006C50C3 /* RudeGL.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = RudeGL.h;
+		path = /depot/Golf/code/engine_example/Classes/RudeGL.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1002, 1316}}";
 			sepNavSelRange = "{1854, 0}";
 			sepNavVisRange = "{0, 1061}";
 			sepNavWindowFrame = "{{15, 76}, {824, 797}}";
-		};
-	};
-	9AFF31320E9D9DE80078E211 /* RudeFont.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {898, 1834}}";
-			sepNavSelRange = "{2337, 19}";
-			sepNavVisRange = "{1348, 1223}";
-			sepNavWindowFrame = "{{45, 368}, {824, 797}}";
-		};
-	};
-	9AFF31330E9D9DE80078E211 /* RudeFont.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1239, 18564}}";
-			sepNavSelRange = "{9057, 0}";
-			sepNavVisRange = "{7073, 683}";
-		};
-	};
-	9AFF315B0E9DA09F0078E211 /* RudeUnicode.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 799}}";
-			sepNavSelRange = "{1162, 0}";
-			sepNavVisRange = "{0, 1165}";
-		};
-	};
-	9AFF315C0E9DA09F0078E211 /* RudeUnicode.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {920, 2856}}";
-			sepNavSelRange = "{3871, 0}";
-			sepNavVisRange = "{968, 1112}";
 		};
 	};
 }

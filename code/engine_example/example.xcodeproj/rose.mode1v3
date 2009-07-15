@@ -298,7 +298,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 124}, {326, 691}}</string>
+							<string>{{0, 0}, {326, 691}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -344,32 +344,20 @@
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>RudeGL.h</string>
-										<key>_historyCapacity</key>
-										<integer>20</integer>
-										<key>bookmark</key>
-										<string>9A64320A100DA773001A570C</string>
 										<key>history</key>
 										<array>
 											<string>9A8126C40FEB743700FDFB29</string>
 											<string>9A8126C60FEB743700FDFB29</string>
-											<string>9A8126C70FEB743700FDFB29</string>
-											<string>9A8126C90FEB743700FDFB29</string>
 											<string>9A8126F50FEB75D900FDFB29</string>
 											<string>9A8126F60FEB75D900FDFB29</string>
 											<string>9A8127220FEB774B00FDFB29</string>
 											<string>9A8127400FEB7CA100FDFB29</string>
-											<string>9A8127540FEB7E4400FDFB29</string>
-											<string>9A8127610FEB7F6300FDFB29</string>
 											<string>9A8127620FEB7F6300FDFB29</string>
 											<string>9A81276E0FEB808700FDFB29</string>
-											<string>9A81277F0FEB812B00FDFB29</string>
-											<string>9A8127800FEB812B00FDFB29</string>
-											<string>9A8127810FEB812B00FDFB29</string>
 											<string>9A8127990FEB81F100FDFB29</string>
 											<string>9A8980210FF1FAD200C013AA</string>
 											<string>9A8980220FF1FAD200C013AA</string>
 											<string>9A643207100DA773001A570C</string>
-											<string>9A643208100DA773001A570C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -380,19 +368,12 @@
 											<string>9A8125910FEB712F00FDFB29</string>
 											<string>9A8125940FEB712F00FDFB29</string>
 											<string>9A8126D60FEB743700FDFB29</string>
-											<string>9A8126D70FEB743700FDFB29</string>
-											<string>9A8126D90FEB743700FDFB29</string>
 											<string>9A8126FA0FEB75D900FDFB29</string>
 											<string>9A8126FC0FEB75D900FDFB29</string>
 											<string>9A8126FD0FEB75D900FDFB29</string>
-											<string>9A8127660FEB7F6300FDFB29</string>
-											<string>9A8127840FEB812B00FDFB29</string>
-											<string>9A8127850FEB812B00FDFB29</string>
-											<string>9A8127860FEB812B00FDFB29</string>
 											<string>9A8980240FF1FAD200C013AA</string>
 											<string>9A8980250FF1FAD200C013AA</string>
 											<string>9A8980260FF1FAD200C013AA</string>
-											<string>9A643209100DA773001A570C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -424,7 +405,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 817}, {1063, 0}}</string>
+								<string>{{0, 709}, {1063, 0}}</string>
 								<key>RubberWindowFrame</key>
 								<string>293 324 1411 750 0 0 1920 1178 </string>
 							</dict>
@@ -450,9 +431,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>9A64320B100DA773001A570C</string>
+				<string>9A72C899100DB181003CE259</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>9A64320C100DA773001A570C</string>
+				<string>9A72C89A100DB181003CE259</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -586,10 +567,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>9A813A910E46A55900B5AC84</string>
-		<string>/depot/Golf/code/bork3d_engine/example.xcodeproj</string>
+		<string>/depot/Golf/code/engine_example/example.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>293 324 1411 750 0 0 1920 1178 </string>

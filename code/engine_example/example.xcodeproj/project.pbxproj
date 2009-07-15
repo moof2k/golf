@@ -16,24 +16,46 @@
 		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
-		9A1B90E00F68E14200E4F29B /* RudeCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */; };
-		9A1B90FD0F68EB1600E4F29B /* RudeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */; };
-		9A3CA5290E750A6E00BDBA8B /* RudeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */; };
-		9A3CA56F0E750DC200BDBA8B /* RudePhysicsMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA56E0E750DC200BDBA8B /* RudePhysicsMesh.cpp */; };
-		9A3CA5B10E75122700BDBA8B /* RudePhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA5B00E75122700BDBA8B /* RudePhysics.cpp */; };
-		9A3CA6DC0E751E9500BDBA8B /* RudePhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA6DB0E751E9500BDBA8B /* RudePhysicsObject.cpp */; };
-		9A3CA7130E751FE700BDBA8B /* RudePhysicsSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */; };
-		9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */; };
-		9A4F1A050E84E401001D1F0B /* RudeSkinnedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */; };
 		9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CF730F5BC5470013B650 /* bgm_silence.m4a */; };
-		9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */; };
-		9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */; };
-		9A7400300E6E9AC5008490F7 /* RudeTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */; };
-		9A7400990E6FC7D7008490F7 /* RudeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400980E6FC7D7008490F7 /* RudeFile.cpp */; };
-		9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */; };
+		9A72C9EF100DB19C003CE259 /* RudeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C99F100DB19C003CE259 /* RudeUnitTest.cpp */; };
+		9A72C9F0100DB19C003CE259 /* RudeUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A1100DB19C003CE259 /* RudeUnicode.cpp */; };
+		9A72C9F1100DB19C003CE259 /* RudeTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A2100DB19C003CE259 /* RudeTimer.cpp */; };
+		9A72C9F2100DB19C003CE259 /* RudeTextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A4100DB19C003CE259 /* RudeTextureManager.cpp */; };
+		9A72C9F3100DB19C003CE259 /* RudeTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A6100DB19C003CE259 /* RudeTexture.cpp */; };
+		9A72C9F4100DB19C003CE259 /* RudeTextControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A8100DB19C003CE259 /* RudeTextControl.cpp */; };
+		9A72C9F5100DB19C003CE259 /* RudeTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9A9100DB19C003CE259 /* RudeTimeCounter.cpp */; };
+		9A72C9F6100DB19C003CE259 /* RudeText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9AC100DB19C003CE259 /* RudeText.cpp */; };
+		9A72C9F7100DB19C003CE259 /* RudeTouchTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9AD100DB19C003CE259 /* RudeTouchTracker.cpp */; };
+		9A72C9F8100DB19C003CE259 /* RudeSkybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9AE100DB19C003CE259 /* RudeSkybox.cpp */; };
+		9A72C9F9100DB19C003CE259 /* RudeSkinnedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9B0100DB19C003CE259 /* RudeSkinnedMesh.cpp */; };
+		9A72C9FB100DB19C003CE259 /* RudeRegistryText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9B6100DB19C003CE259 /* RudeRegistryText.cpp */; };
+		9A72C9FD100DB19C003CE259 /* RudeRegistryCF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9BA100DB19C003CE259 /* RudeRegistryCF.cpp */; };
+		9A72C9FE100DB19C003CE259 /* RudeRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9BC100DB19C003CE259 /* RudeRegistry.cpp */; };
+		9A72C9FF100DB19C003CE259 /* RudeSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9BE100DB19C003CE259 /* RudeSound.cpp */; };
+		9A72CA00100DB19C003CE259 /* RudeRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9C0100DB19C003CE259 /* RudeRect.cpp */; };
+		9A72CA01100DB19C003CE259 /* RudePhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9C4100DB19C003CE259 /* RudePhysicsObject.cpp */; };
+		9A72CA02100DB19C003CE259 /* RudePhysicsMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9C6100DB19C003CE259 /* RudePhysicsMesh.cpp */; };
+		9A72CA03100DB19C003CE259 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9C8100DB19C003CE259 /* RudeButtonAnimControl.cpp */; };
+		9A72CA04100DB19C003CE259 /* RudeDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9C9100DB19C003CE259 /* RudeDebug.cpp */; };
+		9A72CA05100DB19C003CE259 /* RudeCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9CA100DB19C003CE259 /* RudeCollision.cpp */; };
+		9A72CA06100DB19C003CE259 /* RudeTweaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9CB100DB19C003CE259 /* RudeTweaker.cpp */; };
+		9A72CA07100DB19C003CE259 /* RudeColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9CF100DB19C003CE259 /* RudeColor.cpp */; };
+		9A72CA08100DB19C003CE259 /* RudeButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9D1100DB19C003CE259 /* RudeButtonControl.cpp */; };
+		9A72CA09100DB19C003CE259 /* RudeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9D3100DB19C003CE259 /* RudeFile.cpp */; };
+		9A72CA0A100DB19C003CE259 /* RudeControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9D5100DB19C003CE259 /* RudeControl.cpp */; };
+		9A72CA0B100DB19C003CE259 /* RudePhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9D7100DB19C003CE259 /* RudePhysics.cpp */; };
+		9A72CA0C100DB19C003CE259 /* RudePerf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9D9100DB19C003CE259 /* RudePerf.cpp */; };
+		9A72CA0D100DB19C003CE259 /* RudeMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9DC100DB19C003CE259 /* RudeMesh.cpp */; };
+		9A72CA0E100DB19C003CE259 /* RudeMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9DE100DB19C003CE259 /* RudeMath.cpp */; };
+		9A72CA0F100DB19C003CE259 /* RudeKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9E0100DB19C003CE259 /* RudeKey.cpp */; };
+		9A72CA10100DB19C003CE259 /* RudeGlobals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9E2100DB19C003CE259 /* RudeGlobals.cpp */; };
+		9A72CA11100DB19C003CE259 /* RudeGLD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9E4100DB19C003CE259 /* RudeGLD.cpp */; };
+		9A72CA12100DB19C003CE259 /* RudeGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9E6100DB19C003CE259 /* RudeGL.cpp */; };
+		9A72CA13100DB19C003CE259 /* RudeGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9E9100DB19C003CE259 /* RudeGame.cpp */; };
+		9A72CA14100DB19C003CE259 /* RudeFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9EB100DB19C003CE259 /* RudeFont.cpp */; };
+		9A72CA15100DB19C003CE259 /* RudePhysicsSphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9ED100DB19C003CE259 /* RudePhysicsSphere.cpp */; };
+		9A72CA16100DB19C003CE259 /* RudeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72C9EE100DB19C003CE259 /* RudeObject.cpp */; };
 		9A7401900E6FDF24008490F7 /* testtexture.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A74018F0E6FDF24008490F7 /* testtexture.pvr */; };
-		9A74FFB20E6E934B008490F7 /* RudeText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A74FFB10E6E934B008490F7 /* RudeText.cpp */; };
-		9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */; };
 		9A8126EF0FEB753000FDFB29 /* RBCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8126ED0FEB753000FDFB29 /* RBCamera.cpp */; };
 		9A8127120FEB766D00FDFB29 /* skybox2.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A81270C0FEB766D00FDFB29 /* skybox2.pvr */; };
 		9A8127130FEB766D00FDFB29 /* skybox6.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A81270D0FEB766D00FDFB29 /* skybox6.pvr */; };
@@ -45,23 +67,6 @@
 		9A81275D0FEB7F2900FDFB29 /* plane.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A81275C0FEB7F2900FDFB29 /* plane.POD */; };
 		9A81276B0FEB805000FDFB29 /* sphere.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A81276A0FEB805000FDFB29 /* sphere.POD */; };
 		9A8C20A40E46A83300C2BECB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C20A30E46A83300C2BECB /* AudioToolbox.framework */; };
-		9A8C20FD0E46A92600C2BECB /* RudeMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20DD0E46A92600C2BECB /* RudeMath.cpp */; };
-		9A8C20FE0E46A92600C2BECB /* RudeGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20E40E46A92600C2BECB /* RudeGame.cpp */; };
-		9A8C21000E46A92600C2BECB /* RudeKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20E80E46A92600C2BECB /* RudeKey.cpp */; };
-		9A8C21010E46A92600C2BECB /* RudeRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20E90E46A92600C2BECB /* RudeRect.cpp */; };
-		9A8C21030E46A92600C2BECB /* RudeDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20EB0E46A92600C2BECB /* RudeDebug.cpp */; };
-		9A8C21040E46A92600C2BECB /* RudeGlobals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20EC0E46A92600C2BECB /* RudeGlobals.cpp */; };
-		9A8C21080E46A92600C2BECB /* RudeColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F00E46A92600C2BECB /* RudeColor.cpp */; };
-		9A8C21090E46A92600C2BECB /* RudeSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F30E46A92600C2BECB /* RudeSound.cpp */; };
-		9A8C210A0E46A92600C2BECB /* RudeRegistry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */; };
-		9A8F3E820E7F7A4900C28D68 /* RudeControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */; };
-		9A8F3FE50E7F9E6E00C28D68 /* RudeButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */; };
-		9A9199A90E71205C00BE65AF /* RudeSkybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9199A80E71205C00BE65AF /* RudeSkybox.cpp */; };
-		9A93B5C10E80F3600067CDC6 /* RudeGLD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A93B5C00E80F3600067CDC6 /* RudeGLD.cpp */; };
-		9A9992B70E668A9800DC6621 /* RudeTouchTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9992B60E668A9800DC6621 /* RudeTouchTracker.cpp */; };
-		9A9A9B700E61639000D00516 /* RudeRegistryCF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9B6F0E61639000D00516 /* RudeRegistryCF.cpp */; };
-		9A9A9C070E62299800D00516 /* RudeTextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9C060E62299800D00516 /* RudeTextureManager.cpp */; };
-		9A9A9C0D0E622B1300D00516 /* RudeTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */; };
 		9A9AA1660E6282FD00D00516 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */; };
 		9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */; };
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
@@ -70,7 +75,6 @@
 		9AAA6E0C0E9F12A4008D9318 /* ab18o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E080E9F12A4008D9318 /* ab18o2_00.pvr */; };
 		9AAA6E0D0E9F12A4008D9318 /* ab18.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E090E9F12A4008D9318 /* ab18.fnt */; };
 		9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */; };
-		9AB4286B0E7DC9D1001429D6 /* RudeTweaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */; };
 		9AD57F060EA08B24002696A6 /* btAxisSweep3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E010EA08B24002696A6 /* btAxisSweep3.cpp */; };
 		9AD57F070EA08B24002696A6 /* btBroadphaseProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E040EA08B24002696A6 /* btBroadphaseProxy.cpp */; };
 		9AD57F080EA08B24002696A6 /* btCollisionAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57E060EA08B24002696A6 /* btCollisionAlgorithm.cpp */; };
@@ -198,13 +202,10 @@
 		9ADC5A8D0E6548BD004C82A2 /* RBGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC5A860E6548BD004C82A2 /* RBGame.cpp */; };
 		9AEF08590E5C1598006C50C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEF08580E5C1598006C50C3 /* UIKit.framework */; };
 		9AEF08920E5C15A2006C50C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEF08910E5C15A2006C50C3 /* OpenGLES.framework */; };
-		9AEF09B00E5D1658006C50C3 /* RudeGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF09AE0E5D1658006C50C3 /* RudeGL.cpp */; };
 		9AFD58CC0EA9AE210044A7B0 /* ab28o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD58C80EA9AE200044A7B0 /* ab28o2.fnt */; };
 		9AFD58CD0EA9AE210044A7B0 /* ab28_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD58C90EA9AE200044A7B0 /* ab28_00.pvr */; };
 		9AFD58CE0EA9AE210044A7B0 /* ab28.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD58CA0EA9AE200044A7B0 /* ab28.fnt */; };
 		9AFD58CF0EA9AE210044A7B0 /* ab28o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AFD58CB0EA9AE200044A7B0 /* ab28o2_00.pvr */; };
-		9AFF31340E9D9DE80078E211 /* RudeFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFF31330E9D9DE80078E211 /* RudeFont.cpp */; };
-		9AFF315D0E9DA09F0078E211 /* RudeUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFF315C0E9DA09F0078E211 /* RudeUnicode.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -223,40 +224,86 @@
 		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		9A1B90DE0F68E14200E4F29B /* RudeCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeCollision.h; path = Classes/RudeCollision.h; sourceTree = "<group>"; };
-		9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeCollision.cpp; path = Classes/RudeCollision.cpp; sourceTree = "<group>"; };
-		9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnitTest.h; path = Classes/RudeUnitTest.h; sourceTree = "<group>"; };
-		9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnitTest.cpp; path = Classes/RudeUnitTest.cpp; sourceTree = "<group>"; };
-		9A3CA5270E750A6E00BDBA8B /* RudeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeObject.h; path = Classes/RudeObject.h; sourceTree = "<group>"; };
-		9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeObject.cpp; path = Classes/RudeObject.cpp; sourceTree = "<group>"; };
-		9A3CA56D0E750DC200BDBA8B /* RudePhysicsMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsMesh.h; path = Classes/RudePhysicsMesh.h; sourceTree = "<group>"; };
-		9A3CA56E0E750DC200BDBA8B /* RudePhysicsMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsMesh.cpp; path = Classes/RudePhysicsMesh.cpp; sourceTree = "<group>"; };
-		9A3CA5AF0E75122700BDBA8B /* RudePhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysics.h; path = Classes/RudePhysics.h; sourceTree = "<group>"; };
-		9A3CA5B00E75122700BDBA8B /* RudePhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysics.cpp; path = Classes/RudePhysics.cpp; sourceTree = "<group>"; };
-		9A3CA6DA0E751E9500BDBA8B /* RudePhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsObject.h; path = Classes/RudePhysicsObject.h; sourceTree = "<group>"; };
-		9A3CA6DB0E751E9500BDBA8B /* RudePhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsObject.cpp; path = Classes/RudePhysicsObject.cpp; sourceTree = "<group>"; };
-		9A3CA7110E751FE700BDBA8B /* RudePhysicsSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsSphere.h; path = Classes/RudePhysicsSphere.h; sourceTree = "<group>"; };
-		9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsSphere.cpp; path = Classes/RudePhysicsSphere.cpp; sourceTree = "<group>"; };
-		9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonAnimControl.h; path = Classes/RudeButtonAnimControl.h; sourceTree = "<group>"; };
-		9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonAnimControl.cpp; path = Classes/RudeButtonAnimControl.cpp; sourceTree = "<group>"; };
-		9A4F1A030E84E401001D1F0B /* RudeSkinnedMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkinnedMesh.h; path = Classes/RudeSkinnedMesh.h; sourceTree = "<group>"; };
-		9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkinnedMesh.cpp; path = Classes/RudeSkinnedMesh.cpp; sourceTree = "<group>"; };
 		9A56CF730F5BC5470013B650 /* bgm_silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_silence.m4a; path = Data/bgm_silence.m4a; sourceTree = "<group>"; };
-		9A56CF990F5D0A2E0013B650 /* RudeTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimer.h; path = Classes/RudeTimer.h; sourceTree = "<group>"; };
-		9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimer.cpp; path = Classes/RudeTimer.cpp; sourceTree = "<group>"; };
-		9A56CFAB0F5D0E360013B650 /* RudePerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePerf.h; path = Classes/RudePerf.h; sourceTree = "<group>"; };
-		9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = Classes/RudePerf.cpp; sourceTree = "<group>"; };
-		9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimeCounter.h; path = Classes/RudeTimeCounter.h; sourceTree = "<group>"; };
-		9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimeCounter.cpp; path = Classes/RudeTimeCounter.cpp; sourceTree = "<group>"; };
-		9A7400970E6FC7D7008490F7 /* RudeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFile.h; path = Classes/RudeFile.h; sourceTree = "<group>"; };
-		9A7400980E6FC7D7008490F7 /* RudeFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeFile.cpp; path = Classes/RudeFile.cpp; sourceTree = "<group>"; };
-		9A7400CC0E6FCED0008490F7 /* RudeMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeMesh.h; path = Classes/RudeMesh.h; sourceTree = "<group>"; };
-		9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeMesh.cpp; path = Classes/RudeMesh.cpp; sourceTree = "<group>"; };
+		9A72C99D100DB19C003CE259 /* RudeVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeVertex.h; path = ../engine/RudeVertex.h; sourceTree = SOURCE_ROOT; };
+		9A72C99E100DB19C003CE259 /* RudeUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnitTest.h; path = ../engine/RudeUnitTest.h; sourceTree = SOURCE_ROOT; };
+		9A72C99F100DB19C003CE259 /* RudeUnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnitTest.cpp; path = ../engine/RudeUnitTest.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A0100DB19C003CE259 /* RudeUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnicode.h; path = ../engine/RudeUnicode.h; sourceTree = SOURCE_ROOT; };
+		9A72C9A1100DB19C003CE259 /* RudeUnicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnicode.cpp; path = ../engine/RudeUnicode.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A2100DB19C003CE259 /* RudeTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimer.cpp; path = ../engine/RudeTimer.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A3100DB19C003CE259 /* RudeTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimeCounter.h; path = ../engine/RudeTimeCounter.h; sourceTree = SOURCE_ROOT; };
+		9A72C9A4100DB19C003CE259 /* RudeTextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTextureManager.cpp; path = ../engine/RudeTextureManager.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A5100DB19C003CE259 /* RudeTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTexture.h; path = ../engine/RudeTexture.h; sourceTree = SOURCE_ROOT; };
+		9A72C9A6100DB19C003CE259 /* RudeTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTexture.cpp; path = ../engine/RudeTexture.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A7100DB19C003CE259 /* RudeTextControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextControl.h; path = ../engine/RudeTextControl.h; sourceTree = SOURCE_ROOT; };
+		9A72C9A8100DB19C003CE259 /* RudeTextControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTextControl.cpp; path = ../engine/RudeTextControl.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9A9100DB19C003CE259 /* RudeTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTimeCounter.cpp; path = ../engine/RudeTimeCounter.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9AA100DB19C003CE259 /* RudeText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeText.h; path = ../engine/RudeText.h; sourceTree = SOURCE_ROOT; };
+		9A72C9AB100DB19C003CE259 /* RudeTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTimer.h; path = ../engine/RudeTimer.h; sourceTree = SOURCE_ROOT; };
+		9A72C9AC100DB19C003CE259 /* RudeText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeText.cpp; path = ../engine/RudeText.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9AD100DB19C003CE259 /* RudeTouchTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTouchTracker.cpp; path = ../engine/RudeTouchTracker.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9AE100DB19C003CE259 /* RudeSkybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkybox.cpp; path = ../engine/RudeSkybox.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9AF100DB19C003CE259 /* RudeSkinnedMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkinnedMesh.h; path = ../engine/RudeSkinnedMesh.h; sourceTree = SOURCE_ROOT; };
+		9A72C9B0100DB19C003CE259 /* RudeSkinnedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkinnedMesh.cpp; path = ../engine/RudeSkinnedMesh.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9B1100DB19C003CE259 /* RudeTextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextureManager.h; path = ../engine/RudeTextureManager.h; sourceTree = SOURCE_ROOT; };
+		9A72C9B2100DB19C003CE259 /* RudeSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkybox.h; path = ../engine/RudeSkybox.h; sourceTree = SOURCE_ROOT; };
+		9A72C9B5100DB19C003CE259 /* RudeRegistryText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRegistryText.h; path = ../engine/RudeRegistryText.h; sourceTree = SOURCE_ROOT; };
+		9A72C9B6100DB19C003CE259 /* RudeRegistryText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistryText.cpp; path = ../engine/RudeRegistryText.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9B9100DB19C003CE259 /* RudeRegistryCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRegistryCF.h; path = ../engine/RudeRegistryCF.h; sourceTree = SOURCE_ROOT; };
+		9A72C9BA100DB19C003CE259 /* RudeRegistryCF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistryCF.cpp; path = ../engine/RudeRegistryCF.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9BB100DB19C003CE259 /* RudeRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRegistry.h; path = ../engine/RudeRegistry.h; sourceTree = SOURCE_ROOT; };
+		9A72C9BC100DB19C003CE259 /* RudeRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistry.cpp; path = ../engine/RudeRegistry.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9BD100DB19C003CE259 /* RudeSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSound.h; path = ../engine/RudeSound.h; sourceTree = SOURCE_ROOT; };
+		9A72C9BE100DB19C003CE259 /* RudeSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSound.cpp; path = ../engine/RudeSound.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9BF100DB19C003CE259 /* RudeRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRect.h; path = ../engine/RudeRect.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C0100DB19C003CE259 /* RudeRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRect.cpp; path = ../engine/RudeRect.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9C1100DB19C003CE259 /* RudeTweaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTweaker.h; path = ../engine/RudeTweaker.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C2100DB19C003CE259 /* RudePhysicsSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsSphere.h; path = ../engine/RudePhysicsSphere.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C3100DB19C003CE259 /* RudePhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsObject.h; path = ../engine/RudePhysicsObject.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C4100DB19C003CE259 /* RudePhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsObject.cpp; path = ../engine/RudePhysicsObject.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9C5100DB19C003CE259 /* RudePhysicsMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysicsMesh.h; path = ../engine/RudePhysicsMesh.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C6100DB19C003CE259 /* RudePhysicsMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsMesh.cpp; path = ../engine/RudePhysicsMesh.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9C7100DB19C003CE259 /* RudePhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePhysics.h; path = ../engine/RudePhysics.h; sourceTree = SOURCE_ROOT; };
+		9A72C9C8100DB19C003CE259 /* RudeButtonAnimControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonAnimControl.cpp; path = ../engine/RudeButtonAnimControl.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9C9100DB19C003CE259 /* RudeDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeDebug.cpp; path = ../engine/RudeDebug.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9CA100DB19C003CE259 /* RudeCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeCollision.cpp; path = ../engine/RudeCollision.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9CB100DB19C003CE259 /* RudeTweaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTweaker.cpp; path = ../engine/RudeTweaker.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9CC100DB19C003CE259 /* RudeButtonAnimControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonAnimControl.h; path = ../engine/RudeButtonAnimControl.h; sourceTree = SOURCE_ROOT; };
+		9A72C9CD100DB19C003CE259 /* RudeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeControl.h; path = ../engine/RudeControl.h; sourceTree = SOURCE_ROOT; };
+		9A72C9CE100DB19C003CE259 /* RudeButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonControl.h; path = ../engine/RudeButtonControl.h; sourceTree = SOURCE_ROOT; };
+		9A72C9CF100DB19C003CE259 /* RudeColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeColor.cpp; path = ../engine/RudeColor.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9D0100DB19C003CE259 /* Rude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rude.h; path = ../engine/Rude.h; sourceTree = SOURCE_ROOT; };
+		9A72C9D1100DB19C003CE259 /* RudeButtonControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonControl.cpp; path = ../engine/RudeButtonControl.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9D2100DB19C003CE259 /* RudeFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFile.h; path = ../engine/RudeFile.h; sourceTree = SOURCE_ROOT; };
+		9A72C9D3100DB19C003CE259 /* RudeFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeFile.cpp; path = ../engine/RudeFile.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9D4100DB19C003CE259 /* RudeDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeDebug.h; path = ../engine/RudeDebug.h; sourceTree = SOURCE_ROOT; };
+		9A72C9D5100DB19C003CE259 /* RudeControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeControl.cpp; path = ../engine/RudeControl.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9D6100DB19C003CE259 /* RudeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeColor.h; path = ../engine/RudeColor.h; sourceTree = SOURCE_ROOT; };
+		9A72C9D7100DB19C003CE259 /* RudePhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysics.cpp; path = ../engine/RudePhysics.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9D8100DB19C003CE259 /* RudePerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudePerf.h; path = ../engine/RudePerf.h; sourceTree = SOURCE_ROOT; };
+		9A72C9D9100DB19C003CE259 /* RudePerf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePerf.cpp; path = ../engine/RudePerf.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9DA100DB19C003CE259 /* RudeTouchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTouchTracker.h; path = ../engine/RudeTouchTracker.h; sourceTree = SOURCE_ROOT; };
+		9A72C9DB100DB19C003CE259 /* RudeMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeMesh.h; path = ../engine/RudeMesh.h; sourceTree = SOURCE_ROOT; };
+		9A72C9DC100DB19C003CE259 /* RudeMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeMesh.cpp; path = ../engine/RudeMesh.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9DD100DB19C003CE259 /* RudeMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeMath.h; path = ../engine/RudeMath.h; sourceTree = SOURCE_ROOT; };
+		9A72C9DE100DB19C003CE259 /* RudeMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeMath.cpp; path = ../engine/RudeMath.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9DF100DB19C003CE259 /* RudeKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeKey.h; path = ../engine/RudeKey.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E0100DB19C003CE259 /* RudeKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeKey.cpp; path = ../engine/RudeKey.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9E1100DB19C003CE259 /* RudeGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGlobals.h; path = ../engine/RudeGlobals.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E2100DB19C003CE259 /* RudeGlobals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGlobals.cpp; path = ../engine/RudeGlobals.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9E3100DB19C003CE259 /* RudeGLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGLD.h; path = ../engine/RudeGLD.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E4100DB19C003CE259 /* RudeGLD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGLD.cpp; path = ../engine/RudeGLD.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9E5100DB19C003CE259 /* RudeGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGL.h; path = ../engine/RudeGL.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E6100DB19C003CE259 /* RudeGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGL.cpp; path = ../engine/RudeGL.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9E7100DB19C003CE259 /* RudeGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGame.h; path = ../engine/RudeGame.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E8100DB19C003CE259 /* RudeCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeCollision.h; path = ../engine/RudeCollision.h; sourceTree = SOURCE_ROOT; };
+		9A72C9E9100DB19C003CE259 /* RudeGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGame.cpp; path = ../engine/RudeGame.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9EA100DB19C003CE259 /* RudeFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFont.h; path = ../engine/RudeFont.h; sourceTree = SOURCE_ROOT; };
+		9A72C9EB100DB19C003CE259 /* RudeFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeFont.cpp; path = ../engine/RudeFont.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9EC100DB19C003CE259 /* RudeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeObject.h; path = ../engine/RudeObject.h; sourceTree = SOURCE_ROOT; };
+		9A72C9ED100DB19C003CE259 /* RudePhysicsSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudePhysicsSphere.cpp; path = ../engine/RudePhysicsSphere.cpp; sourceTree = SOURCE_ROOT; };
+		9A72C9EE100DB19C003CE259 /* RudeObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeObject.cpp; path = ../engine/RudeObject.cpp; sourceTree = SOURCE_ROOT; };
 		9A74018F0E6FDF24008490F7 /* testtexture.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = testtexture.pvr; path = Data/testtexture.pvr; sourceTree = "<group>"; };
-		9A74FFB00E6E934B008490F7 /* RudeText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeText.h; path = Classes/RudeText.h; sourceTree = "<group>"; };
-		9A74FFB10E6E934B008490F7 /* RudeText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeText.cpp; path = Classes/RudeText.cpp; sourceTree = "<group>"; };
-		9A776D4E0EABD76600196CA0 /* RudeTextControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextControl.h; path = Classes/RudeTextControl.h; sourceTree = "<group>"; };
-		9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTextControl.cpp; path = Classes/RudeTextControl.cpp; sourceTree = "<group>"; };
 		9A8126B80FEB739900FDFB29 /* RBGameBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBGameBase.h; path = Classes/RBGameBase.h; sourceTree = "<group>"; };
 		9A8126ED0FEB753000FDFB29 /* RBCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBCamera.cpp; path = Classes/RBCamera.cpp; sourceTree = "<group>"; };
 		9A8126EE0FEB753000FDFB29 /* RBCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBCamera.h; path = Classes/RBCamera.h; sourceTree = "<group>"; };
@@ -270,42 +317,6 @@
 		9A81275C0FEB7F2900FDFB29 /* plane.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = plane.POD; path = Data/plane.POD; sourceTree = "<group>"; };
 		9A81276A0FEB805000FDFB29 /* sphere.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = sphere.POD; path = Data/sphere.POD; sourceTree = "<group>"; };
 		9A8C20A30E46A83300C2BECB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9A8C20D80E46A92600C2BECB /* RudeVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeVertex.h; path = Classes/RudeVertex.h; sourceTree = "<group>"; };
-		9A8C20D90E46A92600C2BECB /* RudeRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRegistry.h; path = Classes/RudeRegistry.h; sourceTree = "<group>"; };
-		9A8C20DD0E46A92600C2BECB /* RudeMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeMath.cpp; path = Classes/RudeMath.cpp; sourceTree = "<group>"; };
-		9A8C20DE0E46A92600C2BECB /* RudeSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSound.h; path = Classes/RudeSound.h; sourceTree = "<group>"; };
-		9A8C20DF0E46A92600C2BECB /* Rude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rude.h; path = Classes/Rude.h; sourceTree = "<group>"; };
-		9A8C20E00E46A92600C2BECB /* RudeKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeKey.h; path = Classes/RudeKey.h; sourceTree = "<group>"; };
-		9A8C20E40E46A92600C2BECB /* RudeGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGame.cpp; path = Classes/RudeGame.cpp; sourceTree = "<group>"; };
-		9A8C20E50E46A92600C2BECB /* RudeGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGlobals.h; path = Classes/RudeGlobals.h; sourceTree = "<group>"; };
-		9A8C20E60E46A92600C2BECB /* RudeDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeDebug.h; path = Classes/RudeDebug.h; sourceTree = "<group>"; };
-		9A8C20E80E46A92600C2BECB /* RudeKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeKey.cpp; path = Classes/RudeKey.cpp; sourceTree = "<group>"; };
-		9A8C20E90E46A92600C2BECB /* RudeRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRect.cpp; path = Classes/RudeRect.cpp; sourceTree = "<group>"; };
-		9A8C20EB0E46A92600C2BECB /* RudeDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeDebug.cpp; path = Classes/RudeDebug.cpp; sourceTree = "<group>"; };
-		9A8C20EC0E46A92600C2BECB /* RudeGlobals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGlobals.cpp; path = Classes/RudeGlobals.cpp; sourceTree = "<group>"; };
-		9A8C20F00E46A92600C2BECB /* RudeColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeColor.cpp; path = Classes/RudeColor.cpp; sourceTree = "<group>"; };
-		9A8C20F20E46A92600C2BECB /* RudeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeColor.h; path = Classes/RudeColor.h; sourceTree = "<group>"; };
-		9A8C20F30E46A92600C2BECB /* RudeSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSound.cpp; path = Classes/RudeSound.cpp; sourceTree = "<group>"; };
-		9A8C20F40E46A92600C2BECB /* RudeGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGame.h; path = Classes/RudeGame.h; sourceTree = "<group>"; };
-		9A8C20F50E46A92600C2BECB /* RudeRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRect.h; path = Classes/RudeRect.h; sourceTree = "<group>"; };
-		9A8C20F60E46A92600C2BECB /* RudeMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeMath.h; path = Classes/RudeMath.h; sourceTree = "<group>"; };
-		9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistry.cpp; path = Classes/RudeRegistry.cpp; sourceTree = "<group>"; };
-		9A8F3E800E7F7A4900C28D68 /* RudeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeControl.h; path = Classes/RudeControl.h; sourceTree = "<group>"; };
-		9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeControl.cpp; path = Classes/RudeControl.cpp; sourceTree = "<group>"; };
-		9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeButtonControl.h; path = Classes/RudeButtonControl.h; sourceTree = "<group>"; };
-		9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeButtonControl.cpp; path = Classes/RudeButtonControl.cpp; sourceTree = "<group>"; };
-		9A9199A70E71205C00BE65AF /* RudeSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeSkybox.h; path = Classes/RudeSkybox.h; sourceTree = "<group>"; };
-		9A9199A80E71205C00BE65AF /* RudeSkybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeSkybox.cpp; path = Classes/RudeSkybox.cpp; sourceTree = "<group>"; };
-		9A93B5BF0E80F3600067CDC6 /* RudeGLD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGLD.h; path = Classes/RudeGLD.h; sourceTree = "<group>"; };
-		9A93B5C00E80F3600067CDC6 /* RudeGLD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGLD.cpp; path = Classes/RudeGLD.cpp; sourceTree = "<group>"; };
-		9A9992B50E668A9800DC6621 /* RudeTouchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTouchTracker.h; path = Classes/RudeTouchTracker.h; sourceTree = "<group>"; };
-		9A9992B60E668A9800DC6621 /* RudeTouchTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTouchTracker.cpp; path = Classes/RudeTouchTracker.cpp; sourceTree = "<group>"; };
-		9A9A9B6E0E61639000D00516 /* RudeRegistryCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeRegistryCF.h; path = Classes/RudeRegistryCF.h; sourceTree = "<group>"; };
-		9A9A9B6F0E61639000D00516 /* RudeRegistryCF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeRegistryCF.cpp; path = Classes/RudeRegistryCF.cpp; sourceTree = "<group>"; };
-		9A9A9C050E62299800D00516 /* RudeTextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTextureManager.h; path = Classes/RudeTextureManager.h; sourceTree = "<group>"; };
-		9A9A9C060E62299800D00516 /* RudeTextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTextureManager.cpp; path = Classes/RudeTextureManager.cpp; sourceTree = "<group>"; };
-		9A9A9C0B0E622B1300D00516 /* RudeTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTexture.h; path = Classes/RudeTexture.h; sourceTree = "<group>"; };
-		9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTexture.cpp; path = Classes/RudeTexture.cpp; sourceTree = "<group>"; };
 		9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9A9D63AE0EB97D80003985A4 /* RBUITitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITitle.h; path = Classes/RBUITitle.h; sourceTree = "<group>"; };
 		9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITitle.cpp; path = Classes/RBUITitle.cpp; sourceTree = "<group>"; };
@@ -316,8 +327,6 @@
 		9AAA6E090E9F12A4008D9318 /* ab18.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18.fnt; path = Data/ab18.fnt; sourceTree = "<group>"; };
 		9AAFBCED0F9DA12D00839888 /* RBDecorators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBDecorators.h; path = Classes/RBDecorators.h; sourceTree = "<group>"; };
 		9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBDecorators.cpp; path = Classes/RBDecorators.cpp; sourceTree = "<group>"; };
-		9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeTweaker.cpp; path = Classes/RudeTweaker.cpp; sourceTree = "<group>"; };
-		9AB4286A0E7DC9D1001429D6 /* RudeTweaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeTweaker.h; path = Classes/RudeTweaker.h; sourceTree = "<group>"; };
 		9AD57DFC0EA08B19002696A6 /* btBulletCollisionCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletCollisionCommon.h; path = ../Lib/bullet/src/btBulletCollisionCommon.h; sourceTree = SOURCE_ROOT; };
 		9AD57DFD0EA08B19002696A6 /* btBulletDynamicsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = btBulletDynamicsCommon.h; path = ../Lib/bullet/src/btBulletDynamicsCommon.h; sourceTree = SOURCE_ROOT; };
 		9AD57DFE0EA08B19002696A6 /* Bullet-C-Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bullet-C-Api.h"; path = "../Lib/bullet/src/Bullet-C-Api.h"; sourceTree = SOURCE_ROOT; };
@@ -614,16 +623,10 @@
 		9ADC5A860E6548BD004C82A2 /* RBGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBGame.cpp; path = Classes/RBGame.cpp; sourceTree = "<group>"; };
 		9AEF08580E5C1598006C50C3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9AEF08910E5C15A2006C50C3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		9AEF09AE0E5D1658006C50C3 /* RudeGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeGL.cpp; path = Classes/RudeGL.cpp; sourceTree = "<group>"; };
-		9AEF09AF0E5D1658006C50C3 /* RudeGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeGL.h; path = Classes/RudeGL.h; sourceTree = "<group>"; };
 		9AFD58C80EA9AE200044A7B0 /* ab28o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab28o2.fnt; path = Data/ab28o2.fnt; sourceTree = "<group>"; };
 		9AFD58C90EA9AE200044A7B0 /* ab28_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab28_00.pvr; path = Data/ab28_00.pvr; sourceTree = "<group>"; };
 		9AFD58CA0EA9AE200044A7B0 /* ab28.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab28.fnt; path = Data/ab28.fnt; sourceTree = "<group>"; };
 		9AFD58CB0EA9AE200044A7B0 /* ab28o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab28o2_00.pvr; path = Data/ab28o2_00.pvr; sourceTree = "<group>"; };
-		9AFF31320E9D9DE80078E211 /* RudeFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeFont.h; path = Classes/RudeFont.h; sourceTree = "<group>"; };
-		9AFF31330E9D9DE80078E211 /* RudeFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeFont.cpp; path = Classes/RudeFont.cpp; sourceTree = "<group>"; };
-		9AFF315B0E9DA09F0078E211 /* RudeUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnicode.h; path = Classes/RudeUnicode.h; sourceTree = "<group>"; };
-		9AFF315C0E9DA09F0078E211 /* RudeUnicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnicode.cpp; path = Classes/RudeUnicode.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,82 +801,84 @@
 		9A8C20D60E46A91800C2BECB /* RudeEngine */ = {
 			isa = PBXGroup;
 			children = (
-				9A8C20DF0E46A92600C2BECB /* Rude.h */,
-				9AEF09AE0E5D1658006C50C3 /* RudeGL.cpp */,
-				9AEF09AF0E5D1658006C50C3 /* RudeGL.h */,
-				9A93B5C00E80F3600067CDC6 /* RudeGLD.cpp */,
-				9A93B5BF0E80F3600067CDC6 /* RudeGLD.h */,
-				9A8C20D80E46A92600C2BECB /* RudeVertex.h */,
-				9A8C20F00E46A92600C2BECB /* RudeColor.cpp */,
-				9A8C20F20E46A92600C2BECB /* RudeColor.h */,
-				9A8C20DD0E46A92600C2BECB /* RudeMath.cpp */,
-				9A8C20F60E46A92600C2BECB /* RudeMath.h */,
-				9A8C20E00E46A92600C2BECB /* RudeKey.h */,
-				9A8C20E40E46A92600C2BECB /* RudeGame.cpp */,
-				9A8C20E50E46A92600C2BECB /* RudeGlobals.h */,
-				9A1B90DE0F68E14200E4F29B /* RudeCollision.h */,
-				9A1B90DF0F68E14200E4F29B /* RudeCollision.cpp */,
-				9A8C20EB0E46A92600C2BECB /* RudeDebug.cpp */,
-				9A8C20E60E46A92600C2BECB /* RudeDebug.h */,
-				9A8C20E80E46A92600C2BECB /* RudeKey.cpp */,
-				9A8C20E90E46A92600C2BECB /* RudeRect.cpp */,
-				9A8C20EC0E46A92600C2BECB /* RudeGlobals.cpp */,
-				9A8C20F30E46A92600C2BECB /* RudeSound.cpp */,
-				9A8C20DE0E46A92600C2BECB /* RudeSound.h */,
-				9A8C20F40E46A92600C2BECB /* RudeGame.h */,
-				9A8C20F50E46A92600C2BECB /* RudeRect.h */,
-				9A8C20F70E46A92600C2BECB /* RudeRegistry.cpp */,
-				9A8C20D90E46A92600C2BECB /* RudeRegistry.h */,
-				9A9A9B6F0E61639000D00516 /* RudeRegistryCF.cpp */,
-				9A9A9B6E0E61639000D00516 /* RudeRegistryCF.h */,
-				9A9992B50E668A9800DC6621 /* RudeTouchTracker.h */,
-				9A9992B60E668A9800DC6621 /* RudeTouchTracker.cpp */,
-				9A9A9C050E62299800D00516 /* RudeTextureManager.h */,
-				9A9A9C060E62299800D00516 /* RudeTextureManager.cpp */,
-				9A9A9C0B0E622B1300D00516 /* RudeTexture.h */,
-				9A9A9C0C0E622B1300D00516 /* RudeTexture.cpp */,
-				9A74FFB00E6E934B008490F7 /* RudeText.h */,
-				9A74FFB10E6E934B008490F7 /* RudeText.cpp */,
-				9A74002E0E6E9AC5008490F7 /* RudeTimeCounter.h */,
-				9A74002F0E6E9AC5008490F7 /* RudeTimeCounter.cpp */,
-				9A56CF990F5D0A2E0013B650 /* RudeTimer.h */,
-				9A56CF9A0F5D0A2E0013B650 /* RudeTimer.cpp */,
-				9AB428690E7DC9D1001429D6 /* RudeTweaker.cpp */,
-				9AB4286A0E7DC9D1001429D6 /* RudeTweaker.h */,
-				9A7400970E6FC7D7008490F7 /* RudeFile.h */,
-				9A7400980E6FC7D7008490F7 /* RudeFile.cpp */,
-				9A7400CC0E6FCED0008490F7 /* RudeMesh.h */,
-				9A7400CD0E6FCED0008490F7 /* RudeMesh.cpp */,
-				9A4F1A030E84E401001D1F0B /* RudeSkinnedMesh.h */,
-				9A4F1A040E84E401001D1F0B /* RudeSkinnedMesh.cpp */,
-				9A9199A70E71205C00BE65AF /* RudeSkybox.h */,
-				9A9199A80E71205C00BE65AF /* RudeSkybox.cpp */,
-				9A3CA5270E750A6E00BDBA8B /* RudeObject.h */,
-				9A3CA5280E750A6E00BDBA8B /* RudeObject.cpp */,
-				9A56CFAB0F5D0E360013B650 /* RudePerf.h */,
-				9A56CFAC0F5D0E360013B650 /* RudePerf.cpp */,
-				9A3CA5AF0E75122700BDBA8B /* RudePhysics.h */,
-				9A3CA5B00E75122700BDBA8B /* RudePhysics.cpp */,
-				9A3CA56D0E750DC200BDBA8B /* RudePhysicsMesh.h */,
-				9A3CA56E0E750DC200BDBA8B /* RudePhysicsMesh.cpp */,
-				9A3CA6DA0E751E9500BDBA8B /* RudePhysicsObject.h */,
-				9A3CA6DB0E751E9500BDBA8B /* RudePhysicsObject.cpp */,
-				9A3CA7110E751FE700BDBA8B /* RudePhysicsSphere.h */,
-				9A3CA7120E751FE700BDBA8B /* RudePhysicsSphere.cpp */,
-				9A8F3E800E7F7A4900C28D68 /* RudeControl.h */,
-				9A8F3E810E7F7A4900C28D68 /* RudeControl.cpp */,
-				9A8F3FE30E7F9E6E00C28D68 /* RudeButtonControl.h */,
-				9A8F3FE40E7F9E6E00C28D68 /* RudeButtonControl.cpp */,
-				9A4B114D0FA6C5DF00E53811 /* RudeButtonAnimControl.h */,
-				9A4B114E0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp */,
-				9A776D4E0EABD76600196CA0 /* RudeTextControl.h */,
-				9A776D4F0EABD76600196CA0 /* RudeTextControl.cpp */,
-				9AFF31320E9D9DE80078E211 /* RudeFont.h */,
-				9AFF31330E9D9DE80078E211 /* RudeFont.cpp */,
-				9AFF315B0E9DA09F0078E211 /* RudeUnicode.h */,
-				9AFF315C0E9DA09F0078E211 /* RudeUnicode.cpp */,
-				9A1B90FB0F68EB1600E4F29B /* RudeUnitTest.h */,
-				9A1B90FC0F68EB1600E4F29B /* RudeUnitTest.cpp */,
+				9A72C99D100DB19C003CE259 /* RudeVertex.h */,
+				9A72C99E100DB19C003CE259 /* RudeUnitTest.h */,
+				9A72C99F100DB19C003CE259 /* RudeUnitTest.cpp */,
+				9A72C9A0100DB19C003CE259 /* RudeUnicode.h */,
+				9A72C9A1100DB19C003CE259 /* RudeUnicode.cpp */,
+				9A72C9A2100DB19C003CE259 /* RudeTimer.cpp */,
+				9A72C9A3100DB19C003CE259 /* RudeTimeCounter.h */,
+				9A72C9A4100DB19C003CE259 /* RudeTextureManager.cpp */,
+				9A72C9A5100DB19C003CE259 /* RudeTexture.h */,
+				9A72C9A6100DB19C003CE259 /* RudeTexture.cpp */,
+				9A72C9A7100DB19C003CE259 /* RudeTextControl.h */,
+				9A72C9A8100DB19C003CE259 /* RudeTextControl.cpp */,
+				9A72C9A9100DB19C003CE259 /* RudeTimeCounter.cpp */,
+				9A72C9AA100DB19C003CE259 /* RudeText.h */,
+				9A72C9AB100DB19C003CE259 /* RudeTimer.h */,
+				9A72C9AC100DB19C003CE259 /* RudeText.cpp */,
+				9A72C9AD100DB19C003CE259 /* RudeTouchTracker.cpp */,
+				9A72C9AE100DB19C003CE259 /* RudeSkybox.cpp */,
+				9A72C9AF100DB19C003CE259 /* RudeSkinnedMesh.h */,
+				9A72C9B0100DB19C003CE259 /* RudeSkinnedMesh.cpp */,
+				9A72C9B1100DB19C003CE259 /* RudeTextureManager.h */,
+				9A72C9B2100DB19C003CE259 /* RudeSkybox.h */,
+				9A72C9B5100DB19C003CE259 /* RudeRegistryText.h */,
+				9A72C9B6100DB19C003CE259 /* RudeRegistryText.cpp */,
+				9A72C9B9100DB19C003CE259 /* RudeRegistryCF.h */,
+				9A72C9BA100DB19C003CE259 /* RudeRegistryCF.cpp */,
+				9A72C9BB100DB19C003CE259 /* RudeRegistry.h */,
+				9A72C9BC100DB19C003CE259 /* RudeRegistry.cpp */,
+				9A72C9BD100DB19C003CE259 /* RudeSound.h */,
+				9A72C9BE100DB19C003CE259 /* RudeSound.cpp */,
+				9A72C9BF100DB19C003CE259 /* RudeRect.h */,
+				9A72C9C0100DB19C003CE259 /* RudeRect.cpp */,
+				9A72C9C1100DB19C003CE259 /* RudeTweaker.h */,
+				9A72C9C2100DB19C003CE259 /* RudePhysicsSphere.h */,
+				9A72C9C3100DB19C003CE259 /* RudePhysicsObject.h */,
+				9A72C9C4100DB19C003CE259 /* RudePhysicsObject.cpp */,
+				9A72C9C5100DB19C003CE259 /* RudePhysicsMesh.h */,
+				9A72C9C6100DB19C003CE259 /* RudePhysicsMesh.cpp */,
+				9A72C9C7100DB19C003CE259 /* RudePhysics.h */,
+				9A72C9C8100DB19C003CE259 /* RudeButtonAnimControl.cpp */,
+				9A72C9C9100DB19C003CE259 /* RudeDebug.cpp */,
+				9A72C9CA100DB19C003CE259 /* RudeCollision.cpp */,
+				9A72C9CB100DB19C003CE259 /* RudeTweaker.cpp */,
+				9A72C9CC100DB19C003CE259 /* RudeButtonAnimControl.h */,
+				9A72C9CD100DB19C003CE259 /* RudeControl.h */,
+				9A72C9CE100DB19C003CE259 /* RudeButtonControl.h */,
+				9A72C9CF100DB19C003CE259 /* RudeColor.cpp */,
+				9A72C9D0100DB19C003CE259 /* Rude.h */,
+				9A72C9D1100DB19C003CE259 /* RudeButtonControl.cpp */,
+				9A72C9D2100DB19C003CE259 /* RudeFile.h */,
+				9A72C9D3100DB19C003CE259 /* RudeFile.cpp */,
+				9A72C9D4100DB19C003CE259 /* RudeDebug.h */,
+				9A72C9D5100DB19C003CE259 /* RudeControl.cpp */,
+				9A72C9D6100DB19C003CE259 /* RudeColor.h */,
+				9A72C9D7100DB19C003CE259 /* RudePhysics.cpp */,
+				9A72C9D8100DB19C003CE259 /* RudePerf.h */,
+				9A72C9D9100DB19C003CE259 /* RudePerf.cpp */,
+				9A72C9DA100DB19C003CE259 /* RudeTouchTracker.h */,
+				9A72C9DB100DB19C003CE259 /* RudeMesh.h */,
+				9A72C9DC100DB19C003CE259 /* RudeMesh.cpp */,
+				9A72C9DD100DB19C003CE259 /* RudeMath.h */,
+				9A72C9DE100DB19C003CE259 /* RudeMath.cpp */,
+				9A72C9DF100DB19C003CE259 /* RudeKey.h */,
+				9A72C9E0100DB19C003CE259 /* RudeKey.cpp */,
+				9A72C9E1100DB19C003CE259 /* RudeGlobals.h */,
+				9A72C9E2100DB19C003CE259 /* RudeGlobals.cpp */,
+				9A72C9E3100DB19C003CE259 /* RudeGLD.h */,
+				9A72C9E4100DB19C003CE259 /* RudeGLD.cpp */,
+				9A72C9E5100DB19C003CE259 /* RudeGL.h */,
+				9A72C9E6100DB19C003CE259 /* RudeGL.cpp */,
+				9A72C9E7100DB19C003CE259 /* RudeGame.h */,
+				9A72C9E8100DB19C003CE259 /* RudeCollision.h */,
+				9A72C9E9100DB19C003CE259 /* RudeGame.cpp */,
+				9A72C9EA100DB19C003CE259 /* RudeFont.h */,
+				9A72C9EB100DB19C003CE259 /* RudeFont.cpp */,
+				9A72C9EC100DB19C003CE259 /* RudeObject.h */,
+				9A72C9ED100DB19C003CE259 /* RudePhysicsSphere.cpp */,
+				9A72C9EE100DB19C003CE259 /* RudeObject.cpp */,
 			);
 			name = RudeEngine;
 			sourceTree = "<group>";
@@ -1388,40 +1393,9 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* GLSpriteAppDelegate.mm in Sources */,
 				28FD14FE0DC6FC130079059D /* EAGLView.mm in Sources */,
-				9A8C20FD0E46A92600C2BECB /* RudeMath.cpp in Sources */,
-				9A8C20FE0E46A92600C2BECB /* RudeGame.cpp in Sources */,
-				9A8C21000E46A92600C2BECB /* RudeKey.cpp in Sources */,
-				9A8C21010E46A92600C2BECB /* RudeRect.cpp in Sources */,
-				9A8C21030E46A92600C2BECB /* RudeDebug.cpp in Sources */,
-				9A8C21040E46A92600C2BECB /* RudeGlobals.cpp in Sources */,
-				9A8C21080E46A92600C2BECB /* RudeColor.cpp in Sources */,
-				9A8C21090E46A92600C2BECB /* RudeSound.cpp in Sources */,
-				9A8C210A0E46A92600C2BECB /* RudeRegistry.cpp in Sources */,
-				9AEF09B00E5D1658006C50C3 /* RudeGL.cpp in Sources */,
-				9A9A9B700E61639000D00516 /* RudeRegistryCF.cpp in Sources */,
-				9A9A9C070E62299800D00516 /* RudeTextureManager.cpp in Sources */,
-				9A9A9C0D0E622B1300D00516 /* RudeTexture.cpp in Sources */,
 				9ADC5A890E6548BD004C82A2 /* RBKeyMap.cpp in Sources */,
 				9ADC5A8B0E6548BD004C82A2 /* RBKeyTracker.cpp in Sources */,
 				9ADC5A8D0E6548BD004C82A2 /* RBGame.cpp in Sources */,
-				9A9992B70E668A9800DC6621 /* RudeTouchTracker.cpp in Sources */,
-				9A74FFB20E6E934B008490F7 /* RudeText.cpp in Sources */,
-				9A7400300E6E9AC5008490F7 /* RudeTimeCounter.cpp in Sources */,
-				9A7400990E6FC7D7008490F7 /* RudeFile.cpp in Sources */,
-				9A7400CE0E6FCED0008490F7 /* RudeMesh.cpp in Sources */,
-				9A9199A90E71205C00BE65AF /* RudeSkybox.cpp in Sources */,
-				9A3CA5290E750A6E00BDBA8B /* RudeObject.cpp in Sources */,
-				9A3CA56F0E750DC200BDBA8B /* RudePhysicsMesh.cpp in Sources */,
-				9A3CA5B10E75122700BDBA8B /* RudePhysics.cpp in Sources */,
-				9A3CA6DC0E751E9500BDBA8B /* RudePhysicsObject.cpp in Sources */,
-				9A3CA7130E751FE700BDBA8B /* RudePhysicsSphere.cpp in Sources */,
-				9AB4286B0E7DC9D1001429D6 /* RudeTweaker.cpp in Sources */,
-				9A8F3E820E7F7A4900C28D68 /* RudeControl.cpp in Sources */,
-				9A8F3FE50E7F9E6E00C28D68 /* RudeButtonControl.cpp in Sources */,
-				9A93B5C10E80F3600067CDC6 /* RudeGLD.cpp in Sources */,
-				9A4F1A050E84E401001D1F0B /* RudeSkinnedMesh.cpp in Sources */,
-				9AFF31340E9D9DE80078E211 /* RudeFont.cpp in Sources */,
-				9AFF315D0E9DA09F0078E211 /* RudeUnicode.cpp in Sources */,
 				9AD57F060EA08B24002696A6 /* btAxisSweep3.cpp in Sources */,
 				9AD57F070EA08B24002696A6 /* btBroadphaseProxy.cpp in Sources */,
 				9AD57F080EA08B24002696A6 /* btCollisionAlgorithm.cpp in Sources */,
@@ -1543,16 +1517,48 @@
 				9AD57FEF0EA08C01002696A6 /* postprocessor.c in Sources */,
 				9AD57FF00EA08C01002696A6 /* reason_phrase.c in Sources */,
 				9AD57FF10EA08C01002696A6 /* response.c in Sources */,
-				9A776D500EABD76600196CA0 /* RudeTextControl.cpp in Sources */,
 				9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */,
 				9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */,
-				9A56CF9B0F5D0A2E0013B650 /* RudeTimer.cpp in Sources */,
-				9A56CFAD0F5D0E360013B650 /* RudePerf.cpp in Sources */,
-				9A1B90E00F68E14200E4F29B /* RudeCollision.cpp in Sources */,
-				9A1B90FD0F68EB1600E4F29B /* RudeUnitTest.cpp in Sources */,
 				9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */,
-				9A4B114F0FA6C5DF00E53811 /* RudeButtonAnimControl.cpp in Sources */,
 				9A8126EF0FEB753000FDFB29 /* RBCamera.cpp in Sources */,
+				9A72C9EF100DB19C003CE259 /* RudeUnitTest.cpp in Sources */,
+				9A72C9F0100DB19C003CE259 /* RudeUnicode.cpp in Sources */,
+				9A72C9F1100DB19C003CE259 /* RudeTimer.cpp in Sources */,
+				9A72C9F2100DB19C003CE259 /* RudeTextureManager.cpp in Sources */,
+				9A72C9F3100DB19C003CE259 /* RudeTexture.cpp in Sources */,
+				9A72C9F4100DB19C003CE259 /* RudeTextControl.cpp in Sources */,
+				9A72C9F5100DB19C003CE259 /* RudeTimeCounter.cpp in Sources */,
+				9A72C9F6100DB19C003CE259 /* RudeText.cpp in Sources */,
+				9A72C9F7100DB19C003CE259 /* RudeTouchTracker.cpp in Sources */,
+				9A72C9F8100DB19C003CE259 /* RudeSkybox.cpp in Sources */,
+				9A72C9F9100DB19C003CE259 /* RudeSkinnedMesh.cpp in Sources */,
+				9A72C9FB100DB19C003CE259 /* RudeRegistryText.cpp in Sources */,
+				9A72C9FD100DB19C003CE259 /* RudeRegistryCF.cpp in Sources */,
+				9A72C9FE100DB19C003CE259 /* RudeRegistry.cpp in Sources */,
+				9A72C9FF100DB19C003CE259 /* RudeSound.cpp in Sources */,
+				9A72CA00100DB19C003CE259 /* RudeRect.cpp in Sources */,
+				9A72CA01100DB19C003CE259 /* RudePhysicsObject.cpp in Sources */,
+				9A72CA02100DB19C003CE259 /* RudePhysicsMesh.cpp in Sources */,
+				9A72CA03100DB19C003CE259 /* RudeButtonAnimControl.cpp in Sources */,
+				9A72CA04100DB19C003CE259 /* RudeDebug.cpp in Sources */,
+				9A72CA05100DB19C003CE259 /* RudeCollision.cpp in Sources */,
+				9A72CA06100DB19C003CE259 /* RudeTweaker.cpp in Sources */,
+				9A72CA07100DB19C003CE259 /* RudeColor.cpp in Sources */,
+				9A72CA08100DB19C003CE259 /* RudeButtonControl.cpp in Sources */,
+				9A72CA09100DB19C003CE259 /* RudeFile.cpp in Sources */,
+				9A72CA0A100DB19C003CE259 /* RudeControl.cpp in Sources */,
+				9A72CA0B100DB19C003CE259 /* RudePhysics.cpp in Sources */,
+				9A72CA0C100DB19C003CE259 /* RudePerf.cpp in Sources */,
+				9A72CA0D100DB19C003CE259 /* RudeMesh.cpp in Sources */,
+				9A72CA0E100DB19C003CE259 /* RudeMath.cpp in Sources */,
+				9A72CA0F100DB19C003CE259 /* RudeKey.cpp in Sources */,
+				9A72CA10100DB19C003CE259 /* RudeGlobals.cpp in Sources */,
+				9A72CA11100DB19C003CE259 /* RudeGLD.cpp in Sources */,
+				9A72CA12100DB19C003CE259 /* RudeGL.cpp in Sources */,
+				9A72CA13100DB19C003CE259 /* RudeGame.cpp in Sources */,
+				9A72CA14100DB19C003CE259 /* RudeFont.cpp in Sources */,
+				9A72CA15100DB19C003CE259 /* RudePhysicsSphere.cpp in Sources */,
+				9A72CA16100DB19C003CE259 /* RudeObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
