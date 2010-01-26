@@ -13,7 +13,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		28FD14FE0DC6FC130079059D /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.mm */; };
-		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
 		9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CF730F5BC5470013B650 /* bgm_silence.m4a */; };
@@ -69,6 +68,7 @@
 		9A8C20A40E46A83300C2BECB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C20A30E46A83300C2BECB /* AudioToolbox.framework */; };
 		9A9AA1660E6282FD00D00516 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */; };
 		9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */; };
+		9A9E082E110EC70B00447CA5 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E082C110EC70B00447CA5 /* SoundEngine.cpp */; };
 		9AA3BF390E7A51CB00CE7AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
 		9AAA6E0B0E9F12A4008D9318 /* ab18_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E070E9F12A4008D9318 /* ab18_00.pvr */; };
@@ -220,8 +220,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GLSprite_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSprite_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEngine.cpp; sourceTree = "<group>"; };
-		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		9A56CF730F5BC5470013B650 /* bgm_silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_silence.m4a; path = Data/bgm_silence.m4a; sourceTree = "<group>"; };
@@ -320,6 +318,8 @@
 		9A9AA1650E6282FD00D00516 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9A9D63AE0EB97D80003985A4 /* RBUITitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITitle.h; path = Classes/RBUITitle.h; sourceTree = "<group>"; };
 		9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITitle.cpp; path = Classes/RBUITitle.cpp; sourceTree = "<group>"; };
+		9A9E082C110EC70B00447CA5 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundEngine.cpp; path = ../engine/SoundEngine.cpp; sourceTree = SOURCE_ROOT; };
+		9A9E082D110EC70B00447CA5 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundEngine.h; path = ../engine/SoundEngine.h; sourceTree = SOURCE_ROOT; };
 		9AA3BF380E7A51CB00CE7AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
 		9AAA6E070E9F12A4008D9318 /* ab18_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab18_00.pvr; path = Data/ab18_00.pvr; sourceTree = "<group>"; };
@@ -655,8 +655,6 @@
 				28FD14FD0DC6FC130079059D /* EAGLView.mm */,
 				1D3623240D0F684500981E51 /* GLSpriteAppDelegate.h */,
 				1D3623250D0F684500981E51 /* GLSpriteAppDelegate.mm */,
-				9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */,
-				9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -879,6 +877,8 @@
 				9A72C9A1100DB19C003CE259 /* RudeUnicode.cpp */,
 				9A72C99E100DB19C003CE259 /* RudeUnitTest.h */,
 				9A72C99F100DB19C003CE259 /* RudeUnitTest.cpp */,
+				9A9E082C110EC70B00447CA5 /* SoundEngine.cpp */,
+				9A9E082D110EC70B00447CA5 /* SoundEngine.h */,
 			);
 			name = RudeEngine;
 			sourceTree = "<group>";
@@ -1518,7 +1518,6 @@
 				9AD57FF00EA08C01002696A6 /* reason_phrase.c in Sources */,
 				9AD57FF10EA08C01002696A6 /* response.c in Sources */,
 				9A9D63B00EB97D80003985A4 /* RBUITitle.cpp in Sources */,
-				9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */,
 				9AAFBCEF0F9DA12D00839888 /* RBDecorators.cpp in Sources */,
 				9A8126EF0FEB753000FDFB29 /* RBCamera.cpp in Sources */,
 				9A72C9EF100DB19C003CE259 /* RudeUnitTest.cpp in Sources */,
@@ -1559,6 +1558,7 @@
 				9A72CA14100DB19C003CE259 /* RudeFont.cpp in Sources */,
 				9A72CA15100DB19C003CE259 /* RudePhysicsSphere.cpp in Sources */,
 				9A72CA16100DB19C003CE259 /* RudeObject.cpp in Sources */,
+				9A9E082E110EC70B00447CA5 /* SoundEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
