@@ -49,7 +49,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "GLSpriteAppDelegate.h"
 #import "EAGLView.h"
 
-#include "MikSound.h"
 #include "Rude.h"
 #include "RudeDebug.h"
 #include "RBGame.h"
