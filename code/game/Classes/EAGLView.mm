@@ -64,7 +64,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include "RudeUnitTest.h"
 
 RBGame *gVBGame = 0;
-bool gLandscape = false;
+bool gRenderLandscape = false;
+RUDE_TWEAK(RenderLandscape, kBool, gRenderLandscape);
 
 @interface EAGLView (EAGLViewPrivate)
 
@@ -95,6 +96,8 @@ bool gLandscape = false;
 {
 	RudeDebug::Init();
 	RudeUnitTest::UnitTest();
+	
+	RGL.SetLandscape(true);
 	
 	if((self = [super initWithCoder:coder])) {
 		// Get the layer
@@ -326,6 +329,8 @@ const GLshort spriteTexcoords[] = {
 // Updates the OpenGL view when the timer fires
 - (void)drawView
 {
+	RGL.SetLandscape(gRenderLandscape);
+	
 	// Make sure that you are drawing to the current context
 	[EAGLContext setCurrentContext:context];
 	
@@ -355,7 +360,10 @@ const GLshort spriteTexcoords[] = {
 	if(gVBGame)
 	{
 		float aspect = ((float) backingWidth) / ((float) backingHeight);
-
+		
+		if(RGL.GetLandscape())
+			aspect = ((float) backingHeight) / ((float) backingWidth);
+		
 		gVBGame->Render(elapsedSeconds, aspect);
 		
 	}
@@ -383,6 +391,19 @@ const GLshort spriteTexcoords[] = {
 	[super dealloc];
 }
 
+void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
+{
+	if(RGL.GetLandscape())
+	{
+		p.m_x = touchPoint.y;
+		p.m_y = 320 - touchPoint.x;
+	}
+	else
+	{
+		p.m_x = touchPoint.x;
+		p.m_y = touchPoint.y;
+	}
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
@@ -391,8 +412,7 @@ const GLshort spriteTexcoords[] = {
 		CGPoint touchPoint = [touch locationInView:self];
 		
 		RudeScreenVertex touchDown;
-		touchDown.m_x = touchPoint.x;
-		touchDown.m_y = touchPoint.y;
+		TransformTouch(touchPoint, touchDown);
 		
 		gVBGame->TouchDown(touchDown);
 	}
@@ -408,12 +428,10 @@ const GLshort spriteTexcoords[] = {
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		
 		RudeScreenVertex touchDown;
-		touchDown.m_x = touchPoint.x;
-		touchDown.m_y = touchPoint.y;
+		TransformTouch(touchPoint, touchDown);
 		
 		RudeScreenVertex prevDown;
-		prevDown.m_x = prevPoint.x;
-		prevDown.m_y = prevPoint.y;
+		TransformTouch(prevPoint, prevDown);
 
 		gVBGame->TouchMove(touchDown, prevDown);
 	}
@@ -428,12 +446,10 @@ const GLshort spriteTexcoords[] = {
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		
 		RudeScreenVertex touchDown;
-		touchDown.m_x = touchPoint.x;
-		touchDown.m_y = touchPoint.y;
+		TransformTouch(touchPoint, touchDown);
 		
 		RudeScreenVertex prevDown;
-		prevDown.m_x = prevPoint.x;
-		prevDown.m_y = prevPoint.y;
+		TransformTouch(prevPoint, prevDown);
 		
 		gVBGame->TouchUp(touchDown, prevDown);
 	}
