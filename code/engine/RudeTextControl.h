@@ -14,6 +14,7 @@
 
 const int kMaxTextLen = 64;
 
+
 typedef enum {
 	kNoValue,
 	kFloatValue,
@@ -22,19 +23,22 @@ typedef enum {
 } eRudeTextControlDisplayValue;
 
 typedef enum {
-	kAlignLeft,
-	kAlignCenter,
-	kAlignRight,
-	kAlignJustify
-} eRudeTextControlAlignment;
-
-typedef enum {
 	kNoStyle,
 	kOutlineStyle,
 } eRudeTextControlStyle;
 
 class RudeTextControl : public RudeControl {
 public:
+
+	
+	typedef enum {
+		kAlignLeft,
+		kAlignCenter,
+		kAlignRight,
+		kAlignJustify
+	} eRudeTextControlAlignment;
+	
+
 	
 	RudeTextControl();
 	

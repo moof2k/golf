@@ -7,13 +7,11 @@
  */
 
 
-#ifndef __H_Rude3DSurface_OGLES
-#define __H_Rude3DSurface_OGLES
+#ifndef __H_RudeGL_OGLES
+#define __H_RudeGL_OGLES
 
+#include "Rude.h"
 #include "RudeRect.h"
-
-#define FALSE 0
-#define TRUE 1
 
 
 #define kNumberPi 3.14159267f
@@ -24,8 +22,11 @@
 #define kNumber180OverPi 57.2957792137960f
 
 #include <btBulletDynamicsCommon.h>
+
+#ifdef RUDE_OPENGLES
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
+#endif
 
 typedef enum {
 	kDepthTest = 0,
@@ -70,6 +71,7 @@ public:
 	
 	void Enable(eRudeGLEnableOption option, bool enable);
 	void EnableClient(eRudeGLEnableClientOption option, bool enable);
+	void FlushEnables();
 
 	btVector3 GetEye() { return m_eye; }
 	btVector3 GetLookAt() { return m_lookAt; }
@@ -79,6 +81,9 @@ public:
 	float GetHalfHeight() { return m_hh; }
 	
 	float * GetViewMat() { return m_viewmat; }
+	
+	void SetLandscape(bool landscape) { m_landscape = landscape; }
+	bool GetLandscape() { return m_landscape; }
 
 private:
 	
@@ -94,6 +99,8 @@ private:
 	float m_hw;
 	float m_hh;
 	float m_near;
+	
+	bool m_landscape;
 	
 };
 

@@ -21,9 +21,6 @@
 #error OGLESLITE and PVRTFIXEDPOINTENABLE have been replaced by PVRT_FIXED_POINT_ENABLE. Please update your code.
 #endif
 
-#import <OpenGLES/ES1/gl.h>
-#import <OpenGLES/ES1/glext.h>
-
 
 /*! ***************************************************************************
     OpenGL ES function macros to abstract the profile used (Common or Common-Lite)
@@ -37,7 +34,7 @@
 
 #ifndef PVRT_FIXED_POINT_ENABLE
 
-	#define VERTTYPE GLfloat
+	#define VERTTYPE float
 	#define VERTTYPEENUM GL_FLOAT
 
 	#define myglFog				glFogf

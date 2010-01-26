@@ -66,7 +66,7 @@ void RBSwingControl::Reset()
 	m_upStrokeDeviation = -0.0f;
 	
 	
-	m_swingPowerText.SetAlignment(kAlignCenter);
+	m_swingPowerText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_swingPowerText.SetRect(RudeRect(60, 0, 70, 320));
 	m_swingPowerText.SetFormat(kIntValue, "  %d %%");
 	m_swingPowerText.SetStyle(kOutlineStyle);

@@ -108,6 +108,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_oobTimer = 0.0f;
 	
+	m_landscape = RGL.GetLandscape();
+	
 	m_placementGuidePower = 100.0f;
 	
 	m_playedBallDissapointmentSound = false;
@@ -138,11 +140,11 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 #ifndef NO_DECO_EDITOR
 	m_dropDecoText.SetText("DecoDrop");
-	m_dropDecoText.SetAlignment(kAlignLeft);
+	m_dropDecoText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_dropDecoText.SetRect(RudeRect(60,0,90,180));
 	
 	m_dumpDecoText.SetText("DecoDump");
-	m_dumpDecoText.SetAlignment(kAlignLeft);
+	m_dumpDecoText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_dumpDecoText.SetRect(RudeRect(90,0,120,180));
 #endif
 	
@@ -152,7 +154,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	// stroke/status controls
 	
-	m_holeText.SetAlignment(kAlignLeft);
+	m_holeText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_holeText.SetPosition(10, 30);
 	m_holeText.SetFormat(kIntValue, "%d");
 	m_holeText.SetValue(m_holeNum + 1);
@@ -161,105 +163,92 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_holeText.SetColors(0, kParTopColor, kParBotColor);
 	m_holeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
 	
-	int paroffx = 0;
-	if(m_holeNum + 1 >= 10)
-		paroffx += 16;
 	
-	m_parText.SetAlignment(kAlignLeft);
-	m_parText.SetPosition(30 + paroffx, 20);
+	
+	m_parText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_parText.SetFormat(kIntValue, "PAR %d");
 	m_parText.SetStyle(kOutlineStyle);
 	m_parText.SetColors(0, kParTopColor, kParBotColor);
 	m_parText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
 	
-	m_remainingDistText.SetAlignment(kAlignLeft);
-	m_remainingDistText.SetPosition(30 + paroffx, 36);
+	m_remainingDistText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_remainingDistText.SetFormat(kIntValue, "%d yds");
 	m_remainingDistText.SetStyle(kOutlineStyle);
 	m_remainingDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_remainingDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
-	m_strokeText.SetAlignment(kAlignRight);
-	m_strokeText.SetPosition(310, 20);
+	m_strokeText.SetAlignment(RudeTextControl::kAlignRight);
 	m_strokeText.SetFormat(kIntValue, "Stroke %d");
 	m_strokeText.SetStyle(kOutlineStyle);
 	m_strokeText.SetColors(0, kParTopColor, kParBotColor);
 	m_strokeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
 	
-	m_scoreText.SetAlignment(kAlignRight);
-	m_scoreText.SetPosition(310, 36);
+	m_scoreText.SetAlignment(RudeTextControl::kAlignRight);
 	m_scoreText.SetFormat(kSignedIntValue, "%s");
 	m_scoreText.SetStyle(kOutlineStyle);
 	m_scoreText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
-	m_clubDistText.SetAlignment(kAlignLeft);
-	m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
+	m_clubDistText.SetAlignment(RudeTextControl::kAlignLeft);
+	
 	m_clubDistText.SetFormat(kIntValue, "%d yds");
 	m_clubDistText.SetStyle(kOutlineStyle);
 	m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
-	m_powerRangeText.SetAlignment(kAlignLeft);
-	m_powerRangeText.SetPosition(6, 480 - 44 - 10);
+	m_powerRangeText.SetAlignment(RudeTextControl::kAlignLeft);
 	m_powerRangeText.SetText("100%");
 	m_powerRangeText.SetStyle(kOutlineStyle);
 	m_powerRangeText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_powerRangeText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
-	m_windText.SetAlignment(kAlignRight);
-	m_windText.SetPosition(320 - 6, 480 - 44 - 10);
+	m_windText.SetAlignment(RudeTextControl::kAlignRight);
 	m_windText.SetFormat(kIntValue, "%d mph");
 	m_windText.SetStyle(kOutlineStyle);
 	m_windText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_windText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	
-	m_windControl.SetRect(RudeRect(480 - 64 - 64, 320 - 64, 480 - 64, 320));
 	
-	m_shotEncouragementText.SetAlignment(kAlignCenter);
-	m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
+	
+	m_shotEncouragementText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_shotEncouragementText.SetStyle(kOutlineStyle);
 	m_shotEncouragementText.SetFont(kBigFont);
 	m_shotEncouragementText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotEncouragementText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
 	m_shotDistText.SetFormat(kIntValue, "%d yds");
-	m_shotDistText.SetAlignment(kAlignCenter);
-	m_shotDistText.SetRect(RudeRect(430, 0, 446, 320));
+	m_shotDistText.SetAlignment(RudeTextControl::kAlignCenter);
+	
 	m_shotDistText.SetStyle(kOutlineStyle);
 	m_shotDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
 	m_shotPowerText.SetFormat(kIntValue, "%d %% Power");
-	m_shotPowerText.SetAlignment(kAlignCenter);
-	m_shotPowerText.SetRect(RudeRect(446, 0, 462, 320));
+	m_shotPowerText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_shotPowerText.SetStyle(kOutlineStyle);
 	m_shotPowerText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotPowerText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
 	m_shotAngleText.SetFormat(kIntValue, "%d %% Angle");
-	m_shotAngleText.SetAlignment(kAlignCenter);
-	m_shotAngleText.SetRect(RudeRect(462, 0, 478, 320));
+	m_shotAngleText.SetAlignment(RudeTextControl::kAlignCenter);
+	
 	m_shotAngleText.SetStyle(kOutlineStyle);
 	m_shotAngleText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
 	m_shotAngleText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
 	
 	m_guidePowerText.SetFormat(kIntValue, "%d yds");
-	m_guidePowerText.SetAlignment(kAlignCenter);
-	m_guidePowerText.SetRect(RudeRect(446, 0, 462, 320));
+	m_guidePowerText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_guidePowerText.SetStyle(kOutlineStyle);
 	m_guidePowerText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
 	m_guidePowerText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 						  
 	// swing controls
 	
-	const int kBottomBarTop = 480 - 44;
-	const int kBottomBarBot = 480;
+	
 	
 	m_botBarBg.SetTextures("ui_botbarbg", "ui_botbarbg");
-	m_botBarBg.SetRect(RudeRect(kBottomBarTop, 0, kBottomBarBot, 320));
 	
-	m_swingControl.SetRect(RudeRect(0,0,400,320));
+	
 	m_swingControl.SetGolfer(&m_golfer);
 	
 	// patch up swing button textures
@@ -281,42 +270,24 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_swingButton.SetTextureSize(64.0f);
 	m_swingButton.SetAnimData(gSwingButtonAnimData, numframes);
-	m_swingButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
 	
 	m_moveButton.SetTextures("ui_move", "ui_move");
-	m_moveButton.SetRect(RudeRect(kBottomBarTop, 255, kBottomBarBot, 255+61));
-	
-	m_menuButton.SetRect(RudeRect(kBottomBarTop, 190, kBottomBarBot, 190+61));
 	m_menuButton.SetTextures("ui_menu", "ui_menu");
 	
 	m_guideIndicatorButton.SetTextures("guide", "guide");
 	m_placementGuideIndicatorButton.SetTextures("guide", "guide");
 	
-	m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
 	
-	const int kGuideAdjustSize = 32;
-	m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
-
+	
 	
 	m_prevClubButton.SetTextures("ui_clubprev", "ui_clubprev");
-	m_prevClubButton.SetRect(RudeRect(kBottomBarTop, 5, kBottomBarBot, 5+32));
-	
-	
 	m_clubButton.SetTextures("ui_1wood", "ui_1wood");
-	m_clubButton.SetRect(RudeRect(kBottomBarTop, 46, kBottomBarBot, 46+68));
-	
-	
 	m_nextClubButton.SetTextures("ui_clubnext", "ui_clubnext");
-	m_nextClubButton.SetRect(RudeRect(kBottomBarTop, 121, kBottomBarBot, 121+32));
-	
-	
 	m_cameraButton.SetTextures("ui_camera", "ui_camera");
-	m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
-	
 	m_helpButton.SetTextures("ui_help_button", "ui_help_button");
-	m_helpButton.SetRect(RudeRect(0, 225-30, 44, 225+30));
+	
 	
 	if(restorestate)
 	{
@@ -335,11 +306,74 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	}
 	
 	m_pin.SetPosition(m_terrain.GetHole());
+	
+	SetupUI();
 }
 
 RBTGame::~RBTGame()
 {
 	RudePhysics::GetInstance()->Destroy();
+}
+
+void RBTGame::SetupUI()
+{
+	int paroffx = 0;
+	if(m_holeNum + 1 >= 10)
+		paroffx += 16;
+		
+	int bottomBarTop = 480 - 44;
+	int bottomBarBot = 480;
+
+	const int kGuideAdjustSize = 32;
+		
+	if(m_landscape)
+	{
+		m_swingCamAdjust.SetRect(RudeRect(80, 0, 320 - 80, 480));
+		
+		bottomBarTop = 320 - 44;
+		bottomBarBot = 320;
+		
+		m_guideAdjust.SetRect(RudeRect(160 - kGuideAdjustSize, 240 - kGuideAdjustSize, 160 + kGuideAdjustSize, 240 + kGuideAdjustSize));
+		
+	}
+	else
+	{
+		m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
+	
+		
+		m_parText.SetPosition(30 + paroffx, 20);
+		m_remainingDistText.SetPosition(30 + paroffx, 36);
+		m_strokeText.SetPosition(310, 20);
+		m_scoreText.SetPosition(310, 36);
+		m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
+		m_powerRangeText.SetPosition(6, 480 - 44 - 10);
+		m_windText.SetPosition(320 - 6, 480 - 44 - 10);
+		
+		m_shotAngleText.SetRect(RudeRect(462, 0, 478, 320));
+		m_guidePowerText.SetRect(RudeRect(446, 0, 462, 320));
+		m_shotDistText.SetRect(RudeRect(430, 0, 446, 320));
+		m_windControl.SetRect(RudeRect(480 - 64 - 64, 320 - 64, 480 - 64, 320));
+		m_shotPowerText.SetRect(RudeRect(446, 0, 462, 320));
+		
+		m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
+
+		
+		m_swingControl.SetRect(RudeRect(0,0,400,320));
+	
+		
+		m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
+		
+		m_cameraButton.SetRect(RudeRect(0, 160-40, 44, 160+40));
+		m_helpButton.SetRect(RudeRect(0, 225-30, 44, 225+30));
+	}
+	
+	m_botBarBg.SetRect(RudeRect(bottomBarTop, 0, bottomBarBot, 320));
+	m_swingButton.SetRect(RudeRect(bottomBarTop, 255, bottomBarBot, 255+61));
+	m_moveButton.SetRect(RudeRect(bottomBarTop, 255, bottomBarBot, 255+61));
+	m_menuButton.SetRect(RudeRect(bottomBarTop, 190, bottomBarBot, 190+61));
+	m_prevClubButton.SetRect(RudeRect(bottomBarTop, 5, bottomBarBot, 5+32));
+	m_clubButton.SetRect(RudeRect(bottomBarTop, 46, bottomBarBot, 46+68));
+	m_nextClubButton.SetRect(RudeRect(bottomBarTop, 121, bottomBarBot, 121+32));
 }
 
 void RBTGame::SaveState()
@@ -1301,6 +1335,12 @@ void RBTGame::NextFrame(float delta)
 {
 	RUDE_PERF_START(kPerfRBTGameNextFrame);
 	
+	if(RGL.GetLandscape() != m_landscape)
+	{
+		m_landscape = RGL.GetLandscape();
+		SetupUI();
+	}
+	
 	if(gDebugCamera != gDebugCameraPrev)
 	{
 		gDebugCameraPrev = gDebugCamera;
@@ -1475,7 +1515,10 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 				
 				if(m_state == kStatePositionSwing)
 				{
-					m_guidePositionScreenSpace.setX(160.0f);
+					//if(RGL.GetLandscape())
+					//	m_guidePositionScreenSpace.setX(240.0f);
+					//else
+					//	m_guidePositionScreenSpace.setX(160.0f);
 				}
 				
 				if(m_state == kStatePositionSwing3)
@@ -1626,7 +1669,10 @@ void RBTGame::Render(float aspect)
 {
 	RUDE_PERF_START(kPerfRBTGameRender1);
 	
-	RGL.SetViewport(0, 0, 480, 320);
+	if(RGL.GetLandscape())
+		RGL.SetViewport(0, 0, 320, 480);
+	else
+		RGL.SetViewport(0, 0, 480, 320);
 
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
@@ -1703,8 +1749,17 @@ void RBTGame::Render(float aspect)
 	RUDE_PERF_START(kPerfRBTGameRenderUI);
 	
 	
-	RGL.SetViewport(0, 0, 480, 320);
-	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+	if(RGL.GetLandscape())
+	{
+		RGL.SetViewport(0, 0, 320, 480);
+		RGL.Ortho(0.0f, 0.0f, 0.0f, 480.0f, 320.0f, 100.0f);
+	}
+	else
+	{
+		RGL.SetViewport(0, 0, 480, 320);
+		RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+	}
+		
 	RGL.LoadIdentity();
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);

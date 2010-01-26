@@ -51,7 +51,7 @@ void RBGame::Init()
 }
 
 
-void RBGame::Render(float delta, float aspect)
+void RBGame::Render(float delta, float width, float height)
 {
 	RudePerf::NextFrame(delta);
 
@@ -67,7 +67,7 @@ void RBGame::Render(float delta, float aspect)
 		delta = kMaxDelta;
 	
 	m_game->NextFrame(delta);
-	m_game->Render(aspect);
+	m_game->Render(width, height);
 	
 	
 	

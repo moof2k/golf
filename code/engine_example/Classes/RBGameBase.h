@@ -27,7 +27,7 @@ public:
 	}
 	
 	virtual void NextFrame(float delta) = 0;
-	virtual void Render(float aspect) = 0;
+	virtual void Render(float width, float height) = 0;
 	
 	virtual void TouchDown(RudeTouch *rbt) = 0;
 	virtual void TouchMove(RudeTouch *rbt) = 0;

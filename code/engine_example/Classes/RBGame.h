@@ -28,7 +28,7 @@ public:
 	void Init();
 	void Destroy();
 
-	void Render(float delta, float aspect);
+	void Render(float delta, float width, float height);
 	
 	void KeyUp(RudeKey k);
 	void KeyDown(RudeKey k);

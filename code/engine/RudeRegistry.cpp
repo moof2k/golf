@@ -18,7 +18,7 @@
 #include "RudeRegistryText.h"
 #endif
 
-#ifdef RUDE_IPHONE
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 #include "RudeRegistryCF.h"
 #endif
 
@@ -30,18 +30,26 @@ RudeRegistry::~RudeRegistry(void)
 {
 }
 
+/**
+ * Get a pointer to the RudeRegistry singleton for the currently running platform.
+ * 
+ * iPhone/iPod/MacOS: RudeRegistryCF\n
+ * Windows/PocketPC: RudeRegistryWin\n
+ * Symbian: RudeRegistrySymbian
+ */
 RudeRegistry * RudeRegistry::GetSingleton()
 {
 	
-#ifdef RUDE_IPHONE
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
+	
 	static RudeRegistryCF *reg = 0;
 	
 	if(reg == 0)
 		reg = new RudeRegistryCF();
 	
 	return (RudeRegistry *) reg;
-#endif
-
-
+	
+#else
 	return NULL;
+#endif
 }

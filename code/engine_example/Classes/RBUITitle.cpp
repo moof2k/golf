@@ -9,6 +9,7 @@
 
 #include "RBUITitle.h"
 #include "RudeGL.h"
+#include "RudeGLD.h"
 #include "RudeTweaker.h"
 #include "RudePhysics.h"
 #include "RudePhysicsObject.h"
@@ -33,7 +34,7 @@ RBUITitle::RBUITitle()
 
 	m_text.SetAnimType(kAnimPopSlide);
 	m_text.SetText("Bork3D Engine");
-	m_text.SetAlignment(kAlignCenter);
+	m_text.SetAlignment(RudeTextControl::kAlignCenter);
 	m_text.SetRect(RudeRect(0, 0, 240, 320));
 	m_text.SetStyle(kOutlineStyle);
 	m_text.SetFont(kBigFont);
@@ -66,7 +67,7 @@ void RBUITitle::NextFrame(float delta)
 	
 	btVector3 camoff(50,15,0);
 	btMatrix3x3 mat;
-	mat.setEulerYPR(m_timer * 0.01f, 0.0f, 0.0f);
+	mat.setEulerYPR(m_timer * 0.1f, 0.0f, 0.0f);
 	camoff = mat * camoff;
 	
 	btVector3 camera = lookat + camoff;
@@ -79,9 +80,17 @@ void RBUITitle::NextFrame(float delta)
 	m_text.NextFrame(delta);
 }
 
-void RBUITitle::Render(float aspect)
+void RBUITitle::Render(float width, float height)
 {
-	RGL.SetViewport(0, 0, 480, 320);
+	float aspect = ((float) width) / ((float) height);
+	
+	if(RGL.GetLandscape())
+		aspect = ((float) height) / ((float) width);
+		
+	if(RGL.GetLandscape())
+		RGL.SetViewport(0, 0, width, height);
+	else
+		RGL.SetViewport(0, 0, height, width);
 	
 	// Perspective draws
 	m_camera.SetView(aspect);
@@ -98,8 +107,13 @@ void RBUITitle::Render(float aspect)
 	m_box.Render();
 	m_sphere.Render();
 	
+	
 	// Ortho draws
-	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+	if(RGL.GetLandscape())
+		RGL.Ortho(0.0f, 0.0f, 0.0f, height, width, 100.0f);
+	else
+		RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
+	
 	RGL.LoadIdentity();
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);

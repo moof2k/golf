@@ -1,11 +1,8 @@
 /*
  *  RBDecorators.cpp
- *  golf
  *
- *  Created by Robert Rose on 4/20/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- *	Billboard implementation
+ *  Bork3D Game Engine
+ *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
  *
  */
 
@@ -16,8 +13,6 @@
 #include "RudeTextureManager.h"
 #include "RudeTweaker.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 
 bool gRenderDecos = true;

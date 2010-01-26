@@ -8,6 +8,7 @@
 
 #include "RudeSkinnedMesh.h"
 
+
 #include "RudeDebug.h"
 #include "RudeGL.h"
 #include "RudeFile.h"
@@ -15,9 +16,6 @@
 #include "RudeTextureManager.h"
 #include "RudeTweaker.h"
 
-
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 bool gDebugAnim = false;
 RUDE_TWEAK(DebugAnim, kBool, gDebugAnim);
@@ -120,6 +118,8 @@ void RudeSkinnedMesh::NextFrame(float delta)
 
 void RudeSkinnedMesh::Render()
 {
+	
+#ifdef RUDE_OGLES
 	RUDE_PERF_START(kPerfRudeSkinMeshRender);
 	
 	//int numbonemats;
@@ -237,5 +237,6 @@ void RudeSkinnedMesh::Render()
 	glDisableClientState(GL_WEIGHT_ARRAY_OES);
 	
 	RUDE_PERF_STOP(kPerfRudeSkinMeshRender);
+	
+#endif
 }
-

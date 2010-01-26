@@ -37,6 +37,14 @@
 #include <stdlib.h>
 #endif
 
+#ifdef RUDE_MACOS
+#include <math.h>
+#include <stdlib.h>
+#endif
+
+/**
+ * Math wrappers.  Useful for making your math operations cross-platform.
+ */
 class RudeMath {
 
 public:
@@ -45,6 +53,9 @@ public:
 
 	static void EnableFPE();
 	
+	/**
+	 * Returns a random number.  Simply uses the rand() interface on most platforms.
+	 */
 	static int Rand()
 	{
 #ifdef RUDE_GAPI
@@ -59,11 +70,16 @@ public:
 		return rand();
 #endif
 		
-#ifdef RUDE_IPHONE
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 		return rand();
 #endif
 	}
 
+	/**
+	 * Performs an inverse squareroot.  If FASTINVSQRT is defined this uses the
+	 * less-precise "fast inverse squareroot" technique from Quake III:
+	 * http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf
+	 */
 	static float InvSqrt(float x)
 	{
 #ifdef FASTINVSQRT
@@ -87,6 +103,9 @@ public:
 #endif
 	}
 	
+	/**
+	 * Returns a float-point random number between 0 and 'max'
+	 */
 	static float FRand(float max)
 	{
 		float r = ((float) rand()) / ((float) RAND_MAX);
@@ -138,7 +157,7 @@ public:
 		return (float) atan2(x, y);
 #endif
 		
-#ifdef RUDE_IPHONE
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 		return atan2(x, y);
 #endif
 	}

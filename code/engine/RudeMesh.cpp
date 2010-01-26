@@ -12,9 +12,6 @@
 #include "RudeFile.h"
 #include "RudeDebug.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 
 RudeMesh::RudeMesh(RudeObject *owner)
@@ -223,9 +220,7 @@ void RudeMesh::Render()
 		
 		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
 		
-		if(mesh->sVertex.eType == EPODDataFixed16_16)
-			glVertexPointer(3, GL_FIXED, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		else if(mesh->sVertex.eType == EPODDataShortNorm)
+		if(mesh->sVertex.eType == EPODDataShortNorm)
 		{
 			float s = 1.0f / 1000.0f;
 			glMatrixMode(GL_MODELVIEW);

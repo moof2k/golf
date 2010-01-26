@@ -25,7 +25,7 @@ RBTRound::RBTRound()
 , m_wind(kCourseLowWind)
 , m_result(kRoundExit)
 {
-	m_loadingText.SetAlignment(kAlignCenter);
+	m_loadingText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
 	m_loadingText.SetText("Loading...");
 	m_loadingText.SetFont(kBigFont);

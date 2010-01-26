@@ -11,9 +11,6 @@
 #include "RudeTextureManager.h"
 
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 void SetVertex(float* Vertices, int index, float x, float y, float z)
 {
@@ -117,6 +114,15 @@ RudeSkybox::~RudeSkybox()
 {
 }
 
+/**
+ * Loads the six skybox textures associated with 'name'.  Skybox textures should be named
+ * <name>1.pvr, <name>2.pvr, etc.  For example:\n\n
+ *
+ * skybox1.pvr\n
+ * skybox2.pvr\n
+ * ...\n
+ * skybox6.pvr
+ */
 int RudeSkybox::Load(const char *name)
 {
 	for(int i = 0; i < 6; i++)
@@ -130,6 +136,9 @@ int RudeSkybox::Load(const char *name)
 	return 0;
 }
 
+/**
+ * Render the skybox.  Requires the draw state to first be in perspective rendering.
+ */
 void RudeSkybox::Render()
 {
 	btVector3 eye = RGL.GetEye();

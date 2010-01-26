@@ -28,10 +28,6 @@ void RudeMath::startup()
 
 }
 
-//
-// RudeMath::EnableFPE()
-//
-// enable floating point exception handling
 
 #ifdef RUDE_SYMBIAN
 void RudeMathSymbianFPEHandler(TExcType a)
@@ -43,6 +39,9 @@ void RudeMathSymbianFPEHandler(TExcType a)
 }
 #endif
 
+/**
+ * Enables floating-point exceptions.  Windows and Symbian platforms only.
+ */
 void RudeMath::EnableFPE()
 {
 #ifdef RUDE_WIN_DESK

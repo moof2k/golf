@@ -41,10 +41,6 @@
 #include "RudeFile.h"
 #include "RudeTextureManager.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
-
 
 typedef unsigned int UINT;
 typedef unsigned char BYTE;
@@ -55,6 +51,10 @@ using namespace std;
 
 RudeFont RudeFontManager::m_fonts[kNumFonts];
 
+/**
+ * Initialize fonts.  Must be called before a call to GetFont(), preferably
+ * at application start time.
+ */
 void RudeFontManager::InitFonts()
 {
 	m_fonts[kDefaultFont].Init("ab18.fnt");
@@ -63,6 +63,9 @@ void RudeFontManager::InitFonts()
 	m_fonts[kBigFontOutline].Init("ab28o2.fnt");
 }
 
+/**
+ * Returns a pointer to the given font.  Does not perform any error checking.
+ */
 RudeFont * RudeFontManager::GetFont(eFont f)
 {
 	return &m_fonts[f];
@@ -124,11 +127,6 @@ class CFontLoaderBinaryFormat : public CFontLoader
 		void ReadKerningPairsBlock(int size);
 	};
 
-//=============================================================================
-// CFont
-//
-// This is the CFont class that is used to write text with bitmap fonts.
-//=============================================================================
 
 RudeFont::RudeFont()
 {
@@ -157,6 +155,9 @@ RudeFont::~RudeFont()
 	 */
 }
 
+/**
+ * Initialize a font.  It's not necessary to use this function if you're using the RudeFontManager.
+ */
 int RudeFont::Init(const char *fontFileIn)
 {
 	char fontFile[512];
@@ -187,7 +188,6 @@ void RudeFont::SetTextEncoding(EFontTextEncoding encoding)
 	this->encoding = encoding;
 }
 
-// Internal
 SCharDescr *RudeFont::GetChar(int id)
 {
 	std::map<int, SCharDescr*>::iterator it = chars.find(id);
@@ -196,7 +196,6 @@ SCharDescr *RudeFont::GetChar(int id)
 	return it->second;
 }
 
-// Internal
 float RudeFont::AdjustForKerningPairs(int first, int second)
 {	
 	SCharDescr *ch = GetChar(first);
@@ -253,8 +252,9 @@ float RudeFont::GetTopOffset()
 	return scale * (base - 0);
 }
 
-// Internal
-// Returns the number of bytes in the string until the null char
+/**
+ * Returns the number of bytes in the string until the null char
+ */
 int RudeFont::GetTextLength(const char *text)
 {
 	if( encoding == UTF16 )
@@ -277,7 +277,6 @@ int RudeFont::GetTextLength(const char *text)
 	return (int)strlen(text);
 }
 
-// Internal
 int RudeFont::GetTextChar(const char *text, int pos, int *nextPos)
 {
 	int ch;
@@ -302,7 +301,6 @@ int RudeFont::GetTextChar(const char *text, int pos, int *nextPos)
 	return ch;
 }
 
-// Internal
 int RudeFont::FindTextChar(const char *text, int start, int length, int ch)
 {
 	int pos = start;
@@ -402,6 +400,9 @@ void RudeFont::InternalWrite(float x, float y, float z, const char *text, int co
 	 
 }
 
+/**
+ * Print a formatted string to the screen at the given x,y,z location
+ */
 void RudeFont::Printf(float x, float y, float z, unsigned int mode, unsigned int topcolor, unsigned int botcolor, const char *pszFormat, ...)
 {
 	va_list args;
@@ -415,11 +416,18 @@ void RudeFont::Printf(float x, float y, float z, unsigned int mode, unsigned int
 	
 }
 
+/**
+ * Write a string to the screen at the given x,y,z location
+ */
 void RudeFont::Write(float x, float y, float z, const char *text, int count, unsigned int mode, unsigned int color)
 {
 	Write(x, y, z, text, count, mode, color, color);
 }
 
+/**
+ * Write a string to the screen at the given x,y,z location.  Additionally adds a vertical transition between two colors.
+ * Useful for shadow effects or making text "pop".
+ */
 void RudeFont::Write(float x, float y, float z, const char *text, int count, unsigned int mode, unsigned int topcolor, unsigned int botcolor)
 {
 	RGL.EnableClient(kVertexArray, true);
@@ -452,6 +460,9 @@ void RudeFont::Write(float x, float y, float z, const char *text, int count, uns
 	InternalWrite(x, y, z, text, count);
 }
 
+/**
+ * Write a multi-line block of text at the given x,y,z location
+ */
 void RudeFont::WriteML(float x, float y, float z, const char *text, int count, unsigned int mode)
 {
 	if( count <= 0 )
@@ -493,6 +504,9 @@ void RudeFont::WriteML(float x, float y, float z, const char *text, int count, u
 	}
 }
 
+/**
+ * Write a block of text to the screen, but keep it within the given width
+ */
 void RudeFont::WriteBox(float x, float y, float z, float width, const char *text, int count, unsigned int mode)
 {
 	if( count <= 0 )
@@ -627,6 +641,9 @@ void RudeFont::PrepareEffect()
 
 }
 
+/**
+ * Has no effect.  For pixel-perfect output use orthgraphic rendering.
+ */
 void RudeFont::PreparePixelPerfectOutput()
 {
 	/*

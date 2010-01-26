@@ -8,9 +8,6 @@
 
 #include "RudePhysicsObject.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 
 #include <btBulletDynamicsCommon.h>

@@ -17,8 +17,7 @@
 #include <CoreFoundation/CFBundle.h>
 #include <CoreGraphics/CGContext.h>
 #include <CoreGraphics/CGBitmapContext.h>
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
+
 
 #include "PVRTTexture.h"
 #include "PVRTTextureAPI.h"

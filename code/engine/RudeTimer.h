@@ -11,7 +11,7 @@
 
 #include "Rude.h"
 
-#ifdef RUDE_IPHONE
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #include <unistd.h>
@@ -27,12 +27,12 @@ public:
 		m_starttime = mach_absolute_time();
 	}
 	
-	uint64_t ElapsedRaw()
+	u64 ElapsedRaw()
 	{
 		return mach_absolute_time() - m_starttime;
 	}
 	
-	uint64_t ElapsedNanoseconds()
+	u64 ElapsedNanoseconds()
 	{
 		static mach_timebase_info_data_t sTimebaseInfo = { 0,0 };
 		if ( sTimebaseInfo.denom == 0 ) {
@@ -54,7 +54,7 @@ public:
 
 private:
 	
-	uint64_t m_starttime;
+	u64 m_starttime;
 	
 };
 

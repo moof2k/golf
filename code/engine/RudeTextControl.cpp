@@ -11,15 +11,12 @@
 #include "Rude.h"
 #include "RudeGL.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 
 RudeTextControl::RudeTextControl()
 : m_displayValue(kNoValue)
 , m_value(-123123.0f)
-, m_alignment(kAlignLeft)
+, m_alignment(RudeTextControl::kAlignLeft)
 , m_style(kNoStyle)
 , m_font(kDefaultFont)
 , m_alpha(1.0f)
@@ -51,13 +48,13 @@ void RudeTextControl::SetPosition(int x, int y)
 	
 	switch(m_alignment)
 	{
-		case kAlignLeft:
+		case RudeTextControl::kAlignLeft:
 			SetRect(RudeRect(y - kHeight, x, y + kHeight, x + 1));
 			break;
 		case kAlignRight:
 			SetRect(RudeRect(y - kHeight, x-1, y + kHeight, x));
 			break;
-		case kAlignCenter:
+		case RudeTextControl::kAlignCenter:
 			
 			break;
 	}
@@ -71,10 +68,10 @@ void RudeTextControl::Render()
 	
 	switch(m_alignment)
 	{
-		case kAlignLeft:
+		case RudeTextControl::kAlignLeft:
 			Display(m_rect.m_left, y);
 			break;
-		case kAlignCenter:
+		case RudeTextControl::kAlignCenter:
 			{
 				float x = (m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left;
 				Display(x, y);

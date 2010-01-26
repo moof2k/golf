@@ -87,7 +87,7 @@ RBUITitle::RBUITitle()
 	
 	m_startText.SetAnimType(kAnimPopSlide);
 	m_startText.SetText("Play");
-	m_startText.SetAlignment(kAlignCenter);
+	m_startText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_startText.SetRect(RudeRect(320, 0, 350, 320));
 	m_startText.SetStyle(kOutlineStyle);
 	m_startText.SetFont(kBigFont);
@@ -96,7 +96,7 @@ RBUITitle::RBUITitle()
 	
 	m_practiceText.SetAnimType(kAnimPopSlide);
 	m_practiceText.SetText("Practice");
-	m_practiceText.SetAlignment(kAlignCenter);
+	m_practiceText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_practiceText.SetRect(RudeRect(360, 0, 390, 320));
 	m_practiceText.SetStyle(kOutlineStyle);
 	m_practiceText.SetFont(kBigFont);
@@ -105,7 +105,7 @@ RBUITitle::RBUITitle()
 	
 	m_settingsText.SetAnimType(kAnimPopSlide);
 	m_settingsText.SetText("Options");
-	m_settingsText.SetAlignment(kAlignCenter);
+	m_settingsText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_settingsText.SetRect(RudeRect(400, 0, 430, 320));
 	m_settingsText.SetStyle(kOutlineStyle);
 	m_settingsText.SetFont(kBigFont);
@@ -114,7 +114,7 @@ RBUITitle::RBUITitle()
 	
 	m_goText.SetAnimType(kAnimPopSlide);
 	m_goText.SetText("Start");
-	m_goText.SetAlignment(kAlignCenter);
+	m_goText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_goText.SetRect(RudeRect(400, 0, 420, 320));
 	m_goText.SetStyle(kOutlineStyle);
 	m_goText.SetFont(kBigFont);
@@ -123,7 +123,7 @@ RBUITitle::RBUITitle()
 	
 	m_backText.SetAnimType(kAnimPopSlide);
 	m_backText.SetText("Back");
-	m_backText.SetAlignment(kAlignCenter);
+	m_backText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_backText.SetRect(RudeRect(440, 0, 460, 320));
 	m_backText.SetStyle(kOutlineStyle);
 	m_backText.SetFont(kBigFont);
@@ -132,7 +132,7 @@ RBUITitle::RBUITitle()
 	
 	m_copyrightText.SetAnimType(kAnimPopSlide);
 	m_copyrightText.SetText("Copyright © 2009 Bork 3D LLC");
-	m_copyrightText.SetAlignment(kAlignCenter);
+	m_copyrightText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_copyrightText.SetRect(RudeRect(463, 0, 480, 320));
 	m_copyrightText.SetStyle(kNoStyle);
 	m_copyrightText.SetColors(0, 0xFFFFFFFF, 0xFFCCCCCC);
@@ -140,7 +140,7 @@ RBUITitle::RBUITitle()
 	
 	m_tournamentText.SetAnimType(kAnimPopSlide);
 	m_tournamentText.SetText("Select Tournament");
-	m_tournamentText.SetAlignment(kAlignCenter);
+	m_tournamentText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_tournamentText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_tournamentText.SetStyle(kOutlineStyle);
 	m_tournamentText.SetFont(kBigFont);
@@ -150,7 +150,7 @@ RBUITitle::RBUITitle()
 	
 	m_courseNameText.SetAnimType(kAnimPopSlide);
 	m_courseNameText.SetText("Golf Course");
-	m_courseNameText.SetAlignment(kAlignCenter);
+	m_courseNameText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_courseNameText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_courseNameText.SetStyle(kOutlineStyle);
 	m_courseNameText.SetFont(kBigFont);
@@ -159,7 +159,7 @@ RBUITitle::RBUITitle()
 	
 	m_courseSubnameText.SetAnimType(kAnimPopSlide);
 	m_courseSubnameText.SetText("Amateur Invitational");
-	m_courseSubnameText.SetAlignment(kAlignCenter);
+	m_courseSubnameText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_courseSubnameText.SetRect(RudeRect(60, 0, 60 + 20, 320));
 	m_courseSubnameText.SetStyle(kOutlineStyle);
 	m_courseSubnameText.SetFont(kBigFont);
@@ -168,7 +168,7 @@ RBUITitle::RBUITitle()
 	
 	m_courseDescText.SetAnimType(kAnimPopSlide);
 	m_courseDescText.SetText("Front 9 / Short Tee");
-	m_courseDescText.SetAlignment(kAlignCenter);
+	m_courseDescText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_courseDescText.SetRect(RudeRect(80, 0, 80 + 20, 320));
 	m_courseDescText.SetStyle(kOutlineStyle);
 	m_courseDescText.SetFont(kDefaultFont);
@@ -178,7 +178,7 @@ RBUITitle::RBUITitle()
 	
 	m_scoreText.SetAnimType(kAnimPopSlide);
 	m_scoreText.SetText("+1");
-	m_scoreText.SetAlignment(kAlignCenter);
+	m_scoreText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_scoreText.SetRect(RudeRect(400, 0, 420, 320));
 	m_scoreText.SetStyle(kOutlineStyle);
 	m_scoreText.SetFont(kBigFont);
@@ -187,7 +187,7 @@ RBUITitle::RBUITitle()
 	
 	m_scoreDesc.SetAnimType(kAnimPopSlide);
 	m_scoreDesc.SetText("Congratulations!");
-	m_scoreDesc.SetAlignment(kAlignCenter);
+	m_scoreDesc.SetAlignment(RudeTextControl::kAlignCenter);
 	m_scoreDesc.SetRect(RudeRect(440, 0, 460, 320));
 	m_scoreDesc.SetStyle(kOutlineStyle);
 	m_scoreDesc.SetFont(kDefaultFont);
@@ -197,7 +197,7 @@ RBUITitle::RBUITitle()
 	
 	m_settingsTitleText.SetAnimType(kAnimPopSlide);
 	m_settingsTitleText.SetText("Options");
-	m_settingsTitleText.SetAlignment(kAlignCenter);
+	m_settingsTitleText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_settingsTitleText.SetRect(RudeRect(36, 0, 36 + 20, 320));
 	m_settingsTitleText.SetStyle(kOutlineStyle);
 	m_settingsTitleText.SetFont(kBigFont);
@@ -206,7 +206,7 @@ RBUITitle::RBUITitle()
 	
 	m_musicToggle.SetAnimType(kAnimPopSlide);
 	m_musicToggle.SetText(kMusicOnText);
-	m_musicToggle.SetAlignment(kAlignCenter);
+	m_musicToggle.SetAlignment(RudeTextControl::kAlignCenter);
 	m_musicToggle.SetRect(RudeRect(90, 0, 90 + 20, 320));
 	m_musicToggle.SetStyle(kOutlineStyle);
 	m_musicToggle.SetFont(kBigFont);

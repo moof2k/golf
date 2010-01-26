@@ -272,7 +272,12 @@ unsigned int PVRTLoadPartialTextureFromPointer(const void * const pointer,
 	GLenum textureFormat = 0;
 	GLenum textureType = GL_RGB;
 
+#ifdef RUDE_OGLES
 	bool IsPVRTCSupported = true; //CPVRTglesExt::IsGLExtensionSupported("GL_IMG_texture_compression_pvrtc");
+#else
+	bool IsPVRTCSupported = false;
+#endif
+	
 	bool IsBGRA8888Supported  = true; //CPVRTglesExt::IsGLExtensionSupported("GL_IMG_texture_format_BGRA8888");
 
 	*texName = 0;	// install warning value
@@ -396,8 +401,10 @@ unsigned int PVRTLoadPartialTextureFromPointer(const void * const pointer,
 		glBindTexture(GL_TEXTURE_2D, textureName);
 	}
 
-	if(glGetError())
+	int error = glGetError();
+	if(error)
 	{
+		printf("Unable to bind texture: 0x%x\n", error);
 		PVRTOOLS_DEBUG_OUTPUT("PVRTTexture:PVRTLoadPartialTextureFromPointer failed: glBindTexture() failed.\n");
 		return 0;
 	}
@@ -499,11 +506,10 @@ unsigned int PVRTLoadPartialTextureFromPointer(const void * const pointer,
 				}
 			}
 
-
-
-			if(glGetError())
+			int error = glGetError();
+			if(error)
 			{
-				PVRTOOLS_DEBUG_OUTPUT("PVRTTexture:PVRTLoadPartialTextureFromPointer failed: glBindTexture() failed.\n");
+				printf("PVRTTexture:PVRTLoadPartialTextureFromPointer failed: glBindTexture() failed. (0x%x)\n", error);
 				return 0;
 			}
 

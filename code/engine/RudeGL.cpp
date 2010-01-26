@@ -30,6 +30,7 @@ RudeGL::RudeGL()
 : m_eye(0,0,0)
 , m_lookAt(0,0,1)
 , m_forward(0,0,1)
+, m_landscape(false)
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
 		m_enables[i] = false;
@@ -42,9 +43,12 @@ RudeGL::~RudeGL()
 {
 }
 
-
+/**
+ * Sets the viewport
+ */
 void RudeGL::SetViewport(int top, int left, int bottom, int right)
 {
+#ifdef RUDE_IPHONE
 	m_viewport.m_top = top;
 	m_viewport.m_left = left;
 	m_viewport.m_bottom = bottom;
@@ -52,10 +56,27 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	float screenx = right - left;
 	float screeny = bottom - top;
 	
-	glViewport(m_viewport.m_left, 480 - m_viewport.m_bottom, screenx, screeny);
+
+	if(GetLandscape())
+		glViewport(320 - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+	else
+		glViewport(m_viewport.m_left, 480 - m_viewport.m_bottom, screenx, screeny);
+#else
+	
+	m_viewport.m_top = top;
+	m_viewport.m_left = left;
+	m_viewport.m_bottom = bottom;
+	m_viewport.m_right = right;
+	float screenx = right - left;
+	float screeny = bottom - top;
+	
+	glViewport(0, 0, screenx, screeny);
+#endif
 }
 
-
+/**
+ * Sets the projection matrix to use an orthographic transform
+ */
 void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 {	
 	glCullFace(GL_BACK);
@@ -67,7 +88,15 @@ void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
+	if(GetLandscape())
+		glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
+	
+#ifdef RUDE_OGLES
 	glOrthof(ox, ox + w, oy, oy + h, oz, oz + d);
+#else
+	glOrtho(ox, ox + w, oy, oy + h, oz, oz + d);
+#endif
+    
 	//glTranslatef(ww, wh, 0.0f);
 	glScalef(1.0f, -1.0f, 1.0f);
 	glTranslatef(0.0f, -h, 0.0f);
@@ -75,6 +104,9 @@ void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 	
 }
 
+/**
+ * Sets the view frustum for the projection matrix
+ */
 void RudeGL::Frustum(float ox, float oy, float w, float h, float near, float far)
 {
 	m_hw = w / 2.0f;
@@ -84,8 +116,14 @@ void RudeGL::Frustum(float ox, float oy, float w, float h, float near, float far
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
+	if(GetLandscape())
+		glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
 
+#ifdef RUDE_OGLES
 	glFrustumf(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near, far);
+#else
+	glFrustum(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near, far);
+#endif
 }
 
 void CrossProd(float x1, float y1, float z1, float x2, float y2, float z2, float res[3]) 
@@ -95,6 +133,9 @@ void CrossProd(float x1, float y1, float z1, float x2, float y2, float z2, float
 	res[2] = x1*y2 - x2*y1; 
 } 
 
+/**
+ * Builds a "lookat" matrix and applies it to the projection matrix
+ */
 void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY, float lookAtZ, float upX, float upY, float upZ)
 {
 	
@@ -127,6 +168,9 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	
 }
 
+/**
+ * Reset the model matrix to the identity matrix
+ */
 void RudeGL::LoadIdentity()
 {	
 	glMatrixMode(GL_MODELVIEW);
@@ -134,24 +178,36 @@ void RudeGL::LoadIdentity()
 }
 
 
+/**
+ * Translate the model matrix
+ */
 void RudeGL::Translate(float x, float y, float z)
 {	
 	glMatrixMode(GL_MODELVIEW);
 	glTranslatef(x, y, z);
 }
 
+/**
+ * Translate the projection matrix
+ */
 void RudeGL::TranslateView(float x, float y, float z)
 {
 	glMatrixMode(GL_PROJECTION);
 	glTranslatef(x, y, z);
 }
 
+/**
+ * Scale the model matrix
+ */
 void RudeGL::Scale(float sx, float sy, float sz)
 {
 	glMatrixMode(GL_MODELVIEW);
 	glScalef(sx, sy, sz);
 }
 
+/**
+ * Rotate the model matrix by 'degrees' about an arbitrary axis
+ */
 void RudeGL::Rotate(float degrees, float ax, float ay, float az)
 {	
 	glMatrixMode(GL_MODELVIEW);
@@ -174,7 +230,9 @@ void RudeGL::RotateZ(int degrees)
 	Rotate(degrees, 0.0f, 0.0f, 1.0f);
 }
 
-
+/**
+ * Rotates the projection matrix
+ */
 void RudeGL::RotateView(float degrees, float ax, float ay, float az)
 {	
 	glMatrixMode(GL_PROJECTION);
@@ -182,7 +240,9 @@ void RudeGL::RotateView(float degrees, float ax, float ay, float az)
 
 }
 
-
+/**
+ * Project a point in world coordinates to screen coordinates
+ */
 btVector3 RudeGL::Project(const btVector3 &point)
 {
 	float hw = (m_viewport.m_right - m_viewport.m_left) / 2.0f;
@@ -203,11 +263,19 @@ btVector3 RudeGL::Project(const btVector3 &point)
 	}
 	
 	btVector3 rv;
-	rv.setX((result[0] / result[3] * hw) + hw);
-	rv.setY((2.0f * hh) - ((result[1] / result[3] * hh) + hh));
-	rv.setZ(result[2] / result[3]);
 	
-	
+	if(GetLandscape() == false)
+	{
+		rv.setX((result[0] / result[3] * hw) + hw);
+		rv.setY((2.0f * hh) - ((result[1] / result[3] * hh) + hh));
+		rv.setZ(result[2] / result[3]);
+	}
+	else
+	{
+		rv.setX((2.0f * hw) - ((result[1] / result[3] * hw) + hw));
+		rv.setY((2.0f * hh) - ((result[0] / result[3] * hh) + hh));
+		rv.setZ(result[2] / result[3]);
+	}
 	
 	return rv;
 }
@@ -302,6 +370,11 @@ static void __gluMultMatrixVecd(const GLfloat matrix[16], const GLfloat in[4],
     }
 }
 
+/**
+ * Project a screen coordinate to a point on the near plane.
+ * This method assumes the viewport is set to the full screen,
+ * and won't work if the viewport is anything else.
+ */
 btVector3 RudeGL::InverseProject(const btVector3 &point)
 {
 	btVector3 p = point;
@@ -314,8 +387,17 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	glGetFloatv(GL_PROJECTION_MATRIX, projMatrix);
 	__gluInvertMatrixd(projMatrix, finalMatrix);
 	
-    in[0]=point.x();
-    in[1]=point.y();
+	if(GetLandscape())
+	{
+		in[0]=320 - point.y();
+		in[1]=point.x();
+	}
+	else
+	{
+		in[0]=point.x();
+		in[1]=point.y();
+	}
+	
     in[2]=1.0f;
     in[3]=1.0f;
 	
@@ -337,14 +419,15 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	
 	btVector3 rv(out[0], out[1], out[2]);
 	
-	//printf("eye: %f %f %f\n", m_eye.x(), m_eye.y(), m_eye.z());
-	
-	
-   
 	return rv;
 	
 }
 
+/**
+ * Set the given OpenGL attribute on or off.  Using this function
+ * instead of calling glEnable() directly prevents unnecessary
+ * draw calls.
+ */
 void RudeGL::Enable(eRudeGLEnableOption option, bool enable)
 {
 	if(m_enables[option] == enable)
@@ -362,6 +445,11 @@ void RudeGL::Enable(eRudeGLEnableOption option, bool enable)
 
 }
 
+/**
+ * Set the given OpenGL client state on or off.  Using this function
+ * instead of calling glEnableClientState() directly prevents unnecessary
+ * draw calls.
+ */
 void RudeGL::EnableClient(eRudeGLEnableClientOption option, bool enable)
 {
 	if(m_enableClients[option] == enable)
@@ -374,5 +462,17 @@ void RudeGL::EnableClient(eRudeGLEnableClientOption option, bool enable)
 	else
 		glDisableClientState(kRudeEnableClientMappings[option]);
 		
+}
+
+/**
+ * When switching to fullscreen mode on MacOS we need to flush the cached
+ * state of the enables because it's lost when going fullscreen
+ */
+void RudeGL::FlushEnables()
+{
+	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
+		m_enables[i] = false;
+	for(int i = 0; i < kNumRudeGLEnableClientOptions; i++)
+		m_enableClients[i] = false;
 }
 

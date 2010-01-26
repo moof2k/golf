@@ -11,9 +11,6 @@
 #include "RudeGL.h"
 #include "RudeTextureManager.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 
 RudeButtonControl::RudeButtonControl()

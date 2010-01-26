@@ -47,11 +47,13 @@
 #define RUDE_GAPI
 #endif
 
-// iPhone
+// iPhone / MacOS
 #if defined(__GNUC__) && ( defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__) )
 #include <TargetConditionals.h>
 #if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
 #define RUDE_IPHONE
+#else
+#define RUDE_MACOS
 #endif
 #endif
 
@@ -124,6 +126,10 @@
 
 #ifdef RUDE_IPHONE
 
+#define RUDE_OGLES
+#import <OpenGLES/ES1/gl.h>
+#import <OpenGLES/ES1/glext.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -136,8 +142,36 @@
 
 #define _T(a) a
 
+typedef unsigned long long u64;
+
 #endif // RUDE_IPHONE
 
+#ifdef RUDE_MACOS
+
+#define RUDE_OGL
+#include <OpenGL/OpenGl.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
+typedef int GLfixed;
+typedef unsigned int GLuint;
+typedef float GLfloat;
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TCHAR char
+#define _stprintf sprintf
+#define _tcscat strcat
+#define _tcscpy strcpy
+#define _tcslen strlen
+
+#define _T(a) a
+
+typedef unsigned long long u64;
+
+#endif // RUDE_MACOS
 
 //  ASSERTS...
 #ifndef __RUDE__DEBUG

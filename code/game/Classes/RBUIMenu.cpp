@@ -22,7 +22,7 @@ RBUIMenu::RBUIMenu()
 	m_resumeText.SetAnimType(kAnimPopSlide);
 	m_resumeText.SetAnimSpeed(5.0f);
 	m_resumeText.SetText("Resume");
-	m_resumeText.SetAlignment(kAlignCenter);
+	m_resumeText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_resumeText.SetRect(RudeRect(370, 0, 390, 320));
 	m_resumeText.SetStyle(kOutlineStyle);
 	m_resumeText.SetFont(kBigFont);
@@ -32,7 +32,7 @@ RBUIMenu::RBUIMenu()
 	m_quitText.SetAnimType(kAnimPopSlide);
 	m_quitText.SetAnimSpeed(5.0f);
 	m_quitText.SetText("Quit");
-	m_quitText.SetAlignment(kAlignCenter);
+	m_quitText.SetAlignment(RudeTextControl::kAlignCenter);
 	m_quitText.SetRect(RudeRect(410, 0, 430, 320));
 	m_quitText.SetStyle(kOutlineStyle);
 	m_quitText.SetFont(kBigFont);

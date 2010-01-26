@@ -18,6 +18,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "Rude.h"
+
 #include "PVRTGlobal.h"
 #include "PVRTFixedPoint.h"
 #include "PVRTMatrix.h"

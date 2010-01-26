@@ -15,8 +15,6 @@
 #define _PVRTCONTEXT_H_
 
 #include <stdio.h>
-#import <OpenGLES/ES1/gl.h>
-#import <OpenGLES/ES1/glext.h>
 
 /****************************************************************************
 ** Macros

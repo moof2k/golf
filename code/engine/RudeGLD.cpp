@@ -10,9 +10,6 @@
 
 #include "RudeGL.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 RudeGLD RGLD;
 
@@ -29,7 +26,10 @@ void RudeGLD::DebugDrawLine(btVector3 p0, btVector3 p1)
 
 void RudeGLD::RenderDebug()
 {
+#ifdef RUDE_OGLES
 	glDisable(GL_TEXTURE_2D);
+#endif
+    
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, false);
@@ -39,13 +39,13 @@ void RudeGLD::RenderDebug()
 		btVector3 &p0 = m_debugLines[i].p0;
 		btVector3 &p1 = m_debugLines[i].p1;
 		
-		GLfloat point[] = {
+		float point[] = {
 			p0.x(), p0.y(), p0.z(),
 			p1.x(), p1.y(), p1.z(),
 			
 		};
 		
-		GLfloat colors[] = {
+		float colors[] = {
 			1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 1.0f, 1.0f, 1.0f,
 		};
