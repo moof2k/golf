@@ -21,6 +21,17 @@ class RudeObject;
 const int kMaxTextures = 16;
 const int kMaxNodes = 64;
 
+/**
+ * Creates a static renderable mesh.\n\n
+ *
+ * A RudeMesh can contain as many sub-models as you want, but in for them to be renderable they
+ * must begin with the 'M' character.\n\n
+ *
+ * In order to toggle a sub-models renderability using EnableModel(), it must begin with the 'M' character followed by
+ * a single number.  I.e., "M0", "M1", etc.  This works by renaming the mesh "m0", "m1", etc.\n\n
+ *
+ * Do not create a RudeMesh directly.  Instead, create a RudeObject and then call RudeObject::LoadMesh().
+ */
 class RudeMesh {
 
 public:
