@@ -13,7 +13,12 @@
 
 class RudeObject;
 
-
+/**
+ * This class creates a skinned mesh suitable for animation.\n\n
+ *
+ * Do not create a RudeSkinnedMesh directly.  Instead, create a RudeObject
+ * and then call RudeObject::LoadSkinnedMesh().
+ */
 class RudeSkinnedMesh : public RudeMesh {
 	
 public:
