@@ -11,6 +11,10 @@
 
 #include "RudeRegistry.h"
 
+/**
+ * Registry implementation that uses text files.  This class is mostly only useful for debugging.
+ * Look at one of the platform-specific implementation for routine use.
+ */
 class RudeRegistryText : public RudeRegistry
 {
 public:

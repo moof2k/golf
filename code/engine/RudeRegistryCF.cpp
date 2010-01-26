@@ -19,6 +19,13 @@ RudeRegistryCF::~RudeRegistryCF(void)
 }
 
 
+/**
+ * Retrieve the stored data specified by the given 'app' and data 'name'.  Requires
+ * 'buffer' be pre-allocated and contains enough space to hold the data.  Pass in
+ * the size of 'buffer' with 'buffersize'.
+ *
+ * @returns 0 on success, -1 on error
+ */
 int RudeRegistryCF::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer, int *buffersize)
 {
 	CFStringRef key = CFStringCreateWithCString(NULL, name, kCFStringEncodingASCII);
@@ -36,6 +43,12 @@ int RudeRegistryCF::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer,
 	return 0;
 }
 
+/**
+ * Store the data given in 'buffer' under the given 'app' and 'name'.  Pass in the size
+ * of the 'buffer' with 'buffersize'.
+ *
+ * @returns 0 on success
+ */
 int RudeRegistryCF::SetByte(const TCHAR *app, const TCHAR *name, void *buffer, int buffersize)
 {
 	CFPropertyListRef value = CFDataCreate(NULL, (UInt8 *) buffer, buffersize);

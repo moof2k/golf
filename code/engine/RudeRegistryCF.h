@@ -11,6 +11,9 @@
 
 #include "RudeRegistry.h"
 
+/**
+ * Registry implementation for MacOS and iPhone
+ */
 class RudeRegistryCF : public RudeRegistry
 {
 public:
