@@ -159,6 +159,9 @@ float RudeGame::GetDelta()
 	return 0.0f;
 #endif
 
+#ifdef RUDE_MACOS
+	return 0.0f;
+#endif
 }
 
 

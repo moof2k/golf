@@ -20,6 +20,10 @@
 #include <e32std.h>
 #endif
 
+/**
+ * Base class for games made using the engine.  You're not required
+ * to use this base class, but it provides some useful convenience functions.
+ */
 class RudeGame {
 
 public:
