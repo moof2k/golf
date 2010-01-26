@@ -9,6 +9,10 @@
 #ifndef __H_RudeText
 #define __H_RudeText
 
+/**
+ * Convenience class for writing debug text to the screen.  Call Print() at many times as you want,
+ * and then call Flush() before the frame is over to dump the text to the screen.
+ */
 class RudeText
 {
 public:
