@@ -10,6 +10,9 @@
 
 #include <CoreFoundation/CFBundle.h>
 
+/**
+ * Returns the full location of a file in a cross-platform compatible manner.
+ */
 bool RudeFileGetFile(const char *filename, char *buffer, int bufsize, bool canfail)
 {
 	
