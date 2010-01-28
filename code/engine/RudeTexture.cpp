@@ -123,6 +123,8 @@ int RudeTexture::LoadFromPNG(const char *name)
 	imageData = (GLubyte *) malloc(m_width * m_height * 4);
 	RUDE_ASSERT(imageData, "Failed to allocate space for texture storage");
 	
+	memset(imageData, 0, m_width * m_height * 4);
+	
 	imageContext = CGBitmapContextCreate(imageData, m_width, m_height, 8, m_width * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
 	CGContextDrawImage(imageContext, CGRectMake(0.0, 0.0, (CGFloat) m_width, (CGFloat) m_height), image);
 	CGContextRelease(imageContext);
