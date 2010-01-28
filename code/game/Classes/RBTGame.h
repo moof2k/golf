@@ -114,6 +114,8 @@ public:
 
 private:
 	
+	void SetupUI();
+	
 	void RestoreState();
 	
 	void SetState(eRBTGameState state);
@@ -140,6 +142,7 @@ private:
 	void StickBallInBounds();
 	void HitBall();
 	void AdjustGuide();
+	
 	
 	
 	RBUIMenu m_menu;
@@ -231,6 +234,8 @@ private:
 	float m_ballToHoleDist;
 	
 	bool m_playedBallDissapointmentSound;
+	
+	bool m_landscape;
 	
 	int m_holeNum;
 	int m_par;

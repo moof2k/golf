@@ -45,7 +45,7 @@ public:
 	int m_physicalCourse;
 	eCourseHoles m_holes;
 	eCourseTee m_tee;
-	
+	eCourseWind m_wind;
 };
 
 class RBCourseHole {
