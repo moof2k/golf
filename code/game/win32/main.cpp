@@ -410,13 +410,15 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 		{
 			int xPos = LOWORD(lParam); 
 			int yPos = HIWORD(lParam);
-			leftButtonDown = false;
-
 			RudeScreenVertex newpos(xPos, yPos);
 
-			if(gVBGame)
-				gVBGame->TouchUp(newpos, leftMousePos);
-
+			if(leftButtonDown)
+			{
+				if(gVBGame)
+					gVBGame->TouchUp(newpos, leftMousePos);
+			}
+			
+			leftButtonDown = false;
 			leftMousePos = newpos;
 			
 			return 0;
