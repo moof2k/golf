@@ -20,6 +20,10 @@
 #include <CoreGraphics/CGBitmapContext.h>
 #endif
 
+#if defined(RUDE_WIN)
+#include <FreeImage.h>
+#endif
+
 
 #include "PVRTTexture.h"
 #include "PVRTTextureAPI.h"
@@ -84,19 +88,19 @@ int RudeTexture::LoadFromPVRTPointer(const char *name, const void *data)
 	return 0;
 }
 
-#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
-
 int RudeTexture::LoadFromPNG(const char *name)
 {	
 	// flush glGetError
 	glGetError();
-	
-	int result = -1;
-	
+
 	strncpy(m_name, name, kNameLen);
-	
+
 	char filename[64];
 	sprintf(filename, "%s.png", name);
+
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
+
+	int result = -1;
 	
 	CFStringRef cfFilename = CFStringCreateWithCString(0, filename, kCFStringEncodingASCII);
 	CFBundleRef mainBundle = CFBundleGetMainBundle();
@@ -160,21 +164,63 @@ LoadFromPNG_URLFail:
 	CFRelease(cfFilename);
 	
 	return result;
-}
 #endif // defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 
 #if defined(RUDE_WIN)
 
+	// Find where the file is located
 
-int RudeTexture::LoadFromPNG(const char *name)
-{	
-	// flush glGetError
-	glGetError();
+	char buffer[256];
+	bool found = RudeFileGetFile(filename, buffer, 256, false);
+	RUDE_ASSERT(found, "Texture not found: %s", filename);
+
+	// Retrieve file attributes and load the file
+
+	FREE_IMAGE_FORMAT formato = FreeImage_GetFileType(buffer, 0);
+	FIBITMAP* imagen = FreeImage_Load(formato, buffer);
+
+	FIBITMAP* temp = imagen;
+	imagen = FreeImage_ConvertTo32Bits(imagen);
+	FreeImage_Unload(temp);
+
+	int w = FreeImage_GetWidth(imagen);
+	int h = FreeImage_GetHeight(imagen);
+	RUDE_REPORT("LoadFromPNG %s (%dx%d)\n", filename, w, h);
+
+	// Endian-swap and vertically flip the loaded texture
+
+	GLubyte* textura = new GLubyte[4*w*h];
+	char* pixeles = (char*) FreeImage_GetBits(imagen);
+
+	for(int y = 0; y < h; y++)
+	{
+		for(int x = 0; x < w; x++)
+		{
+			int s = y * h + x;
+			int d = (h-y-1) * h + x;
+			textura[d*4+0]= pixeles[s*4+2];
+			textura[d*4+1]= pixeles[s*4+1];
+			textura[d*4+2]= pixeles[s*4+0];
+			textura[d*4+3]= pixeles[s*4+3];
+		}
+	}
+
+	// Generate the OpenGL texture object 
+
+	glGenTextures(1, &m_texture);
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA, w, h, 0, GL_RGBA,GL_UNSIGNED_BYTE, (GLvoid*)textura);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	GLenum loaderror = glGetError();
+	RUDE_ASSERT(loaderror == 0, "Failed to load texture %d", loaderror);
+
 
 	return 0;
+#endif
 }
 
-#endif // RUDE_WIN
+
 
 void RudeTexture::SetActive()
 {
