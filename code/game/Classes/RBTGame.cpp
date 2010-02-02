@@ -24,8 +24,6 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 #include "RudeSound.h"
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 #include "btTransform.h"
 
@@ -1147,6 +1145,10 @@ void RBTGame::FreshGuide(bool firstTime)
 	mat.setEulerYPR(m_swingYaw, 0.0f, 0.0f);
 	btVector3 newGuide = mat * aimvec;
 	newGuide.setY(0);
+
+	if(newGuide.length2() < 0.0001f)
+		newGuide = btVector3(0,0,1);
+
 	newGuide.normalize();
 	newGuide *= RBGolfClub::GetClub(m_curClub)->m_dist * 3.0f;
 	newGuide *= m_placementGuidePower / RBGolfClub::GetClub(m_curClub)->m_dist;

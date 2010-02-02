@@ -13,11 +13,8 @@
 #include "RudeControl.h"
 #include "RudeVertex.h"
 #include "RudeTextControl.h"
+#include "RudeTimer.h"
 #include "RBGolferObject.h"
-
-#include <unistd.h>
-#include <mach/mach.h>
-#include <mach/mach_time.h>
 
 const int kMaxSwingPoints = 256;
 
@@ -102,7 +99,7 @@ private:
 	
 	int m_curSwingPoint;
 	
-	uint64_t m_firstTime;
+	RudeTimer m_timer;
 	
 	float m_downTimer;
 	float m_downOptimalPct;

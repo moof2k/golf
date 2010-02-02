@@ -12,8 +12,6 @@
 #include "RudeMesh.h"
 #include "RudeSkinnedMesh.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 const tRBGolferSwingAnimationPoints kRBGolferSwingAnimationPoints[kNumClubTypes] = {
 	{ 1.0f, 21.0f, 21.0f, 25.3f, 41.0f },

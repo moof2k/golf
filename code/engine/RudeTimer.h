@@ -23,6 +23,11 @@ public:
 
 	RudeTimer()
 	{
+		Restart();
+	}
+
+	void Restart()
+	{
 		m_starttime = mach_absolute_time();
 	}
 	
@@ -67,6 +72,11 @@ class RudeTimer
 public:
 
 	RudeTimer()
+	{
+		Restart();
+	}
+
+	void Restart()
 	{
 		m_starttime = GetTickCount();
 	}

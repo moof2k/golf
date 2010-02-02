@@ -13,8 +13,6 @@
 #include "RudePhysics.h"
 
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 const float kHeightHighlightScale = 15.0f;
 

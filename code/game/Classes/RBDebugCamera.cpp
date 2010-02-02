@@ -12,9 +12,6 @@
 #include "btMatrix3x3.h"
 #include "btTransform.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 RBDebugCamera::RBDebugCamera()
 : m_ypr(0,0,0)

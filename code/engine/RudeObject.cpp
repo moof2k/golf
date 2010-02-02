@@ -75,7 +75,7 @@ void RudeObject::Render()
 		m_mesh->Render();
 }
 
-void RudeObject::NextFrame(const float delta)
+void RudeObject::NextFrame(float delta)
 {
 	if(m_mesh)
 		m_mesh->NextFrame(delta);

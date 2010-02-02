@@ -34,7 +34,7 @@ public:
 	void LoadPhysicsMesh(float mass);
 	void LoadPhysicsSphere(float radius, float mass);
 	
-	virtual void NextFrame(const float delta);
+	virtual void NextFrame(float delta);
 	virtual void Render();
 	
 	RudePhysicsObject * GetPhysicsObject() { return m_physics; }

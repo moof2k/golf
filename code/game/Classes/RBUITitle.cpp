@@ -15,9 +15,6 @@
 
 #include "RudeSound.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 
 bool gDebugPerfectScore = false;
 RUDE_TWEAK(DebugPerfectScore, kBool, gDebugPerfectScore);

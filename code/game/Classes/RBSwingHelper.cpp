@@ -10,9 +10,6 @@
 #include "RBSwingHelper.h"
 #include "RudeGL.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 const float kSwingTrackStart = 100;
 const float kSwingTrackEnd = 400;
 

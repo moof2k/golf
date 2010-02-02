@@ -12,9 +12,6 @@
 #include "RudeFont.h"
 #include "RudeGL.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-
 RBScoreControl::RBScoreControl()
 : m_activeHole(-1)
 {

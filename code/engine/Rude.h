@@ -42,6 +42,7 @@ typedef int GLfixed;
 typedef unsigned int GLuint;
 typedef float GLfloat;
 
+#define snprintf _snprintf
 
 #endif
 #endif

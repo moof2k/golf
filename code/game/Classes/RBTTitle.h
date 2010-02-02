@@ -8,7 +8,7 @@
  *	under copyright law.
  *	
  *	RESTRICTED RIGHTS LEGEND
- *	Use, duplication or disclosure by the Goverment is
+ *	Use, duplication or disclosure by the Government is
  *	subject to restrictions as set for in subdivision
  *	(b)(3)(ii) of the Right in Technical Data and Computer
  *	Software clause at 52.227-7013.

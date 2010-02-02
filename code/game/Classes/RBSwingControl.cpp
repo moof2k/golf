@@ -14,8 +14,6 @@
 #include "RudeTweaker.h"
 #include "RudeFont.h"
 
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
 
 bool gDebugHitPerfect = false;
 RUDE_TWEAK(DebugHitPerfect, kBool, gDebugHitPerfect);
@@ -81,11 +79,6 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 	if(m_curSwingPoint == kMaxSwingPoints)
 		return;
 	
-	static mach_timebase_info_data_t    sTimebaseInfo = {0,0};
-	if ( sTimebaseInfo.denom == 0 ) {
-        (void) mach_timebase_info(&sTimebaseInfo);
-    }
-	
 	if(first)
 	{
 		m_downTimer = 0.0f;
@@ -102,7 +95,7 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 		m_downOptimalPct = 0.0f;
 		m_upStrokeDeviation = 0.0f;
 		
-		m_firstTime = mach_absolute_time();
+		m_timer.Restart();
 	}
 	
 	//printf("Stroke %d %d\n", p.m_x, p.m_y);
@@ -116,14 +109,11 @@ void RBSwingControl::AddSwingPoint(const RudeScreenVertex &p, bool first)
 			m_strokeState = kDownStroke;
 			m_backStrokeAnimDone = false;
 			m_fwdStrokeAnimSent = false;
-			m_firstTime = mach_absolute_time();
+			m_timer.Restart();
 		}
 	}
 	
-	uint64_t thistime = mach_absolute_time();
-	uint64_t deltatime = thistime - m_firstTime;
-	uint64_t elapsedNano = deltatime * sTimebaseInfo.numer / sTimebaseInfo.denom;
-	float elapsedSeconds = ((float) elapsedNano) / 1000000000.0f;
+	float elapsedSeconds = m_timer.ElapsedSeconds();
 	
 	if(m_strokeState == kDownStroke)
 	{
