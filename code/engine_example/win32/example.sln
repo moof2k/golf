@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example", "example.vcproj", "{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE} = {6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}
+		{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A} = {7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}
+		{61BD1097-CF2E-B296-DAA9-73A6FE135319} = {61BD1097-CF2E-B296-DAA9-73A6FE135319}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbulletcollision", "..\..\lib\bullet\msvc\8\libbulletcollision.vcproj", "{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbulletdynamics", "..\..\lib\bullet\msvc\8\libbulletdynamics.vcproj", "{61BD1097-CF2E-B296-DAA9-73A6FE135319}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbulletmath", "..\..\lib\bullet\msvc\8\libbulletmath.vcproj", "{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = example.vcproj
+		SccLocalPath1 = ..\\..
+		SccProjectFilePathRelativizedFromConnection1 = engine_example\\win32\\
+		SccProjectUniqueName2 = ..\\..\\lib\\bullet\\msvc\\8\\libbulletcollision.vcproj
+		SccLocalPath2 = ..\\..\\lib\\bullet
+		SccProjectFilePathRelativizedFromConnection2 = msvc\\8\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}.Debug|Win32.Build.0 = Debug|Win32
+		{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}.Release|Win32.ActiveCfg = Release|Win32
+		{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}.Release|Win32.Build.0 = Release|Win32
+		{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}.Debug|Win32.Build.0 = Debug|Win32
+		{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}.Release|Win32.ActiveCfg = Release|Win32
+		{6ADA430D-009C-2ED4-A787-2AC2D6FEB8CE}.Release|Win32.Build.0 = Release|Win32
+		{61BD1097-CF2E-B296-DAA9-73A6FE135319}.Debug|Win32.ActiveCfg = Debug|Win32
+		{61BD1097-CF2E-B296-DAA9-73A6FE135319}.Debug|Win32.Build.0 = Debug|Win32
+		{61BD1097-CF2E-B296-DAA9-73A6FE135319}.Release|Win32.ActiveCfg = Release|Win32
+		{61BD1097-CF2E-B296-DAA9-73A6FE135319}.Release|Win32.Build.0 = Release|Win32
+		{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}.Debug|Win32.Build.0 = Debug|Win32
+		{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}.Release|Win32.ActiveCfg = Release|Win32
+		{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -14,9 +14,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 #include <CoreFoundation/CFBundle.h>
 #include <CoreGraphics/CGContext.h>
 #include <CoreGraphics/CGBitmapContext.h>
+#endif
 
 
 #include "PVRTTexture.h"
@@ -81,6 +83,8 @@ int RudeTexture::LoadFromPVRTPointer(const char *name, const void *data)
 	
 	return 0;
 }
+
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 
 int RudeTexture::LoadFromPNG(const char *name)
 {	
@@ -157,6 +161,20 @@ LoadFromPNG_URLFail:
 	
 	return result;
 }
+#endif // defined(RUDE_IPHONE) || defined(RUDE_MACOS)
+
+#if defined(RUDE_WIN)
+
+
+int RudeTexture::LoadFromPNG(const char *name)
+{	
+	// flush glGetError
+	glGetError();
+
+	return 0;
+}
+
+#endif // RUDE_WIN
 
 void RudeTexture::SetActive()
 {

@@ -9,7 +9,7 @@
 #ifndef __H_RBCamera
 #define __H_RBCamera
 
-#include "btVector3.h"
+#include "RudeGL.h"
 
 class RBCamera {
 

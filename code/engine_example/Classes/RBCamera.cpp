@@ -7,7 +7,6 @@
  */
 
 #include "RBCamera.h"
-#include "RudeGL.h"
 
 #include <stdio.h>
 
@@ -21,15 +20,15 @@ RBCamera::RBCamera()
 
 void RBCamera::SetView(float aspect)
 {
-	float near = 4.0f;
-	float far = 2000.0f;
+	float near_plane = 4.0f;
+	float far_plane = 2000.0f;
 	
-	float hw = 2.0f * tan(m_halffov) * near;
+	float hw = 2.0f * tan(m_halffov) * near_plane;
 	float w = hw * 2.0f;
 	
 	//printf("w=%f aspect=%f\n", w, aspect);
 	
-	RGL.Frustum(0.0f, 0.0f, w * aspect, w, near, far);
+	RGL.Frustum(0.0f, 0.0f, w * aspect, w, near_plane, far_plane);
 	
 	RGL.LookAt(m_pos.x(), m_pos.y(), m_pos.z(), m_lookAt.x(), m_lookAt.y(), m_lookAt.z(), m_up.x(), m_up.y(), m_up.z());
 }

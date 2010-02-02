@@ -48,8 +48,17 @@ RudeRegistry * RudeRegistry::GetSingleton()
 		reg = new RudeRegistryCF();
 	
 	return (RudeRegistry *) reg;
+
+#elif defined(RUDE_WIN)
+
+	static RudeRegistryWin *reg = 0;
+
+	if(reg == 0)
+		reg = new RudeRegistryWin();
+
+	return (RudeRegistry *) reg;
 	
 #else
-	return NULL;
+	return RUDE_ASSERT(0, "RudeRegistry not defined");
 #endif
 }

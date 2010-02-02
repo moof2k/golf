@@ -23,10 +23,6 @@
 
 #include <btBulletDynamicsCommon.h>
 
-#ifdef RUDE_OPENGLES
-#include <OpenGLES/ES1/gl.h>
-#include <OpenGLES/ES1/glext.h>
-#endif
 
 typedef enum {
 	kDepthTest = 0,

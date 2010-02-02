@@ -15,8 +15,6 @@
 
 #include "SoundEngine.h"
 
-#include <AudioToolbox/AudioToolbox.h>
-
 typedef enum {
 	kSoundNone = -1,
 	kSoundSwingWood = 0,
@@ -88,11 +86,13 @@ private:
 	bool m_soundon;
 	bool m_musicOn;
 	
-#if 0
-	UInt32 m_soundids[kNumSounds];
-#endif
-	
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	SystemSoundID m_soundids[kNumSounds];
+#endif
+
+#if defined(RUDE_WIN)
+	int m_soundids[kNumSounds];
+#endif
 	
 	eSoundBGM m_curBGM;
 	

@@ -106,7 +106,7 @@ void RBUITitle::Render(float width, float height)
 	m_plane.Render();
 	m_box.Render();
 	m_sphere.Render();
-	
+
 	
 	// Ortho draws
 	if(RGL.GetLandscape())

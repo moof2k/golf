@@ -15,7 +15,6 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #include <unistd.h>
-#endif
 
 
 class RudeTimer
@@ -58,5 +57,42 @@ private:
 	
 };
 
+#endif // RUDE_IPHONE || RUDE_MACOS
+
+
+#ifdef RUDE_WIN
+
+class RudeTimer
+{
+public:
+
+	RudeTimer()
+	{
+		m_starttime = GetTickCount();
+	}
+
+	DWORD ElapsedRaw()
+	{
+		return GetTickCount() - m_starttime;
+	}
+
+
+	float ElapsedMilliseconds()
+	{
+		return (float) ElapsedRaw();
+	}
+
+	float ElapsedSeconds()
+	{
+		return ((float) ElapsedRaw()) * 0.0001f;
+	}
+
+private:
+
+	DWORD m_starttime;
+
+};
+
+#endif // RUDE_WIN
 
 #endif

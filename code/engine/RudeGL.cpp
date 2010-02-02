@@ -107,11 +107,11 @@ void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 /**
  * Sets the view frustum for the projection matrix
  */
-void RudeGL::Frustum(float ox, float oy, float w, float h, float near, float far)
+void RudeGL::Frustum(float ox, float oy, float w, float h, float near_plane, float far_plane)
 {
 	m_hw = w / 2.0f;
 	m_hh = h / 2.0f;
-	m_near = near;
+	m_near = near_plane;
 	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -120,9 +120,9 @@ void RudeGL::Frustum(float ox, float oy, float w, float h, float near, float far
 		glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
 
 #ifdef RUDE_OGLES
-	glFrustumf(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near, far);
+	glFrustumf(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near_plane, far_plane);
 #else
-	glFrustum(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near, far);
+	glFrustum(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near_plane, far_plane);
 #endif
 }
 
@@ -294,7 +294,7 @@ static void __gluMakeIdentityf(GLfloat m[16])
 static int __gluInvertMatrixd(const GLfloat src[16], GLfloat inverse[16])
 {
     int i, j, k, swap;
-    double t;
+    float t;
     GLfloat temp[4][4];
 	
     for (i=0; i<4; i++) {

@@ -49,13 +49,15 @@ RudeSound::RudeSound()
 	m_bgmVol = 1.0;
 	m_bgmVolFade = 0.0;
 
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	SoundEngine_Initialize(44100);
 	SoundEngine_SetListenerPosition(0.0, 0.0, kListenerDistance);
-	
-	
+#endif
+
 	for(int i = 0; i < kNumSounds; i++)
 	{
 		m_soundids[i] = -1;
+
 		LoadWave(kSoundFilenames[i], (eSoundEffect) i);
 	}
 	
@@ -104,8 +106,10 @@ void RudeSound::BgmVol(float vol)
 	m_bgmVol = vol;
 	m_bgmVolFade = 0.0f;
 	
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	if(m_curBGM != kBGMNone)
 		SoundEngine_SetBackgroundMusicVolume(m_bgmVol);
+#endif
 }
 
 void RudeSound::PlaySong(eSoundBGM num)
@@ -121,7 +125,10 @@ void RudeSound::PlaySong(eSoundBGM num)
 	if(m_curBGM != kBGMNone)
 	{
 		RUDE_REPORT("Unloading previous BGM\n");
+
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 		SoundEngine_UnloadBackgroundMusicTrack();
+#endif
 	}
 	
 	if(m_musicOn)
@@ -131,8 +138,10 @@ void RudeSound::PlaySong(eSoundBGM num)
 		char buffer[512];
 		RudeFileGetFile(kSoundBGMs[m_curBGM], buffer, 512);
 				
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 		SoundEngine_LoadBackgroundMusicTrack(buffer, false, false);
 		SoundEngine_StartBackgroundMusic();
+#endif
 	}
 }
 
@@ -144,7 +153,10 @@ void RudeSound::StopSong()
 	RUDE_REPORT("RudeSound::StopSong %d\n", m_curBGM);
 	
 	m_curBGM = kBGMNone;
+
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	SoundEngine_UnloadBackgroundMusicTrack();
+#endif
 }
 
 bool RudeSound::ToggleMusic()
@@ -172,8 +184,10 @@ void RudeSound::PlayWave(eSoundEffect num)
 	//RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
 #endif
 	
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	AudioServicesPlaySystemSound(m_soundids[num]);
-	
+#endif
+
 }
 
 
@@ -191,12 +205,14 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 	//RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
 #endif
 	
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	CFBundleRef bundle = CFBundleGetMainBundle();
 	CFStringRef file = CFStringCreateWithCString(0, sound, kCFStringEncodingASCII);
 	CFURLRef myURLRef = CFBundleCopyResourceURL(bundle, file, 0, 0);
 	
 	OSStatus error = AudioServicesCreateSystemSoundID(myURLRef, &m_soundids[num]);
 	//RUDE_ASSERT(error == kAudioSessionNoError, "Could not load sound %s", sound);
+#endif
 	
 }
 
@@ -222,7 +238,9 @@ void RudeSound::Tick(float delta)
 			return;
 		}
 		
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 		SoundEngine_SetBackgroundMusicVolume(m_bgmVol);
+#endif
 		
 	}
 }

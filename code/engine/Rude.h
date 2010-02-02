@@ -9,7 +9,6 @@
 #ifndef __H_Rude
 #define __H_Rude
 
-
 #define RUDE_DEBUG
 
 // DETERMINE PLATFORM ------------------------------------------------------
@@ -24,6 +23,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
+
+#define _WIN32_WINNT 0x0500
+#include <windows.h>
+#include <gl\gl.h>	
+#include <gl\glu.h>	
+#include <gl\glaux.h>
+
+#include "glext.h"
+#include "wglext.h"
+
+extern PFNGLACTIVETEXTUREPROC glActiveTexture;
+extern PFNGLCLIENTACTIVETEXTUREPROC glClientActiveTexture;
+extern PFNGLCOMPRESSEDTEXIMAGE2DPROC glCompressedTexImage2D;
+
+typedef unsigned long long u64;
+typedef int GLfixed;
+typedef unsigned int GLuint;
+typedef float GLfloat;
+
+
 #endif
 #endif
 
@@ -143,6 +162,7 @@
 #define _T(a) a
 
 typedef unsigned long long u64;
+typedef unsigned int WORD;
 
 #endif // RUDE_IPHONE
 
@@ -155,6 +175,7 @@ typedef unsigned long long u64;
 typedef int GLfixed;
 typedef unsigned int GLuint;
 typedef float GLfloat;
+typedef unsigned int WORD;
 
 
 #include <stdio.h>
@@ -186,10 +207,19 @@ inline void RudeAssert(const char *file, int line, const char *pszFormat, ...)
 	char text[512];
 	
 	va_start(args, pszFormat);
-	vsprintf(text, pszFormat, args);
+	vsnprintf(text, 512, pszFormat, args);
 	va_end(args);
 	
 	printf("ASSERT: %s (%d): %s\n", file, line, text);
+	
+#ifdef RUDE_WIN
+	char outputstr[1024];
+	_snprintf(outputstr, 1024, "ASSERT: %s (%d): %s\n", file, line, text);
+
+	OutputDebugString(outputstr);
+	DebugBreak();
+#endif
+
 	exit(1);
 }
 

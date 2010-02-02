@@ -9,7 +9,7 @@ RudeRegistryWin::~RudeRegistryWin(void)
 }
 
 
-long RudeRegistryWin::QueryByte(TCHAR *app, TCHAR *name, void *buffer, long *buffersize)
+int RudeRegistryWin::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer, int *buffersize)
 {
 	HKEY hkey;
 	DWORD type;
@@ -31,7 +31,7 @@ long RudeRegistryWin::QueryByte(TCHAR *app, TCHAR *name, void *buffer, long *buf
 	return result;
 }
 
-long RudeRegistryWin::SetByte(TCHAR *app, TCHAR *name, void *buffer, long buffersize)
+int RudeRegistryWin::SetByte(const TCHAR *app, const TCHAR *name, void *buffer, int buffersize)
 {
 	HKEY hkey;
 	DWORD type = REG_BINARY;

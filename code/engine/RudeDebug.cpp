@@ -47,6 +47,11 @@ void RudeDebug::Write(const char *filename, int line, const char *format, ...)
 	printf("%s", msg);
 	//fprintf(file, "%s (%d): %s", filename, line, msg);
 	//fclose(file);
+
+#ifdef RUDE_WIN
+	OutputDebugString(msg);
+#endif
+
 }
 
 void RudeDebug::PurgeLog()

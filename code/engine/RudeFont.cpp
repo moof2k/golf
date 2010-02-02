@@ -44,7 +44,6 @@
 
 typedef unsigned int UINT;
 typedef unsigned char BYTE;
-typedef unsigned int WORD;
 
 using namespace std;
 
@@ -68,6 +67,8 @@ void RudeFontManager::InitFonts()
  */
 RudeFont * RudeFontManager::GetFont(eFont f)
 {
+	RUDE_ASSERT(f >= 0, "Invalid font");
+
 	return &m_fonts[f];
 }
 
@@ -165,6 +166,7 @@ int RudeFont::Init(const char *fontFileIn)
 	
 	// Load the font
 	FILE *f = fopen(fontFile, "rb");
+	RUDE_ASSERT(f, "Unable to open font file %s", fontFileIn);
 	
 	// Determine format by reading the first bytes of the file
 	char str[4] = {0};
@@ -320,7 +322,9 @@ int RudeFont::FindTextChar(const char *text, int start, int length, int ch)
 void RudeFont::InternalWrite(float x, float y, float z, const char *text, int count, float spacing)
 {
 	
-
+	RGL.EnableClient(kVertexArray, true);
+	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kTextureCoordArray, true);
 	
 	//glAlphaFunc( GL_GREATER, 0 );	// set the alpha transparency
 	//glEnable( GL_ALPHA_TEST );
@@ -710,7 +714,7 @@ void CFontLoader::LoadPage(int id, const char *pageFile, const char *fontFile)
 	
 	char pageFile2[512];
 	
-	for(int i = 0; i < strlen(pageFile); i++)
+	for(unsigned int i = 0; i < strlen(pageFile); i++)
 	{
 		pageFile2[i] = pageFile[i];
 		
