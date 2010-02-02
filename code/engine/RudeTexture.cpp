@@ -183,21 +183,23 @@ LoadFromPNG_URLFail:
 	imagen = FreeImage_ConvertTo32Bits(imagen);
 	FreeImage_Unload(temp);
 
-	int w = FreeImage_GetWidth(imagen);
-	int h = FreeImage_GetHeight(imagen);
-	RUDE_REPORT("LoadFromPNG %s (%dx%d)\n", filename, w, h);
+	m_width = FreeImage_GetWidth(imagen);
+	m_height = FreeImage_GetHeight(imagen);
+	RUDE_REPORT("LoadFromPNG %s (%dx%d)\n", filename, m_width, m_height);
 
 	// Endian-swap and vertically flip the loaded texture
 
-	GLubyte* textura = new GLubyte[4*w*h];
+	GLubyte * textura = (GLubyte *) malloc(4 * m_width * m_height);
+	RUDE_ASSERT(textura, "malloc failed");
+
 	char* pixeles = (char*) FreeImage_GetBits(imagen);
 
-	for(int y = 0; y < h; y++)
+	for(int y = 0; y < m_height; y++)
 	{
-		for(int x = 0; x < w; x++)
+		for(int x = 0; x < m_width; x++)
 		{
-			int s = y * h + x;
-			int d = (h-y-1) * h + x;
+			int s = y * m_height + x;
+			int d = (m_height-y-1) * m_height + x;
 			textura[d*4+0]= pixeles[s*4+2];
 			textura[d*4+1]= pixeles[s*4+1];
 			textura[d*4+2]= pixeles[s*4+0];
@@ -209,12 +211,14 @@ LoadFromPNG_URLFail:
 
 	glGenTextures(1, &m_texture);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
-	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA, w, h, 0, GL_RGBA,GL_UNSIGNED_BYTE, (GLvoid*)textura);
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA, m_width, m_height, 0, GL_RGBA,GL_UNSIGNED_BYTE, (GLvoid*)textura);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	GLenum loaderror = glGetError();
 	RUDE_ASSERT(loaderror == 0, "Failed to load texture %d", loaderror);
 
+	free(textura);
+	FreeImage_Unload(imagen);
 
 	return 0;
 #endif
