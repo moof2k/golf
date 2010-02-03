@@ -471,8 +471,15 @@ void RudeGL::EnableClient(eRudeGLEnableClientOption option, bool enable)
 void RudeGL::FlushEnables()
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
+	{
 		m_enables[i] = false;
+		glDisable(kRudeEnableMappings[i]);
+	}
+
 	for(int i = 0; i < kNumRudeGLEnableClientOptions; i++)
+	{
 		m_enableClients[i] = false;
+		glDisableClientState(kRudeEnableClientMappings[i]);
+	}
 }
 
