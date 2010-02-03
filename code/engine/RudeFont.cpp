@@ -323,16 +323,20 @@ void RudeFont::InternalWrite(float x, float y, float z, const char *text, int co
 {
 	
 	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
+
+	unsigned int colors[] = {
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF
+	};
+
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
 	
-	//glAlphaFunc( GL_GREATER, 0 );	// set the alpha transparency
-	//glEnable( GL_ALPHA_TEST );
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	
 	
 	int page = -1;
-	
-	
 	
 	y -= scale * float(base);
 	
@@ -367,15 +371,12 @@ void RudeFont::InternalWrite(float x, float y, float z, const char *text, int co
 			
 		}
 		
-		
 		GLfloat point[] = {
 			x+ox, y+oy, z,
 			x+w+ox, y+oy, z,
 			x+w+ox, y-h+oy, z,
 			x+ox, y-h+oy, z
 		};
-		
-		
 		
 		GLfloat uvs[] = {
 			u, v, 
@@ -388,8 +389,6 @@ void RudeFont::InternalWrite(float x, float y, float z, const char *text, int co
 		glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 		
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		
-		
 		
 		x += a;
 		if( charId == ' ' )

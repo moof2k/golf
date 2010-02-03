@@ -147,13 +147,22 @@ void RudeSkybox::Render()
 	glPushMatrix();
 	glTranslatef(eye.x(), eye.y(), eye.z());
 	
-	glEnable(GL_CULL_FACE);
+	RGL.Enable(kBackfaceCull, true);
 	glCullFace(GL_BACK);
 	
 	RGL.Enable(kDepthTest, false);
 	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
+
+	unsigned int colors[] = {
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF
+	};
+
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
 	
 	for (int i = 0; i < 6; i++)
 	{

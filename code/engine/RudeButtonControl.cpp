@@ -89,21 +89,26 @@ void RudeButtonControl::Render()
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_stateofftex);
 	
-	//glDisable(GL_TEXTURE_2D);
-	//glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	
 	const GLfloat uvs[] = {
 		0.0f, 1.0f, 
 		0.0f, 0.0f,
 		1.0f, 0.0f,
 		1.0f, 1.0f,
 	};
+
+	unsigned int colors[] = {
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF
+	};
 	
 	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
 	
 	glVertexPointer(2, GL_FLOAT, 0, m_points);
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
 	glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 	
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
