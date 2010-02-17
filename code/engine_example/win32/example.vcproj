@@ -50,7 +50,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes"
+				AdditionalIncludeDirectories="..\..\lib\FreeImage\Dist;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -78,10 +78,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib FreeImage.lib"
 				OutputFile=".\Debug/example.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\..\lib\FreeImage\Dist"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/lesson1.pdb"
 				SubSystem="2"
