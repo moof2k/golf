@@ -97,8 +97,15 @@ void RBBallRecorder::RenderTracers()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	
 	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, false);
+	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
+
+	const unsigned int colors[4] = {
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF
+	};
 	
 	RGL.LoadIdentity();
 	
@@ -111,6 +118,8 @@ void RBBallRecorder::RenderTracers()
 	btVector3 b2;
 	
 	float bintensity = 1.0f;
+
+	btVector3 right;
 	
 	while(c)
 	{
@@ -122,10 +131,14 @@ void RBBallRecorder::RenderTracers()
 			float aintensity = ((float) c) / ((float) tracerLen);
 			
 			btVector3 dir = p2 - p1;
-			dir = dir.normalize();
-			btVector3 up(0,1,0);
-			
-			btVector3 right = dir.cross(up);
+
+			if(dir.length() > 0.0f)
+			{
+				dir = dir.normalize();
+				btVector3 up(0,1,0);
+				
+				right = dir.cross(up);
+			}
 			
 			right = right.normalize();
 			right *= scale;
@@ -157,8 +170,8 @@ void RBBallRecorder::RenderTracers()
 			};
 			
 			glVertexPointer(3, GL_FLOAT, 0, point);
+			glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
 			glTexCoordPointer(2, GL_FLOAT, 0, uvs);
-			
 			
 			glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 			
