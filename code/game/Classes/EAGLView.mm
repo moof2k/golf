@@ -359,12 +359,7 @@ const GLshort spriteTexcoords[] = {
 	
 	if(gVBGame)
 	{
-		float aspect = ((float) backingWidth) / ((float) backingHeight);
-		
-		if(RGL.GetLandscape())
-			aspect = ((float) backingHeight) / ((float) backingWidth);
-		
-		gVBGame->Render(elapsedSeconds, aspect);
+		gVBGame->Render(elapsedSeconds, (float) backingWidth, (float) backingHeight);
 		
 	}
 	
