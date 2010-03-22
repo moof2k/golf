@@ -32,6 +32,21 @@ RudeControl::RudeControl()
 {
 }
 
+RudeControl::~RudeControl()
+{
+	unsigned int size = m_children.size();
+
+	for(unsigned int i = 0; i < size; i++)
+	{
+		RUDE_ASSERT(m_children[i], "Invalid child discovered");
+
+		delete m_children[i];
+		m_children[i] = 0;
+	}
+
+	m_children.clear();
+}
+
 void RudeControl::Load(const char *name)
 {
 	char filename[256];
@@ -82,6 +97,7 @@ RudeControl * RudeControl::GetChildControl(const std::string &name)
 	return 0;
 }
 
+
 RudeTextControl * RudeControl::GetChildTextControl(const std::string &name)
 {
 	RudeTextControl *child = dynamic_cast<RudeTextControl *>(GetChildControl(name));
@@ -99,6 +115,16 @@ RudeButtonControl * RudeControl::GetChildButtonControl(const std::string &name)
 
 	return child;
 }
+
+RudeButtonAnimControl * RudeControl::GetChildButtonAnimControl(const std::string &name)
+{
+	RudeButtonAnimControl *child = dynamic_cast<RudeButtonAnimControl *>(GetChildControl(name));
+
+	RUDE_ASSERT(child, "Child control '%s' not of expected type RudeButtonAnimControl", name.c_str());
+
+	return child;
+}
+
 
 bool RudeControl::Contains(const RudeScreenVertex &p)
 {
@@ -345,7 +371,7 @@ void RudeControl::ConstructChild(char *desc)
 		ParseRect(rectstr, rect);
 		c->SetRect(rect);
 
-		// Animation
+		// Position Animation
 		std::string anim = PopToken(tokens, originalDesc, "animation");
 
 		if(anim == "none")
@@ -366,7 +392,38 @@ void RudeControl::ConstructChild(char *desc)
 		RudeButtonAnimControl *c = new RudeButtonAnimControl();
 		RUDE_ASSERT(c, "Failed to construct control");
 
+		// Texture
+		std::string texture = PopToken(tokens, originalDesc, "texture");
 
+		// Texture Offset
+		std::string textureoffsets = PopToken(tokens, originalDesc, "texture offsets");
+		int offx = 0, offy = 0;
+		ParseOffset(textureoffsets, offx, offy);
+
+		c->SetTexture(texture.c_str(), offx, offy);
+
+		// Rect {t,l,b,r}
+		std::string rectstr = PopToken(tokens, originalDesc, "rect");
+
+		RudeRect rect;
+		ParseRect(rectstr, rect);
+		c->SetRect(rect);
+
+		// Position Animation
+		std::string anim = PopToken(tokens, originalDesc, "animation");
+
+		if(anim == "none")
+			c->SetAnimType(kAnimNone);
+		else if(anim == "constant")
+			c->SetAnimType(kAnimConstant);
+		else if(anim == "popslide")
+			c->SetAnimType(kAnimPopSlide);
+		else
+		{
+			RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
+		}
+
+		control = c;
 	}
 	
 	RUDE_ASSERT(control, "Failed to create Control type: %s", type.c_str());

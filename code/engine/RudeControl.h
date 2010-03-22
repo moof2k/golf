@@ -25,19 +25,23 @@ typedef enum {
 
 class RudeTextControl;
 class RudeButtonControl;
+class RudeButtonAnimControl;
 
 class RudeControl 
 {
 public:
 	RudeControl();
+	virtual ~RudeControl();
 
 	void Load(const char *name);
 	void SetName(const std::string &name) { m_name = name; }
 	const std::string & GetName() { return m_name; }
 
 	RudeControl * GetChildControl(const std::string &name);
+
 	RudeTextControl * GetChildTextControl(const std::string &name);
 	RudeButtonControl * GetChildButtonControl(const std::string &name);
+	RudeButtonAnimControl * GetChildButtonAnimControl(const std::string &name);
 	
 	virtual void SetRect(const RudeRect &r) { m_rect = r; }
 	
