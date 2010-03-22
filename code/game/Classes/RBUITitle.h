@@ -68,12 +68,13 @@ private:
 	RudeSkybox m_skybox;
 	RudeObject m_flag;
 	RBCamera m_camera;
+
+	RudeControl m_ui;
 	
-	RudeButtonControl m_logo;
-	RudeButtonControl m_courseMedallion;
-	RudeButtonControl m_courseSplash;
-	
-	RudeButtonControl m_rangeMedallion;
+	RudeButtonControl *m_logo;
+	RudeButtonControl *m_courseMedallion;
+	RudeButtonControl *m_courseSplash;
+	RudeButtonControl *m_rangeMedallion;
 	
 	RBUICourseControl m_courseButtons[kNumCourses];
 	
@@ -81,26 +82,26 @@ private:
 	
 	RBCreditsControl m_credits;
 	
-	RudeTextControl m_startText;
-	RudeTextControl m_practiceText;
-	RudeTextControl m_settingsText;
-	RudeTextControl m_copyrightText;
-	RudeTextControl m_backText;
+	RudeTextControl *m_startText;
+	RudeTextControl *m_practiceText;
+	RudeTextControl *m_settingsText;
+	RudeTextControl *m_copyrightText;
+	RudeTextControl *m_backText;
 	
-	RudeTextControl m_tournamentText;
+	RudeTextControl *m_tournamentText;
 	
-	RudeTextControl m_courseNameText;
-	RudeTextControl m_courseSubnameText;
-	RudeTextControl m_courseDescText;
-	RudeTextControl m_courseTeeText;
+	RudeTextControl *m_courseNameText;
+	RudeTextControl *m_courseSubnameText;
+	RudeTextControl *m_courseDescText;
+	RudeTextControl *m_courseTeeText;
 	
-	RudeTextControl m_scoreText;
-	RudeTextControl m_scoreDesc;
+	RudeTextControl *m_scoreText;
+	RudeTextControl *m_scoreDesc;
 	
-	RudeTextControl m_settingsTitleText;
-	RudeTextControl m_musicToggle;
+	RudeTextControl *m_settingsTitleText;
+	RudeTextControl *m_musicToggle;
 	
-	RudeTextControl m_goText;
+	RudeTextControl *m_goText;
 	
 	eTitleState m_state;
 	

@@ -987,6 +987,14 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Resources"
+			>
+			<File
+				RelativePath="..\Data\title.ui"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
