@@ -468,19 +468,10 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 	
 	btVector3 balldir = ballvel;
 	float ballvelmag = ballvel.length();
-	balldir /= ballvelmag;
-	
 	
 	
 	btVector3 up(0,1,0);
 	float dampScale = up.dot(normal);
-	
-	float ballSurfaceDot = -normal.dot(balldir);
-	if(ballSurfaceDot < 0.0f)
-		ballSurfaceDot = 0.0f;
-	
-	//RUDE_REPORT("balldir %f %f %f, speed %f, dot %f\n", balldir.x(), balldir.y(), balldir.z(), ballvelmag, ballSurfaceDot);
-	//RUDE_REPORT("normal %f %f %f : scale=%f speed=%f\n", normal.x(), normal.y(), normal.z(), dampScale, ballvelmag);
 	
 	
 	eRBTerrainMaterial materialType = m_terrainParts[terrainId];
@@ -511,6 +502,12 @@ void RBTerrain::Contact(const btVector3 &normal, RudePhysicsObject *other, int t
 		
 		if(dampfactor > 1.0f)
 			dampfactor = 1.0f;
+
+		balldir /= ballvelmag;
+
+		float ballSurfaceDot = -normal.dot(balldir);
+		if(ballSurfaceDot < 0.0f)
+			ballSurfaceDot = 0.0f;
 		
 		float impactDamp = ballSurfaceDot * dampfactor;
 		if(impactDamp > 0.5f)
