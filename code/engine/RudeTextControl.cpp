@@ -69,21 +69,21 @@ void RudeTextControl::Render()
 {
 	RudeControl::Render();
 	
-	float y = (m_rect.m_bottom - m_rect.m_top) / 2 + m_rect.m_top;
+	float y = (float) ((m_rect.m_bottom - m_rect.m_top) / 2 + m_rect.m_top);
 	
 	switch(m_alignment)
 	{
 		case RudeTextControl::kAlignLeft:
-			Display(m_rect.m_left, y);
+			Display((float) m_rect.m_left, y);
 			break;
 		case RudeTextControl::kAlignCenter:
 			{
-				float x = (m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left;
+				float x = (float) ((m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left);
 				Display(x, y);
 			}
 			break;
 		case kAlignRight:
-			Display(m_rect.m_right, y);
+			Display((float) m_rect.m_right, y);
 			break;
 	}
 }
