@@ -88,6 +88,7 @@ tRudeButtonAnimKeyframe gSwingButtonAnimData[8] = {
 };
 
 RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers, bool restorestate)
+: m_encouragementTimer(0.0)
 {	
 	m_result = kResultNone;
 	
@@ -156,7 +157,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_holeText = m_ui.GetChildTextControl("holeText");
 	m_holeText->SetFormat(kIntValue, "%d");
-	m_holeText->SetValue(m_holeNum + 1);
+	m_holeText->SetValue(((float) (m_holeNum + 1)));
 	
 	
 	m_parText = m_ui.GetChildTextControl("parText");
@@ -165,17 +166,11 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_remainingDistText = m_ui.GetChildTextControl("remainingDistText");
 	m_remainingDistText->SetFormat(kIntValue, "%d yds");
 	
-	m_strokeText.SetAlignment(RudeTextControl::kAlignRight);
-	m_strokeText.SetFormat(kIntValue, "Stroke %d");
-	m_strokeText.SetStyle(kOutlineStyle);
-	m_strokeText.SetColors(0, kParTopColor, kParBotColor);
-	m_strokeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
+	m_strokeText = m_ui.GetChildTextControl("strokeText");
+	m_strokeText->SetFormat(kIntValue, "Stroke %d");
 	
-	m_scoreText.SetAlignment(RudeTextControl::kAlignRight);
-	m_scoreText.SetFormat(kSignedIntValue, "%s");
-	m_scoreText.SetStyle(kOutlineStyle);
-	m_scoreText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_scoreText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	m_scoreText = m_ui.GetChildTextControl("scoreText");
+	m_scoreText->SetFormat(kSignedIntValue, "%s");
 	
 	m_clubDistText.SetAlignment(RudeTextControl::kAlignLeft);
 	
@@ -335,8 +330,6 @@ void RBTGame::SetupUI()
 		m_remainingDistText->GetPosition(x, y);
 		m_remainingDistText->SetPosition(x + paroffx, y);
 
-		m_strokeText.SetPosition(310, 20);
-		m_scoreText.SetPosition(310, 36);
 		m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
 		m_powerRangeText.SetPosition(6, 480 - 44 - 10);
 		m_windText.SetPosition(320 - 6, 480 - 44 - 10);
@@ -731,7 +724,7 @@ void RBTGame::StateTeePosition(float delta)
 	
 	btVector3 windx(0,0,-gWindForceMultiplier);
 	
-	float winddir = rand() % 360;
+	float winddir = (float) (rand() % 360);
 	m_windDir = (winddir / 180.0f) * 3.1415926f;
 	
 	btMatrix3x3 rmat;
@@ -740,7 +733,7 @@ void RBTGame::StateTeePosition(float delta)
 	m_windVec = rmat * windx;
 	m_windVec *= m_windSpeed;
 	
-	m_windControl.SetWind(m_windDir, windspeed);
+	m_windControl.SetWind(m_windDir, (float) windspeed);
 	m_ball.SetWind(m_windVec);
 	
 	RUDE_REPORT("Wind: dir=%f speed=%f vec=(%f %f %f)\n", winddir, m_windSpeed, m_windVec.x(), m_windVec.y(), m_windVec.z());
@@ -1031,7 +1024,7 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 		
 	if(m_moveGuide)
 	{
-		float dx = p.m_x;
+		float dx = (float) p.m_x;
 		m_swingYaw += (dx * kYawDamping);
 	}
 	
@@ -1039,7 +1032,7 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 	{
 		const float kHeightDamping = 0.004f;
 		const float kMaxHeight = 1.0f;
-		float dy = p.m_y;
+		float dy = (float) p.m_y;
 		m_swingHeight -= (dy * kHeightDamping);
 		if(m_swingHeight < 0.0f)
 			m_swingHeight = 0.0f;
@@ -1061,13 +1054,13 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 	
 	if(dist.m_x > 30)
 	{
-		float dx = p.m_x;
+		float dx = (float) p.m_x;
 		m_swingCamYaw += (dx * kYawDamping);
 	}
 	
 	const float kHeightDamping = 0.004f;
 	const float kMaxHeight = 1.0f;
-	float dy = p.m_y;
+	float dy = (float) p.m_y;
 	m_swingHeight -= (dy * kHeightDamping);
 	if(m_swingHeight < 0.0f)
 		m_swingHeight = 0.0f;
@@ -1214,7 +1207,7 @@ void RBTGame::HitBall()
 	if(club->m_options & kFirePower)
 	{
 		int ac = (rand() % 6) - 3;
-		swingAccuracyPenalty = ac;
+		swingAccuracyPenalty = (float) ac;
 		swingAccuracyPenalty = swingAccuracyPenalty / 180.0f * 3.1415926f;
 	}
 	
@@ -1268,7 +1261,7 @@ void RBTGame::AdjustGuide()
 	
 	//printf("screen point: %d %d\n", m_guideScreenPoint.m_x, m_guideScreenPoint.m_y);
 	
-	btVector3 screenp(m_guideScreenPoint.m_x, m_guideScreenPoint.m_y, 0.0f);
+	btVector3 screenp((float) m_guideScreenPoint.m_x, (float) m_guideScreenPoint.m_y, 0.0f);
 	
 	btVector3 worldp = RGL.InverseProject(screenp);
 	
@@ -1539,10 +1532,10 @@ void RBTGame::RenderGuide(float aspect)
 	{
 		const int kGuideSize = 32;
 		RudeRect r(
-				   m_guidePositionScreenSpace.y() - kGuideSize,
-				   m_guidePositionScreenSpace.x() - kGuideSize,
-				   m_guidePositionScreenSpace.y() + kGuideSize,
-				   m_guidePositionScreenSpace.x() + kGuideSize
+				   (int) m_guidePositionScreenSpace.y() - kGuideSize,
+				   (int) m_guidePositionScreenSpace.x() - kGuideSize,
+				   (int) m_guidePositionScreenSpace.y() + kGuideSize,
+				   (int) m_guidePositionScreenSpace.x() + kGuideSize
 				   );
 		
 		m_guideIndicatorButton.SetRect(r);
@@ -1554,10 +1547,10 @@ void RBTGame::RenderGuide(float aspect)
 		{
 			const int kGuideSize = 32;
 			RudeRect r(
-					   m_placementGuidePositionScreenSpace.y() - kGuideSize,
-					   m_placementGuidePositionScreenSpace.x() - kGuideSize,
-					   m_placementGuidePositionScreenSpace.y() + kGuideSize,
-					   m_placementGuidePositionScreenSpace.x() + kGuideSize
+					   (int) m_placementGuidePositionScreenSpace.y() - kGuideSize,
+					   (int) m_placementGuidePositionScreenSpace.x() - kGuideSize,
+					   (int) m_placementGuidePositionScreenSpace.y() + kGuideSize,
+					   (int) m_placementGuidePositionScreenSpace.x() + kGuideSize
 					   );
 			
 			m_placementGuideIndicatorButton.SetRect(r);
@@ -1569,10 +1562,10 @@ void RBTGame::RenderGuide(float aspect)
 			const int kTextSize = 16;
 			const int kTextOffset = -58;
 			RudeRect r(
-					   m_placementGuidePositionScreenSpace.y() - kTextSize + kTextOffset,
-					   m_placementGuidePositionScreenSpace.x() - kTextSize,
-					   m_placementGuidePositionScreenSpace.y() + kTextSize + kTextOffset,
-					   m_placementGuidePositionScreenSpace.x() + kTextSize
+					   (int) m_placementGuidePositionScreenSpace.y() - kTextSize + kTextOffset,
+					   (int) m_placementGuidePositionScreenSpace.x() - kTextSize,
+					   (int) m_placementGuidePositionScreenSpace.y() + kTextSize + kTextOffset,
+					   (int) m_placementGuidePositionScreenSpace.x() + kTextSize
 					   );
 			
 			m_guidePowerText.SetRect(r);
@@ -1585,10 +1578,10 @@ void RBTGame::RenderGuide(float aspect)
 		const int kTextSize = 16;
 		const int kTextOffset = -38;
 		RudeRect r(
-			m_guidePositionScreenSpace.y() - kTextSize + kTextOffset,
-			m_guidePositionScreenSpace.x() - kTextSize,
-			m_guidePositionScreenSpace.y() + kTextSize + kTextOffset,
-			m_guidePositionScreenSpace.x() + kTextSize
+			(int) m_guidePositionScreenSpace.y() - kTextSize + kTextOffset,
+			(int) m_guidePositionScreenSpace.x() - kTextSize,
+			(int) m_guidePositionScreenSpace.y() + kTextSize + kTextOffset,
+			(int) m_guidePositionScreenSpace.x() + kTextSize
 			);
 		
 		m_guidePowerText.SetRect(r);
@@ -1635,25 +1628,25 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		m_powerRangeText.Render();
 	}
 	
-	m_parText->SetValue(m_par);
+	m_parText->SetValue((float) m_par);
 	m_remainingDistText->SetValue(m_ballToHoleDist);
 	
 	if(m_state == kStateBallInHole)
 	{
-		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, true));
-		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum));
+		m_scoreText->SetValue((float) GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, true));
+		m_strokeText->SetValue((float) GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum));
 	}
 	else
 	{
-		m_scoreText.SetValue(GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, false));
-		m_strokeText.SetValue(GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum) + 1);
+		m_scoreText->SetValue((float) GetScoreTracker(m_curPlayer)->GetScore(m_holeSet, m_holeNum, false));
+		m_strokeText->SetValue((float) GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum) + 1);
 	}
 	
 	if(m_holeSet != kCourseDrivingRange)
 	{
 		m_holeText->Render();
-		m_strokeText.Render();
-		m_scoreText.Render();
+		m_strokeText->Render();
+		m_scoreText->Render();
 		m_parText->Render();
 		m_remainingDistText->Render();
 	}
@@ -2063,7 +2056,7 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			#ifndef NO_DECO_EDITOR
 				if(m_dropDecoText.TouchUp(rbt))
 				{
-					gDecoDrop = ((rand() % 8) * 3) + 50;
+					gDecoDrop = (float) (((rand() % 8) * 3) + 50);
 				}
 				if(m_dumpDecoText.TouchUp(rbt))
 				{

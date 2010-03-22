@@ -192,9 +192,9 @@ private:
 	
 	RudeTextControl *m_holeText;
 	RudeTextControl *m_parText;
-	RudeTextControl m_strokeText;
+	RudeTextControl *m_strokeText;
 	RudeTextControl *m_remainingDistText;
-	RudeTextControl m_scoreText;
+	RudeTextControl *m_scoreText;
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_clubDistText;
 	RudeTextControl m_powerRangeText;
@@ -223,7 +223,7 @@ private:
 	float m_windSpeed;
 	btVector3 m_windVec;
 	
-	int m_placementGuidePower;
+	float m_placementGuidePower;
 	
 	btVector3 m_dBall;
 	btVector3 m_guidePosition;
