@@ -166,9 +166,9 @@ private:
 	RBBallGuide m_ballGuide;
 	RBSwingControl m_swingControl;
 	RBWindControl m_windControl;
-	RudeButtonAnimControl m_swingButton;
-	RudeButtonControl m_moveButton;
-	RudeButtonControl m_menuButton;
+	RudeButtonAnimControl *m_swingButton;
+	RudeButtonControl *m_moveButton;
+	RudeButtonControl *m_menuButton;
 	RudeControl m_swingCamAdjust;
 	RudeControl m_guideAdjust;
 	float m_swingYaw;
@@ -182,11 +182,11 @@ private:
 	RudeControl m_ui;
 
 	RudeButtonControl *m_botBarBg;
-	RudeButtonControl m_nextClubButton;
-	RudeButtonControl m_prevClubButton;
-	RudeButtonControl m_clubButton;
-	RudeButtonControl m_cameraButton;
-	RudeButtonControl m_helpButton;
+	RudeButtonControl *m_nextClubButton;
+	RudeButtonControl *m_prevClubButton;
+	RudeButtonControl *m_clubButton;
+	RudeButtonControl *m_cameraButton;
+	RudeButtonControl *m_helpButton;
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	

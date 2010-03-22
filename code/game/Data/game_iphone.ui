@@ -25,3 +25,14 @@ Text	shotPowerText	100% Power	center	{446, 0, 462, 320}	default	outline	none	0xF
 Text	shotAngleText	0% Hook	center	{462, 0, 478, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 Text	guidePowerText	200 yds	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
+
+Button	botBarBg	ui_botbarbg	{-1, -1}	{436, 0, 480, 320}	none
+ButtonAnim	swingButton	ui_swing	{-1, -1}	{436, 255, 480, 316}	none
+Button	moveButton	ui_move	{-1, -1}	{436, 255, 480, 316}	none
+Button	menuButton	ui_menu	{-1, -1}	{436, 190, 480, 251}	none
+Button	prevClubButton	ui_clubprev	{-1, -1}	{436, 5, 480, 37}	none
+Button	clubButton	ui_1wood	{-1, -1}	{436, 46, 480, 114}	none
+Button	nextClubButton	ui_clubnext	{-1, -1}	{436, 121, 480, 153}	none
+
+Button	cameraButton	ui_camera	{-1, -1}	{0, 120, 44, 200}	none
+Button	helpButton	ui_help_button	{-1, -1}	{0, 195, 44, 255}	none
