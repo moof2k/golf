@@ -199,7 +199,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	
 	
-	m_botBarBg.SetTexture("ui_botbarbg");
+	m_botBarBg = m_ui.GetChildButtonControl("botBarBg");
 	
 	
 	m_swingControl.SetGolfer(&m_golfer);
@@ -221,7 +221,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 			frame->m_texture = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ui_swing_b");
 	}
 	
-	m_swingButton.SetTextureSize(64.0f);
+	m_swingButton.SetTexture("ui_swing");
 	m_swingButton.SetAnimData(gSwingButtonAnimData, numframes);
 	
 	m_moveButton.SetTexture("ui_move");
@@ -312,13 +312,12 @@ void RBTGame::SetupUI()
 		m_helpButton.SetRect(RudeRect(0, 225-30, 44, 225+30));
 	}
 	
-	m_botBarBg.SetRect(RudeRect(bottomBarTop, 0, bottomBarBot, 320));
-	m_swingButton.SetRect(RudeRect(bottomBarTop, 255, bottomBarBot, 255+61));
-	m_moveButton.SetRect(RudeRect(bottomBarTop, 255, bottomBarBot, 255+61));
-	m_menuButton.SetRect(RudeRect(bottomBarTop, 190, bottomBarBot, 190+61));
-	m_prevClubButton.SetRect(RudeRect(bottomBarTop, 5, bottomBarBot, 5+32));
-	m_clubButton.SetRect(RudeRect(bottomBarTop, 46, bottomBarBot, 46+68));
-	m_nextClubButton.SetRect(RudeRect(bottomBarTop, 121, bottomBarBot, 121+32));
+	m_swingButton.SetRect(RudeRect(436, 255, 480, 255+61));
+	m_moveButton.SetRect(RudeRect(436, 255, 480, 255+61));
+	m_menuButton.SetRect(RudeRect(436, 190, 480, 190+61));
+	m_prevClubButton.SetRect(RudeRect(436, 5, 480, 5+32));
+	m_clubButton.SetRect(RudeRect(436, 46, 480, 46+68));
+	m_nextClubButton.SetRect(RudeRect(436, 121, 480, 121+32));
 }
 
 void RBTGame::SaveState()
@@ -1724,7 +1723,7 @@ void RBTGame::Render(float aspect)
 			case kStatePositionSwing3:
 				RenderGuide(aspect);
 				
-				m_botBarBg.Render();
+				m_botBarBg->Render();
 				m_menuButton.Render();
 				m_swingButton.Render();
 				m_nextClubButton.Render();
@@ -1749,7 +1748,7 @@ void RBTGame::Render(float aspect)
 				
 			case kStateExecuteSwing:
 			case kStateWaitForSwing:
-				m_botBarBg.Render();
+				m_botBarBg->Render();
 				m_moveButton.Render();
 				m_swingControl.Render();
 				m_clubButton.Render();

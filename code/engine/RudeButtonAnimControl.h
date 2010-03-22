@@ -9,7 +9,9 @@
 #ifndef __H_RudeButtonAnimControl
 #define __H_RudeButtonAnimControl
 
-#include "RudeControl.h"
+#include "RudeButtonControl.h"
+
+#include <vector>
 
 typedef struct {
 	float m_time;
@@ -17,16 +19,13 @@ typedef struct {
 } tRudeButtonAnimKeyframe;
 
 
-class RudeButtonAnimControl : public RudeControl
+class RudeButtonAnimControl : public RudeButtonControl
 {
 public:
 	
 	RudeButtonAnimControl();
 	
-	void SetTextureSize(float size);
-	void SetAnimData(tRudeButtonAnimKeyframe *data, int numFrames);
-	
-	void SetRect(const RudeRect &r);
+	void SetAnimData(const tRudeButtonAnimKeyframe *data, int numFrames);
 	
 	bool TouchDown(RudeTouch *t);
 	bool TouchMove(RudeTouch *t);
@@ -39,18 +38,12 @@ public:
 	
 protected:
 	
-	float m_points[8];
-	
-	tRudeButtonAnimKeyframe *m_data;
+	std::vector<tRudeButtonAnimKeyframe> m_data;
 	int m_curFrame;
 	
 	float m_time;
 	
 	int m_numFrames;
-	int m_texsize;
-	int m_halfTexsize;
-	
-	bool m_state;
 	
 };
 

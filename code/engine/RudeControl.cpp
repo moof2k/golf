@@ -13,6 +13,7 @@
 
 #include "RudeTextControl.h"
 #include "RudeButtonControl.h"
+#include "RudeButtonAnimControl.h"
 
 #include <list>
 
@@ -359,6 +360,13 @@ void RudeControl::ConstructChild(char *desc)
 		}
 
 		control = c;
+	}
+	else if(type == "ButtonAnim")
+	{
+		RudeButtonAnimControl *c = new RudeButtonAnimControl();
+		RUDE_ASSERT(c, "Failed to construct control");
+
+
 	}
 	
 	RUDE_ASSERT(control, "Failed to create Control type: %s", type.c_str());

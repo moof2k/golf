@@ -181,7 +181,7 @@ private:
 
 	RudeControl m_ui;
 
-	RudeButtonControl m_botBarBg;
+	RudeButtonControl *m_botBarBg;
 	RudeButtonControl m_nextClubButton;
 	RudeButtonControl m_prevClubButton;
 	RudeButtonControl m_clubButton;
