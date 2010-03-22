@@ -28,7 +28,7 @@ RBGame::RBGame()
 {
 	RudeMath::EnableFPE();
 	
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 
 	m_state = kGameNone;
 	m_game = 0;
