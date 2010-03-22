@@ -66,6 +66,7 @@ protected:
 
 	void ConstructChild(char *desc);
 	void ParseRect(std::string &str, RudeRect &rect);
+	void ParseOffset(std::string &str, int &offx, int &offy);
 	void ParseColor(std::string &str, unsigned int &color);
 
 	std::vector<RudeControl *> m_children;

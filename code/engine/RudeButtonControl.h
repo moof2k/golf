@@ -17,7 +17,7 @@ public:
 	
 	RudeButtonControl();
 	
-	void SetTextures(const char *stateoff, const char *stateon);
+	void SetTexture(const char *texturename, int offx = -1, int offy = -1);
 	
 	virtual void SetRect(const RudeRect &r);
 	
@@ -30,14 +30,14 @@ public:
 protected:
 	
 	float m_points[8];
+	float m_uvs[8];
 	
 	bool m_state;
-	int m_stateofftex;
-	int m_stateontex;
+	int m_texid;
 	
 	int m_texsize;
-	int m_halfTexsize;
-	
+	int m_offx;
+	int m_offy;
 };
 
 #endif

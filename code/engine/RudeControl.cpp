@@ -308,11 +308,15 @@ void RudeControl::ConstructChild(char *desc)
 		RudeButtonControl *c = new RudeButtonControl();
 		RUDE_ASSERT(c, "Failed to construct control");
 
-		// Textures
-		std::string texture_off = PopToken(tokens, originalDesc, "texture_off");
-		std::string texture_on = PopToken(tokens, originalDesc, "texture_on");
+		// Texture
+		std::string texture = PopToken(tokens, originalDesc, "texture");
 
-		c->SetTextures(texture_off.c_str(), texture_on.c_str());
+		// Texture Offset
+		std::string textureoffsets = PopToken(tokens, originalDesc, "texture offsets");
+		int offx = 0, offy = 0;
+		ParseOffset(textureoffsets, offx, offy);
+
+		c->SetTexture(texture.c_str(), offx, offy);
 
 		// Animation
 		std::string anim = PopToken(tokens, originalDesc, "animation");
@@ -379,6 +383,30 @@ void RudeControl::ParseRect(std::string &str, RudeRect &rect)
 	rect.m_left = atoi(left.c_str());
 	rect.m_bottom = atoi(bottom.c_str());
 	rect.m_right = atoi(right.c_str());
+}
+
+void RudeControl::ParseOffset(std::string &str, int &offx, int &offy)
+{
+	char offsetstr[256];
+	snprintf(offsetstr, 256, "%s", str.c_str());
+
+	// Split rect string into tokens
+	std::list<std::string> tokens;
+
+	const char *kDelimStr = "{, }";
+	const char *token = strtok(offsetstr, kDelimStr);
+
+	while(token)
+	{
+		tokens.push_back(std::string(token));
+		token = strtok(0, kDelimStr);
+	}
+
+	std::string offxstr = PopToken(tokens, str, "x (x,y)");
+	std::string offystr = PopToken(tokens, str, "y (x,y)");
+
+	offx = atoi(offxstr.c_str());
+	offy = atoi(offystr.c_str());
 }
 
 void RudeControl::ParseColor(std::string &str, unsigned int &color)

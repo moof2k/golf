@@ -62,7 +62,7 @@ RBUITitle::RBUITitle()
 		
 		m_courseButtons[i].SetAnimType(kAnimPopSlide);
 		m_courseButtons[i].SetAnimSpeed(float(i) * kCourseAnimSpeedMod + kCourseAnimSpeedBase);
-		m_courseButtons[i].SetTextures("coursebg", "coursebg");
+		m_courseButtons[i].SetTexture("coursebg");
 		m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
 		
 		m_courseButtons[i].m_name = sCourseData[i].m_name;
@@ -275,7 +275,7 @@ void RBUITitle::SetState(eTitleState state)
 				
 				if(completed)
 				{
-					m_courseSplash->SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
+					m_courseSplash->SetTexture(m_courseButtons[m_course].GetImageStr());
 					
 					m_courseMedallion->SetTranslation(btVector3(0,0,0));
 					m_courseSplash->SetTranslation(btVector3(0,0,0));
@@ -370,7 +370,7 @@ void RBUITitle::SetState(eTitleState state)
 			m_courseSubnameText->SetText(m_courseButtons[m_course].GetSubnameStr());
 			m_courseDescText->SetText(m_courseButtons[m_course].GetDescStr());
 			
-			m_courseSplash->SetTextures(m_courseButtons[m_course].GetImageStr(), m_courseButtons[m_course].GetImageStr());
+			m_courseSplash->SetTexture(m_courseButtons[m_course].GetImageStr());
 			
 			m_courseMedallion->SetDesiredTranslation(btVector3(0,0,0));
 			m_courseSplash->SetDesiredTranslation(btVector3(0,0,0));
@@ -435,7 +435,7 @@ void RBUITitle::RefreshScores()
 			
 			m_courseButtons[i].m_name = sCourseData[i].m_name;
 			m_courseButtons[i].m_subname = sCourseData[i].m_subname;
-			m_courseButtons[i].SetTextures("coursebg", "coursebg");
+			m_courseButtons[i].SetTexture("coursebg");
 			
 			if(RBTourTracker::Completed(i))
 				m_courseButtons[i].m_completed = true;
@@ -444,7 +444,7 @@ void RBUITitle::RefreshScores()
 		}
 		else
 		{
-			m_courseButtons[i].SetTextures("coursebg_locked", "coursebg_locked");
+			m_courseButtons[i].SetTexture("coursebg_locked");
 			
 			m_courseButtons[i].m_name = "";
 			m_courseButtons[i].m_subname = "";

@@ -244,7 +244,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	
 	
-	m_botBarBg.SetTextures("ui_botbarbg", "ui_botbarbg");
+	m_botBarBg.SetTexture("ui_botbarbg");
 	
 	
 	m_swingControl.SetGolfer(&m_golfer);
@@ -269,22 +269,22 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_swingButton.SetTextureSize(64.0f);
 	m_swingButton.SetAnimData(gSwingButtonAnimData, numframes);
 	
-	m_moveButton.SetTextures("ui_move", "ui_move");
-	m_menuButton.SetTextures("ui_menu", "ui_menu");
+	m_moveButton.SetTexture("ui_move");
+	m_menuButton.SetTexture("ui_menu");
 	
-	m_guideIndicatorButton.SetTextures("guide", "guide");
-	m_placementGuideIndicatorButton.SetTextures("guide", "guide");
+	m_guideIndicatorButton.SetTexture("guide");
+	m_placementGuideIndicatorButton.SetTexture("guide");
 	
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
 	
 	
 	
-	m_prevClubButton.SetTextures("ui_clubprev", "ui_clubprev");
-	m_clubButton.SetTextures("ui_1wood", "ui_1wood");
-	m_nextClubButton.SetTextures("ui_clubnext", "ui_clubnext");
-	m_cameraButton.SetTextures("ui_camera", "ui_camera");
-	m_helpButton.SetTextures("ui_help_button", "ui_help_button");
+	m_prevClubButton.SetTexture("ui_clubprev");
+	m_clubButton.SetTexture("ui_1wood");
+	m_nextClubButton.SetTexture("ui_clubnext");
+	m_cameraButton.SetTexture("ui_camera");
+	m_helpButton.SetTexture("ui_help_button");
 	
 	
 	if(restorestate)
@@ -519,7 +519,7 @@ void RBTGame::SetState(eRBTGameState state)
 			{
 				m_swingButton.ResetTimer();
 				
-				m_cameraButton.SetTextures("ui_camera_flag", "ui_camera_flag");
+				m_cameraButton.SetTexture("ui_camera_flag");
 				
 				m_golfer.SetReady();
 				
@@ -551,7 +551,7 @@ void RBTGame::SetState(eRBTGameState state)
 				m_placementGuidePosition = m_guidePosition;
 				m_encouragementTimer = 0.0f;
 				
-				m_cameraButton.SetTextures("ui_camera", "ui_camera");
+				m_cameraButton.SetTexture("ui_camera");
 				
 				if(prevstate != kStatePositionSwing3)
 				{
@@ -599,7 +599,7 @@ void RBTGame::SetState(eRBTGameState state)
 				if(powerrange > 0)
 				{
 					int powerpenalty = (rand() % powerrange) + material.m_penalty_power_min;
-					powermultiplier = powerpenalty;
+					powermultiplier = (float) powerpenalty;
 					powermultiplier /= 100.0f;
 				}
 				
@@ -731,9 +731,9 @@ void RBTGame::StateTeePosition(float delta)
 			break;
 	}
 	
-	m_windText.SetValue(windspeed);
+	m_windText.SetValue((float) windspeed);
 	
-	m_windSpeed = windspeed;
+	m_windSpeed = (float) windspeed;
 	
 	btVector3 windx(0,0,-gWindForceMultiplier);
 	
@@ -982,7 +982,7 @@ void RBTGame::NextClub(int n)
 	
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	
-	m_clubButton.SetTextures(club->m_textureName, club->m_textureName);
+	m_clubButton.SetTexture(club->m_textureName);
 	
 	m_golfer.SetSwingType(club->m_type);
 	

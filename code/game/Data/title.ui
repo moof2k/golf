@@ -1,9 +1,9 @@
 # Title UI
 
-Button	logo	{60, 0, 300, 320}	logo	logo	popslide
-Button	rangeMedallion	{80, 0, 356, 320}	ui_bucketoballz	ui_bucketoballz	popslide
-Button	courseMedallion	{0, 160, 356, 320}	ui_ccc_medallion_128	ui_ccc_medallion_128	popslide
-Button	courseSplash	{200, 0, 300, 240}	ui_wreath_gold	ui_wreath_gold	popslide
+Button	logo	{60, 0, 300, 320}	logo	{94, 133}	popslide
+Button	rangeMedallion	{80, 0, 356, 320}	ui_bucketoballz	{-1,-1}	popslide
+Button	courseMedallion	{0, 160, 356, 320}	ui_ccc_medallion_128	{-1,-1}	popslide
+Button	courseSplash	{200, 0, 300, 240}	ui_wreath_gold	{-1,-1}	popslide
 
 Text	startText	{320, 0, 350, 320}	Play	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 Text	practiceText	{360, 0, 390, 320}	Practice	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
