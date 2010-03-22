@@ -232,7 +232,10 @@ void RBGame::Render(float delta, float width, float height)
 		
 		float d_s = sDeltaTimes.GetAverage();
 		float d_ms = d_s * 1000.0f;
-		float d_fps = 1.0f / d_s;
+
+		float d_fps = 0.0f;
+		if(d_s > 0.0f)
+			d_fps = 1.0f / d_s;
 		
 		unsigned int color = 0xFF00FF00;
 		
