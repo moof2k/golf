@@ -33,7 +33,7 @@ public:
 	RudeTexture * GetTexture(int id)
 	{
 		RUDE_ASSERT(id >= 0, "Invalid id");
-		RUDE_ASSERT(id < m_textures.size(), "Invalid id");
+		RUDE_ASSERT(((unsigned int) id) < m_textures.size(), "Invalid id");
 		RUDE_ASSERT(m_textures[id], "Invalid texture");
 		
 		return m_textures[id];

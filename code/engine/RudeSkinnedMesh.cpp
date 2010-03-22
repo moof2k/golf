@@ -43,7 +43,7 @@ int RudeSkinnedMesh::Load(const char *name)
 	if(RudeMesh::Load(name))
 		return -1;
 	
-	for(int i = 0; i < m_model.nNumMesh; i++)
+	for(unsigned int i = 0; i < m_model.nNumMesh; i++)
 	{
 		SPODMesh *mesh = &m_model.pMesh[i];
 		

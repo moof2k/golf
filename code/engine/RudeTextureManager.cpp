@@ -122,7 +122,7 @@ int RudeTextureManager::ReplaceTextureFromPNGFile(int texid, const char *name)
 {
 	RUDE_ASSERT(name, "Invalid texture name");
 	RUDE_ASSERT(texid >= 0, "Invalid id");
-	RUDE_ASSERT(texid < m_textures.size(), "Invalid id");
+	RUDE_ASSERT(((unsigned int) texid) < m_textures.size(), "Invalid id");
 	RUDE_ASSERT(m_textures[texid], "Invalid texture");
 	
 	m_textures[texid]->LoadFromPNG(name);
@@ -134,7 +134,7 @@ int RudeTextureManager::ReplaceTextureFromPNGFile(int texid, const char *name)
 void RudeTextureManager::ReleaseTexture(int texid)
 {
 	RUDE_ASSERT(texid >= 0, "Invalid id");
-	RUDE_ASSERT(texid < m_textures.size(), "Invalid id");
+	RUDE_ASSERT(((unsigned int) texid) < m_textures.size(), "Invalid id");
 	
 	if(m_textures[texid])
 	{

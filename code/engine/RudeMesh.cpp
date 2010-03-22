@@ -50,7 +50,7 @@ int RudeMesh::Load(const char *name)
 		return -1;
 	
 	RUDE_ASSERT(m_model.nNumTexture < kMaxTextures, "Too many textures in model");
-	for(int i = 0; i < m_model.nNumTexture; i++)
+	for(unsigned int i = 0; i < m_model.nNumTexture; i++)
 	{
 		SPODTexture *texture = &m_model.pTexture[i];
 		RUDE_ASSERT(texture, "Invalid texture in model");
@@ -69,7 +69,7 @@ int RudeMesh::Load(const char *name)
 	
 	// make sure we have at least one renderable node
 	bool foundRenderable = false;
-	for(int i = 0; i < m_model.nNumNode; i++)
+	for(unsigned int i = 0; i < m_model.nNumNode; i++)
 	{
 		SPODNode *node = &m_model.pNode[i];
 		
@@ -86,7 +86,7 @@ int RudeMesh::Load(const char *name)
 	RUDE_ASSERT(foundRenderable, "Didn't find any renderable meshes in %s", name);
 	
 	// flip endianess of colors stored in meshes
-	for(int i = 0; i < m_model.nNumMesh; i++)
+	for(unsigned int i = 0; i < m_model.nNumMesh; i++)
 	{
 		SPODMesh *mesh = &m_model.pMesh[i];
 		
@@ -100,7 +100,7 @@ int RudeMesh::Load(const char *name)
 			{
 				unsigned char *c = (mesh->pInterleaved + (long)mesh->sVtxColours.pData);
 				
-				for(int j = 0; j < mesh->nNumVertex; j++)
+				for(unsigned int j = 0; j < mesh->nNumVertex; j++)
 				{
 					unsigned int *cc = (unsigned int *) c;
 					unsigned int b = *cc & 0x000000FF;
@@ -125,7 +125,7 @@ void RudeMesh::AddTextureOverride(const char *oldTexture, const char *newTexture
 {
 	bool found = false;
 	
-	for(int i = 0; i < m_model.nNumTexture; i++)
+	for(unsigned int i = 0; i < m_model.nNumTexture; i++)
 	{
 		SPODTexture *texture = &m_model.pTexture[i];
 		RUDE_ASSERT(texture, "Invalid texture in model");
@@ -158,7 +158,7 @@ void RudeMesh::SetColorOverride(int node, const char *colordata)
 void RudeMesh::EnableModel(int n, bool enable)
 {
 	bool found = false;
-	for(int i = 0; i < m_model.nNumNode; i++)
+	for(unsigned int i = 0; i < m_model.nNumNode; i++)
 	{
 		SPODNode *node = &m_model.pNode[i];
 		
@@ -197,7 +197,7 @@ void RudeMesh::Render()
 	
 	//glScalef(m_scale.x(), m_scale.y(), m_scale.z());
 	
-	for(int i = 0; i < m_model.nNumNode; i++)
+	for(unsigned int i = 0; i < m_model.nNumNode; i++)
 	{
 		SPODNode *node = &m_model.pNode[i];
 		
