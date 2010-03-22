@@ -1,0 +1,6 @@
+# Game UI
+
+Text	holeText	1	left	{10, 30}	big	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	parText	PAR 4	left	{30, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	remainingDistText	300 yds	left	{30, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+

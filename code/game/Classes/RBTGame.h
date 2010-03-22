@@ -178,6 +178,9 @@ private:
 	bool m_moveHeight;
 	
 	int m_curClub;
+
+	RudeControl m_ui;
+
 	RudeButtonControl m_botBarBg;
 	RudeButtonControl m_nextClubButton;
 	RudeButtonControl m_prevClubButton;
@@ -187,10 +190,10 @@ private:
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	
-	RudeTextControl m_holeText;
-	RudeTextControl m_parText;
+	RudeTextControl *m_holeText;
+	RudeTextControl *m_parText;
 	RudeTextControl m_strokeText;
-	RudeTextControl m_remainingDistText;
+	RudeTextControl *m_remainingDistText;
 	RudeTextControl m_scoreText;
 	RudeTextControl m_shotEncouragementText;
 	RudeTextControl m_clubDistText;

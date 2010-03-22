@@ -128,6 +128,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_ballCamera.SetBall(&m_ball);
 	m_ballCamera.SetTerrain(&m_terrain);
+
+	m_ui.Load("game_iphone");
 	
 	if(gDebugCamera)
 		m_curCamera = &m_debugCamera;
@@ -152,28 +154,16 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	// stroke/status controls
 	
-	m_holeText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_holeText.SetPosition(10, 30);
-	m_holeText.SetFormat(kIntValue, "%d");
-	m_holeText.SetValue(m_holeNum + 1);
-	m_holeText.SetStyle(kOutlineStyle);
-	m_holeText.SetFont(kBigFont);
-	m_holeText.SetColors(0, kParTopColor, kParBotColor);
-	m_holeText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
+	m_holeText = m_ui.GetChildTextControl("holeText");
+	m_holeText->SetFormat(kIntValue, "%d");
+	m_holeText->SetValue(m_holeNum + 1);
 	
 	
+	m_parText = m_ui.GetChildTextControl("parText");
+	m_parText->SetFormat(kIntValue, "PAR %d");
 	
-	m_parText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_parText.SetFormat(kIntValue, "PAR %d");
-	m_parText.SetStyle(kOutlineStyle);
-	m_parText.SetColors(0, kParTopColor, kParBotColor);
-	m_parText.SetColors(1, kParOutlineTopColor, kParOutlineBotColor);
-	
-	m_remainingDistText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_remainingDistText.SetFormat(kIntValue, "%d yds");
-	m_remainingDistText.SetStyle(kOutlineStyle);
-	m_remainingDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_remainingDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	m_remainingDistText = m_ui.GetChildTextControl("remainingDistText");
+	m_remainingDistText->SetFormat(kIntValue, "%d yds");
 	
 	m_strokeText.SetAlignment(RudeTextControl::kAlignRight);
 	m_strokeText.SetFormat(kIntValue, "Stroke %d");
@@ -338,9 +328,13 @@ void RBTGame::SetupUI()
 	{
 		m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
 	
-		
-		m_parText.SetPosition(30 + paroffx, 20);
-		m_remainingDistText.SetPosition(30 + paroffx, 36);
+		int x, y;
+		m_parText->GetPosition(x, y);
+		m_parText->SetPosition(x + paroffx, y);
+
+		m_remainingDistText->GetPosition(x, y);
+		m_remainingDistText->SetPosition(x + paroffx, y);
+
 		m_strokeText.SetPosition(310, 20);
 		m_scoreText.SetPosition(310, 36);
 		m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
@@ -1641,8 +1635,8 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 		m_powerRangeText.Render();
 	}
 	
-	m_parText.SetValue(m_par);
-	m_remainingDistText.SetValue(m_ballToHoleDist);
+	m_parText->SetValue(m_par);
+	m_remainingDistText->SetValue(m_ballToHoleDist);
 	
 	if(m_state == kStateBallInHole)
 	{
@@ -1657,11 +1651,11 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	
 	if(m_holeSet != kCourseDrivingRange)
 	{
-		m_holeText.Render();
+		m_holeText->Render();
 		m_strokeText.Render();
 		m_scoreText.Render();
-		m_parText.Render();
-		m_remainingDistText.Render();
+		m_parText->Render();
+		m_remainingDistText->Render();
 	}
 	
 

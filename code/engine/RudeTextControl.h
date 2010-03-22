@@ -47,6 +47,7 @@ public:
 	void Render();
 	
 	void SetPosition(int x, int y);
+	void GetPosition(int &x, int &y) { x = m_x; y = m_y; }
 	void SetStyle(eRudeTextControlStyle s) { m_style = s; }
 	void SetAlignment(eRudeTextControlAlignment a) { m_alignment = a; }
 	void SetFormat(eRudeTextControlDisplayValue value, const char *fmt);
@@ -87,6 +88,9 @@ protected:
 	
 	float m_alpha;
 	float m_value;
+
+	int m_x;
+	int m_y;
 };
 
 #endif

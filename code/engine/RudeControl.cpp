@@ -206,9 +206,6 @@ void RudeControl::ConstructChild(char *desc)
 	// Second token designates the name of the Control
 	std::string name = PopToken(tokens, originalDesc, "name");
 
-	// Third token specifies the rect of the Control {t,l,b,r}
-	std::string rectstr = PopToken(tokens, originalDesc, "rect");
-
 	// Construct the control based on it's type
 	RudeControl *control = 0;
 
@@ -224,8 +221,20 @@ void RudeControl::ConstructChild(char *desc)
 		// Alignment
 		std::string alignment = PopToken(tokens, originalDesc, "alignment");
 
+		bool loadposition = true;
+
 		if(alignment == "center")
+		{
 			c->SetAlignment(RudeTextControl::kAlignCenter);
+			loadposition = false;
+
+			// Rect {t,l,b,r}
+			std::string rectstr = PopToken(tokens, originalDesc, "rect");
+
+			RudeRect rect;
+			ParseRect(rectstr, rect);
+			c->SetRect(rect);
+		}
 		else if(alignment == "left")
 			c->SetAlignment(RudeTextControl::kAlignLeft);
 		else if(alignment == "right")
@@ -235,6 +244,16 @@ void RudeControl::ConstructChild(char *desc)
 		else
 		{
 			RUDE_ASSERT(0, "Expected alignment field (center, left, right, justify), got %s", alignment.c_str());
+		}
+
+		if(loadposition)
+		{
+			// Position
+			std::string offset = PopToken(tokens, originalDesc, "offset");
+			int offx = 0, offy = 0;
+			ParseOffset(offset, offx, offy);
+
+			c->SetPosition(offx, offy);
 		}
 
 		// Font
@@ -318,6 +337,13 @@ void RudeControl::ConstructChild(char *desc)
 
 		c->SetTexture(texture.c_str(), offx, offy);
 
+		// Rect {t,l,b,r}
+		std::string rectstr = PopToken(tokens, originalDesc, "rect");
+
+		RudeRect rect;
+		ParseRect(rectstr, rect);
+		c->SetRect(rect);
+
 		// Animation
 		std::string anim = PopToken(tokens, originalDesc, "animation");
 
@@ -338,10 +364,6 @@ void RudeControl::ConstructChild(char *desc)
 	RUDE_ASSERT(control, "Failed to create Control type: %s", type.c_str());
 
 	control->SetName(name);
-
-	RudeRect rect;
-	ParseRect(rectstr, rect);
-	control->SetRect(rect);
 
 	// Add control to list of children
 	m_children.push_back(control);

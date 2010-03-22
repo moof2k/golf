@@ -37,7 +37,7 @@ RBUITitle::RBUITitle()
 	m_flag.LoadMesh("sexy");
 	m_flag.SetPosition(kFlagPosition);
 
-	m_ui.Load("title");
+	m_ui.Load("title_iphone");
 	
 	m_logo = m_ui.GetChildButtonControl("logo");
 	m_rangeMedallion = m_ui.GetChildButtonControl("rangeMedallion");

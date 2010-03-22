@@ -991,7 +991,11 @@
 			Name="Resources"
 			>
 			<File
-				RelativePath="..\Data\title.ui"
+				RelativePath="..\Data\game_iphone.ui"
+				>
+			</File>
+			<File
+				RelativePath="..\Data\title_iphone.ui"
 				>
 			</File>
 		</Filter>

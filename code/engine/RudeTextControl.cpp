@@ -20,6 +20,8 @@ RudeTextControl::RudeTextControl()
 , m_style(kNoStyle)
 , m_font(kDefaultFont)
 , m_alpha(1.0f)
+, m_x(0)
+, m_y(0)
 {
 	m_text[0] = '\0';
 	m_format[0] = '\0';
@@ -45,6 +47,9 @@ bool RudeTextControl::Contains(const RudeScreenVertex &p)
 void RudeTextControl::SetPosition(int x, int y)
 {
 	const int kHeight = 8;
+
+	m_x = x;
+	m_y = y;
 	
 	switch(m_alignment)
 	{
