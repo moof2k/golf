@@ -76,12 +76,24 @@ int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 
 	//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
+	static float lastTime = -1.0f;
+
+	float currentTime = ((float) GetTickCount()) / 1000.0f;
+	float deltaTime = 0.0f;
+
+	if(lastTime > 0.0f)
+	{
+		deltaTime = currentTime - lastTime;
+	}
+	
+	lastTime = currentTime;
 
 	if(gVBGame)
 	{
-		gVBGame->Render(0.03f, (float) windowWidth, (float) windowHeight);
+		gVBGame->Render(deltaTime, (float) windowWidth, (float) windowHeight);
 	}
 
+	
 
 	return TRUE;										// Everything Went OK
 }
