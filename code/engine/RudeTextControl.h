@@ -13,7 +13,7 @@
 #include "RudeFont.h"
 
 const int kMaxTextLen = 64;
-
+const int kNumColors = 2;
 
 typedef enum {
 	kNoValue,
@@ -56,6 +56,8 @@ public:
 	
 	void SetColors(int i, unsigned int top, unsigned int bot)
 	{
+		RUDE_ASSERT(i >= 0 && i < kNumColors, "Invalid color index");
+
 		m_colors[i][0] = top;
 		m_colors[i][1] = bot;
 	}
@@ -81,7 +83,7 @@ protected:
 	eRudeTextControlStyle m_style;
 	eFont m_font;
 	
-	unsigned int m_colors[2][2];
+	unsigned int m_colors[kNumColors][2];
 	
 	float m_alpha;
 	float m_value;
