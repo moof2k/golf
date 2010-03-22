@@ -1,8 +1,27 @@
 # Game UI
 
+# const unsigned int kBallDistanceTopColor = 0xFF666666;
+# const unsigned int kBallDistanceBotColor = 0xFF000000;
+# const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
+# const unsigned int kBallDistanceOutlineBotColor = 0xFF22FFFF;
+
+# const unsigned int kBallRemainingTopColor = 0xFF666666;
+# const unsigned int kBallRemainingBotColor = 0xFF000000;
+# const unsigned int kBallRemainingOutlineTopColor = 0xFFFFFFFF;
+# const unsigned int kBallRemainingOutlineBotColor = 0xFFFFFFFF;
+
 Text	holeText	1	left	{10, 30}	big	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 Text	parText	PAR 4	left	{30, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 Text	remainingDistText	300 yds	left	{30, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 Text	strokeText	Stroke 1	right	{310, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 Text	scoreText	+1	right	{310, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+
+Text	clubDistText	123 yds	left	{6, 406}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	powerRangeText	100%	left	{6, 426}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	windText	20 mph	right	{314, 426}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	shotEncouragementText	For Eagle!	center	{80, 0, 100, 320}	big	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	shotDistText	50 yds	center	{430, 0, 446, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	shotPowerText	100% Power	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	shotAngleText	0% Hook	center	{462, 0, 478, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+Text	guidePowerText	200 yds	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 

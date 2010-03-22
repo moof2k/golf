@@ -172,58 +172,28 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_scoreText = m_ui.GetChildTextControl("scoreText");
 	m_scoreText->SetFormat(kSignedIntValue, "%s");
 	
-	m_clubDistText.SetAlignment(RudeTextControl::kAlignLeft);
+	m_clubDistText = m_ui.GetChildTextControl("clubDistText");
+	m_clubDistText->SetFormat(kIntValue, "%d yds");
 	
-	m_clubDistText.SetFormat(kIntValue, "%d yds");
-	m_clubDistText.SetStyle(kOutlineStyle);
-	m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
-	m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	m_powerRangeText = m_ui.GetChildTextControl("powerRangeText");
 	
-	m_powerRangeText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_powerRangeText.SetText("100%");
-	m_powerRangeText.SetStyle(kOutlineStyle);
-	m_powerRangeText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
-	m_powerRangeText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	m_windText = m_ui.GetChildTextControl("windText");
+	m_windText->SetFormat(kIntValue, "%d mph");
 	
-	m_windText.SetAlignment(RudeTextControl::kAlignRight);
-	m_windText.SetFormat(kIntValue, "%d mph");
-	m_windText.SetStyle(kOutlineStyle);
-	m_windText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
-	m_windText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	m_shotEncouragementText = m_ui.GetChildTextControl("shotEncouragementText");
 	
+	m_shotDistText = m_ui.GetChildTextControl("shotDistText");
+	m_shotDistText->SetFormat(kIntValue, "%d yds");
 	
+	m_shotPowerText = m_ui.GetChildTextControl("shotPowerText");
+	m_shotPowerText->SetFormat(kIntValue, "%d %% Power");
 	
-	m_shotEncouragementText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_shotEncouragementText.SetStyle(kOutlineStyle);
-	m_shotEncouragementText.SetFont(kBigFont);
-	m_shotEncouragementText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_shotEncouragementText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
+	m_shotAngleText = m_ui.GetChildTextControl("shotAngleText");
+	m_shotAngleText->SetFormat(kIntValue, "%d %% Angle");
 	
-	m_shotDistText.SetFormat(kIntValue, "%d yds");
-	m_shotDistText.SetAlignment(RudeTextControl::kAlignCenter);
-	
-	m_shotDistText.SetStyle(kOutlineStyle);
-	m_shotDistText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_shotDistText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
-	
-	m_shotPowerText.SetFormat(kIntValue, "%d %% Power");
-	m_shotPowerText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_shotPowerText.SetStyle(kOutlineStyle);
-	m_shotPowerText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_shotPowerText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
-	
-	m_shotAngleText.SetFormat(kIntValue, "%d %% Angle");
-	m_shotAngleText.SetAlignment(RudeTextControl::kAlignCenter);
-	
-	m_shotAngleText.SetStyle(kOutlineStyle);
-	m_shotAngleText.SetColors(0, kBallRemainingTopColor, kBallRemainingBotColor);
-	m_shotAngleText.SetColors(1, kBallRemainingOutlineTopColor, kBallRemainingOutlineBotColor);
-	
-	m_guidePowerText.SetFormat(kIntValue, "%d yds");
-	m_guidePowerText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_guidePowerText.SetStyle(kOutlineStyle);
-	m_guidePowerText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
-	m_guidePowerText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+	m_guidePowerText = m_ui.GetChildTextControl("guidePowerText");
+	m_guidePowerText->SetFormat(kIntValue, "%d yds");
+
 						  
 	// swing controls
 	
@@ -329,19 +299,9 @@ void RBTGame::SetupUI()
 
 		m_remainingDistText->GetPosition(x, y);
 		m_remainingDistText->SetPosition(x + paroffx, y);
-
-		m_clubDistText.SetPosition(6, 480 - 44 - 10 - 20);
-		m_powerRangeText.SetPosition(6, 480 - 44 - 10);
-		m_windText.SetPosition(320 - 6, 480 - 44 - 10);
 		
-		m_shotAngleText.SetRect(RudeRect(462, 0, 478, 320));
-		m_guidePowerText.SetRect(RudeRect(446, 0, 462, 320));
-		m_shotDistText.SetRect(RudeRect(430, 0, 446, 320));
 		m_windControl.SetRect(RudeRect(480 - 64 - 64, 320 - 64, 480 - 64, 320));
-		m_shotPowerText.SetRect(RudeRect(446, 0, 462, 320));
 		
-		m_shotEncouragementText.SetRect(RudeRect(80, 0, 100, 320));
-
 		
 		m_swingControl.SetRect(RudeRect(0,0,400,320));
 	
@@ -439,7 +399,7 @@ void RBTGame::RestoreState()
 	   || m_state == kStateFollowBall)
 		m_state = kStateHitBall;
 	
-	m_windText.SetValue(m_windSpeed);
+	m_windText->SetValue(m_windSpeed);
 	m_windControl.SetWind(m_windDir, m_windSpeed);
 	m_ball.SetWind(m_windVec);
 	
@@ -622,23 +582,23 @@ void RBTGame::SetState(eRBTGameState state)
 				switch(material)
 				{
 					case kRough:
-						m_shotEncouragementText.SetText("Rough");
+						m_shotEncouragementText->SetText("Rough");
 						break;
 					case kFairwayFringe:
 					case kFairway:
-						m_shotEncouragementText.SetText("Fairway");
+						m_shotEncouragementText->SetText("Fairway");
 						break;
 					case kGreen:
-						m_shotEncouragementText.SetText("Green");
+						m_shotEncouragementText->SetText("Green");
 						break;
 					case kGreenFringe:
-						m_shotEncouragementText.SetText("Fringe");
+						m_shotEncouragementText->SetText("Fringe");
 						break;
 					case kSandtrap:
-						m_shotEncouragementText.SetText("Bunker");
+						m_shotEncouragementText->SetText("Bunker");
 						break;
 					default:
-						m_shotEncouragementText.SetText("");
+						m_shotEncouragementText->SetText("");
 						break;
 				}
 				
@@ -718,7 +678,7 @@ void RBTGame::StateTeePosition(float delta)
 			break;
 	}
 	
-	m_windText.SetValue((float) windspeed);
+	m_windText->SetValue((float) windspeed);
 	
 	m_windSpeed = (float) windspeed;
 	
@@ -748,11 +708,8 @@ void RBTGame::StatePositionSwing(float delta)
 	float alpha = m_encouragementTimer;
 	if(alpha > 1.0f)
 		alpha = 1.0f;
-	m_shotEncouragementText.SetAlpha(alpha);
+	m_shotEncouragementText->SetAlpha(alpha);
 	
-	//m_state = kStateExecuteSwing;
-	
-	//AutoSelectClub();
 }
 
 void RBTGame::StatePositionSwing2(float delta)
@@ -885,7 +842,7 @@ void RBTGame::StateRegardBall(float delta)
 	float alpha = m_encouragementTimer;
 	if(alpha > 1.0f)
 		alpha = 1.0f;
-	m_shotEncouragementText.SetAlpha(alpha);
+	m_shotEncouragementText->SetAlpha(alpha);
 }
 
 void RBTGame::FreshShotEncouragement()
@@ -900,26 +857,26 @@ void RBTGame::FreshShotEncouragement()
 		
 		if(scoreIfShotMade == -2)
 		{
-			m_shotEncouragementText.SetText("For Eagle!");
+			m_shotEncouragementText->SetText("For Eagle!");
 			m_encouragementTimer = kEncouragementTimer;
 		}
 		else if(scoreIfShotMade == -1)
 		{
-			m_shotEncouragementText.SetText("For Birdie!");
+			m_shotEncouragementText->SetText("For Birdie!");
 			m_encouragementTimer = kEncouragementTimer;
 		}
 		else if(scoreIfShotMade == 0)
 		{
-			m_shotEncouragementText.SetText("For Par");
+			m_shotEncouragementText->SetText("For Par");
 			m_encouragementTimer = kEncouragementTimer;
 		}
 		else if(scoreIfShotMade == 1)
 		{
-			m_shotEncouragementText.SetText("For Bogey");
+			m_shotEncouragementText->SetText("For Bogey");
 			m_encouragementTimer = kEncouragementTimer;
 		}
 		else
-			m_shotEncouragementText.SetText("");
+			m_shotEncouragementText->SetText("");
 	}
 	
 	
@@ -979,25 +936,25 @@ void RBTGame::NextClub(int n)
 	
 	if(material.m_penalty_power_min == 100)
 	{
-		m_powerRangeText.SetText("100%");
+		m_powerRangeText->SetText("100%");
 	}
 	else
 	{
 		char str[64];
 		snprintf(str, 64, "%d~%d %%", material.m_penalty_power_min, material.m_penalty_power_max);
 		
-		m_powerRangeText.SetText(str);
+		m_powerRangeText->SetText(str);
 	}
 	
 	if(club->m_options & kFirePower)
 	{
-		m_clubDistText.SetColors(0, kBallDistanceTopFireColor, kBallDistanceBotFireColor);
-		m_clubDistText.SetColors(1, kBallDistanceOutlineTopFireColor, kBallDistanceOutlineBotFireColor);
+		m_clubDistText->SetColors(0, kBallDistanceTopFireColor, kBallDistanceBotFireColor);
+		m_clubDistText->SetColors(1, kBallDistanceOutlineTopFireColor, kBallDistanceOutlineBotFireColor);
 	}
 	else
 	{
-		m_clubDistText.SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
-		m_clubDistText.SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
+		m_clubDistText->SetColors(0, kBallDistanceTopColor, kBallDistanceBotColor);
+		m_clubDistText->SetColors(1, kBallDistanceOutlineTopColor, kBallDistanceOutlineBotColor);
 	}
 	
 	FreshGuide();
@@ -1288,6 +1245,9 @@ void RBTGame::AdjustGuide()
 		float inx = xdir.dot(newaimvec);
 		
 		float angle = aimvec.dot(newaimvec);
+
+		if(angle > 1.0f)
+			angle = 1.0f;
 		
 		m_swingYaw = acos(angle);
 		
@@ -1568,9 +1528,9 @@ void RBTGame::RenderGuide(float aspect)
 					   (int) m_placementGuidePositionScreenSpace.x() + kTextSize
 					   );
 			
-			m_guidePowerText.SetRect(r);
-			m_guidePowerText.SetValue(m_placementGuidePower);
-			m_guidePowerText.Render();
+			m_guidePowerText->SetRect(r);
+			m_guidePowerText->SetValue(m_placementGuidePower);
+			m_guidePowerText->Render();
 		}
 	}
 	else if(m_state == kStatePositionSwing2)
@@ -1584,9 +1544,9 @@ void RBTGame::RenderGuide(float aspect)
 			(int) m_guidePositionScreenSpace.x() + kTextSize
 			);
 		
-		m_guidePowerText.SetRect(r);
-		m_guidePowerText.SetValue(m_placementGuidePower);
-		m_guidePowerText.Render();
+		m_guidePowerText->SetRect(r);
+		m_guidePowerText->SetValue(m_placementGuidePower);
+		m_guidePowerText->Render();
 	}
 	
 }
@@ -1599,33 +1559,32 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 	if(showShotDistance)
 	{
 		
-		m_shotDistText.SetValue(m_ballShotDist);
-		m_shotPowerText.SetValue(m_swingPower * 100.0f);
+		m_shotDistText->SetValue(m_ballShotDist);
+		m_shotPowerText->SetValue(m_swingPower * 100.0f);
 		
 		if(m_swingAngle > 0.0f)
-			m_shotAngleText.SetFormat(kIntValue, "%d %% Slice");
+			m_shotAngleText->SetFormat(kIntValue, "%d %% Slice");
 		else
-			m_shotAngleText.SetFormat(kIntValue, "%d %% Hook");
+			m_shotAngleText->SetFormat(kIntValue, "%d %% Hook");
 		
 		float displayangle = m_swingAngle;
 		if(displayangle < 0.0f)
 			displayangle = -displayangle;
 		
-		m_shotAngleText.SetValue(displayangle * 100.0f);
+		m_shotAngleText->SetValue(displayangle * 100.0f);
 		
-		m_shotDistText.Render();
-		m_shotPowerText.Render();
-		m_shotAngleText.Render();
+		m_shotDistText->Render();
+		m_shotPowerText->Render();
+		m_shotAngleText->Render();
 	}
 	
 	if(showClubInfo)
 	{
 		RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
-		m_clubDistText.SetValue(club->m_dist);
-		m_clubDistText.Render();
+		m_clubDistText->SetValue(club->m_dist);
+		m_clubDistText->Render();
 		
-		
-		m_powerRangeText.Render();
+		m_powerRangeText->Render();
 	}
 	
 	m_parText->SetValue((float) m_par);
@@ -1777,11 +1736,11 @@ void RBTGame::Render(float aspect)
 				RenderShotInfo(false, true);
 				
 				if(!m_terrain.GetPutting())
-					m_windText.Render();
+					m_windText->Render();
 				
 				if(m_encouragementTimer > 0.0f)
 				{
-					m_shotEncouragementText.Render();
+					m_shotEncouragementText->Render();
 				}
 				break;
 			case kStateMenu:
@@ -1798,7 +1757,7 @@ void RBTGame::Render(float aspect)
 				RenderShotInfo(false, true);
 				
 				if(!m_terrain.GetPutting())
-					m_windText.Render();
+					m_windText->Render();
 				
 				
 				
@@ -1819,7 +1778,7 @@ void RBTGame::Render(float aspect)
 				
 				if(m_encouragementTimer > 0.0f)
 				{
-					m_shotEncouragementText.Render();
+					m_shotEncouragementText->Render();
 				}
 				
 				break;

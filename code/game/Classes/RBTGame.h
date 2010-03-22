@@ -195,16 +195,16 @@ private:
 	RudeTextControl *m_strokeText;
 	RudeTextControl *m_remainingDistText;
 	RudeTextControl *m_scoreText;
-	RudeTextControl m_shotEncouragementText;
-	RudeTextControl m_clubDistText;
-	RudeTextControl m_powerRangeText;
-	RudeTextControl m_windText;
+	RudeTextControl *m_shotEncouragementText;
+	RudeTextControl *m_clubDistText;
+	RudeTextControl *m_powerRangeText;
+	RudeTextControl *m_windText;
 	
-	RudeTextControl m_shotDistText;
-	RudeTextControl m_shotPowerText;
-	RudeTextControl m_shotAngleText;
+	RudeTextControl *m_shotDistText;
+	RudeTextControl *m_shotPowerText;
+	RudeTextControl *m_shotAngleText;
 	
-	RudeTextControl m_guidePowerText;
+	RudeTextControl *m_guidePowerText;
 	
 	RBScoreControl m_scoreControl;
 	
