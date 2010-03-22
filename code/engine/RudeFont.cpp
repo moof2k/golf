@@ -320,22 +320,7 @@ int RudeFont::FindTextChar(const char *text, int start, int length, int ch)
 }
 
 void RudeFont::InternalWrite(float x, float y, float z, const char *text, int count, float spacing)
-{
-	
-	RGL.EnableClient(kVertexArray, true);
-	RGL.EnableClient(kColorArray, true);
-	RGL.EnableClient(kTextureCoordArray, true);
-
-	unsigned int colors[] = {
-		0xFFFFFFFF,
-		0xFFFFFFFF,
-		0xFFFFFFFF,
-		0xFFFFFFFF
-	};
-
-	glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors);
-	
-	
+{	
 	int page = -1;
 	
 	y -= scale * float(base);
