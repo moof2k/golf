@@ -1,0 +1,27 @@
+# Title UI
+
+Button	logo	{60, 0, 300, 320}	logo	logo	popslide
+Button	rangeMedallion	{80, 0, 356, 320}	ui_bucketoballz	ui_bucketoballz	popslide
+Button	courseMedallion	{0, 160, 356, 320}	ui_ccc_medallion_128	ui_ccc_medallion_128	popslide
+Button	courseSplash	{200, 0, 300, 240}	ui_wreath_gold	ui_wreath_gold	popslide
+
+Text	startText	{320, 0, 350, 320}	Play	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+Text	practiceText	{360, 0, 390, 320}	Practice	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+Text	settingsText	{400, 0, 430, 320}	Options	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+Text	goText	{400, 0, 420, 320}	Start	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+Text	backText	{440, 0, 460, 320}	Back	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+Text	copyrightText	{463, 0, 480, 320}	Copyright © 2009 Bork 3D LLC	center	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+Text	tournamentText	{36, 0, 56, 320}	Select Tournament	center	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+Text	courseNameText	{36, 0, 56, 320}	Golf Course	center	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+Text	courseSubnameText	{60, 0, 80, 320}	Amateur Invitational	center	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+Text	courseDescText	{80, 0, 100, 320}	Front 9 / Short Tee	center	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+Text	scoreText	{400, 0, 420, 320}	+1	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+Text	scoreDesc	{440, 0, 460, 320}	Congratulations!	center	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+Text	settingsTitleText	{36, 0, 56, 320}	Options	center	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+Text	musicToggle	{90, 0, 110, 320}	Music: On	center	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
