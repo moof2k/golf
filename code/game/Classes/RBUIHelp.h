@@ -33,7 +33,7 @@ public:
 	eHelpMode GetHelpMode() { return m_mode; }
 	
 	void NextFrame(float delta);
-	void Render(float aspect);
+	void Render(float width, float height);
 	
 	bool TouchDown();
 

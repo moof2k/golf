@@ -226,14 +226,14 @@ void RBTRound::NextFrame(float delta)
 	}
 }
 
-void RBTRound::Render(float aspect)
+void RBTRound::Render(float width, float height)
 {
 	if(m_state == kStateNextRound || m_state == kStateInit)
 	{
-		RGL.SetViewport(0, 0, 480, 320);
+		RGL.SetViewport(0, 0, (int) height, (int) width);
 		RGL.Enable(kBackfaceCull, false);
 		RGL.Enable(kDepthTest, false);
-		RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+		RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
 		RGL.LoadIdentity();
 
 
@@ -244,7 +244,7 @@ void RBTRound::Render(float aspect)
 	else if(m_state == kStateInRound)
 	{
 		if(m_game)
-			m_game->Render(aspect);
+			m_game->Render(width, height);
 	}
 }
 

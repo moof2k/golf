@@ -111,7 +111,7 @@ void RBUIHelp::NextFrame(float delta)
 	m_bgTimer += delta;
 }
 
-void RBUIHelp::Render(float aspect)
+void RBUIHelp::Render(float width, float height)
 {
 	if(m_done)
 		return;

@@ -191,7 +191,7 @@ void RBGame::Render(float delta, float width, float height)
 		delta = kMaxDelta;
 	
 	m_game->NextFrame(delta);
-	m_game->Render(aspect);
+	m_game->Render(width, height);
 	
 	switch(m_state)
 	{

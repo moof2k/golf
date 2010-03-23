@@ -560,10 +560,11 @@ void RBUITitle::NextFrame(float delta)
 	}
 }
 
-void RBUITitle::Render(float aspect)
+void RBUITitle::Render(float width, float height)
 {
-	RGL.SetViewport(0, 0, 480, 320);
+	RGL.SetViewport(0, 0, (int) height, (int) width);
 	
+	float aspect = width / height;
 	m_camera.SetView(aspect);
 	RGL.LoadIdentity();
 	
@@ -579,7 +580,7 @@ void RBUITitle::Render(float aspect)
 	
 	m_flag.Render();
 	
-	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+	RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
 	RGL.LoadIdentity();
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);

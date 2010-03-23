@@ -48,7 +48,7 @@ public:
 	~RBTRound();
 	
 	void NextFrame(float delta);
-	void Render(float aspect);
+	void Render(float width, float height);
 	
 	void TouchDown(RudeTouch *rbt);
 	void TouchMove(RudeTouch *rbt);

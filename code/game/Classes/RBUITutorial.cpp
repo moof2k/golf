@@ -88,11 +88,11 @@ void RBUITutorial::NextImage()
 	m_imageDelay = 5;
 }
 
-void RBUITutorial::Render(float aspect)
+void RBUITutorial::Render(float width, float height)
 {
-	RGL.SetViewport(0, 0, 480, 320);
+	RGL.SetViewport(0, 0, (int) height, (int) width);
 	
-	RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+	RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
 	RGL.LoadIdentity();
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);
@@ -105,8 +105,8 @@ void RBUITutorial::Render(float aspect)
 	
 	int xc = (320) / 2;
 	int yc = (480) / 2;
-	float left = xc - 256;
-	float top = yc - 256;
+	float left = (float) (xc - 256);
+	float top = (float) (yc - 256);
 	
 	float points[8];
 	points[0] = left;

@@ -76,7 +76,7 @@ void RBUIMenu::NextFrame(float delta)
 	m_bgTimer += delta;
 }
 
-void RBUIMenu::Render(float aspect)
+void RBUIMenu::Render(float width, float height)
 {
 	// splat grey bg
 	

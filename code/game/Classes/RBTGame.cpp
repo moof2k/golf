@@ -1596,15 +1596,13 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 
 }
 
-void RBTGame::Render(float aspect)
+void RBTGame::Render(float width, float height)
 {
 	RUDE_PERF_START(kPerfRBTGameRender1);
 	
-	if(RGL.GetLandscape())
-		RGL.SetViewport(0, 0, 320, 480);
-	else
-		RGL.SetViewport(0, 0, 480, 320);
+	RGL.SetViewport(0, 0, (int) height, (int) width);
 
+	float aspect = width / height;
 	m_curCamera->SetView(aspect);
 	RGL.LoadIdentity();
 	
@@ -1727,7 +1725,7 @@ void RBTGame::Render(float aspect)
 				}
 				break;
 			case kStateMenu:
-				m_menu.Render(aspect);
+				m_menu.Render(width, height);
 				break;
 				
 			case kStateExecuteSwing:
@@ -1778,7 +1776,7 @@ void RBTGame::Render(float aspect)
 	m_dumpDecoText.Render();
 #endif
 	
-	m_help.Render(aspect);
+	m_help.Render(width, height);
 	
 	RUDE_PERF_STOP(kPerfRBTGameRenderUI);
 	
