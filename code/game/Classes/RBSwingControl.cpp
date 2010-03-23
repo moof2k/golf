@@ -49,6 +49,8 @@ RBSwingControl::RBSwingControl()
 , m_fadeOutTimer(0.0f)
 , m_fadeOutTime(kNoSwingFadeOutTime)
 , m_noSwingCommentary(false)
+, m_downBasePower(0.0f)
+, m_downBonusPower(0.0f)
 {
 }
 
@@ -445,7 +447,7 @@ void RBSwingControl::RenderPower()
 	
 	const float kY = 46;
 	const float kY2 = 68;
-	const float kX = 160;
+	const float kX = RGL.GetDeviceWidth() / 2.0f;
 	const float kLen = 140;
 	
 	float w = power * kLen;
