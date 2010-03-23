@@ -107,6 +107,7 @@ private:
 	float m_downBonusPower;
 	float m_downBasePower;
 	
+	float m_optimalTrackDistance;
 	
 	float m_downTime;
 	float m_upTime;
@@ -120,6 +121,8 @@ private:
 	RudeScreenVertex m_lastPoint;
 	RudeScreenVertex m_downStroke;
 	RudeScreenVertex m_upStroke;
+
+	RudeScreenVertex m_strokeBegin;
 	
 	eStrokeState m_strokeState;
 	

@@ -3,32 +3,37 @@
 RudeTextControl	holeText	1	left	{10, 30}	big	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	parText	PAR 4	left	{30, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	remainingDistText	300 yds	left	{30, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	strokeText	Stroke 1	right	{310, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	scoreText	+1	right	{310, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
-RudeTextControl	clubDistText	123 yds	left	{6, 406}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	powerRangeText	100%	left	{6, 426}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	windText	20 mph	right	{314, 426}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	shotEncouragementText	For Eagle!	center	{80, 0, 100, 320}	big	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	shotDistText	50 yds	center	{430, 0, 446, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	shotPowerText	100% Power	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	shotAngleText	0% Hook	center	{462, 0, 478, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	guidePowerText	200 yds	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	strokeText	Stroke 1	right	{758, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	scoreText	+1	right	{758, 36}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
+RudeTextControl	clubDistText	123 yds	left	{6, 950}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	powerRangeText	100%	left	{6, 970}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	windText	20 mph	right	{762, 970}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
-RudeButtonControl	botBarBg	ui_botbarbg	{-1, -1}	{436, 0, 480, 320}	none
-RudeButtonAnimControl	swingButton	ui_swing	{-1, -1}	{436, 255, 480, 316}	none
-RudeButtonControl	moveButton	ui_move	{-1, -1}	{436, 255, 480, 316}	none
-RudeButtonControl	menuButton	ui_menu	{-1, -1}	{436, 190, 480, 251}	none
-RudeButtonControl	prevClubButton	ui_clubprev	{-1, -1}	{436, 5, 480, 37}	none
-RudeButtonControl	clubButton	ui_1wood	{-1, -1}	{436, 46, 480, 114}	none
-RudeButtonControl	nextClubButton	ui_clubnext	{-1, -1}	{436, 121, 480, 153}	none
+RudeTextControl	shotEncouragementText	For Eagle!	center	{80, 0, 100, 768}	big	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
-RudeButtonControl	cameraButton	ui_camera	{-1, -1}	{0, 120, 44, 200}	none
-RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 195, 44, 255}	none
+RudeTextControl	shotDistText	50 yds	center	{974, 0, 990, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	shotPowerText	100% Power	center	{990, 0, 1006, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	shotAngleText	0% Hook	center	{1006, 0, 1022, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	guidePowerText	200 yds	center	{446, 0, 462, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
-RBScoreControl	scoreControl	{0,0,480,320}
-RBSwingControl	swingControl	{0,0,400,320}
+# Botbar is 44px high on iPhone
+#  iPhone horz. center 160px
+#  iPad +224px
+
+RudeButtonControl	botBarBg	ui_botbarbg	{-1, -1}	{980, 0, 1024, 768}	none
+RudeButtonAnimControl	swingButton	ui_swing	{-1, -1}	{980, 479, 1024, 540}	none
+RudeButtonControl	moveButton	ui_move	{-1, -1}	{980, 479, 1024, 540}	none
+RudeButtonControl	menuButton	ui_menu	{-1, -1}	{980, 414, 1024, 475}	none
+RudeButtonControl	prevClubButton	ui_clubprev	{-1, -1}	{980, 229, 1024, 261}	none
+RudeButtonControl	clubButton	ui_1wood	{-1, -1}	{980, 270, 1024, 338}	none
+RudeButtonControl	nextClubButton	ui_clubnext	{-1, -1}	{980, 345, 1024, 377}	none
+RudeButtonControl	cameraButton	ui_camera	{-1, -1}	{0, 344, 44, 424}	none
+RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 419, 44, 479}	none
+
+RBScoreControl	scoreControl	{0,0,1024,768}
+RBSwingControl	swingControl	{0,0,944,768}
 
 # 64x64 square in the center of the screen
 RudeControl	guideAdjust	{480, 352, 544, 416}
@@ -36,9 +41,5 @@ RudeControl	guideAdjust	{480, 352, 544, 416}
 # Entire screen minus the top and bottom UI elements
 RudeControl	swingCamAdjust	{80, 0, 944, 768}
 
-# iPhone Position
-RBWindControl	windControl	{352, 256, 416, 320}
-
-# iPad Position
-#RBWindControl	windControl	{896, 704, 960, 768}
+RBWindControl	windControl	{896, 704, 960, 768}
 

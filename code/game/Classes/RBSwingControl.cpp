@@ -28,8 +28,6 @@ RUDE_TWEAK(SwingDownOptimalTimeMax, kFloat, gSwingDownOptimalTimeMax);
 RUDE_TWEAK(SwingDownEarlyPunishment, kFloat, gSwingDownEarlyPunishment);
 RUDE_TWEAK(SwingDownLatePunishment, kFloat, gSwingDownLatePunishment);
 
-const int kSwingTrackStart = 100;
-const int kSwingTrackEnd = 400;
 
 const float kSwingBasePower = 1.0f;
 const float kSwingTimingBonus = 0.1f;
@@ -51,13 +49,14 @@ RBSwingControl::RBSwingControl()
 , m_noSwingCommentary(false)
 , m_downBasePower(0.0f)
 , m_downBonusPower(0.0f)
+, m_optimalTrackDistance(100.0f)
 {
+	m_ringTextureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ring");
 }
 
 
 void RBSwingControl::Reset()
 {
-	m_ringTextureId = RudeTextureManager::GetInstance()->LoadTextureFromPNGFile("ring");
 	
 	m_curSwingPoint = 0;
 	m_strokeState = kNoStroke;
@@ -67,7 +66,7 @@ void RBSwingControl::Reset()
 	
 	
 	m_swingPowerText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_swingPowerText.SetRect(RudeRect(60, 0, 70, 320));
+	m_swingPowerText.SetRect(RudeRect(60, 0, 70, RGL.GetDeviceWidth()));
 	m_swingPowerText.SetFormat(kIntValue, "  %d %%");
 	m_swingPowerText.SetStyle(kOutlineStyle);
 	m_swingPowerText.SetFont(kBigFont);
@@ -173,6 +172,8 @@ bool RBSwingControl::TouchDown(RudeTouch *t)
 {
 	if(!RudeControl::TouchDown(t))
 		return false;
+
+	m_strokeBegin = t->m_location;
 	
 	AddSwingPoint(t->m_location, true);
 	
@@ -272,8 +273,12 @@ void RBSwingControl::NextFrame(float delta)
 	
 	if(m_strokeState == kDownStroke)
 	{
+		if(RGL.GetDeviceHeight() > 480)
+			m_optimalTrackDistance = 450;
+		else
+			m_optimalTrackDistance = 300;
 		
-		float pathy = kSwingTrackStart + (kSwingTrackEnd - kSwingTrackStart) * m_downOptimalPct;
+		float pathy = m_strokeBegin.m_y + m_optimalTrackDistance * m_downOptimalPct;
 		
 		float lasty = m_lastPoint.m_y;
 		
@@ -289,7 +294,7 @@ void RBSwingControl::NextFrame(float delta)
 		
 		//m_power = m_downOptimalPct;
 		
-		m_downBasePower = ((float) m_downStroke.m_y) / ((float) kSwingTrackEnd - kSwingTrackStart);
+		m_downBasePower = ((float) m_downStroke.m_y) / m_optimalTrackDistance;
 		
 		if(m_downBasePower < 0.0f)
 			m_downBasePower = 0.0f;
@@ -328,16 +333,16 @@ void RBSwingControl::RenderRing()
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
+
 	
-	
-	float ringsize = (1.0f - m_downOptimalPct) * (kSwingTrackEnd - kSwingTrackStart) + 32.0f;
-	float pathy = kSwingTrackEnd;
+	float ringsize = (1.0f - m_downOptimalPct) * m_optimalTrackDistance + 32.0f;
+	float pathy = m_optimalTrackDistance;
 	
 	GLfloat point[] = {
-		160.0f - ringsize, pathy - ringsize,
-		160.0f + ringsize, pathy - ringsize,
-		160.0f + ringsize, pathy + ringsize,
-		160.0f - ringsize, pathy + ringsize,
+		m_strokeBegin.m_x - ringsize, m_strokeBegin.m_y + pathy - ringsize,
+		m_strokeBegin.m_x + ringsize, m_strokeBegin.m_y + pathy - ringsize,
+		m_strokeBegin.m_x + ringsize, m_strokeBegin.m_y + pathy + ringsize,
+		m_strokeBegin.m_x - ringsize, m_strokeBegin.m_y + pathy + ringsize,
 	};
 	
 	GLfloat uvs[] = {
@@ -363,10 +368,10 @@ void RBSwingControl::RenderRing()
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	 
 	
-	
+	if(0)
 	{
 		float ringsize = 32.0f;
-		float pathy = kSwingTrackStart;
+		float pathy = m_strokeBegin.m_y;
 		
 		GLfloat point[] = {
 			160.0f - ringsize, pathy - ringsize,
@@ -448,7 +453,7 @@ void RBSwingControl::RenderPower()
 	const float kY = 46;
 	const float kY2 = 68;
 	const float kX = RGL.GetDeviceWidth() / 2.0f;
-	const float kLen = 140;
+	const float kLen = RGL.GetDeviceWidth() / 2.0f - 20.0f;
 	
 	float w = power * kLen;
 	
@@ -561,7 +566,8 @@ void RBSwingControl::RenderTracks()
 void RBSwingControl::Render()
 {
 	RenderPower();
-	//RenderRing();
+
+	RenderRing();
 	
 	if(!CanSwing())
 		return;
