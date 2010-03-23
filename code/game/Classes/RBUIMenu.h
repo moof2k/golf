@@ -38,11 +38,13 @@ public:
 	eMenuResult GetResult() { return m_result; }
 	
 private:
+
+	RudeControl m_ui;
 	
-	RBScoreControl m_scoreControl;
+	RBScoreControl *m_scoreControl;
 	
-	RudeTextControl m_resumeText;
-	RudeTextControl m_quitText;
+	RudeTextControl *m_resumeText;
+	RudeTextControl *m_quitText;
 	
 	float m_bgTimer;
 	eMenuResult m_result;

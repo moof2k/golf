@@ -36,10 +36,10 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 	RGL.EnableClient(kTextureCoordArray, false);
 	
 	GLfloat point[] = {
-		x - 5, y - 15,
-		x - 5, y + 55,
-		x + 300, y + 55,
-		x + 300, y - 15
+		x - 153, y - 15,
+		x - 153, y + 55,
+		x + 153, y + 55,
+		x + 153, y - 15
 	};
 	
 	GLfloat colors[] = {
@@ -54,7 +54,7 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 	glColorPointer(4, GL_FLOAT, 0, colors);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	
-	
+	x -= 147;
 	
 	Printf(x, y + kLineSpacing, FONT_ALIGN_LEFT, kScoreColorNormal, "Par", 0);
 	Printf(x, y + kLineSpacing * 2.0f, FONT_ALIGN_LEFT, kScoreColorNormal, "Strokes", 0);
@@ -132,18 +132,21 @@ void RBScoreControl::Render()
 	RudeControl::Render();
 	
 	int centery = (m_rect.m_bottom - m_rect.m_top) / 2;
-	
+
+	// 295 pixels wide
+	int centerx = (m_rect.m_right - m_rect.m_left) / 2;
+
 	switch(m_holeSet)
 	{
 		case kCourseAll18:
-			RenderScoreBoard(13, centery - 80, 0);
-			RenderScoreBoard(13, centery + 20, 9);
+			RenderScoreBoard(centerx, centery - 80, 0);
+			RenderScoreBoard(centerx, centery + 20, 9);
 			break;
 		case kCourseFront9:
-			RenderScoreBoard(13, centery, 0);
+			RenderScoreBoard(centerx, centery, 0);
 			break;
 		case kCourseBack9:
-			RenderScoreBoard(13, centery, 9);
+			RenderScoreBoard(centerx, centery, 9);
 			break;
 	}
 }

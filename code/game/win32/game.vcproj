@@ -999,6 +999,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Data\menu_ipad.ui"
+				>
+			</File>
+			<File
+				RelativePath="..\Data\menu_iphone.ui"
+				>
+			</File>
+			<File
 				RelativePath="..\Data\title_iphone.ui"
 				>
 			</File>
