@@ -96,35 +96,6 @@ RudeControl * RudeControl::GetChildControl(const std::string &name)
 	return 0;
 }
 
-
-RudeTextControl * RudeControl::GetChildTextControl(const std::string &name)
-{
-	RudeTextControl *child = dynamic_cast<RudeTextControl *>(GetChildControl(name));
-
-	RUDE_ASSERT(child, "Child control '%s' not of expected type RudeTextControl", name.c_str());
-
-	return child;
-}
-
-RudeButtonControl * RudeControl::GetChildButtonControl(const std::string &name)
-{
-	RudeButtonControl *child = dynamic_cast<RudeButtonControl *>(GetChildControl(name));
-
-	RUDE_ASSERT(child, "Child control '%s' not of expected type RudeButtonControl", name.c_str());
-
-	return child;
-}
-
-RudeButtonAnimControl * RudeControl::GetChildButtonAnimControl(const std::string &name)
-{
-	RudeButtonAnimControl *child = dynamic_cast<RudeButtonAnimControl *>(GetChildControl(name));
-
-	RUDE_ASSERT(child, "Child control '%s' not of expected type RudeButtonAnimControl", name.c_str());
-
-	return child;
-}
-
-
 bool RudeControl::Contains(const RudeScreenVertex &p)
 {
 	return m_rect.Contains(p);

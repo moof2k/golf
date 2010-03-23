@@ -206,7 +206,7 @@ private:
 	
 	RudeTextControl *m_guidePowerText;
 	
-	RBScoreControl m_scoreControl;
+	RBScoreControl *m_scoreControl;
 	
 	bool m_guideScreenCalc;
 	RudeScreenVertex m_guideScreenPoint;

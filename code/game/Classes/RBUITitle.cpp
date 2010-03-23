@@ -39,10 +39,10 @@ RBUITitle::RBUITitle()
 
 	m_ui.Load("title_iphone");
 	
-	m_logo = m_ui.GetChildButtonControl("logo");
-	m_rangeMedallion = m_ui.GetChildButtonControl("rangeMedallion");
-	m_courseMedallion = m_ui.GetChildButtonControl("courseMedallion");
-	m_courseSplash = m_ui.GetChildButtonControl("courseSplash");
+	m_logo = m_ui.GetChildControl<RudeButtonControl>("logo");
+	m_rangeMedallion = m_ui.GetChildControl<RudeButtonControl>("rangeMedallion");
+	m_courseMedallion = m_ui.GetChildControl<RudeButtonControl>("courseMedallion");
+	m_courseSplash = m_ui.GetChildControl<RudeButtonControl>("courseSplash");
 
 	
 	m_scoreControl.SetAnimType(kAnimPopSlide);
@@ -75,21 +75,21 @@ RBUITitle::RBUITitle()
 		m_courseButtons[i].m_completed = false;
 	}
 	
-	m_startText = m_ui.GetChildTextControl("startText");
-	m_practiceText = m_ui.GetChildTextControl("practiceText");
-	m_settingsText = m_ui.GetChildTextControl("settingsText");
-	m_goText = m_ui.GetChildTextControl("goText");
-	m_backText = m_ui.GetChildTextControl("backText");
+	m_startText = m_ui.GetChildControl<RudeTextControl>("startText");
+	m_practiceText = m_ui.GetChildControl<RudeTextControl>("practiceText");
+	m_settingsText = m_ui.GetChildControl<RudeTextControl>("settingsText");
+	m_goText = m_ui.GetChildControl<RudeTextControl>("goText");
+	m_backText = m_ui.GetChildControl<RudeTextControl>("backText");
 	
-	m_copyrightText = m_ui.GetChildTextControl("copyrightText");
-	m_tournamentText = m_ui.GetChildTextControl("tournamentText");
-	m_courseNameText = m_ui.GetChildTextControl("courseNameText");
-	m_courseSubnameText = m_ui.GetChildTextControl("courseSubnameText");
-	m_courseDescText = m_ui.GetChildTextControl("courseDescText");
-	m_scoreText = m_ui.GetChildTextControl("scoreText");
-	m_scoreDesc = m_ui.GetChildTextControl("scoreDesc");
-	m_settingsTitleText = m_ui.GetChildTextControl("settingsTitleText");
-	m_musicToggle = m_ui.GetChildTextControl("musicToggle");
+	m_copyrightText = m_ui.GetChildControl<RudeTextControl>("copyrightText");
+	m_tournamentText = m_ui.GetChildControl<RudeTextControl>("tournamentText");
+	m_courseNameText = m_ui.GetChildControl<RudeTextControl>("courseNameText");
+	m_courseSubnameText = m_ui.GetChildControl<RudeTextControl>("courseSubnameText");
+	m_courseDescText = m_ui.GetChildControl<RudeTextControl>("courseDescText");
+	m_scoreText = m_ui.GetChildControl<RudeTextControl>("scoreText");
+	m_scoreDesc = m_ui.GetChildControl<RudeTextControl>("scoreDesc");
+	m_settingsTitleText = m_ui.GetChildControl<RudeTextControl>("settingsTitleText");
+	m_musicToggle = m_ui.GetChildControl<RudeTextControl>("musicToggle");
 	
 	
 	if(RudeSound::GetInstance()->GetMusicOn())

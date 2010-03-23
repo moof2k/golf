@@ -150,48 +150,47 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 #endif
 	
 	// score control
-	m_scoreControl.SetRect(RudeRect(0,0,480,320));
-	m_scoreControl.SetActiveHole(m_holeNum, holeset);
+	m_scoreControl = m_ui.GetChildControl<RBScoreControl>("scoreControl");
 	
 	// stroke/status controls
 	
-	m_holeText = m_ui.GetChildTextControl("holeText");
+	m_holeText = m_ui.GetChildControl<RudeTextControl>("holeText");
 	m_holeText->SetFormat(kIntValue, "%d");
 	m_holeText->SetValue(((float) (m_holeNum + 1)));
 	
 	
-	m_parText = m_ui.GetChildTextControl("parText");
+	m_parText = m_ui.GetChildControl<RudeTextControl>("parText");
 	m_parText->SetFormat(kIntValue, "PAR %d");
 	
-	m_remainingDistText = m_ui.GetChildTextControl("remainingDistText");
+	m_remainingDistText = m_ui.GetChildControl<RudeTextControl>("remainingDistText");
 	m_remainingDistText->SetFormat(kIntValue, "%d yds");
 	
-	m_strokeText = m_ui.GetChildTextControl("strokeText");
+	m_strokeText = m_ui.GetChildControl<RudeTextControl>("strokeText");
 	m_strokeText->SetFormat(kIntValue, "Stroke %d");
 	
-	m_scoreText = m_ui.GetChildTextControl("scoreText");
+	m_scoreText = m_ui.GetChildControl<RudeTextControl>("scoreText");
 	m_scoreText->SetFormat(kSignedIntValue, "%s");
 	
-	m_clubDistText = m_ui.GetChildTextControl("clubDistText");
+	m_clubDistText = m_ui.GetChildControl<RudeTextControl>("clubDistText");
 	m_clubDistText->SetFormat(kIntValue, "%d yds");
 	
-	m_powerRangeText = m_ui.GetChildTextControl("powerRangeText");
+	m_powerRangeText = m_ui.GetChildControl<RudeTextControl>("powerRangeText");
 	
-	m_windText = m_ui.GetChildTextControl("windText");
+	m_windText = m_ui.GetChildControl<RudeTextControl>("windText");
 	m_windText->SetFormat(kIntValue, "%d mph");
 	
-	m_shotEncouragementText = m_ui.GetChildTextControl("shotEncouragementText");
+	m_shotEncouragementText = m_ui.GetChildControl<RudeTextControl>("shotEncouragementText");
 	
-	m_shotDistText = m_ui.GetChildTextControl("shotDistText");
+	m_shotDistText = m_ui.GetChildControl<RudeTextControl>("shotDistText");
 	m_shotDistText->SetFormat(kIntValue, "%d yds");
 	
-	m_shotPowerText = m_ui.GetChildTextControl("shotPowerText");
+	m_shotPowerText = m_ui.GetChildControl<RudeTextControl>("shotPowerText");
 	m_shotPowerText->SetFormat(kIntValue, "%d %% Power");
 	
-	m_shotAngleText = m_ui.GetChildTextControl("shotAngleText");
+	m_shotAngleText = m_ui.GetChildControl<RudeTextControl>("shotAngleText");
 	m_shotAngleText->SetFormat(kIntValue, "%d %% Angle");
 	
-	m_guidePowerText = m_ui.GetChildTextControl("guidePowerText");
+	m_guidePowerText = m_ui.GetChildControl<RudeTextControl>("guidePowerText");
 	m_guidePowerText->SetFormat(kIntValue, "%d yds");
 
 						  
@@ -199,14 +198,14 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	
 	
-	m_botBarBg = m_ui.GetChildButtonControl("botBarBg");
+	m_botBarBg = m_ui.GetChildControl<RudeButtonControl>("botBarBg");
 	
 	
 	m_swingControl.SetGolfer(&m_golfer);
 	
 	// patch up swing button textures
 
-	m_swingButton = m_ui.GetChildButtonAnimControl("swingButton");
+	m_swingButton = m_ui.GetChildControl<RudeButtonAnimControl>("swingButton");
 	
 	int numframes = sizeof(gSwingButtonAnimData) / sizeof(tRudeButtonAnimKeyframe);
 	for(int i = 0; i < numframes; i++)
@@ -225,8 +224,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_swingButton->SetAnimData(gSwingButtonAnimData, numframes);
 	
-	m_moveButton = m_ui.GetChildButtonControl("moveButton");
-	m_menuButton = m_ui.GetChildButtonControl("menuButton");
+	m_moveButton = m_ui.GetChildControl<RudeButtonControl>("moveButton");
+	m_menuButton = m_ui.GetChildControl<RudeButtonControl>("menuButton");
 	
 	m_guideIndicatorButton.SetTexture("guide");
 	m_placementGuideIndicatorButton.SetTexture("guide");
@@ -235,12 +234,12 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_swingCamYaw = 0.0f;
 	
 	
-	m_prevClubButton = m_ui.GetChildButtonControl("prevClubButton");
-	m_clubButton = m_ui.GetChildButtonControl("clubButton");
-	m_nextClubButton = m_ui.GetChildButtonControl("nextClubButton");
+	m_prevClubButton = m_ui.GetChildControl<RudeButtonControl>("prevClubButton");
+	m_clubButton = m_ui.GetChildControl<RudeButtonControl>("clubButton");
+	m_nextClubButton = m_ui.GetChildControl<RudeButtonControl>("nextClubButton");
 	
-	m_helpButton = m_ui.GetChildButtonControl("helpButton");
-	m_cameraButton = m_ui.GetChildButtonControl("cameraButton");
+	m_helpButton = m_ui.GetChildControl<RudeButtonControl>("helpButton");
+	m_cameraButton = m_ui.GetChildControl<RudeButtonControl>("cameraButton");
 	
 	if(restorestate)
 	{
@@ -1768,7 +1767,7 @@ void RBTGame::Render(float aspect)
 				break;
 				
 			case kStateBallInHole:
-				m_scoreControl.Render();
+				m_scoreControl->Render();
 				RenderShotInfo(false, false);
 				break;
 		}

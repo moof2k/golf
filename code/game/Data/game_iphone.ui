@@ -36,3 +36,6 @@ RudeButtonControl	nextClubButton	ui_clubnext	{-1, -1}	{436, 121, 480, 153}	none
 
 RudeButtonControl	cameraButton	ui_camera	{-1, -1}	{0, 120, 44, 200}	none
 RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 195, 44, 255}	none
+
+RBScoreControl	scoreControl	{0,0,480,320}
+

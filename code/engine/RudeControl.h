@@ -43,9 +43,15 @@ public:
 
 	RudeControl * GetChildControl(const std::string &name);
 
-	RudeTextControl * GetChildTextControl(const std::string &name);
-	RudeButtonControl * GetChildButtonControl(const std::string &name);
-	RudeButtonAnimControl * GetChildButtonAnimControl(const std::string &name);
+	template <typename T>
+	T * GetChildControl(const std::string &name)
+	{
+		T *child = dynamic_cast<T *>(GetChildControl(name));
+
+		RUDE_ASSERT(child, "Child control '%s' not of expected type", name.c_str());
+
+		return child;
+	}
 	
 	virtual void SetRect(const RudeRect &r) { m_rect = r; }
 	

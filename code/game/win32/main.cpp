@@ -49,6 +49,9 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
 
 	windowHeight = height;
 	windowWidth = width;
+
+	RGL.SetDeviceHeight(windowHeight);
+	RGL.SetDeviceWidth(windowWidth);
 }
 
 int InitGL(GLvoid)										// All Setup For OpenGL Goes Here
@@ -463,7 +466,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	*/
 
 	// Create Our OpenGL Window
-	if (!CreateGLWindow(kWindowTitle, windowWidth, windowHeight, 16, fullscreen))
+	if (!CreateGLWindow(kWindowTitle, windowWidth, windowHeight, 32, fullscreen))
 	{
 		return 0;
 	}
