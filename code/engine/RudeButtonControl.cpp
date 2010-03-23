@@ -180,3 +180,48 @@ void RudeButtonControl::Render()
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 
+/**
+ * RudeButtonControl factory assistant for RudeControl.  This is called by RudeControl::Load()
+ */
+RudeControl * ConstructButtonControl(std::list<std::string> &tokens, const std::string &originalDesc)
+{
+	RudeButtonControl *c = new RudeButtonControl();
+	RUDE_ASSERT(c, "Failed to construct control");
+
+	// Texture
+	std::string texture = RudeControl::PopToken(tokens, originalDesc, "texture");
+
+	// Texture Offset
+	std::string textureoffsets = RudeControl::PopToken(tokens, originalDesc, "texture offsets");
+	int offx = 0, offy = 0;
+	RudeControl::ParseOffset(textureoffsets, offx, offy);
+
+	c->SetTexture(texture.c_str(), offx, offy);
+
+	// Rect {t,l,b,r}
+	std::string rectstr = RudeControl::PopToken(tokens, originalDesc, "rect");
+
+	RudeRect rect;
+	RudeControl::ParseRect(rectstr, rect);
+	c->SetRect(rect);
+
+	// Position Animation
+	std::string anim = RudeControl::PopToken(tokens, originalDesc, "animation");
+
+	if(anim == "none")
+		c->SetAnimType(kAnimNone);
+	else if(anim == "constant")
+		c->SetAnimType(kAnimConstant);
+	else if(anim == "popslide")
+		c->SetAnimType(kAnimPopSlide);
+	else
+	{
+		RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
+	}
+
+	return c;
+}
+
+RudeControlRegistration buttonRegistration("RudeButtonControl", ConstructButtonControl);
+
+

@@ -15,7 +15,6 @@
 #include "RudeButtonControl.h"
 #include "RudeButtonAnimControl.h"
 
-#include <list>
 
 RudeControl::RudeControl()
 : m_rect(0,0,0,0)
@@ -236,195 +235,9 @@ void RudeControl::ConstructChild(char *desc)
 	// Construct the control based on it's type
 	RudeControl *control = 0;
 
-	if(type == "Text")
-	{
-		RudeTextControl *c = new RudeTextControl();
-		RUDE_ASSERT(c, "Failed to construct control");
-
-		// Text (content) of RudeTextControl
-		std::string text = PopToken(tokens, originalDesc, "text");
-		c->SetText(text.c_str());
-
-		// Alignment
-		std::string alignment = PopToken(tokens, originalDesc, "alignment");
-
-		bool loadposition = true;
-
-		if(alignment == "center")
-		{
-			c->SetAlignment(RudeTextControl::kAlignCenter);
-			loadposition = false;
-
-			// Rect {t,l,b,r}
-			std::string rectstr = PopToken(tokens, originalDesc, "rect");
-
-			RudeRect rect;
-			ParseRect(rectstr, rect);
-			c->SetRect(rect);
-		}
-		else if(alignment == "left")
-			c->SetAlignment(RudeTextControl::kAlignLeft);
-		else if(alignment == "right")
-			c->SetAlignment(RudeTextControl::kAlignRight);
-		else if(alignment == "justify")
-			c->SetAlignment(RudeTextControl::kAlignJustify);
-		else
-		{
-			RUDE_ASSERT(0, "Expected alignment field (center, left, right, justify), got %s", alignment.c_str());
-		}
-
-		if(loadposition)
-		{
-			// Position
-			std::string offset = PopToken(tokens, originalDesc, "offset");
-			int offx = 0, offy = 0;
-			ParseOffset(offset, offx, offy);
-
-			c->SetPosition(offx, offy);
-		}
-
-		// Font
-		std::string font = PopToken(tokens, originalDesc, "font");
-
-		if(font == "default")
-			c->SetFont(kDefaultFont);
-		else if(font == "big")
-			c->SetFont(kBigFont);
-		else
-		{
-			RUDE_ASSERT(0, "Expected font field (default, big), got %s", font.c_str());
-		}
-
-		// Style
-		std::string style = PopToken(tokens, originalDesc, "style");
-
-		if(style == "none")
-			c->SetStyle(kNoStyle);
-		else if(style == "outline")
-			c->SetStyle(kOutlineStyle);
-		else
-		{
-			RUDE_ASSERT(0, "Expected style field (none, outline), got %s", style.c_str());
-		}
-
-		// Animation
-		std::string anim = PopToken(tokens, originalDesc, "animation");
-
-		if(anim == "none")
-			c->SetAnimType(kAnimNone);
-		else if(anim == "constant")
-			c->SetAnimType(kAnimConstant);
-		else if(anim == "popslide")
-			c->SetAnimType(kAnimPopSlide);
-		else
-		{
-			RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
-		}
-
-		// Colors are optional and are parsed in this order:
-		// color0-top color0-bottom
-		// color1-top color1-bottom
-		
-		int colorindex = 0;
-		while(tokens.size() >= 2)
-		{
-			std::string colortopstr = tokens.front();
-			tokens.pop_front();
-
-			std::string colorbottomstr = tokens.front();
-			tokens.pop_front();
-
-			unsigned int colortop = 0;
-			ParseColor(colortopstr, colortop);
-
-			unsigned int colorbottom = 0;
-			ParseColor(colorbottomstr, colorbottom);
-
-			c->SetColors(colorindex, colortop, colorbottom);
-
-			colorindex++;
-		}
-
-		RUDE_ASSERT(tokens.size() == 0, "TextControl string contains extraneous tokens %s", originalDesc.c_str());
-
-		control = c;
-	}
-	else if(type == "Button")
-	{
-		RudeButtonControl *c = new RudeButtonControl();
-		RUDE_ASSERT(c, "Failed to construct control");
-
-		// Texture
-		std::string texture = PopToken(tokens, originalDesc, "texture");
-
-		// Texture Offset
-		std::string textureoffsets = PopToken(tokens, originalDesc, "texture offsets");
-		int offx = 0, offy = 0;
-		ParseOffset(textureoffsets, offx, offy);
-
-		c->SetTexture(texture.c_str(), offx, offy);
-
-		// Rect {t,l,b,r}
-		std::string rectstr = PopToken(tokens, originalDesc, "rect");
-
-		RudeRect rect;
-		ParseRect(rectstr, rect);
-		c->SetRect(rect);
-
-		// Position Animation
-		std::string anim = PopToken(tokens, originalDesc, "animation");
-
-		if(anim == "none")
-			c->SetAnimType(kAnimNone);
-		else if(anim == "constant")
-			c->SetAnimType(kAnimConstant);
-		else if(anim == "popslide")
-			c->SetAnimType(kAnimPopSlide);
-		else
-		{
-			RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
-		}
-
-		control = c;
-	}
-	else if(type == "ButtonAnim")
-	{
-		RudeButtonAnimControl *c = new RudeButtonAnimControl();
-		RUDE_ASSERT(c, "Failed to construct control");
-
-		// Texture
-		std::string texture = PopToken(tokens, originalDesc, "texture");
-
-		// Texture Offset
-		std::string textureoffsets = PopToken(tokens, originalDesc, "texture offsets");
-		int offx = 0, offy = 0;
-		ParseOffset(textureoffsets, offx, offy);
-
-		c->SetTexture(texture.c_str(), offx, offy);
-
-		// Rect {t,l,b,r}
-		std::string rectstr = PopToken(tokens, originalDesc, "rect");
-
-		RudeRect rect;
-		ParseRect(rectstr, rect);
-		c->SetRect(rect);
-
-		// Position Animation
-		std::string anim = PopToken(tokens, originalDesc, "animation");
-
-		if(anim == "none")
-			c->SetAnimType(kAnimNone);
-		else if(anim == "constant")
-			c->SetAnimType(kAnimConstant);
-		else if(anim == "popslide")
-			c->SetAnimType(kAnimPopSlide);
-		else
-		{
-			RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
-		}
-
-		control = c;
-	}
+	ConstructRudeControlFuncPtr funcptr = RudeControlRegistration::GetConstructor(type);
+	
+	control = (*funcptr)(tokens, originalDesc);
 	
 	RUDE_ASSERT(control, "Failed to create Control type: %s", type.c_str());
 
@@ -435,7 +248,7 @@ void RudeControl::ConstructChild(char *desc)
 
 }
 
-std::string RudeControl::PopToken(std::list<std::string> &tokens, std::string &desc, const std::string &explanation)
+std::string RudeControl::PopToken(std::list<std::string> &tokens, const std::string &desc, const std::string &explanation)
 {
 	RUDE_ASSERT(tokens.size() > 0, "Invalid description: '%s', Expected %s", desc.c_str(), explanation.c_str());
 	std::string token = tokens.front();

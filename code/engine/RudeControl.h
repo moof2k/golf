@@ -16,6 +16,7 @@
 #include <vector>
 #include <string>
 #include <list>
+#include <map>
 
 typedef enum {
 	kAnimNone,
@@ -23,9 +24,12 @@ typedef enum {
 	kAnimPopSlide
 } eAnimType;
 
+class RudeControl;
 class RudeTextControl;
 class RudeButtonControl;
 class RudeButtonAnimControl;
+
+typedef RudeControl * (*ConstructRudeControlFuncPtr)(std::list<std::string> &, const std::string &);
 
 class RudeControl 
 {
@@ -64,14 +68,14 @@ public:
 	void SetAnimSpeed(float f) { m_animSpeed = f; }
 	void SetAnimType(eAnimType at) { m_animType = at; }
 
-	static std::string PopToken(std::list<std::string> &tokens, std::string &desc, const std::string &explanation);
+	static std::string PopToken(std::list<std::string> &tokens, const std::string &desc, const std::string &explanation);
+	static void ParseRect(std::string &str, RudeRect &rect);
+	static void ParseOffset(std::string &str, int &offx, int &offy);
+	static void ParseColor(std::string &str, unsigned int &color);
 	
 protected:
 
 	void ConstructChild(char *desc);
-	void ParseRect(std::string &str, RudeRect &rect);
-	void ParseOffset(std::string &str, int &offx, int &offy);
-	void ParseColor(std::string &str, unsigned int &color);
 
 	std::vector<RudeControl *> m_children;
 
@@ -89,6 +93,50 @@ protected:
 	btVector3 m_desiredTranslation;
 	float m_animSpeed;
 	eAnimType m_animType;
+
+};
+
+
+class RudeControlRegistration
+{
+public:
+	typedef std::map<std::string, ConstructRudeControlFuncPtr> tConstructorList;
+
+	RudeControlRegistration(const std::string &name, ConstructRudeControlFuncPtr regfunc)
+	{
+		tConstructorList &list = GetConstructorList();
+
+		std::map<std::string, ConstructRudeControlFuncPtr>::iterator constructor = list.find(name);
+
+		RUDE_ASSERT(constructor == list.end(), "Two duplicate constructors for %s are being registered.. not OK", name.c_str());
+
+		list[name] = regfunc;
+	}
+
+	static ConstructRudeControlFuncPtr GetConstructor(const std::string &name)
+	{
+		tConstructorList &list = GetConstructorList();
+
+		std::map<std::string, ConstructRudeControlFuncPtr>::iterator constructor = list.find(name);
+
+		RUDE_ASSERT(constructor != list.end(), "Constructor for type %s not found", name.c_str());
+
+		return constructor->second;
+	}
+
+private:
+
+	static tConstructorList & GetConstructorList()
+	{
+		static tConstructorList *list = 0;
+
+		if(list == 0)
+		{
+			list = new tConstructorList();
+		}
+
+		return *list;
+	}
 };
 
 #endif

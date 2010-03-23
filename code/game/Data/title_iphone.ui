@@ -1,27 +1,27 @@
 # Title UI
 
-Button	logo	logo	{94, 133}	{60, 0, 300, 320}	popslide
-Button	rangeMedallion	ui_bucketoballz	{-1,-1}	{80, 0, 356, 320}	popslide
-Button	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{0, 160, 356, 320}	popslide
-Button	courseSplash	ui_wreath_gold	{-1,-1}	{200, 0, 300, 240}	popslide
+RudeButtonControl	logo	logo	{94, 133}	{60, 0, 300, 320}	popslide
+RudeButtonControl	rangeMedallion	ui_bucketoballz	{-1,-1}	{80, 0, 356, 320}	popslide
+RudeButtonControl	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{0, 160, 356, 320}	popslide
+RudeButtonControl	courseSplash	ui_wreath_gold	{-1,-1}	{200, 0, 300, 240}	popslide
 
-Text	startText	Play	center	{320, 0, 350, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-Text	practiceText	Practice	center	{360, 0, 390, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-Text	settingsText	Options	center	{400, 0, 430, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	startText	Play	center	{320, 0, 350, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	practiceText	Practice	center	{360, 0, 390, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	settingsText	Options	center	{400, 0, 430, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-Text	goText	Start	center	{400, 0, 420, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-Text	backText	Back	center	{440, 0, 460, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-Text	copyrightText	Copyright © 2009 Bork 3D LLC	center	{463, 0, 480, 320}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	goText	Start	center	{400, 0, 420, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	backText	Back	center	{440, 0, 460, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	copyrightText	Copyright © 2009 Bork 3D LLC	center	{463, 0, 480, 320}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-Text	tournamentText	Select Tournament	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
-Text	courseNameText	Golf Course	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	tournamentText	Select Tournament	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseNameText	Golf Course	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-Text	courseSubnameText	Amateur Invitational	center	{60, 0, 80, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
-Text	courseDescText	Front 9 / Short Tee	center	{80, 0, 100, 320}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseSubnameText	Amateur Invitational	center	{60, 0, 80, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseDescText	Front 9 / Short Tee	center	{80, 0, 100, 320}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-Text	scoreText	+1	center	{400, 0, 420, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-Text	scoreDesc	Congratulations!	center	{440, 0, 460, 320}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	scoreText	+1	center	{400, 0, 420, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	scoreDesc	Congratulations!	center	{440, 0, 460, 320}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-Text	settingsTitleText	Options	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	settingsTitleText	Options	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-Text	musicToggle	Music: On	center	{90, 0, 110, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	musicToggle	Music: On	center	{90, 0, 110, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000

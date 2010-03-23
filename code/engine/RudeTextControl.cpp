@@ -157,4 +157,123 @@ void RudeTextControl::SetText(const char *text)
 }
 
 
+/**
+ * RudeTextControl factory assistant for RudeControl.  This is called by RudeControl::Load()
+ */
+RudeControl * ConstructTextControl(std::list<std::string> &tokens, const std::string &originalDesc)
+{
+	RudeTextControl *c = new RudeTextControl();
+	RUDE_ASSERT(c, "Failed to construct control");
+
+	// Text (content) of RudeTextControl
+	std::string text = RudeControl::PopToken(tokens, originalDesc, "text");
+	c->SetText(text.c_str());
+
+	// Alignment
+	std::string alignment = RudeControl::PopToken(tokens, originalDesc, "alignment");
+
+	bool loadposition = true;
+
+	if(alignment == "center")
+	{
+		c->SetAlignment(RudeTextControl::kAlignCenter);
+		loadposition = false;
+
+		// Rect {t,l,b,r}
+		std::string rectstr = RudeControl::PopToken(tokens, originalDesc, "rect");
+
+		RudeRect rect;
+		RudeControl::ParseRect(rectstr, rect);
+		c->SetRect(rect);
+	}
+	else if(alignment == "left")
+	c->SetAlignment(RudeTextControl::kAlignLeft);
+	else if(alignment == "right")
+	c->SetAlignment(RudeTextControl::kAlignRight);
+	else if(alignment == "justify")
+	c->SetAlignment(RudeTextControl::kAlignJustify);
+	else
+	{
+		RUDE_ASSERT(0, "Expected alignment field (center, left, right, justify), got %s", alignment.c_str());
+	}
+
+	if(loadposition)
+	{
+		// Position
+		std::string offset = RudeControl::PopToken(tokens, originalDesc, "offset");
+		int offx = 0, offy = 0;
+		RudeControl::ParseOffset(offset, offx, offy);
+
+		c->SetPosition(offx, offy);
+	}
+
+	// Font
+	std::string font = RudeControl::PopToken(tokens, originalDesc, "font");
+
+	if(font == "default")
+	c->SetFont(kDefaultFont);
+	else if(font == "big")
+	c->SetFont(kBigFont);
+	else
+	{
+		RUDE_ASSERT(0, "Expected font field (default, big), got %s", font.c_str());
+	}
+
+	// Style
+	std::string style = RudeControl::PopToken(tokens, originalDesc, "style");
+
+	if(style == "none")
+	c->SetStyle(kNoStyle);
+	else if(style == "outline")
+	c->SetStyle(kOutlineStyle);
+	else
+	{
+		RUDE_ASSERT(0, "Expected style field (none, outline), got %s", style.c_str());
+	}
+
+	// Animation
+	std::string anim = RudeControl::PopToken(tokens, originalDesc, "animation");
+
+	if(anim == "none")
+	c->SetAnimType(kAnimNone);
+	else if(anim == "constant")
+	c->SetAnimType(kAnimConstant);
+	else if(anim == "popslide")
+	c->SetAnimType(kAnimPopSlide);
+	else
+	{
+		RUDE_ASSERT(0, "Expected anim field (none, constant, popslide), got %s", anim.c_str());
+	}
+
+	// Colors are optional and are parsed in this order:
+	// color0-top color0-bottom
+	// color1-top color1-bottom
+
+	int colorindex = 0;
+	while(tokens.size() >= 2)
+	{
+		std::string colortopstr = tokens.front();
+		tokens.pop_front();
+
+		std::string colorbottomstr = tokens.front();
+		tokens.pop_front();
+
+		unsigned int colortop = 0;
+		RudeControl::ParseColor(colortopstr, colortop);
+
+		unsigned int colorbottom = 0;
+		RudeControl::ParseColor(colorbottomstr, colorbottom);
+
+		c->SetColors(colorindex, colortop, colorbottom);
+
+		colorindex++;
+	}
+
+	RUDE_ASSERT(tokens.size() == 0, "TextControl string contains extraneous tokens %s", originalDesc.c_str());
+
+	return c;
+}
+
+RudeControlRegistration textRegistration("RudeTextControl", ConstructTextControl);
+
 
