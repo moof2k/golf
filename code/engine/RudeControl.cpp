@@ -287,3 +287,26 @@ void RudeControl::ParseColor(std::string &str, unsigned int &color)
 	RUDE_ASSERT(result == 1, "Failed to parse color (0xAARRGGBB), got %s\n", str.c_str());
 }
 
+
+/**
+ * RudeControl factory assistant for RudeControl.  This is called by RudeControl::Load()
+ * Sometimes all you need is a Control.
+ */
+RudeControl * ConstructControl(std::list<std::string> &tokens, const std::string &originalDesc)
+{
+	RudeControl *c = new RudeControl();
+	RUDE_ASSERT(c, "Failed to construct control");
+
+	// Rect {t,l,b,r}
+	std::string rectstr = RudeControl::PopToken(tokens, originalDesc, "rect");
+
+	RudeRect rect;
+	RudeControl::ParseRect(rectstr, rect);
+	c->SetRect(rect);
+
+	return c;
+}
+
+RudeControlRegistration controlRegistration("RudeControl", ConstructControl);
+
+
