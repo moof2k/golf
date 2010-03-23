@@ -273,9 +273,7 @@ void RBTGame::SetupUI()
 	int paroffx = 0;
 	if(m_holeNum + 1 >= 10)
 		paroffx += 16;
-		
-	int bottomBarTop = 480 - 44;
-	int bottomBarBot = 480;
+
 
 	const int kGuideAdjustSize = 32;
 		
@@ -283,11 +281,7 @@ void RBTGame::SetupUI()
 	{
 		m_swingCamAdjust.SetRect(RudeRect(80, 0, 320 - 80, 480));
 		
-		bottomBarTop = 320 - 44;
-		bottomBarBot = 320;
-		
 		m_guideAdjust.SetRect(RudeRect(160 - kGuideAdjustSize, 240 - kGuideAdjustSize, 160 + kGuideAdjustSize, 240 + kGuideAdjustSize));
-		
 	}
 	else
 	{
