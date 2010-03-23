@@ -31,6 +31,8 @@ RudeGL::RudeGL()
 , m_lookAt(0,0,1)
 , m_forward(0,0,1)
 , m_landscape(false)
+, m_deviceHeight(480.0f)
+, m_deviceWidth(320.0f)
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
 		m_enables[i] = false;
@@ -58,9 +60,9 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	
 
 	if(GetLandscape())
-		glViewport(320 - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+		glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
 	else
-		glViewport(m_viewport.m_left, 480 - m_viewport.m_bottom, screenx, screeny);
+		glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
 #else
 	
 	m_viewport.m_top = top;
@@ -70,7 +72,7 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	float screenx = right - left;
 	float screeny = bottom - top;
 	
-	glViewport(0, 0, screenx, screeny);
+	glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
 #endif
 }
 
@@ -389,22 +391,22 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	
 	if(GetLandscape())
 	{
-		in[0]=320 - point.y();
-		in[1]=point.x();
+		in[0] = m_deviceWidth - point.y();
+		in[1] = point.x();
 	}
 	else
 	{
-		in[0]=point.x();
-		in[1]=point.y();
+		in[0] = point.x();
+		in[1] = point.y();
 	}
 	
-    in[2]=1.0f;
-    in[3]=1.0f;
+    in[2] = 1.0f;
+    in[3] = 1.0f;
 	
 	
     /* Map x and y from window coordinates */
-    in[0] = (in[0] - 0.0f) / 320.0f;
-    in[1] = (in[1] - 0.0f) / 480.0f;
+    in[0] = (in[0] - 0.0f) / m_deviceWidth;
+    in[1] = (in[1] - 0.0f) / m_deviceHeight;
 	
     /* Map to range -1 to 1 */
     in[0] = in[0] * 2 - 1;

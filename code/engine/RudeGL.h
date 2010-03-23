@@ -46,7 +46,6 @@ public:
 	RudeGL();
 	~RudeGL(void);
 
-
 	void SetViewport(int top, int left, int bottom, int right);
 	void Ortho(float ox, float oy, float oz, float w, float h, float d);
 	void Frustum(float ox, float oy, float w, float h, float near, float far);
@@ -81,6 +80,9 @@ public:
 	void SetLandscape(bool landscape) { m_landscape = landscape; }
 	bool GetLandscape() { return m_landscape; }
 
+	void SetDeviceHeight(float h) { m_deviceHeight = h; }
+	void SetDeviceWidth(float w) { m_deviceWidth = w; }
+
 private:
 	
 	float m_viewmat[16];
@@ -97,6 +99,8 @@ private:
 	float m_near;
 	
 	bool m_landscape;
+	float m_deviceHeight;
+	float m_deviceWidth;
 	
 };
 
