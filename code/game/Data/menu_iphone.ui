@@ -1,7 +1,7 @@
 # Pause menu - iPhone version
 
-RudeTextControl	resumeText	Resume	center	{370, 0, 390, 480}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-RudeTextControl	quitText	Quit	center	{410, 0, 430, 480}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	resumeText	Resume	center	{370, 0, 390, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	quitText	Quit	center	{410, 0, 430, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
 RBScoreControl	scoreControl	{0, 0, 480, 320}
 
