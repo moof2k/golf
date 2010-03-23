@@ -1,5 +1,7 @@
 #include "ruderegistrywin.h"
 
+#include <WinError.h>
+
 RudeRegistryWin::RudeRegistryWin(void)
 {
 }
@@ -16,7 +18,7 @@ int RudeRegistryWin::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer
 	DWORD bufsize = *buffersize;
 	TCHAR keypath[400];
 
-	_stprintf(keypath, _T("SOFTWARE\\Rude Scotsman\\%s"), app);
+	_stprintf(keypath, _T("SOFTWARE\\Bork3D\\%s"), app);
 
 	LONG result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, keypath,
 						NULL, KEY_ALL_ACCESS, &hkey);
@@ -33,21 +35,28 @@ int RudeRegistryWin::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer
 
 int RudeRegistryWin::SetByte(const TCHAR *app, const TCHAR *name, void *buffer, int buffersize)
 {
-	HKEY hkey;
-	DWORD type = REG_BINARY;
-	DWORD bufsize = buffersize;
-	TCHAR keypath[400];
+	HKEY software_hkey, bork3d_hkey, app_hkey;
 
-	_stprintf(keypath, _T("SOFTWARE\\Rude Scotsman\\%s"), app);
+	DWORD disposition;
+	LONG result = RegCreateKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE"),
+		NULL, NULL, NULL, KEY_ALL_ACCESS, NULL, &software_hkey, &disposition);
+	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to open HKEY_LOCAL_MACHINE\\SOFTWARE - %d", result);
 
-	LONG result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, keypath,
-						NULL, KEY_ALL_ACCESS, &hkey);
-	if(result != ERROR_SUCCESS)
-		return result;
+	result = RegCreateKeyEx(software_hkey, _T("Bork3D"),
+		NULL, NULL, NULL, KEY_ALL_ACCESS, NULL, &bork3d_hkey, &disposition);
+	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to open HKEY_LOCAL_MACHINE\\SOFTWARE\\Bork3D - %d", result);
 
-	result = RegSetValueEx(hkey, name, NULL, type, (LPBYTE) buffer, bufsize);
+	result = RegCreateKeyEx(bork3d_hkey, app,
+		NULL, NULL, NULL, KEY_ALL_ACCESS, NULL, &app_hkey, &disposition);
+	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to open HKEY_LOCAL_MACHINE\\SOFTWARE\\Bork3D\\%s - %d", app, result);
+
+
+	result = RegSetValueEx(app_hkey, name, NULL, REG_BINARY, (LPBYTE) buffer, buffersize);
+	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to write registry key, got error %d", result);
 	
-	RegCloseKey(hkey);
+	RegCloseKey(app_hkey);
+	RegCloseKey(bork3d_hkey);
+	RegCloseKey(software_hkey);
 
-	return result;
+	return 0;
 }
