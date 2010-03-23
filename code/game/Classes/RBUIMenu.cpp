@@ -88,9 +88,9 @@ void RBUIMenu::Render(float width, float height)
 	
 	GLfloat point[] = {
 		0, 0,
-		320, 0,
-		320, 480,
-		0, 480
+		width, 0,
+		width, height,
+		0, height
 	};
 	
 	float alpha = 4.0f * m_bgTimer * 0.5f;
