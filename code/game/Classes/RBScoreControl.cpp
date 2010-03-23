@@ -149,3 +149,21 @@ void RBScoreControl::Render()
 }
 
 
+RudeControl * ConstructRBScoreControl(std::list<std::string> &tokens, const std::string &originalDesc)
+{
+	RBScoreControl *c = new RBScoreControl();
+	RUDE_ASSERT(c, "Failed to construct control");
+
+	// Rect {t,l,b,r}
+	std::string rectstr = RudeControl::PopToken(tokens, originalDesc, "rect");
+
+	RudeRect rect;
+	RudeControl::ParseRect(rectstr, rect);
+	c->SetRect(rect);
+
+	return c;
+}
+
+RudeControlRegistration rbScoreRegistration("RBScoreControl", ConstructRBScoreControl);
+
+
