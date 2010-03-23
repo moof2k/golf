@@ -120,6 +120,8 @@ void RBUITitle::Reset()
 void RBUITitle::SetState(eTitleState state)
 {
 	RUDE_REPORT("RBUITitle::SetState %d => %d\n", m_state, state);
+
+	const float kOffscreenAmount = RGL.GetDeviceWidth() + 80;
 	
 	switch(m_state)
 	{
@@ -134,88 +136,88 @@ void RBUITitle::SetState(eTitleState state)
 			m_practiceText->SetTranslation(btVector3(0,0,0));
 			m_settingsText->SetTranslation(btVector3(0,0,0));
 
-			m_settingsTitleText->SetTranslation(btVector3(400,0,0));
-			m_settingsTitleText->SetDesiredTranslation(btVector3(400,0,0));
-			m_musicToggle->SetTranslation(btVector3(400,0,0));
-			m_musicToggle->SetDesiredTranslation(btVector3(400,0,0));
+			m_settingsTitleText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_settingsTitleText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_musicToggle->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_musicToggle->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
 			
-			m_credits.SetTranslation(btVector3(400,0,0));
-			m_credits.SetDesiredTranslation(btVector3(400,0,0));
+			m_credits.SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_credits.SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_scoreControl.SetTranslation(btVector3(-400,0,0));
-			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreControl.SetTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_scoreControl.SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			
-			m_courseMedallion->SetTranslation(btVector3(400,0,0));
-			m_courseMedallion->SetDesiredTranslation(btVector3(400,0,0));
+			m_courseMedallion->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseMedallion->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_courseSplash->SetTranslation(btVector3(400,0,0));
-			m_courseSplash->SetDesiredTranslation(btVector3(400,0,0));
+			m_courseSplash->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSplash->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_rangeMedallion->SetTranslation(btVector3(400,0,0));
-			m_rangeMedallion->SetDesiredTranslation(btVector3(400,0,0));
+			m_rangeMedallion->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_rangeMedallion->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_backText->SetTranslation(btVector3(400,0,0));
-			m_backText->SetDesiredTranslation(btVector3(400,0,0));
+			m_backText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_backText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_tournamentText->SetTranslation(btVector3(400,0,0));
-			m_tournamentText->SetDesiredTranslation(btVector3(400,0,0));
+			m_tournamentText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_tournamentText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
 			for(int i = 0; i < kNumCourses; i++)
 			{
-				m_courseButtons[i].SetTranslation(btVector3(400,0,0));
-				m_courseButtons[i].SetDesiredTranslation(btVector3(400,0,0));
+				m_courseButtons[i].SetTranslation(btVector3(kOffscreenAmount,0,0));
+				m_courseButtons[i].SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			}
 			
-			m_courseNameText->SetTranslation(btVector3(400,0,0));
-			m_courseSubnameText->SetTranslation(btVector3(400,0,0));
-			m_courseDescText->SetTranslation(btVector3(400,0,0));
-			m_courseNameText->SetDesiredTranslation(btVector3(400,0,0));
-			m_courseSubnameText->SetDesiredTranslation(btVector3(400,0,0));
-			m_courseDescText->SetDesiredTranslation(btVector3(400,0,0));
+			m_courseNameText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSubnameText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseDescText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseNameText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSubnameText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseDescText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_goText->SetTranslation(btVector3(400,0,0));
-			m_goText->SetDesiredTranslation(btVector3(400,0,0));
+			m_goText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_goText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_scoreText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_scoreDesc->SetDesiredTranslation(btVector3(-400,0,0));
-			m_scoreText->SetTranslation(btVector3(-400,0,0));
-			m_scoreDesc->SetTranslation(btVector3(-400,0,0));
+			m_scoreText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_scoreDesc->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_scoreText->SetTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_scoreDesc->SetTranslation(btVector3(-kOffscreenAmount,0,0));
 						
 			break;
 		case kTitleScoreSummary:
 			RefreshScores();
 			
-			m_scoreControl.SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreControl.SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			
-			m_courseNameText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_courseSubnameText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_courseDescText->SetDesiredTranslation(btVector3(-400,0,0));
+			m_courseNameText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_courseSubnameText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_courseDescText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			
-			m_scoreText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_scoreDesc->SetDesiredTranslation(btVector3(-400,0,0));
+			m_scoreText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_scoreDesc->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			
-			m_courseMedallion->SetDesiredTranslation(btVector3(-400,0,0));
-			m_courseSplash->SetDesiredTranslation(btVector3(-400,0,0));
+			m_courseMedallion->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_courseSplash->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			
 			break;
 		case kTitleSplash:
 			RefreshScores();
 			
-			m_logo->SetDesiredTranslation(btVector3(-400,0,0));
-			m_startText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_practiceText->SetDesiredTranslation(btVector3(-400,0,0));
-			m_settingsText->SetDesiredTranslation(btVector3(-400,0,0));
+			m_logo->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_startText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_practiceText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+			m_settingsText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			m_copyrightText->SetDesiredTranslation(btVector3(0,100,0));
 			
 			break;
 		case kTitleSettings:
 			
-			m_settingsTitleText->SetDesiredTranslation(btVector3(400,0,0));
-			m_musicToggle->SetDesiredTranslation(btVector3(400,0,0));
+			m_settingsTitleText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_musicToggle->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_credits.SetDesiredTranslation(btVector3(400,0,0));
-			m_backText->SetDesiredTranslation(btVector3(400,0,0));
+			m_credits.SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_backText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
 			break;
 		case kTitleCourseSelect:
@@ -227,27 +229,27 @@ void RBUITitle::SetState(eTitleState state)
 				dir = -1.0f;
 			}
 			else
-				m_backText->SetDesiredTranslation(btVector3(dir * 400,0,0));
+				m_backText->SetDesiredTranslation(btVector3(dir * kOffscreenAmount,0,0));
 			
 			for(int i = 0; i < kNumCourses; i++)
 			{
-				m_courseButtons[i].SetDesiredTranslation(btVector3(dir * 400,0,0));
+				m_courseButtons[i].SetDesiredTranslation(btVector3(dir * kOffscreenAmount,0,0));
 			}
 			
-			m_tournamentText->SetDesiredTranslation(btVector3(dir * 400,0,0));
+			m_tournamentText->SetDesiredTranslation(btVector3(dir * kOffscreenAmount,0,0));
 		}
 			break;
 		case kTitleGameOptions:
 			if(state != kTitleReadyToPlay)
 			{
-				m_goText->SetDesiredTranslation(btVector3(400,0,0));
+				m_goText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 				
-				m_courseNameText->SetDesiredTranslation(btVector3(400,0,0));
-				m_courseSubnameText->SetDesiredTranslation(btVector3(400,0,0));
-				m_courseDescText->SetDesiredTranslation(btVector3(400,0,0));
+				m_courseNameText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_courseSubnameText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_courseDescText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 				
-				m_courseMedallion->SetDesiredTranslation(btVector3(400,0,0));
-				m_courseSplash->SetDesiredTranslation(btVector3(400,0,0));
+				m_courseMedallion->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_courseSplash->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			}
 			
 			break;
@@ -255,13 +257,13 @@ void RBUITitle::SetState(eTitleState state)
 		case kTitlePracticeOptions:
 			if(state != kTitleReadyToPractice)
 			{
-				m_courseNameText->SetDesiredTranslation(btVector3(400,0,0));
+				m_courseNameText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 				
-				m_rangeMedallion->SetDesiredTranslation(btVector3(400,0,0));
+				m_rangeMedallion->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			}
 			
-			m_goText->SetDesiredTranslation(btVector3(400,0,0));
-			m_backText->SetDesiredTranslation(btVector3(400,0,0));
+			m_goText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_backText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			break;
 	}
 	
@@ -285,29 +287,29 @@ void RBUITitle::SetState(eTitleState state)
 				}
 				else
 				{
-					m_courseMedallion->SetTranslation(btVector3(-400,0,0));
-					m_courseSplash->SetTranslation(btVector3(-400,0,0));
+					m_courseMedallion->SetTranslation(btVector3(-kOffscreenAmount,0,0));
+					m_courseSplash->SetTranslation(btVector3(-kOffscreenAmount,0,0));
 					
-					m_courseMedallion->SetDesiredTranslation(btVector3(-400,0,0));
-					m_courseSplash->SetDesiredTranslation(btVector3(-400,0,0));
+					m_courseMedallion->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
+					m_courseSplash->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 				}
 				
-				m_logo->SetTranslation(btVector3(400,0,0));
-				m_startText->SetTranslation(btVector3(400,0,0));
-				m_practiceText->SetTranslation(btVector3(400,0,0));
-				m_settingsText->SetTranslation(btVector3(400,0,0));
+				m_logo->SetTranslation(btVector3(kOffscreenAmount,0,0));
+				m_startText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+				m_practiceText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+				m_settingsText->SetTranslation(btVector3(kOffscreenAmount,0,0));
 				
-				m_logo->SetDesiredTranslation(btVector3(400,0,0));
-				m_startText->SetDesiredTranslation(btVector3(400,0,0));
-				m_practiceText->SetDesiredTranslation(btVector3(400,0,0));
-				m_settingsText->SetDesiredTranslation(btVector3(400,0,0));
+				m_logo->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_startText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_practiceText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+				m_settingsText->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 				
 				m_scoreControl.SetActiveHole(-1, m_courseButtons[m_course].m_holes);
 				m_scoreControl.SetDesiredTranslation(btVector3(0,0,0));
 				
-				m_courseNameText->SetTranslation(btVector3(-400,0,0));
-				m_courseSubnameText->SetTranslation(btVector3(-400,0,0));
-				m_courseDescText->SetTranslation(btVector3(-400,0,0));
+				m_courseNameText->SetTranslation(btVector3(-kOffscreenAmount,0,0));
+				m_courseSubnameText->SetTranslation(btVector3(-kOffscreenAmount,0,0));
+				m_courseDescText->SetTranslation(btVector3(-kOffscreenAmount,0,0));
 				m_courseNameText->SetDesiredTranslation(btVector3(0,0,0));
 				m_courseSubnameText->SetDesiredTranslation(btVector3(0,0,0));
 				m_courseDescText->SetDesiredTranslation(btVector3(0,0,0));
@@ -353,14 +355,14 @@ void RBUITitle::SetState(eTitleState state)
 		case kTitleGameOptions:
 			m_goText->SetDesiredTranslation(btVector3(0,0,0));
 			
-			m_courseMedallion->SetTranslation(btVector3(400,0,0));
-			m_courseSplash->SetTranslation(btVector3(400,0,0));
-			m_courseMedallion->SetDesiredTranslation(btVector3(400,0,0));
-			m_courseSplash->SetDesiredTranslation(btVector3(400,0,0));
+			m_courseMedallion->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSplash->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseMedallion->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSplash->SetDesiredTranslation(btVector3(kOffscreenAmount,0,0));
 			
-			m_courseNameText->SetTranslation(btVector3(400,0,0));
-			m_courseSubnameText->SetTranslation(btVector3(400,0,0));
-			m_courseDescText->SetTranslation(btVector3(400,0,0));
+			m_courseNameText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseSubnameText->SetTranslation(btVector3(kOffscreenAmount,0,0));
+			m_courseDescText->SetTranslation(btVector3(kOffscreenAmount,0,0));
 			m_courseNameText->SetDesiredTranslation(btVector3(0,0,0));
 			m_courseSubnameText->SetDesiredTranslation(btVector3(0,0,0));
 			m_courseDescText->SetDesiredTranslation(btVector3(0,0,0));

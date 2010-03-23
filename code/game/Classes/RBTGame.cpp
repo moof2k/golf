@@ -130,7 +130,24 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_ballCamera.SetBall(&m_ball);
 	m_ballCamera.SetTerrain(&m_terrain);
 
-	m_ui.Load("game_iphone");
+	// Load UI data
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+
+	char displaytype[64];
+	int displaysize = sizeof(displaytype);
+	if(reg->QueryByte("GOLF", "DISPLAY", displaytype, &displaysize) == 0)
+	{
+		std::string displaystr(displaytype);
+
+		if(displaystr == "ipad")
+			m_ui.Load("game_ipad");
+		else
+			m_ui.Load("game_iphone");
+	}
+	else
+	{
+		m_ui.Load("game_iphone");
+	}
 	
 	if(gDebugCamera)
 		m_curCamera = &m_debugCamera;

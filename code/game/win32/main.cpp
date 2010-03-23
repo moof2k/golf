@@ -16,6 +16,7 @@
 #include "RudeFont.h"
 #include "RudeTweaker.h"
 #include "RudeUnitTest.h"
+#include "RudeRegistry.h"
 
 RBGame *gVBGame = 0;
 
@@ -456,6 +457,14 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 {
 	MSG		msg;									// Windows Message Structure
 	BOOL	done=FALSE;								// Bool Variable To Exit Loop
+
+	// Initialize iPad mode
+	RudeRegistry *reg = RudeRegistry::GetSingleton();
+
+	char displaystr[64] = "ipad";
+	int displaysize = sizeof(displaystr);
+	reg->SetByte("GOLF", "DISPLAY", displaystr, displaysize);
+
 
 	// Ask The User Which Screen Mode They Prefer
 	/*

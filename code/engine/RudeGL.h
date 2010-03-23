@@ -81,7 +81,10 @@ public:
 	bool GetLandscape() { return m_landscape; }
 
 	void SetDeviceHeight(float h) { m_deviceHeight = h; }
+	float GetDeviceHeight() { return m_deviceHeight; }
+
 	void SetDeviceWidth(float w) { m_deviceWidth = w; }
+	float GetDeviceWidth() { return m_deviceWidth; }
 
 private:
 	

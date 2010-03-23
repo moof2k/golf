@@ -1,14 +1,4 @@
-# Game UI
-
-# const unsigned int kBallDistanceTopColor = 0xFF666666;
-# const unsigned int kBallDistanceBotColor = 0xFF000000;
-# const unsigned int kBallDistanceOutlineTopColor = 0xFF00FFFF;
-# const unsigned int kBallDistanceOutlineBotColor = 0xFF22FFFF;
-
-# const unsigned int kBallRemainingTopColor = 0xFF666666;
-# const unsigned int kBallRemainingBotColor = 0xFF000000;
-# const unsigned int kBallRemainingOutlineTopColor = 0xFFFFFFFF;
-# const unsigned int kBallRemainingOutlineBotColor = 0xFFFFFFFF;
+# Game UI - iPad Version
 
 RudeTextControl	holeText	1	left	{10, 30}	big	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	parText	PAR 4	left	{30, 20}	default	outline	none	0xFFF69729	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
@@ -41,10 +31,10 @@ RBScoreControl	scoreControl	{0,0,480,320}
 RBSwingControl	swingControl	{0,0,400,320}
 
 # 64x64 square in the center of the screen
-RudeControl	guideAdjust	{208, 128, 272, 192}
+RudeControl	guideAdjust	{480, 352, 544, 416}
 
 # Entire screen minus the top and bottom UI elements
-RudeControl	swingCamAdjust	{80, 0, 400, 320}
+RudeControl	swingCamAdjust	{80, 0, 944, 768}
 
 # iPhone Position
 RBWindControl	windControl	{352, 256, 416, 320}
