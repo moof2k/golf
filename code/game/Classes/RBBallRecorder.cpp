@@ -14,6 +14,8 @@
 RBBallRecorder::RBBallRecorder()
 : m_wrapped(false)
 , m_curBallPosition(0)
+, m_timer(0.0f)
+, m_lastTime(0.0f)
 {
 	m_tracerTexture = RudeTextureManager::GetInstance()->LoadTextureFromPVRTFile("tracer");
 }
@@ -35,22 +37,26 @@ void RBBallRecorder::NextFrame(float delta, bool record)
 {
 	if(!m_ball)
 		return;
+
+	if(delta <= 0.0f)
+		return;
 	
 	m_timer += delta;
 	
 	if(!record)
 		return;
 	
-	//if(m_timer < 0.1f)
-	//	return;
-	
-	//m_timer = 0.0f;
+	float timeDelta = m_timer - m_lastTime;
+	m_lastTime = m_timer;
+
+	if(timeDelta <= 0.0f)
+		return;
 	
 	m_ballPositions[m_curBallPosition].m_position = m_ball->GetPosition();
 	m_ballPositions[m_curBallPosition].m_angVel = m_ball->GetAngularVelocity();
-	m_ballPositions[m_curBallPosition].m_time = m_timer - m_lastTime;
+	m_ballPositions[m_curBallPosition].m_time = timeDelta;
 	
-	m_lastTime = m_timer;
+	
 	
 	m_curBallPosition++;
 	
@@ -90,6 +96,9 @@ void RBBallRecorder::RenderTracers()
 		
 		tracerLen++;
 	}
+
+	if(tracerLen == 0)
+		return;
 	
 	RGL.Enable(kDepthTest, true);
 	
@@ -110,8 +119,20 @@ void RBBallRecorder::RenderTracers()
 	RGL.LoadIdentity();
 	
 	int i = m_curBallPosition - 1;
-	int p = i;
 	int c = tracerLen;
+
+	if(i < 0)
+	{
+		if(m_wrapped)
+			i = kNumBallPositions - 1;
+		else
+			c = 0;
+	}
+
+	int p = i;
+	
+
+	
 	
 	bool first = true;
 	btVector3 b1;
