@@ -38,4 +38,14 @@ RudeButtonControl	cameraButton	ui_camera	{-1, -1}	{0, 120, 44, 200}	none
 RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 195, 44, 255}	none
 
 RBScoreControl	scoreControl	{0,0,480,320}
+RBSwingControl	swingControl	{0,0,400,320}
+
+RudeControl	guideAdjust	{208, 128, 272, 192}
+RudeControl	swingCamAdjust	{80, 0, 400, 320}
+
+# iPhone Position
+RBWindControl	windControl	{352, 256, 416, 320}
+
+# iPad Position
+#RBWindControl	windControl	{896, 704, 960, 768}
 

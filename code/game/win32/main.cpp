@@ -28,8 +28,8 @@ bool keys[256];				// Array Used For The Keyboard Routine
 bool active = true;			// Window Active Flag Set To TRUE By Default
 bool fullscreen = false;	// Fullscreen Flag Set To Fullscreen Mode By Default
 
-int windowWidth = 320;
-int windowHeight = 480;
+int windowWidth = 768;
+int windowHeight = 1024;
 
 const char * kWindowTitle = "Bork3D Game Engine";
 
@@ -50,8 +50,8 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
 	windowHeight = height;
 	windowWidth = width;
 
-	RGL.SetDeviceHeight(windowHeight);
-	RGL.SetDeviceWidth(windowWidth);
+	RGL.SetDeviceHeight((float) windowHeight);
+	RGL.SetDeviceWidth((float) windowWidth);
 }
 
 int InitGL(GLvoid)										// All Setup For OpenGL Goes Here

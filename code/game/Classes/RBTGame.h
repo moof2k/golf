@@ -164,13 +164,13 @@ private:
 	
 	
 	RBBallGuide m_ballGuide;
-	RBSwingControl m_swingControl;
-	RBWindControl m_windControl;
+	RBSwingControl *m_swingControl;
+	RBWindControl *m_windControl;
 	RudeButtonAnimControl *m_swingButton;
 	RudeButtonControl *m_moveButton;
 	RudeButtonControl *m_menuButton;
-	RudeControl m_swingCamAdjust;
-	RudeControl m_guideAdjust;
+	RudeControl *m_swingCamAdjust;
+	RudeControl *m_guideAdjust;
 	float m_swingYaw;
 	float m_swingHeight;
 	float m_swingCamYaw;

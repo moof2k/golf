@@ -80,3 +80,25 @@ void RBWindControl::Render()
 
 
 
+/**
+ * ConstructRBWindControl factory assistant for RudeControl.  This is called by RudeControl::Load()
+ */
+RudeControl * ConstructRBWindControl(std::list<std::string> &tokens, const std::string &originalDesc)
+{
+	RBWindControl *c = new RBWindControl();
+	RUDE_ASSERT(c, "Failed to construct control");
+
+	// Rect {t,l,b,r}
+	std::string rectstr = RudeControl::PopToken(tokens, originalDesc, "rect");
+
+	RudeRect rect;
+	RudeControl::ParseRect(rectstr, rect);
+	c->SetRect(rect);
+
+	return c;
+}
+
+RudeControlRegistration rbWindControlRegistration("RBWindControl", ConstructRBWindControl);
+
+
+

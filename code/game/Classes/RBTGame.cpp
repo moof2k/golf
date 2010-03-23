@@ -200,8 +200,9 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_botBarBg = m_ui.GetChildControl<RudeButtonControl>("botBarBg");
 	
-	
-	m_swingControl.SetGolfer(&m_golfer);
+
+	m_swingControl = m_ui.GetChildControl<RBSwingControl>("swingControl");
+	m_swingControl->SetGolfer(&m_golfer);
 	
 	// patch up swing button textures
 
@@ -240,6 +241,11 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_helpButton = m_ui.GetChildControl<RudeButtonControl>("helpButton");
 	m_cameraButton = m_ui.GetChildControl<RudeButtonControl>("cameraButton");
+
+	m_guideAdjust = m_ui.GetChildControl<RudeControl>("guideAdjust");
+	m_swingCamAdjust = m_ui.GetChildControl<RudeControl>("swingCamAdjust");
+
+	m_windControl = m_ui.GetChildControl<RBWindControl>("windControl");
 	
 	if(restorestate)
 	{
@@ -272,35 +278,13 @@ void RBTGame::SetupUI()
 	int paroffx = 0;
 	if(m_holeNum + 1 >= 10)
 		paroffx += 16;
+		
+	int x, y;
+	m_parText->GetPosition(x, y);
+	m_parText->SetPosition(x + paroffx, y);
 
-
-	const int kGuideAdjustSize = 32;
-		
-	if(m_landscape)
-	{
-		m_swingCamAdjust.SetRect(RudeRect(80, 0, 320 - 80, 480));
-		
-		m_guideAdjust.SetRect(RudeRect(160 - kGuideAdjustSize, 240 - kGuideAdjustSize, 160 + kGuideAdjustSize, 240 + kGuideAdjustSize));
-	}
-	else
-	{
-		m_swingCamAdjust.SetRect(RudeRect(80, 0, 480 - 80, 320));
-	
-		int x, y;
-		m_parText->GetPosition(x, y);
-		m_parText->SetPosition(x + paroffx, y);
-
-		m_remainingDistText->GetPosition(x, y);
-		m_remainingDistText->SetPosition(x + paroffx, y);
-		
-		m_windControl.SetRect(RudeRect(480 - 64 - 64, 320 - 64, 480 - 64, 320));
-		
-		
-		m_swingControl.SetRect(RudeRect(0,0,400,320));
-	
-		
-		m_guideAdjust.SetRect(RudeRect(240 - kGuideAdjustSize, 160 - kGuideAdjustSize, 240 + kGuideAdjustSize, 160 + kGuideAdjustSize));
-	}
+	m_remainingDistText->GetPosition(x, y);
+	m_remainingDistText->SetPosition(x + paroffx, y);
 	
 }
 
@@ -383,7 +367,7 @@ void RBTGame::RestoreState()
 		m_state = kStateHitBall;
 	
 	m_windText->SetValue(m_windSpeed);
-	m_windControl.SetWind(m_windDir, m_windSpeed);
+	m_windControl->SetWind(m_windDir, m_windSpeed);
 	m_ball.SetWind(m_windVec);
 	
 	m_terrain.FinalizeGuidePoints();
@@ -510,7 +494,7 @@ void RBTGame::SetState(eRBTGameState state)
 				m_encouragementTimer = 0.0f;
 				
 				m_terrain.SetEnablePuttingGreen(false);
-				m_swingControl.Reset();
+				m_swingControl->Reset();
 				m_swingHeight = 0.0f;
 				FreshGuide();
 			}
@@ -533,8 +517,8 @@ void RBTGame::SetState(eRBTGameState state)
 					powermultiplier /= 100.0f;
 				}
 				
-				m_swingPower = m_swingControl.GetPower() * powermultiplier;
-				m_swingAngle = m_swingControl.GetAngle() * material.m_penalty_angle;
+				m_swingPower = m_swingControl->GetPower() * powermultiplier;
+				m_swingAngle = m_swingControl->GetAngle() * material.m_penalty_angle;
 				
 				if(m_swingAngle < -1.0f)
 					m_swingAngle = -1.0f;
@@ -676,7 +660,7 @@ void RBTGame::StateTeePosition(float delta)
 	m_windVec = rmat * windx;
 	m_windVec *= m_windSpeed;
 	
-	m_windControl.SetWind(m_windDir, (float) windspeed);
+	m_windControl->SetWind(m_windDir, (float) windspeed);
 	m_ball.SetWind(m_windVec);
 	
 	RUDE_REPORT("Wind: dir=%f speed=%f vec=(%f %f %f)\n", winddir, m_windSpeed, m_windVec.x(), m_windVec.y(), m_windVec.z());
@@ -886,14 +870,14 @@ void RBTGame::AutoSelectClub()
 	if(club->m_type == kClubPutter)
 	{
 		m_terrain.SetPutting(true);
-		m_swingControl.SetNoSwingCommentary(true);
+		m_swingControl->SetNoSwingCommentary(true);
 		RudeSound::GetInstance()->PlaySong(kBGMPutting);
 		RudeSound::GetInstance()->BgmVol(1.0f);
 	}
 	else
 	{
 		m_terrain.SetPutting(false);
-		m_swingControl.SetNoSwingCommentary(false);
+		m_swingControl->SetNoSwingCommentary(false);
 		RudeSound::GetInstance()->BgmVolFade(-0.2f);
 	}
 	
@@ -1377,15 +1361,15 @@ void RBTGame::NextFrame(float delta)
 			
 		case kStateExecuteSwing:
 			
-			m_swingControl.NextFrame(delta);
+			m_swingControl->NextFrame(delta);
 			
-			if(m_swingControl.WillSwing())
+			if(m_swingControl->WillSwing())
 				SetState(kStateWaitForSwing);
 			
 			break;
 		case kStateWaitForSwing:
 		{
-			m_swingControl.NextFrame(delta);
+			m_swingControl->NextFrame(delta);
 			
 			if(m_golfer.HasSwung())
 				SetState(kStateHitBall);
@@ -1393,7 +1377,7 @@ void RBTGame::NextFrame(float delta)
 			break;
 		case kStateHitBall:
 		{
-			m_swingControl.NextFrame(delta);
+			m_swingControl->NextFrame(delta);
 			
 			StateHitBall(delta);
 			
@@ -1403,7 +1387,7 @@ void RBTGame::NextFrame(float delta)
 			break;
 		case kStateFollowBall:
 		{
-			m_swingControl.NextFrame(delta);
+			m_swingControl->NextFrame(delta);
 			
 			StateFollowBall(delta);
 		}
@@ -1425,7 +1409,7 @@ void RBTGame::NextFrame(float delta)
 	//RGLD.DebugDrawLine(m_guidePosition, m_guidePosition + btVector3(0,10,0));
 	
 	m_golfer.NextFrame(delta);
-	m_windControl.NextFrame(delta);
+	m_windControl->NextFrame(delta);
 	
 	m_ball.NextFrame(delta);
 	m_curCamera->NextFrame(delta);
@@ -1669,7 +1653,7 @@ void RBTGame::Render(float width, float height)
 	   || m_state == kStateExecuteSwing)
 	{
 		if(!m_terrain.GetPutting())
-			m_windControl.Render();
+			m_windControl->Render();
 	}
 	
 	RUDE_PERF_STOP(kPerfRBTGameRender2);
@@ -1680,13 +1664,13 @@ void RBTGame::Render(float width, float height)
 	
 	if(RGL.GetLandscape())
 	{
-		RGL.SetViewport(0, 0, 320, 480);
-		RGL.Ortho(0.0f, 0.0f, 0.0f, 480.0f, 320.0f, 100.0f);
+		RGL.SetViewport(0, 0, (int) height, (int) width);
+		RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
 	}
 	else
 	{
-		RGL.SetViewport(0, 0, 480, 320);
-		RGL.Ortho(0.0f, 0.0f, 0.0f, 320.0f, 480.0f, 100.0f);
+		RGL.SetViewport(0, 0, (int) height, (int) width);
+		RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 100.0f);
 	}
 		
 	RGL.LoadIdentity();
@@ -1732,7 +1716,7 @@ void RBTGame::Render(float width, float height)
 			case kStateWaitForSwing:
 				m_botBarBg->Render();
 				m_moveButton->Render();
-				m_swingControl.Render();
+				m_swingControl->Render();
 				m_clubButton->Render();
 				m_helpButton->Render();
 				RenderShotInfo(false, true);
@@ -1749,7 +1733,7 @@ void RBTGame::Render(float width, float height)
 				//RenderBallFollowInfo(false);
 				RenderShotInfo(true, false);
 				
-				m_swingControl.Render();
+				m_swingControl->Render();
 				
 				break;
 				
@@ -1840,7 +1824,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			
 			if(m_state == kStatePositionSwing2)
 			{
-				if(m_guideAdjust.TouchDown(rbt))
+				if(m_guideAdjust->TouchDown(rbt))
 				{
 					SetState(kStatePositionSwing3);
 					break;
@@ -1850,7 +1834,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_moveGuide = false;
 			m_moveHeight = false;
 			m_swingButton->TouchDown(rbt);
-			m_swingCamAdjust.TouchDown(rbt);
+			m_swingCamAdjust->TouchDown(rbt);
 			m_menuButton->TouchDown(rbt);
 			if(m_prevClubButton->TouchDown(rbt))
 			{
@@ -1904,7 +1888,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			}
 			else
 			{
-				m_swingControl.TouchDown(rbt);
+				m_swingControl->TouchDown(rbt);
 				m_moveButton->TouchDown(rbt);
 				
 			}
@@ -1934,17 +1918,17 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 	switch(m_state)
 	{
 		case kStatePositionSwing:
-			if(m_swingCamAdjust.TouchMove(rbt))
-				MovePosition(m_swingCamAdjust.GetMoveDelta(), m_swingCamAdjust.GetDistanceTraveled());
+			if(m_swingCamAdjust->TouchMove(rbt))
+				MovePosition(m_swingCamAdjust->GetMoveDelta(), m_swingCamAdjust->GetDistanceTraveled());
 			break;
 		case kStatePositionSwing2:
-			if(m_swingCamAdjust.TouchMove(rbt))
-				MoveAimCamera(m_swingCamAdjust.GetMoveDelta(), m_swingCamAdjust.GetDistanceTraveled());
+			if(m_swingCamAdjust->TouchMove(rbt))
+				MoveAimCamera(m_swingCamAdjust->GetMoveDelta(), m_swingCamAdjust->GetDistanceTraveled());
 			break;
 		case kStatePositionSwing3:
-			if(m_guideAdjust.TouchMove(rbt))
+			if(m_guideAdjust->TouchMove(rbt))
 			{
-				m_guideScreenPoint = m_guideAdjust.GetHitMove();
+				m_guideScreenPoint = m_guideAdjust->GetHitMove();
 				m_guideScreenCalc = true;
 				//AdjustGuide(m_guideAdjust.GetHitMove());
 			}
@@ -1953,7 +1937,7 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 			m_menu.TouchMove(rbt);
 			break;
 		case kStateExecuteSwing:
-			m_swingControl.TouchMove(rbt);
+			m_swingControl->TouchMove(rbt);
 			break;
 	}
 	
@@ -1983,7 +1967,7 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 				SetState(kStateExecuteSwing);
 				sfx = kSoundUIClickHi;
 			}
-			m_swingCamAdjust.TouchUp(rbt);
+			m_swingCamAdjust->TouchUp(rbt);
 			m_nextClubButton->TouchUp(rbt);
 			m_prevClubButton->TouchUp(rbt);
 			
@@ -2006,14 +1990,14 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			
 			break;
 		case kStatePositionSwing3:
-			m_guideAdjust.TouchUp(rbt);
+			m_guideAdjust->TouchUp(rbt);
 			SetState(kStatePositionSwing2);
 			break;
 		case kStateMenu:
 			m_menu.TouchUp(rbt);
 			break;
 		case kStateExecuteSwing:
-			if(m_swingControl.TouchUp(rbt))
+			if(m_swingControl->TouchUp(rbt))
 			{
 				
 				
