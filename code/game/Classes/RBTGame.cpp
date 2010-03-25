@@ -7,9 +7,7 @@
  *
  */
 
-#ifndef STRICT
-#define STRICT
-#endif
+
 
 #include "RBTGame.h"
 #include "RudeGL.h"
@@ -24,6 +22,8 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 #include "RudeSound.h"
+
+#define NO_DECO_EDITOR
 
 #include "btTransform.h"
 
