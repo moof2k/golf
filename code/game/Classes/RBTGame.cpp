@@ -954,7 +954,11 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 {
 	//printf("move %d %d\n", p.m_x, p.m_y);
 	
+#ifdef RUDE_IPAD
+	const float kYawDamping = 0.001f;
+#else
 	const float kYawDamping = 0.002f;
+#endif
 	
 	RBGolfClub *club = RBGolfClub::GetClub(m_curClub);
 	m_placementGuidePower = club->m_dist;
@@ -997,15 +1001,21 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 {
 	//printf("move %d %d\n", p.m_x, p.m_y);
 	
+#ifdef RUDE_IPAD
+	const float kYawDamping = 0.003f;
+	const float kHeightDamping = 0.002f;
+#else
 	const float kYawDamping = 0.006f;
-	
+	const float kHeightDamping = 0.004f;
+#endif
+
 	if(dist.m_x > 30)
 	{
 		float dx = (float) p.m_x;
 		m_swingCamYaw += (dx * kYawDamping);
 	}
 	
-	const float kHeightDamping = 0.004f;
+	
 	const float kMaxHeight = 1.0f;
 	float dy = (float) p.m_y;
 	m_swingHeight -= (dy * kHeightDamping);
