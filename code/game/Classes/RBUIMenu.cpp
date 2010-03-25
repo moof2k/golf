@@ -9,29 +9,14 @@
 
 #include "RBUIMenu.h"
 #include "RudeGL.h"
-#include "RudeRegistry.h"
 #include "RudeSound.h"
 
 RBUIMenu::RBUIMenu()
 {
-	// Load UI data
-	RudeRegistry *reg = RudeRegistry::GetSingleton();
-
-	char displaytype[64];
-	int displaysize = sizeof(displaytype);
-	if(reg->QueryByte("GOLF", "DISPLAY", displaytype, &displaysize) == 0)
-	{
-		std::string displaystr(displaytype);
-
-		if(displaystr == "ipad")
-			m_ui.Load("menu_ipad");
-		else
-			m_ui.Load("menu_iphone");
-	}
+	if(RUDE_IPAD)
+		m_ui.Load("menu_ipad");
 	else
-	{
 		m_ui.Load("menu_iphone");
-	}
 
 	m_scoreControl = m_ui.GetChildControl<RBScoreControl>("scoreControl");
 	m_scoreControl->SetAnimType(kAnimPopSlide);

@@ -56,10 +56,20 @@ RudeFont RudeFontManager::m_fonts[kNumFonts];
  */
 void RudeFontManager::InitFonts()
 {
-	m_fonts[kDefaultFont].Init("ab18.fnt");
-	m_fonts[kDefaultFontOutline].Init("ab18o2.fnt");
-	m_fonts[kBigFont].Init("ab28.fnt");
-	m_fonts[kBigFontOutline].Init("ab28o2.fnt");
+	if(RUDE_IPAD)
+	{
+		m_fonts[kDefaultFont].Init("ab28.fnt");
+		m_fonts[kDefaultFontOutline].Init("ab28o2.fnt");
+		m_fonts[kBigFont].Init("ab48.fnt");
+		m_fonts[kBigFontOutline].Init("ab48o2.fnt");
+	}
+	else
+	{
+		m_fonts[kDefaultFont].Init("ab18.fnt");
+		m_fonts[kDefaultFontOutline].Init("ab18o2.fnt");
+		m_fonts[kBigFont].Init("ab28.fnt");
+		m_fonts[kBigFontOutline].Init("ab28o2.fnt");
+	}
 }
 
 /**

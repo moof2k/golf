@@ -246,7 +246,11 @@ void RBGame::Render(float delta, float width, float height)
 		
 		RudePerf::PrintAll();
 		
-		RudeText::Print(0.0f, 0.0f, 0.5f, color, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
+		if(RUDE_IPAD)
+			RudeText::Print(0.0f, 0.0f, 0.15f, color, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
+		else
+			RudeText::Print(0.0f, 0.0f, 0.5f, color, "FPS: %.1f CPU: %.1fms ACPU: %.1fms", d_fps, d_ms, a_ms);
+
 		RudeText::Flush();
 	
 	}

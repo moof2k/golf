@@ -51,7 +51,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
+				PreprocessorDefinitions="RUDE_IPAD=1;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"

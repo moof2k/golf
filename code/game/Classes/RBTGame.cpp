@@ -150,23 +150,10 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_ballCamera.SetTerrain(&m_terrain);
 
 	// Load UI data
-	RudeRegistry *reg = RudeRegistry::GetSingleton();
-
-	char displaytype[64];
-	int displaysize = sizeof(displaytype);
-	if(reg->QueryByte("GOLF", "DISPLAY", displaytype, &displaysize) == 0)
-	{
-		std::string displaystr(displaytype);
-
-		if(displaystr == "ipad")
-			m_ui.Load("game_ipad");
-		else
-			m_ui.Load("game_iphone");
-	}
+	if(RUDE_IPAD)
+		m_ui.Load("game_ipad");
 	else
-	{
 		m_ui.Load("game_iphone");
-	}
 	
 	if(gDebugCamera)
 		m_curCamera = &m_debugCamera;
@@ -1732,7 +1719,9 @@ void RBTGame::Render(float width, float height)
 				m_prevClubButton->Render();
 				m_clubButton->Render();
 				m_cameraButton->Render();
-				m_helpButton->Render();
+
+				if(!RUDE_IPAD)
+					m_helpButton->Render();
 				
 				RenderShotInfo(false, true);
 				
@@ -1754,7 +1743,10 @@ void RBTGame::Render(float width, float height)
 				m_moveButton->Render();
 				m_swingControl->Render();
 				m_clubButton->Render();
-				m_helpButton->Render();
+
+				if(!RUDE_IPAD)
+					m_helpButton->Render();
+				
 				RenderShotInfo(false, true);
 				
 				if(!m_terrain.GetPutting())
@@ -1897,7 +1889,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			
 			}
 			
-			if(m_helpButton->TouchDown(rbt))
+			if(!RUDE_IPAD && m_helpButton->TouchDown(rbt))
 			{
 				if(m_state == kStatePositionSwing)
 					m_help.SetHelpMode(kHelpAim);
@@ -1917,7 +1909,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_menu.TouchDown(rbt);
 			break;
 		case kStateExecuteSwing:
-			if(m_helpButton->TouchDown(rbt))
+			if(!RUDE_IPAD && m_helpButton->TouchDown(rbt))
 			{
 				m_help.SetHelpMode(kHelpSwing);
 				sfx = kSoundUIClickHi;

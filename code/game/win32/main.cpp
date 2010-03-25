@@ -16,7 +16,6 @@
 #include "RudeFont.h"
 #include "RudeTweaker.h"
 #include "RudeUnitTest.h"
-#include "RudeRegistry.h"
 
 RBGame *gVBGame = 0;
 
@@ -29,8 +28,13 @@ bool keys[256];				// Array Used For The Keyboard Routine
 bool active = true;			// Window Active Flag Set To TRUE By Default
 bool fullscreen = false;	// Fullscreen Flag Set To Fullscreen Mode By Default
 
+#ifdef RUDE_IPAD
 int windowWidth = 768;
 int windowHeight = 1024;
+#else
+int windowWidth = 320;
+int windowHeight = 420;
+#endif
 
 const char * kWindowTitle = "Bork3D Game Engine";
 
@@ -457,14 +461,6 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 {
 	MSG		msg;									// Windows Message Structure
 	BOOL	done=FALSE;								// Bool Variable To Exit Loop
-
-	// Initialize iPad mode
-	RudeRegistry *reg = RudeRegistry::GetSingleton();
-
-	char displaystr[64] = "ipad";
-	int displaysize = sizeof(displaystr);
-	reg->SetByte("GOLF", "DISPLAY", displaystr, displaysize);
-
 
 	// Ask The User Which Screen Mode They Prefer
 	/*
