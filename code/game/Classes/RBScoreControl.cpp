@@ -18,8 +18,35 @@ RBScoreControl::RBScoreControl()
 }
 
 
-const int kLineSpacing = 16;
-const int kColumnSpacing = 27;
+
+
+#ifdef RUDE_IPAD
+	const float kHalfWidth = 230.0f;
+	const float kTop = 24.0f;
+	const float kBottom = 85.0f;
+
+	const int kLineSpacing = 26;
+	const int kColumnSpacing = 38;
+
+	const int kTextOffset = 220;
+	const int kScoreOffset = 124;
+
+	const int kScore1Offset = -120;
+	const int kScore2Offset = 20;
+#else
+	const float kHalfWidth = 153.0f;
+	const float kTop = 15.0f;
+	const float kBottom = 55.0f;
+
+	const int kLineSpacing = 16;
+	const int kColumnSpacing = 27;
+
+	const int kTextOffset = 147;
+	const int kScoreOffset = 70;
+
+	const int kScore1Offset = -80;
+	const int kScore2Offset = 20;
+#endif
 
 void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 {
@@ -36,10 +63,10 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 	RGL.EnableClient(kTextureCoordArray, false);
 	
 	GLfloat point[] = {
-		x - 153, y - 15,
-		x - 153, y + 55,
-		x + 153, y + 55,
-		x + 153, y - 15
+		x - kHalfWidth, y - kTop,
+		x - kHalfWidth, y + kBottom,
+		x + kHalfWidth, y + kBottom,
+		x + kHalfWidth, y - kTop
 	};
 	
 	GLfloat colors[] = {
@@ -54,13 +81,13 @@ void RBScoreControl::RenderScoreBoard(int x, int y, int start)
 	glColorPointer(4, GL_FLOAT, 0, colors);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	
-	x -= 147;
+	x -= kTextOffset;
 	
 	Printf(x, y + kLineSpacing, FONT_ALIGN_LEFT, kScoreColorNormal, "Par", 0);
 	Printf(x, y + kLineSpacing * 2.0f, FONT_ALIGN_LEFT, kScoreColorNormal, "Strokes", 0);
 	Printf(x, y + kLineSpacing * 3.0f, FONT_ALIGN_LEFT, kScoreColorNormal, "Score", 0);
 	
-	float xoff = x + 70;
+	float xoff = x + kScoreOffset;
 	float yoff = y;
 	
 	for(int i = start; i < start + 9; i++)
@@ -139,8 +166,8 @@ void RBScoreControl::Render()
 	switch(m_holeSet)
 	{
 		case kCourseAll18:
-			RenderScoreBoard(centerx, centery - 80, 0);
-			RenderScoreBoard(centerx, centery + 20, 9);
+			RenderScoreBoard(centerx, centery + kScore1Offset, 0);
+			RenderScoreBoard(centerx, centery + kScore2Offset, 9);
 			break;
 		case kCourseFront9:
 			RenderScoreBoard(centerx, centery, 0);
