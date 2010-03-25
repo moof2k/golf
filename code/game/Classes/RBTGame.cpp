@@ -88,7 +88,27 @@ tRudeButtonAnimKeyframe gSwingButtonAnimData[8] = {
 };
 
 RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHoles holeset, eCourseWind wind, int par, int numPlayers, bool restorestate)
-: m_encouragementTimer(0.0)
+: m_swingYaw(0.0f)
+, m_swingHeight(0.0f)
+, m_swingCamYaw(0.0f)
+, m_moveGuide(false)
+, m_moveHeight(false)
+, m_curClub(0)
+, m_guideScreenCalc(false)
+, m_swingPower(0.0f)
+, m_swingAngle(0.0f)
+, m_followTimer(0.0f)
+, m_stopTimer(0.0f)
+, m_encouragementTimer(0.0)
+, m_oobTimer(0.0f)
+, m_windDir(0.0f)
+, m_windSpeed(0.0f)
+, m_placementGuidePower(0.0f)
+, m_ballShotDist(0.0f)
+, m_ballToHoleDist(0.0f)
+, m_playedBallDissapointmentSound(false)
+, m_landscape(false)
+, m_holeNum(holeNum)
 {	
 	m_result = kResultNone;
 	
@@ -97,7 +117,6 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_terrain.Load(terrainfile);
 	m_terrain.SetTee(tee);
 	
-	m_holeNum = holeNum;
 	m_par = par;
 	m_numPlayers = numPlayers;
 	m_tee = tee;
