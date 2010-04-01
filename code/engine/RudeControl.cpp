@@ -62,9 +62,20 @@ void RudeControl::Load(const char *name)
 	{
 		RUDE_ASSERT(line, "Failed to parse %s\n", buffer);
 		
+		int len = strlen(line);
+
+		if(len <= 0)
+			continue;
+
 		if(line[0] == '\n')
+			// Blank line
 			continue;
 		if(line[0] == '#')
+			// Comment
+			continue;
+
+		if(line[0] == char(0xEF))
+			// UTF-8 escape sequence
 			continue;
 
 		ConstructChild(line);
