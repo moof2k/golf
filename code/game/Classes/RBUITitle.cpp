@@ -55,18 +55,37 @@ RBUITitle::RBUITitle()
 	m_credits.SetAnimType(kAnimPopSlide);
 	
 
-	const int kCourseButtonTop = 66;
-	const int kCourseButtonHeight = 58;
-	const float kCourseAnimSpeedBase = 3.0f;
-	const float kCourseAnimSpeedMod = -0.2f;
+#if RUDE_IPAD
+		const int kCourseButtonTop = 66;
+		const int kCourseButtonHeight = 104;
+		const float kCourseAnimSpeedBase = 3.0f;
+		const float kCourseAnimSpeedMod = -0.2f;
+#else
+		const int kCourseButtonTop = 66;
+		const int kCourseButtonHeight = 58;
+		const float kCourseAnimSpeedBase = 3.0f;
+		const float kCourseAnimSpeedMod = -0.2f;
+#endif
+
 	for(int i = 0; i < kNumCourses; i++)
 	{
 		int offset = kCourseButtonTop + kCourseButtonHeight * i;
 		
 		m_courseButtons[i].SetAnimType(kAnimPopSlide);
 		m_courseButtons[i].SetAnimSpeed(float(i) * kCourseAnimSpeedMod + kCourseAnimSpeedBase);
-		m_courseButtons[i].SetTexture("coursebg");
-		m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
+
+		if(RUDE_IPAD)
+		{
+			m_courseButtons[i].SetTexture("coursebg_ipad");
+			m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 768));
+		}
+		else
+		{
+			m_courseButtons[i].SetTexture("coursebg");
+			m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
+		}
+
+		
 		
 		m_courseButtons[i].m_name = sCourseData[i].m_name;
 		m_courseButtons[i].m_subname = sCourseData[i].m_subname;
@@ -440,7 +459,11 @@ void RBUITitle::RefreshScores()
 			
 			m_courseButtons[i].m_name = sCourseData[i].m_name;
 			m_courseButtons[i].m_subname = sCourseData[i].m_subname;
-			m_courseButtons[i].SetTexture("coursebg");
+
+			if(RUDE_IPAD)
+				m_courseButtons[i].SetTexture("coursebg_ipad");
+			else
+				m_courseButtons[i].SetTexture("coursebg");
 			
 			if(RBTourTracker::Completed(i))
 				m_courseButtons[i].m_completed = true;
@@ -449,7 +472,10 @@ void RBUITitle::RefreshScores()
 		}
 		else
 		{
-			m_courseButtons[i].SetTexture("coursebg_locked");
+			if(RUDE_IPAD)
+				m_courseButtons[i].SetTexture("coursebg_ipad_locked");
+			else
+				m_courseButtons[i].SetTexture("coursebg_locked");
 			
 			m_courseButtons[i].m_name = "";
 			m_courseButtons[i].m_subname = "";
