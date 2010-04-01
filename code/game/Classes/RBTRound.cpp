@@ -26,8 +26,14 @@ RBTRound::RBTRound()
 , m_result(kRoundExit)
 {
 	m_loadingText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_loadingText.SetRect(RudeRect(300, 0, 316, 320));
-	m_loadingText.SetText("Loading...");
+
+	if(RUDE_IPAD)
+		m_loadingText.SetRect(RudeRect(0, 0, 1024, 768));
+	else
+		m_loadingText.SetRect(RudeRect(0, 0, 480, 320));
+		
+
+	m_loadingText.SetText("Loading");
 	m_loadingText.SetFont(kBigFont);
 	m_loadingText.SetStyle(kOutlineStyle);
 	m_loadingText.SetColors(0, 0xFFFFFFFF, 0xFFFFFFFF);
