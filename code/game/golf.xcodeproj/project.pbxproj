@@ -13,8 +13,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		28FD14FE0DC6FC130079059D /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28FD14FD0DC6FC130079059D /* EAGLView.mm */; };
-		422C481F11118FBB00CDF5C9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B76A63E0DCBB4F3003B05F2 /* Icon.png */; };
-		422C482111118FBB00CDF5C9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADC5A320E63EB84004C82A2 /* Default.png */; };
 		422C482211118FBB00CDF5C9 /* testtexture.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A74018F0E6FDF24008490F7 /* testtexture.pvr */; };
 		422C482311118FBB00CDF5C9 /* grass_fringe_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7050E70F67200D3167F /* grass_fringe_A.pvr */; };
 		422C482411118FBB00CDF5C9 /* sand_bunker_A.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9ACBA7060E70F67200D3167F /* sand_bunker_A.pvr */; };
@@ -561,6 +559,25 @@
 		9AA7064B0FA180E200F18992 /* par5_C.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7063C0FA180E200F18992 /* par5_C.deco */; };
 		9AA707FD0FA2EAAB00F18992 /* sfx_cheer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AA707FC0FA2EAAB00F18992 /* sfx_cheer.wav */; };
 		9AA708160FA2EFA200F18992 /* sfx_claps.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AA708150FA2EFA200F18992 /* sfx_claps.wav */; };
+		9AA76568115B3E3800A44D92 /* ab48_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76564115B3E3800A44D92 /* ab48_00.pvr */; };
+		9AA76569115B3E3800A44D92 /* ab48.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76565115B3E3800A44D92 /* ab48.fnt */; };
+		9AA7656A115B3E3800A44D92 /* ab48o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76566115B3E3800A44D92 /* ab48o2_00.pvr */; };
+		9AA7656B115B3E3800A44D92 /* ab48o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76567115B3E3800A44D92 /* ab48o2.fnt */; };
+		9AA7656C115B3E3800A44D92 /* ab48_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76564115B3E3800A44D92 /* ab48_00.pvr */; };
+		9AA7656D115B3E3800A44D92 /* ab48.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76565115B3E3800A44D92 /* ab48.fnt */; };
+		9AA7656E115B3E3800A44D92 /* ab48o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76566115B3E3800A44D92 /* ab48o2_00.pvr */; };
+		9AA7656F115B3E3800A44D92 /* ab48o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AA76567115B3E3800A44D92 /* ab48o2.fnt */; };
+		9AA7657E11647A9600A44D92 /* title_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7657D11647A9600A44D92 /* title_ipad.ui */; };
+		9AA7657F11647A9600A44D92 /* title_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7657D11647A9600A44D92 /* title_ipad.ui */; };
+		9AA7658311647AB400A44D92 /* coursebg_ipad_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */; };
+		9AA7658411647AB400A44D92 /* coursebg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658211647AB400A44D92 /* coursebg_ipad.png */; };
+		9AA7658511647AB400A44D92 /* coursebg_ipad_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */; };
+		9AA7658611647AB400A44D92 /* coursebg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658211647AB400A44D92 /* coursebg_ipad.png */; };
+		9AA7658911647ABE00A44D92 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658811647ABE00A44D92 /* logo_ipad.png */; };
+		9AA7658A11647ABE00A44D92 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658811647ABE00A44D92 /* logo_ipad.png */; };
+		9AA765B41164809500A44D92 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765B21164809500A44D92 /* Default.png */; };
+		9AA765B8116480C300A44D92 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765B7116480C300A44D92 /* Default.png */; };
+		9AA765E21164848600A44D92 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765E11164848600A44D92 /* Icon.png */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
 		9AA93F020E84D3DF00F6FBD8 /* golfer.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93F000E84D3DF00F6FBD8 /* golfer.POD */; };
 		9AAA6E0A0E9F12A4008D9318 /* ab18o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */; };
@@ -714,7 +731,6 @@
 		9AD57FEF0EA08C01002696A6 /* postprocessor.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57FE10EA08C01002696A6 /* postprocessor.c */; };
 		9AD57FF00EA08C01002696A6 /* reason_phrase.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57FE20EA08C01002696A6 /* reason_phrase.c */; };
 		9AD57FF10EA08C01002696A6 /* response.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD57FE40EA08C01002696A6 /* response.c */; };
-		9ADC5A330E63EB84004C82A2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ADC5A320E63EB84004C82A2 /* Default.png */; };
 		9ADC5A870E6548BD004C82A2 /* RBTGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC5A7C0E6548BD004C82A2 /* RBTGame.cpp */; };
 		9ADC5A890E6548BD004C82A2 /* RBKeyMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC5A7F0E6548BD004C82A2 /* RBKeyMap.cpp */; };
 		9ADC5A8B0E6548BD004C82A2 /* RBKeyTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADC5A820E6548BD004C82A2 /* RBKeyTracker.cpp */; };
@@ -746,7 +762,7 @@
 		28FD14FD0DC6FC130079059D /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EAGLView.mm; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GLSprite_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSprite_Prefix.pch; sourceTree = "<group>"; };
-		422C498B11118FBC00CDF5C9 /* Golf-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Golf-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		422C498B11118FBC00CDF5C9 /* Golf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		422C498F11118FC000CDF5C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Resources-iPad/en.lproj/MainWindow.xib"; sourceTree = "<group>"; };
 		42AFD60D11580DFD00DCC2EF /* title_iphone.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = title_iphone.ui; path = Data/title_iphone.ui; sourceTree = "<group>"; };
 		42AFD61B11580E1600DCC2EF /* game_iphone.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = game_iphone.ui; path = Data/game_iphone.ui; sourceTree = "<group>"; };
@@ -990,6 +1006,17 @@
 		9AA7063C0FA180E200F18992 /* par5_C.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_C.deco; path = Data/par5_C.deco; sourceTree = "<group>"; };
 		9AA707FC0FA2EAAB00F18992 /* sfx_cheer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_cheer.wav; path = Data/sfx_cheer.wav; sourceTree = "<group>"; };
 		9AA708150FA2EFA200F18992 /* sfx_claps.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_claps.wav; path = Data/sfx_claps.wav; sourceTree = "<group>"; };
+		9AA76564115B3E3800A44D92 /* ab48_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab48_00.pvr; path = Data/ab48_00.pvr; sourceTree = "<group>"; };
+		9AA76565115B3E3800A44D92 /* ab48.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab48.fnt; path = Data/ab48.fnt; sourceTree = "<group>"; };
+		9AA76566115B3E3800A44D92 /* ab48o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab48o2_00.pvr; path = Data/ab48o2_00.pvr; sourceTree = "<group>"; };
+		9AA76567115B3E3800A44D92 /* ab48o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab48o2.fnt; path = Data/ab48o2.fnt; sourceTree = "<group>"; };
+		9AA7657D11647A9600A44D92 /* title_ipad.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = title_ipad.ui; path = Data/title_ipad.ui; sourceTree = "<group>"; };
+		9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coursebg_ipad_locked.png; path = Data/coursebg_ipad_locked.png; sourceTree = "<group>"; };
+		9AA7658211647AB400A44D92 /* coursebg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coursebg_ipad.png; path = Data/coursebg_ipad.png; sourceTree = "<group>"; };
+		9AA7658811647ABE00A44D92 /* logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ipad.png; path = Data/logo_ipad.png; sourceTree = "<group>"; };
+		9AA765B31164809500A44D92 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Default.png; sourceTree = "<group>"; };
+		9AA765B7116480C300A44D92 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Resources-iPad/Default.png"; sourceTree = "<group>"; };
+		9AA765E11164848600A44D92 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = "Resources-iPad/Icon.png"; sourceTree = "<group>"; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
 		9AA93F000E84D3DF00F6FBD8 /* golfer.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = golfer.POD; path = Data/golfer.POD; sourceTree = "<group>"; };
 		9AAA6E060E9F12A4008D9318 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = Data/ab18o2.fnt; sourceTree = "<group>"; };
@@ -1320,7 +1347,6 @@
 		9AD57FE30EA08C01002696A6 /* reason_phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reason_phrase.h; path = ../Lib/libmicrohttpd/src/daemon/reason_phrase.h; sourceTree = SOURCE_ROOT; };
 		9AD57FE40EA08C01002696A6 /* response.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = response.c; path = ../Lib/libmicrohttpd/src/daemon/response.c; sourceTree = SOURCE_ROOT; };
 		9AD57FE50EA08C01002696A6 /* response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = response.h; path = ../Lib/libmicrohttpd/src/daemon/response.h; sourceTree = SOURCE_ROOT; };
-		9ADC5A320E63EB84004C82A2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9ADC5A7B0E6548BD004C82A2 /* RBKeyMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBKeyMap.h; path = Classes/RBKeyMap.h; sourceTree = "<group>"; };
 		9ADC5A7C0E6548BD004C82A2 /* RBTGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTGame.cpp; path = Classes/RBTGame.cpp; sourceTree = "<group>"; };
 		9ADC5A7E0E6548BD004C82A2 /* RBTGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTGame.h; path = Classes/RBTGame.h; sourceTree = "<group>"; };
@@ -1396,7 +1422,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Golf.app */,
-				422C498B11118FBC00CDF5C9 /* Golf-iPad.app */,
+				422C498B11118FBC00CDF5C9 /* Golf.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1442,6 +1468,7 @@
 				42AFD61B11580E1600DCC2EF /* game_iphone.ui */,
 				42FFDC3B11587B0300E4C69F /* game_ipad.ui */,
 				42AFD60D11580DFD00DCC2EF /* title_iphone.ui */,
+				9AA7657D11647A9600A44D92 /* title_ipad.ui */,
 				42FFDC481158863D00E4C69F /* menu_ipad.ui */,
 				42FFDC491158863D00E4C69F /* menu_iphone.ui */,
 				9A06A2B80F5BA7C9000EAE31 /* bgm */,
@@ -1453,8 +1480,10 @@
 				9A4F1DB30E879398001D1F0B /* sound */,
 				1BF0DBA10DDCF72400C6466A /* en.lproj */,
 				1B76A63E0DCBB4F3003B05F2 /* Icon.png */,
+				9AA765E11164848600A44D92 /* Icon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				9ADC5A320E63EB84004C82A2 /* Default.png */,
+				9AA765B7116480C300A44D92 /* Default.png */,
+				9AA765B21164809500A44D92 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2100,11 +2129,14 @@
 				467A43A20FAC03FD004A318F /* help_b_256.png */,
 				467A43A30FAC03FD004A318F /* help_a_256.png */,
 				9A9D642F0EB9837E003985A4 /* logo.png */,
+				9AA7658811647ABE00A44D92 /* logo_ipad.png */,
 				9AFD58780EA880380044A7B0 /* guide.png */,
 				9A4F1B5D0E861985001D1F0B /* strokedot.png */,
 				9AA93E430E838FB900F6FBD8 /* hole.png */,
 				9A776EF50EAC5F3700196CA0 /* ring.png */,
 				9A9D64D00EB98E9F003985A4 /* coursebg.png */,
+				9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */,
+				9AA7658211647AB400A44D92 /* coursebg_ipad.png */,
 				9A4B11D70FA8231300E53811 /* tutorial_a.png */,
 				9A4B11D80FA8231300E53811 /* tutorial_c.png */,
 				9A4B11D90FA8231300E53811 /* tutorial_b.png */,
@@ -2233,6 +2265,10 @@
 				9AFD58C90EA9AE200044A7B0 /* ab28_00.pvr */,
 				9AFD58CA0EA9AE200044A7B0 /* ab28.fnt */,
 				9AFD58CB0EA9AE200044A7B0 /* ab28o2_00.pvr */,
+				9AA76564115B3E3800A44D92 /* ab48_00.pvr */,
+				9AA76565115B3E3800A44D92 /* ab48.fnt */,
+				9AA76566115B3E3800A44D92 /* ab48o2_00.pvr */,
+				9AA76567115B3E3800A44D92 /* ab48o2.fnt */,
 			);
 			name = font;
 			sourceTree = "<group>";
@@ -2271,7 +2307,7 @@
 			);
 			name = "golf-iPad";
 			productName = GLSprite;
-			productReference = 422C498B11118FBC00CDF5C9 /* Golf-iPad.app */;
+			productReference = 422C498B11118FBC00CDF5C9 /* Golf.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2306,7 +2342,6 @@
 			files = (
 				1B76A6420DCBB4F3003B05F2 /* Icon.png in Resources */,
 				1BF0DBA40DDCF72400C6466A /* MainWindow.xib in Resources */,
-				9ADC5A330E63EB84004C82A2 /* Default.png in Resources */,
 				9A7401900E6FDF24008490F7 /* testtexture.pvr in Resources */,
 				9ACBA70B0E70F67200D3167F /* grass_fringe_A.pvr in Resources */,
 				9ACBA70C0E70F67200D3167F /* sand_bunker_A.pvr in Resources */,
@@ -2467,6 +2502,15 @@
 				42FFDC3C11587B0300E4C69F /* game_ipad.ui in Resources */,
 				42FFDC4A1158863D00E4C69F /* menu_ipad.ui in Resources */,
 				42FFDC4B1158863D00E4C69F /* menu_iphone.ui in Resources */,
+				9AA76568115B3E3800A44D92 /* ab48_00.pvr in Resources */,
+				9AA76569115B3E3800A44D92 /* ab48.fnt in Resources */,
+				9AA7656A115B3E3800A44D92 /* ab48o2_00.pvr in Resources */,
+				9AA7656B115B3E3800A44D92 /* ab48o2.fnt in Resources */,
+				9AA7657E11647A9600A44D92 /* title_ipad.ui in Resources */,
+				9AA7658311647AB400A44D92 /* coursebg_ipad_locked.png in Resources */,
+				9AA7658411647AB400A44D92 /* coursebg_ipad.png in Resources */,
+				9AA7658911647ABE00A44D92 /* logo_ipad.png in Resources */,
+				9AA765B41164809500A44D92 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2474,8 +2518,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422C481F11118FBB00CDF5C9 /* Icon.png in Resources */,
-				422C482111118FBB00CDF5C9 /* Default.png in Resources */,
 				422C482211118FBB00CDF5C9 /* testtexture.pvr in Resources */,
 				422C482311118FBB00CDF5C9 /* grass_fringe_A.pvr in Resources */,
 				422C482411118FBB00CDF5C9 /* sand_bunker_A.pvr in Resources */,
@@ -2637,6 +2679,16 @@
 				42FFDC3D11587B0300E4C69F /* game_ipad.ui in Resources */,
 				42FFDC4C1158863D00E4C69F /* menu_ipad.ui in Resources */,
 				42FFDC4D1158863D00E4C69F /* menu_iphone.ui in Resources */,
+				9AA7656C115B3E3800A44D92 /* ab48_00.pvr in Resources */,
+				9AA7656D115B3E3800A44D92 /* ab48.fnt in Resources */,
+				9AA7656E115B3E3800A44D92 /* ab48o2_00.pvr in Resources */,
+				9AA7656F115B3E3800A44D92 /* ab48o2.fnt in Resources */,
+				9AA7657F11647A9600A44D92 /* title_ipad.ui in Resources */,
+				9AA7658511647AB400A44D92 /* coursebg_ipad_locked.png in Resources */,
+				9AA7658611647AB400A44D92 /* coursebg_ipad.png in Resources */,
+				9AA7658A11647ABE00A44D92 /* logo_ipad.png in Resources */,
+				9AA765B8116480C300A44D92 /* Default.png in Resources */,
+				9AA765E21164848600A44D92 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3060,6 +3112,14 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
+		9AA765B21164809500A44D92 /* Default.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AA765B31164809500A44D92 /* en */,
+			);
+			name = Default.png;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3144,7 +3204,8 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Golf-iPad";
+				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				PRODUCT_NAME = Golf;
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
