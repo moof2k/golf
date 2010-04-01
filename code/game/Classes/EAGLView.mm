@@ -123,23 +123,6 @@ RUDE_TWEAK(RenderLandscape, kBool, gRenderLandscape);
 		[self setupView];
 		[self drawView];
 	}
-	
-	if(backingWidth > 320)
-	{
-		RudeRegistry *reg = RudeRegistry::GetSingleton();
-		
-		char displaystr[64] = "ipad";
-		int displaysize = sizeof(displaystr);
-		reg->SetByte("GOLF", "DISPLAY", displaystr, displaysize);
-	}
-	else
-	{
-		RudeRegistry *reg = RudeRegistry::GetSingleton();
-		
-		char displaystr[64] = "iphone";
-		int displaysize = sizeof(displaystr);
-		reg->SetByte("GOLF", "DISPLAY", displaystr, displaysize);
-	}
 
 	
 	RudeFontManager::InitFonts();
