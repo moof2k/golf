@@ -21,7 +21,7 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 
-bool gDebugDisplayFPS = true;
+bool gDebugDisplayFPS = false;
 RUDE_TWEAK(DebugDisplayFPS, kBool, gDebugDisplayFPS);
 
 RBGame::RBGame()
