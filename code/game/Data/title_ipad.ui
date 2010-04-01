@@ -1,7 +1,7 @@
 ﻿# Title UI
 
 RudeButtonControl	logo	logo_ipad	{-1,-1}	{200, 0, 440, 768}	popslide
-RudeButtonControl	rangeMedallion	ui_bucketoballz	{-1,-1}	{80, 0, 356, 768}	popslide
+RudeButtonControl	rangeMedallion	ui_bucketoballz	{-1,-1}	{440, 0, 540, 768}	popslide
 RudeButtonControl	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{340, 160, 450, 768}	popslide
 RudeButtonControl	courseSplash	ui_wreath_gold	{-1,-1}	{440, 0, 540, 768}	popslide
 
@@ -22,6 +22,6 @@ RudeTextControl	courseDescText	Front 9 / Short Tee	center	{200, 0, 220, 768}	def
 RudeTextControl	scoreText	+1	center	{400, 0, 420, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	scoreDesc	Congratulations!	center	{440, 0, 460, 768}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-RudeTextControl	settingsTitleText	Options	center	{36, 0, 56, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	settingsTitleText	Options	center	{100, 0, 130, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-RudeTextControl	musicToggle	Music: On	center	{90, 0, 110, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	musicToggle	Music: On	center	{200, 0, 230, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000

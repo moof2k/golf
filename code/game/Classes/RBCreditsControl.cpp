@@ -23,7 +23,7 @@ void RBCreditsControl::Render()
 	if(RUDE_IPAD)
 	{
 	
-		int yoffset = 200;
+		int yoffset = 550;
 		int y = yoffset;
 		
 		
@@ -31,7 +31,7 @@ void RBCreditsControl::Render()
 		
 		const char * kThanks[kNumThanks] = {
 			"\"Anytime Golf\", \"Anytime Golf: Magic Touch\", \"Bork3D Games\"",
-			"and associated logos are Copyright © Bork 3D LLC",
+			"and associated logos are Copyright Â© Bork 3D LLC",
 			"",
 			"Made with the Bork3D Game Engine",
 			"For more information please visit bork3d.com"
