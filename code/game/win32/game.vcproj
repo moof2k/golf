@@ -150,8 +150,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
+				AdditionalIncludeDirectories="..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes"
+				PreprocessorDefinitions="RUDE_IPAD=1;WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -175,10 +175,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="opengl32.lib glu32.lib glaux.lib odbc32.lib odbccp32.lib FreeImage.lib"
 				OutputFile=".\Release/example.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="..\..\lib\FreeImage\Dist"
 				ProgramDatabaseFile=".\Release/lesson1.pdb"
 				SubSystem="2"
 				TargetMachine="1"
@@ -1004,6 +1005,10 @@
 			</File>
 			<File
 				RelativePath="..\Data\menu_iphone.ui"
+				>
+			</File>
+			<File
+				RelativePath="..\Data\title_ipad.ui"
 				>
 			</File>
 			<File
