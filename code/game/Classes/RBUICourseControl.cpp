@@ -29,8 +29,8 @@ void RBUICourseControl::Render()
 	const float holesX = 290;
 	const float holesY = baseY + 27;
 
-	const float scoreX = 61;
-	const float scoreY = baseY + 9;
+	const float scoreX = 230;
+	const float scoreY = baseY + 14;
 #else
 	const float baseY = 23;
 
