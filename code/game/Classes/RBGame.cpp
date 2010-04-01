@@ -198,7 +198,12 @@ void RBGame::Render(float delta, float width, float height)
 		case kGameTitle:
 			
 			if(m_uiTitle->Done())
-				SetState(kGameTutorial);
+			{
+				if(RUDE_IPAD)
+					SetState(kGameRBT);
+				else
+					SetState(kGameTutorial);
+			}
 			break;
 		case kGameRBT:
 
