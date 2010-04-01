@@ -47,24 +47,29 @@ RBUITitle::RBUITitle()
 	m_courseMedallion = m_ui.GetChildControl<RudeButtonControl>("courseMedallion");
 	m_courseSplash = m_ui.GetChildControl<RudeButtonControl>("courseSplash");
 
-	
 	m_scoreControl.SetAnimType(kAnimPopSlide);
-	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+	
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
+
+#if RUDE_IPAD
+	m_scoreControl.SetRect(RudeRect(0,0,1024,768));
+#else
+	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+#endif
 	
 	m_credits.SetAnimType(kAnimPopSlide);
 	
 
 #if RUDE_IPAD
-		const int kCourseButtonTop = 160;
-		const int kCourseButtonHeight = 104;
-		const float kCourseAnimSpeedBase = 3.0f;
-		const float kCourseAnimSpeedMod = -0.2f;
+	const int kCourseButtonTop = 160;
+	const int kCourseButtonHeight = 104;
+	const float kCourseAnimSpeedBase = 3.0f;
+	const float kCourseAnimSpeedMod = -0.2f;
 #else
-		const int kCourseButtonTop = 66;
-		const int kCourseButtonHeight = 58;
-		const float kCourseAnimSpeedBase = 3.0f;
-		const float kCourseAnimSpeedMod = -0.2f;
+	const int kCourseButtonTop = 66;
+	const int kCourseButtonHeight = 58;
+	const float kCourseAnimSpeedBase = 3.0f;
+	const float kCourseAnimSpeedMod = -0.2f;
 #endif
 
 	for(int i = 0; i < kNumCourses; i++)
