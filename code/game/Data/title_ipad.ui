@@ -19,8 +19,8 @@ RudeTextControl	courseNameText	Golf Course	center	{100, 0, 130, 768}	big	outline
 RudeTextControl	courseSubnameText	Amateur Invitational	center	{150, 0, 180, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 RudeTextControl	courseDescText	Front 9 / Short Tee	center	{200, 0, 220, 768}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-RudeTextControl	scoreText	+1	center	{400, 0, 420, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-RudeTextControl	scoreDesc	Congratulations!	center	{440, 0, 460, 768}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	scoreText	+1	center	{800, 0, 830, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	scoreDesc	Congratulations!	center	{860, 0, 890, 768}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
 RudeTextControl	settingsTitleText	Options	center	{100, 0, 130, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
