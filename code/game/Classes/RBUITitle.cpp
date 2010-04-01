@@ -56,7 +56,7 @@ RBUITitle::RBUITitle()
 	
 
 #if RUDE_IPAD
-		const int kCourseButtonTop = 66;
+		const int kCourseButtonTop = 160;
 		const int kCourseButtonHeight = 104;
 		const float kCourseAnimSpeedBase = 3.0f;
 		const float kCourseAnimSpeedMod = -0.2f;
@@ -144,6 +144,12 @@ void RBUITitle::SetState(eTitleState state)
 	RUDE_REPORT("RBUITitle::SetState %d => %d\n", m_state, state);
 
 	const float kOffscreenAmount = RGL.GetDeviceWidth() + 80;
+
+#if RUDE_IPAD
+	const float kDownslideAmount = 300.0f;
+#else
+	const float kDownslideAmount = 100.0f;
+#endif
 	
 	switch(m_state)
 	{
@@ -230,7 +236,7 @@ void RBUITitle::SetState(eTitleState state)
 			m_startText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			m_practiceText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
 			m_settingsText->SetDesiredTranslation(btVector3(-kOffscreenAmount,0,0));
-			m_copyrightText->SetDesiredTranslation(btVector3(0,100,0));
+			m_copyrightText->SetDesiredTranslation(btVector3(0,kDownslideAmount,0));
 			
 			break;
 		case kTitleSettings:
@@ -417,16 +423,16 @@ void RBUITitle::SetState(eTitleState state)
 			RudeSound::GetInstance()->BgmVolFade(-0.5f);
 			
 			m_readyTimer = 0.0f;
-			m_goText->SetDesiredTranslation(btVector3(0,100,0));
-			m_backText->SetDesiredTranslation(btVector3(0,100,0));
+			m_goText->SetDesiredTranslation(btVector3(0,kDownslideAmount,0));
+			m_backText->SetDesiredTranslation(btVector3(0,kDownslideAmount,0));
 			break;
 			
 		case kTitleReadyToPractice:
 			RudeSound::GetInstance()->BgmVolFade(-0.5f);
 			
 			m_readyTimer = 0.0f;
-			m_goText->SetDesiredTranslation(btVector3(0,100,0));
-			m_backText->SetDesiredTranslation(btVector3(0,100,0));
+			m_goText->SetDesiredTranslation(btVector3(0,kDownslideAmount,0));
+			m_backText->SetDesiredTranslation(btVector3(0,kDownslideAmount,0));
 			break;
 		
 	}

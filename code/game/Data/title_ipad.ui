@@ -2,22 +2,22 @@
 
 RudeButtonControl	logo	logo_ipad	{-1,-1}	{200, 0, 440, 768}	popslide
 RudeButtonControl	rangeMedallion	ui_bucketoballz	{-1,-1}	{80, 0, 356, 768}	popslide
-RudeButtonControl	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{0, 160, 356, 768}	popslide
-RudeButtonControl	courseSplash	ui_wreath_gold	{-1,-1}	{200, 0, 300, 240}	popslide
+RudeButtonControl	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{340, 160, 450, 768}	popslide
+RudeButtonControl	courseSplash	ui_wreath_gold	{-1,-1}	{440, 0, 540, 768}	popslide
 
 RudeTextControl	startText	Play	center	{540, 0, 590, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	practiceText	Practice	center	{610, 0, 660, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	settingsText	Options	center	{680, 0, 730, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-RudeTextControl	goText	Start	center	{400, 0, 420, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-RudeTextControl	backText	Back	center	{440, 0, 460, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	goText	Start	center	{840, 0, 870, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	backText	Back	center	{900, 0, 940, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	copyrightText	Copyright © 2010 Bork 3D LLC	center	{1000, 0, 1024, 768}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
-RudeTextControl	tournamentText	Select Tournament	center	{36, 0, 56, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
-RudeTextControl	courseNameText	Golf Course	center	{36, 0, 56, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	tournamentText	Select Tournament	center	{100, 0, 130, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseNameText	Golf Course	center	{100, 0, 130, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
-RudeTextControl	courseSubnameText	Amateur Invitational	center	{60, 0, 80, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
-RudeTextControl	courseDescText	Front 9 / Short Tee	center	{80, 0, 100, 768}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseSubnameText	Amateur Invitational	center	{150, 0, 180, 768}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseDescText	Front 9 / Short Tee	center	{200, 0, 220, 768}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 
 RudeTextControl	scoreText	+1	center	{400, 0, 420, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	scoreDesc	Congratulations!	center	{440, 0, 460, 768}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
