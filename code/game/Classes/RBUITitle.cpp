@@ -37,7 +37,10 @@ RBUITitle::RBUITitle()
 	m_flag.LoadMesh("sexy");
 	m_flag.SetPosition(kFlagPosition);
 
-	m_ui.Load("title_iphone");
+	if(RUDE_IPAD)
+		m_ui.Load("title_ipad");
+	else
+		m_ui.Load("title_iphone");
 	
 	m_logo = m_ui.GetChildControl<RudeButtonControl>("logo");
 	m_rangeMedallion = m_ui.GetChildControl<RudeButtonControl>("rangeMedallion");
