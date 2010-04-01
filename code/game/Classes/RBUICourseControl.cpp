@@ -18,23 +18,41 @@ void RBUICourseControl::Render()
 	float x = m_rect.m_left;
 	float y = m_rect.m_top;
 	
-	const float baseY = 23;
 	
+	
+#if RUDE_IPAD
+	const float baseY = 45;
+
+	const float courseX = 290;
+	const float courseY = baseY;
+
+	const float holesX = 290;
+	const float holesY = baseY + 27;
+
+	const float scoreX = 61;
+	const float scoreY = baseY + 9;
+#else
+	const float baseY = 23;
+
 	const float courseX = 100;
 	const float courseY = baseY;
+
+	const float holesX = 100;
+	const float holesY = baseY + 19;
+
+	const float scoreX = 61;
+	const float scoreY = baseY + 9;
+#endif
+
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + courseX, y + courseY, 0.0f, m_name, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 	
-	const float holesX = 100;
-	const float holesY = baseY + 19;
 	
 	RudeFontManager::GetFont(kDefaultFontOutline)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFFFFFFFF, 0xFFCCCCCC);
 	RudeFontManager::GetFont(kDefaultFont)->Write(x + holesX, y + holesY, 0.0f, m_subname, 0, FONT_ALIGN_LEFT, 0xFF444444, 0xFF000000);
 
 	
-	const float scoreX = 61;
-	const float scoreY = baseY + 9;
 	
 	unsigned int scorecolor = 0xFF000000;
 	
