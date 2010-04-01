@@ -1,6 +1,6 @@
 # Pause Menu - iPad version
 
-RudeTextControl	resumeText	Resume	center	{770, 0, 790, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-RudeTextControl	quitText	Quit	center	{810, 0, 830, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	resumeText	Resume	center	{760, 0, 790, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	quitText	Quit	center	{820, 0, 850, 768}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
 RBScoreControl	scoreControl	{0, 0, 1024, 768}
