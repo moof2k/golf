@@ -11,17 +11,58 @@
 
 #include "Rude.h"
 
+
+class RudeColorInt {
+
+public:
+	RudeColorInt();
+	RudeColorInt(int r, int g, int b);
+
+	void SetInt(int r, int g, int b)
+	{
+		m_r = r;
+		m_g = g;
+		m_b = b;
+	}
+
+	void SetFloat(float r, float g, float b)
+	{
+		m_r = (int) (r * 255.0f);
+		m_g = (int) (g * 255.0f);
+		m_b = (int) (b * 255.0f);
+	}
+
+	int m_r;
+	int m_g;
+	int m_b;
+
+private:
+
+};
+
 class RudeColorFloat {
 
 public:
 	RudeColorFloat();
 	RudeColorFloat(float r, float g, float b);
+
+	RudeColorFloat(const RudeColorInt &intcolor)
+	{
+		SetInt(intcolor.m_r, intcolor.m_g, intcolor.m_b);
+	}
 	
-	void Set(float r, float g, float b)
+	void SetFloat(float r, float g, float b)
 	{
 		m_r = r;
 		m_g = g;
 		m_b = b;
+	}
+
+	void SetInt(int r, int g, int b)
+	{
+		m_r = ((float) r) / 255.0f;
+		m_g = ((float) g) / 255.0f;
+		m_b = ((float) b) / 255.0f;
 	}
 
 	void Blend(const RudeColorFloat &other, float scale)
@@ -51,6 +92,7 @@ public:
 private:
 
 };
+
 
 
 #endif

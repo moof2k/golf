@@ -28,16 +28,16 @@ void RBBallGuidePoint::SetPoint(const btVector3 &point, const btVector3 &ball, f
 	if(ydiff < -1.0f)
 		ydiff = -1.0f;
 	
-	m_color.Set(1.0f, 1.0f, 1.0f);
+	m_color.SetFloat(1.0f, 1.0f, 1.0f);
 	RudeColorFloat blendcolor;
 	
 	if(ydiff > 0.0f)
 	{
-		blendcolor.Set(1.0f, 0.0f, 0.0f);
+		blendcolor.SetFloat(1.0f, 0.0f, 0.0f);
 	}
 	else
 	{
-		blendcolor.Set(0.0f, 0.0f, 1.0f);
+		blendcolor.SetFloat(0.0f, 0.0f, 1.0f);
 		ydiff = -ydiff;
 	}
 		
