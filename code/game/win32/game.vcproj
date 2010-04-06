@@ -412,6 +412,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Classes\RBTerrainViewControl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\RBTerrainViewControl.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Classes\RBTGame.cpp"
 				>
 			</File>
@@ -457,6 +465,14 @@
 			</File>
 			<File
 				RelativePath="..\Classes\RBUIMenu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\RBUITerrain.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\RBUITerrain.h"
 				>
 			</File>
 			<File

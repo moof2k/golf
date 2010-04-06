@@ -80,6 +80,8 @@ public:
 	void DumpDecorator() { m_decorator.Print(); }
 	
 	virtual void Render();
+
+	void RenderInBoundsOnly();
 	
 private:
 	

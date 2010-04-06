@@ -37,7 +37,7 @@
 #include "RBCourseData.h"
 #include "RBUIHelp.h"
 #include "RBUIMenu.h"
-
+#include "RBUITerrain.h"
 
 typedef enum {
 	kStateTeePosition,
@@ -51,7 +51,8 @@ typedef enum {
 	kStateFollowBall,
 	kStateRegardBall,
 	kStateBallOutOfBounds,
-	kStateBallInHole
+	kStateBallInHole,
+	kStateTerrainView
 } eRBTGameState;
 
 typedef enum {
@@ -147,6 +148,7 @@ private:
 	
 	RBUIMenu m_menu;
 	RBUIHelp m_help;
+	RBUITerrain m_terrainui;
 	
 	eRBTGameState m_state;
 	eGameResult m_result;
@@ -187,6 +189,7 @@ private:
 	RudeButtonControl *m_clubButton;
 	RudeButtonControl *m_cameraButton;
 	RudeButtonControl *m_helpButton;
+	RudeButtonControl *m_terrainButton;
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	
@@ -207,7 +210,7 @@ private:
 	RudeTextControl *m_guidePowerText;
 	
 	RBScoreControl *m_scoreControl;
-	
+
 	bool m_guideScreenCalc;
 	RudeScreenVertex m_guideScreenPoint;
 	

@@ -94,6 +94,27 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 , m_moveGuide(false)
 , m_moveHeight(false)
 , m_curClub(0)
+, m_botBarBg(0)
+, m_nextClubButton(0)
+, m_prevClubButton(0)
+, m_clubButton(0)
+, m_cameraButton(0)
+, m_helpButton(0)
+, m_terrainButton(0)
+, m_holeText(0)
+, m_parText(0)
+, m_strokeText(0)
+, m_remainingDistText(0)
+, m_scoreText(0)
+, m_shotEncouragementText(0)
+, m_clubDistText(0)
+, m_powerRangeText(0)
+, m_windText(0)
+, m_shotDistText(0)
+, m_shotPowerText(0)
+, m_shotAngleText(0)
+, m_guidePowerText(0)
+, m_scoreControl(0)
 , m_guideScreenCalc(false)
 , m_swingPower(0.0f)
 , m_swingAngle(0.0f)
@@ -148,6 +169,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_ballCamera.SetBall(&m_ball);
 	m_ballCamera.SetTerrain(&m_terrain);
+
+	m_terrainui.SetTerrain(&m_terrain);
 
 	// Load UI data
 	if(RUDE_IPAD)
@@ -264,6 +287,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_helpButton = m_ui.GetChildControl<RudeButtonControl>("helpButton");
 	m_cameraButton = m_ui.GetChildControl<RudeButtonControl>("cameraButton");
+	m_terrainButton = m_ui.GetChildControl<RudeButtonControl>("terrainButton");
 
 	m_guideAdjust = m_ui.GetChildControl<RudeControl>("guideAdjust");
 	m_swingCamAdjust = m_ui.GetChildControl<RudeControl>("swingCamAdjust");
@@ -382,7 +406,8 @@ void RBTGame::RestoreState()
 	   || m_state == kStateWaitForSwing
 	   || m_state == kStateMenu
 	   || m_state == kStateExecuteSwing
-	   || m_state == kStateRegardBall)
+	   || m_state == kStateRegardBall
+	   || m_state == kStateTerrainView)
 		m_state = kStatePositionSwing;
 	
 	if(m_state == kStateHitBall
@@ -625,6 +650,12 @@ void RBTGame::SetState(eRBTGameState state)
 				m_ballCamera.SetGuide(m_terrain.GetHole());
 				m_ballCamera.SetTrackMode(kRegardCamera);
 				
+			}
+			break;
+		case kStateTerrainView:
+			{
+				m_terrainui.StartDisplay();
+				m_terrainui.SetPositions(m_ball.GetPosition(), m_terrain.GetHole());
 			}
 			break;
 	}
@@ -1433,6 +1464,13 @@ void RBTGame::NextFrame(float delta)
 			m_ballRecorder.NextFrame(delta, false);
 		}
 			break;
+
+		case kStateTerrainView:
+		{
+			m_terrainui.NextFrame(delta);
+
+		}
+			break;
 			
 		default:
 			break;
@@ -1680,13 +1718,18 @@ void RBTGame::Render(float width, float height)
 	RGL.Enable(kDepthTest, false);
 	RGLD.RenderDebug();
 	
+	bool renderingWind = false;
 	if(m_state == kStatePositionSwing
 	   || m_state == kStatePositionSwing2
 	   || m_state == kStatePositionSwing3
-	   || m_state == kStateExecuteSwing)
+	   || m_state == kStateExecuteSwing
+	   || m_state == kStateTerrainView)
 	{
+		renderingWind = true;
 		if(!m_terrain.GetPutting())
+		{
 			m_windControl->Render();
+		}
 	}
 	
 	RUDE_PERF_STOP(kPerfRBTGameRender2);
@@ -1710,6 +1753,13 @@ void RBTGame::Render(float width, float height)
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);
 	
+	if(renderingWind)
+	{
+		if(!m_terrain.GetPutting())
+		{
+			m_windText->Render();
+		}
+	}
 	
 	
 	if(gRenderUI)
@@ -1732,11 +1782,10 @@ void RBTGame::Render(float width, float height)
 
 				if(!RUDE_IPAD)
 					m_helpButton->Render();
+
+				m_terrainButton->Render();
 				
 				RenderShotInfo(false, true);
-				
-				if(!m_terrain.GetPutting())
-					m_windText->Render();
 				
 				if(m_encouragementTimer > 0.0f)
 				{
@@ -1758,11 +1807,6 @@ void RBTGame::Render(float width, float height)
 					m_helpButton->Render();
 				
 				RenderShotInfo(false, true);
-				
-				if(!m_terrain.GetPutting())
-					m_windText->Render();
-				
-				
 				
 				break;
 				
@@ -1789,6 +1833,18 @@ void RBTGame::Render(float width, float height)
 			case kStateBallInHole:
 				m_scoreControl->Render();
 				RenderShotInfo(false, false);
+				break;
+
+			case kStateTerrainView:
+				
+				glMatrixMode(GL_PROJECTION);
+				glPushMatrix();
+				m_terrainui.Render(width, height);
+				glMatrixMode(GL_PROJECTION);
+				glPopMatrix();
+
+				RenderShotInfo(false, true);
+				m_terrainButton->Render();
 				break;
 		}
 	}
@@ -1908,6 +1964,15 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				
 				sfx = kSoundUIClickHi;
 			}
+
+			if(m_terrainButton->TouchDown(rbt))
+			{
+				SetState(kStateTerrainView);
+
+				m_terrainui.StartDisplay();
+
+				sfx = kSoundUIClickHi;
+			}
 			
 			#ifndef NO_DECO_EDITOR
 				m_dropDecoText.TouchDown(rbt);
@@ -1935,6 +2000,16 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			break;
 		case kStateFollowBall:
 			m_swingButton->TouchDown(rbt);
+			break;
+		case kStateTerrainView:
+			
+			if(m_terrainButton->TouchDown(rbt))
+			{
+				SetState(kStatePositionSwing);
+			}
+			else
+				m_terrainui.TouchDown(rbt);
+
 			break;
 	}
 	
@@ -1973,6 +2048,9 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 			break;
 		case kStateMenu:
 			m_menu.TouchMove(rbt);
+			break;
+		case kStateTerrainView:
+			m_terrainui.TouchMove(rbt);
 			break;
 		case kStateExecuteSwing:
 			m_swingControl->TouchMove(rbt);
@@ -2060,6 +2138,9 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 			//SetState(kStateTeePosition);
 			m_result = kResultComplete;
 			m_done = true;
+			break;
+		case kStateTerrainView:
+			m_terrainui.TouchUp(rbt);
 			break;
 	}
 	

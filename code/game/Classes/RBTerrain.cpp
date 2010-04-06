@@ -337,17 +337,17 @@ void RBTerrain::UpdatePutting()
 						ydiff = -1.0f;
 					
 					RudeColorFloat origcolor;
-					origcolor.Set(color_rf, color_rg, color_rb);
+					origcolor.SetFloat(color_rf, color_rg, color_rb);
 					
 					RudeColorFloat blendcolor;
 					
 					if(ydiff > 0.0f)
 					{
-						blendcolor.Set(1.0f, 0.0f, 0.0f);
+						blendcolor.SetFloat(1.0f, 0.0f, 0.0f);
 					}
 					else
 					{
-						blendcolor.Set(0.0f, 0.0f, 1.0f);
+						blendcolor.SetFloat(0.0f, 0.0f, 1.0f);
 						ydiff = -ydiff;
 					}
 					
@@ -716,6 +716,20 @@ void RBTerrain::Render()
 	
 	if(gDebugRenderGuides)
 		RenderGuides();
+}
+
+void RBTerrain::RenderInBoundsOnly()
+{
+	RudeMesh *mesh = GetMesh();
+
+	if(!mesh)
+		return;
+
+	mesh->EnableModel(0, false);
+
+	mesh->Render();
+
+	mesh->EnableModel(0, true);
 }
 
 void RBTerrain::RenderHole()
