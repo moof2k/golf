@@ -57,6 +57,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import "EAGLView.h"
 
 #include "RBGame.h"
+#include "RudeGL.h"
 #include "RudeDebug.h"
 #include "RudeText.h"
 #include "RudeFont.h"
@@ -251,6 +252,8 @@ const GLshort spriteTexcoords[] = {
 
 - (void)setupView
 {
+	RGL.SetDeviceWidth(backingWidth);
+	RGL.SetDeviceHeight(backingHeight);
 	
 	
 	// Sets up matrices and transforms for OpenGL ES
