@@ -84,6 +84,9 @@ static double dtor( double degrees )
 {
 	backingWidth = bounds.size.width;
 	backingHeight = bounds.size.height;
+	
+	RGL.SetDeviceWidth(backingWidth);
+	RGL.SetDeviceHeight(backingHeight);
 }
 
 - (void)flushState
