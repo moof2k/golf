@@ -77,6 +77,10 @@ typedef float GLfloat;
 #endif
 #endif
 
+#ifndef RUDE_IPAD
+#define RUDE_IPAD 0
+#endif
+
 // -------------------------------------------------------------------------
 
 #ifdef RUDE_GAPI
