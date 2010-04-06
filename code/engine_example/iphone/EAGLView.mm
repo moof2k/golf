@@ -356,7 +356,7 @@ const GLshort spriteTexcoords[] = {
 	{
 		float aspect = ((float) backingWidth) / ((float) backingHeight);
 
-		gVBGame->Render(elapsedSeconds, aspect);
+		gVBGame->Render(elapsedSeconds, backingWidth, backingHeight);
 		
 	}
 	
