@@ -55,6 +55,25 @@ void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &
 	RUDE_REPORT("scale = %f\n", m_scale);
 }
 
+void RBTerrainViewControl::Translate(float x, float y)
+{
+	m_originx += x * m_scale;
+	m_originy += y * m_scale;
+
+	const float kMaxTranslation = 2000.0f;
+
+	if(m_originx < -kMaxTranslation)
+		m_originx = -kMaxTranslation;
+	if(m_originx > kMaxTranslation)
+		m_originx = kMaxTranslation;
+
+	if(m_originy < -kMaxTranslation)
+		m_originy = -kMaxTranslation;
+	if(m_originy > kMaxTranslation)
+		m_originy = kMaxTranslation;
+}
+
+
 void RBTerrainViewControl::Render()
 {
 	if(!m_terrain)

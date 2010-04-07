@@ -29,6 +29,8 @@ public:
 	}
 
 	void SetPositions(const btVector3 &ball, const btVector3 &hole);
+
+	void Translate(float x, float y);
 	
 private:
 	
