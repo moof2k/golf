@@ -18,7 +18,9 @@ RBTerrainViewControl::RBTerrainViewControl()
 , m_angle(0.0f)
 , m_scale(1.0f)
 {
-	
+	m_guideIndicatorButton.SetTexture("guide");
+	m_ballIndicatorButton.SetTexture("balldot");
+	m_holeIndicatorButton.SetTexture("guide2");
 }
 
 
@@ -27,7 +29,7 @@ void RBTerrainViewControl::NextFrame(float delta)
 	
 }
 
-void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &hole)
+void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide)
 {
 	//RUDE_REPORT("ball %f %f %f\n", ball.x(), ball.y(), ball.z());
 	//RUDE_REPORT("guide %f %f %f\n", guide.x(), guide.y(), guide.z());
@@ -52,7 +54,9 @@ void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &
 	if(m_scale < 0.1f)
 		m_scale = 0.1f;
 
-	RUDE_REPORT("scale = %f\n", m_scale);
+	m_guide = guide;
+	m_ball = ball;
+	m_hole = hole;
 }
 
 void RBTerrainViewControl::Translate(float x, float y)
@@ -131,6 +135,46 @@ void RBTerrainViewControl::Render()
 	RGL.Rotate(-90.0, 1.0, 0.0, 0.0);
 
 	m_terrain->RenderInBoundsOnly();
+
+
+	RGL.Ortho(0.0, 0.0, -100.0f, width, height, 1000.0f);
+
+	ox = -m_originx / m_scale + width/2;
+	oy = -m_originy / m_scale + height/2;
+
+
+	const int kGuideSize = 32;
+	RudeRect guideRect(
+		(int) m_guide.z() / m_scale + oy - kGuideSize,
+		(int) m_guide.x() / m_scale + ox - kGuideSize,
+		(int) m_guide.z() / m_scale + oy + kGuideSize,
+		(int) m_guide.x() / m_scale + ox + kGuideSize
+		);
+
+	RudeRect ballRect(
+		(int) m_ball.z() / m_scale + oy - kGuideSize,
+		(int) m_ball.x() / m_scale + ox - kGuideSize,
+		(int) m_ball.z() / m_scale + oy + kGuideSize,
+		(int) m_ball.x() / m_scale + ox + kGuideSize
+		);
+
+	RudeRect holeRect(
+		(int) m_hole.z() / m_scale + oy - kGuideSize,
+		(int) m_hole.x() / m_scale + ox - kGuideSize,
+		(int) m_hole.z() / m_scale + oy + kGuideSize,
+		(int) m_hole.x() / m_scale + ox + kGuideSize
+		);
+	
+	m_guideIndicatorButton.SetRect(guideRect);
+	m_guideIndicatorButton.Render();
+
+	m_holeIndicatorButton.SetRect(holeRect);
+	m_holeIndicatorButton.Render();
+
+	m_ballIndicatorButton.SetRect(ballRect);
+	m_ballIndicatorButton.Render();
+
+
 }
 
 

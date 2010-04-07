@@ -487,7 +487,8 @@ void RBTGame::SetState(eRBTGameState state)
 				
 				m_swingHeight = 0.0f;
 				
-				if(prevstate == kStatePositionSwing2)
+				if(prevstate == kStatePositionSwing2 ||
+					prevstate == kStateTerrainView)
 				{
 					m_ballCamera.SetHeight(10.0f);
 				}
@@ -655,7 +656,7 @@ void RBTGame::SetState(eRBTGameState state)
 		case kStateTerrainView:
 			{
 				m_terrainui.StartDisplay();
-				m_terrainui.SetPositions(m_ball.GetPosition(), m_terrain.GetHole());
+				m_terrainui.SetPositions(m_ball.GetPosition(), m_terrain.GetHole(), m_guidePosition);
 			}
 			break;
 	}

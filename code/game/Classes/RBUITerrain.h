@@ -33,9 +33,9 @@ public:
 
 	void StartDisplay();
 
-	void SetPositions(const btVector3 &ball, const btVector3 &hole)
+	void SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide)
 	{
-		m_tvc.SetPositions(ball, hole);
+		m_tvc.SetPositions(ball, hole, guide);
 	}
 	
 	void TouchDown(RudeTouch *rbt);

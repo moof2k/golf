@@ -11,6 +11,7 @@
 #define __H_RBTerrainViewControl
 
 #include "RudeControl.h"
+#include "RudeButtonControl.h"
 #include "RudeObject.h"
 #include "RBTerrain.h"
 
@@ -28,13 +29,21 @@ public:
 		m_terrain = terrain;
 	}
 
-	void SetPositions(const btVector3 &ball, const btVector3 &hole);
+	void SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide);
 
 	void Translate(float x, float y);
 	
 private:
 	
 	RBTerrain *m_terrain;
+
+	RudeButtonControl m_guideIndicatorButton;
+	RudeButtonControl m_ballIndicatorButton;
+	RudeButtonControl m_holeIndicatorButton;
+
+	btVector3 m_guide;
+	btVector3 m_ball;
+	btVector3 m_hole;
 
 	float m_originx;
 	float m_originy;
