@@ -20,7 +20,14 @@ RBUITerrain::RBUITerrain()
 	m_touch[0] = 0;
 	m_touch[1] = 0;
 
-	m_tvc.SetRect(RudeRect(0,0,1024,768));
+	if(RUDE_IPAD)
+	{
+		m_tvc.SetRect(RudeRect(0,0,1024,768));
+	}
+	else
+	{
+		m_tvc.SetRect(RudeRect(0,0,480,320));
+	}
 }
 
 RBUITerrain::~RBUITerrain()
