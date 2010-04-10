@@ -24,6 +24,7 @@ RudeTextControl	shotDistText	50 yds	center	{430, 0, 446, 320}	default	outline	no
 RudeTextControl	shotPowerText	100% Power	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	shotAngleText	0% Hook	center	{462, 0, 478, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	guidePowerText	200 yds	center	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	holeHeightText	+10 yds	left	{446, 0, 462, 320}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
 
 RudeButtonControl	botBarBg	ui_botbarbg	{-1, -1}	{436, 0, 480, 320}	none
