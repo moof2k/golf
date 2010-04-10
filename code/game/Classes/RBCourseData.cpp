@@ -22,7 +22,7 @@ RBCourseEntry sCourseData[kNumCourses] = {
 
 RBCourseHole sCourseHoleData[kNumPhysicalCourses][18] = {
 {
-	{ 1, 4, "par4_A"},
+	{ 1, 4, "parflat"},
 	{ 2, 5, "par5_A" },
 	{ 3, 3, "par3_A" },
 	{ 4, 4, "par4_E" },

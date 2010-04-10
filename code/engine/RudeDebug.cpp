@@ -7,7 +7,7 @@
  */
 
 #include "RudeDebug.h"
-
+#include "Rude.h"
 
 char RudeDebug::sLogfile[80];
 

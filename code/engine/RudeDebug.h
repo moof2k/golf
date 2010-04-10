@@ -9,8 +9,6 @@
 #ifndef __H_RudeDebug
 #define __H_RudeDebug
 
-#include "Rude.h"
-
 #define kRudeDebugTextLen 5
 #define kRudeDebugTextSize 80
 
