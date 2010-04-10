@@ -239,6 +239,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_guidePowerText = m_ui.GetChildControl<RudeTextControl>("guidePowerText");
 	m_guidePowerText->SetFormat(kIntValue, "%d yds");
 
+	m_holeHeightText = m_ui.GetChildControl<RudeTextControl>("holeHeightText");
+	m_holeHeightText->SetText("");
 						  
 	// swing controls
 	
@@ -275,6 +277,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_menuButton = m_ui.GetChildControl<RudeButtonControl>("menuButton");
 	
 	m_guideIndicatorButton.SetTexture("guide");
+	m_holeIndicatorButton.SetTexture("guide2");
 	m_placementGuideIndicatorButton.SetTexture("guide");
 	
 	m_swingYaw = 0.0f;
@@ -377,7 +380,7 @@ int RBTGame::LoadState()
 			RUDE_REPORT("Failed to load game state, size mismatch!\n");
 			return -1;
 		}
-		
+
 		m_state = load.state;
 		m_curClub = load.curClub;
 		m_windDir = load.windDir;
@@ -389,6 +392,7 @@ int RBTGame::LoadState()
 		m_ball.StickAtPosition(load.ball);
 		m_ball.SetCurMaterial(load.ballMaterial);
 		m_terrain.SetHole(load.hole);
+
 	
 		RestoreState();
 		
@@ -507,6 +511,7 @@ void RBTGame::SetState(eRBTGameState state)
 				m_terrain.SetEnablePuttingGreen(true);
 				
 				FreshGuide(true);
+				SetHoleHeightText();
 			}
 			break;
 		case kStatePositionSwing2:
@@ -619,6 +624,8 @@ void RBTGame::SetState(eRBTGameState state)
 				}
 				
 				m_encouragementTimer = 3.0f;
+
+				SetHoleHeightText();
 				
 			}
 			break;
@@ -1312,6 +1319,48 @@ void RBTGame::AdjustGuide()
 	m_guideScreenCalc = false;
 }
 
+void RBTGame::SetHoleHeightText()
+{
+	char text[64];
+
+	// Adjust hole height indicator
+	float holeHeight = m_terrain.GetHole().y() - m_ball.GetPosition().y();
+	int heightFeet = int(holeHeight);
+	int heightYards = heightFeet / 3;
+	int heightInches = (int) (holeHeight * 12.0f);
+
+	if(heightYards >= 3)
+	{
+		snprintf(text, 64, "+%d yds", heightYards);
+	}
+	else if(heightYards <= -3)
+	{
+		snprintf(text, 64, "%d yds", heightYards);
+	}
+	else if(heightFeet >= 1)
+	{
+		snprintf(text, 64, "+%d'", heightFeet);
+	}
+	else if(heightFeet <= -1)
+	{
+		snprintf(text, 64, "%d'", heightFeet);
+	}
+	else if(heightInches > 0)
+	{
+		snprintf(text, 64, "+%d\"", heightInches);
+	}
+	else if(heightInches < 0)
+	{
+		snprintf(text, 64, "%d\"", heightInches);
+	}
+	else
+	{
+		snprintf(text, 64, "0\"");
+	}
+
+	m_holeHeightText->SetText(text);
+}
+
 void RBTGame::NextFrame(float delta)
 {
 	RUDE_PERF_START(kPerfRBTGameNextFrame);
@@ -1500,6 +1549,7 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 			{
 
 				m_guidePositionScreenSpace = RGL.Project(m_guidePosition);
+				m_holePositionScreenSpace = RGL.Project(m_terrain.GetHole());
 				
 				if(m_state == kStatePositionSwing)
 				{
@@ -1527,24 +1577,53 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 
 void RBTGame::RenderGuide(float aspect)
 {
+	const int kGuideSize = 32;
+
+	// Figure out how far apart the hole indicator is from the guide indicator
+	btVector3 guidePos = m_guidePositionScreenSpace;
+	if(m_state == kStatePositionSwing3)
+		guidePos = m_placementGuidePositionScreenSpace;
+
+	btVector3 holeGuideDist = guidePos - m_holePositionScreenSpace;
+	holeGuideDist.setZ(0);
+	float holeGuideLen = holeGuideDist.length2();
+
+	int holeIndicatorOffset = 30;
+	float kGuideSeparationDist = 64.0f;
+
+	if(holeGuideLen < kGuideSeparationDist * kGuideSeparationDist)
+		holeIndicatorOffset = 60;
+
+	RudeRect holeRect(
+		(int) m_holePositionScreenSpace.y() - kGuideSize - holeIndicatorOffset,
+		(int) m_holePositionScreenSpace.x() - kGuideSize,
+		(int) m_holePositionScreenSpace.y() + kGuideSize - holeIndicatorOffset,
+		(int) m_holePositionScreenSpace.x() + kGuideSize
+		);
+
+	m_holeIndicatorButton.SetRect(holeRect);
+	m_holeIndicatorButton.Render();
+
+	m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - holeIndicatorOffset - 9);
+	m_holeHeightText->Render();
+
 	if(m_state != kStatePositionSwing3)
 	{
-		const int kGuideSize = 32;
-		RudeRect r(
+		RudeRect guideRect(
 				   (int) m_guidePositionScreenSpace.y() - kGuideSize,
 				   (int) m_guidePositionScreenSpace.x() - kGuideSize,
 				   (int) m_guidePositionScreenSpace.y() + kGuideSize,
 				   (int) m_guidePositionScreenSpace.x() + kGuideSize
 				   );
 		
-		m_guideIndicatorButton.SetRect(r);
+		m_guideIndicatorButton.SetRect(guideRect);
 		m_guideIndicatorButton.Render();
 	}
 	
 	if(m_state == kStatePositionSwing3)
 	{
 		{
-			const int kGuideSize = 32;
+			
 			RudeRect r(
 					   (int) m_placementGuidePositionScreenSpace.y() - kGuideSize,
 					   (int) m_placementGuidePositionScreenSpace.x() - kGuideSize,

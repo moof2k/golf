@@ -18,6 +18,9 @@ RudeTextControl	shotPowerText	100% Power	center	{990, 0, 1006, 768}	default	outl
 RudeTextControl	shotAngleText	0% Hook	center	{1006, 0, 1022, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	guidePowerText	200 yds	center	{446, 0, 462, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
+RudeTextControl	holeHeightText	+10 yds	left	{446, 0, 462, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+
+
 # Botbar is 44px high on iPhone
 #  iPhone horz. center 160px
 #  iPad +224px

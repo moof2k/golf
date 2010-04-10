@@ -143,7 +143,7 @@ private:
 	void StickBallInBounds();
 	void HitBall();
 	void AdjustGuide();
-	
+	void SetHoleHeightText();
 	
 	
 	RBUIMenu m_menu;
@@ -191,6 +191,7 @@ private:
 	RudeButtonControl *m_helpButton;
 	RudeButtonControl *m_terrainButton;
 	RudeButtonControl m_guideIndicatorButton;
+	RudeButtonControl m_holeIndicatorButton;
 	RudeButtonControl m_placementGuideIndicatorButton;
 	
 	RudeTextControl *m_holeText;
@@ -208,6 +209,8 @@ private:
 	RudeTextControl *m_shotAngleText;
 	
 	RudeTextControl *m_guidePowerText;
+
+	RudeTextControl *m_holeHeightText;
 	
 	RBScoreControl *m_scoreControl;
 
@@ -232,6 +235,7 @@ private:
 	btVector3 m_guidePosition;
 	btVector3 m_placementGuidePosition;
 	btVector3 m_guidePositionScreenSpace;
+	btVector3 m_holePositionScreenSpace;
 	btVector3 m_placementGuidePositionScreenSpace;
 	
 	btVector3 m_ballLastInBoundsPosition;
