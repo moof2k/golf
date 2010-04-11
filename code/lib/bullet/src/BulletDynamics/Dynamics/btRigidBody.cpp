@@ -137,8 +137,6 @@ void btRigidBody::setDamping(btScalar lin_damping, btScalar ang_damping)
 	m_angularDamping = GEN_clamped(ang_damping, (btScalar)btScalar(0.0), (btScalar)btScalar(1.0));
 }
 
-#include "..\..\..\engine\RudeDebug.h"
-
 ///applyDamping damps the velocity, using the given m_linearDamping and m_angularDamping
 void			btRigidBody::applyDamping(btScalar timeStep)
 {
