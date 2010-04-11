@@ -91,6 +91,8 @@ void RBUITitle::Render(float width, float height)
 		RGL.SetViewport(0, 0, width, height);
 	else
 		RGL.SetViewport(0, 0, height, width);
+
+	glFrontFace(GL_CW);
 	
 	// Perspective draws
 	m_camera.SetView(aspect);
@@ -99,7 +101,7 @@ void RBUITitle::Render(float width, float height)
 	m_skybox.Render();
 	
 	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
+	
 	RGL.Enable(kBackfaceCull, true);
 	RGL.Enable(kDepthTest, true);
 	
