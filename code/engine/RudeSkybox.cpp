@@ -149,6 +149,7 @@ void RudeSkybox::Render()
 	
 	RGL.Enable(kBackfaceCull, true);
 	glCullFace(GL_BACK);
+	glFrontFace(GL_CW);
 	
 	RGL.Enable(kDepthTest, false);
 	RGL.EnableClient(kVertexArray, true);
