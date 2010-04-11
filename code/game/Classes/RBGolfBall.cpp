@@ -63,13 +63,17 @@ void RBGolfBall::NextFrame(float delta)
 {
 	if(m_stopped)
 		return;
+
+	// This function adjusts the physics parameters of the golf ball.  It doesn't play well
+	// if the collision callback for the ball isn't called, which can happen if delta is ever 0.
+	// So if delta is 0, skip out..
+	if(delta <= 0.0f)
+		return;
 	
 	RudePhysicsSphere *obj = (RudePhysicsSphere *) GetPhysicsObject();
 	btRigidBody *rb = obj->GetRigidBody();
 	btVector3 linvel = rb->getLinearVelocity();
 	float speed = linvel.length();
-	
-	//RUDE_REPORT(" in linvel: %f %f %f, speed: %f\n", linvel.x(), linvel.y(), linvel.z(), speed);
 	
 	// apply force from spin
 	if(m_applySpinForce)
@@ -122,7 +126,7 @@ void RBGolfBall::NextFrame(float delta)
 		
 		float linearDamping = m_curLinearDamping;
 		
-		//RUDE_REPORT("Linear Damping: %f\n", linearDamping);
+		//RUDE_REPORT("damping = %f", linearDamping);
 		
 		rb->setDamping(linearDamping, m_curAngularDamping);
 		
@@ -150,7 +154,6 @@ void RBGolfBall::NextFrame(float delta)
 	
 	speed = linvel.length();
 	//RUDE_REPORT("out linvel: %f %f %f, speed: %f\n", linvel.x(), linvel.y(), linvel.z(), speed);
-	
 	
 	rb->setLinearVelocity(linvel);
 
