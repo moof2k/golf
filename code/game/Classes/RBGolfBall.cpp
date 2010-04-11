@@ -276,7 +276,7 @@ void RBGolfBall::StickAtPosition(const btVector3 &p)
 	
 	btTransform trans;
 	trans.setIdentity();
-	trans.setOrigin(cb.m_hitPointWorld + btVector3(0, 0.5f + kBallRadius,0));
+	trans.setOrigin(cb.m_hitPointWorld + btVector3(0, kBallRadius,0));
 	
 	GetPhysicsObject()->GetRigidBody()->getMotionState()->setWorldTransform(trans);
 	GetPhysicsObject()->GetRigidBody()->setWorldTransform(trans);
