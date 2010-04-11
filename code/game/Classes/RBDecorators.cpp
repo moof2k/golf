@@ -329,7 +329,7 @@ void RBDecoratorCollection::Render()
 	
 	float w = RGL.GetHalfWidth();
 	float h = RGL.GetHalfHeight();
-	RGL.Frustum(0.0f, 0.0f, w * 2.0f, h * 2.0f, 4.0f, 2000.0f);
+	RGL.Frustum(0.0f, 0.0f, w * 2.0f, h * 2.0f, 4.0f, 2500.0f);
 	
 	
 	btVector3 eye = RGL.GetEye();
