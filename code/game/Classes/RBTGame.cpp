@@ -1748,11 +1748,6 @@ void RBTGame::Render(float width, float height)
 	RGL.Enable(kDepthTest, true);
 	m_terrain.Render();
 	
-	if(m_state == kStateFollowBall)
-	{
-		m_ballRecorder.RenderTracers();
-	}
-	
 	if(gDebugCamera)
 	{
 		m_ballRecorder.RenderRecords();
@@ -1774,7 +1769,11 @@ void RBTGame::Render(float width, float height)
 	if(m_state != kStateBallInHole)
 		m_ball.Render();
 	
-	
+
+	if(m_state == kStateFollowBall)
+	{
+		m_ballRecorder.RenderTracers();
+	}
 	
 	if(m_state == kStatePositionSwing2 || m_state == kStatePositionSwing3)
 	{
