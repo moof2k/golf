@@ -145,15 +145,8 @@ void			btRigidBody::applyDamping(btScalar timeStep)
 	//m_linearVelocity *= GEN_clamped((btScalar(1.) - timeStep * m_linearDamping), (btScalar)btScalar(0.0), (btScalar)btScalar(1.0));
 	//m_angularVelocity *= GEN_clamped((btScalar(1.) - timeStep * m_angularDamping), (btScalar)btScalar(0.0), (btScalar)btScalar(1.0));
 
-	float linvelbefore = m_linearVelocity.length();
-	
 	m_linearVelocity *= powf(GEN_clamped(1.0 - m_linearDamping, 0.0, 1.0),timeStep);
 	m_angularVelocity *= powf(GEN_clamped(1.0 - m_angularDamping, 0.0, 1.0),timeStep);
-
-	float linevelafter = m_linearVelocity.length();
-
-	RUDE_REPORT("linear vel %f => %f\n", linvelbefore, linevelafter);
-
 
 	if (m_additionalDamping)
 	{
