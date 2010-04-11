@@ -79,13 +79,9 @@ void RBBallRecorder::RenderTracers()
 	float time = 0.0f;
 	int tracerLen = 0;
 	int k = m_curBallPosition - 1;
-	
+
 	while(time < kTracerTimeLen)
 	{
-		time += m_ballPositions[k].m_time;
-		
-		k--;
-		
 		if(k < 0)
 		{
 			if(m_wrapped)
@@ -93,6 +89,14 @@ void RBBallRecorder::RenderTracers()
 			else
 				break;
 		}
+
+		if(k == m_curBallPosition)
+			// we've wrapped all the way back around to the beginning
+			break;
+
+		time += m_ballPositions[k].m_time;
+		
+		k--;
 		
 		tracerLen++;
 	}
@@ -101,6 +105,7 @@ void RBBallRecorder::RenderTracers()
 		return;
 	
 	RGL.Enable(kDepthTest, true);
+	RGL.Enable(kBackfaceCull, false);
 	
 	RudeTextureManager::GetInstance()->SetTexture(m_tracerTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
