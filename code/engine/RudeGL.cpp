@@ -278,6 +278,8 @@ btVector3 RudeGL::Project(const btVector3 &point)
 		rv.setY((2.0f * hh) - ((result[0] / result[3] * hh) + hh));
 		rv.setZ(result[2] / result[3]);
 	}
+
+	rv += btVector3(0.5f, 0.5f, 0.0f);
 	
 	return rv;
 }
