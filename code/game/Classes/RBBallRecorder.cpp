@@ -9,6 +9,7 @@
 
 #include "RBBallRecorder.h"
 #include "RudeGL.h"
+#include "RudeDebug.h"
 #include "RudeTextureManager.h"
 
 RBBallRecorder::RBBallRecorder()
@@ -146,6 +147,7 @@ void RBBallRecorder::RenderTracers()
 	float bintensity = 1.0f;
 
 	btVector3 right;
+
 	
 	while(c)
 	{
@@ -158,12 +160,18 @@ void RBBallRecorder::RenderTracers()
 			
 			btVector3 dir = p2 - p1;
 
+			btVector3 normal(0,1,0);
+
 			if(dir.length() > 0.0f)
 			{
-				dir = dir.normalize();
-				btVector3 up(0,1,0);
-				
-				right = dir.cross(up);
+				dir.normalize();
+
+				btVector3 lookAt = RGL.GetLookAt();
+				btVector3 eye = RGL.GetEye();
+				btVector3 lookdir = lookAt - eye;
+				lookdir.normalize();
+
+				right = dir.cross(lookdir);
 			}
 			
 			right = right.normalize();
