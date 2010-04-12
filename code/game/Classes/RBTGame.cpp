@@ -295,6 +295,9 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_swingCamAdjust = m_ui.GetChildControl<RudeControl>("swingCamAdjust");
 
 	m_windControl = m_ui.GetChildControl<RBWindControl>("windControl");
+
+	m_terrainSliceControl = m_ui.GetChildControl<RBTerrainSliceControl>("terrainSlice");
+	m_terrainSliceControl->SetBallGuide(&m_ballGuide);
 	
 	if(restorestate)
 	{
@@ -1530,6 +1533,7 @@ void RBTGame::NextFrame(float delta)
 	
 	m_golfer.NextFrame(delta);
 	m_windControl->NextFrame(delta);
+	m_terrainSliceControl->NextFrame(delta);
 	
 	m_ball.NextFrame(delta);
 	m_curCamera->NextFrame(delta);
@@ -1858,6 +1862,8 @@ void RBTGame::Render(float width, float height)
 				m_prevClubButton->Render();
 				m_clubButton->Render();
 				m_cameraButton->Render();
+
+				m_terrainSliceControl->Render();
 
 				if(!RUDE_IPAD)
 					m_helpButton->Render();

@@ -13,7 +13,7 @@
 #include "RBGolfBall.h"
 #include "RudeColor.h"
 
-const int kMaxGuidePoints = 400;
+const int kMaxGuidePoints = 800;
 
 
 class RBBallGuidePoint
@@ -24,6 +24,7 @@ public:
 	
 	btVector3 m_point;
 	RudeColorFloat m_color;
+	float m_height;
 };
 
 class RBBallGuide
@@ -47,9 +48,15 @@ public:
 	
 	void NextFrame(float delta);
 	void Render();
+
+	float GetMinGuidePoint() { return m_minGuidePoint; }
+	float GetMaxGuidePoint() { return m_maxGuidePoint; }
+	RBBallGuidePoint * GetGuidePoints() { return m_guidePoints; }
+	int GetNumGuidePoints() { return m_numGuidePoints; }
 	
 private:
 	
+	void AddPoint(const btVector3 &p);
 	void RegenPoints();
 	
 	RBBallGuidePoint m_guidePoints[kMaxGuidePoints];
@@ -62,6 +69,8 @@ private:
 	btVector3 m_regenBall;
 	float m_regenTimer;
 	int m_regenCounter;
+	float m_minGuidePoint;
+	float m_maxGuidePoint;
 	
 };
 

@@ -12,16 +12,20 @@
 #include "RudeGLD.h"
 #include "RudePhysics.h"
 
+#include <algorithm>
 
 
+const int kBaseRegenIncrement = 2;
 const float kHeightHighlightScale = 15.0f;
+const float kNumRegensPerSecond = 90.0f;
 
 void RBBallGuidePoint::SetPoint(const btVector3 &point, const btVector3 &ball, float scale)
 {
 	m_point = point;
 	
-	float ydiff = m_point.y() - ball.y();
-	ydiff /= scale;
+	m_height = m_point.y() - ball.y();
+
+	float ydiff = m_height / scale;
 	
 	if(ydiff > 1.0f)
 		ydiff = 1.0f;
@@ -52,12 +56,16 @@ RBBallGuide::RBBallGuide()
 , m_regenAimVec(1,0,0)
 , m_regenBall(0,0,0)
 , m_regenTimer(0.0f)
+, m_minGuidePoint(0.0f)
+, m_maxGuidePoint(0.0f)
 {
 }
 
 void RBBallGuide::RegenPoints()
 {
-	m_numGuidePoints = 1;
+	m_numGuidePoints = 0;
+	m_minGuidePoint = 0.0f;
+	m_maxGuidePoint = 0.0f;
 	
 	btDiscreteDynamicsWorld *world = RudePhysics::GetInstance()->GetWorld();
 	
@@ -88,11 +96,11 @@ void RBBallGuide::RegenPoints()
 		if(cb.hasHit())
 		{
 			RUDE_ASSERT(0 < kMaxGuidePoints, "Out of guide points");
-			m_guidePoints[0].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
+			AddPoint(cb.m_hitPointWorld);
 			pointfound = true;
 		}
 		
-		m_regenCounter -= 3;
+		m_regenCounter -= kBaseRegenIncrement;
 		
 	}
 }
@@ -105,13 +113,25 @@ btVector3 RBBallGuide::GetLastGuidePoint()
 		return m_guidePoints[0].m_point;
 }
 
+void RBBallGuide::AddPoint(const btVector3 &p)
+{
+	float height = p.y() - m_regenBall.y();
+	
+	if(height < m_minGuidePoint)
+		m_minGuidePoint = height;
+	if(height > m_maxGuidePoint)
+		m_maxGuidePoint = height;
+
+	m_guidePoints[m_numGuidePoints].SetPoint(p, m_regenBall, kHeightHighlightScale);
+	m_numGuidePoints++;
+}
+
 void RBBallGuide::NextFrame(float delta)
 {
 	if(m_regenCounter > 0)
 	{
 		m_regenTimer += delta;
 		
-		const float kNumRegensPerSecond = 30.0f;
 		const float kRegenPeriod = 1.0f / kNumRegensPerSecond;
 		
 		while(m_regenTimer > kRegenPeriod && m_regenCounter > 0)
@@ -133,19 +153,18 @@ void RBBallGuide::NextFrame(float delta)
 			{
 				if(m_numGuidePoints < kMaxGuidePoints)
 				{
-					m_guidePoints[m_numGuidePoints].SetPoint(cb.m_hitPointWorld, m_regenBall, kHeightHighlightScale);
-					m_numGuidePoints++;
+					AddPoint(cb.m_hitPointWorld);
+					
 				}
 			}
 			
-			m_regenCounter -= 9;
+			m_regenCounter -= kBaseRegenIncrement;
 			
-			if(m_regenCounter < 9)
+			if(m_regenCounter < kBaseRegenIncrement)
 			{
 				if(m_numGuidePoints < kMaxGuidePoints)
 				{
-					m_guidePoints[m_numGuidePoints].SetPoint(m_regenBall, m_regenBall, kHeightHighlightScale);
-					m_numGuidePoints++;
+					AddPoint(m_regenBall);
 				}
 				m_regenCounter = 0;
 			}

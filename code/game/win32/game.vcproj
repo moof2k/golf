@@ -412,6 +412,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\Classes\RBTerrainSliceControl.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Classes\RBTerrainSliceControl.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Classes\RBTerrainViewControl.cpp"
 				>
 			</File>
