@@ -192,7 +192,6 @@ private:
 	RudeButtonControl *m_terrainButton;
 	RudeButtonControl m_guideIndicatorButton;
 	RudeButtonControl m_holeIndicatorButton;
-	RudeButtonControl m_placementGuideIndicatorButton;
 	
 	RudeTextControl *m_holeText;
 	RudeTextControl *m_parText;

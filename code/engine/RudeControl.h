@@ -54,6 +54,7 @@ public:
 	}
 	
 	virtual void SetRect(const RudeRect &r) { m_rect = r; }
+	virtual RudeRect GetRect() { return m_rect; }
 	
 	virtual bool Contains(const RudeScreenVertex &p);
 	

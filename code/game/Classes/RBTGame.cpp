@@ -278,7 +278,6 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	m_guideIndicatorButton.SetTexture("guide");
 	m_holeIndicatorButton.SetTexture("guide2");
-	m_placementGuideIndicatorButton.SetTexture("guide");
 	
 	m_swingYaw = 0.0f;
 	m_swingCamYaw = 0.0f;
@@ -1579,34 +1578,22 @@ void RBTGame::RenderGuide(float aspect)
 {
 	const int kGuideSize = 32;
 
-	// Figure out how far apart the hole indicator is from the guide indicator
-	btVector3 guidePos = m_guidePositionScreenSpace;
-	if(m_state == kStatePositionSwing3)
-		guidePos = m_placementGuidePositionScreenSpace;
 
-	btVector3 holeGuideDist = guidePos - m_holePositionScreenSpace;
-	holeGuideDist.setZ(0);
-	float holeGuideLen = holeGuideDist.length2();
-
-	int holeIndicatorOffset = 30;
-	float kGuideSeparationDist = 64.0f;
-
-	if(holeGuideLen < kGuideSeparationDist * kGuideSeparationDist)
-		holeIndicatorOffset = 60;
-
+	// Set hole indicator position
+	const int holeIndicatorOffset = 30;
 	RudeRect holeRect(
 		(int) m_holePositionScreenSpace.y() - kGuideSize - holeIndicatorOffset,
 		(int) m_holePositionScreenSpace.x() - kGuideSize,
 		(int) m_holePositionScreenSpace.y() + kGuideSize - holeIndicatorOffset,
 		(int) m_holePositionScreenSpace.x() + kGuideSize
 		);
-
 	m_holeIndicatorButton.SetRect(holeRect);
-	m_holeIndicatorButton.Render();
-
+	
 	m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - holeIndicatorOffset - 9);
-	m_holeHeightText->Render();
-
+	RudeRect holeTextRect = m_holeHeightText->GetRect();
+	holeTextRect.m_right += 80;
+	
+	
 	if(m_state != kStatePositionSwing3)
 	{
 		RudeRect guideRect(
@@ -1617,56 +1604,69 @@ void RBTGame::RenderGuide(float aspect)
 				   );
 		
 		m_guideIndicatorButton.SetRect(guideRect);
-		m_guideIndicatorButton.Render();
 	}
+
+	RudeRect guidePowerTextRect;
 	
 	if(m_state == kStatePositionSwing3)
 	{
-		{
-			
-			RudeRect r(
-					   (int) m_placementGuidePositionScreenSpace.y() - kGuideSize,
-					   (int) m_placementGuidePositionScreenSpace.x() - kGuideSize,
-					   (int) m_placementGuidePositionScreenSpace.y() + kGuideSize,
-					   (int) m_placementGuidePositionScreenSpace.x() + kGuideSize
-					   );
-			
-			m_placementGuideIndicatorButton.SetRect(r);
-			m_placementGuideIndicatorButton.Render();
-			
-		}
+
+		RudeRect r(
+				   (int) m_placementGuidePositionScreenSpace.y() - kGuideSize,
+				   (int) m_placementGuidePositionScreenSpace.x() - kGuideSize,
+				   (int) m_placementGuidePositionScreenSpace.y() + kGuideSize,
+				   (int) m_placementGuidePositionScreenSpace.x() + kGuideSize
+				   );
 		
-		{
-			const int kTextSize = 16;
-			const int kTextOffset = -58;
-			RudeRect r(
-					   (int) m_placementGuidePositionScreenSpace.y() - kTextSize + kTextOffset,
-					   (int) m_placementGuidePositionScreenSpace.x() - kTextSize,
-					   (int) m_placementGuidePositionScreenSpace.y() + kTextSize + kTextOffset,
-					   (int) m_placementGuidePositionScreenSpace.x() + kTextSize
-					   );
+		m_guideIndicatorButton.SetRect(r);
+
+		const int kTextSize = 16;
+		const int kTextOffset = -58;
+		guidePowerTextRect = RudeRect(
+				   (int) m_placementGuidePositionScreenSpace.y() - kTextSize + kTextOffset,
+				   (int) m_placementGuidePositionScreenSpace.x() - kTextSize * 2,
+				   (int) m_placementGuidePositionScreenSpace.y() + kTextSize + kTextOffset,
+				   (int) m_placementGuidePositionScreenSpace.x() + kTextSize * 2
+				   );
+		
+		m_guidePowerText->SetRect(guidePowerTextRect);
 			
-			m_guidePowerText->SetRect(r);
-			m_guidePowerText->SetValue(m_placementGuidePower);
-			m_guidePowerText->Render();
-		}
 	}
-	else if(m_state == kStatePositionSwing2)
+	else
 	{
 		const int kTextSize = 16;
 		const int kTextOffset = -38;
-		RudeRect r(
+		guidePowerTextRect = RudeRect(
 			(int) m_guidePositionScreenSpace.y() - kTextSize + kTextOffset,
-			(int) m_guidePositionScreenSpace.x() - kTextSize,
+			(int) m_guidePositionScreenSpace.x() - kTextSize * 2,
 			(int) m_guidePositionScreenSpace.y() + kTextSize + kTextOffset,
-			(int) m_guidePositionScreenSpace.x() + kTextSize
+			(int) m_guidePositionScreenSpace.x() + kTextSize * 2
 			);
 		
-		m_guidePowerText->SetRect(r);
+		m_guidePowerText->SetRect(guidePowerTextRect);
+	}
+
+	if(guidePowerTextRect.Overlaps(holeTextRect))
+	{
+		holeRect += RudeScreenVertex(0,-50);
+		m_holeIndicatorButton.SetRect(holeRect);
+		m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - holeIndicatorOffset - 9 - 50);
+	}
+
+	m_holeIndicatorButton.Render();
+	m_holeHeightText->Render();
+	
+	m_guideIndicatorButton.Render();
+
+	if(m_state == kStatePositionSwing2 ||
+		m_state == kStatePositionSwing3)
+	{
 		m_guidePowerText->SetValue(m_placementGuidePower);
 		m_guidePowerText->Render();
 	}
-	
+
+
+
 }
 
 
