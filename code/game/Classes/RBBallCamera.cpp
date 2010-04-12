@@ -89,8 +89,15 @@ void RBBallCamera::NextFrame(float delta)
 			{
 				float desiredHeight = m_desiredHeight * 50.0f;
 				
-				m_height += (desiredHeight - m_height) * delta * 3.0f;
-				m_guide += (m_desiredGuide - m_guide) * delta * 6.0f;
+				if(fabs(desiredHeight - m_height) > 0.01f)
+					m_height += (desiredHeight - m_height) * delta * 3.0f;
+				else
+					m_height = desiredHeight;
+
+				if((m_desiredGuide - m_guide).length2() > 0.1f)
+					m_guide += (m_desiredGuide - m_guide) * delta * 6.0f;
+				else
+					m_guide = m_desiredGuide;
 				
 				btVector3 forward = m_guide - ball;
 				forward.setY(0);
