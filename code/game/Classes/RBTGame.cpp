@@ -741,6 +741,8 @@ void RBTGame::StatePositionSwing(float delta)
 		alpha = 1.0f;
 	m_shotEncouragementText->SetAlpha(alpha);
 	
+	if(m_terrain.GetPutting())
+		m_ballGuide.NextFrame(delta);
 }
 
 void RBTGame::StatePositionSwing2(float delta)
