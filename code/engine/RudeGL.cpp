@@ -152,14 +152,14 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	btVector3 side = inup.cross(m_forward);
 	side.normalize();
 	
-	btVector3 up = m_forward.cross(side);
+	m_up = m_forward.cross(side);
 	
 	
 	float M[]= 
 	{ 
-		side.x(), up.x(), m_forward.x(), 0, 
-		side.y(), up.y(), m_forward.y(), 0, 
-		side.z(), up.z(), m_forward.z(), 0, 
+		side.x(), m_up.x(), m_forward.x(), 0, 
+		side.y(), m_up.y(), m_forward.y(), 0, 
+		side.z(), m_up.z(), m_forward.z(), 0, 
 		0, 0, 0, 1 
 	};
 	

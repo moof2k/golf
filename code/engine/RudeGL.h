@@ -71,6 +71,7 @@ public:
 	btVector3 GetEye() { return m_eye; }
 	btVector3 GetLookAt() { return m_lookAt; }
 	btVector3 GetForward() { return m_forward; }
+	btVector3 GetUp() { return m_up; }
 	
 	float GetHalfWidth() { return m_hw; }
 	float GetHalfHeight() { return m_hh; }
@@ -97,6 +98,7 @@ private:
 	btVector3 m_eye;
 	btVector3 m_lookAt;
 	btVector3 m_forward;
+	btVector3 m_up;
 	float m_hw;
 	float m_hh;
 	float m_near;
