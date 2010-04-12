@@ -1348,7 +1348,7 @@ void RBTGame::SetHoleHeightText()
 	{
 		snprintf(text, 64, "+%d\"", heightInches);
 	}
-	else if(heightInches < 1)
+	else if(heightInches < -1)
 	{
 		snprintf(text, 64, "%d\"", heightInches);
 	}
