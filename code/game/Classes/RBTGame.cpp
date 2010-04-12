@@ -1302,8 +1302,8 @@ void RBTGame::AdjustGuide()
 	
 		m_placementGuidePower = distance;
 		
-		if(m_placementGuidePower < 10.0f)
-			m_placementGuidePower = 10.0f;
+		if(m_placementGuidePower < 1.0f)
+			m_placementGuidePower = 1.0f;
 		if(m_placementGuidePower > 400.0f)
 			m_placementGuidePower = 400.0f;
 	}
