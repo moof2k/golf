@@ -1862,7 +1862,7 @@ void RBTGame::Render(float width, float height)
 				if(!RUDE_IPAD)
 					m_helpButton->Render();
 
-				m_terrainButton->Render();
+				//m_terrainButton->Render();
 				
 				RenderShotInfo(false, true);
 				
@@ -2044,7 +2044,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				sfx = kSoundUIClickHi;
 			}
 
-			if(m_terrainButton->TouchDown(rbt))
+			if(0 && m_terrainButton->TouchDown(rbt))
 			{
 				SetState(kStateTerrainView);
 
