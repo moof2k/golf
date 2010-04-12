@@ -326,7 +326,7 @@ void RBSwingControl::NextFrame(float delta)
 
 void RBSwingControl::RenderRing()
 {
-	
+	float totalAlpha = m_fadeOutTimer / m_fadeOutTime;
 
 	RudeTextureManager::GetInstance()->SetTexture(m_ringTextureId);
 	
@@ -352,7 +352,7 @@ void RBSwingControl::RenderRing()
 		0.0f, 1.0f,
 	};
 	
-	float alpha = m_downOptimalPct;
+	float alpha = m_downOptimalPct * totalAlpha;
 	
 	GLfloat colors[] = {
 		1.0f, 1.0f, 1.0f, alpha,
