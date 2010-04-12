@@ -174,8 +174,6 @@ void RBGame::SetState(eGameState state)
 
 void RBGame::Render(float delta, float width, float height)
 {
-	float aspect = width / height;
-
 	RudePerf::NextFrame(delta);
 
 	RudeTimer timer;
