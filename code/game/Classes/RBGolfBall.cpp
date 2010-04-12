@@ -276,11 +276,12 @@ void RBGolfBall::StickAtPosition(const btVector3 &p)
 	
 	RUDE_ASSERT(cb.hasHit(), "Could not stick ball at position");
 	
-	RUDE_REPORT("Sticking ball at %f %f %f\n", cb.m_hitPointWorld.x(), cb.m_hitPointWorld.y(), cb.m_hitPointWorld.z());
+	btVector3 stickPosition = cb.m_hitPointWorld + btVector3(0, kBallRadius + 0.01, 0);
+	RUDE_REPORT("Sticking ball at %f %f %f\n", stickPosition.x(), stickPosition.y(), stickPosition.z());
 	
 	btTransform trans;
 	trans.setIdentity();
-	trans.setOrigin(cb.m_hitPointWorld + btVector3(0, kBallRadius,0));
+	trans.setOrigin(stickPosition);
 	
 	GetPhysicsObject()->GetRigidBody()->getMotionState()->setWorldTransform(trans);
 	GetPhysicsObject()->GetRigidBody()->setWorldTransform(trans);
