@@ -67,6 +67,7 @@ private:
 	float m_spinForceTimer;
 	
 	int m_inContact;
+	int m_contactCounter;
 	float m_linearImpactDamping;
 	float m_linearContactDamping;
 	float m_angularContactDamping;

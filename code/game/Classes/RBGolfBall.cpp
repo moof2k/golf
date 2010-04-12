@@ -28,7 +28,8 @@ RBGolfBall::RBGolfBall()
 , m_movementThreshold(0.0f)
 , m_curLinearDamping(0.0f)
 , m_curAngularDamping(0.0f)
-, m_inContact(false)
+, m_inContact(0)
+, m_contactCounter(0)
 , m_stop(false)
 , m_stopped(false)
 , m_ballScale(kBallRadius)
@@ -126,14 +127,16 @@ void RBGolfBall::NextFrame(float delta)
 		
 		float linearDamping = m_curLinearDamping;
 		
-		//RUDE_REPORT("damping = %f", linearDamping);
+		//RUDE_REPORT("RB damping = %f\n", linearDamping);
 		
 		rb->setDamping(linearDamping, m_curAngularDamping);
 		
 		m_inContact--;
+		m_contactCounter++;
 	}
-	else
+	else if(m_contactCounter < 10)
 	{
+		//RUDE_REPORT("RB reset\n");
 		m_curLinearDamping = 0.0f;
 		m_curAngularDamping = 0.0f;
 		m_angularContactDamping = 0.0f;
@@ -257,6 +260,7 @@ void RBGolfBall::HitBall(const btVector3 &linvel, const btVector3 &spinForce)
 	GetPhysicsObject()->GetRigidBody()->activate(true);
 	
 	m_inContact = 0;
+	m_contactCounter = 0;
 }
 
 void RBGolfBall::StickAtPosition(const btVector3 &p)
