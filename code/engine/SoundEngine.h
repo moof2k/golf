@@ -49,8 +49,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /*==================================================================================================
 	SoundEngine.h
 ==================================================================================================*/
-#if !defined(__SoundEngine_h__)
+#ifndef __SoundEngine_h__
 #define __SoundEngine_h__
+
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 
 //==================================================================================================
 //	Includes
@@ -340,4 +342,6 @@ OSStatus	SoundEngine_SetReferenceDistance(Float32 inValue);
 }
 #endif
 
-#endif
+#endif // defined(RUDE_IPHONE) || defined(RUDE_MACOS)
+
+#endif // __SoundEngine_h__
