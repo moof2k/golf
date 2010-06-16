@@ -741,8 +741,12 @@ void RBTGame::StatePositionSwing(float delta)
 		alpha = 1.0f;
 	m_shotEncouragementText->SetAlpha(alpha);
 	
-	if(m_terrain.GetPutting())
-		m_ballGuide.NextFrame(delta);
+	if(RUDE_IPAD)
+	{
+		if(m_terrain.GetPutting())
+			m_ballGuide.NextFrame(delta);
+	}
+
 }
 
 void RBTGame::StatePositionSwing2(float delta)
@@ -997,7 +1001,7 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 {
 	//printf("move %d %d\n", p.m_x, p.m_y);
 	
-#ifdef RUDE_IPAD
+#if RUDE_IPAD == 1
 	const float kYawDamping = 0.001f;
 #else
 	const float kYawDamping = 0.002f;
@@ -1044,7 +1048,7 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 {
 	//printf("move %d %d\n", p.m_x, p.m_y);
 	
-#ifdef RUDE_IPAD
+#if RUDE_IPAD == 1
 	const float kYawDamping = 0.003f;
 	const float kHeightDamping = 0.002f;
 #else
@@ -1584,18 +1588,20 @@ void RBTGame::RenderGuide(float aspect)
 {
 	const int kGuideSize = 32;
 
+	const int kHoleIndicatorOffset = 30;
+	const int kHoleIndicatorOverlapOffset = -50;
 
 	// Set hole indicator position
-	const int holeIndicatorOffset = 30;
+	
 	RudeRect holeRect(
-		(int) m_holePositionScreenSpace.y() - kGuideSize - holeIndicatorOffset,
+		(int) m_holePositionScreenSpace.y() - kGuideSize - kHoleIndicatorOffset,
 		(int) m_holePositionScreenSpace.x() - kGuideSize,
-		(int) m_holePositionScreenSpace.y() + kGuideSize - holeIndicatorOffset,
+		(int) m_holePositionScreenSpace.y() + kGuideSize - kHoleIndicatorOffset,
 		(int) m_holePositionScreenSpace.x() + kGuideSize
 		);
 	m_holeIndicatorButton.SetRect(holeRect);
 	
-	m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - holeIndicatorOffset - 9);
+	m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9);
 	RudeRect holeTextRect = m_holeHeightText->GetRect();
 	holeTextRect.m_right += 80;
 	
@@ -1654,9 +1660,10 @@ void RBTGame::RenderGuide(float aspect)
 
 	if(guidePowerTextRect.Overlaps(holeTextRect))
 	{
-		holeRect += RudeScreenVertex(0,-50);
+		holeRect += RudeScreenVertex(0,kHoleIndicatorOverlapOffset);
 		m_holeIndicatorButton.SetRect(holeRect);
-		m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - holeIndicatorOffset - 9 - 50);
+		m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10,
+			m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9 + kHoleIndicatorOverlapOffset);
 	}
 
 	m_holeIndicatorButton.Render();
