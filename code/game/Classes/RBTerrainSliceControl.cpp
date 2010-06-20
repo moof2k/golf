@@ -12,15 +12,18 @@
 #include "RudeDebug.h"
 
 RBTerrainSliceControl::RBTerrainSliceControl()
+: m_holeDistance(0.0f)
+, m_guideDistance(0.0f)
 {
-	
+	m_guideIndicatorButton.SetTexture("guidem");
+	m_holeIndicatorButton.SetTexture("guide2m");
 }
 
 
 
 void RBTerrainSliceControl::NextFrame(float delta)
 {
-	
+
 }
 
 void RBTerrainSliceControl::Render()
@@ -37,6 +40,9 @@ void RBTerrainSliceControl::Render()
 
 	if(numGuidePoints < 2)
 		return;
+	
+	btVector3 holePosition(-1.0, 0.0, 0.0);
+	btVector3 guidePosition(-1.0, 0.0, 0.0);
 
 	float maxheight = m_guide->GetMaxGuidePoint();
 	float minheight = m_guide->GetMinGuidePoint();
@@ -46,7 +52,6 @@ void RBTerrainSliceControl::Render()
 		heightdiff = 1.0f;
 
 	float scale = (m_rect.m_bottom - m_rect.m_top - 6) / heightdiff;
-	float center = (m_rect.m_bottom - m_rect.m_top) / 2.0f;
 
 	float segmentWidth = (m_rect.m_right - m_rect.m_left) / float(numGuidePoints-1);
 
@@ -57,6 +62,9 @@ void RBTerrainSliceControl::Render()
 
 		RudeColorFloat &c0 = guidePoints[i-1].m_color;
 		RudeColorFloat &c1 = guidePoints[i].m_color;
+		
+		float d0 = guidePoints[i-1].m_distance;
+		float d1 = guidePoints[i].m_distance;
 
 		//const float kPointSize = 0.2;
 
@@ -96,7 +104,7 @@ void RBTerrainSliceControl::Render()
 		glColorPointer(4, GL_FLOAT, 0, linecolors);
 		glDrawArrays(GL_LINES, 0, 2);
 	
-
+		// Render hash marks below
 		if(i % 10 == 0)
 		{
 
@@ -109,10 +117,60 @@ void RBTerrainSliceControl::Render()
 			glColorPointer(4, GL_FLOAT, 0, linecolors);
 			glDrawArrays(GL_LINES, 0, 2);
 		}
+		
+		// Determine offset of hole marker
+		if(m_holeDistance <= d0 && m_holeDistance >= d1)
+		{
+			holePosition.setX(right);
+			holePosition.setY(p0);
+		}
+		
+		// Determine offset of guide marker
+		if(m_guideDistance <= d0 && m_guideDistance >= d1)
+		{
+			guidePosition.setX(right);
+			guidePosition.setY(p0);
+		}
+	}
+	
+	const int kGuideSize = 32;
+	
+	if(holePosition.x() >= 0.0f)
+	{
+		RudeRect holeRect(
+						  (int) holePosition.y() - kGuideSize,
+						  (int) holePosition.x() - kGuideSize,
+						  (int) holePosition.y() + kGuideSize,
+						  (int) holePosition.x() + kGuideSize
+						  );
+		m_holeIndicatorButton.SetRect(holeRect);
+		
+		m_holeIndicatorButton.Render();
+	}
+	
+	if(guidePosition.x() >= 0.0f)
+	{
+		RudeRect guideRect(
+						  (int) guidePosition.y() - kGuideSize,
+						  (int) guidePosition.x() - kGuideSize,
+						  (int) guidePosition.y() + kGuideSize,
+						  (int) guidePosition.x() + kGuideSize
+						  );
+		m_guideIndicatorButton.SetRect(guideRect);
+		
+		m_guideIndicatorButton.Render();
+		
 	}
 }
 
-
+void RBTerrainSliceControl::SetCoursePositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide)
+{
+	btVector3 ballToHole = ball - hole;
+	m_holeDistance = ballToHole.length();
+	
+	btVector3 ballToGuide = ball - guide;
+	m_guideDistance = ballToGuide.length();
+}
 
 /**
  * RBTerrainSlideControl factory assistant for RudeControl.  This is called by RudeControl::Load()

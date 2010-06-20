@@ -646,7 +646,7 @@ void RBTGame::SetState(eRBTGameState state)
 				GetScoreTracker(m_curPlayer)->AddStrokes(m_holeNum, 1);
 				
 				RudeSound::GetInstance()->PlayWave(kSoundBallInHole);
-				RudeSound::GetInstance()->BgmVolFade(-1.0f);
+				RudeSound::GetInstance()->BgmVol(0.75f);
 				
 				int strokes = GetScoreTracker(m_curPlayer)->GetNumStrokes(m_holeNum);
 				int par = GetScoreTracker(m_curPlayer)->GetPar(m_holeNum);
@@ -935,21 +935,20 @@ void RBTGame::AutoSelectClub()
 	// tell terrain to update guide point
 	m_terrain.UpdateGuidePoint(m_ball.GetPosition(), club->m_dist * 3.0f);
 	
-	// if the auto-selected club is the putter, change to the putting music
-	
+	// If putting, render the putting terrain
 	if(club->m_type == kClubPutter)
 	{
 		m_terrain.SetPutting(true);
 		m_swingControl->SetNoSwingCommentary(true);
-		RudeSound::GetInstance()->PlaySong(kBGMPutting);
-		RudeSound::GetInstance()->BgmVol(1.0f);
 	}
 	else
 	{
 		m_terrain.SetPutting(false);
-		m_swingControl->SetNoSwingCommentary(false);
-		RudeSound::GetInstance()->BgmVolFade(-0.2f);
 	}
+	
+	// Play the putting background music all the time
+	RudeSound::GetInstance()->PlaySong(kBGMPutting);
+	RudeSound::GetInstance()->BgmVol(1.0f);
 	
 	NextClub(0);
 }
@@ -1184,6 +1183,8 @@ void RBTGame::FreshGuide(bool firstTime)
 	m_dBall = ball;
 	m_guidePosition = newGuide;
 	m_placementGuidePosition = m_guidePosition;
+	
+	m_terrainSliceControl->SetCoursePositions(m_dBall, m_terrain.GetHole(), m_guidePosition);
 	
 #ifndef NO_DECO_EDITOR
 	RUDE_REPORT("Pointer is at %f %f %f\n", m_placementGuidePosition.x(), m_placementGuidePosition.y(), m_placementGuidePosition.z());
@@ -1588,9 +1589,14 @@ void RBTGame::RenderGuide(float aspect)
 {
 	const int kGuideSize = 32;
 
+#if RUDE_IPAD == 1
 	const int kHoleIndicatorOffset = 30;
 	const int kHoleIndicatorOverlapOffset = -50;
-
+#else
+	const int kHoleIndicatorOffset = 10;
+	const int kHoleIndicatorOverlapOffset = -40;
+#endif
+	
 	// Set hole indicator position
 	
 	RudeRect holeRect(
@@ -1667,9 +1673,9 @@ void RBTGame::RenderGuide(float aspect)
 	}
 
 	m_holeIndicatorButton.Render();
-	m_holeHeightText->Render();
-	
 	m_guideIndicatorButton.Render();
+	
+	m_holeHeightText->Render();
 
 	if(m_state == kStatePositionSwing2 ||
 		m_state == kStatePositionSwing3)

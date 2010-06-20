@@ -24,6 +24,9 @@ void RBBallGuidePoint::SetPoint(const btVector3 &point, const btVector3 &ball, f
 	m_point = point;
 	
 	m_height = m_point.y() - ball.y();
+	
+	btVector3 ballToPoint = ball - point;
+	m_distance = ballToPoint.length();
 
 	float ydiff = m_height / scale;
 	

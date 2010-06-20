@@ -25,6 +25,7 @@ public:
 	btVector3 m_point;
 	RudeColorFloat m_color;
 	float m_height;
+	float m_distance;
 };
 
 class RBBallGuide
