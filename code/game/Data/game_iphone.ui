@@ -43,7 +43,7 @@ RudeButtonControl	terrainButton	ui_camera	{-1, -1}	{0, 260, 44, 320}	none
 RBScoreControl	scoreControl	{0,0,480,320}
 RBSwingControl	swingControl	{0,0,400,320}
 
-RBTerrainSliceControl	terrainSlice	{370,64,406,256}
+RBTerrainSliceControl	terrainSlice	{390,64,426,256}
 
 # 64x64 square in the center of the screen
 RudeControl	guideAdjust	{208, 128, 272, 192}
