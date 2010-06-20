@@ -20,7 +20,7 @@ RBScoreControl::RBScoreControl()
 
 
 
-#ifdef RUDE_IPAD
+#if RUDE_IPAD == 1
 	const float kHalfWidth = 230.0f;
 	const float kTop = 24.0f;
 	const float kBottom = 85.0f;
