@@ -35,8 +35,6 @@ void RBGolfPin::Render()
 
 	RGL.LoadIdentity();
 	
-	RGL.Enable(kDepthTest, false);
-	
 	glDisable(GL_TEXTURE_2D);
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, true);
