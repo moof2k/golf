@@ -49,7 +49,7 @@ void RBCreditsControl::Render()
 	}
 	else
 	{
-		int yoffset = 200;
+		int yoffset = 160;
 		int y = yoffset;
 
 		RudeFontManager::GetFont(kBigFontOutline)->Write(320/2, y, 0.0f, "Credits", 0, FONT_ALIGN_CENTER, 0xFF000000, 0xFF000000);
@@ -86,16 +86,20 @@ void RBCreditsControl::Render()
 			y += 20;
 		}
 
-		const int kNumThanks = 4;
+		const int kNumThanks = 8;
 
 		const char * kThanks[kNumThanks] = {
-			"Special thanks to Maria and Monica",
-			"for making this game possible.",
+			"Special thanks to Maria and Monica.",
 			"",
-			"www.bork3d.com"
+			"\"Anytime Golf\", \"Anytime Golf: Magic Touch\",",
+			"\"Bork3D Games\" and associated logos are",
+			"Copyright © Bork 3D LLC.",
+			"",
+			"Made with the Bork3D Game Engine.",
+			"For more information please visit bork3d.com"
 		};
 
-		y += 20;
+		y += 16;
 
 		for(int i = 0; i < kNumThanks; i++)
 		{
