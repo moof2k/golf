@@ -11,7 +11,7 @@ RudeTextControl	settingsText	Options	center	{400, 0, 430, 320}	big	outline	popsl
 
 RudeTextControl	goText	Start	center	{400, 0, 420, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 RudeTextControl	backText	Back	center	{440, 0, 460, 320}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
-RudeTextControl	copyrightText	Copyright © 2009 Bork 3D LLC	center	{463, 0, 480, 320}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	copyrightText	Copyright Â© 2010 Bork 3D LLC	center	{463, 0, 480, 320}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
 
 RudeTextControl	tournamentText	Select Tournament	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
 RudeTextControl	courseNameText	Golf Course	center	{36, 0, 56, 320}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
