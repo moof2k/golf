@@ -370,15 +370,12 @@
 		422C498611118FBB00CDF5C9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
 		422C499011118FC000CDF5C9 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422C498E11118FC000CDF5C9 /* MainWindow.xib */; };
 		42AFD60E11580DFD00DCC2EF /* title_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42AFD60D11580DFD00DCC2EF /* title_iphone.ui */; };
-		42AFD60F11580DFD00DCC2EF /* title_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42AFD60D11580DFD00DCC2EF /* title_iphone.ui */; };
 		42AFD61C11580E1600DCC2EF /* game_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42AFD61B11580E1600DCC2EF /* game_iphone.ui */; };
-		42AFD61D11580E1600DCC2EF /* game_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42AFD61B11580E1600DCC2EF /* game_iphone.ui */; };
 		42FFDC3C11587B0300E4C69F /* game_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC3B11587B0300E4C69F /* game_ipad.ui */; };
 		42FFDC3D11587B0300E4C69F /* game_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC3B11587B0300E4C69F /* game_ipad.ui */; };
 		42FFDC4A1158863D00E4C69F /* menu_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC481158863D00E4C69F /* menu_ipad.ui */; };
 		42FFDC4B1158863D00E4C69F /* menu_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC491158863D00E4C69F /* menu_iphone.ui */; };
 		42FFDC4C1158863D00E4C69F /* menu_ipad.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC481158863D00E4C69F /* menu_ipad.ui */; };
-		42FFDC4D1158863D00E4C69F /* menu_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 42FFDC491158863D00E4C69F /* menu_iphone.ui */; };
 		467A3FB70FA2F6AA00061905 /* par4_H.deco in Resources */ = {isa = PBXBuildFile; fileRef = 467A3FB60FA2F6AA00061905 /* par4_H.deco */; };
 		467A3FC10FA2FDD000061905 /* driving_range.deco in Resources */ = {isa = PBXBuildFile; fileRef = 467A3FC00FA2FDD000061905 /* driving_range.deco */; };
 		467A43A40FAC03FD004A318F /* help_d_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 467A43A00FAC03FD004A318F /* help_d_256.png */; };
@@ -394,10 +391,23 @@
 		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
+		9A1B8F5F116C70EF008BA122 /* RBUITerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */; };
+		9A1B8F60116C70EF008BA122 /* RBUITerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */; };
+		9A1B8F69116C710D008BA122 /* RBTerrainViewControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */; };
+		9A1B8F6A116C710D008BA122 /* RBTerrainViewControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */; };
 		9A2443EC0F722960009D54A0 /* sfx_exit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A2443EB0F722960009D54A0 /* sfx_exit.wav */; };
 		9A2751120F9EF2CD009D27AB /* bb_bush_c.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A27510F0F9EF2CD009D27AB /* bb_bush_c.pvr */; };
 		9A2751130F9EF2CD009D27AB /* bb_bush_a.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A2751100F9EF2CD009D27AB /* bb_bush_a.pvr */; };
 		9A2751140F9EF2CD009D27AB /* bb_bush_b.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9A2751110F9EF2CD009D27AB /* bb_bush_b.pvr */; };
+		9A38762A116DB23B00A71399 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A387629116DB23B00A71399 /* Default.png */; };
+		9A3876BC117134E400A71399 /* guide2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876BB117134E400A71399 /* guide2.png */; };
+		9A3876BD117134E400A71399 /* guide2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876BB117134E400A71399 /* guide2.png */; };
+		9A3876BF117134EC00A71399 /* balldot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876BE117134EC00A71399 /* balldot.png */; };
+		9A3876C0117134EC00A71399 /* balldot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876BE117134EC00A71399 /* balldot.png */; };
+		9A3876C41171352700A71399 /* parflat.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876C31171352700A71399 /* parflat.POD */; };
+		9A3876C51171352700A71399 /* parflat.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3876C31171352700A71399 /* parflat.POD */; };
+		9A38774011730FA900A71399 /* RBTerrainSliceControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A38773E11730FA900A71399 /* RBTerrainSliceControl.cpp */; };
+		9A38774111730FA900A71399 /* RBTerrainSliceControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A38773E11730FA900A71399 /* RBTerrainSliceControl.cpp */; };
 		9A3CA2F20E73C0F600BDBA8B /* RBDebugCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */; };
 		9A3CA7810E75265000BDBA8B /* ball_1.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9A3CA7800E75265000BDBA8B /* ball_1.POD */; };
 		9A42EA56100DC30E0081BD75 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42EA05100DC30D0081BD75 /* RudeButtonAnimControl.cpp */; };
@@ -438,6 +448,10 @@
 		9A42EA7B100DC30E0081BD75 /* RudeTweaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42EA4F100DC30D0081BD75 /* RudeTweaker.cpp */; };
 		9A42EA7C100DC30E0081BD75 /* RudeUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42EA51100DC30D0081BD75 /* RudeUnicode.cpp */; };
 		9A42EA7D100DC30E0081BD75 /* RudeUnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42EA53100DC30D0081BD75 /* RudeUnitTest.cpp */; };
+		9A46A11111C9A3A9007F260E /* guide2m.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A10F11C9A3A9007F260E /* guide2m.png */; };
+		9A46A11211C9A3A9007F260E /* guidem.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A11011C9A3A9007F260E /* guidem.png */; };
+		9A46A11311C9A3A9007F260E /* guide2m.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A10F11C9A3A9007F260E /* guide2m.png */; };
+		9A46A11411C9A3A9007F260E /* guidem.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A46A11011C9A3A9007F260E /* guidem.png */; };
 		9A4B114A0FA6C59400E53811 /* ui_swing_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11470FA6C59400E53811 /* ui_swing_b.png */; };
 		9A4B114B0FA6C59400E53811 /* ui_swing_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11480FA6C59400E53811 /* ui_swing_d.png */; };
 		9A4B114C0FA6C59400E53811 /* ui_swing_c.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4B11490FA6C59400E53811 /* ui_swing_c.png */; };
@@ -486,6 +500,7 @@
 		9A4F1DBF0E8793B0001D1F0B /* swing_iron_soft.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1DBA0E8793B0001D1F0B /* swing_iron_soft.wav */; };
 		9A4F1DC00E8793B0001D1F0B /* swing_putter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1DBB0E8793B0001D1F0B /* swing_putter.wav */; };
 		9A4F1DC20E8793B6001D1F0B /* ball_in_hole.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9A4F1DC10E8793B6001D1F0B /* ball_in_hole.wav */; };
+		9A50228411648D2800779F96 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A50228311648D2800779F96 /* Entitlements.plist */; };
 		9A56CED70F5BB4C00013B650 /* bgm_title.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CED60F5BB4C00013B650 /* bgm_title.m4a */; };
 		9A56CED90F5BB4C40013B650 /* bgm_putting.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CED80F5BB4C40013B650 /* bgm_putting.m4a */; };
 		9A56CF740F5BC5470013B650 /* bgm_silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 9A56CF730F5BC5470013B650 /* bgm_silence.m4a */; };
@@ -575,7 +590,6 @@
 		9AA7658611647AB400A44D92 /* coursebg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658211647AB400A44D92 /* coursebg_ipad.png */; };
 		9AA7658911647ABE00A44D92 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658811647ABE00A44D92 /* logo_ipad.png */; };
 		9AA7658A11647ABE00A44D92 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA7658811647ABE00A44D92 /* logo_ipad.png */; };
-		9AA765B41164809500A44D92 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765B21164809500A44D92 /* Default.png */; };
 		9AA765B8116480C300A44D92 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765B7116480C300A44D92 /* Default.png */; };
 		9AA765E21164848600A44D92 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA765E11164848600A44D92 /* Icon.png */; };
 		9AA93E440E838FB900F6FBD8 /* hole.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA93E430E838FB900F6FBD8 /* hole.png */; };
@@ -786,10 +800,20 @@
 		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITerrain.cpp; path = Classes/RBUITerrain.cpp; sourceTree = "<group>"; };
+		9A1B8F5E116C70EF008BA122 /* RBUITerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITerrain.h; path = Classes/RBUITerrain.h; sourceTree = "<group>"; };
+		9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTerrainViewControl.cpp; path = Classes/RBTerrainViewControl.cpp; sourceTree = "<group>"; };
+		9A1B8F68116C710D008BA122 /* RBTerrainViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTerrainViewControl.h; path = Classes/RBTerrainViewControl.h; sourceTree = "<group>"; };
 		9A2443EB0F722960009D54A0 /* sfx_exit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_exit.wav; path = Data/sfx_exit.wav; sourceTree = "<group>"; };
 		9A27510F0F9EF2CD009D27AB /* bb_bush_c.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = bb_bush_c.pvr; path = Data/bb_bush_c.pvr; sourceTree = "<group>"; };
 		9A2751100F9EF2CD009D27AB /* bb_bush_a.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = bb_bush_a.pvr; path = Data/bb_bush_a.pvr; sourceTree = "<group>"; };
 		9A2751110F9EF2CD009D27AB /* bb_bush_b.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = bb_bush_b.pvr; path = Data/bb_bush_b.pvr; sourceTree = "<group>"; };
+		9A387629116DB23B00A71399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9A3876BB117134E400A71399 /* guide2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guide2.png; path = Data/guide2.png; sourceTree = "<group>"; };
+		9A3876BE117134EC00A71399 /* balldot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = balldot.png; path = Data/balldot.png; sourceTree = "<group>"; };
+		9A3876C31171352700A71399 /* parflat.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = parflat.POD; path = Data/parflat.POD; sourceTree = "<group>"; };
+		9A38773E11730FA900A71399 /* RBTerrainSliceControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTerrainSliceControl.cpp; path = Classes/RBTerrainSliceControl.cpp; sourceTree = "<group>"; };
+		9A38773F11730FA900A71399 /* RBTerrainSliceControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBTerrainSliceControl.h; path = Classes/RBTerrainSliceControl.h; sourceTree = "<group>"; };
 		9A3CA2F00E73C0F600BDBA8B /* RBDebugCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBDebugCamera.h; path = Classes/RBDebugCamera.h; sourceTree = "<group>"; };
 		9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBDebugCamera.cpp; path = Classes/RBDebugCamera.cpp; sourceTree = "<group>"; };
 		9A3CA7800E75265000BDBA8B /* ball_1.POD */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball_1.POD; path = Data/ball_1.POD; sourceTree = "<group>"; };
@@ -871,6 +895,8 @@
 		9A42EA53100DC30D0081BD75 /* RudeUnitTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RudeUnitTest.cpp; path = ../engine/RudeUnitTest.cpp; sourceTree = SOURCE_ROOT; };
 		9A42EA54100DC30D0081BD75 /* RudeUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeUnitTest.h; path = ../engine/RudeUnitTest.h; sourceTree = SOURCE_ROOT; };
 		9A42EA55100DC30D0081BD75 /* RudeVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RudeVertex.h; path = ../engine/RudeVertex.h; sourceTree = SOURCE_ROOT; };
+		9A46A10F11C9A3A9007F260E /* guide2m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guide2m.png; path = Data/guide2m.png; sourceTree = "<group>"; };
+		9A46A11011C9A3A9007F260E /* guidem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guidem.png; path = Data/guidem.png; sourceTree = "<group>"; };
 		9A4B11470FA6C59400E53811 /* ui_swing_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_b.png; path = Data/ui_swing_b.png; sourceTree = "<group>"; };
 		9A4B11480FA6C59400E53811 /* ui_swing_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_d.png; path = Data/ui_swing_d.png; sourceTree = "<group>"; };
 		9A4B11490FA6C59400E53811 /* ui_swing_c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_swing_c.png; path = Data/ui_swing_c.png; sourceTree = "<group>"; };
@@ -921,6 +947,7 @@
 		9A4F1DBA0E8793B0001D1F0B /* swing_iron_soft.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = swing_iron_soft.wav; path = Data/swing_iron_soft.wav; sourceTree = "<group>"; };
 		9A4F1DBB0E8793B0001D1F0B /* swing_putter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = swing_putter.wav; path = Data/swing_putter.wav; sourceTree = "<group>"; };
 		9A4F1DC10E8793B6001D1F0B /* ball_in_hole.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ball_in_hole.wav; path = Data/ball_in_hole.wav; sourceTree = "<group>"; };
+		9A50228311648D2800779F96 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		9A56CED60F5BB4C00013B650 /* bgm_title.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_title.m4a; path = Data/bgm_title.m4a; sourceTree = "<group>"; };
 		9A56CED80F5BB4C40013B650 /* bgm_putting.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_putting.m4a; path = Data/bgm_putting.m4a; sourceTree = "<group>"; };
 		9A56CF730F5BC5470013B650 /* bgm_silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgm_silence.m4a; path = Data/bgm_silence.m4a; sourceTree = "<group>"; };
@@ -1014,7 +1041,6 @@
 		9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coursebg_ipad_locked.png; path = Data/coursebg_ipad_locked.png; sourceTree = "<group>"; };
 		9AA7658211647AB400A44D92 /* coursebg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coursebg_ipad.png; path = Data/coursebg_ipad.png; sourceTree = "<group>"; };
 		9AA7658811647ABE00A44D92 /* logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ipad.png; path = Data/logo_ipad.png; sourceTree = "<group>"; };
-		9AA765B31164809500A44D92 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Default.png; sourceTree = "<group>"; };
 		9AA765B7116480C300A44D92 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Resources-iPad/Default.png"; sourceTree = "<group>"; };
 		9AA765E11164848600A44D92 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = "Resources-iPad/Icon.png"; sourceTree = "<group>"; };
 		9AA93E430E838FB900F6FBD8 /* hole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hole.png; path = Data/hole.png; sourceTree = "<group>"; };
@@ -1465,6 +1491,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A50228311648D2800779F96 /* Entitlements.plist */,
 				42AFD61B11580E1600DCC2EF /* game_iphone.ui */,
 				42FFDC3B11587B0300E4C69F /* game_ipad.ui */,
 				42AFD60D11580DFD00DCC2EF /* title_iphone.ui */,
@@ -1483,7 +1510,7 @@
 				9AA765E11164848600A44D92 /* Icon.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				9AA765B7116480C300A44D92 /* Default.png */,
-				9AA765B21164809500A44D92 /* Default.png */,
+				9A387629116DB23B00A71399 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1698,65 +1725,71 @@
 		9A8C21610E46AE2800C2BECB /* Golf */ = {
 			isa = PBXGroup;
 			children = (
-				9ADC5A7C0E6548BD004C82A2 /* RBTGame.cpp */,
-				9ADC5A7E0E6548BD004C82A2 /* RBTGame.h */,
-				9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */,
-				9A776D4A0EABD74F00196CA0 /* RBTRound.h */,
+				9AB429D30E7E3D3C001429D6 /* RBBallCamera.cpp */,
+				9AB429D20E7E3D3C001429D6 /* RBBallCamera.h */,
+				9A8F40F00E7FA8C700C28D68 /* RBBallGuide.cpp */,
+				9A8F40EF0E7FA8C700C28D68 /* RBBallGuide.h */,
+				9AAA6F120E9F4CD5008D9318 /* RBBallRecorder.cpp */,
+				9AAA6F110E9F4CD5008D9318 /* RBBallRecorder.h */,
+				9AB427EF0E7CED91001429D6 /* RBCamera.cpp */,
+				9AB427EE0E7CED91001429D6 /* RBCamera.h */,
+				9ACA188C0EBAAE160014C128 /* RBCourseData.cpp */,
+				9ACA188B0EBAAE160014C128 /* RBCourseData.h */,
+				9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */,
+				9AD084E00FA43A9000022D3F /* RBCreditsControl.h */,
+				9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */,
+				9A3CA2F00E73C0F600BDBA8B /* RBDebugCamera.h */,
+				9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */,
+				9AAFBCED0F9DA12D00839888 /* RBDecorators.h */,
 				9ADC5A860E6548BD004C82A2 /* RBGame.cpp */,
 				9ADC5A850E6548BD004C82A2 /* RBGame.h */,
 				9A9D63A10EB97BAA003985A4 /* RBGameBase.h */,
-				9A7CA4C80E764F6A00FA002C /* RBTerrain.h */,
-				9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */,
-				9AB427EE0E7CED91001429D6 /* RBCamera.h */,
-				9AB427EF0E7CED91001429D6 /* RBCamera.cpp */,
-				9A3CA2F10E73C0F600BDBA8B /* RBDebugCamera.cpp */,
-				9A3CA2F00E73C0F600BDBA8B /* RBDebugCamera.h */,
-				9AB429D20E7E3D3C001429D6 /* RBBallCamera.h */,
-				9AB429D30E7E3D3C001429D6 /* RBBallCamera.cpp */,
-				9A8F40EF0E7FA8C700C28D68 /* RBBallGuide.h */,
-				9A8F40F00E7FA8C700C28D68 /* RBBallGuide.cpp */,
-				9ACA188B0EBAAE160014C128 /* RBCourseData.h */,
-				9ACA188C0EBAAE160014C128 /* RBCourseData.cpp */,
-				9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */,
 				9AAE72650E7676ED00E8CC0B /* RBGolfBall.cpp */,
-				9A8F42210E80E40400C28D68 /* RBGolfClub.h */,
+				9AAE72640E7676ED00E8CC0B /* RBGolfBall.h */,
 				9A8F42220E80E40400C28D68 /* RBGolfClub.cpp */,
-				9A93B7530E822F9F0067CDC6 /* RBGolferObject.h */,
+				9A8F42210E80E40400C28D68 /* RBGolfClub.h */,
 				9A93B7540E822F9F0067CDC6 /* RBGolferObject.cpp */,
-				9AAD324B0F98CA4500CCA4FC /* RBGolfPin.h */,
+				9A93B7530E822F9F0067CDC6 /* RBGolferObject.h */,
 				9AAD324C0F98CA4500CCA4FC /* RBGolfPin.cpp */,
-				9AAA6F110E9F4CD5008D9318 /* RBBallRecorder.h */,
-				9AAA6F120E9F4CD5008D9318 /* RBBallRecorder.cpp */,
-				9ADC5A7B0E6548BD004C82A2 /* RBKeyMap.h */,
+				9AAD324B0F98CA4500CCA4FC /* RBGolfPin.h */,
 				9ADC5A7F0E6548BD004C82A2 /* RBKeyMap.cpp */,
+				9ADC5A7B0E6548BD004C82A2 /* RBKeyMap.h */,
 				9ADC5A820E6548BD004C82A2 /* RBKeyTracker.cpp */,
 				9ADC5A830E6548BD004C82A2 /* RBKeyTracker.h */,
-				9A776D650EABD92200196CA0 /* RBScoreControl.h */,
 				9A776D660EABD92200196CA0 /* RBScoreControl.cpp */,
-				9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */,
+				9A776D650EABD92200196CA0 /* RBScoreControl.h */,
 				9A776D710EABDBFF00196CA0 /* RBScoreTracker.cpp */,
-				9A8F410B0E80D26500C28D68 /* RBSwingControl.h */,
+				9A776D700EABDBFF00196CA0 /* RBScoreTracker.h */,
 				9A8F410C0E80D26500C28D68 /* RBSwingControl.cpp */,
-				9AAEB0EE0FA562E7003562EA /* RBSwingHelper.h */,
+				9A8F410B0E80D26500C28D68 /* RBSwingControl.h */,
 				9AAEB0EF0FA562E7003562EA /* RBSwingHelper.cpp */,
-				9ACA19D80EBADDC40014C128 /* RBWindControl.h */,
-				9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */,
-				9A5B4DA20F9C278100B6503A /* RBTourTracker.h */,
+				9AAEB0EE0FA562E7003562EA /* RBSwingHelper.h */,
+				9A7CA4C90E764F6A00FA002C /* RBTerrain.cpp */,
+				9A7CA4C80E764F6A00FA002C /* RBTerrain.h */,
+				9A38773E11730FA900A71399 /* RBTerrainSliceControl.cpp */,
+				9A38773F11730FA900A71399 /* RBTerrainSliceControl.h */,
+				9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */,
+				9A1B8F68116C710D008BA122 /* RBTerrainViewControl.h */,
+				9ADC5A7C0E6548BD004C82A2 /* RBTGame.cpp */,
+				9ADC5A7E0E6548BD004C82A2 /* RBTGame.h */,
 				9A5B4DA30F9C278100B6503A /* RBTourTracker.cpp */,
-				9AAFBCED0F9DA12D00839888 /* RBDecorators.h */,
-				9AAFBCEE0F9DA12D00839888 /* RBDecorators.cpp */,
-				9AD084E00FA43A9000022D3F /* RBCreditsControl.h */,
-				9AD084E10FA43A9000022D3F /* RBCreditsControl.cpp */,
-				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
-				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
-				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
+				9A5B4DA20F9C278100B6503A /* RBTourTracker.h */,
+				9A776D4B0EABD74F00196CA0 /* RBTRound.cpp */,
+				9A776D4A0EABD74F00196CA0 /* RBTRound.h */,
 				9A9D64F50EB991D9003985A4 /* RBUICourseControl.cpp */,
-				9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */,
-				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
-				9A4B11E20FA8248E00E53811 /* RBUITutorial.h */,
-				9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */,
-				9A4B12760FAAC44A00E53811 /* RBUIHelp.h */,
+				9A9D64F40EB991D9003985A4 /* RBUICourseControl.h */,
 				9A4B12770FAAC44A00E53811 /* RBUIHelp.cpp */,
+				9A4B12760FAAC44A00E53811 /* RBUIHelp.h */,
+				9ACA17B70EB9ABAE0014C128 /* RBUIMenu.cpp */,
+				9ACA17B60EB9ABAE0014C128 /* RBUIMenu.h */,
+				9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */,
+				9A1B8F5E116C70EF008BA122 /* RBUITerrain.h */,
+				9A9D63AF0EB97D80003985A4 /* RBUITitle.cpp */,
+				9A9D63AE0EB97D80003985A4 /* RBUITitle.h */,
+				9A4B11E30FA8248E00E53811 /* RBUITutorial.cpp */,
+				9A4B11E20FA8248E00E53811 /* RBUITutorial.h */,
+				9ACA19D90EBADDC40014C128 /* RBWindControl.cpp */,
+				9ACA19D80EBADDC40014C128 /* RBWindControl.h */,
 			);
 			name = Golf;
 			sourceTree = "<group>";
@@ -2128,12 +2161,16 @@
 				467A43A10FAC03FD004A318F /* help_c_256.png */,
 				467A43A20FAC03FD004A318F /* help_b_256.png */,
 				467A43A30FAC03FD004A318F /* help_a_256.png */,
+				9A3876BB117134E400A71399 /* guide2.png */,
+				9A46A10F11C9A3A9007F260E /* guide2m.png */,
+				9A46A11011C9A3A9007F260E /* guidem.png */,
 				9A9D642F0EB9837E003985A4 /* logo.png */,
 				9AA7658811647ABE00A44D92 /* logo_ipad.png */,
 				9AFD58780EA880380044A7B0 /* guide.png */,
 				9A4F1B5D0E861985001D1F0B /* strokedot.png */,
 				9AA93E430E838FB900F6FBD8 /* hole.png */,
 				9A776EF50EAC5F3700196CA0 /* ring.png */,
+				9A3876BE117134EC00A71399 /* balldot.png */,
 				9A9D64D00EB98E9F003985A4 /* coursebg.png */,
 				9AA7658111647AB400A44D92 /* coursebg_ipad_locked.png */,
 				9AA7658211647AB400A44D92 /* coursebg_ipad.png */,
@@ -2224,6 +2261,7 @@
 		9AD580CA0EA08E81002696A6 /* POD */ = {
 			isa = PBXGroup;
 			children = (
+				9A3876C31171352700A71399 /* parflat.POD */,
 				9AA93F000E84D3DF00F6FBD8 /* golfer.POD */,
 				9A4F1AB90E84EC98001D1F0B /* mallet.POD */,
 				9A93B7510E822F890067CDC6 /* playerbox.POD */,
@@ -2510,7 +2548,12 @@
 				9AA7658311647AB400A44D92 /* coursebg_ipad_locked.png in Resources */,
 				9AA7658411647AB400A44D92 /* coursebg_ipad.png in Resources */,
 				9AA7658911647ABE00A44D92 /* logo_ipad.png in Resources */,
-				9AA765B41164809500A44D92 /* Default.png in Resources */,
+				9A38762A116DB23B00A71399 /* Default.png in Resources */,
+				9A3876BC117134E400A71399 /* guide2.png in Resources */,
+				9A3876BF117134EC00A71399 /* balldot.png in Resources */,
+				9A3876C41171352700A71399 /* parflat.POD in Resources */,
+				9A46A11111C9A3A9007F260E /* guide2m.png in Resources */,
+				9A46A11211C9A3A9007F260E /* guidem.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2674,11 +2717,8 @@
 				422C48BB11118FBB00CDF5C9 /* help_a_256.png in Resources */,
 				422C48BC11118FBB00CDF5C9 /* ball_64.pvr in Resources */,
 				422C499011118FC000CDF5C9 /* MainWindow.xib in Resources */,
-				42AFD60F11580DFD00DCC2EF /* title_iphone.ui in Resources */,
-				42AFD61D11580E1600DCC2EF /* game_iphone.ui in Resources */,
 				42FFDC3D11587B0300E4C69F /* game_ipad.ui in Resources */,
 				42FFDC4C1158863D00E4C69F /* menu_ipad.ui in Resources */,
-				42FFDC4D1158863D00E4C69F /* menu_iphone.ui in Resources */,
 				9AA7656C115B3E3800A44D92 /* ab48_00.pvr in Resources */,
 				9AA7656D115B3E3800A44D92 /* ab48.fnt in Resources */,
 				9AA7656E115B3E3800A44D92 /* ab48o2_00.pvr in Resources */,
@@ -2689,6 +2729,12 @@
 				9AA7658A11647ABE00A44D92 /* logo_ipad.png in Resources */,
 				9AA765B8116480C300A44D92 /* Default.png in Resources */,
 				9AA765E21164848600A44D92 /* Icon.png in Resources */,
+				9A50228411648D2800779F96 /* Entitlements.plist in Resources */,
+				9A3876BD117134E400A71399 /* guide2.png in Resources */,
+				9A3876C0117134EC00A71399 /* balldot.png in Resources */,
+				9A3876C51171352700A71399 /* parflat.POD in Resources */,
+				9A46A11311C9A3A9007F260E /* guide2m.png in Resources */,
+				9A46A11411C9A3A9007F260E /* guidem.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2891,6 +2937,9 @@
 				9A42EA7B100DC30E0081BD75 /* RudeTweaker.cpp in Sources */,
 				9A42EA7C100DC30E0081BD75 /* RudeUnicode.cpp in Sources */,
 				9A42EA7D100DC30E0081BD75 /* RudeUnitTest.cpp in Sources */,
+				9A1B8F60116C70EF008BA122 /* RBUITerrain.cpp in Sources */,
+				9A1B8F6A116C710D008BA122 /* RBTerrainViewControl.cpp in Sources */,
+				9A38774011730FA900A71399 /* RBTerrainSliceControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3090,6 +3139,9 @@
 				422C497B11118FBB00CDF5C9 /* RudeTweaker.cpp in Sources */,
 				422C497C11118FBB00CDF5C9 /* RudeUnicode.cpp in Sources */,
 				422C497D11118FBB00CDF5C9 /* RudeUnitTest.cpp in Sources */,
+				9A1B8F5F116C70EF008BA122 /* RBUITerrain.cpp in Sources */,
+				9A1B8F69116C710D008BA122 /* RBTerrainViewControl.cpp in Sources */,
+				9A38774111730FA900A71399 /* RBTerrainSliceControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3112,14 +3164,6 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		9AA765B21164809500A44D92 /* Default.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9AA765B31164809500A44D92 /* en */,
-			);
-			name = Default.png;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3127,6 +3171,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				COPY_PHASE_STRIP = NO;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "bullet *.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3147,7 +3192,7 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Golf;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3156,7 +3201,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				COPY_PHASE_STRIP = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3175,7 +3220,6 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = Golf;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8897C277-D19C-4DEF-BFB1-0BEFE719BF46";
 				SDKROOT = iphoneos2.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3185,6 +3229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				COPY_PHASE_STRIP = NO;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "bullet *.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3206,6 +3251,7 @@
 				INFOPLIST_FILE = Info.plist;
 				OTHER_CFLAGS = "-DRUDE_IPAD=1";
 				PRODUCT_NAME = Golf;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BDD898D-9B6A-48C3-B536-1F8C59EA9F89";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -3215,7 +3261,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)$(TARGETED_DEVICE_FAMILY)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)$(TARGETED_DEVICE_FAMILY)";
 				COPY_PHASE_STRIP = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3233,10 +3282,13 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Golf-iPad";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8897C277-D19C-4DEF-BFB1-0BEFE719BF46";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				PRODUCT_NAME = Golf;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BDD898D-9B6A-48C3-B536-1F8C59EA9F89";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -3244,7 +3296,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bork 3D LLC";
 				COPY_PHASE_STRIP = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
@@ -3263,10 +3316,12 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Golf-iPad";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F47BC40F-52DD-4D53-A8E1-A34BF9115BA6";
+				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				PRODUCT_NAME = Golf;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C1A9EB58-E467-42D6-B8B2-E33BBCE4100F";
 				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = 2;
+				VALID_ARCHS = armv7;
 			};
 			name = Distribution;
 		};
@@ -3318,7 +3373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3328,8 +3383,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0A91A8C3-04AB-48B4-9E73-DBB29E9D29A9";
-				SDKROOT = iphonesimulator2.0;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
