@@ -197,6 +197,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	
 	// score control
 	m_scoreControl = m_ui.GetChildControl<RBScoreControl>("scoreControl");
+	m_scoreControl->SetActiveHole(holeNum, holeset);
 	
 	// stroke/status controls
 	
@@ -394,7 +395,6 @@ int RBTGame::LoadState()
 		m_ball.StickAtPosition(load.ball);
 		m_ball.SetCurMaterial(load.ballMaterial);
 		m_terrain.SetHole(load.hole);
-
 	
 		RestoreState();
 		

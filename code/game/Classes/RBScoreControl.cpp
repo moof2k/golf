@@ -14,6 +14,7 @@
 
 RBScoreControl::RBScoreControl()
 : m_activeHole(-1)
+, m_holeSet(kCourseFront9)
 {
 }
 
