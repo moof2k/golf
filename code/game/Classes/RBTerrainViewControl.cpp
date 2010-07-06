@@ -36,7 +36,11 @@ void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &
 	//RUDE_REPORT("guide %f %f %f\n", guide.x(), guide.y(), guide.z());
 
 	// Try to keep the ball and the hole within this box
+#if RUDE_IPAD == 1
 	const float kDesiredBoxSize = 680.0f;
+#else
+	const float kDesiredBoxSize = 300.0f;
+#endif
 
 	btVector3 ballToHole = hole - ball;
 

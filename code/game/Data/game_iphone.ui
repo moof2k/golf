@@ -35,9 +35,9 @@ RudeButtonControl	prevClubButton	ui_clubprev	{-1, -1}	{436, 5, 480, 37}	none
 RudeButtonControl	clubButton	ui_1wood	{-1, -1}	{436, 46, 480, 114}	none
 RudeButtonControl	nextClubButton	ui_clubnext	{-1, -1}	{436, 121, 480, 153}	none
 
+RudeButtonControl	terrainButton	ui_elevation_small	{-1, -1}	{0, 90, 44, 116}	none
 RudeButtonControl	cameraButton	ui_camera	{-1, -1}	{0, 120, 44, 200}	none
-RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 195, 44, 255}	none
-RudeButtonControl	terrainButton	ui_elevation_small	{-1, -1}	{0, 260, 44, 320}	none
+RudeButtonControl	helpButton	ui_help_button	{-1, -1}	{0, 204, 44, 230}	none
 
 RBScoreControl	scoreControl	{0,0,480,320}
 RBSwingControl	swingControl	{0,0,400,320}
