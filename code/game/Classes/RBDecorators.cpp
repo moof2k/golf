@@ -37,7 +37,7 @@ RBDecorator::RBDecorator()
 : m_textureid(0)
 , m_numInstances(0)
 , m_size(16.0f)
-, m_texturesize(128.0f)
+, m_texturesize(128)
 {
 	SetSize(16.0f);
 	
@@ -379,7 +379,7 @@ void RBDecoratorCollection::AddTexture(const char *textureName)
 	unsigned int size = m_textureNames.size();
 	bool found = false;
 	
-	for(int i = 0; i < size; i++)
+	for(unsigned int i = 0; i < size; i++)
 	{
 		if(m_textureNames[i] == std::string(textureName))
 			found = true;

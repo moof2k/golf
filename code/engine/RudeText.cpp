@@ -20,7 +20,7 @@ CPVRTPrint3D gTextPrint;
 
 void RudeText::Init()
 {
-	gTextPrint.SetTextures(0, RGL.GetDeviceHeight(), RGL.GetDeviceWidth());
+	gTextPrint.SetTextures(0, (unsigned int) RGL.GetDeviceHeight(), (unsigned int) RGL.GetDeviceWidth());
 }
 
 void RudeText::Print(float x, float y, float scale, unsigned int color, const char * const pszFormat, ...)

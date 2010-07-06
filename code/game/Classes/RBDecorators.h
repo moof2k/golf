@@ -101,7 +101,7 @@ private:
 	std::vector<std::string> m_textureNames;
 	
 #ifndef NO_DECO_EDITOR
-	int m_dropTextureNum;
+	unsigned int m_dropTextureNum;
 	std::vector<btVector3> m_droppedDecorators;
 #endif
 };

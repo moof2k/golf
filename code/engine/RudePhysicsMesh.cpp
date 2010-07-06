@@ -37,7 +37,7 @@ void RudePhysicsMesh::Load(RudeMesh *modelmesh, float mass)
 	
 	m_data = new btTriangleIndexVertexArray();
 	
-	for(int i = 0; i < model->nNumNode; i++)
+	for(unsigned int i = 0; i < model->nNumNode; i++)
 	{
 		SPODNode *node = &model->pNode[i];
 		SPODMesh *mesh = &model->pMesh[node->nIdx];

@@ -116,7 +116,7 @@ void RudePhysics::Init()
 	
 	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
 	
-	m_dynamicsWorld->setGravity(btVector3(0,-32.2,0));
+	m_dynamicsWorld->setGravity(btVector3(0,-32.2f,0));
 	
 	
 

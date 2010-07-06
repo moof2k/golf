@@ -45,7 +45,7 @@ void RBGolferObject::LoadNodes()
 	RudeMesh *mesh = (RudeMesh *) GetMesh();
 	CPVRTPODScene *scene = mesh->GetModel();
 	
-	for(int i = 0; i < scene->nNumNode; i++)
+	for(unsigned int i = 0; i < scene->nNumNode; i++)
 	{
 		SPODNode *node = &scene->pNode[i];
 		

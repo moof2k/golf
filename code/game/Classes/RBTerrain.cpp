@@ -166,7 +166,7 @@ void RBTerrain::LoadMaterials()
 	
 	bool foundgreen = false;
 	
-	for(int i = 0; i < scene->nNumNode; i++)
+	for(unsigned int i = 0; i < scene->nNumNode; i++)
 	{
 		SPODNode *node = &scene->pNode[i];
 		
@@ -222,7 +222,7 @@ void RBTerrain::LoadNodes()
 	RudeMesh *mesh = (RudeMesh *) GetMesh();
 	CPVRTPODScene *scene = mesh->GetModel();
 	
-	for(int i = 0; i < scene->nNumNode; i++)
+	for(unsigned int i = 0; i < scene->nNumNode; i++)
 	{
 		SPODNode *node = &scene->pNode[i];
 		
@@ -251,7 +251,7 @@ void RBTerrain::LoadNodes()
 	RUDE_ASSERT(m_cameraPlacements.size() > 0, "Terrain has no camera placements (N2)");
 	RUDE_ASSERT(m_guidePoints.size() > 0, "Terrain has no guide points (N3)");
 	
-	int chosenhole = rand() % m_holes.size();
+	unsigned int chosenhole = rand() % m_holes.size();
 	
 	RUDE_ASSERT((chosenhole >= 0) && (chosenhole < m_holes.size()), "Invalid hole chosen");
 	
@@ -303,7 +303,7 @@ void RBTerrain::UpdatePutting()
 				RUDE_ASSERT(mesh->sVertex.eType == EPODDataFloat, "Expected float vertex data");
 				RUDE_ASSERT(mesh->sVtxColours.eType == EPODDataRGBA, "Expected RGBA color data");
 				
-				for(int i = 0; i < mesh->nNumVertex; i++)
+				for(unsigned int i = 0; i < mesh->nNumVertex; i++)
 				{
 					unsigned char *vertaddr = mesh->pInterleaved + (long)mesh->sVertex.pData + mesh->sVertex.nStride * i;
 					unsigned char *coloraddr = mesh->pInterleaved + (long)mesh->sVtxColours.pData + mesh->sVtxColours.nStride * i;
@@ -315,9 +315,9 @@ void RBTerrain::UpdatePutting()
 					int color_g = (*color >> 8) & 0xFF;
 					int color_b = (*color >> 16) & 0xFF;
 					
-					float color_rf = color_r;
-					float color_rg = color_g;
-					float color_rb = color_b;
+					float color_rf = (float) color_r;
+					float color_rg = (float) color_g;
+					float color_rb = (float) color_b;
 					
 					color_rf /= 255.0f;
 					color_rg /= 255.0f;
@@ -353,9 +353,9 @@ void RBTerrain::UpdatePutting()
 					
 					origcolor.Blend(blendcolor, ydiff);
 					
-					color_r = origcolor.m_r * 255.0f;
-					color_g = origcolor.m_g * 255.0f;
-					color_b = origcolor.m_b * 255.0f;
+					color_r = (int) (origcolor.m_r * 255.0f);
+					color_g = (int) (origcolor.m_g * 255.0f);
+					color_b = (int) (origcolor.m_b * 255.0f);
 					
 					unsigned int newcolor = 0xFF000000 |
 						color_r |
@@ -388,7 +388,7 @@ btVector3 RBTerrain::GetTeeBox()
 	if(m_tee == kCourseLongTee)
 		bestdist = -1.0f;
 	
-	for(int i = 0; i < m_teeBoxes.size(); i++)
+	for(unsigned int i = 0; i < m_teeBoxes.size(); i++)
 	{
 		btVector3 teevec = m_teeBoxes[i] - m_hole;
 		float dist = teevec.length();
@@ -574,7 +574,7 @@ btVector3 RBTerrain::GetCameraPlacement(btVector3 ball)
 	int best = -1;
 	float bestDistance = 9999.0f;
 	
-	for(int i = 0; i < m_cameraPlacements.size(); i++)
+	for(unsigned int i = 0; i < m_cameraPlacements.size(); i++)
 	{
 		btVector3 &p = m_cameraPlacements[i];
 		
@@ -613,7 +613,7 @@ void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 	
 	// #1 search for guide point within range closest to the hole
 	
-	for(int i = 0; i < m_guidePoints.size(); i++)
+	for(unsigned int i = 0; i < m_guidePoints.size(); i++)
 	{
 		// guide point, flatten to y=0
 		btVector3 point(m_guidePoints[i]);
@@ -640,7 +640,7 @@ void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 	
 	btVector3 lastpoint;
 	
-	for(int i = 0; i < m_guidePoints.size(); i++)
+	for(unsigned int i = 0; i < m_guidePoints.size(); i++)
 	{
 		// guide point, flatten to y=0
 		btVector3 point(m_guidePoints[i]);
@@ -684,7 +684,7 @@ void RBTerrain::UpdateGuidePoint(const btVector3 &ball, float clubDistance)
 	
 	if(bestFound == false)
 	{
-		for(int i = 0; i < m_guidePoints.size(); i++)
+		for(unsigned int i = 0; i < m_guidePoints.size(); i++)
 		{
 			btVector3 point(m_guidePoints[i]);
 			point.setY(0.0f);
@@ -791,7 +791,7 @@ void RBTerrain::RenderGuides()
 {
 	btVector3 lastpoint;
 	
-	for(int i = 0; i < m_guidePoints.size(); i++)
+	for(unsigned int i = 0; i < m_guidePoints.size(); i++)
 	{
 		if(i != 0)
 		{
