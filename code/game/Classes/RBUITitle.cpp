@@ -51,7 +51,7 @@ RBUITitle::RBUITitle()
 	
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
 
-#if RUDE_IPAD
+#if RUDE_IPAD == 1
 	m_scoreControl.SetRect(RudeRect(0,0,1024,768));
 #else
 	m_scoreControl.SetRect(RudeRect(0,0,480,320));
@@ -60,7 +60,7 @@ RBUITitle::RBUITitle()
 	m_credits.SetAnimType(kAnimPopSlide);
 	
 
-#if RUDE_IPAD
+#if RUDE_IPAD == 1
 	const int kCourseButtonTop = 160;
 	const int kCourseButtonHeight = 104;
 	const float kCourseAnimSpeedBase = 3.0f;
@@ -150,7 +150,7 @@ void RBUITitle::SetState(eTitleState state)
 
 	const float kOffscreenAmount = RGL.GetDeviceWidth() + 80;
 
-#if RUDE_IPAD
+#if RUDE_IPAD == 1
 	const float kDownslideAmount = 300.0f;
 #else
 	const float kDownslideAmount = 100.0f;

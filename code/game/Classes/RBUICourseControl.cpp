@@ -20,7 +20,7 @@ void RBUICourseControl::Render()
 	
 	
 	
-#if RUDE_IPAD
+#if RUDE_IPAD == 1
 	const float baseY = 45;
 
 	const float courseX = 290;

@@ -28,7 +28,7 @@ bool keys[256];				// Array Used For The Keyboard Routine
 bool active = true;			// Window Active Flag Set To TRUE By Default
 bool fullscreen = false;	// Fullscreen Flag Set To Fullscreen Mode By Default
 
-#ifdef RUDE_IPAD
+#if RUDE_IPAD == 1
 int windowWidth = 768;
 int windowHeight = 1024;
 #else
@@ -225,7 +225,11 @@ BOOL CreateGLWindow(const char *title, int width, int height, int bits, bool ful
 		dwStyle=WS_OVERLAPPEDWINDOW;							// Windows Style
 	}
 
-	AdjustWindowRectEx(&WindowRect, dwStyle, FALSE, dwExStyle);		// Adjust Window To True Requested Size
+	if(!AdjustWindowRectEx(&WindowRect, dwStyle, FALSE, dwExStyle))		// Adjust Window To True Requested Size
+	{
+		MessageBox(NULL,"Window Creation Error.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		return FALSE;								// Return FALSE
+	}
 
 	// Create The Window
 	if (!(hWnd=CreateWindowEx(	dwExStyle,							// Extended Style For The Window
