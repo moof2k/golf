@@ -49,6 +49,8 @@ private:
 	float m_originy;
 	float m_angle;
 	float m_scale;
+
+	float m_bgTimer;
 	
 };
 

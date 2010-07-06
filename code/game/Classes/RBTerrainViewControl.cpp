@@ -17,6 +17,7 @@ RBTerrainViewControl::RBTerrainViewControl()
 , m_originy(0.0f)
 , m_angle(0.0f)
 , m_scale(1.0f)
+, m_bgTimer(0.0f)
 {
 	m_guideIndicatorButton.SetTexture("guide");
 	m_ballIndicatorButton.SetTexture("balldot");
@@ -26,7 +27,7 @@ RBTerrainViewControl::RBTerrainViewControl()
 
 void RBTerrainViewControl::NextFrame(float delta)
 {
-	
+	m_bgTimer += delta;
 }
 
 void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide)
@@ -57,6 +58,8 @@ void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &
 	m_guide = guide;
 	m_ball = ball;
 	m_hole = hole;
+
+	m_bgTimer = 0.0f;
 }
 
 void RBTerrainViewControl::Translate(float x, float y)
@@ -90,7 +93,7 @@ void RBTerrainViewControl::Render()
 	int width = m_rect.m_right - m_rect.m_left;
 
 	RGL.SetViewport(m_rect.m_top, m_rect.m_left, m_rect.m_bottom, m_rect.m_right);
-	RGL.Ortho(0.0f, 0.0f, 0.0f, width, height, 1000.0f);
+	RGL.Ortho(0.0f, 0.0f, 0.0f, (float) width, (float) height, 1000.0f);
 	RGL.LoadIdentity();
 
 	glDisable(GL_TEXTURE_2D);
@@ -98,6 +101,11 @@ void RBTerrainViewControl::Render()
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, true);
 	RGL.EnableClient(kTextureCoordArray, false);
+
+	float bgalpha = 4.0f * m_bgTimer * 0.5f;
+
+	if(bgalpha > 0.5f)
+		bgalpha = 0.5f;
 
 	GLfloat point[] = {
 		0, 0,
@@ -107,10 +115,10 @@ void RBTerrainViewControl::Render()
 	};
 
 	GLfloat colors[] = {
-		0.0f, 0.0f, 0.0f, 0.2f,
-		0.0f, 0.0f, 0.0f, 0.2f,
-		0.0f, 0.0f, 0.0f, 0.2f,
-		0.0f, 0.0f, 0.0f, 0.2f,
+		0.0f, 0.0f, 0.0f, bgalpha,
+		0.0f, 0.0f, 0.0f, bgalpha,
+		0.0f, 0.0f, 0.0f, bgalpha,
+		0.0f, 0.0f, 0.0f, bgalpha,
 	};
 
 
@@ -137,7 +145,7 @@ void RBTerrainViewControl::Render()
 	m_terrain->RenderInBoundsOnly();
 
 
-	RGL.Ortho(0.0, 0.0, -100.0f, width, height, 1000.0f);
+	RGL.Ortho(0.0, 0.0, -100.0f, (float) width, (float) height, 1000.0f);
 
 	ox = -m_originx / m_scale + width/2;
 	oy = -m_originy / m_scale + height/2;
@@ -145,24 +153,24 @@ void RBTerrainViewControl::Render()
 
 	const int kGuideSize = 32;
 	RudeRect guideRect(
-		(int) m_guide.z() / m_scale + oy - kGuideSize,
-		(int) m_guide.x() / m_scale + ox - kGuideSize,
-		(int) m_guide.z() / m_scale + oy + kGuideSize,
-		(int) m_guide.x() / m_scale + ox + kGuideSize
+		(int) (m_guide.z() / m_scale + oy - kGuideSize),
+		(int) (m_guide.x() / m_scale + ox - kGuideSize),
+		(int) (m_guide.z() / m_scale + oy + kGuideSize),
+		(int) (m_guide.x() / m_scale + ox + kGuideSize)
 		);
 
 	RudeRect ballRect(
-		(int) m_ball.z() / m_scale + oy - kGuideSize,
-		(int) m_ball.x() / m_scale + ox - kGuideSize,
-		(int) m_ball.z() / m_scale + oy + kGuideSize,
-		(int) m_ball.x() / m_scale + ox + kGuideSize
+		(int) (m_ball.z() / m_scale + oy - kGuideSize),
+		(int) (m_ball.x() / m_scale + ox - kGuideSize),
+		(int) (m_ball.z() / m_scale + oy + kGuideSize),
+		(int) (m_ball.x() / m_scale + ox + kGuideSize)
 		);
 
 	RudeRect holeRect(
-		(int) m_hole.z() / m_scale + oy - kGuideSize,
-		(int) m_hole.x() / m_scale + ox - kGuideSize,
-		(int) m_hole.z() / m_scale + oy + kGuideSize,
-		(int) m_hole.x() / m_scale + ox + kGuideSize
+		(int) (m_hole.z() / m_scale + oy - kGuideSize),
+		(int) (m_hole.x() / m_scale + ox - kGuideSize),
+		(int) (m_hole.z() / m_scale + oy + kGuideSize),
+		(int) (m_hole.x() / m_scale + ox + kGuideSize)
 		);
 	
 	m_guideIndicatorButton.SetRect(guideRect);
