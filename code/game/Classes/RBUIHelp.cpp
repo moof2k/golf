@@ -32,6 +32,7 @@ typedef struct {
 	tHelpPage m_pages[2];
 } tHelpPageInfo;
 
+#if RUDE_IPAD == 0
 tHelpPageInfo kHelpPageInfos[kNumHelpModes] = {
 { 1, { "help_a_256", 3, {
 	{ "Aim", FONT_ALIGN_CENTER, 160, 192 }, 
@@ -44,6 +45,20 @@ tHelpPageInfo kHelpPageInfos[kNumHelpModes] = {
 	} } },
 { 2, {{ "help_c_256", 0, 0 }, { "help_d_256", 0, 0 }} },
 };
+#else
+tHelpPageInfo kHelpPageInfos[kNumHelpModes] = {
+	{ 1, { "help_a_256", 3, {
+		{ "Aim", FONT_ALIGN_CENTER, 384, 540 }, 
+		{ "Press", FONT_ALIGN_CENTER, 504, 930 }, 
+		{ "to Swing", FONT_ALIGN_CENTER, 504, 964 }
+	} } },
+	{ 1, { "help_b_256", 2, {
+		{ "Rotate", FONT_ALIGN_CENTER, 384, 676 }, 
+		{ "Zoom", FONT_ALIGN_RIGHT, 630, 512 }, 
+	} } },
+	{ 2, {{ "help_c_256", 0, 0 }, { "help_d_256", 0, 0 }} },
+};
+#endif
 
 RBUIHelp::RBUIHelp()
 : m_helpTexture(-1)
@@ -133,9 +148,9 @@ void RBUIHelp::Render(float width, float height)
 		
 		const float points[] = {
 			0, 0,
-			320, 0,
-			320, 480,
-			0, 480
+			RGL.GetDeviceWidth(), 0,
+			RGL.GetDeviceWidth(), RGL.GetDeviceHeight(),
+			0, RGL.GetDeviceHeight()
 		};
 		
 		glDisable(GL_TEXTURE_2D);
@@ -166,8 +181,8 @@ void RBUIHelp::Render(float width, float height)
 		const float size = 256.0f;
 		const float halfsize = size / 2.0f;
 		
-		int xc = 160;
-		int yc = 240;
+		int xc = RGL.GetDeviceWidth() / 2;
+		int yc = RGL.GetDeviceHeight() / 2;
 		float left = xc - halfsize + 0;
 		float top = yc - halfsize + 0;
 		

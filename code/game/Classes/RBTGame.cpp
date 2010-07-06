@@ -1527,7 +1527,6 @@ void RBTGame::NextFrame(float delta)
 		case kStateTerrainView:
 		{
 			m_terrainui.NextFrame(delta);
-
 		}
 			break;
 			
@@ -1880,10 +1879,9 @@ void RBTGame::Render(float width, float height)
 
 				m_terrainSliceControl->Render();
 
-				if(!RUDE_IPAD)
-					m_helpButton->Render();
+				m_helpButton->Render();
 
-				//m_terrainButton->Render();
+				m_terrainButton->Render();
 				
 				RenderShotInfo(false, true);
 				
@@ -1903,8 +1901,7 @@ void RBTGame::Render(float width, float height)
 				m_swingControl->Render();
 				m_clubButton->Render();
 
-				if(!RUDE_IPAD)
-					m_helpButton->Render();
+				m_helpButton->Render();
 				
 				RenderShotInfo(false, true);
 				
@@ -2055,7 +2052,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			
 			}
 			
-			if(!RUDE_IPAD && m_helpButton->TouchDown(rbt))
+			if(m_helpButton->TouchDown(rbt))
 			{
 				if(m_state == kStatePositionSwing)
 					m_help.SetHelpMode(kHelpAim);
@@ -2065,7 +2062,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				sfx = kSoundUIClickHi;
 			}
 
-			if(0 && m_terrainButton->TouchDown(rbt))
+			if(m_terrainButton->TouchDown(rbt))
 			{
 				SetState(kStateTerrainView);
 
@@ -2084,7 +2081,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			m_menu.TouchDown(rbt);
 			break;
 		case kStateExecuteSwing:
-			if(!RUDE_IPAD && m_helpButton->TouchDown(rbt))
+			if(m_helpButton->TouchDown(rbt))
 			{
 				m_help.SetHelpMode(kHelpSwing);
 				sfx = kSoundUIClickHi;

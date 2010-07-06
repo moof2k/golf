@@ -48,6 +48,7 @@ void RBUITerrain::NextFrame(float delta)
 	if(m_done)
 		return;
 	
+	m_tvc.NextFrame(delta);
 }
 
 void RBUITerrain::Render(float width, float height)
