@@ -2103,6 +2103,7 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 			if(m_terrainButton->TouchDown(rbt))
 			{
 				SetState(kStatePositionSwing);
+				sfx = kSoundUIClickLow;
 			}
 			else
 				m_terrainui.TouchDown(rbt);

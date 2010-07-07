@@ -30,6 +30,16 @@ void RBTerrainViewControl::NextFrame(float delta)
 	m_bgTimer += delta;
 }
 
+void RBTerrainViewControl::Scale(float scale)
+{	
+	m_scale += scale * 0.002f;
+	
+	if(m_scale > 2.0f)
+		m_scale = 2.0f;
+	if(m_scale < 0.1f)
+		m_scale = 0.1f;
+}
+
 void RBTerrainViewControl::SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide)
 {
 	//RUDE_REPORT("ball %f %f %f\n", ball.x(), ball.y(), ball.z());

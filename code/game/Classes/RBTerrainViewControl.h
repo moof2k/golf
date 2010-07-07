@@ -32,6 +32,7 @@ public:
 	void SetPositions(const btVector3 &ball, const btVector3 &hole, const btVector3 &guide);
 
 	void Translate(float x, float y);
+	void Scale(float scale);
 	
 private:
 	
