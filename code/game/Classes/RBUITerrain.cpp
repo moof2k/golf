@@ -16,6 +16,8 @@
 
 RBUITerrain::RBUITerrain()
 : m_mode(kTerrainModeNone)
+, m_startingTouchDist(1.0f)
+, m_touchDist(1.0f)
 {
 	m_touch[0] = 0;
 	m_touch[1] = 0;
@@ -36,6 +38,8 @@ RBUITerrain::~RBUITerrain()
 
 void RBUITerrain::StartDisplay()
 {
+	m_tvc.Scale(1.0f);
+	
 	m_done = false;
 	m_mode = kTerrainModeNone;
 	m_touch[0] = 0;
@@ -66,18 +70,20 @@ void RBUITerrain::TouchDown(RudeTouch *rbt)
 
 	switch(m_mode)
 	{
-	case kTerrainModeNone:
-		m_mode = kTerrainModeTranslate;
-		m_touch[0] = rbt;
-		m_pos[0] = rbt->m_location;
-		break;
-	case kTerrainModeTranslate:
-		m_touch[1] = rbt;
-		m_mode = kTerrainModeScale;
-		break;
-	case kTerrainModeScale:
+		case kTerrainModeNone:
+			m_mode = kTerrainModeTranslate;
+			m_touch[0] = rbt;
+			m_pos[0] = rbt->m_location;
+			break;
+		case kTerrainModeTranslate:
+			m_touch[1] = rbt;
+			m_mode = kTerrainModeScale;
+			CalcTouchDist();
+			m_startingTouchDist = m_touchDist;
+			break;
+		case kTerrainModeScale:
 
-		break;
+			break;
 	}
 	
 }
@@ -101,8 +107,10 @@ void RBUITerrain::TouchMove(RudeTouch *rbt)
 		break;
 	case kTerrainModeScale:
 		{
-			RudeScreenVertex pdiff = m_touch[0]->m_location - m_touch[1]->m_location;
+			CalcTouchDist();
 			
+			m_tvc.Scale(m_startingTouchDist - m_touchDist);
+			m_startingTouchDist = m_touchDist;
 		}
 		break;
 	}
@@ -124,7 +132,28 @@ void RBUITerrain::TouchUp(RudeTouch *rbt)
 		m_mode = kTerrainModeTranslate;
 
 		if(rbt == m_touch[1])
+		{
 			m_touch[1] = 0;
+		}
+		else if(rbt == m_touch[0])
+		{
+			m_touch[0] = m_touch[1];
+			m_touch[1] = 0;
+			m_pos[0] = m_touch[0]->m_location;
+		}
 		break;
 	}
+}
+
+void RBUITerrain::CalcTouchDist()
+{
+	if(m_touch[0] == 0)
+		return;
+	if(m_touch[1] == 0)
+		return;
+	
+	RudeScreenVertex pdiff = m_touch[0]->m_location - m_touch[1]->m_location;
+	m_touchDist = pdiff.m_x * pdiff.m_x + pdiff.m_y * pdiff.m_y;
+	if(m_touchDist > 0.0f)
+		m_touchDist = sqrt(m_touchDist);
 }

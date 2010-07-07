@@ -49,6 +49,8 @@ public:
 	}
 
 private:
+	
+	void CalcTouchDist();
 
 	RBTerrainViewControl m_tvc;
 
@@ -57,6 +59,8 @@ private:
 	
 	eTerrainMode m_mode;
 
+	float m_startingTouchDist;
+	float m_touchDist;
 
 };
 
