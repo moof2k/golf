@@ -242,6 +242,9 @@ bool RBUIHelp::TouchDown()
 		
 	NextHelp();
 	
+	RudeSound::GetInstance()->PlayWave(kSoundUIClickLow);
+
+	
 	return false;
 }
 
