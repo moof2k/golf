@@ -13,8 +13,8 @@ RudeTextControl	windText	20 mph	right	{748, 1004}	default	outline	none	0xFF66666
 
 RudeTextControl	shotEncouragementText	For Eagle!	center	{130, 0, 150, 768}	big	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
-RudeTextControl	shotDistText	50 yds	center	{974, 0, 990, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
-RudeTextControl	shotPowerText	100% Power	center	{990, 0, 1006, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	shotDistText	50 yds	center	{942, 0, 990, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
+RudeTextControl	shotPowerText	100% Power	center	{974, 0, 1006, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	shotAngleText	0% Hook	center	{1006, 0, 1022, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 RudeTextControl	guidePowerText	200 yds	center	{446, 0, 462, 768}	default	outline	none	0xFF666666	0xFF000000	0xFFFFFFFF	0xFFFFFFFF
 
