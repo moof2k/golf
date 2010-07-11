@@ -198,8 +198,8 @@ LoadFromPNG_URLFail:
 	{
 		for(int x = 0; x < m_width; x++)
 		{
-			int s = y * m_height + x;
-			int d = (m_height-y-1) * m_height + x;
+			int s = y * m_width + x;
+			int d = (m_height-y-1) * m_width + x;
 			textura[d*4+0]= pixeles[s*4+2];
 			textura[d*4+1]= pixeles[s*4+1];
 			textura[d*4+2]= pixeles[s*4+0];
