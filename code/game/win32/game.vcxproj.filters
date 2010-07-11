@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{6ce58f23-c7c9-4e13-a551-2e7ff453e2da}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b35ca2be-d665-4cfe-8924-9f586484c45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RudeEngine">
+      <UniqueIdentifier>{9d70b0e3-6774-479c-aabb-e79c00345aa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pvrt">
+      <UniqueIdentifier>{133f167a-097a-4e42-b161-e6918c5df77f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{55d99cef-ec80-478d-a725-b818156741a0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="glext.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="wglext.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBBallCamera.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBBallGuide.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBBallRecorder.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBCamera.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBClubControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBCourseData.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBCreditsControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBDebugCamera.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBDecorators.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGameBase.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGolfBall.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGolfClub.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGolferObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBGolfPin.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBKeyMap.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBKeyTracker.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBScoreControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBScoreTracker.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBSwingControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBSwingHelper.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTerrain.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTerrainMaterial.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTerrainSliceControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTerrainViewControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTourTracker.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBTRound.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUICourseControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUIHelp.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUIMenu.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUITerrain.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUITitle.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBUITutorial.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RBWindControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\Rude.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeButtonAnimControl.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeButtonControl.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeCollision.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeColor.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeControl.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeDebug.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeFile.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeFont.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeGame.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeGL.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeGLD.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeGlobals.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeKey.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeMath.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeMesh.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeObject.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudePerf.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudePhysics.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudePhysicsMesh.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudePhysicsObject.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudePhysicsSphere.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeRect.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeRegistry.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeRegistryWin.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeSkinnedMesh.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeSkybox.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeSound.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeText.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTextControl.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTexture.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTextureManager.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTimeCounter.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTimer.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTouchTracker.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeTweaker.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeUnicode.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeUnitTest.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\engine\RudeVertex.h">
+      <Filter>RudeEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\OGLES\OGLESTools.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTBackground.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTBoneBatch.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTContext.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTDecompress.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTFixedPoint.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTFixedPointAPI.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTGeometry.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTGlobal.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTMathTable.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTMatrix.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTMemoryFile.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTMisc.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTModel3DS.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTModelPOD.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTools.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTPrint3D.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTPrint3Ddat.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTResourceFile.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTSingleton.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTString.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTTexture.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTTextureAPI.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTTrans.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTTriStrip.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTVector.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\pvrt\PVRTVertex.h">
+      <Filter>pvrt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBBallCamera.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBBallGuide.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBBallRecorder.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBCamera.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBClubControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBCourseData.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBCreditsControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBDebugCamera.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBDecorators.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBGolfBall.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBGolfClub.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBGolferObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBGolfPin.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBKeyMap.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBKeyTracker.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBScoreControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBScoreTracker.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBSwingControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBSwingHelper.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTerrain.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTerrainSliceControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTerrainViewControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTourTracker.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBTRound.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUICourseControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUIHelp.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUIMenu.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUITerrain.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUITitle.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBUITutorial.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RBWindControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeButtonAnimControl.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeButtonControl.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeCollision.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeColor.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeControl.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeDebug.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeFile.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeFont.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeGame.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeGL.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeGLD.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeGlobals.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeKey.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeMath.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeMesh.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeObject.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudePerf.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudePhysics.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudePhysicsMesh.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudePhysicsObject.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudePhysicsSphere.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeRect.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeRegistry.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeRegistryWin.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeSkinnedMesh.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeSkybox.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeSound.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeText.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTextControl.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTexture.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTextureManager.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTimeCounter.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTimer.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTouchTracker.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeTweaker.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeUnicode.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\engine\RudeUnitTest.cpp">
+      <Filter>RudeEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTBackground.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTBoneBatch.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTDecompress.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTFixedPoint.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTGeometry.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTMatrixF.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTMatrixX.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTMisc.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTModel3DS.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTModelPOD.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTModelPODWriteH.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTPrint3D.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTPrint3DAPI.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTResourceFile.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTString.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTTexture.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTTextureAPI.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTTrans.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTTriStrip.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTVector.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\pvrt\PVRTVertex.cpp">
+      <Filter>pvrt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\game_ipad.ui">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\Data\game_iphone.ui">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\Data\menu_ipad.ui">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\Data\menu_iphone.ui">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\Data\title_ipad.ui">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\Data\title_iphone.ui">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

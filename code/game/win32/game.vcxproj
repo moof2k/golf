@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{378E277F-6DA0-4E8F-BFAE-948496DD3BD4}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/lesson1.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RUDE_IPAD=1;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x1009</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Debug/game.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\lib\FreeImage\Dist;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/lesson1.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/lesson1.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/lesson1.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RUDE_IPAD=1;WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/lesson1.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x1009</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glaux.lib;odbc32.lib;odbccp32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release/example.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\lib\FreeImage\Dist;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/lesson1.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/lesson1.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="glext.h" />
+    <ClInclude Include="wglext.h" />
+    <ClInclude Include="..\Classes\RBBallCamera.h" />
+    <ClInclude Include="..\Classes\RBBallGuide.h" />
+    <ClInclude Include="..\Classes\RBBallRecorder.h" />
+    <ClInclude Include="..\Classes\RBCamera.h" />
+    <ClInclude Include="..\Classes\RBClubControl.h" />
+    <ClInclude Include="..\Classes\RBCourseData.h" />
+    <ClInclude Include="..\Classes\RBCreditsControl.h" />
+    <ClInclude Include="..\Classes\RBDebugCamera.h" />
+    <ClInclude Include="..\Classes\RBDecorators.h" />
+    <ClInclude Include="..\Classes\RBGame.h" />
+    <ClInclude Include="..\Classes\RBGameBase.h" />
+    <ClInclude Include="..\Classes\RBGolfBall.h" />
+    <ClInclude Include="..\Classes\RBGolfClub.h" />
+    <ClInclude Include="..\Classes\RBGolferObject.h" />
+    <ClInclude Include="..\Classes\RBGolfPin.h" />
+    <ClInclude Include="..\Classes\RBKeyMap.h" />
+    <ClInclude Include="..\Classes\RBKeyTracker.h" />
+    <ClInclude Include="..\Classes\RBScoreControl.h" />
+    <ClInclude Include="..\Classes\RBScoreTracker.h" />
+    <ClInclude Include="..\Classes\RBSwingControl.h" />
+    <ClInclude Include="..\Classes\RBSwingHelper.h" />
+    <ClInclude Include="..\Classes\RBTerrain.h" />
+    <ClInclude Include="..\Classes\RBTerrainMaterial.h" />
+    <ClInclude Include="..\Classes\RBTerrainSliceControl.h" />
+    <ClInclude Include="..\Classes\RBTerrainViewControl.h" />
+    <ClInclude Include="..\Classes\RBTGame.h" />
+    <ClInclude Include="..\Classes\RBTourTracker.h" />
+    <ClInclude Include="..\Classes\RBTRound.h" />
+    <ClInclude Include="..\Classes\RBUICourseControl.h" />
+    <ClInclude Include="..\Classes\RBUIHelp.h" />
+    <ClInclude Include="..\Classes\RBUIMenu.h" />
+    <ClInclude Include="..\Classes\RBUITerrain.h" />
+    <ClInclude Include="..\Classes\RBUITitle.h" />
+    <ClInclude Include="..\Classes\RBUITutorial.h" />
+    <ClInclude Include="..\Classes\RBWindControl.h" />
+    <ClInclude Include="..\..\engine\Rude.h" />
+    <ClInclude Include="..\..\engine\RudeButtonAnimControl.h" />
+    <ClInclude Include="..\..\engine\RudeButtonControl.h" />
+    <ClInclude Include="..\..\engine\RudeCollision.h" />
+    <ClInclude Include="..\..\engine\RudeColor.h" />
+    <ClInclude Include="..\..\engine\RudeControl.h" />
+    <ClInclude Include="..\..\engine\RudeDebug.h" />
+    <ClInclude Include="..\..\engine\RudeFile.h" />
+    <ClInclude Include="..\..\engine\RudeFont.h" />
+    <ClInclude Include="..\..\engine\RudeGame.h" />
+    <ClInclude Include="..\..\engine\RudeGL.h" />
+    <ClInclude Include="..\..\engine\RudeGLD.h" />
+    <ClInclude Include="..\..\engine\RudeGlobals.h" />
+    <ClInclude Include="..\..\engine\RudeKey.h" />
+    <ClInclude Include="..\..\engine\RudeMath.h" />
+    <ClInclude Include="..\..\engine\RudeMesh.h" />
+    <ClInclude Include="..\..\engine\RudeObject.h" />
+    <ClInclude Include="..\..\engine\RudePerf.h" />
+    <ClInclude Include="..\..\engine\RudePhysics.h" />
+    <ClInclude Include="..\..\engine\RudePhysicsMesh.h" />
+    <ClInclude Include="..\..\engine\RudePhysicsObject.h" />
+    <ClInclude Include="..\..\engine\RudePhysicsSphere.h" />
+    <ClInclude Include="..\..\engine\RudeRect.h" />
+    <ClInclude Include="..\..\engine\RudeRegistry.h" />
+    <ClInclude Include="..\..\engine\RudeRegistryWin.h" />
+    <ClInclude Include="..\..\engine\RudeSkinnedMesh.h" />
+    <ClInclude Include="..\..\engine\RudeSkybox.h" />
+    <ClInclude Include="..\..\engine\RudeSound.h" />
+    <ClInclude Include="..\..\engine\RudeText.h" />
+    <ClInclude Include="..\..\engine\RudeTextControl.h" />
+    <ClInclude Include="..\..\engine\RudeTexture.h" />
+    <ClInclude Include="..\..\engine\RudeTextureManager.h" />
+    <ClInclude Include="..\..\engine\RudeTimeCounter.h" />
+    <ClInclude Include="..\..\engine\RudeTimer.h" />
+    <ClInclude Include="..\..\engine\RudeTouchTracker.h" />
+    <ClInclude Include="..\..\engine\RudeTweaker.h" />
+    <ClInclude Include="..\..\engine\RudeUnicode.h" />
+    <ClInclude Include="..\..\engine\RudeUnitTest.h" />
+    <ClInclude Include="..\..\engine\RudeVertex.h" />
+    <ClInclude Include="..\..\lib\pvrt\OGLES\OGLESTools.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTBackground.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTBoneBatch.h" />
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTContext.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTDecompress.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTFixedPoint.h" />
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTFixedPointAPI.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTGeometry.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTGlobal.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTMathTable.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTMatrix.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTMemoryFile.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTMisc.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTModel3DS.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTModelPOD.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTools.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTPrint3D.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTPrint3Ddat.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTResourceFile.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTSingleton.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTString.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTTexture.h" />
+    <ClInclude Include="..\..\lib\pvrt\OGLES\PVRTTextureAPI.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTTrans.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTTriStrip.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTVector.h" />
+    <ClInclude Include="..\..\lib\pvrt\PVRTVertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\Classes\RBBallCamera.cpp" />
+    <ClCompile Include="..\Classes\RBBallGuide.cpp" />
+    <ClCompile Include="..\Classes\RBBallRecorder.cpp" />
+    <ClCompile Include="..\Classes\RBCamera.cpp" />
+    <ClCompile Include="..\Classes\RBClubControl.cpp" />
+    <ClCompile Include="..\Classes\RBCourseData.cpp" />
+    <ClCompile Include="..\Classes\RBCreditsControl.cpp" />
+    <ClCompile Include="..\Classes\RBDebugCamera.cpp" />
+    <ClCompile Include="..\Classes\RBDecorators.cpp" />
+    <ClCompile Include="..\Classes\RBGame.cpp" />
+    <ClCompile Include="..\Classes\RBGolfBall.cpp" />
+    <ClCompile Include="..\Classes\RBGolfClub.cpp" />
+    <ClCompile Include="..\Classes\RBGolferObject.cpp" />
+    <ClCompile Include="..\Classes\RBGolfPin.cpp" />
+    <ClCompile Include="..\Classes\RBKeyMap.cpp" />
+    <ClCompile Include="..\Classes\RBKeyTracker.cpp" />
+    <ClCompile Include="..\Classes\RBScoreControl.cpp" />
+    <ClCompile Include="..\Classes\RBScoreTracker.cpp" />
+    <ClCompile Include="..\Classes\RBSwingControl.cpp" />
+    <ClCompile Include="..\Classes\RBSwingHelper.cpp" />
+    <ClCompile Include="..\Classes\RBTerrain.cpp" />
+    <ClCompile Include="..\Classes\RBTerrainSliceControl.cpp" />
+    <ClCompile Include="..\Classes\RBTerrainViewControl.cpp" />
+    <ClCompile Include="..\Classes\RBTGame.cpp" />
+    <ClCompile Include="..\Classes\RBTourTracker.cpp" />
+    <ClCompile Include="..\Classes\RBTRound.cpp" />
+    <ClCompile Include="..\Classes\RBUICourseControl.cpp" />
+    <ClCompile Include="..\Classes\RBUIHelp.cpp" />
+    <ClCompile Include="..\Classes\RBUIMenu.cpp" />
+    <ClCompile Include="..\Classes\RBUITerrain.cpp" />
+    <ClCompile Include="..\Classes\RBUITitle.cpp" />
+    <ClCompile Include="..\Classes\RBUITutorial.cpp" />
+    <ClCompile Include="..\Classes\RBWindControl.cpp" />
+    <ClCompile Include="..\..\engine\RudeButtonAnimControl.cpp" />
+    <ClCompile Include="..\..\engine\RudeButtonControl.cpp" />
+    <ClCompile Include="..\..\engine\RudeCollision.cpp" />
+    <ClCompile Include="..\..\engine\RudeColor.cpp" />
+    <ClCompile Include="..\..\engine\RudeControl.cpp" />
+    <ClCompile Include="..\..\engine\RudeDebug.cpp" />
+    <ClCompile Include="..\..\engine\RudeFile.cpp" />
+    <ClCompile Include="..\..\engine\RudeFont.cpp" />
+    <ClCompile Include="..\..\engine\RudeGame.cpp" />
+    <ClCompile Include="..\..\engine\RudeGL.cpp" />
+    <ClCompile Include="..\..\engine\RudeGLD.cpp" />
+    <ClCompile Include="..\..\engine\RudeGlobals.cpp" />
+    <ClCompile Include="..\..\engine\RudeKey.cpp" />
+    <ClCompile Include="..\..\engine\RudeMath.cpp" />
+    <ClCompile Include="..\..\engine\RudeMesh.cpp" />
+    <ClCompile Include="..\..\engine\RudeObject.cpp" />
+    <ClCompile Include="..\..\engine\RudePerf.cpp" />
+    <ClCompile Include="..\..\engine\RudePhysics.cpp" />
+    <ClCompile Include="..\..\engine\RudePhysicsMesh.cpp" />
+    <ClCompile Include="..\..\engine\RudePhysicsObject.cpp" />
+    <ClCompile Include="..\..\engine\RudePhysicsSphere.cpp" />
+    <ClCompile Include="..\..\engine\RudeRect.cpp" />
+    <ClCompile Include="..\..\engine\RudeRegistry.cpp" />
+    <ClCompile Include="..\..\engine\RudeRegistryWin.cpp" />
+    <ClCompile Include="..\..\engine\RudeSkinnedMesh.cpp" />
+    <ClCompile Include="..\..\engine\RudeSkybox.cpp" />
+    <ClCompile Include="..\..\engine\RudeSound.cpp" />
+    <ClCompile Include="..\..\engine\RudeText.cpp" />
+    <ClCompile Include="..\..\engine\RudeTextControl.cpp" />
+    <ClCompile Include="..\..\engine\RudeTexture.cpp" />
+    <ClCompile Include="..\..\engine\RudeTextureManager.cpp" />
+    <ClCompile Include="..\..\engine\RudeTimeCounter.cpp" />
+    <ClCompile Include="..\..\engine\RudeTimer.cpp" />
+    <ClCompile Include="..\..\engine\RudeTouchTracker.cpp" />
+    <ClCompile Include="..\..\engine\RudeTweaker.cpp" />
+    <ClCompile Include="..\..\engine\RudeUnicode.cpp" />
+    <ClCompile Include="..\..\engine\RudeUnitTest.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTBackground.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTBoneBatch.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTDecompress.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTFixedPoint.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTGeometry.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTMatrixF.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTMatrixX.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTMisc.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTModel3DS.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTModelPOD.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTModelPODWriteH.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTPrint3D.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTPrint3DAPI.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTResourceFile.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTString.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTTexture.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\OGLES\PVRTTextureAPI.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTTrans.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTTriStrip.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTVector.cpp" />
+    <ClCompile Include="..\..\lib\pvrt\PVRTVertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\game_ipad.ui" />
+    <None Include="..\Data\game_iphone.ui" />
+    <None Include="..\Data\menu_ipad.ui" />
+    <None Include="..\Data\menu_iphone.ui" />
+    <None Include="..\Data\title_ipad.ui" />
+    <None Include="..\Data\title_iphone.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\bullet\msvc\8\libbulletcollision.vcxproj">
+      <Project>{6ada430d-009c-2ed4-a787-2ac2d6feb8ce}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\bullet\msvc\8\libbulletdynamics.vcxproj">
+      <Project>{61bd1097-cf2e-b296-daa9-73a6fe135319}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\bullet\msvc\8\libbulletmath.vcxproj">
+      <Project>{7d6e339f-9c2c-31da-fdb0-5ee50973cf2a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
