@@ -79,7 +79,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 - (void)startAnimation;
 - (void)stopAnimation;
 - (void)drawView;
--(void)didRotate:(NSNotification*)notification;
+- (void)changeOrientation:(UIDeviceOrientation)orientation;
+- (void)didRotate:(NSNotification*)notification;
 
 @property NSTimeInterval animationInterval;
 

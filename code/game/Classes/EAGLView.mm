@@ -64,8 +64,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include "RudeUnitTest.h"
 #include "RudeRegistry.h"
 
-UIDeviceOrientation gOrientation = UIDeviceOrientationPortrait;
-
 RBGame *gVBGame = 0;
 bool gRenderLandscape = false;
 bool gRenderUpsideDown = false;
@@ -97,6 +95,10 @@ bool gRenderUpsideDown = false;
 //The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder
 {
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+
+	
 	RudeDebug::Init();
 	RudeUnitTest::UnitTest();
 	
@@ -139,20 +141,21 @@ bool gRenderUpsideDown = false;
 	RudeTweaker::GetInstance()->Init();
 #endif
 
-	gOrientation = [[UIDevice currentDevice] orientation];
-	
-	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
-	
 	return self;
 }
 
-
--(void)didRotate:(NSNotification*)notification
+- (void)didRotate:(NSNotification*)notification
 {
-	gOrientation = [[UIDevice currentDevice] orientation];
+	UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+	[self changeOrientation: orientation];
+}
+
+- (void)changeOrientation:(UIDeviceOrientation)orientation
+{
+	bool landscape = gRenderLandscape;
+	bool upsidedown = gRenderUpsideDown;
 	
-	switch(gOrientation)
+	switch(orientation)
 	{
 		case UIDeviceOrientationPortrait:
 			gRenderLandscape = false;
@@ -162,6 +165,7 @@ bool gRenderUpsideDown = false;
 			gRenderLandscape = false;
 			gRenderUpsideDown = true;
 			break;
+		/*
 		case UIDeviceOrientationLandscapeLeft:
 			gRenderLandscape = true;
 			gRenderUpsideDown = false;
@@ -170,11 +174,14 @@ bool gRenderUpsideDown = false;
 			gRenderLandscape = true;
 			gRenderUpsideDown = true;
 			break;
+		*/
 	}
 	
 	if(gVBGame)
 	{
-		gVBGame->OrientationChange();
+		if(landscape != gRenderLandscape)
+			if(upsidedown != gRenderUpsideDown)
+				gVBGame->OrientationChange();
 	}
 }
 
@@ -455,8 +462,6 @@ void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
 			p.m_y = touchPoint.y;
 		}
 	}
-	
-	printf("Touch @ %d,%d\n", p.m_x, p.m_y);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
