@@ -80,6 +80,9 @@ public:
 	
 	void SetLandscape(bool landscape) { m_landscape = landscape; }
 	bool GetLandscape() { return m_landscape; }
+	
+	void SetUpsideDown(bool upsideDown) { m_upsideDown = upsideDown; }
+	bool GetUpsideDown() { return m_upsideDown; }
 
 	void SetDeviceHeight(float h) { m_deviceHeight = h; }
 	float GetDeviceHeight() { return m_deviceHeight; }
@@ -104,6 +107,7 @@ private:
 	float m_near;
 	
 	bool m_landscape;
+	bool m_upsideDown;
 	float m_deviceHeight;
 	float m_deviceWidth;
 	

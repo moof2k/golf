@@ -31,6 +31,7 @@ RudeGL::RudeGL()
 , m_lookAt(0,0,1)
 , m_forward(0,0,1)
 , m_landscape(false)
+, m_upsideDown(false)
 , m_deviceHeight(480.0f)
 , m_deviceWidth(320.0f)
 {
@@ -50,6 +51,7 @@ RudeGL::~RudeGL()
  */
 void RudeGL::SetViewport(int top, int left, int bottom, int right)
 {
+
 #ifdef RUDE_IPHONE
 	m_viewport.m_top = top;
 	m_viewport.m_left = left;
@@ -59,10 +61,20 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	float screeny = bottom - top;
 	
 
-	if(GetLandscape())
-		glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+	if(m_landscape)
+	{
+		if(m_upsideDown)
+			glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+		else
+			glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+	}
 	else
-		glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
+	{
+		if(m_upsideDown)
+			glViewport(m_deviceWidth - m_viewport.m_right, m_viewport.m_top, screenx, screeny);
+		else
+			glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
+	}
 #else
 	
 	m_viewport.m_top = top;
@@ -90,9 +102,19 @@ void RudeGL::Ortho(float ox, float oy, float oz, float w, float h, float d)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	if(GetLandscape())
-		glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
-	
+	if(m_landscape)
+	{
+		if(!m_upsideDown)
+			glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
+		else
+			glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else
+	{
+		if(m_upsideDown)
+			glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
+	}
+
 #ifdef RUDE_OGLES
 	glOrthof(ox, ox + w, oy, oy + h, oz, oz + d);
 #else
@@ -118,8 +140,18 @@ void RudeGL::Frustum(float ox, float oy, float w, float h, float near_plane, flo
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	if(GetLandscape())
-		glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
+	if(m_landscape)
+	{
+		if(!m_upsideDown)
+			glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
+		else
+			glRotatef(90.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else
+	{
+		if(m_upsideDown)
+			glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
+	}
 
 #ifdef RUDE_OGLES
 	glFrustumf(ox - m_hw, ox + m_hw, oy - m_hh, oy + m_hh, near_plane, far_plane);
@@ -266,11 +298,20 @@ btVector3 RudeGL::Project(const btVector3 &point)
 	
 	btVector3 rv;
 	
-	if(GetLandscape() == false)
+	if(m_landscape == false)
 	{
-		rv.setX((result[0] / result[3] * hw) + hw);
-		rv.setY((2.0f * hh) - ((result[1] / result[3] * hh) + hh));
-		rv.setZ(result[2] / result[3]);
+		if(m_upsideDown == false)
+		{
+			rv.setX((result[0] / result[3] * hw) + hw);
+			rv.setY((2.0f * hh) - ((result[1] / result[3] * hh) + hh));
+			rv.setZ(result[2] / result[3]);
+		}
+		else
+		{
+			rv.setX((2.0f * hw) - ((result[0] / result[3] * hw) + hw));
+			rv.setY((result[1] / result[3] * hh) + hh);
+			rv.setZ(result[2] / result[3]);
+		}
 	}
 	else
 	{
@@ -391,15 +432,23 @@ btVector3 RudeGL::InverseProject(const btVector3 &point)
 	glGetFloatv(GL_PROJECTION_MATRIX, projMatrix);
 	__gluInvertMatrixd(projMatrix, finalMatrix);
 	
-	if(GetLandscape())
+	if(m_landscape)
 	{
 		in[0] = m_deviceWidth - point.y();
 		in[1] = point.x();
 	}
 	else
 	{
-		in[0] = point.x();
-		in[1] = point.y();
+		if(m_upsideDown)
+		{
+			in[0] = m_deviceWidth - point.x();
+			in[1] = m_deviceHeight - point.y();
+		}
+		else
+		{
+			in[0] = point.x();
+			in[1] = point.y();
+		}
 	}
 	
     in[2] = 1.0f;

@@ -64,9 +64,11 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include "RudeUnitTest.h"
 #include "RudeRegistry.h"
 
+UIDeviceOrientation gOrientation = UIDeviceOrientationPortrait;
+
 RBGame *gVBGame = 0;
 bool gRenderLandscape = false;
-RUDE_TWEAK(RenderLandscape, kBool, gRenderLandscape);
+bool gRenderUpsideDown = false;
 
 @interface EAGLView (EAGLViewPrivate)
 
@@ -136,10 +138,45 @@ RUDE_TWEAK(RenderLandscape, kBool, gRenderLandscape);
 #ifndef NO_RUDETWEAKER
 	RudeTweaker::GetInstance()->Init();
 #endif
+
+	gOrientation = [[UIDevice currentDevice] orientation];
+	
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 	
 	return self;
 }
 
+
+-(void)didRotate:(NSNotification*)notification
+{
+	gOrientation = [[UIDevice currentDevice] orientation];
+	
+	switch(gOrientation)
+	{
+		case UIDeviceOrientationPortrait:
+			gRenderLandscape = false;
+			gRenderUpsideDown = false;
+			break;
+		case UIDeviceOrientationPortraitUpsideDown:
+			gRenderLandscape = false;
+			gRenderUpsideDown = true;
+			break;
+		case UIDeviceOrientationLandscapeLeft:
+			gRenderLandscape = true;
+			gRenderUpsideDown = false;
+			break;
+		case UIDeviceOrientationLandscapeRight:
+			gRenderLandscape = true;
+			gRenderUpsideDown = true;
+			break;
+	}
+	
+	if(gVBGame)
+	{
+		gVBGame->OrientationChange();
+	}
+}
 
 - (void)layoutSubviews
 {
@@ -333,6 +370,7 @@ const GLshort spriteTexcoords[] = {
 - (void)drawView
 {
 	RGL.SetLandscape(gRenderLandscape);
+	RGL.SetUpsideDown(gRenderUpsideDown);
 	
 	// Make sure that you are drawing to the current context
 	[EAGLContext setCurrentContext:context];
@@ -393,14 +431,32 @@ void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
 {
 	if(RGL.GetLandscape())
 	{
-		p.m_x = touchPoint.y;
-		p.m_y = 320 - touchPoint.x;
+		if(RGL.GetUpsideDown())
+		{
+			p.m_x = RGL.GetDeviceHeight() - touchPoint.y;
+			p.m_y = touchPoint.x;
+		}
+		else
+		{
+			p.m_x = touchPoint.y;
+			p.m_y = RGL.GetDeviceWidth() - touchPoint.x;
+		}
 	}
 	else
 	{
-		p.m_x = touchPoint.x;
-		p.m_y = touchPoint.y;
+		if(RGL.GetUpsideDown())
+		{
+			p.m_x = RGL.GetDeviceWidth() - touchPoint.x;
+			p.m_y = RGL.GetDeviceHeight() - touchPoint.y;
+		}
+		else
+		{
+			p.m_x = touchPoint.x;
+			p.m_y = touchPoint.y;
+		}
 	}
+	
+	printf("Touch @ %d,%d\n", p.m_x, p.m_y);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

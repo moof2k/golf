@@ -55,4 +55,16 @@ void RudeTouchTracker::ReleaseTouch(RudeTouch *rbt)
 	}
 }
 
+void RudeTouchTracker::ReleaseAllTouches()
+{
+	for(int i = 0; i < kMaxTouches; i++)
+	{
+		if(m_touches[i].m_touchId >= 0)
+		{
+			m_touches[i].m_touchId = -1;
+			m_touches[i].m_userdata = 0;
+		}
+	}
+}
+
 

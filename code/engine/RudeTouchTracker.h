@@ -38,6 +38,8 @@ public:
 	RudeTouch * GetTouch(RudeScreenVertex &p);
 	void ReleaseTouch(RudeTouch *rbt);
 	
+	void ReleaseAllTouches();
+	
 private:
 	
 	RudeTouch m_touches[kMaxTouches];

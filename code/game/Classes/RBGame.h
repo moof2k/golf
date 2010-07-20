@@ -67,6 +67,8 @@ public:
 	void TouchUp(RudeScreenVertex &n, RudeScreenVertex &p);
 
 	void Pause();
+	
+	void OrientationChange();
 
 private:
 	

@@ -299,6 +299,10 @@ void RBGame::TouchDown(RudeScreenVertex &n)
 void RBGame::TouchMove(RudeScreenVertex &n, RudeScreenVertex &p)
 {
 	RudeTouch *touch = m_touchtracker.GetTouch(p);
+	
+	if(touch == 0)
+		return;
+	
 	touch->m_location = n;
 	
 	m_game->TouchMove(touch);
@@ -327,4 +331,7 @@ void RBGame::Pause()
 
 }
 
-
+void RBGame::OrientationChange()
+{
+	m_touchtracker.ReleaseAllTouches();
+}
