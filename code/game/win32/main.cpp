@@ -314,11 +314,11 @@ BOOL CreateGLWindow(const char *title, int width, int height, int bits, bool ful
 	ReSizeGLScene(width, height);					// Set Up Our Perspective GL Screen
 
 	glActiveTexture = (PFNGLACTIVETEXTUREPROC) wglGetProcAddress("glActiveTexture");
-	RUDE_ASSERT(glActiveTexture, "");
+	RUDE_ASSERT(glActiveTexture, "wglGetProcAddress failed");
 	glClientActiveTexture = (PFNGLCLIENTACTIVETEXTUREPROC) wglGetProcAddress("glClientActiveTexture");
-	RUDE_ASSERT(glClientActiveTexture, "");
+	RUDE_ASSERT(glClientActiveTexture, "wglGetProcAddress failed");
 	glCompressedTexImage2D = (PFNGLCOMPRESSEDTEXIMAGE2DPROC) wglGetProcAddress("glCompressedTexImage2D");
-	RUDE_ASSERT(glCompressedTexImage2D, "");
+	RUDE_ASSERT(glCompressedTexImage2D, "wglGetProcAddress failed");
 
 
 	if (!InitGL())									// Initialize Our Newly Created GL Window
