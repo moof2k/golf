@@ -245,7 +245,10 @@ void RudeMesh::Render()
 				glColorPointer(4, GL_UNSIGNED_BYTE, mesh->sVtxColours.nStride, mesh->pInterleaved + (long)mesh->sVtxColours.pData);
 			}
 			else
+			{
 				RGL.EnableClient(kColorArray, false);
+				glColor4f(1.0, 1.0, 1.0, 1.0);
+			}
 		}
 		
 		glDrawElements(GL_TRIANGLES, mesh->nNumFaces*3, GL_UNSIGNED_SHORT, indices);
