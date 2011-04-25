@@ -69,7 +69,7 @@ typedef float GLfloat;
 // iPhone / MacOS
 #if defined(__GNUC__) && ( defined(__APPLE_CPP__) || defined(__APPLE_CC__) || defined(__MACOS_CLASSIC__) )
 #include <TargetConditionals.h>
-#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#if TARGET_OS_IPHONE == 1 || TARGET_IPHONE_SIMULATOR == 1
 #define RUDE_IPHONE
 #else
 #define RUDE_MACOS
@@ -150,8 +150,8 @@ typedef float GLfloat;
 #ifdef RUDE_IPHONE
 
 #define RUDE_OGLES
-#import <OpenGLES/ES1/gl.h>
-#import <OpenGLES/ES1/glext.h>
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
 
 #include <stdio.h>
 #include <stdlib.h>
