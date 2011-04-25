@@ -137,6 +137,10 @@ static double dtor( double degrees )
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE );
 	
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	
+	glDepthFunc(GL_LEQUAL);
 	
 	// Clear the framebuffer.
     glClearColor( 0, 0, 0, 0 );
