@@ -136,6 +136,12 @@ static double dtor( double degrees )
 	// Set up rendering state.
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_CULL_FACE );
+    
+    glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);				// Black Background
+	glClearDepth(1.0f);									// Depth Buffer Setup
+	glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 	
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
@@ -145,6 +151,8 @@ static double dtor( double degrees )
 	// Clear the framebuffer.
     glClearColor( 0, 0, 0, 0 );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    
+    RGL.FlushEnables();
 	
 	if(gVBGame)
 	{
@@ -153,6 +161,38 @@ static double dtor( double degrees )
 	
 	glFinish();
 	
+}
+
+RudeScreenVertex lastMouse;
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    int h = RGL.GetDeviceHeight();
+    
+    NSPoint p = [theEvent locationInWindow];
+    RudeScreenVertex point(p.x, h - p.y);
+    lastMouse = point;
+    gVBGame->TouchDown(point);
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    int h = RGL.GetDeviceHeight();
+    
+    NSPoint p = [theEvent locationInWindow];
+    RudeScreenVertex point(p.x, h - p.y);
+    gVBGame->TouchUp(point, lastMouse);
+    lastMouse = point;
+}
+
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    int h = RGL.GetDeviceHeight();
+    
+    NSPoint p = [theEvent locationInWindow];
+    RudeScreenVertex point(p.x, h - p.y);
+    gVBGame->TouchMove(point, lastMouse);
+    lastMouse = point;
 }
 
 @end

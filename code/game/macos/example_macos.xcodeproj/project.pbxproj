@@ -208,6 +208,25 @@
 		9AC674611365274C0023D81F /* sfx_back.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AC674511365274C0023D81F /* sfx_back.wav */; };
 		9AC674621365274C0023D81F /* crowd_missedputt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AC674521365274C0023D81F /* crowd_missedputt.wav */; };
 		9AC674631365274C0023D81F /* ball_in_hole.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9AC674531365274C0023D81F /* ball_in_hole.wav */; };
+		9AC6748913652E740023D81F /* par5_E.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747613652E740023D81F /* par5_E.deco */; };
+		9AC6748A13652E740023D81F /* par5_D.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747713652E740023D81F /* par5_D.deco */; };
+		9AC6748B13652E740023D81F /* par5_C.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747813652E740023D81F /* par5_C.deco */; };
+		9AC6748C13652E740023D81F /* par5_B.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747913652E740023D81F /* par5_B.deco */; };
+		9AC6748D13652E740023D81F /* par5_A.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747A13652E740023D81F /* par5_A.deco */; };
+		9AC6748E13652E740023D81F /* par4_H.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747B13652E740023D81F /* par4_H.deco */; };
+		9AC6748F13652E740023D81F /* par4_G.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747C13652E740023D81F /* par4_G.deco */; };
+		9AC6749013652E740023D81F /* par4_F.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747D13652E740023D81F /* par4_F.deco */; };
+		9AC6749113652E740023D81F /* par4_E.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747E13652E740023D81F /* par4_E.deco */; };
+		9AC6749213652E740023D81F /* par4_D.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6747F13652E740023D81F /* par4_D.deco */; };
+		9AC6749313652E740023D81F /* par4_C.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748013652E740023D81F /* par4_C.deco */; };
+		9AC6749413652E740023D81F /* par4_B.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748113652E740023D81F /* par4_B.deco */; };
+		9AC6749513652E740023D81F /* par4_A.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748213652E740023D81F /* par4_A.deco */; };
+		9AC6749613652E740023D81F /* par3_E.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748313652E740023D81F /* par3_E.deco */; };
+		9AC6749713652E740023D81F /* par3_D.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748413652E740023D81F /* par3_D.deco */; };
+		9AC6749813652E740023D81F /* par3_C.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748513652E740023D81F /* par3_C.deco */; };
+		9AC6749913652E740023D81F /* par3_B.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748613652E740023D81F /* par3_B.deco */; };
+		9AC6749A13652E740023D81F /* par3_A.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748713652E740023D81F /* par3_A.deco */; };
+		9AC6749B13652E740023D81F /* driving_range.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748813652E740023D81F /* driving_range.deco */; };
 		9AF6BD98110ECFFA00050B38 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD97110ECFFA00050B38 /* MainController.m */; };
 		9AF6BD9B110ED00000050B38 /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD99110ED00000050B38 /* MyOpenGLView.m */; };
 		9AF6BDA0110ED00500050B38 /* Texturing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD9C110ED00500050B38 /* Texturing.m */; };
@@ -633,6 +652,25 @@
 		9AC674511365274C0023D81F /* sfx_back.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_back.wav; path = ../Data/sfx_back.wav; sourceTree = "<group>"; };
 		9AC674521365274C0023D81F /* crowd_missedputt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crowd_missedputt.wav; path = ../Data/crowd_missedputt.wav; sourceTree = "<group>"; };
 		9AC674531365274C0023D81F /* ball_in_hole.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ball_in_hole.wav; path = ../Data/ball_in_hole.wav; sourceTree = "<group>"; };
+		9AC6747613652E740023D81F /* par5_E.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_E.deco; path = ../Data/par5_E.deco; sourceTree = "<group>"; };
+		9AC6747713652E740023D81F /* par5_D.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_D.deco; path = ../Data/par5_D.deco; sourceTree = "<group>"; };
+		9AC6747813652E740023D81F /* par5_C.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_C.deco; path = ../Data/par5_C.deco; sourceTree = "<group>"; };
+		9AC6747913652E740023D81F /* par5_B.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_B.deco; path = ../Data/par5_B.deco; sourceTree = "<group>"; };
+		9AC6747A13652E740023D81F /* par5_A.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par5_A.deco; path = ../Data/par5_A.deco; sourceTree = "<group>"; };
+		9AC6747B13652E740023D81F /* par4_H.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_H.deco; path = ../Data/par4_H.deco; sourceTree = "<group>"; };
+		9AC6747C13652E740023D81F /* par4_G.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_G.deco; path = ../Data/par4_G.deco; sourceTree = "<group>"; };
+		9AC6747D13652E740023D81F /* par4_F.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_F.deco; path = ../Data/par4_F.deco; sourceTree = "<group>"; };
+		9AC6747E13652E740023D81F /* par4_E.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_E.deco; path = ../Data/par4_E.deco; sourceTree = "<group>"; };
+		9AC6747F13652E740023D81F /* par4_D.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_D.deco; path = ../Data/par4_D.deco; sourceTree = "<group>"; };
+		9AC6748013652E740023D81F /* par4_C.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_C.deco; path = ../Data/par4_C.deco; sourceTree = "<group>"; };
+		9AC6748113652E740023D81F /* par4_B.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_B.deco; path = ../Data/par4_B.deco; sourceTree = "<group>"; };
+		9AC6748213652E740023D81F /* par4_A.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par4_A.deco; path = ../Data/par4_A.deco; sourceTree = "<group>"; };
+		9AC6748313652E740023D81F /* par3_E.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par3_E.deco; path = ../Data/par3_E.deco; sourceTree = "<group>"; };
+		9AC6748413652E740023D81F /* par3_D.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par3_D.deco; path = ../Data/par3_D.deco; sourceTree = "<group>"; };
+		9AC6748513652E740023D81F /* par3_C.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par3_C.deco; path = ../Data/par3_C.deco; sourceTree = "<group>"; };
+		9AC6748613652E740023D81F /* par3_B.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par3_B.deco; path = ../Data/par3_B.deco; sourceTree = "<group>"; };
+		9AC6748713652E740023D81F /* par3_A.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = par3_A.deco; path = ../Data/par3_A.deco; sourceTree = "<group>"; };
+		9AC6748813652E740023D81F /* driving_range.deco */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = driving_range.deco; path = ../Data/driving_range.deco; sourceTree = "<group>"; };
 		9AF6BD96110ECFFA00050B38 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		9AF6BD97110ECFFA00050B38 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		9AF6BD99110ED00000050B38 /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOpenGLView.m; sourceTree = "<group>"; };
@@ -1726,6 +1764,25 @@
 		9AF6C159110ED5A700050B38 /* deco */ = {
 			isa = PBXGroup;
 			children = (
+				9AC6747613652E740023D81F /* par5_E.deco */,
+				9AC6747713652E740023D81F /* par5_D.deco */,
+				9AC6747813652E740023D81F /* par5_C.deco */,
+				9AC6747913652E740023D81F /* par5_B.deco */,
+				9AC6747A13652E740023D81F /* par5_A.deco */,
+				9AC6747B13652E740023D81F /* par4_H.deco */,
+				9AC6747C13652E740023D81F /* par4_G.deco */,
+				9AC6747D13652E740023D81F /* par4_F.deco */,
+				9AC6747E13652E740023D81F /* par4_E.deco */,
+				9AC6747F13652E740023D81F /* par4_D.deco */,
+				9AC6748013652E740023D81F /* par4_C.deco */,
+				9AC6748113652E740023D81F /* par4_B.deco */,
+				9AC6748213652E740023D81F /* par4_A.deco */,
+				9AC6748313652E740023D81F /* par3_E.deco */,
+				9AC6748413652E740023D81F /* par3_D.deco */,
+				9AC6748513652E740023D81F /* par3_C.deco */,
+				9AC6748613652E740023D81F /* par3_B.deco */,
+				9AC6748713652E740023D81F /* par3_A.deco */,
+				9AC6748813652E740023D81F /* driving_range.deco */,
 			);
 			name = deco;
 			sourceTree = "<group>";
@@ -2151,6 +2208,25 @@
 				9AC674611365274C0023D81F /* sfx_back.wav in Resources */,
 				9AC674621365274C0023D81F /* crowd_missedputt.wav in Resources */,
 				9AC674631365274C0023D81F /* ball_in_hole.wav in Resources */,
+				9AC6748913652E740023D81F /* par5_E.deco in Resources */,
+				9AC6748A13652E740023D81F /* par5_D.deco in Resources */,
+				9AC6748B13652E740023D81F /* par5_C.deco in Resources */,
+				9AC6748C13652E740023D81F /* par5_B.deco in Resources */,
+				9AC6748D13652E740023D81F /* par5_A.deco in Resources */,
+				9AC6748E13652E740023D81F /* par4_H.deco in Resources */,
+				9AC6748F13652E740023D81F /* par4_G.deco in Resources */,
+				9AC6749013652E740023D81F /* par4_F.deco in Resources */,
+				9AC6749113652E740023D81F /* par4_E.deco in Resources */,
+				9AC6749213652E740023D81F /* par4_D.deco in Resources */,
+				9AC6749313652E740023D81F /* par4_C.deco in Resources */,
+				9AC6749413652E740023D81F /* par4_B.deco in Resources */,
+				9AC6749513652E740023D81F /* par4_A.deco in Resources */,
+				9AC6749613652E740023D81F /* par3_E.deco in Resources */,
+				9AC6749713652E740023D81F /* par3_D.deco in Resources */,
+				9AC6749813652E740023D81F /* par3_C.deco in Resources */,
+				9AC6749913652E740023D81F /* par3_B.deco in Resources */,
+				9AC6749A13652E740023D81F /* par3_A.deco in Resources */,
+				9AC6749B13652E740023D81F /* driving_range.deco in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

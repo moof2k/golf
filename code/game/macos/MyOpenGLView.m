@@ -116,4 +116,16 @@
     [controller mouseDown:theEvent];
 }
 
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    // Delegate to our controller object for handling mouse events.
+    [controller mouseUp:theEvent];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    // Delegate to our controller object for handling mouse events.
+    [controller mouseDragged:theEvent];
+}
+
 @end

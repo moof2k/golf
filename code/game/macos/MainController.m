@@ -223,11 +223,25 @@
     }
 }
 
-// Holding the mouse button and dragging the mouse changes the "roll" angle (y-axis) and the direction from which sunlight is coming (x-axis).
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    //NSPoint lastWindowPoint = [theEvent locationInWindow];
+    Scene *scene = [openGLView scene];
+    [scene mouseDown:theEvent];
 }
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    Scene *scene = [openGLView scene];
+    [scene mouseUp:theEvent];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    Scene *scene = [openGLView scene];
+    [scene mouseMoved:theEvent];
+}
+
 
 - (BOOL) isInFullScreenMode
 {
