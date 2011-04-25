@@ -391,6 +391,8 @@
 		9A06A29E0F5BA77A000EAE31 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06A29C0F5BA77A000EAE31 /* SoundEngine.cpp */; };
 		9A06A2CB0F5BA80E000EAE31 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */; };
 		9A06A2D00F5BA853000EAE31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */; };
+		9A125ACA1364C420006D965D /* ui_elevation_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A125AC91364C420006D965D /* ui_elevation_small.png */; };
+		9A125ACB1364C420006D965D /* ui_elevation_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A125AC91364C420006D965D /* ui_elevation_small.png */; };
 		9A1B8F5F116C70EF008BA122 /* RBUITerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */; };
 		9A1B8F60116C70EF008BA122 /* RBUITerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */; };
 		9A1B8F69116C710D008BA122 /* RBTerrainViewControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */; };
@@ -791,7 +793,6 @@
 		467A43A30FAC03FD004A318F /* help_a_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = help_a_256.png; path = Data/help_a_256.png; sourceTree = "<group>"; };
 		467A43E50FAC20BE004A318F /* ball_64.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ball_64.pvr; path = Data/ball_64.pvr; sourceTree = "<group>"; };
 		469380190FA3B2010014A3CE /* driving_range_signs.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driving_range_signs.pvr; path = Data/driving_range_signs.pvr; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A03E1300F85D57100AC5D7C /* driver_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = driver_128.pvr; path = Data/driver_128.pvr; sourceTree = "<group>"; };
 		9A03E1320F85D57800AC5D7C /* putter_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = putter_128.pvr; path = Data/putter_128.pvr; sourceTree = "<group>"; };
 		9A03E1340F85D57F00AC5D7C /* wedge_128.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = wedge_128.pvr; path = Data/wedge_128.pvr; sourceTree = "<group>"; };
@@ -800,6 +801,7 @@
 		9A06A29D0F5BA77A000EAE31 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		9A06A2CA0F5BA80E000EAE31 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		9A06A2CF0F5BA853000EAE31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		9A125AC91364C420006D965D /* ui_elevation_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_elevation_small.png; path = Data/ui_elevation_small.png; sourceTree = "<group>"; };
 		9A1B8F5D116C70EF008BA122 /* RBUITerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBUITerrain.cpp; path = Classes/RBUITerrain.cpp; sourceTree = "<group>"; };
 		9A1B8F5E116C70EF008BA122 /* RBUITerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBUITerrain.h; path = Classes/RBUITerrain.h; sourceTree = "<group>"; };
 		9A1B8F67116C710D008BA122 /* RBTerrainViewControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBTerrainViewControl.cpp; path = Classes/RBTerrainViewControl.cpp; sourceTree = "<group>"; };
@@ -1508,7 +1510,6 @@
 				1BF0DBA10DDCF72400C6466A /* en.lproj */,
 				1B76A63E0DCBB4F3003B05F2 /* Icon.png */,
 				9AA765E11164848600A44D92 /* Icon.png */,
-				8D1107310486CEB800E47090 /* Info.plist */,
 				9AA765B7116480C300A44D92 /* Default.png */,
 				9A387629116DB23B00A71399 /* Default.png */,
 			);
@@ -2183,6 +2184,7 @@
 				9A5B4EB50F9C441C00B6503A /* coursebg_locked.png */,
 				9AAD316B0F959E4800CCA4FC /* ui_ccc_medallion.png */,
 				9A5B4E420F9C34B600B6503A /* ui_ccc_medallion_128.png */,
+				9A125AC91364C420006D965D /* ui_elevation_small.png */,
 				9AAFBC600F9C5D6800839888 /* ui_bucketoballz.png */,
 				9A4B1F740F7A05A300E9DF39 /* ui_8iron.png */,
 				9A4B1F750F7A05A300E9DF39 /* ui_clubnext.png */,
@@ -2355,6 +2357,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "golf" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -2554,6 +2557,7 @@
 				9A3876C41171352700A71399 /* parflat.POD in Resources */,
 				9A46A11111C9A3A9007F260E /* guide2m.png in Resources */,
 				9A46A11211C9A3A9007F260E /* guidem.png in Resources */,
+				9A125ACA1364C420006D965D /* ui_elevation_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2735,6 +2739,7 @@
 				9A3876C51171352700A71399 /* parflat.POD in Resources */,
 				9A46A11311C9A3A9007F260E /* guide2m.png in Resources */,
 				9A46A11411C9A3A9007F260E /* guidem.png in Resources */,
+				9A125ACB1364C420006D965D /* ui_elevation_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3190,9 +3195,9 @@
 					../lib/bullet/src,
 					../lib/libmikmod/include,
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
 				PRODUCT_NAME = Golf;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3218,9 +3223,9 @@
 					../lib/bullet/src,
 					../lib/libmikmod/include,
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
 				PRODUCT_NAME = Golf;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3361,10 +3366,10 @@
 					../lib/bullet/src,
 					../lib/libmikmod/include,
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
 				PRODUCT_NAME = Golf;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F47BC40F-52DD-4D53-A8E1-A34BF9115BA6";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos4.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
