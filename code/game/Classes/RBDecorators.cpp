@@ -317,6 +317,7 @@ void RBDecoratorCollection::Render()
 	
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, false);
+    glColor4f(1.0, 1.0, 1.0, 1.0);
 	RGL.EnableClient(kTextureCoordArray, true);
 	
 	glAlphaFunc(GL_GREATER, 0.5);
