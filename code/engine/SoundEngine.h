@@ -52,6 +52,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #ifndef __SoundEngine_h__
 #define __SoundEngine_h__
 
+#include "Rude.h"
+
 #if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 
 //==================================================================================================
@@ -93,7 +95,6 @@ enum {
 		kSoundEngineErrInvalidFileFormat	= 4,
 		kSoundEngineErrDeviceNotFound		= 5
 };
-
 
 /*!
     @function       SoundEngine_Initialize

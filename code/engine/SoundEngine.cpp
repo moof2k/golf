@@ -305,11 +305,8 @@ OSStatus OpenFile(const char *inFilePath, AudioFileID &outAFID)
 	if (theURL == NULL)
 		return kSoundEngineErrFileNotFound;
 
-#if TARGET_OS_IPHONE
 	OSStatus result = AudioFileOpenURL(theURL, kAudioFileReadPermission, 0, &outAFID);
-#else
-	OSStatus result = AudioFileOpenURL(theURL, fsRdPerm, 0, &outAFID);
-#endif
+
 	CFRelease(theURL);
 		AssertNoError("Error opening file", end);
 	end:
