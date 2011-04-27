@@ -32,9 +32,29 @@
 #include "glext.h"
 #include "wglext.h"
 
-extern PFNGLACTIVETEXTUREPROC glActiveTexture;
-extern PFNGLCLIENTACTIVETEXTUREPROC glClientActiveTexture;
-extern PFNGLCOMPRESSEDTEXIMAGE2DPROC glCompressedTexImage2D;
+extern PFNGLACTIVETEXTUREPROC           glActiveTexture;
+extern PFNGLCLIENTACTIVETEXTUREPROC     glClientActiveTexture;
+extern PFNGLCOMPRESSEDTEXIMAGE2DPROC    glCompressedTexImage2D;
+extern PFNGLCREATEPROGRAMOBJECTARBPROC  glCreateProgramObjectARB;
+extern PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
+extern PFNGLUSEPROGRAMOBJECTARBPROC     glUseProgramObjectARB;
+extern PFNGLCREATESHADEROBJECTARBPROC   glCreateShaderObjectARB;
+extern PFNGLSHADERSOURCEARBPROC         glShaderSourceARB;
+extern PFNGLCOMPILESHADERARBPROC        glCompileShaderARB;
+extern PFNGLGETOBJECTPARAMETERIVARBPROC glGetObjectParameterivARB;
+extern PFNGLATTACHOBJECTARBPROC         glAttachObjectARB;
+extern PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
+extern PFNGLLINKPROGRAMARBPROC          glLinkProgramARB;
+extern PFNGLGETUNIFORMLOCATIONARBPROC   glGetUniformLocationARB;
+extern PFNGLUNIFORM4FARBPROC            glUniform4fARB;
+extern PFNGLUNIFORM4FVARBPROC           glUniform4fvARB;
+extern PFNGLUNIFORM1IARBPROC            glUniform1iARB;
+extern PFNGLUNIFORM1FARBPROC            glUniform1fARB;
+extern PFNGLUNIFORMMATRIX4FVARBPROC     glUniformMatrix4fvARB;
+extern PFNGLVERTEXATTRIB4FVARBPROC      glVertexAttrib4fvARB;
+extern PFNGLBINDATTRIBLOCATIONARBPROC   glBindAttribLocationARB;
+extern PFNGLGETACTIVEATTRIBARBPROC      glGetActiveAttribARB;
+extern PFNGLGETATTRIBLOCATIONARBPROC    glGetAttribLocationARB;
 
 typedef unsigned long long u64;
 typedef int GLfixed;

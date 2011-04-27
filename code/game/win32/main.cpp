@@ -38,10 +38,33 @@ int windowHeight = 420;
 
 const char * kWindowTitle = "Bork3D Game Engine";
 
-PFNGLACTIVETEXTUREPROC glActiveTexture;
-PFNGLCLIENTACTIVETEXTUREPROC glClientActiveTexture;
-PFNGLCOMPRESSEDTEXIMAGE2DPROC glCompressedTexImage2D;
+PFNGLACTIVETEXTUREPROC           glActiveTexture;
+PFNGLCLIENTACTIVETEXTUREPROC     glClientActiveTexture;
+PFNGLCOMPRESSEDTEXIMAGE2DPROC    glCompressedTexImage2D;
+PFNGLCREATEPROGRAMOBJECTARBPROC  glCreateProgramObjectARB;
+PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
+PFNGLUSEPROGRAMOBJECTARBPROC     glUseProgramObjectARB;
+PFNGLCREATESHADEROBJECTARBPROC   glCreateShaderObjectARB;
+PFNGLSHADERSOURCEARBPROC         glShaderSourceARB;
+PFNGLCOMPILESHADERARBPROC        glCompileShaderARB;
+PFNGLGETOBJECTPARAMETERIVARBPROC glGetObjectParameterivARB;
+PFNGLATTACHOBJECTARBPROC         glAttachObjectARB;
+PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
+PFNGLLINKPROGRAMARBPROC          glLinkProgramARB;
+PFNGLGETUNIFORMLOCATIONARBPROC   glGetUniformLocationARB;
+PFNGLUNIFORM4FARBPROC            glUniform4fARB;
+PFNGLUNIFORM4FVARBPROC           glUniform4fvARB;
+PFNGLUNIFORM1IARBPROC            glUniform1iARB;
+PFNGLUNIFORM1FARBPROC            glUniform1fARB;
+PFNGLUNIFORMMATRIX4FVARBPROC     glUniformMatrix4fvARB;
+PFNGLVERTEXATTRIB4FVARBPROC      glVertexAttrib4fvARB;
+PFNGLBINDATTRIBLOCATIONARBPROC   glBindAttribLocationARB;
+PFNGLGETACTIVEATTRIBARBPROC      glGetActiveAttribARB;
+PFNGLGETATTRIBLOCATIONARBPROC    glGetAttribLocationARB;
 
+#define DECLARE_OGL_API(cast, func) \
+	func = (cast) wglGetProcAddress(#func); \
+	if(func == 0) { RudeAssert(__FILE__, __LINE__, "wglGetProcAddress failed"); }
 
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
@@ -313,13 +336,29 @@ BOOL CreateGLWindow(const char *title, int width, int height, int bits, bool ful
 	SetFocus(hWnd);									// Sets Keyboard Focus To The Window
 	ReSizeGLScene(width, height);					// Set Up Our Perspective GL Screen
 
-	glActiveTexture = (PFNGLACTIVETEXTUREPROC) wglGetProcAddress("glActiveTexture");
-	RUDE_ASSERT(glActiveTexture, "wglGetProcAddress failed");
-	glClientActiveTexture = (PFNGLCLIENTACTIVETEXTUREPROC) wglGetProcAddress("glClientActiveTexture");
-	RUDE_ASSERT(glClientActiveTexture, "wglGetProcAddress failed");
-	glCompressedTexImage2D = (PFNGLCOMPRESSEDTEXIMAGE2DPROC) wglGetProcAddress("glCompressedTexImage2D");
-	RUDE_ASSERT(glCompressedTexImage2D, "wglGetProcAddress failed");
-
+	DECLARE_OGL_API(PFNGLACTIVETEXTUREPROC,           glActiveTexture);
+	DECLARE_OGL_API(PFNGLCLIENTACTIVETEXTUREPROC,     glClientActiveTexture);
+	DECLARE_OGL_API(PFNGLCOMPRESSEDTEXIMAGE2DPROC,    glCompressedTexImage2D);
+	DECLARE_OGL_API(PFNGLCREATEPROGRAMOBJECTARBPROC,  glCreateProgramObjectARB);
+	DECLARE_OGL_API(PFNGLDELETEOBJECTARBPROC,         glDeleteObjectARB);
+	DECLARE_OGL_API(PFNGLUSEPROGRAMOBJECTARBPROC,     glUseProgramObjectARB);
+	DECLARE_OGL_API(PFNGLCREATESHADEROBJECTARBPROC,   glCreateShaderObjectARB);
+	DECLARE_OGL_API(PFNGLSHADERSOURCEARBPROC,         glShaderSourceARB);
+	DECLARE_OGL_API(PFNGLCOMPILESHADERARBPROC,        glCompileShaderARB);
+	DECLARE_OGL_API(PFNGLGETOBJECTPARAMETERIVARBPROC, glGetObjectParameterivARB);
+	DECLARE_OGL_API(PFNGLATTACHOBJECTARBPROC,         glAttachObjectARB);
+	DECLARE_OGL_API(PFNGLGETINFOLOGARBPROC,           glGetInfoLogARB);
+	DECLARE_OGL_API(PFNGLLINKPROGRAMARBPROC,          glLinkProgramARB);
+	DECLARE_OGL_API(PFNGLGETUNIFORMLOCATIONARBPROC,   glGetUniformLocationARB);
+	DECLARE_OGL_API(PFNGLUNIFORM4FARBPROC,            glUniform4fARB);
+	DECLARE_OGL_API(PFNGLUNIFORM4FVARBPROC,           glUniform4fvARB);
+	DECLARE_OGL_API(PFNGLUNIFORM1IARBPROC,            glUniform1iARB);
+	DECLARE_OGL_API(PFNGLUNIFORM1FARBPROC,            glUniform1fARB);
+	DECLARE_OGL_API(PFNGLUNIFORMMATRIX4FVARBPROC,     glUniformMatrix4fvARB);
+	DECLARE_OGL_API(PFNGLVERTEXATTRIB4FVARBPROC,      glVertexAttrib4fvARB);
+	DECLARE_OGL_API(PFNGLBINDATTRIBLOCATIONARBPROC,   glBindAttribLocationARB);
+	DECLARE_OGL_API(PFNGLGETACTIVEATTRIBARBPROC,      glGetActiveAttribARB);
+	DECLARE_OGL_API(PFNGLGETATTRIBLOCATIONARBPROC,    glGetAttribLocationARB);
 
 	if (!InitGL())									// Initialize Our Newly Created GL Window
 	{
