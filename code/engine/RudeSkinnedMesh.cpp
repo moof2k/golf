@@ -119,9 +119,11 @@ void RudeSkinnedMesh::NextFrame(float delta)
 
 void RudeSkinnedMesh::Render()
 {
-	
-#ifdef RUDE_OGLES
 	RUDE_PERF_START(kPerfRudeSkinMeshRender);
+	
+#ifdef RUDE_PALETTE_MATRIX_SKIN
+
+	
 	
 	//int numbonemats;
 	//glGetIntegerv(GL_MAX_PALETTE_MATRICES_OES, &numbonemats);
@@ -237,9 +239,9 @@ void RudeSkinnedMesh::Render()
 	glDisableClientState(GL_MATRIX_INDEX_ARRAY_OES);
 	glDisableClientState(GL_WEIGHT_ARRAY_OES);
 	
-	RUDE_PERF_STOP(kPerfRudeSkinMeshRender);
-	
-#else
+#endif // RUDE_PALETTE_MATRIX_SKIN
+
+#ifdef RUDE_SOFTWARE_SKIN
 
 	
 	glMatrixMode(GL_MODELVIEW);
@@ -326,8 +328,6 @@ void RudeSkinnedMesh::Render()
 
 				float verts[3][3] = { 0.0 };
 				float uvs[3][2] = { 0.0 };
-				float weights[3][9] = { 0.0 };
-				unsigned char bones[3][9] = { 0 };
 
 				for(int a = 0; a < 3; a++)
 				{
@@ -336,15 +336,10 @@ void RudeSkinnedMesh::Render()
 					float *meshweights = (float *) (mesh->pInterleaved + (long)mesh->sBoneWeight.pData + mesh->sBoneWeight.nStride * indices[v+a]);
 					unsigned char *meshbones = (unsigned char *) (mesh->pInterleaved + (long)mesh->sBoneIdx.pData + mesh->sBoneIdx.nStride * indices[v+a]);
 
-					
 					btVector3 temppos(0,0,0);
 					
-
 					uvs[a][0] = meshuvs[0];
 					uvs[a][1] = meshuvs[1];
-
-					for(unsigned int b = 0; b < mesh->sBoneIdx.n; b++)
-						bones[a][b] = meshbones[b];
 
 					for(unsigned int w = 0; w < mesh->sBoneWeight.n; w++)
 					{
@@ -376,5 +371,7 @@ void RudeSkinnedMesh::Render()
 	
 	}
 
-#endif
+#endif // RUDE_SOFTWARE_SKIN
+
+	RUDE_PERF_STOP(kPerfRudeSkinMeshRender);
 }

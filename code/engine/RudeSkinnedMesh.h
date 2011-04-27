@@ -9,7 +9,14 @@
 #ifndef __H_RudeSkinnedMesh
 #define __H_RudeSkinnedMesh
 
+#include "Rude.h"
 #include "RudeMesh.h"
+
+#ifdef RUDE_WIN
+#define RUDE_SOFTWARE_SKIN
+#else
+#define RUDE_PALETTE_MATRIX_SKIN
+#endif
 
 class RudeObject;
 
