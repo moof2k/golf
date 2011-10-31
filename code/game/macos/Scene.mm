@@ -82,11 +82,19 @@ static double dtor( double degrees )
 
 - (void)setViewportRect:(NSRect)bounds
 {
+    if(bounds.size.height < 1)
+		bounds.size.height = 1;
+	if(bounds.size.width < 1)
+		bounds.size.width = 1;
+    
 	backingWidth = bounds.size.width;
 	backingHeight = bounds.size.height;
 	
 	RGL.SetDeviceWidth(backingWidth);
 	RGL.SetDeviceHeight(backingHeight);
+    
+    if(gVBGame)
+        gVBGame->Resize();
 }
 
 - (void)flushState
