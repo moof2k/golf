@@ -115,6 +115,7 @@ typedef float GLfloat;
 #define RUDE_IPHONE
 #else
 #define RUDE_MACOS
+#define RUDE_IPAD 1
 #endif
 #endif
 
