@@ -107,6 +107,8 @@ public:
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
 
+	void Resize();
+
 	void Pause();
 	
 	eGameResult GetResult() { return m_result; }
@@ -211,7 +213,7 @@ private:
 	
 	RudeTextControl *m_guidePowerText;
 
-	RudeTextControl *m_holeHeightText;
+	RudeTextControl m_holeHeightText;
 	
 	RBScoreControl *m_scoreControl;
 
@@ -257,10 +259,8 @@ private:
 	eCourseTee m_tee;
 	eCourseWind m_wind;
 	
-#ifndef NO_DECO_EDITOR
 	RudeTextControl m_dropDecoText;
 	RudeTextControl m_dumpDecoText;
-#endif
 };
 
 #endif 

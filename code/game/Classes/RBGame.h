@@ -66,6 +66,8 @@ public:
 	void TouchMove(RudeScreenVertex &n, RudeScreenVertex &p);
 	void TouchUp(RudeScreenVertex &n, RudeScreenVertex &p);
 
+	void Resize();
+
 	void Pause();
 	
 	void OrientationChange();

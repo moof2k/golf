@@ -7,8 +7,6 @@
  *
  */
 
-
-
 #include "RBTGame.h"
 #include "RudeGL.h"
 #include "RudeGLD.h"
@@ -22,8 +20,6 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 #include "RudeSound.h"
-
-#define NO_DECO_EDITOR
 
 #include "btTransform.h"
 
@@ -75,6 +71,7 @@ RUDE_TWEAK(WindForceMultiplier, kFloat, gWindForceMultiplier);
 
 const float kFollowTimerThreshold = 2.0f;
 
+#define NO_DECO_EDITOR
 
 tRudeButtonAnimKeyframe gSwingButtonAnimData[8] = {
 { 5.0f, 0 },
@@ -94,6 +91,9 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 , m_moveGuide(false)
 , m_moveHeight(false)
 , m_curClub(0)
+, m_ui(0)
+, m_guideIndicatorButton(0)
+, m_holeIndicatorButton(0)
 , m_botBarBg(0)
 , m_nextClubButton(0)
 , m_prevClubButton(0)
@@ -115,6 +115,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 , m_shotAngleText(0)
 , m_guidePowerText(0)
 , m_scoreControl(0)
+, m_holeHeightText(0)
 , m_guideScreenCalc(false)
 , m_swingPower(0.0f)
 , m_swingAngle(0.0f)
@@ -130,6 +131,8 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 , m_playedBallDissapointmentSound(false)
 , m_landscape(false)
 , m_holeNum(holeNum)
+, m_dropDecoText(0)
+, m_dumpDecoText(0)
 {	
 	m_result = kResultNone;
 	
@@ -174,9 +177,15 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 
 	// Load UI data
 	if(RUDE_IPAD)
+	{
+		m_ui.SetFileRect(RudeRect(0,0,-1,-1));
 		m_ui.Load("game_ipad");
+	}
 	else
+	{
+		m_ui.SetFileRect(RudeRect(0,0,-1,-1));
 		m_ui.Load("game_iphone");
+	}
 	
 	if(gDebugCamera)
 		m_curCamera = &m_debugCamera;
@@ -188,11 +197,11 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 #ifndef NO_DECO_EDITOR
 	m_dropDecoText.SetText("DecoDrop");
 	m_dropDecoText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_dropDecoText.SetRect(RudeRect(60,0,90,180));
+	m_dropDecoText.SetFileRect(RudeRect(60,0,90,180));
 	
 	m_dumpDecoText.SetText("DecoDump");
 	m_dumpDecoText.SetAlignment(RudeTextControl::kAlignLeft);
-	m_dumpDecoText.SetRect(RudeRect(90,0,120,180));
+	m_dumpDecoText.SetFileRect(RudeRect(90,0,120,180));
 #endif
 	
 	// score control
@@ -240,8 +249,12 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_guidePowerText = m_ui.GetChildControl<RudeTextControl>("guidePowerText");
 	m_guidePowerText->SetFormat(kIntValue, "%d yds");
 
-	m_holeHeightText = m_ui.GetChildControl<RudeTextControl>("holeHeightText");
-	m_holeHeightText->SetText("");
+	m_holeHeightText.SetText("");
+	m_holeHeightText.SetAlignment(RudeTextControl::kAlignLeft);
+	m_holeHeightText.SetPosition(0,0);
+	m_holeHeightText.SetStyle(kOutlineStyle);
+	m_holeHeightText.SetColors(0, 0xFF666666, 0xFF000000);
+	m_holeHeightText.SetColors(1, 0xFFFFFFFF, 0xFFFFFFFF);
 						  
 	// swing controls
 	
@@ -339,6 +352,7 @@ void RBTGame::SetupUI()
 	m_remainingDistText->GetPosition(x, y);
 	m_remainingDistText->SetPosition(x + paroffx, y);
 	
+	Resize();
 }
 
 void RBTGame::SaveState()
@@ -1367,7 +1381,7 @@ void RBTGame::SetHoleHeightText()
 		snprintf(text, 64, "");
 	}
 
-	m_holeHeightText->SetText(text);
+	m_holeHeightText.SetText(text);
 }
 
 void RBTGame::NextFrame(float delta)
@@ -1604,10 +1618,10 @@ void RBTGame::RenderGuide(float aspect)
 		(int) m_holePositionScreenSpace.y() + kGuideSize - kHoleIndicatorOffset,
 		(int) m_holePositionScreenSpace.x() + kGuideSize
 		);
-	m_holeIndicatorButton.SetRect(holeRect);
+	m_holeIndicatorButton.SetDrawRect(holeRect);
 	
-	m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10, m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9);
-	RudeRect holeTextRect = m_holeHeightText->GetRect();
+	m_holeHeightText.SetPosition((int) m_holePositionScreenSpace.x() + 10, (int) m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9);
+	RudeRect holeTextRect = m_holeHeightText.GetDrawRect();
 	holeTextRect.m_right += 80;
 	
 	
@@ -1620,7 +1634,7 @@ void RBTGame::RenderGuide(float aspect)
 				   (int) m_guidePositionScreenSpace.x() + kGuideSize
 				   );
 		
-		m_guideIndicatorButton.SetRect(guideRect);
+		m_guideIndicatorButton.SetDrawRect(guideRect);
 	}
 
 	RudeRect guidePowerTextRect;
@@ -1635,7 +1649,7 @@ void RBTGame::RenderGuide(float aspect)
 				   (int) m_placementGuidePositionScreenSpace.x() + kGuideSize
 				   );
 		
-		m_guideIndicatorButton.SetRect(r);
+		m_guideIndicatorButton.SetDrawRect(r);
 
 		const int kTextSize = 16;
 		const int kTextOffset = -58;
@@ -1646,7 +1660,7 @@ void RBTGame::RenderGuide(float aspect)
 				   (int) m_placementGuidePositionScreenSpace.x() + kTextSize * 2
 				   );
 		
-		m_guidePowerText->SetRect(guidePowerTextRect);
+		m_guidePowerText->SetDrawRect(guidePowerTextRect);
 			
 	}
 	else
@@ -1660,21 +1674,21 @@ void RBTGame::RenderGuide(float aspect)
 			(int) m_guidePositionScreenSpace.x() + kTextSize * 2
 			);
 		
-		m_guidePowerText->SetRect(guidePowerTextRect);
+		m_guidePowerText->SetDrawRect(guidePowerTextRect);
 	}
 
 	if(guidePowerTextRect.Overlaps(holeTextRect))
 	{
 		holeRect += RudeScreenVertex(0,kHoleIndicatorOverlapOffset);
-		m_holeIndicatorButton.SetRect(holeRect);
-		m_holeHeightText->SetPosition(m_holePositionScreenSpace.x() + 10,
-			m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9 + kHoleIndicatorOverlapOffset);
+		m_holeIndicatorButton.SetDrawRect(holeRect);
+		m_holeHeightText.SetPosition((int) m_holePositionScreenSpace.x() + 10,
+			(int) m_holePositionScreenSpace.y() - kHoleIndicatorOffset - 9 + kHoleIndicatorOverlapOffset);
 	}
 
 	m_holeIndicatorButton.Render();
 	m_guideIndicatorButton.Render();
 	
-	m_holeHeightText->Render();
+	m_holeHeightText.Render();
 
 	if(m_state == kStatePositionSwing2 ||
 		m_state == kStatePositionSwing3)
@@ -2243,8 +2257,22 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 	}
 	
 	RudeSound::GetInstance()->PlayWave(sfx);
+}
 
+void RBTGame::Resize()
+{
+	m_menu.Resize();
+	m_terrainui.Resize();
 
+	if(RUDE_IPAD)
+	{
+		int width = (int) RGL.GetDeviceWidth();
+		int center = width / 2;
+		int offset = 768 / 2;
+		m_ui.SetFileRect(RudeRect(0, center - offset, -1, center + offset));
+	}
+
+	m_ui.UpdateDrawRect();
 }
 
 void RBTGame::Pause()

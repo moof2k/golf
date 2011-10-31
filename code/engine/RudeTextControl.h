@@ -40,7 +40,7 @@ public:
 	
 
 	
-	RudeTextControl();
+	RudeTextControl(RudeControl *parent);
 	
 	bool Contains(const RudeScreenVertex &p);
 	

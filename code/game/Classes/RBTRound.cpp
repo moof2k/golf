@@ -16,6 +16,7 @@
 
 RBTRound::RBTRound()
 : m_game(0)
+, m_loadingText(0)
 , m_course(0)
 , m_state(kStateInit)
 , m_hole(0)
@@ -28,9 +29,9 @@ RBTRound::RBTRound()
 	m_loadingText.SetAlignment(RudeTextControl::kAlignCenter);
 
 	if(RUDE_IPAD)
-		m_loadingText.SetRect(RudeRect(0, 0, 1024, 768));
+		m_loadingText.SetDrawRect(RudeRect(0, 0, 1024, 768));
 	else
-		m_loadingText.SetRect(RudeRect(0, 0, 480, 320));
+		m_loadingText.SetDrawRect(RudeRect(0, 0, 480, 320));
 		
 
 	m_loadingText.SetText("Loading");
@@ -270,4 +271,9 @@ void RBTRound::TouchUp(RudeTouch *rbt)
 {
 	if(m_game)
 		m_game->TouchUp(rbt);
+}
+
+void RBTRound::Resize()
+{
+	m_game->Resize();
 }

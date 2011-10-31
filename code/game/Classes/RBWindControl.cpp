@@ -11,8 +11,9 @@
 #include "RudeGL.h"
 #include "RudeDebug.h"
 
-RBWindControl::RBWindControl()
-: m_windSpeed(0.0f)
+RBWindControl::RBWindControl(RudeControl *parent)
+: RudeControl(parent)
+, m_windSpeed(0.0f)
 , m_windVec(0,0,0)
 , m_animTimer(0.0f)
 , m_indicatorYaw(0.0f)
@@ -58,7 +59,7 @@ void RBWindControl::NextFrame(float delta)
 
 void RBWindControl::Render()
 {
-	RGL.SetViewport(m_rect.m_top, m_rect.m_left, m_rect.m_bottom, m_rect.m_right);
+	RGL.SetViewport(m_drawRect.m_top, m_drawRect.m_left, m_drawRect.m_bottom, m_drawRect.m_right);
 	
 	btVector3 eyevec = RGL.GetForward();
 	eyevec.setY(0.0f);
@@ -83,9 +84,9 @@ void RBWindControl::Render()
 /**
  * ConstructRBWindControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructRBWindControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructRBWindControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RBWindControl *c = new RBWindControl();
+	RBWindControl *c = new RBWindControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -93,7 +94,7 @@ RudeControl * ConstructRBWindControl(std::list<std::string> &tokens, const std::
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

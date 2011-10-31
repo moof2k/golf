@@ -12,6 +12,7 @@
 #include "RudeSound.h"
 
 RBUIMenu::RBUIMenu()
+: m_ui(0)
 {
 	if(RUDE_IPAD)
 		m_ui.Load("menu_ipad");
@@ -135,3 +136,15 @@ void RBUIMenu::TouchUp(RudeTouch *rbt)
 	RudeSound::GetInstance()->PlayWave(sfx);
 }
 
+void RBUIMenu::Resize()
+{
+	if(RUDE_IPAD)
+	{
+		int width = (int) RGL.GetDeviceWidth();
+		int center = width / 2;
+		int offset = 768 / 2;
+		m_ui.SetFileRect(RudeRect(0, center - offset, -1, center + offset));
+	}
+
+	m_ui.UpdateDrawRect();
+}

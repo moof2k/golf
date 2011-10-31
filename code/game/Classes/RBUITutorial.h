@@ -23,6 +23,8 @@ public:
 	void TouchDown(RudeTouch *rbt);
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
+
+	void Resize();
 	
 	void Reset();
 	

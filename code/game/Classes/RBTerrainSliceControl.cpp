@@ -11,8 +11,12 @@
 #include "RudeGL.h"
 #include "RudeDebug.h"
 
-RBTerrainSliceControl::RBTerrainSliceControl()
-: m_holeDistance(0.0f)
+RBTerrainSliceControl::RBTerrainSliceControl(RudeControl *parent)
+: RudeControl(parent)
+, m_guideIndicatorButton(0)
+, m_holeIndicatorButton(0)
+, m_guide(0)
+, m_holeDistance(0.0f)
 , m_guideDistance(0.0f)
 {
 	m_guideIndicatorButton.SetTexture("guidem");
@@ -51,9 +55,9 @@ void RBTerrainSliceControl::Render()
 	if(heightdiff < 1.0f)
 		heightdiff = 1.0f;
 
-	float scale = (m_rect.m_bottom - m_rect.m_top - 6) / heightdiff;
+	float scale = (m_drawRect.m_bottom - m_drawRect.m_top - 6) / heightdiff;
 
-	float segmentWidth = (m_rect.m_right - m_rect.m_left) / float(numGuidePoints-1);
+	float segmentWidth = (m_drawRect.m_right - m_drawRect.m_left) / float(numGuidePoints-1);
 
 	for(int i = 1; i < numGuidePoints; i++)
 	{
@@ -68,16 +72,16 @@ void RBTerrainSliceControl::Render()
 
 		//const float kPointSize = 0.2;
 
-		float left = m_rect.m_right - i * segmentWidth;
-		float right = m_rect.m_right - (i-1) * segmentWidth;
-		float p0 = m_rect.m_bottom - h0 * scale;
-		float p1 = m_rect.m_bottom - h1 * scale;
+		float left = m_drawRect.m_right - i * segmentWidth;
+		float right = m_drawRect.m_right - (i-1) * segmentWidth;
+		float p0 = m_drawRect.m_bottom - h0 * scale;
+		float p1 = m_drawRect.m_bottom - h1 * scale;
 
 		GLfloat point[] = {
 			left, p1,
 			right, p0,
-			right, m_rect.m_bottom,
-			left, m_rect.m_bottom
+			right, m_drawRect.m_bottom,
+			left, m_drawRect.m_bottom
 		};
 
 		const float kBgAlpha = 0.3f;
@@ -109,8 +113,8 @@ void RBTerrainSliceControl::Render()
 		{
 
 			GLfloat point[] = {
-				m_rect.m_right - i * segmentWidth, m_rect.m_bottom,
-				m_rect.m_right - i * segmentWidth, m_rect.m_bottom + 3,
+				m_drawRect.m_right - i * segmentWidth, m_drawRect.m_bottom,
+				m_drawRect.m_right - i * segmentWidth, m_drawRect.m_bottom + 3,
 			};
 
 			glVertexPointer(2, GL_FLOAT, 0, point);
@@ -143,7 +147,7 @@ void RBTerrainSliceControl::Render()
 						  (int) holePosition.y() + kGuideSize,
 						  (int) holePosition.x() + kGuideSize
 						  );
-		m_holeIndicatorButton.SetRect(holeRect);
+		m_holeIndicatorButton.SetDrawRect(holeRect);
 		
 		m_holeIndicatorButton.Render();
 	}
@@ -156,7 +160,7 @@ void RBTerrainSliceControl::Render()
 						  (int) guidePosition.y() + kGuideSize,
 						  (int) guidePosition.x() + kGuideSize
 						  );
-		m_guideIndicatorButton.SetRect(guideRect);
+		m_guideIndicatorButton.SetDrawRect(guideRect);
 		
 		m_guideIndicatorButton.Render();
 		
@@ -175,9 +179,9 @@ void RBTerrainSliceControl::SetCoursePositions(const btVector3 &ball, const btVe
 /**
  * RBTerrainSlideControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructRBTerrainSliceControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructRBTerrainSliceControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RBTerrainSliceControl *c = new RBTerrainSliceControl();
+	RBTerrainSliceControl *c = new RBTerrainSliceControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -185,7 +189,7 @@ RudeControl * ConstructRBTerrainSliceControl(std::list<std::string> &tokens, con
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

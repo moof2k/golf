@@ -2,8 +2,30 @@
  *  RudeControl.h
  *
  *  Bork3D Game Engine
- *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *  Copyright (c) 2009-2011 Bork 3D LLC. All rights reserved.
  *
+ *	Permission is granted to use this software, in source code or binary form,
+ *	with or without modification, for NONCOMMERCIAL PURPOSES provided:
+ *	
+ *	1) The user of this software (YOU) does not do so in a means intended to
+ *	derive monetary compensation or commercial advantage.
+ *	
+ *	2) Redistributions of the source code contain this license notice, unmodified.
+ *	
+ *	3) Redistributions in binary form give credit to this software using the
+ *	text, "Made with the Bork 3D Game Engine," either in an "About," "Credits,"
+ *	or other prominent location in the binary run-time form.
+ *	
+ *	Commercial users of this software must obtain a Bork 3D Game Engine Commercial
+ *	Use License.  See http://bork3d.com for details.
+ *
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *	THE SOFTWARE.
  */
 
 #ifndef __H_RudeControl
@@ -29,12 +51,12 @@ class RudeTextControl;
 class RudeButtonControl;
 class RudeButtonAnimControl;
 
-typedef RudeControl * (*ConstructRudeControlFuncPtr)(std::list<std::string> &, const std::string &);
+typedef RudeControl * (*ConstructRudeControlFuncPtr)(RudeControl *, std::list<std::string> &, const std::string &);
 
 class RudeControl 
 {
 public:
-	RudeControl();
+	RudeControl(RudeControl *parent);
 	virtual ~RudeControl();
 
 	void Load(const char *name);
@@ -42,6 +64,9 @@ public:
 	const std::string & GetName() { return m_name; }
 
 	RudeControl * GetChildControl(const std::string &name);
+
+	void SetParent(RudeControl *parent) { m_parent = parent; }
+	RudeControl * GetParent() { return m_parent; }
 
 	template <typename T>
 	T * GetChildControl(const std::string &name)
@@ -52,9 +77,15 @@ public:
 
 		return child;
 	}
-	
-	virtual void SetRect(const RudeRect &r) { m_rect = r; }
-	virtual RudeRect GetRect() { return m_rect; }
+
+	void SetFileRect(const RudeRect &r);
+	RudeRect GetFileRect() { return m_fileRect; }
+
+	void SetDrawRect(const RudeRect &r);
+	RudeRect GetDrawRect() { return m_drawRect; }
+
+	void UpdateDrawRect();
+	virtual void OnReposition() {}
 	
 	virtual bool Contains(const RudeScreenVertex &p);
 	
@@ -85,10 +116,13 @@ protected:
 	void ConstructChild(char *desc);
 
 	std::vector<RudeControl *> m_children;
+	RudeControl *m_parent;
 
 	std::string m_name;
 	
-	RudeRect m_rect;
+	RudeRect m_fileRect;
+	RudeRect m_drawRect;
+
 	RudeScreenVertex m_hitStart;
 	RudeScreenVertex m_hitMove;
 	RudeScreenVertex m_hitMoveDelta;

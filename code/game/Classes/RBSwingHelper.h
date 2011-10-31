@@ -17,7 +17,7 @@
 class RBSwingHelper : public RudeControl
 {
 public:
-	RBSwingHelper();
+	RBSwingHelper(RudeControl *parent);
 	
 	void NextFrame(float delta);
 	void Render();

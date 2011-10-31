@@ -240,7 +240,7 @@ BOOL CreateGLWindow(const char *title, int width, int height, int bits, bool ful
 	{
 		dwExStyle=WS_EX_APPWINDOW;								// Window Extended Style
 		dwStyle=WS_POPUP;										// Windows Style
-		ShowCursor(FALSE);										// Hide Mouse Pointer
+		//ShowCursor(FALSE);										// Hide Mouse Pointer
 	}
 	else
 	{
@@ -429,6 +429,12 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 		case WM_SIZE:								// Resize The OpenGL Window
 		{
 			ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));  // LoWord=Width, HiWord=Height
+			if(gVBGame)
+				gVBGame->Resize();
+
+			DrawGLScene();							// Draw The Scene
+			SwapBuffers(hDC);						// Swap Buffers (Double Buffering)
+
 			return 0;								// Jump Back
 		}
 
@@ -561,17 +567,21 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 				}
 			}
 
+			/*
+			// Resizing on Windows doesn't work yet; it will blow away your textures.
+
 			if (keys[VK_F1])						// Is F1 Being Pressed?
 			{
 				keys[VK_F1]=FALSE;					// If So Make Key FALSE
 				KillGLWindow();						// Kill Our Current Window
 				fullscreen=!fullscreen;				// Toggle Fullscreen / Windowed Mode
 				// Recreate Our OpenGL Window
-				if (!CreateGLWindow(kWindowTitle, windowWidth, windowHeight, 16, fullscreen))
+				if (!CreateGLWindow(kWindowTitle, windowWidth, windowHeight, 32, fullscreen))
 				{
 					return 0;						// Quit If Window Was Not Created
 				}
 			}
+			*/
 		}
 	}
 

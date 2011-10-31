@@ -155,6 +155,11 @@ void RBUITutorial::TouchUp(RudeTouch *rbt)
 	
 }
 
+void RBUITutorial::Resize()
+{
+
+}
+
 void RBUITutorial::Reset()
 {
 	m_done = false;

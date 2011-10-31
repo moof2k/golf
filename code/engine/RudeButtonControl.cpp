@@ -13,8 +13,9 @@
 
 
 
-RudeButtonControl::RudeButtonControl()
-: m_state(false)
+RudeButtonControl::RudeButtonControl(RudeControl *parent)
+: RudeControl(parent)
+, m_state(false)
 , m_texid(-1)
 , m_texsize(64)
 {
@@ -80,20 +81,18 @@ bool RudeButtonControl::TouchUp(RudeTouch *t)
 	return true;
 }
 
-void RudeButtonControl::SetRect(const RudeRect &r)
+void RudeButtonControl::OnReposition()
 {
-	m_rect = r;
-	
 	if(m_offx == -1)
 	{
 		// Render the entire texture 1:1, centered within the rectangle
 
 		int halfText = m_texsize / 2;
 
-		int xc = (m_rect.m_right - m_rect.m_left) / 2;
-		int yc = (m_rect.m_bottom - m_rect.m_top) / 2;
-		float left = ((float) xc - halfText + m_rect.m_left);
-		float top = ((float) yc - halfText + m_rect.m_top);
+		int xc = (m_drawRect.m_right - m_drawRect.m_left) / 2;
+		int yc = (m_drawRect.m_bottom - m_drawRect.m_top) / 2;
+		float left = ((float) xc - halfText + m_drawRect.m_left);
+		float top = ((float) yc - halfText + m_drawRect.m_top);
 
 		m_points[0] = left;
 		m_points[1] = top + m_texsize;
@@ -123,20 +122,20 @@ void RudeButtonControl::SetRect(const RudeRect &r)
 	{
 		// Render only the supplied portions of the texture, and use the whole rectangle
 
-		m_points[0] = (float) r.m_left;
-		m_points[1] = (float) r.m_bottom;
+		m_points[0] = (float) m_drawRect.m_left;
+		m_points[1] = (float) m_drawRect.m_bottom;
 
-		m_points[2] = (float) r.m_left;
-		m_points[3] = (float) r.m_top;
+		m_points[2] = (float) m_drawRect.m_left;
+		m_points[3] = (float) m_drawRect.m_top;
 
-		m_points[4] = (float) r.m_right;
-		m_points[5] = (float) r.m_top;
+		m_points[4] = (float) m_drawRect.m_right;
+		m_points[5] = (float) m_drawRect.m_top;
 
-		m_points[6] = (float) r.m_right;
-		m_points[7] = (float) r.m_bottom;
+		m_points[6] = (float) m_drawRect.m_right;
+		m_points[7] = (float) m_drawRect.m_bottom;
 
-		float width = ((float) r.m_right - r.m_left) / ((float) m_texsize);
-		float height = ((float) r.m_bottom - r.m_top) / ((float) m_texsize);
+		float width = ((float) m_drawRect.m_right - m_drawRect.m_left) / ((float) m_texsize);
+		float height = ((float) m_drawRect.m_bottom - m_drawRect.m_top) / ((float) m_texsize);
 
 		float texoffx = ((float) m_offx) / ((float) m_texsize);
 		float texoffy = ((float) m_offy) / ((float) m_texsize);
@@ -183,9 +182,9 @@ void RudeButtonControl::Render()
 /**
  * RudeButtonControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructButtonControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructButtonControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RudeButtonControl *c = new RudeButtonControl();
+	RudeButtonControl *c = new RudeButtonControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Texture
@@ -203,7 +202,7 @@ RudeControl * ConstructButtonControl(std::list<std::string> &tokens, const std::
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	// Position Animation
 	std::string anim = RudeControl::PopToken(tokens, originalDesc, "animation");

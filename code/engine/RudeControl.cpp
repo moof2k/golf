@@ -2,8 +2,30 @@
  *  RudeControl.cpp
  *
  *  Bork3D Game Engine
- *  Copyright (c) 2009 Bork 3D LLC. All rights reserved.
+ *  Copyright (c) 2009-2011 Bork 3D LLC. All rights reserved.
  *
+ *	Permission is granted to use this software, in source code or binary form,
+ *	with or without modification, for NONCOMMERCIAL PURPOSES provided:
+ *	
+ *	1) The user of this software (YOU) does not do so in a means intended to
+ *	derive monetary compensation or commercial advantage.
+ *	
+ *	2) Redistributions of the source code contain this license notice, unmodified.
+ *	
+ *	3) Redistributions in binary form give credit to this software using the
+ *	text, "Made with the Bork 3D Game Engine," either in an "About," "Credits,"
+ *	or other prominent location in the binary run-time form.
+ *	
+ *	Commercial users of this software must obtain a Bork 3D Game Engine Commercial
+ *	Use License.  See http://bork3d.com for details.
+ *
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *	THE SOFTWARE.
  */
 
 #include "RudeControl.h"
@@ -16,8 +38,10 @@
 #include "RudeButtonAnimControl.h"
 
 
-RudeControl::RudeControl()
-: m_rect(0,0,0,0)
+RudeControl::RudeControl(RudeControl *parent)
+: m_parent(parent)
+, m_fileRect(0,0,0,0)
+, m_drawRect(0,0,0,0)
 , m_hitStart(0,0)
 , m_hitMove(0,0)
 , m_hitMoveDelta(0,0)
@@ -81,6 +105,8 @@ void RudeControl::Load(const char *name)
 		ConstructChild(line);
 	}
 
+	SetName(std::string(name));
+
 }
 
 /**
@@ -107,9 +133,61 @@ RudeControl * RudeControl::GetChildControl(const std::string &name)
 	return 0;
 }
 
+void RudeControl::SetFileRect(const RudeRect &fileRect)
+{
+	m_fileRect = fileRect;
+
+	UpdateDrawRect();
+}
+
+void RudeControl::SetDrawRect(const RudeRect &drawRect)
+{
+	m_drawRect = drawRect;
+	OnReposition();
+}
+
+void RudeControl::UpdateDrawRect()
+{
+	// Re-compute screen rect given file rect
+	RudeRect drawRect = m_fileRect;
+
+	// Fetch parent's rect, if no parent, set it to the screen
+	RudeRect parentRect(0, 0, (int) RGL.GetDeviceHeight(), (int) RGL.GetDeviceWidth());
+
+	if(m_parent)
+		parentRect = m_parent->GetDrawRect();
+
+	if(drawRect.m_top >= 0)
+		drawRect.m_top += parentRect.m_top;
+	else
+		drawRect.m_top += parentRect.m_bottom + 1;
+
+	if(drawRect.m_left >= 0)
+		drawRect.m_left += parentRect.m_left;
+	else
+		drawRect.m_left += parentRect.m_right + 1;
+
+	if(drawRect.m_bottom >= 0)
+		drawRect.m_bottom += parentRect.m_top;
+	else
+		drawRect.m_bottom += parentRect.m_bottom + 1;
+
+	if(drawRect.m_right >= 0)
+		drawRect.m_right += parentRect.m_left;
+	else
+		drawRect.m_right += parentRect.m_right + 1;
+
+	SetDrawRect(drawRect);
+
+	// Notify children
+	unsigned int size = m_children.size();
+	for(unsigned int i = 0; i < size; i++)
+		m_children[i]->UpdateDrawRect();
+}
+
 bool RudeControl::Contains(const RudeScreenVertex &p)
 {
-	return m_rect.Contains(p);
+	return m_drawRect.Contains(p);
 }
 
 bool RudeControl::TouchDown(RudeTouch *t)
@@ -219,7 +297,7 @@ void RudeControl::ConstructChild(char *desc)
 
 	ConstructRudeControlFuncPtr funcptr = RudeControlRegistration::GetConstructor(type);
 	
-	control = (*funcptr)(tokens, originalDesc);
+	control = (*funcptr)(this, tokens, originalDesc);
 	
 	RUDE_ASSERT(control, "Failed to create Control type: %s", type.c_str());
 
@@ -303,9 +381,9 @@ void RudeControl::ParseColor(std::string &str, unsigned int &color)
  * RudeControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  * Sometimes all you need is a Control.
  */
-RudeControl * ConstructControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RudeControl *c = new RudeControl();
+	RudeControl *c = new RudeControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -313,7 +391,7 @@ RudeControl * ConstructControl(std::list<std::string> &tokens, const std::string
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

@@ -24,7 +24,7 @@ typedef enum {
 class RBScoreControl : public RudeControl {
 	
 public:
-	RBScoreControl();
+	RBScoreControl(RudeControl *parent);
 	
 	void Render();
 	

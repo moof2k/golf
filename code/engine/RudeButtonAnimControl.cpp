@@ -14,8 +14,9 @@
 
 
 
-RudeButtonAnimControl::RudeButtonAnimControl()
-: m_data(0)
+RudeButtonAnimControl::RudeButtonAnimControl(RudeControl *parent)
+: RudeButtonControl(parent)
+, m_data(0)
 , m_numFrames(0)
 , m_curFrame(0)
 {
@@ -111,9 +112,9 @@ void RudeButtonAnimControl::Render()
 /**
  * RudeButtonAnimControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructButtonAnimControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructButtonAnimControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RudeButtonAnimControl *c = new RudeButtonAnimControl();
+	RudeButtonAnimControl *c = new RudeButtonAnimControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Texture
@@ -131,7 +132,7 @@ RudeControl * ConstructButtonAnimControl(std::list<std::string> &tokens, const s
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	// Position Animation
 	std::string anim = RudeControl::PopToken(tokens, originalDesc, "animation");

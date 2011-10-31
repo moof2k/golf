@@ -12,8 +12,9 @@
 #include "RudeFont.h"
 #include "RudeGL.h"
 
-RBScoreControl::RBScoreControl()
-: m_activeHole(-1)
+RBScoreControl::RBScoreControl(RudeControl *parent)
+: RudeControl(parent)
+, m_activeHole(-1)
 , m_holeSet(kCourseFront9)
 {
 }
@@ -159,10 +160,10 @@ void RBScoreControl::Render()
 {
 	RudeControl::Render();
 	
-	int centery = (m_rect.m_bottom - m_rect.m_top) / 2;
+	int centery = (m_drawRect.m_bottom - m_drawRect.m_top) / 2;
 
 	// 295 pixels wide
-	int centerx = (m_rect.m_right - m_rect.m_left) / 2;
+	int centerx = (m_drawRect.m_right - m_drawRect.m_left) / 2;
 
 	switch(m_holeSet)
 	{
@@ -180,9 +181,9 @@ void RBScoreControl::Render()
 }
 
 
-RudeControl * ConstructRBScoreControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructRBScoreControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RBScoreControl *c = new RBScoreControl();
+	RBScoreControl *c = new RBScoreControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -190,7 +191,7 @@ RudeControl * ConstructRBScoreControl(std::list<std::string> &tokens, const std:
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

@@ -17,7 +17,7 @@
 
 class RBTerrainViewControl : public RudeControl {
 public:
-	RBTerrainViewControl();
+	RBTerrainViewControl(RudeControl *parent);
 	
 	void NextFrame(float delta);
 	void Render();

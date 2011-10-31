@@ -11,8 +11,12 @@
 #include "RudeGL.h"
 #include "RudeDebug.h"
 
-RBTerrainViewControl::RBTerrainViewControl()
-: m_terrain(0)
+RBTerrainViewControl::RBTerrainViewControl(RudeControl *parent)
+: RudeControl(parent)
+, m_terrain(0)
+, m_guideIndicatorButton(0)
+, m_ballIndicatorButton(0)
+, m_holeIndicatorButton(0)
 , m_originx(0.0f)
 , m_originy(0.0f)
 , m_angle(0.0f)
@@ -103,10 +107,10 @@ void RBTerrainViewControl::Render()
 	RGL.Enable(kBackfaceCull, false);
 	RGL.Enable(kDepthTest, false);
 	
-	int height = m_rect.m_bottom - m_rect.m_top;
-	int width = m_rect.m_right - m_rect.m_left;
+	int height = m_drawRect.m_bottom - m_drawRect.m_top;
+	int width = m_drawRect.m_right - m_drawRect.m_left;
 
-	RGL.SetViewport(m_rect.m_top, m_rect.m_left, m_rect.m_bottom, m_rect.m_right);
+	RGL.SetViewport(m_drawRect.m_top, m_drawRect.m_left, m_drawRect.m_bottom, m_drawRect.m_right);
 	RGL.Ortho(0.0f, 0.0f, 0.0f, (float) width, (float) height, 1000.0f);
 	RGL.LoadIdentity();
 
@@ -123,9 +127,9 @@ void RBTerrainViewControl::Render()
 
 	GLfloat point[] = {
 		0, 0,
-		0, height,
-		width, height,
-		width, 0
+		0, (GLfloat) height,
+		(GLfloat) width, (GLfloat) height,
+		(GLfloat) width, 0
 	};
 
 	GLfloat colors[] = {
@@ -187,13 +191,13 @@ void RBTerrainViewControl::Render()
 		(int) (m_hole.x() / m_scale + ox + kGuideSize)
 		);
 	
-	m_guideIndicatorButton.SetRect(guideRect);
+	m_guideIndicatorButton.SetDrawRect(guideRect);
 	m_guideIndicatorButton.Render();
 
-	m_holeIndicatorButton.SetRect(holeRect);
+	m_holeIndicatorButton.SetDrawRect(holeRect);
 	m_holeIndicatorButton.Render();
 
-	m_ballIndicatorButton.SetRect(ballRect);
+	m_ballIndicatorButton.SetDrawRect(ballRect);
 	m_ballIndicatorButton.Render();
 
 
@@ -204,9 +208,9 @@ void RBTerrainViewControl::Render()
 /**
  * ConstructRBTerrainViewControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructRBTerrainViewControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructRBTerrainViewControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RBTerrainViewControl *c = new RBTerrainViewControl();
+	RBTerrainViewControl *c = new RBTerrainViewControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -214,7 +218,7 @@ RudeControl * ConstructRBTerrainViewControl(std::list<std::string> &tokens, cons
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

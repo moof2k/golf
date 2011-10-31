@@ -42,6 +42,7 @@ public:
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
 
+	void Resize();
 
 	void SetTerrain(RBTerrain *terrain)
 	{

@@ -21,7 +21,7 @@
 #include "RudeTimer.h"
 #include "RudeTweaker.h"
 
-bool gDebugDisplayFPS = false;
+bool gDebugDisplayFPS = true;
 RUDE_TWEAK(DebugDisplayFPS, kBool, gDebugDisplayFPS);
 
 RBGame::RBGame()
@@ -324,6 +324,11 @@ void RBGame::TouchUp(RudeScreenVertex &n, RudeScreenVertex &p)
 	m_game->TouchUp(touch);
 	
 	m_touchtracker.ReleaseTouch(touch);
+}
+
+void RBGame::Resize()
+{
+	m_game->Resize();
 }
 
 void RBGame::Pause()

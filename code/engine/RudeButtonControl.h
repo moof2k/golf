@@ -15,11 +15,11 @@ class RudeButtonControl : public RudeControl
 {
 public:
 	
-	RudeButtonControl();
+	RudeButtonControl(RudeControl *parent);
 	
 	void SetTexture(const char *texturename, int offx = -1, int offy = -1);
 	
-	virtual void SetRect(const RudeRect &r);
+	virtual void OnReposition();
 	
 	virtual bool TouchDown(RudeTouch *t);
 	virtual bool TouchMove(RudeTouch *t);

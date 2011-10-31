@@ -15,8 +15,8 @@ void RBUICourseControl::Render()
 {
 	RudeButtonControl::Render();
 	
-	float x = m_rect.m_left;
-	float y = m_rect.m_top;
+	float x = m_drawRect.m_left;
+	float y = m_drawRect.m_top;
 	
 	
 	

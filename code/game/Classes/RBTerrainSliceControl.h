@@ -17,7 +17,7 @@
 
 class RBTerrainSliceControl : public RudeControl {
 public:
-	RBTerrainSliceControl();
+	RBTerrainSliceControl(RudeControl *parent);
 	
 	void NextFrame(float delta);
 	void Render();

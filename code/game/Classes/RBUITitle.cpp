@@ -25,6 +25,9 @@ const char * kMusicOnText = "Music: On";
 const char * kMusicOffText = "Music: Off";
 
 RBUITitle::RBUITitle()
+: m_ui(0)
+, m_scoreControl(0)
+, m_credits(0)
 {
 	m_flagOffset = 0.0f;
 	
@@ -52,9 +55,9 @@ RBUITitle::RBUITitle()
 	m_scoreControl.SetActiveHole(0, kCourseAll18);
 
 #if RUDE_IPAD == 1
-	m_scoreControl.SetRect(RudeRect(0,0,1024,768));
+	m_scoreControl.SetFileRect(RudeRect(0,0,1024,768));
 #else
-	m_scoreControl.SetRect(RudeRect(0,0,480,320));
+	m_scoreControl.SetFileRect(RudeRect(0,0,480,320));
 #endif
 	
 	m_credits.SetAnimType(kAnimPopSlide);
@@ -82,12 +85,12 @@ RBUITitle::RBUITitle()
 		if(RUDE_IPAD)
 		{
 			m_courseButtons[i].SetTexture("coursebg_ipad");
-			m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 768));
+			m_courseButtons[i].SetFileRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 768));
 		}
 		else
 		{
 			m_courseButtons[i].SetTexture("coursebg");
-			m_courseButtons[i].SetRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
+			m_courseButtons[i].SetFileRect(RudeRect(offset, 0, offset + kCourseButtonHeight, 320));
 		}
 
 		
@@ -784,3 +787,6 @@ void RBUITitle::TouchUp(RudeTouch *rbt)
 	RudeSound::GetInstance()->PlayWave(sfx);
 }
 
+void RBUITitle::Resize()
+{
+}

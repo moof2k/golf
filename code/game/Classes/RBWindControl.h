@@ -15,7 +15,7 @@
 
 class RBWindControl : public RudeControl {
 public:
-	RBWindControl();
+	RBWindControl(RudeControl *parent);
 	
 	void NextFrame(float delta);
 	void Render();

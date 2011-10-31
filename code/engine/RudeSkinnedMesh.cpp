@@ -122,12 +122,6 @@ void RudeSkinnedMesh::Render()
 	RUDE_PERF_START(kPerfRudeSkinMeshRender);
 	
 #ifdef RUDE_PALETTE_MATRIX_SKIN
-
-	
-	
-	//int numbonemats;
-	//glGetIntegerv(GL_MAX_PALETTE_MATRICES_OES, &numbonemats);
-	//printf("bonemats %d\n", numbonemats);
 	
 	glMatrixMode(GL_MODELVIEW);
 	PVRTMATRIX viewmat;
@@ -137,16 +131,9 @@ void RudeSkinnedMesh::Render()
 	
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CW);
-	
-	
-	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	
-	
+
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kTextureCoordArray, true);
-	
-	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
 	
 	if(m_animate)
 	{
@@ -154,8 +141,6 @@ void RudeSkinnedMesh::Render()
 		glEnableClientState(GL_MATRIX_INDEX_ARRAY_OES);
 		glEnableClientState(GL_WEIGHT_ARRAY_OES);
 	}
-	
-	//glScalef(m_scale.x(), m_scale.y(), m_scale.z());
 	
 	for(int i = 0; i < m_model.nNumNode; i++)
 	{
@@ -274,10 +259,6 @@ void RudeSkinnedMesh::Render()
 		
 		unsigned short *indices	= (unsigned short*) mesh->sFaces.pData;
 		
-		glVertexPointer(3, GL_FLOAT, mesh->sVertex.nStride, mesh->pInterleaved + (long)mesh->sVertex.pData);
-		
-		glTexCoordPointer(2, GL_FLOAT, mesh->psUVW->nStride, mesh->pInterleaved + (long)mesh->psUVW->pData);
-		
 		if((mesh->sVtxColours.n > 0) && (mesh->sVtxColours.eType == EPODDataRGBA))
 		{
 			RGL.EnableClient(kColorArray, true);
@@ -301,10 +282,9 @@ void RudeSkinnedMesh::Render()
 			{
 				for(int j = 0; j < batchcnt; ++j)
 				{
-					// Generates the world matrix for the given bone in this batch.
+					// Get the world matrix for the given bone in this batch.
 					
 					PVRTMATRIX	boneworld;
-
 					int i32NodeID = mesh->sBoneBatches.pnBatches[j + totalbatchcnt];
 					m_model.GetBoneWorldMatrix(boneworld, *node, m_model.pNode[i32NodeID]);
 
@@ -360,11 +340,9 @@ void RudeSkinnedMesh::Render()
 					verts[a][2] = temppos[2];
 				}
 
-
 				glVertexPointer(3, GL_FLOAT, 0, verts);
 				glTexCoordPointer(2, GL_FLOAT, 0, uvs);
 		
-				//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 			}
 		}

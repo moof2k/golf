@@ -16,8 +16,9 @@ const float kSwingTrackEnd = 400;
 const float kHelpInitialDelay = 10.0f;
 const float kHelpNextDelay = 3.0f;
 
-RBSwingHelper::RBSwingHelper()
-: m_postimer(0.0f)
+RBSwingHelper::RBSwingHelper(RudeControl *parent)
+: RudeControl(parent)
+, m_postimer(0.0f)
 , m_posdown(true)
 , m_enabled(false)
 , m_cycling(false)

@@ -23,7 +23,7 @@ class RudeButtonAnimControl : public RudeButtonControl
 {
 public:
 	
-	RudeButtonAnimControl();
+	RudeButtonAnimControl(RudeControl *parent);
 	
 	void SetAnimData(const tRudeButtonAnimKeyframe *data, int numFrames);
 	

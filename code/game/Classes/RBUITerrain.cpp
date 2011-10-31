@@ -15,21 +15,15 @@
 #include "RudeTextureManager.h"
 
 RBUITerrain::RBUITerrain()
-: m_mode(kTerrainModeNone)
+: m_tvc(0)
+, m_mode(kTerrainModeNone)
 , m_startingTouchDist(1.0f)
 , m_touchDist(1.0f)
 {
 	m_touch[0] = 0;
 	m_touch[1] = 0;
 
-	if(RUDE_IPAD)
-	{
-		m_tvc.SetRect(RudeRect(0,0,1024,768));
-	}
-	else
-	{
-		m_tvc.SetRect(RudeRect(0,0,480,320));
-	}
+	m_tvc.SetFileRect(RudeRect(0,0,-1,-1));
 }
 
 RBUITerrain::~RBUITerrain()
@@ -156,4 +150,9 @@ void RBUITerrain::CalcTouchDist()
 	m_touchDist = pdiff.m_x * pdiff.m_x + pdiff.m_y * pdiff.m_y;
 	if(m_touchDist > 0.0f)
 		m_touchDist = sqrt(m_touchDist);
+}
+
+void RBUITerrain::Resize()
+{
+	m_tvc.UpdateDrawRect();
 }

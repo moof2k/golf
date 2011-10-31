@@ -21,8 +21,9 @@ class RBUICourseControl : public RudeButtonControl {
 	
 public:
 	
-	RBUICourseControl()
-	: m_name(0)
+	RBUICourseControl(RudeControl *parent = 0)
+	: RudeButtonControl(parent)
+	, m_name(0)
 	, m_subname(0)
 	, m_desc(0)
 	, m_image(0)

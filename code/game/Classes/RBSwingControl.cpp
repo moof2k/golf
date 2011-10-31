@@ -41,8 +41,10 @@ const float kAngleFromDeviation = 1.0f / kSwingUpMaxDeviation;
 const float kNoSwingFadeOutTime = 0.5f;
 const float kSwingFadeOutTime = 1.5f;
 
-RBSwingControl::RBSwingControl()
-: m_curSwingPoint(-1)
+RBSwingControl::RBSwingControl(RudeControl *parent)
+: RudeControl(parent)
+, m_swingPowerText(0)
+, m_curSwingPoint(-1)
 , m_renderAlpha(1.0f)
 , m_fadeOutTimer(0.0f)
 , m_fadeOutTime(kNoSwingFadeOutTime)
@@ -66,7 +68,7 @@ void RBSwingControl::Reset()
 	
 	
 	m_swingPowerText.SetAlignment(RudeTextControl::kAlignCenter);
-	m_swingPowerText.SetRect(RudeRect(60, 0, 70, RGL.GetDeviceWidth()));
+	m_swingPowerText.SetDrawRect(RudeRect(60, 0, 70, RGL.GetDeviceWidth()));
 	m_swingPowerText.SetFormat(kIntValue, "  %d %%");
 	m_swingPowerText.SetStyle(kOutlineStyle);
 	m_swingPowerText.SetFont(kBigFont);
@@ -649,9 +651,9 @@ float RBSwingControl::GetImpact()
 /**
  * ConstructRBSwingControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructRBSwingControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructRBSwingControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RBSwingControl *c = new RBSwingControl();
+	RBSwingControl *c = new RBSwingControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Rect {t,l,b,r}
@@ -659,7 +661,7 @@ RudeControl * ConstructRBSwingControl(std::list<std::string> &tokens, const std:
 
 	RudeRect rect;
 	RudeControl::ParseRect(rectstr, rect);
-	c->SetRect(rect);
+	c->SetFileRect(rect);
 
 	return c;
 }

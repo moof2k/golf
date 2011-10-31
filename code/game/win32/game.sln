@@ -9,21 +9,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbulletdynamics", "..\..\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbulletmath", "..\..\lib\bullet\msvc\8\libbulletmath.vcxproj", "{7D6E339F-9C2C-31DA-FDB0-5EE50973CF2A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D235888-8F1F-4DDD-9E2B-94155C35C44C}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+		Performance2.psess = Performance2.psess
+		Performance3.psess = Performance3.psess
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 2
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = game.vcxproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\..\\lib\\bullet\\msvc\\8\\libbulletcollision.vcxproj
-		SccLocalPath2 = ..\\..\\lib\\bullet
-		SccProjectFilePathRelativizedFromConnection2 = msvc\\8\\
-		SccProjectUniqueName3 = ..\\..\\lib\\bullet\\msvc\\8\\libbulletdynamics.vcxproj
-		SccLocalPath3 = ..\\..\\lib\\bullet
-		SccProjectFilePathRelativizedFromConnection3 = msvc\\8\\
-		SccProjectUniqueName4 = ..\\..\\lib\\bullet\\msvc\\8\\libbulletmath.vcxproj
-		SccLocalPath4 = ..\\..\\lib\\bullet
-		SccProjectFilePathRelativizedFromConnection4 = msvc\\8\\
+		SccLocalPath1 = ..\\..
+		SccProjectFilePathRelativizedFromConnection1 = game\\win32\\
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

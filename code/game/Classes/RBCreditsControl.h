@@ -17,7 +17,7 @@ class RBCreditsControl : public RudeControl
 {
 	
 public:
-	RBCreditsControl();
+	RBCreditsControl(RudeControl *parent);
 	
 	void Render();
 	

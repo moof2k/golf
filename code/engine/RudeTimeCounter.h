@@ -9,7 +9,7 @@
 #ifndef __H_RudeTimeCounter
 #define __H_RudeTimeCounter
 
-const int kNumTimes = 30;
+const int kNumTimes = 2;
 
 class RudeTimeCounter {
 

@@ -13,8 +13,9 @@
 
 
 
-RudeTextControl::RudeTextControl()
-: m_displayValue(kNoValue)
+RudeTextControl::RudeTextControl(RudeControl *parent)
+: RudeControl(parent)
+, m_displayValue(kNoValue)
 , m_value(-123123.0f)
 , m_alignment(RudeTextControl::kAlignLeft)
 , m_style(kNoStyle)
@@ -37,7 +38,7 @@ RudeTextControl::RudeTextControl()
 
 bool RudeTextControl::Contains(const RudeScreenVertex &p)
 {
-	RudeRect r(m_rect);
+	RudeRect r(m_drawRect);
 	r.m_top -= 5;
 	r.m_bottom -= 5;
 	
@@ -54,10 +55,10 @@ void RudeTextControl::SetPosition(int x, int y)
 	switch(m_alignment)
 	{
 		case RudeTextControl::kAlignLeft:
-			SetRect(RudeRect(y - kHeight, x, y + kHeight, x + 1));
+			SetFileRect(RudeRect(y - kHeight, x, y + kHeight, x + 1));
 			break;
 		case kAlignRight:
-			SetRect(RudeRect(y - kHeight, x-1, y + kHeight, x));
+			SetFileRect(RudeRect(y - kHeight, x-1, y + kHeight, x));
 			break;
 		case RudeTextControl::kAlignCenter:
 			
@@ -69,21 +70,21 @@ void RudeTextControl::Render()
 {
 	RudeControl::Render();
 	
-	float y = (float) ((m_rect.m_bottom - m_rect.m_top) / 2 + m_rect.m_top);
+	float y = (float) ((m_drawRect.m_bottom - m_drawRect.m_top) / 2 + m_drawRect.m_top);
 	
 	switch(m_alignment)
 	{
 		case RudeTextControl::kAlignLeft:
-			Display((float) m_rect.m_left, y);
+			Display((float) m_drawRect.m_left, y);
 			break;
 		case RudeTextControl::kAlignCenter:
 			{
-				float x = (float) ((m_rect.m_right - m_rect.m_left) / 2 + m_rect.m_left);
+				float x = (float) ((m_drawRect.m_right - m_drawRect.m_left) / 2 + m_drawRect.m_left);
 				Display(x, y);
 			}
 			break;
 		case kAlignRight:
-			Display((float) m_rect.m_right, y);
+			Display((float) m_drawRect.m_right, y);
 			break;
 	}
 }
@@ -160,9 +161,9 @@ void RudeTextControl::SetText(const char *text)
 /**
  * RudeTextControl factory assistant for RudeControl.  This is called by RudeControl::Load()
  */
-RudeControl * ConstructTextControl(std::list<std::string> &tokens, const std::string &originalDesc)
+RudeControl * ConstructTextControl(RudeControl *parent, std::list<std::string> &tokens, const std::string &originalDesc)
 {
-	RudeTextControl *c = new RudeTextControl();
+	RudeTextControl *c = new RudeTextControl(parent);
 	RUDE_ASSERT(c, "Failed to construct control");
 
 	// Text (content) of RudeTextControl
@@ -184,14 +185,14 @@ RudeControl * ConstructTextControl(std::list<std::string> &tokens, const std::st
 
 		RudeRect rect;
 		RudeControl::ParseRect(rectstr, rect);
-		c->SetRect(rect);
+		c->SetFileRect(rect);
 	}
 	else if(alignment == "left")
-	c->SetAlignment(RudeTextControl::kAlignLeft);
+		c->SetAlignment(RudeTextControl::kAlignLeft);
 	else if(alignment == "right")
-	c->SetAlignment(RudeTextControl::kAlignRight);
+		c->SetAlignment(RudeTextControl::kAlignRight);
 	else if(alignment == "justify")
-	c->SetAlignment(RudeTextControl::kAlignJustify);
+		c->SetAlignment(RudeTextControl::kAlignJustify);
 	else
 	{
 		RUDE_ASSERT(0, "Expected alignment field (center, left, right, justify), got %s", alignment.c_str());

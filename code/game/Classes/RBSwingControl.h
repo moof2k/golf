@@ -52,7 +52,7 @@ public:
 class RBSwingControl : public RudeControl {
 	
 public:
-	RBSwingControl();
+	RBSwingControl(RudeControl *parent);
 	
 	void Reset();
 	

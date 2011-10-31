@@ -11,7 +11,8 @@
 
 #include "RudeFont.h"
 
-RBCreditsControl::RBCreditsControl()
+RBCreditsControl::RBCreditsControl(RudeControl *parent)
+: RudeControl(parent)
 {
 }
 
