@@ -299,13 +299,9 @@ void RudeSkinnedMesh::Render()
 			
 			if(b == (mesh->sBoneBatches.nBatchCnt - 1))
 				end = mesh->nNumFaces*3;
-			
-			int numidx = (end - offset);
 
 			for(int v = offset; v < end; v += 3)
 			{
-				unsigned short *idx = &indices[v];
-
 				float verts[3][3] = { 0.0 };
 				float uvs[3][2] = { 0.0 };
 
