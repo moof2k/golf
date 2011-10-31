@@ -69,8 +69,8 @@
     CFAbsoluteTime timeNow;
     CGLContextObj cglContext;
     CGDisplayErr err;
-    long oldSwapInterval;
-    long newSwapInterval;
+    GLint oldSwapInterval = 0;
+    GLint newSwapInterval = 0;
 
     // Pixel Format Attributes for the FullScreen NSOpenGLContext
     NSOpenGLPixelFormatAttribute attrs[] = {
@@ -88,7 +88,8 @@
         NSOpenGLPFAAccelerated,
         0
     };
-    long rendererID;
+    
+    GLint rendererID = 0;
 
     // Create the FullScreen NSOpenGLContext with the attributes listed above.
     NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc] initWithAttributes:attrs];
@@ -144,7 +145,7 @@
 
         // Check for and process input events.
         NSEvent *event;
-        while (event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES]) {
+        while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES])) {
             switch ([event type]) {
                 case NSLeftMouseDown:
                     [self mouseDown:event];
@@ -197,9 +198,13 @@
 
     // Release control of the display.
     CGReleaseAllDisplays();
+    
+    [openGLView reshape];
 
     // Mark our view as needing drawing.  (The animation has advanced while we were in FullScreen mode, so its current contents are stale.)
     [openGLView setNeedsDisplay:YES];
+    
+    [scene flushState];
 
     // Resume animation timer firings.
     if ([self isAnimating]) {
