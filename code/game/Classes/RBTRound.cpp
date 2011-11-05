@@ -139,6 +139,8 @@ void RBTRound::RestoreState()
 				
 			}
 			break;
+        default:
+            break;
 	}
 }
 

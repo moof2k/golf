@@ -471,6 +471,8 @@ void RBTGame::RestoreState()
 			m_ballCamera.NextFrame(1.0f);
 		}
 			break;
+        default:
+            break;
 	}
 }
 
@@ -1398,7 +1400,7 @@ void RBTGame::SetHoleHeightText()
 	}
 	else
 	{
-		snprintf(text, 64, "");
+		text[0] = '\0';
 	}
 
 	m_holeHeightText.SetText(text);
@@ -1468,6 +1470,8 @@ void RBTGame::NextFrame(float delta)
 		case kStateRegardBall:
 			RudePhysics::GetInstance()->NextFrame(delta);
 			break;
+        default:
+            break;
 	}
 	
 	
@@ -1615,6 +1619,8 @@ void RBTGame::RenderCalcOrthoDrawPositions()
 				
 			}
 			break;
+        default:
+            break;
 	}
 }
 
@@ -1977,6 +1983,8 @@ void RBTGame::Render(float width, float height)
 				RenderShotInfo(false, true);
 				m_terrainButton->Render();
 				break;
+            default:
+                break;
 		}
 	}
 	
@@ -2143,6 +2151,8 @@ void RBTGame::TouchDown(RudeTouch *rbt)
 				m_terrainui.TouchDown(rbt);
 
 			break;
+        default:
+            break;
 	}
 	
 	RudeSound::GetInstance()->PlayWave(sfx);

@@ -61,8 +61,9 @@ void RudeTextControl::SetPosition(int x, int y)
 			SetFileRect(RudeRect(y - kHeight, x-1, y + kHeight, x));
 			break;
 		case RudeTextControl::kAlignCenter:
-			
 			break;
+        default:
+            break;
 	}
 }
 
@@ -86,6 +87,8 @@ void RudeTextControl::Render()
 		case kAlignRight:
 			Display((float) m_drawRect.m_right, y);
 			break;
+        default:
+            break;
 	}
 }
 

@@ -62,6 +62,8 @@ bool RBGolfClub::ClubOK(int n, eRBTerrainMaterial curMaterial)
 			if(club.m_options & kNoGreen)
 				return false;
 			break;
+        default:
+            break;
 	}
 	
 	return true;

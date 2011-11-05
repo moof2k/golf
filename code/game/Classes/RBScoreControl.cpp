@@ -177,6 +177,8 @@ void RBScoreControl::Render()
 		case kCourseBack9:
 			RenderScoreBoard(centerx, centery, 9);
 			break;
+        default:
+            break;
 	}
 }
 
