@@ -162,6 +162,10 @@
                 case NSKeyDown:
                     [self keyDown:event];
                     break;
+                    
+                case NSScrollWheel:
+                    [self scrollWheel:event];
+                    break;
 
                 default:
                     break;
@@ -247,6 +251,11 @@
     [scene mouseMoved:theEvent];
 }
 
+- (void)scrollWheel:(NSEvent *)theEvent
+{
+    Scene *scene = [openGLView scene];
+    [scene scrollWheel:theEvent];
+}
 
 - (BOOL) isInFullScreenMode
 {

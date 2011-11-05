@@ -101,6 +101,7 @@ void RudeGame::StylusUp(RudeScreenVertex &p)
 void RudeGame::TouchDown(RudeScreenVertex &n) {}
 void RudeGame::TouchMove(RudeScreenVertex &n, RudeScreenVertex &p) {}
 void RudeGame::TouchUp(RudeScreenVertex &n, RudeScreenVertex &p) {}
+void RudeGame::ScrollWheel(RudeScreenVertex &d) {}
 void RudeGame::Resize() {}
 void RudeGame::Pause() {}
 

@@ -129,4 +129,10 @@
     [controller mouseDragged:theEvent];
 }
 
+- (void)scrollWheel:(NSEvent *)theEvent
+{
+    // Delegate to our controller object for handling scroll events.
+    [controller scrollWheel:theEvent];
+}
+
 @end

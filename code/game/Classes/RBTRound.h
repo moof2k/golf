@@ -53,6 +53,8 @@ public:
 	void TouchDown(RudeTouch *rbt);
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
+    
+    void ScrollWheel(RudeScreenVertex &d);
 
 	void Resize();
 	

@@ -65,6 +65,8 @@ public:
 	void TouchDown(RudeScreenVertex &n);
 	void TouchMove(RudeScreenVertex &n, RudeScreenVertex &p);
 	void TouchUp(RudeScreenVertex &n, RudeScreenVertex &p);
+    
+    void ScrollWheel(RudeScreenVertex &d);
 
 	void Resize();
 

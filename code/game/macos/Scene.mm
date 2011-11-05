@@ -203,4 +203,13 @@ RudeScreenVertex lastMouse;
     lastMouse = point;
 }
 
+- (void)scrollWheel:(NSEvent *)theEvent
+{
+    float scrollx = [theEvent deltaX];
+    float scrolly = [theEvent deltaY];
+    
+    RudeScreenVertex d(scrollx, scrolly);
+    gVBGame->ScrollWheel(d);
+}
+
 @end

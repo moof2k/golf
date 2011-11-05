@@ -106,6 +106,8 @@ public:
 	void TouchDown(RudeTouch *rbt);
 	void TouchMove(RudeTouch *rbt);
 	void TouchUp(RudeTouch *rbt);
+    
+    void ScrollWheel(RudeScreenVertex &d);
 
 	void Resize();
 
@@ -141,7 +143,11 @@ private:
 	void AutoSelectClub();
 	void NextClub(int n);
 	void MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &dist);
+    void MoveSwingYaw(float dx);
+    void MoveSwingHeight(float dy);
 	void MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist);
+    void MoveAimYaw(float dx);
+    void MoveAimHeight(float dy);
 	void FreshGuide(bool firstTime = false);
 	void StickBallInBounds();
 	void HitBall();

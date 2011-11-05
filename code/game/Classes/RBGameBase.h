@@ -32,6 +32,8 @@ public:
 	virtual void TouchDown(RudeTouch *rbt) = 0;
 	virtual void TouchMove(RudeTouch *rbt) = 0;
 	virtual void TouchUp(RudeTouch *rbt) = 0;
+    
+    virtual void ScrollWheel(RudeScreenVertex &d) {}
 	
 	virtual void Resize() = 0;
 	

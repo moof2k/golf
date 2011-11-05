@@ -1036,25 +1036,35 @@ void RBTGame::MovePosition(const RudeScreenVertex &p, const RudeScreenVertex &di
 	if(m_moveGuide)
 	{
 		float dx = (float) p.m_x;
-		m_swingYaw += (dx * kYawDamping);
+		MoveSwingYaw(dx * kYawDamping);
 	}
 	
 	if(m_moveHeight)
 	{
-		const float kHeightDamping = 0.004f;
-		const float kMaxHeight = 1.0f;
-		float dy = (float) p.m_y;
-		m_swingHeight -= (dy * kHeightDamping);
-		if(m_swingHeight < 0.0f)
-			m_swingHeight = 0.0f;
-		if(m_swingHeight > kMaxHeight)
-			m_swingHeight = kMaxHeight;
+        const float kHeightDamping = 0.004f;
 		
-		m_ballCamera.SetDesiredHeight(m_swingHeight);
+        float dy = (float) p.m_y;
+		MoveSwingHeight(-dy * kHeightDamping);
 	}
+}
 
-	if(m_moveGuide)
-		FreshGuide();
+void RBTGame::MoveSwingYaw(float dx)
+{
+    m_swingYaw += dx;
+    FreshGuide();
+}
+
+void RBTGame::MoveSwingHeight(float dy)
+{
+    const float kMaxHeight = 1.0f;
+    
+    m_swingHeight += dy;
+    if(m_swingHeight < 0.0f)
+        m_swingHeight = 0.0f;
+    if(m_swingHeight > kMaxHeight)
+        m_swingHeight = kMaxHeight;
+    
+    m_ballCamera.SetDesiredHeight(m_swingHeight);
 }
 
 void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &dist)
@@ -1072,19 +1082,29 @@ void RBTGame::MoveAimCamera(const RudeScreenVertex &p, const RudeScreenVertex &d
 	if(dist.m_x > 30)
 	{
 		float dx = (float) p.m_x;
-		m_swingCamYaw += (dx * kYawDamping);
+		MoveAimYaw(dx * kYawDamping);
 	}
 	
-	
-	const float kMaxHeight = 1.0f;
 	float dy = (float) p.m_y;
-	m_swingHeight -= (dy * kHeightDamping);
+	MoveAimHeight(-dy * kHeightDamping);
+}
+
+void RBTGame::MoveAimYaw(float dx)
+{
+    m_swingCamYaw += dx;
+    m_ballCamera.SetYaw(m_swingCamYaw);   
+}
+
+void RBTGame::MoveAimHeight(float dy)
+{
+    const float kMaxHeight = 1.0f;
+    
+    m_swingHeight += dy;
 	if(m_swingHeight < 0.0f)
 		m_swingHeight = 0.0f;
 	if(m_swingHeight > kMaxHeight)
 		m_swingHeight = kMaxHeight;
 	
-	m_ballCamera.SetYaw(m_swingCamYaw);
 	m_ballCamera.SetDesiredHeight(m_swingHeight);
 }
 
@@ -2167,6 +2187,8 @@ void RBTGame::TouchMove(RudeTouch *rbt)
 		case kStateExecuteSwing:
 			m_swingControl->TouchMove(rbt);
 			break;
+        default:
+            break;
 	}
 	
 	RUDE_PERF_STOP(kPerfTouchMove);
@@ -2254,9 +2276,33 @@ void RBTGame::TouchUp(RudeTouch *rbt)
 		case kStateTerrainView:
 			m_terrainui.TouchUp(rbt);
 			break;
+        default:
+            break;
 	}
 	
 	RudeSound::GetInstance()->PlayWave(sfx);
+}
+
+void RBTGame::ScrollWheel(RudeScreenVertex &d)
+{
+    const float kYawDamping = 0.003f;
+    const float kHeightDamping = 0.005f;
+    
+    const float kAimYawDamping = 0.006f;
+    
+    switch(m_state)
+	{
+		case kStatePositionSwing:
+    		MoveSwingYaw(float(d.m_x) * kYawDamping);
+            MoveSwingHeight(float(d.m_y) * kHeightDamping);
+			break;
+		case kStatePositionSwing2:
+            MoveAimYaw(float(d.m_x) * kAimYawDamping);
+            MoveAimHeight(float(d.m_y) * kHeightDamping);
+			break;
+        default:
+            break;
+	}
 }
 
 void RBTGame::Resize()

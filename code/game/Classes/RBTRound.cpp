@@ -273,6 +273,12 @@ void RBTRound::TouchUp(RudeTouch *rbt)
 		m_game->TouchUp(rbt);
 }
 
+void RBTRound::ScrollWheel(RudeScreenVertex &d)
+{
+    if(m_game)
+        m_game->ScrollWheel(d);
+}
+
 void RBTRound::Resize()
 {
 	m_game->Resize();

@@ -326,6 +326,12 @@ void RBGame::TouchUp(RudeScreenVertex &n, RudeScreenVertex &p)
 	m_touchtracker.ReleaseTouch(touch);
 }
 
+void RBGame::ScrollWheel(RudeScreenVertex &d)
+{
+    m_game->ScrollWheel(d);
+}
+
+
 void RBGame::Resize()
 {
 	m_game->Resize();
