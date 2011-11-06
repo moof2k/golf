@@ -664,7 +664,7 @@ class BackgroundTrackMgr
 		{
 			OSStatus err = 0;
 			UInt32 size = 0;
-			OSStatus result = AudioQueueNewOutput(&inFileInfo->mFileFormat, QueueCallback, this, CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
+			OSStatus result = AudioQueueNewOutput(&inFileInfo->mFileFormat, QueueCallback, this, NULL, kCFRunLoopCommonModes, 0, &mQueue);
 					AssertNoError("Error creating queue", end);
 
 			// (2) If the file has a cookie, we should get it and set it on the AQ
