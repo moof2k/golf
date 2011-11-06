@@ -2327,8 +2327,13 @@ void RBTGame::Resize()
 		int offset = 768 / 2;
 		m_ui.SetFileRect(RudeRect(0, center - offset, -1, center + offset));
 	}
-
 	m_ui.UpdateDrawRect();
+    
+    RudeRect guideRect(RGL.GetDeviceHeight() / 2 - 32,
+                       RGL.GetDeviceWidth() / 2 - 32,
+                       RGL.GetDeviceHeight() / 2 + 32,
+                       RGL.GetDeviceWidth() / 2 + 32);
+    m_guideAdjust->SetDrawRect(guideRect);
 }
 
 void RBTGame::Pause()
