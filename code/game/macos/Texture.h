@@ -1,7 +1,6 @@
 /*
-     File: Scene.h
- Abstract:  A delegate object used by MyOpenGLView and MainController to 
- render a simple scene.
+     File: Texture.h
+ Abstract:  A help class that loads an OpenGL texture from an image path.
  
   Version: 1.1
  
@@ -49,26 +48,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class Texture;
-
-@interface Scene : NSObject {
+@interface Texture : NSObject {
 	
-    /* The pixel dimensions of the backbuffer */
-	GLint backingWidth;
-	GLint backingHeight;
+	GLuint texId;
+	GLuint pboId;
+	GLubyte	*data;
 }
 
-- (id)init;
-
-- (void)setViewportRect:(NSRect)bounds;
-- (void)render;
-
-- (void)advanceTimeBy:(float)seconds;
-- (void)setAnimationPhase:(float)newAnimationPhase;
-
-- (void)mouseDown:(NSEvent *)theEvent;
-- (void)mouseUp:(NSEvent *)theEvent;
-- (void)mouseMoved:(NSEvent *)theEvent;
-- (void)scrollWheel:(NSEvent *)theEvent;
+- (id) initWithPath:(NSString*)path;
+- (GLuint) textureName;
 
 @end

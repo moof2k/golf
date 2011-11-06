@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		42C5B127145E45D200E7AFA5 /* ab48.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 42C5B123145E45D200E7AFA5 /* ab48.fnt */; };
+		42C5B129145E45D200E7AFA5 /* ab48o2.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 42C5B125145E45D200E7AFA5 /* ab48o2.fnt */; };
+		42C5B14E1466460300E7AFA5 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C5B14D1466460200E7AFA5 /* Texture.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -104,10 +107,6 @@
 		9AC67394136526680023D81F /* ball_64.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC67366136526680023D81F /* ball_64.pvr */; };
 		9AC67395136526680023D81F /* ab48o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC67367136526680023D81F /* ab48o2_00.pvr */; };
 		9AC67396136526680023D81F /* ab48_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC67368136526680023D81F /* ab48_00.pvr */; };
-		9AC67397136526680023D81F /* ab28o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC67369136526680023D81F /* ab28o2_00.pvr */; };
-		9AC67398136526680023D81F /* ab28_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6736A136526680023D81F /* ab28_00.pvr */; };
-		9AC67399136526680023D81F /* ab18o2_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6736B136526680023D81F /* ab18o2_00.pvr */; };
-		9AC6739A136526680023D81F /* ab18_00.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6736C136526680023D81F /* ab18_00.pvr */; };
 		9AC6739C136526AC0023D81F /* sexy.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6739B136526AC0023D81F /* sexy.pvr */; };
 		9AC6739E136526C40023D81F /* sexy.POD in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6739D136526C40023D81F /* sexy.POD */; };
 		9AC673A5136526F30023D81F /* title_iphone.ui in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6739F136526F30023D81F /* title_iphone.ui */; };
@@ -229,7 +228,6 @@
 		9AC6749B13652E740023D81F /* driving_range.deco in Resources */ = {isa = PBXBuildFile; fileRef = 9AC6748813652E740023D81F /* driving_range.deco */; };
 		9AF6BD98110ECFFA00050B38 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD97110ECFFA00050B38 /* MainController.m */; };
 		9AF6BD9B110ED00000050B38 /* MyOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD99110ED00000050B38 /* MyOpenGLView.m */; };
-		9AF6BDA0110ED00500050B38 /* Texturing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD9C110ED00500050B38 /* Texturing.m */; };
 		9AF6BDA1110ED00500050B38 /* Scene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BD9F110ED00500050B38 /* Scene.mm */; };
 		9AF6BE13110ED08500050B38 /* RudeButtonAnimControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BDC4110ED08500050B38 /* RudeButtonAnimControl.cpp */; };
 		9AF6BE14110ED08500050B38 /* RudeButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6BDC6110ED08500050B38 /* RudeButtonControl.cpp */; };
@@ -418,6 +416,12 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* example_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = example_Prefix.pch; sourceTree = "<group>"; };
+		42C5B122145E45D200E7AFA5 /* ab48_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab48_00.pvr; path = ../Data/ab48_00.pvr; sourceTree = "<group>"; };
+		42C5B123145E45D200E7AFA5 /* ab48.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab48.fnt; path = ../Data/ab48.fnt; sourceTree = "<group>"; };
+		42C5B124145E45D200E7AFA5 /* ab48o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab48o2_00.pvr; path = ../Data/ab48o2_00.pvr; sourceTree = "<group>"; };
+		42C5B125145E45D200E7AFA5 /* ab48o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab48o2.fnt; path = ../Data/ab48o2.fnt; sourceTree = "<group>"; };
+		42C5B14C1466460200E7AFA5 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		42C5B14D1466460200E7AFA5 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC67274136524680023D81F /* RBBallCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RBBallCamera.cpp; path = ../Classes/RBBallCamera.cpp; sourceTree = "<group>"; };
@@ -675,8 +679,6 @@
 		9AF6BD97110ECFFA00050B38 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		9AF6BD99110ED00000050B38 /* MyOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOpenGLView.m; sourceTree = "<group>"; };
 		9AF6BD9A110ED00000050B38 /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView.h; sourceTree = "<group>"; };
-		9AF6BD9C110ED00500050B38 /* Texturing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texturing.m; sourceTree = "<group>"; };
-		9AF6BD9D110ED00500050B38 /* Texturing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texturing.h; sourceTree = "<group>"; };
 		9AF6BD9E110ED00500050B38 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		9AF6BD9F110ED00500050B38 /* Scene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Scene.mm; sourceTree = "<group>"; };
 		9AF6BDC3110ED08500050B38 /* Rude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rude.h; path = ../../engine/Rude.h; sourceTree = SOURCE_ROOT; };
@@ -1135,14 +1137,14 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				42C5B14C1466460200E7AFA5 /* Texture.h */,
+				42C5B14D1466460200E7AFA5 /* Texture.m */,
 				32CA4F630368D1EE00C91783 /* example_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				9AF6BD96110ECFFA00050B38 /* MainController.h */,
 				9AF6BD97110ECFFA00050B38 /* MainController.m */,
 				9AF6BD99110ED00000050B38 /* MyOpenGLView.m */,
 				9AF6BD9A110ED00000050B38 /* MyOpenGLView.h */,
-				9AF6BD9C110ED00500050B38 /* Texturing.m */,
-				9AF6BD9D110ED00500050B38 /* Texturing.h */,
 				9AF6BD9E110ED00500050B38 /* Scene.h */,
 				9AF6BD9F110ED00500050B38 /* Scene.mm */,
 			);
@@ -1959,6 +1961,10 @@
 				9AF6C16D110ED5A700050B38 /* ab28_00.pvr */,
 				9AF6C16E110ED5A700050B38 /* ab28.fnt */,
 				9AF6C16F110ED5A700050B38 /* ab28o2_00.pvr */,
+				42C5B122145E45D200E7AFA5 /* ab48_00.pvr */,
+				42C5B123145E45D200E7AFA5 /* ab48.fnt */,
+				42C5B124145E45D200E7AFA5 /* ab48o2_00.pvr */,
+				42C5B125145E45D200E7AFA5 /* ab48o2.fnt */,
 			);
 			name = font;
 			sourceTree = "<group>";
@@ -2012,8 +2018,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "example_macos" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -2104,10 +2113,6 @@
 				9AC67394136526680023D81F /* ball_64.pvr in Resources */,
 				9AC67395136526680023D81F /* ab48o2_00.pvr in Resources */,
 				9AC67396136526680023D81F /* ab48_00.pvr in Resources */,
-				9AC67397136526680023D81F /* ab28o2_00.pvr in Resources */,
-				9AC67398136526680023D81F /* ab28_00.pvr in Resources */,
-				9AC67399136526680023D81F /* ab18o2_00.pvr in Resources */,
-				9AC6739A136526680023D81F /* ab18_00.pvr in Resources */,
 				9AC6739C136526AC0023D81F /* sexy.pvr in Resources */,
 				9AC6739E136526C40023D81F /* sexy.POD in Resources */,
 				9AC673A5136526F30023D81F /* title_iphone.ui in Resources */,
@@ -2227,6 +2232,8 @@
 				9AC6749913652E740023D81F /* par3_B.deco in Resources */,
 				9AC6749A13652E740023D81F /* par3_A.deco in Resources */,
 				9AC6749B13652E740023D81F /* driving_range.deco in Resources */,
+				42C5B127145E45D200E7AFA5 /* ab48.fnt in Resources */,
+				42C5B129145E45D200E7AFA5 /* ab48o2.fnt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2240,7 +2247,6 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				9AF6BD98110ECFFA00050B38 /* MainController.m in Sources */,
 				9AF6BD9B110ED00000050B38 /* MyOpenGLView.m in Sources */,
-				9AF6BDA0110ED00500050B38 /* Texturing.m in Sources */,
 				9AF6BDA1110ED00500050B38 /* Scene.mm in Sources */,
 				9AF6BE13110ED08500050B38 /* RudeButtonAnimControl.cpp in Sources */,
 				9AF6BE14110ED08500050B38 /* RudeButtonControl.cpp in Sources */,
@@ -2435,6 +2441,7 @@
 				9AC672E3136524680023D81F /* RBUITitle.cpp in Sources */,
 				9AC672E4136524680023D81F /* RBUITutorial.cpp in Sources */,
 				9AC672E5136524680023D81F /* RBWindControl.cpp in Sources */,
+				42C5B14E1466460300E7AFA5 /* Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2470,7 +2477,6 @@
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/ApplicationServices.framework/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2516,7 +2522,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -2529,7 +2534,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
