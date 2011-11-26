@@ -160,10 +160,10 @@ void RBScoreControl::Render()
 {
 	RudeControl::Render();
 	
-	int centery = (m_drawRect.m_bottom - m_drawRect.m_top) / 2;
+	int centery = m_drawRect.m_top + (m_drawRect.m_bottom - m_drawRect.m_top) / 2;
 
 	// 295 pixels wide
-	int centerx = (m_drawRect.m_right - m_drawRect.m_left) / 2;
+	int centerx = m_drawRect.m_left + (m_drawRect.m_right - m_drawRect.m_left) / 2;
 
 	switch(m_holeSet)
 	{
