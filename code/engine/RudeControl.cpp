@@ -52,6 +52,7 @@ RudeControl::RudeControl(RudeControl *parent)
 , m_desiredTranslation(0,0,0)
 , m_animSpeed(3.0f)
 , m_animType(kAnimNone)
+, m_adjustDrawRectToEdges(true)
 {
 }
 
@@ -157,22 +158,22 @@ void RudeControl::UpdateDrawRect()
 	if(m_parent)
 		parentRect = m_parent->GetDrawRect();
 
-	if(drawRect.m_top >= 0)
+	if(drawRect.m_top >= 0 || !m_adjustDrawRectToEdges)
 		drawRect.m_top += parentRect.m_top;
 	else
 		drawRect.m_top += parentRect.m_bottom + 1;
 
-	if(drawRect.m_left >= 0)
+	if(drawRect.m_left >= 0 || !m_adjustDrawRectToEdges)
 		drawRect.m_left += parentRect.m_left;
 	else
 		drawRect.m_left += parentRect.m_right + 1;
 
-	if(drawRect.m_bottom >= 0)
+	if(drawRect.m_bottom >= 0 || !m_adjustDrawRectToEdges)
 		drawRect.m_bottom += parentRect.m_top;
 	else
 		drawRect.m_bottom += parentRect.m_bottom + 1;
 
-	if(drawRect.m_right >= 0)
+	if(drawRect.m_right >= 0 || !m_adjustDrawRectToEdges)
 		drawRect.m_right += parentRect.m_left;
 	else
 		drawRect.m_right += parentRect.m_right + 1;

@@ -105,6 +105,8 @@ public:
 	
 	void SetAnimSpeed(float f) { m_animSpeed = f; }
 	void SetAnimType(eAnimType at) { m_animType = at; }
+    
+    void SetAdjustDrawRectToEdges(bool a) { m_adjustDrawRectToEdges = a; }
 
 	static std::string PopToken(std::list<std::string> &tokens, const std::string &desc, const std::string &explanation);
 	static void ParseRect(std::string &str, RudeRect &rect);
@@ -135,6 +137,12 @@ protected:
 	float m_animSpeed;
 	eAnimType m_animType;
 
+    /**
+     * If true, negative values in m_fileRect are interpreted as distances
+     * from their respective edges.  I.e., right = -1 means 0 pixels from
+     * the right edge of the parent control.
+     */
+    bool m_adjustDrawRectToEdges;
 };
 
 

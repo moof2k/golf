@@ -255,6 +255,7 @@ RBTGame::RBTGame(int holeNum, const char *terrainfile, eCourseTee tee, eCourseHo
 	m_holeHeightText.SetStyle(kOutlineStyle);
 	m_holeHeightText.SetColors(0, 0xFF666666, 0xFF000000);
 	m_holeHeightText.SetColors(1, 0xFFFFFFFF, 0xFFFFFFFF);
+    m_holeHeightText.SetAdjustDrawRectToEdges(false);
 						  
 	// swing controls
 	
