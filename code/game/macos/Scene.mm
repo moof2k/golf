@@ -77,6 +77,8 @@ RBGame *gVBGame = 0;
         backingHeight = 1;
     }
     
+    pthread_mutex_init(&game_mutex, NULL);
+    
     return self;
 }
 
@@ -87,7 +89,6 @@ RBGame *gVBGame = 0;
 
 - (void)advanceTimeBy:(float)seconds
 {
-    float phaseDelta = seconds - floor(seconds);
 }
 
 
@@ -111,6 +112,8 @@ RBGame *gVBGame = 0;
 
 - (void)render
 {	
+    pthread_mutex_lock(&game_mutex);
+    
     static bool firsttime = true;
 	
 	if(firsttime)
@@ -175,6 +178,8 @@ RBGame *gVBGame = 0;
 	}
 	
 	glFinish();
+    
+    pthread_mutex_unlock(&game_mutex);
 }
 
 
@@ -182,41 +187,57 @@ RudeScreenVertex lastMouse;
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
+    pthread_mutex_lock(&game_mutex);
+    
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
     RudeScreenVertex point(p.x, h - p.y);
     lastMouse = point;
     gVBGame->TouchDown(point);
+    
+    pthread_mutex_unlock(&game_mutex);
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
+    pthread_mutex_lock(&game_mutex);
+    
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchUp(point, lastMouse);
     lastMouse = point;
+    
+    pthread_mutex_unlock(&game_mutex);
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
+    pthread_mutex_lock(&game_mutex);
+    
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchMove(point, lastMouse);
     lastMouse = point;
+    
+    pthread_mutex_unlock(&game_mutex);
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
 {
+    pthread_mutex_lock(&game_mutex);
+    
     float scrollx = [theEvent deltaX];
     float scrolly = [theEvent deltaY];
     
     RudeScreenVertex d(scrollx, scrolly);
     gVBGame->ScrollWheel(d);
+    
+    pthread_mutex_unlock(&game_mutex);
 }
 
 

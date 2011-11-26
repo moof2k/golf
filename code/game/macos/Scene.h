@@ -56,6 +56,13 @@
     /* The pixel dimensions of the backbuffer */
 	GLint backingWidth;
 	GLint backingHeight;
+    
+    /**
+     * Game mutex. If using the displayport renderer, we don't want to deal
+     * with concurrency issues, so lock all access to the game code with a
+     * mutex.
+     */
+    pthread_mutex_t game_mutex;
 }
 
 - (id)init;
