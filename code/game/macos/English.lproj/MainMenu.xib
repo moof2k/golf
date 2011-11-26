@@ -43,7 +43,7 @@
 			<object class="NSWindowTemplate" id="963528865">
 				<int key="NSWindowStyleMask">13</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{23, 475}, {320, 480}}</string>
+				<string key="NSWindowRect">{{23, 475}, {768, 640}}</string>
 				<int key="NSWTFlags">1886912512</int>
 				<string key="NSWindowTitle">Anytime Golf</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -51,7 +51,7 @@
 					<characters key="NS.bytes">View</characters>
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
-				<string key="NSWindowContentMinSize">{360, 270}</string>
+				<string key="NSWindowContentMinSize">{768, 640}</string>
 				<object class="NSView" key="NSWindowView" id="937864618">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -60,7 +60,7 @@
 						<object class="NSCustomView" id="1008652729">
 							<reference key="NSNextResponder" ref="937864618"/>
 							<int key="NSvFlags">274</int>
-							<string key="NSFrameSize">{320, 480}</string>
+							<string key="NSFrameSize">{768, 640}</string>
 							<reference key="NSSuperview" ref="937864618"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -68,13 +68,13 @@
 							<string key="NSExtension">NSOpenGLView</string>
 						</object>
 					</object>
-					<string key="NSFrameSize">{320, 480}</string>
+					<string key="NSFrameSize">{768, 640}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="1008652729"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
-				<string key="NSMinSize">{360, 292}</string>
+				<string key="NSMinSize">{768, 662}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">NSOpenGLFullScreen</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -777,6 +777,10 @@
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1050" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1060" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
