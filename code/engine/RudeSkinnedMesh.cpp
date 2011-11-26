@@ -291,6 +291,13 @@ void RudeSkinnedMesh::Render()
 					boneworldbt[j].setFromOpenGLMatrix(boneworld.f);
 				}
 			}
+            else
+            {
+                for(int j = 0; j < batchcnt; ++j)
+				{
+                    boneworldbt[j].setIdentity();
+                }
+            }
 			
 			totalbatchcnt += batchcnt;
 			
