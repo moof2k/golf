@@ -1,0 +1,27 @@
+﻿# Title UI - PC/Mac version
+
+RudeButtonControl	logo	logo_ipad	{-1,-1}	{0, 0, -240, -1}	popslide
+RudeButtonControl	rangeMedallion	ui_bucketoballz	{-1,-1}	{180, 0, -180, -1}	popslide
+RudeButtonControl	courseMedallion	ui_ccc_medallion_128	{-1,-1}	{80, 160, -280, -1}	popslide
+RudeButtonControl	courseSplash	ui_wreath_gold	{-1,-1}	{180, 0, -180, -1}	popslide
+
+RudeTextControl	startText	Play	center	{-240, 0, -190, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	practiceText	Practice	center	{-180, 0, -120, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	settingsText	Options	center	{-110, 0, -60, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+RudeTextControl	goText	Start	center	{-180, 0, -120, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	backText	Back	center	{-110, 0, -60, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	copyrightText	Copyright © 2011 Bork 3D LLC	center	{-25, 0, -1, -1}	default	none	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+RudeTextControl	tournamentText	Select Tournament	center	{60, 0, 90, -1}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseNameText	Golf Course	center	{60, 0, 90, -1}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+RudeTextControl	courseSubnameText	Amateur Invitational	center	{100, 0, 150, -1}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+RudeTextControl	courseDescText	Front 9 / Short Tee	center	{160, 0, 180, -1}	default	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+RudeTextControl	scoreText	+1	center	{800, 0, 830, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+RudeTextControl	scoreDesc	Congratulations!	center	{860, 0, 890, -1}	default	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
+
+RudeTextControl	settingsTitleText	Options	center	{100, 0, 130, -1}	big	outline	popslide	0xFFFFFFFF	0xFFFFE9CA	0xFF000000	0xFF000000
+
+RudeTextControl	musicToggle	Music: On	center	{200, 0, 230, -1}	big	outline	popslide	0xFFFFFFFF	0xFFCCCCCC	0xFF000000	0xFF000000
