@@ -169,9 +169,15 @@ void RudePhysics::AddObject(RudePhysicsObject *obj)
 void RudePhysics::NextFrame(float delta)
 {
 	if(m_dynamicsWorld)
+    {
 		if(m_precise)
+        {
 			m_dynamicsWorld->stepSimulation(delta,20, 1.0f/60.0f);
+        }
 		else
+        {
 			m_dynamicsWorld->stepSimulation(delta,20, 1.0f/30.0f);
+        }
+    }
 }
 

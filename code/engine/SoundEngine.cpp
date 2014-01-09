@@ -813,7 +813,7 @@ class BackgroundTrackMgr
 			OSStatus result = AudioQueuePrime(mQueue, 1, NULL);	
 			if (result)
 			{
-				printf("Error priming queue: %d\n", result);
+				printf("Error priming queue: %d\n", (int)result);
 				return result;
 			}
 			return AudioQueueStart(mQueue, NULL);

@@ -38,7 +38,7 @@ RudeTexture::RudeTexture()
 
 RudeTexture::~RudeTexture()
 {
-	if(m_texture >= 0)
+	if(m_texture == -1)
 	{
 		glDeleteTextures(1, &m_texture);
 		m_texture = -1;

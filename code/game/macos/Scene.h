@@ -71,7 +71,6 @@
 - (void)render;
 
 - (void)advanceTimeBy:(float)seconds;
-- (void)setAnimationPhase:(float)newAnimationPhase;
 
 - (void)mouseDown:(NSEvent *)theEvent;
 - (void)mouseUp:(NSEvent *)theEvent;

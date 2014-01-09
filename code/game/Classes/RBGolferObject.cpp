@@ -149,8 +149,6 @@ void RBGolferObject::Render()
 	
 	// position golfer relative to ball
 	
-	btVector3 node = -m_nodes[m_node];
-	
 	btVector3 guidevec = m_guide - m_ball;
 	guidevec.normalize();
 	

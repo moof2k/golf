@@ -63,6 +63,8 @@ void RBBallCamera::SetTrackMode(eTrackMode mode)
 		case kPlacementCamera:
 			m_lookAt = ball;
 			break;
+        default:
+            break;
 	}
 }
 

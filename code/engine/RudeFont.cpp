@@ -89,6 +89,7 @@ class CFontLoader
 	{
 	public:
 		CFontLoader(FILE *f, RudeFont *font, const char *fontFile);
+        virtual ~CFontLoader() {};
 		
 		virtual int Load() = 0; // Must be implemented by derived class
 		

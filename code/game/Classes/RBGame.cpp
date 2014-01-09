@@ -166,6 +166,9 @@ void RBGame::SetState(eGameState state)
 			m_game = m_tutorial;
 		}
 			break;
+            
+        default:
+            break;
 	}
 	
 	SaveState();

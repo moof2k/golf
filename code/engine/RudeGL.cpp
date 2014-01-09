@@ -422,8 +422,6 @@ static void __gluMultMatrixVecd(const GLfloat matrix[16], const GLfloat in[4],
  */
 btVector3 RudeGL::InverseProject(const btVector3 &point)
 {
-	btVector3 p = point;
-
 	float finalMatrix[16];
 	float projMatrix[16];
     float in[4];

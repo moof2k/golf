@@ -211,7 +211,7 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 	CFURLRef myURLRef = CFBundleCopyResourceURL(bundle, file, 0, 0);
 	
 	OSStatus error = AudioServicesCreateSystemSoundID(myURLRef, &m_soundids[num]);
-	//RUDE_ASSERT(error == kAudioSessionNoError, "Could not load sound %s", sound);
+	RUDE_ASSERT(error == kAudioServicesNoError, "Could not load sound %s", sound);
 #endif
 	
 }
