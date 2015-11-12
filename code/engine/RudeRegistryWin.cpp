@@ -21,7 +21,7 @@ int RudeRegistryWin::QueryByte(const TCHAR *app, const TCHAR *name, void *buffer
 	_stprintf(keypath, _T("SOFTWARE\\Bork3D\\%s"), app);
 
 	LONG result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, keypath,
-						NULL, KEY_ALL_ACCESS, &hkey);
+		NULL, KEY_ALL_ACCESS | KEY_WOW64_32KEY, &hkey);
 	if(result != ERROR_SUCCESS)
 		return result;
 
@@ -41,11 +41,11 @@ int RudeRegistryWin::SetByte(const TCHAR *app, const TCHAR *name, void *buffer, 
 	LONG result;
 
 	result = RegCreateKeyEx(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Bork3D"),
-		NULL, NULL, NULL, KEY_ALL_ACCESS, NULL, &bork3d_hkey, &disposition);
+		NULL, NULL, NULL, KEY_ALL_ACCESS | KEY_WOW64_32KEY, NULL, &bork3d_hkey, &disposition);
 	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to open HKEY_LOCAL_MACHINE\\SOFTWARE\\Bork3D - %d", result);
 
 	result = RegCreateKeyEx(bork3d_hkey, app,
-		NULL, NULL, NULL, KEY_ALL_ACCESS, NULL, &app_hkey, &disposition);
+		NULL, NULL, NULL, KEY_ALL_ACCESS | KEY_WOW64_32KEY, NULL, &app_hkey, &disposition);
 	RUDE_ASSERT(result == ERROR_SUCCESS, "Unable to open HKEY_LOCAL_MACHINE\\SOFTWARE\\Bork3D\\%s - %d", app, result);
 
 
