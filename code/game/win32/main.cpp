@@ -109,7 +109,8 @@ int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 
 	static float lastTime = -1.0f;
 
-	float currentTime = ((float) GetTickCount()) / 1000.0f;
+	float ticks = (float) GetTickCount();
+	float currentTime = ticks / 1000.0f;
 	float deltaTime = 0.0f;
 
 	if(lastTime > 0.0f)
@@ -536,6 +537,16 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 #ifndef NO_RUDETWEAKER
 	RudeTweaker::GetInstance()->Init();
 #endif
+
+	// Disable Floating Point Exceptions
+	_clearfp();
+
+	unsigned int control_word = 0;
+	int err = _controlfp_s(&control_word, 0, 0);
+	RUDE_REPORT("Old FP Settings: 0x%.4x\n", control_word);
+
+	err = _controlfp_s(&control_word, _MCW_EM, _MCW_EM);
+	RUDE_REPORT("New FP Settings: 0x%.4x\n", control_word);
 
 	while(!done)									// Loop That Runs While done=FALSE
 	{
