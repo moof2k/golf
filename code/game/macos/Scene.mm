@@ -60,6 +60,7 @@
 
 #include <mach/mach.h>
 #include <mach/mach_time.h>
+#include <pthread.h>
 #include <unistd.h>
 
 #import <OpenGL/glu.h>
