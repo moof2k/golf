@@ -7,6 +7,11 @@ developed by Robert Rose through Bork 3D LLC. In 2015 Bork 3D released the sourc
 and source art material for the game to the public under a permissive BSD-style
 open source license.
 
+The source code includes the [Bork 3D Game Engine](https://en.wikipedia.org/wiki/Bork3D_Game_Engine),
+a C++ game engine capable of targeting iOS, MacOS and Windows.
+
+![](art/marketing/screenshots/IMG_0033.PNG) ![](art/marketing/screenshots/IMG_0049.PNG)
+
 Compilation
 ===========
 
