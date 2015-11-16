@@ -3,9 +3,10 @@ Anytime Golf: Magic Touch
 =========================
 
 "Anytime Golf: Magic Touch" is an interactive golf simulation game for iPhone and iPad
-developed by Robert Rose through Bork 3D LLC. In 2015 Bork 3D released the source code
-and source art material for the game to the public under a permissive BSD-style
-open source license.
+developed by [Robert Rose](http://robertwrose.com/) and Jake Helms through Bork 3D LLC.
+
+In 2015 Bork 3D released the source code and source art material for the game to the
+public under a permissive BSD-style open source license.
 
 The source code includes the [Bork 3D Game Engine](https://en.wikipedia.org/wiki/Bork3D_Game_Engine),
 a C++ game engine capable of targeting iOS, MacOS and Windows.
@@ -43,5 +44,6 @@ Open code\game\win32\game.sln and compile the Debug or Release targets.
 License
 =======
 
-See LICENSE.
+Source code and source artwork covered by LICENSE file.
 
+Music Copyright (c) [Mick Rippon](https://soundcloud.com/mickrip). All Rights Reserved.
