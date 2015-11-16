@@ -1,2 +1,10 @@
+
+# Mac-specific
 .DS_Store
 
+# Windows-specific
+FreeImage.dll
+*.sdf
+*.suo
+code/game/win32/Debug
+code/lib/bullet/out
