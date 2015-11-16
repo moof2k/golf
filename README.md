@@ -18,21 +18,23 @@ Compilation
 iOS
 ---
 
-Prerequisites: Xcode is required.
+Xcode is required.
 
 Open code/game/golf.xcodeproj and compile the iPhone or iPad, Debug or Release targets.
 
 MacOS
 -----
 
-Prerequisites: Xcode7 is required.
+Xcode7 is required.
 
 Open code/game/macos/example_macos.xcodeproj and compile the Debug or Release targets.
 
 Windows
 -------
 
-Prerequisites: FreeImage.dll is required to run the game. FreeImage is distributed under
+Visual Studio 2013 is required.
+
+FreeImage.dll is required to run the game. FreeImage is distributed under
 less-permissive license terms so must be downloaded separately. You can obtain FreeImage.dll
 from http://freeimage.sourceforge.net/ Place the file in code\game.
 
