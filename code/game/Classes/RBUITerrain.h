@@ -29,7 +29,7 @@ public:
 	~RBUITerrain();
 	
 	void NextFrame(float delta);
-	void Render(float width, float height);
+	void Render(float width, float height, int camera);
 
 	void StartDisplay();
 

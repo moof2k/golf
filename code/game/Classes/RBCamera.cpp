@@ -20,7 +20,7 @@ RBCamera::RBCamera()
 {
 }
 
-void RBCamera::SetView(float aspect)
+void RBCamera::SetView(float aspect, int eye)
 {
 	float near_plane = 4.0f;
 	float far_plane = 2000.0f;
@@ -31,7 +31,12 @@ void RBCamera::SetView(float aspect)
 	//printf("w=%f aspect=%f\n", w, aspect);
 	
 	RGL.Frustum(0.0f, 0.0f, w * aspect, w, near_plane, far_plane);
+
+	float eye_offset = -0.05f;
+
+	if (eye)
+		eye_offset = -eye_offset;
 	
-	RGL.LookAt(m_pos.x(), m_pos.y(), m_pos.z(), m_lookAt.x(), m_lookAt.y(), m_lookAt.z(), m_up.x(), m_up.y(), m_up.z());
+	RGL.LookAt(m_pos.x() + eye_offset, m_pos.y(), m_pos.z(), m_lookAt.x(), m_lookAt.y(), m_lookAt.z(), m_up.x(), m_up.y(), m_up.z());
 }
 

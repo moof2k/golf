@@ -235,7 +235,7 @@ void RBTRound::NextFrame(float delta)
 	}
 }
 
-void RBTRound::Render(float width, float height)
+void RBTRound::Render(float width, float height, int camera)
 {
 	if(m_state == kStateNextRound || m_state == kStateInit)
 	{
@@ -253,7 +253,7 @@ void RBTRound::Render(float width, float height)
 	else if(m_state == kStateInRound)
 	{
 		if(m_game)
-			m_game->Render(width, height);
+			m_game->Render(width, height, camera);
 	}
 }
 

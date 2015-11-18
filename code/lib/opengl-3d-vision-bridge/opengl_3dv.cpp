@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 #if defined(_WIN32) || defined(_WIN64)
 

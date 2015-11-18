@@ -71,7 +71,8 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes;..\..\lib\nvapi;..\..\lib\opengl-3d-vision-bridge;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RUDE_IPAD=1;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>
@@ -88,6 +89,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

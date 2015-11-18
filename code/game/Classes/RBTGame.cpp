@@ -1790,14 +1790,14 @@ void RBTGame::RenderShotInfo(bool showShotDistance, bool showClubInfo)
 
 }
 
-void RBTGame::Render(float width, float height)
+void RBTGame::Render(float width, float height, int camera)
 {
 	RUDE_PERF_START(kPerfRBTGameRender1);
 	
 	RGL.SetViewport(0, 0, (int) height, (int) width);
 
 	float aspect = width / height;
-	m_curCamera->SetView(aspect);
+	m_curCamera->SetView(aspect, camera);
 	RGL.LoadIdentity();
 	
 	AdjustGuide();
@@ -1932,7 +1932,7 @@ void RBTGame::Render(float width, float height)
 				}
 				break;
 			case kStateMenu:
-				m_menu.Render(width, height);
+				m_menu.Render(width, height, camera);
 				break;
 				
 			case kStateExecuteSwing:
@@ -1977,7 +1977,7 @@ void RBTGame::Render(float width, float height)
 				
 				glMatrixMode(GL_PROJECTION);
 				glPushMatrix();
-				m_terrainui.Render(width, height);
+				m_terrainui.Render(width, height, camera);
 				glMatrixMode(GL_PROJECTION);
 				glPopMatrix();
 
@@ -2330,10 +2330,10 @@ void RBTGame::Resize()
 	}
 	m_ui.UpdateDrawRect();
     
-    RudeRect guideRect(RGL.GetDeviceHeight() / 2 - 32,
-                       RGL.GetDeviceWidth() / 2 - 32,
-                       RGL.GetDeviceHeight() / 2 + 32,
-                       RGL.GetDeviceWidth() / 2 + 32);
+    RudeRect guideRect(int(RGL.GetDeviceHeight()) / 2 - 32,
+					   int(RGL.GetDeviceWidth()) / 2 - 32,
+					   int(RGL.GetDeviceHeight()) / 2 + 32,
+					   int(RGL.GetDeviceWidth()) / 2 + 32);
     m_guideAdjust->SetDrawRect(guideRect);
 }
 

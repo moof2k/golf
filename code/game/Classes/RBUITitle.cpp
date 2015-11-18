@@ -605,12 +605,12 @@ void RBUITitle::NextFrame(float delta)
 	}
 }
 
-void RBUITitle::Render(float width, float height)
+void RBUITitle::Render(float width, float height, int camera)
 {
 	RGL.SetViewport(0, 0, (int) height, (int) width);
 	
 	float aspect = width / height;
-	m_camera.SetView(aspect);
+	m_camera.SetView(aspect, camera);
 	RGL.LoadIdentity();
 	
 	m_skybox.Render();

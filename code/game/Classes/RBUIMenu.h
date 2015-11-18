@@ -29,7 +29,7 @@ public:
 	void Reset(int holeNum, eCourseHoles holeSet);
 	
 	void NextFrame(float delta);
-	void Render(float width, float height);
+	void Render(float width, float height, int camera);
 	
 	void TouchDown(RudeTouch *rbt);
 	void TouchMove(RudeTouch *rbt);

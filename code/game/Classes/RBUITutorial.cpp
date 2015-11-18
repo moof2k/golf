@@ -88,7 +88,7 @@ void RBUITutorial::NextImage()
 	m_imageDelay = 5;
 }
 
-void RBUITutorial::Render(float width, float height)
+void RBUITutorial::Render(float width, float height, int camera)
 {
 	RGL.SetViewport(0, 0, (int) height, (int) width);
 	

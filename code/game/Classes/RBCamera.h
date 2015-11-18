@@ -22,7 +22,7 @@ public:
 	{
 	}
 	
-	virtual void SetView(float aspect);
+	virtual void SetView(float aspect, int eye);
 	
 	void SetPos(const btVector3 &p) { m_pos = p; }
 	void SetLookAt(const btVector3 &l) { m_lookAt = l; }

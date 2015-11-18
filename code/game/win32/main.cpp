@@ -111,15 +111,12 @@ int InitGL(GLvoid)										// All Setup For OpenGL Goes Here
 	return TRUE;										// Initialization Went OK
 }
 
-int DrawGLScene(int camera)									// Here's Where We Do All The Drawing
+int DrawGLScene(int camera)
 {
 	RGL.FlushEnables();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
 	glLoadIdentity();									// Reset The Current Modelview Matrix
-
-	if (camera)
-		return TRUE;
 
 	//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
@@ -138,7 +135,7 @@ int DrawGLScene(int camera)									// Here's Where We Do All The Drawing
 
 	if(gVBGame)
 	{
-		gVBGame->Render(deltaTime, (float) windowWidth, (float) windowHeight);
+		gVBGame->Render(deltaTime, (float) windowWidth, (float) windowHeight, camera);
 	}
 
 	

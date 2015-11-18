@@ -175,7 +175,7 @@ void RBGame::SetState(eGameState state)
 }
 
 
-void RBGame::Render(float delta, float width, float height)
+void RBGame::Render(float delta, float width, float height, int camera)
 {
 	RudePerf::NextFrame(delta);
 
@@ -191,8 +191,11 @@ void RBGame::Render(float delta, float width, float height)
 	if(delta > kMaxDelta)
 		delta = kMaxDelta;
 	
-	m_game->NextFrame(delta);
-	m_game->Render(width, height);
+	// Only increment game step on left camera (camera 0)
+	if(camera == 0)
+		m_game->NextFrame(delta);
+
+	m_game->Render(width, height, camera);
 	
 	switch(m_state)
 	{

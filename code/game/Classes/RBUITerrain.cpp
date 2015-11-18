@@ -49,7 +49,7 @@ void RBUITerrain::NextFrame(float delta)
 	m_tvc.NextFrame(delta);
 }
 
-void RBUITerrain::Render(float width, float height)
+void RBUITerrain::Render(float width, float height, int camera)
 {
 	if(m_done)
 		return;

@@ -54,7 +54,7 @@ public:
 	void Init();
 	void Destroy();
 
-	void Render(float delta, float width, float height);
+	void Render(float delta, float width, float height, int camera);
 	
 	void KeyUp(RudeKey k);
 	void KeyDown(RudeKey k);

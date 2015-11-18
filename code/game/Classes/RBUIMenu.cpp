@@ -63,7 +63,7 @@ void RBUIMenu::NextFrame(float delta)
 	m_bgTimer += delta;
 }
 
-void RBUIMenu::Render(float width, float height)
+void RBUIMenu::Render(float width, float height, int camera)
 {
 	// splat grey bg
 	
