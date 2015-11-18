@@ -17,6 +17,9 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{55d99cef-ec80-478d-a725-b818156741a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3D">
+      <UniqueIdentifier>{47888788-c9de-4b55-95e6-52f712f1a675}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glext.h">
@@ -328,6 +331,15 @@
     <ClInclude Include="..\..\lib\pvrt\PVRTVertex.h">
       <Filter>pvrt</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\opengl_3dv.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\wgl_custom.h">
+      <Filter>3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\gl_custom.h">
+      <Filter>3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -605,6 +617,12 @@
     </ClCompile>
     <ClCompile Include="..\..\lib\pvrt\PVRTVertex.cpp">
       <Filter>pvrt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\opengl-3d-vision-bridge\wgl_custom.c">
+      <Filter>3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\opengl-3d-vision-bridge\opengl_3dv.cpp">
+      <Filter>3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

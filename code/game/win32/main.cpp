@@ -8,6 +8,7 @@
  *	nehe.gamedev.net
  */
 
+
 #include "Rude.h"
 
 #include "RBGame.h"
@@ -16,6 +17,12 @@
 #include "RudeFont.h"
 #include "RudeTweaker.h"
 #include "RudeUnitTest.h"
+
+#include "nvapi.h"
+#include "opengl_3dv.h"
+
+
+GLD3DBuffers gl_d3d_buffers = { 0 };
 
 RBGame *gVBGame = 0;
 
@@ -62,6 +69,13 @@ PFNGLBINDATTRIBLOCATIONARBPROC   glBindAttribLocationARB;
 PFNGLGETACTIVEATTRIBARBPROC      glGetActiveAttribARB;
 PFNGLGETATTRIBLOCATIONARBPROC    glGetAttribLocationARB;
 
+PFNGLGENFRAMEBUFFERSEXTPROC      glGenFramebuffersEXT;
+PFNGLBINDFRAMEBUFFEREXTPROC      glBindFramebufferEXT;
+PFNGLFRAMEBUFFERTEXTURE2DEXTPROC glFramebufferTexture2DEXT;
+PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC glCheckFramebufferStatusEXT;
+PFNGLDELETEFRAMEBUFFERSEXTPROC   glDeleteFramebuffers;
+PFNGLDELETERENDERBUFFERSEXTPROC  glDeleteRenderbuffersEXT;
+
 #define DECLARE_OGL_API(cast, func) \
 	func = (cast) wglGetProcAddress(#func); \
 	if(func == 0) { RudeAssert(__FILE__, __LINE__, "wglGetProcAddress failed"); }
@@ -97,13 +111,15 @@ int InitGL(GLvoid)										// All Setup For OpenGL Goes Here
 	return TRUE;										// Initialization Went OK
 }
 
-int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
+int DrawGLScene(int camera)									// Here's Where We Do All The Drawing
 {
 	RGL.FlushEnables();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
 	glLoadIdentity();									// Reset The Current Modelview Matrix
 
+	if (camera)
+		return TRUE;
 
 	//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
@@ -170,6 +186,7 @@ GLvoid KillGLWindow(GLvoid)								// Properly Kill The Window
 		hInstance=NULL;									// Set hInstance To NULL
 	}
 }
+
 
 /*	This Code Creates Our OpenGL Window.  Parameters Are:					*
  *	title			- Title To Appear At The Top Of The Window				*
@@ -361,6 +378,13 @@ BOOL CreateGLWindow(const char *title, int width, int height, int bits, bool ful
 	DECLARE_OGL_API(PFNGLGETACTIVEATTRIBARBPROC,      glGetActiveAttribARB);
 	DECLARE_OGL_API(PFNGLGETATTRIBLOCATIONARBPROC,    glGetAttribLocationARB);
 
+	DECLARE_OGL_API(PFNGLGENFRAMEBUFFERSEXTPROC,      glGenFramebuffersEXT);
+	DECLARE_OGL_API(PFNGLBINDFRAMEBUFFEREXTPROC,      glBindFramebufferEXT);
+	DECLARE_OGL_API(PFNGLFRAMEBUFFERTEXTURE2DEXTPROC, glFramebufferTexture2DEXT);
+	DECLARE_OGL_API(PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC, glCheckFramebufferStatusEXT);
+	DECLARE_OGL_API(PFNGLDELETEFRAMEBUFFERSEXTPROC,   glDeleteFramebuffers);
+	DECLARE_OGL_API(PFNGLDELETERENDERBUFFERSEXTPROC,  glDeleteRenderbuffersEXT);
+
 	if (!InitGL())									// Initialize Our Newly Created GL Window
 	{
 		KillGLWindow();								// Reset The Display
@@ -429,13 +453,14 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 
 		case WM_SIZE:								// Resize The OpenGL Window
 		{
+			/*
 			ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));  // LoWord=Width, HiWord=Height
 			if(gVBGame)
 				gVBGame->Resize();
 
-			DrawGLScene();							// Draw The Scene
+			DrawGLScene(0);							// Draw The Scene
 			SwapBuffers(hDC);						// Swap Buffers (Double Buffering)
-
+			*/
 			return 0;								// Jump Back
 		}
 
@@ -520,11 +545,15 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		fullscreen = true;
 	*/
 
+	fullscreen = false;
+
 	// Create Our OpenGL Window
 	if (!CreateGLWindow(kWindowTitle, windowWidth, windowHeight, 32, fullscreen))
 	{
 		return 0;
 	}
+
+	GLD3DBuffers_create(&gl_d3d_buffers, hWnd, fullscreen, true, true);
 
 	RudeFontManager::InitFonts();
 
@@ -573,8 +602,14 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 				}
 				else								// Not Time To Quit, Update Screen
 				{
-					DrawGLScene();					// Draw The Scene
-					SwapBuffers(hDC);				// Swap Buffers (Double Buffering)
+					GLD3DBuffers_activate_left(&gl_d3d_buffers);
+					DrawGLScene(0);
+					GLD3DBuffers_activate_right(&gl_d3d_buffers);
+					DrawGLScene(1);
+					GLD3DBuffers_deactivate(&gl_d3d_buffers);
+					GLD3DBuffers_flush(&gl_d3d_buffers);
+
+					glFinish();
 				}
 			}
 

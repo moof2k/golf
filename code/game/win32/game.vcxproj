@@ -15,6 +15,7 @@
     <SccProjectName>Perforce Project</SccProjectName>
     <SccLocalPath>..\..</SccLocalPath>
     <SccProvider>MSSCCI:Perforce SCM</SccProvider>
+    <ProjectName>wow</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -68,7 +69,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\lib\FreeImage\Dist;..\..\lib\bullet\src\LinearMath;..\..\lib\bullet\src;..\..\engine;..\..\lib\pvrt;..\..\lib\pvrt\OGLES;..\..\lib\libmicrohttpd\include;.;..\Classes;..\..\lib\nvapi;..\..\lib\opengl-3d-vision-bridge;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RUDE_IPAD=1;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -93,10 +94,10 @@
       <Culture>0x1009</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Debug/game.exe</OutputFile>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;odbc32.lib;odbccp32.lib;FreeImage.lib;nvapi.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Debug/wow.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\lib\FreeImage\Dist;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\lib\FreeImage\Dist;..\..\lib\nvapi\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/lesson1.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +152,9 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\gl_custom.h" />
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\opengl_3dv.h" />
+    <ClInclude Include="..\..\lib\opengl-3d-vision-bridge\wgl_custom.h" />
     <ClInclude Include="glext.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="..\Classes\RBBallCamera.h" />
@@ -256,6 +260,8 @@
     <ClInclude Include="..\..\lib\pvrt\PVRTVertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\opengl-3d-vision-bridge\opengl_3dv.cpp" />
+    <ClCompile Include="..\..\lib\opengl-3d-vision-bridge\wgl_custom.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\RBBallCamera.cpp" />
     <ClCompile Include="..\Classes\RBBallGuide.cpp" />

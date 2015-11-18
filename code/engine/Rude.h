@@ -52,7 +52,6 @@
 #include <gl\glu.h>
 
 #include "glext.h"
-#include "wglext.h"
 
 extern PFNGLACTIVETEXTUREPROC           glActiveTexture;
 extern PFNGLCLIENTACTIVETEXTUREPROC     glClientActiveTexture;
@@ -77,6 +76,13 @@ extern PFNGLVERTEXATTRIB4FVARBPROC      glVertexAttrib4fvARB;
 extern PFNGLBINDATTRIBLOCATIONARBPROC   glBindAttribLocationARB;
 extern PFNGLGETACTIVEATTRIBARBPROC      glGetActiveAttribARB;
 extern PFNGLGETATTRIBLOCATIONARBPROC    glGetAttribLocationARB;
+
+extern PFNGLGENFRAMEBUFFERSEXTPROC      glGenFramebuffersEXT;
+extern PFNGLBINDFRAMEBUFFEREXTPROC      glBindFramebufferEXT;
+extern PFNGLFRAMEBUFFERTEXTURE2DEXTPROC glFramebufferTexture2DEXT;
+extern PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC glCheckFramebufferStatusEXT;
+extern PFNGLDELETEFRAMEBUFFERSEXTPROC   glDeleteFramebuffers;
+extern PFNGLDELETERENDERBUFFERSEXTPROC  glDeleteRenderbuffersEXT;
 
 typedef unsigned long long u64;
 typedef int GLfixed;
