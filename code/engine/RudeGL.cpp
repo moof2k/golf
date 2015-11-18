@@ -149,7 +149,7 @@ void RudeGL::Frustum(float ox, float oy, float w, float h, float near_plane, flo
 	}
 	else
 	{
-		if(m_upsideDown)
+		if (m_upsideDown)
 			glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 	}
 
@@ -186,7 +186,6 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	
 	m_up = m_forward.cross(side);
 	
-	
 	float M[]= 
 	{ 
 		side.x(), m_up.x(), m_forward.x(), 0, 
@@ -196,7 +195,7 @@ void RudeGL::LookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float loo
 	};
 	
 	glMatrixMode(GL_PROJECTION);
-	glMultMatrixf(M); 
+	glMultMatrixf(M);
 	glTranslatef (-eyeX, -eyeY, -eyeZ);
 	
 	

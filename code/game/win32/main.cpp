@@ -552,6 +552,8 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 
 	GLD3DBuffers_create(&gl_d3d_buffers, hWnd, fullscreen, true, true);
 
+	RGL.SetUpsideDown(true);
+
 	RudeFontManager::InitFonts();
 
 	if(gVBGame == 0)

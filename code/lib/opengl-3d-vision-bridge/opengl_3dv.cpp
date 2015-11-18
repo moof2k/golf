@@ -856,6 +856,7 @@ void GLD3DBuffers_flush(GLD3DBuffers *gl_d3d_buffers) {
 		if (result != D3D_OK) {
 			D3D_EXCEPTION("Failed to stretch stereo color buffer to back buffer");
 		}
+
 	}
 	else {
 		// Stretch left color buffer to back buffer
