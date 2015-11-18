@@ -41,6 +41,15 @@ from http://freeimage.sourceforge.net/ Place the file in code\game.
 
 Open code\game\win32\game.sln and compile the Debug or Release targets.
 
+Stereoscopic 3D
+===============
+
+The branch 'stereo_3d' contains an experimental port of Anytime Golf for Windows that renders
+the game in stereoscopic 3D on nVidia 3D Vision systems.
+
+Thanks to @tliron for the example code that outlines how to render OpenGL in a manner
+compatible with nVidia 3D Vision. See https://github.com/tliron/opengl-3d-vision-bridge
+
 License
 =======
 
