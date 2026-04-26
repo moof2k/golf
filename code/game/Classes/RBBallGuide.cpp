@@ -187,7 +187,7 @@ void RBBallGuide::Render()
 	//btVector3 ball = m_ball->GetPosition();
 	//RGLD.DebugDrawLine(ball, m_guide);
 	
-	glDisable(GL_TEXTURE_2D);
+	RGL.Enable(kTexture2D, false);
 	
 	RGL.EnableClient(kVertexArray, true);
 	RGL.EnableClient(kColorArray, true);

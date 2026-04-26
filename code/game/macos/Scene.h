@@ -65,10 +65,10 @@
     pthread_mutex_t game_mutex;
 }
 
-- (id)init;
-
-- (void)setViewportRect:(NSRect)bounds;
-- (void)render;
+- (id) init;
+- (void) setViewportRect:(NSRect)bounds;
+- (void) setBackingScale:(float)scale;
+- (void) render;
 
 - (void)advanceTimeBy:(float)seconds;
 

@@ -27,6 +27,7 @@
 typedef enum {
 	kDepthTest = 0,
 	kBackfaceCull,
+	kTexture2D,
 	
 	kNumRudeGLEnableOptions
 } eRudeGLEnableOption;
@@ -90,6 +91,9 @@ public:
 	void SetDeviceWidth(float w) { m_deviceWidth = w; }
 	float GetDeviceWidth() { return m_deviceWidth; }
 
+	void SetBackingScale(float scale) { m_backingScale = scale; }
+	float GetBackingScale() { return m_backingScale; }
+
 private:
 	
 	float m_viewmat[16];
@@ -110,6 +114,7 @@ private:
 	bool m_upsideDown;
 	float m_deviceHeight;
 	float m_deviceWidth;
+	float m_backingScale;
 	
 };
 

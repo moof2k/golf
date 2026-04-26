@@ -35,9 +35,14 @@ RudeTouch * RudeTouchTracker::GetTouch(RudeScreenVertex &p)
 	for(int i = 0; i < kMaxTouches; i++)
 	{
 		RudeTouch *t = &m_touches[i];
-		if(t->m_location.m_x == p.m_x)
-			if(t->m_location.m_y == p.m_y)
-				return t;
+		if(t->m_touchId < 0)
+			continue;
+			
+		float dx = t->m_location.m_x - p.m_x;
+		float dy = t->m_location.m_y - p.m_y;
+		
+		if(dx*dx + dy*dy < 0.01f)
+			return t;
 	}
 	
 	return 0;

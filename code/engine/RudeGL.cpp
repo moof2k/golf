@@ -17,6 +17,7 @@ RudeGL RGL;
 const unsigned int kRudeEnableMappings[kNumRudeGLEnableOptions] = {
 	GL_DEPTH_TEST,
 	GL_CULL_FACE,
+	GL_TEXTURE_2D,
 };
 
 
@@ -34,6 +35,7 @@ RudeGL::RudeGL()
 , m_upsideDown(false)
 , m_deviceHeight(480.0f)
 , m_deviceWidth(320.0f)
+, m_backingScale(1.0f)
 {
 	for(int i = 0; i < kNumRudeGLEnableOptions; i++)
 		m_enables[i] = false;
@@ -81,10 +83,13 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	m_viewport.m_left = left;
 	m_viewport.m_bottom = bottom;
 	m_viewport.m_right = right;
-	float screenx = right - left;
-	float screeny = bottom - top;
+	float screenx = (right - left);
+	float screeny = (bottom - top);
 	
-	glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
+	glViewport((int) (m_viewport.m_left * m_backingScale), 
+               (int) ((m_deviceHeight - m_viewport.m_bottom) * m_backingScale), 
+               (int) (screenx * m_backingScale), 
+               (int) (screeny * m_backingScale));
 #endif
 }
 

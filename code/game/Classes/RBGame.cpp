@@ -293,6 +293,8 @@ void RBGame::StylusMove(RudeScreenVertex &p)
 
 void RBGame::TouchDown(RudeScreenVertex &n)
 {
+	m_touchtracker.ReleaseAllTouches();
+
 	RudeTouch *touch = m_touchtracker.NewTouch(n);
 	RUDE_ASSERT(touch, "Could not create touch");
 	

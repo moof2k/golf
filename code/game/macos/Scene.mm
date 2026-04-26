@@ -93,6 +93,10 @@ RBGame *gVBGame = 0;
 {
 }
 
+- (void)setBackingScale:(float)scale
+{
+    RGL.SetBackingScale(scale);
+}
 
 - (void)setViewportRect:(NSRect)bounds
 {
@@ -196,10 +200,9 @@ RudeScreenVertex lastMouse;
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
-    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
-    lastMouse = point;
     gVBGame->TouchDown(point);
+    lastMouse = point;
     
     pthread_mutex_unlock(&game_mutex);
 }
@@ -207,14 +210,12 @@ RudeScreenVertex lastMouse;
 - (void)mouseUp:(NSEvent *)theEvent
 {
     pthread_mutex_lock(&game_mutex);
-    
+
     int h = RGL.GetDeviceHeight();
-    
+
     NSPoint p = [theEvent locationInWindow];
-    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchUp(point, lastMouse);
-    lastMouse = point;
     
     pthread_mutex_unlock(&game_mutex);
 }
@@ -226,7 +227,6 @@ RudeScreenVertex lastMouse;
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
-    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchMove(point, lastMouse);
     lastMouse = point;

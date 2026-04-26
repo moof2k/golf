@@ -104,8 +104,12 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
     
 	CGLLockContext([[self openGLContext] CGLContextObj]);
 	
-    NSRect backingBounds = [self convertRectToBacking:[self bounds]];
-	[[controller scene] setViewportRect:backingBounds];
+    NSRect bounds = [self bounds];
+    NSRect backingBounds = [self convertRectToBacking:bounds];
+    float scale = backingBounds.size.width / bounds.size.width;
+
+    [[controller scene] setBackingScale:scale];
+	[[controller scene] setViewportRect:bounds];
 	[[self openGLContext] update];
 	
 	CGLUnlockContext([[self openGLContext] CGLContextObj]);
