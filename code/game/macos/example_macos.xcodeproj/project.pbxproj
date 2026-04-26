@@ -2516,6 +2516,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = example_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					../../Lib/pvrt/OGLES,
+					.,
+					../../Lib/pvrt,
+					../../Lib/bullet/src,
+					../../Lib/libmikmod/include,
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -2556,6 +2563,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				HEADER_SEARCH_PATHS = (
+					../../Lib/pvrt/OGLES,
+					.,
+					../../Lib/pvrt,
+					../../Lib/bullet/src,
+					../../Lib/libmikmod/include,
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(inherited)",
 					"-Wno-c++11-narrowing",
