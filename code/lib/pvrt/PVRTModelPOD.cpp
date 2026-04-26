@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 //#include <time.h>
 
 #include "PVRTGlobal.h"
@@ -634,7 +635,18 @@ static bool ReadCPODData(
 		case ePODFileDataType:	if(!src.Read(s.eType)) return false;					break;
 		case ePODFileN:			if(!src.Read(s.n)) return false;						break;
 		case ePODFileStride:	if(!src.Read(s.nStride)) return false;					break;
-		case ePODFileData:		if(bValidData) { if(!src.ReadAfterAlloc(s.pData, nLen)) return false; } else { if(!src.Read(s.pData)) return false; }	break;
+		case ePODFileData:
+			if(bValidData)
+			{
+				if(!src.ReadAfterAlloc(s.pData, nLen)) return false;
+			}
+			else
+			{
+				uint32_t nData;
+				if(!src.Read(nData)) return false;
+				s.pData = (unsigned char*)(size_t)nData;
+			}
+			break;
 
 		default:
 			if(!src.Skip(nLen)) return false;

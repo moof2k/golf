@@ -164,7 +164,7 @@ static BOOL iPhoneDrv_Init(void)
     /* Create an Audio Queue... */
     err = AudioQueueNewOutput( &mDataFormat, 
 			       iPhoneDrv_AudioCallback, NULL, 
-			       CFRunLoopGetCurrent(), kCFRunLoopCommonModes,
+			       NULL, NULL,
 			       0, 
 			       &mMikModAudioQueue );
     ON_ERROR( MMERR_IPHONE_CREATEQUEUE );

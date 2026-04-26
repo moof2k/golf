@@ -52,10 +52,7 @@
 
 @class MainController;
 
-@interface MyOpenGLView : NSView {
-	
-	NSOpenGLContext *openGLContext;
-	NSOpenGLPixelFormat *pixelFormat;
+@interface MyOpenGLView : NSOpenGLView {
 	
 	MainController *controller;
 	

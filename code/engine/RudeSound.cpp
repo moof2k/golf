@@ -50,7 +50,7 @@ RudeSound::RudeSound()
 	m_bgmVolFade = 0.0;
 
 #if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
-	SoundEngine_Initialize(44100);
+	SoundEngine_Initialize(44100.0);
 	SoundEngine_SetListenerPosition(0.0, 0.0, kListenerDistance);
 #endif
 
@@ -179,13 +179,8 @@ void RudeSound::PlayWave(eSoundEffect num)
 	if(num == kSoundNone)
 		return;
 	
-#if 0
-	int result = SoundEngine_StartEffect(m_soundids[num]);
-	//RUDE_ASSERT(result == noErr, "Could not play effect (result = %d)\n", result);
-#endif
-	
 #if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
-	AudioServicesPlaySystemSound(m_soundids[num]);
+	SoundEngine_StartEffect(m_soundids[num]);
 #endif
 
 }
@@ -197,21 +192,11 @@ void RudeSound::LoadWave(const char *sound, eSoundEffect num)
 	RUDE_ASSERT(sound, "No sound name");
 	RUDE_REPORT("RudeSound::LoadWave %s\n", sound);
 	
-#if 0
+#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
 	char buffer[512];
 	RudeFileGetFile(sound, buffer, 512);
 
-	int result = SoundEngine_LoadEffect(buffer, &m_soundids[num]);
-	//RUDE_ASSERT(result == noErr, "Could not load effect (result = %d)\n", result);
-#endif
-	
-#if defined(RUDE_IPHONE) || defined(RUDE_MACOS)
-	CFBundleRef bundle = CFBundleGetMainBundle();
-	CFStringRef file = CFStringCreateWithCString(0, sound, kCFStringEncodingASCII);
-	CFURLRef myURLRef = CFBundleCopyResourceURL(bundle, file, 0, 0);
-	
-	OSStatus error = AudioServicesCreateSystemSoundID(myURLRef, &m_soundids[num]);
-	RUDE_ASSERT(error == kAudioServicesNoError, "Could not load sound %s", sound);
+	SoundEngine_LoadEffect(buffer, &m_soundids[num]);
 #endif
 	
 }

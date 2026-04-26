@@ -17,6 +17,7 @@
 #include <math.h>
 #include <string.h>
 #include <assert.h>
+#include <stdint.h>
 #include "PVRTDecompress.h"
 #include "PVRTTexture.h"
 
@@ -51,8 +52,8 @@
 /*****************************************************************************
  * Useful typedefs
  *****************************************************************************/
-typedef unsigned long U32;
-typedef unsigned char U8;
+typedef uint32_t U32;
+typedef uint8_t U8;
 
 /***********************************************************/
 /*

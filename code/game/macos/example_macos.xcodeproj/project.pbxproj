@@ -1061,7 +1061,7 @@
 		9AF6C16A110ED5A700050B38 /* ab18o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab18o2.fnt; path = ../Data/ab18o2.fnt; sourceTree = SOURCE_ROOT; };
 		9AF6C16B110ED5A700050B38 /* ab18o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab18o2_00.pvr; path = ../Data/ab18o2_00.pvr; sourceTree = SOURCE_ROOT; };
 		9AF6C16C110ED5A700050B38 /* ab28o2.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab28o2.fnt; path = ../Data/ab28o2.fnt; sourceTree = SOURCE_ROOT; };
-		9AF6C16D110ED5A700050B38 /* ab28_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab28_00.pvr; path = ../Data/ab28_00.pvr; sourceTree = SOURCE_ROOT; };
+		9AF6C16D110ED5A700050B38 /* ab28_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab28_00.pvr; path = ../Data/ab28_00.pvr; sourceTree = "<group>"; };
 		9AF6C16E110ED5A700050B38 /* ab28.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ab28.fnt; path = ../Data/ab28.fnt; sourceTree = SOURCE_ROOT; };
 		9AF6C16F110ED5A700050B38 /* ab28o2_00.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = ab28o2_00.pvr; path = ../Data/ab28o2_00.pvr; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -2471,7 +2471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2479,7 +2479,6 @@
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/ApplicationServices.framework/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = example_Prefix.pch;
@@ -2492,10 +2491,15 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bork3d.golf;
 				PRODUCT_NAME = example;
-				SDKROOT = macosx10.11;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+					"-DGL_SILENCE_DEPRECATION",
+				);
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -2503,22 +2507,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/ApplicationServices.framework/Frameworks\"",
 				);
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = example_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bork3d.golf;
 				PRODUCT_NAME = example;
-				SDKROOT = macosx10.11;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+					"-DGL_SILENCE_DEPRECATION",
+				);
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -2530,8 +2538,13 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+					"-DGL_SILENCE_DEPRECATION",
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2542,7 +2555,12 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+					"-DGL_SILENCE_DEPRECATION",
+				);
 				SDKROOT = macosx;
 			};
 			name = Release;

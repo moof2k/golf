@@ -77,14 +77,15 @@ RBGame *gVBGame = 0;
         backingWidth = 1;
         backingHeight = 1;
     }
-    
+
     pthread_mutex_init(&game_mutex, NULL);
-    
+
     return self;
 }
 
 - (void)dealloc
 {
+    pthread_mutex_destroy(&game_mutex);
     [super dealloc];
 }
 
@@ -99,32 +100,34 @@ RBGame *gVBGame = 0;
 		bounds.size.height = 1;
 	if(bounds.size.width < 1)
 		bounds.size.width = 1;
-    
+
 	backingWidth = bounds.size.width;
 	backingHeight = bounds.size.height;
-	
+
 	RGL.SetDeviceWidth(backingWidth);
 	RGL.SetDeviceHeight(backingHeight);
     
+    pthread_mutex_lock(&game_mutex);
     if(gVBGame)
         gVBGame->Resize();
+    pthread_mutex_unlock(&game_mutex);
 }
 
 
 - (void)render
 {	
     pthread_mutex_lock(&game_mutex);
-    
+
     static bool firsttime = true;
-	
+
 	if(firsttime)
 	{
-		
+
 		RudeDebug::Init();
 		RudeUnitTest::UnitTest();
-		
+
 		RudeFontManager::InitFonts();
-		
+
 		RudeText::Init();
 		
 		if(gVBGame == 0)
@@ -168,7 +171,7 @@ RBGame *gVBGame = 0;
 	glDepthFunc(GL_LEQUAL);
 	
 	// Clear the framebuffer.
-    glClearColor( 0, 0, 0, 0 );
+    glClearColor( 0, 0, 0, 1 );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     
     RGL.FlushEnables();
@@ -193,6 +196,7 @@ RudeScreenVertex lastMouse;
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
+    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
     lastMouse = point;
     gVBGame->TouchDown(point);
@@ -207,6 +211,7 @@ RudeScreenVertex lastMouse;
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
+    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchUp(point, lastMouse);
     lastMouse = point;
@@ -221,6 +226,7 @@ RudeScreenVertex lastMouse;
     int h = RGL.GetDeviceHeight();
     
     NSPoint p = [theEvent locationInWindow];
+    p = [[theEvent window].contentView convertPointToBacking:p];
     RudeScreenVertex point(p.x, h - p.y);
     gVBGame->TouchMove(point, lastMouse);
     lastMouse = point;

@@ -41,9 +41,11 @@
 #include "RudeFile.h"
 #include "RudeTextureManager.h"
 
+#include <stdint.h>
 
-typedef unsigned int UINT;
-typedef unsigned char BYTE;
+
+typedef uint32_t UINT;
+typedef uint8_t BYTE;
 
 using namespace std;
 

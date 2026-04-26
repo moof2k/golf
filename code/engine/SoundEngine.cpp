@@ -66,6 +66,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #include <vector>
 #include <pthread.h>
 #include <mach/mach.h>
+#include <unistd.h>
 
 // Local Includes
 #include "SoundEngine.h"
@@ -84,7 +85,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 				goto inHandler;									\
 			}
 
-#define kNumberBuffers 3
+#define kNumberBuffers 5
 
 class OpenALObject;
 class BackgroundTrackMgr;
@@ -664,7 +665,7 @@ class BackgroundTrackMgr
 		{
 			OSStatus err = 0;
 			UInt32 size = 0;
-			OSStatus result = AudioQueueNewOutput(&inFileInfo->mFileFormat, QueueCallback, this, NULL, kCFRunLoopCommonModes, 0, &mQueue);
+			OSStatus result = AudioQueueNewOutput(&inFileInfo->mFileFormat, QueueCallback, this, NULL, NULL, 0, &mQueue);
 					AssertNoError("Error creating queue", end);
 
 			// (2) If the file has a cookie, we should get it and set it on the AQ
@@ -981,15 +982,18 @@ class SoundEngineEffect
 		{
 			OSStatus result = AL_NO_ERROR;
 			ALint numQueuedBuffers = 0;
-			ALuint *bufferIDs = (ALuint*)malloc(numQueuedBuffers * sizeof(ALint));
 			alGetSourcei(mSourceID, AL_BUFFERS_QUEUED, &numQueuedBuffers);
 				AssertNoOALError("Error getting OpenAL queued buffer size", end)
-				
-			alSourceUnqueueBuffers(mSourceID, numQueuedBuffers, bufferIDs);
-				AssertNoOALError("Error unqueueing buffers from source", end)
+			
+			if (numQueuedBuffers > 0)
+			{
+				ALuint *bufferIDs = (ALuint*)malloc(numQueuedBuffers * sizeof(ALuint));
+				alSourceUnqueueBuffers(mSourceID, numQueuedBuffers, bufferIDs);
+				free(bufferIDs);
+					AssertNoOALError("Error unqueueing buffers from source", end)
+			}
 				
 		end:
-			free(bufferIDs);
 			return result;
 		}
 
@@ -1009,6 +1013,7 @@ class SoundEngineEffect
 				{
 					alGetSourcei(THIS->GetEffectID(), AL_BUFFERS_PROCESSED, &numBuffersProcessed);
 						AssertNoOALError("Error getting processed buffer number", end)
+					usleep(1000);
 				}
 				
 				ALuint tmpBuffer = 0;
@@ -1248,7 +1253,7 @@ class OpenALObject
 		{
 			if (mEffectsMap) 
 			{
-				for (UInt32  i = 0; i < mEffectsMap->Size(); i++)
+				while (!mEffectsMap->Empty())
 				{
 					SoundEngineEffect	*theEffect = mEffectsMap->GetEffectByIndex(0);
 					if (theEffect)
@@ -1256,6 +1261,8 @@ class OpenALObject
 						mEffectsMap->Remove(theEffect->GetEffectID());
 						delete theEffect;
 					}
+					else
+						break;
 				}
 				delete mEffectsMap;
 			}
