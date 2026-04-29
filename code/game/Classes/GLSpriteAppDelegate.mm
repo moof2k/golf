@@ -74,6 +74,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 	//MikSound_Init();
 	
+	UIViewController *viewController = [[[UIViewController alloc] init] autorelease];
+	viewController.view = glView;
+	window.rootViewController = viewController;
+	[window makeKeyAndVisible];
 }
 
 

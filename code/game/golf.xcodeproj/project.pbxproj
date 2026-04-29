@@ -2355,6 +2355,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "golf" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -3176,8 +3178,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = R8864ZALZ8;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "bullet *.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3188,6 +3193,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3196,8 +3202,15 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bork3d.GolfTest;
 				PRODUCT_NAME = Golf;
-				SDKROOT = iphoneos4.3;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3206,8 +3219,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = R8864ZALZ8;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3216,6 +3232,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3224,8 +3241,15 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bork3d.GolfTest;
 				PRODUCT_NAME = Golf;
-				SDKROOT = iphoneos4.3;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3234,6 +3258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				COPY_PHASE_STRIP = NO;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "bullet *.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj";
@@ -3246,6 +3271,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3254,10 +3280,14 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"-DRUDE_IPAD=1",
+					"-Wno-c++11-narrowing",
+				);
 				PRODUCT_NAME = Golf;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BDD898D-9B6A-48C3-B536-1F8C59EA9F89";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -3266,7 +3296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)$(TARGETED_DEVICE_FAMILY)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)$(TARGETED_DEVICE_FAMILY)";
@@ -3279,6 +3309,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3287,13 +3318,16 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				OTHER_CFLAGS = (
+					"-DRUDE_IPAD=1",
+					"-Wno-c++11-narrowing",
+				);
 				PRODUCT_NAME = Golf;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BDD898D-9B6A-48C3-B536-1F8C59EA9F89";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -3301,7 +3335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bork 3D LLC";
 				COPY_PHASE_STRIP = YES;
@@ -3313,6 +3347,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3321,26 +3356,29 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				OTHER_CFLAGS = "-DRUDE_IPAD=1";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"-DRUDE_IPAD=1",
+					"-Wno-c++11-narrowing",
+				);
 				PRODUCT_NAME = Golf;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C1A9EB58-E467-42D6-B8B2-E33BBCE4100F";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
-				VALID_ARCHS = armv7;
 			};
 			name = Distribution;
 		};
 		9A3FED640FA5338C00B632FB /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "/Users/rose/src/libmikmod-3.2.0-beta2/include";
-				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+				);
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -3348,6 +3386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bork 3D LLC";
 				COPY_PHASE_STRIP = YES;
@@ -3359,6 +3398,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GLSprite_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../lib/pvrt/OGLES,
 					.,
@@ -3367,9 +3407,14 @@
 					../lib/libmikmod/include,
 				);
 				INFOPLIST_FILE = "Resources-iPhone/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+				);
 				PRODUCT_NAME = Golf;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F47BC40F-52DD-4D53-A8E1-A34BF9115BA6";
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
@@ -3377,32 +3422,28 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose (MFEFWWE5GM)";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../bullet-2.70/src",
-					"/Users/rose/src/libmikmod-3.2.0-beta2/include",
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Robert Rose";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "/Users/rose/src/libmikmod-3.2.0-beta2/include";
-				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				ARCHS = "$(ARCHS_STANDARD)";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-Wno-c++11-narrowing",
+				);
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

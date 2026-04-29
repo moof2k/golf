@@ -46,7 +46,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
-#if !TARGET_IPHONE_SIMULATOR
 /*==================================================================================================
 	SoundEngine.cpp
 ==================================================================================================*/
@@ -1573,5 +1572,4 @@ OSStatus  SoundEngine_SetReferenceDistance(Float32 inValue)
 	return (sOpenALObject) ? sOpenALObject->SetReferenceDistance(inValue) : kSoundEngineErrUnitialized;
 }
 
-#endif
 #endif
