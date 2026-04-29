@@ -6,7 +6,7 @@
  *
  */
 
-#include "ruderegistry.h"
+#include "RudeRegistry.h"
 
 #ifdef RUDE_WIN
 #include "RudeRegistryWin.h"
