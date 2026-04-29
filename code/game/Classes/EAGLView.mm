@@ -114,6 +114,8 @@ bool gRenderUpsideDown = false;
 		
 		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 		
+		self.contentScaleFactor = [UIScreen mainScreen].scale;
+
 		RUDE_REPORT("initWithCoder\n");
 		
 		if(!context || ![EAGLContext setCurrentContext:context] || ![self createFramebuffer]) {
@@ -434,44 +436,49 @@ const GLshort spriteTexcoords[] = {
 	[super dealloc];
 }
 
-void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
+void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p, float scale)
 {
+	float x = touchPoint.x * scale;
+	float y = touchPoint.y * scale;
+
 	if(RGL.GetLandscape())
 	{
 		if(RGL.GetUpsideDown())
 		{
-			p.m_x = RGL.GetDeviceHeight() - touchPoint.y;
-			p.m_y = touchPoint.x;
+			p.m_x = RGL.GetDeviceHeight() - y;
+			p.m_y = x;
 		}
 		else
 		{
-			p.m_x = touchPoint.y;
-			p.m_y = RGL.GetDeviceWidth() - touchPoint.x;
+			p.m_x = y;
+			p.m_y = RGL.GetDeviceWidth() - x;
 		}
 	}
 	else
 	{
 		if(RGL.GetUpsideDown())
 		{
-			p.m_x = RGL.GetDeviceWidth() - touchPoint.x;
-			p.m_y = RGL.GetDeviceHeight() - touchPoint.y;
+			p.m_x = RGL.GetDeviceWidth() - x;
+			p.m_y = RGL.GetDeviceHeight() - y;
 		}
 		else
 		{
-			p.m_x = touchPoint.x;
-			p.m_y = touchPoint.y;
+			p.m_x = x;
+			p.m_y = y;
 		}
 	}
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
+	float scale = self.contentScaleFactor;
+
 	for (UITouch *touch in touches) {
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		
 		RudeScreenVertex touchDown;
-		TransformTouch(touchPoint, touchDown);
+		TransformTouch(touchPoint, touchDown, scale);
 		
 		gVBGame->TouchDown(touchDown);
 	}
@@ -481,16 +488,18 @@ void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
+	float scale = self.contentScaleFactor;
+
 	for (UITouch *touch in touches) {
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		
 		RudeScreenVertex touchDown;
-		TransformTouch(touchPoint, touchDown);
+		TransformTouch(touchPoint, touchDown, scale);
 		
 		RudeScreenVertex prevDown;
-		TransformTouch(prevPoint, prevDown);
+		TransformTouch(prevPoint, prevDown, scale);
 
 		gVBGame->TouchMove(touchDown, prevDown);
 	}
@@ -499,16 +508,18 @@ void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p)
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
+	float scale = self.contentScaleFactor;
+
 	for (UITouch *touch in touches) {
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		CGPoint prevPoint = [touch previousLocationInView:self];
 		
 		RudeScreenVertex touchDown;
-		TransformTouch(touchPoint, touchDown);
+		TransformTouch(touchPoint, touchDown, scale);
 		
 		RudeScreenVertex prevDown;
-		TransformTouch(prevPoint, prevDown);
+		TransformTouch(prevPoint, prevDown, scale);
 		
 		gVBGame->TouchUp(touchDown, prevDown);
 	}
