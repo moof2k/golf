@@ -59,23 +59,23 @@ void RudeGL::SetViewport(int top, int left, int bottom, int right)
 	m_viewport.m_left = left;
 	m_viewport.m_bottom = bottom;
 	m_viewport.m_right = right;
-	float screenx = right - left;
-	float screeny = bottom - top;
+	float screenx = (right - left);
+	float screeny = (bottom - top);
 	
 
 	if(m_landscape)
 	{
 		if(m_upsideDown)
-			glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+			glViewport((int) ((m_deviceWidth - m_viewport.m_bottom) * m_backingScale), (int) (m_viewport.m_left * m_backingScale), (int) (screeny * m_backingScale), (int) (screenx * m_backingScale));
 		else
-			glViewport(m_deviceWidth - m_viewport.m_bottom, m_viewport.m_left, screeny, screenx);
+			glViewport((int) ((m_deviceWidth - m_viewport.m_bottom) * m_backingScale), (int) (m_viewport.m_left * m_backingScale), (int) (screeny * m_backingScale), (int) (screenx * m_backingScale));
 	}
 	else
 	{
 		if(m_upsideDown)
-			glViewport(m_deviceWidth - m_viewport.m_right, m_viewport.m_top, screenx, screeny);
+			glViewport((int) ((m_deviceWidth - m_viewport.m_right) * m_backingScale), (int) (m_viewport.m_top * m_backingScale), (int) (screenx * m_backingScale), (int) (screeny * m_backingScale));
 		else
-			glViewport(m_viewport.m_left, m_deviceHeight - m_viewport.m_bottom, screenx, screeny);
+			glViewport((int) (m_viewport.m_left * m_backingScale), (int) ((m_deviceHeight - m_viewport.m_bottom) * m_backingScale), (int) (screenx * m_backingScale), (int) (screeny * m_backingScale));
 	}
 #else
 	

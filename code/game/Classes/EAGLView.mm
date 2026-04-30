@@ -114,7 +114,9 @@ bool gRenderUpsideDown = false;
 		
 		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 		
-		self.contentScaleFactor = [UIScreen mainScreen].scale;
+		float scale = [UIScreen mainScreen].scale;
+		self.contentScaleFactor = scale;
+		RGL.SetBackingScale(scale);
 
 		RUDE_REPORT("initWithCoder\n");
 		
@@ -302,16 +304,17 @@ const GLshort spriteTexcoords[] = {
 
 - (void)setupView
 {
-	RGL.SetDeviceWidth(backingWidth);
-	RGL.SetDeviceHeight(backingHeight);
+	float scale = self.contentScaleFactor;
+	RGL.SetDeviceWidth(backingWidth / scale);
+	RGL.SetDeviceHeight(backingHeight / scale);
 	
 	// Sets up matrices and transforms for OpenGL ES
 	// 320x480
-	glViewport(0, 0, backingHeight, backingWidth);
+	glViewport(0, 0, backingWidth, backingHeight);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//glOrthof(-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
-	glOrthof(0, backingHeight, 0, backingWidth, -1.0f, 1.0f);
+	glOrthof(0, backingHeight / scale, 0, backingWidth / scale, -1.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
 	
 	//glScalef(1.0f, -1.0f, 1.0f);
@@ -406,10 +409,11 @@ const GLshort spriteTexcoords[] = {
 	uint64_t elapsedNano = deltatime * sTimebaseInfo.numer / sTimebaseInfo.denom;
 	float elapsedSeconds = ((float) elapsedNano) / 1000000000.0f;
 	
+	float scale = self.contentScaleFactor;
 	
 	if(gVBGame)
 	{
-		gVBGame->Render(elapsedSeconds, (float) backingWidth, (float) backingHeight);
+		gVBGame->Render(elapsedSeconds, (float) backingWidth / scale, (float) backingHeight / scale);
 		
 	}
 	
@@ -438,8 +442,8 @@ const GLshort spriteTexcoords[] = {
 
 void TransformTouch(CGPoint &touchPoint, RudeScreenVertex &p, float scale)
 {
-	float x = touchPoint.x * scale;
-	float y = touchPoint.y * scale;
+	float x = touchPoint.x;
+	float y = touchPoint.y;
 
 	if(RGL.GetLandscape())
 	{
